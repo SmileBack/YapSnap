@@ -1,0 +1,423 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		371C2C8A19BCF73800FDA390 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C2C8819BCF73800FDA390 /* AddressBook.framework */; };
+		371C2C8B19BCF73800FDA390 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C2C8919BCF73800FDA390 /* AddressBookUI.framework */; };
+		37695E5F19BB7A2500C22E13 /* RecordButtonBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */; };
+		37695E6119BB86A700C22E13 /* RecordButtonRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E6019BB86A700C22E13 /* RecordButtonRed.png */; };
+		37695E6319BB97EA00C22E13 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E6219BB97EA00C22E13 /* Arrow.png */; };
+		37695E6519BB98DD00C22E13 /* CancelImage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E6419BB98DD00C22E13 /* CancelImage2.png */; };
+		37695E6B19BBC06300C22E13 /* CancelImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E6A19BBC06300C22E13 /* CancelImage.png */; };
+		37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37695E6D19BBC78F00C22E13 /* JEProgressView.m */; };
+		37695E7219BBC97900C22E13 /* ProgressViewBackgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E7119BBC97900C22E13 /* ProgressViewBackgroundBlue.png */; };
+		37695E7419BBC9DE00C22E13 /* ProgressViewBackgroundRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E7319BBC9DE00C22E13 /* ProgressViewBackgroundRed.png */; };
+		37695E7619BBE37A00C22E13 /* Microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E7519BBE37A00C22E13 /* Microphone.png */; };
+		3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDF319BCEF5700FBBBCE /* ContactsViewController.m */; };
+		3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDF619BCF0DC00FBBBCE /* ContactSelectionCell.m */; };
+		3793FDF919BCF0DC00FBBBCE /* ContactSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3793FDF719BCF0DC00FBBBCE /* ContactSelectionCell.xib */; };
+		3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDFB19BCF11E00FBBBCE /* UIViewController+Communication.m */; };
+		3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDFE19BCF16B00FBBBCE /* PhoneContact.m */; };
+		37C3746B19BC4A8E001A1D02 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3746A19BC4A8E001A1D02 /* MBProgressHUD.m */; };
+		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
+		F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4416DA404700E6CD88 /* Foundation.framework */; };
+		F44B0C4716DA404700E6CD88 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4616DA404700E6CD88 /* CoreGraphics.framework */; };
+		F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C4B16DA404700E6CD88 /* InfoPlist.strings */; };
+		F44B0C4F16DA404700E6CD88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F44B0C4E16DA404700E6CD88 /* main.m */; };
+		F44B0C5316DA404700E6CD88 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F44B0C5216DA404700E6CD88 /* AppDelegate.m */; };
+		F44B0C5516DA404700E6CD88 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5416DA404700E6CD88 /* Default.png */; };
+		F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5616DA404700E6CD88 /* Default@2x.png */; };
+		F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5816DA404700E6CD88 /* Default-568h@2x.png */; };
+		F44B0C5C16DA404700E6CD88 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
+		F44B0C5F16DA404700E6CD88 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44B0C5E16DA404700E6CD88 /* ViewController.m */; };
+		F44B0C6616DD09D900E6CD88 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		371C2C8819BCF73800FDA390 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		371C2C8919BCF73800FDA390 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlue.png; sourceTree = "<group>"; };
+		37695E6019BB86A700C22E13 /* RecordButtonRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonRed.png; sourceTree = "<group>"; };
+		37695E6219BB97EA00C22E13 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow.png; sourceTree = "<group>"; };
+		37695E6419BB98DD00C22E13 /* CancelImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImage2.png; sourceTree = "<group>"; };
+		37695E6A19BBC06300C22E13 /* CancelImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImage.png; sourceTree = "<group>"; };
+		37695E6C19BBC78F00C22E13 /* JEProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JEProgressView.h; sourceTree = "<group>"; };
+		37695E6D19BBC78F00C22E13 /* JEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JEProgressView.m; sourceTree = "<group>"; };
+		37695E7119BBC97900C22E13 /* ProgressViewBackgroundBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundBlue.png; sourceTree = "<group>"; };
+		37695E7319BBC9DE00C22E13 /* ProgressViewBackgroundRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundRed.png; sourceTree = "<group>"; };
+		37695E7519BBE37A00C22E13 /* Microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone.png; sourceTree = "<group>"; };
+		3793FDF219BCEF5700FBBBCE /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		3793FDF319BCEF5700FBBBCE /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		3793FDF519BCF0DC00FBBBCE /* ContactSelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactSelectionCell.h; sourceTree = "<group>"; };
+		3793FDF619BCF0DC00FBBBCE /* ContactSelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactSelectionCell.m; sourceTree = "<group>"; };
+		3793FDF719BCF0DC00FBBBCE /* ContactSelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactSelectionCell.xib; sourceTree = "<group>"; };
+		3793FDFA19BCF11E00FBBBCE /* UIViewController+Communication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Communication.h"; sourceTree = "<group>"; };
+		3793FDFB19BCF11E00FBBBCE /* UIViewController+Communication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Communication.m"; sourceTree = "<group>"; };
+		3793FDFD19BCF16B00FBBBCE /* PhoneContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneContact.h; sourceTree = "<group>"; };
+		3793FDFE19BCF16B00FBBBCE /* PhoneContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneContact.m; sourceTree = "<group>"; };
+		37C3746919BC4A8E001A1D02 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		37C3746A19BC4A8E001A1D02 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		F44B0C3F16DA404700E6CD88 /* YapSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YapSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F44B0C4216DA404700E6CD88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F44B0C4416DA404700E6CD88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F44B0C4616DA404700E6CD88 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F44B0C4A16DA404700E6CD88 /* YapSnap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YapSnap-Info.plist"; sourceTree = "<group>"; };
+		F44B0C4C16DA404700E6CD88 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F44B0C4E16DA404700E6CD88 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F44B0C5016DA404700E6CD88 /* YapSnap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YapSnap-Prefix.pch"; sourceTree = "<group>"; };
+		F44B0C5116DA404700E6CD88 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F44B0C5216DA404700E6CD88 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F44B0C5416DA404700E6CD88 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F44B0C5616DA404700E6CD88 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F44B0C5816DA404700E6CD88 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F44B0C5B16DA404700E6CD88 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		F44B0C5D16DA404700E6CD88 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F44B0C5E16DA404700E6CD88 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F44B0C3C16DA404700E6CD88 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				371C2C8A19BCF73800FDA390 /* AddressBook.framework in Frameworks */,
+				371C2C8B19BCF73800FDA390 /* AddressBookUI.framework in Frameworks */,
+				F44B0C6616DD09D900E6CD88 /* AVFoundation.framework in Frameworks */,
+				F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */,
+				F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */,
+				F44B0C4716DA404700E6CD88 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		371CCBDA19BD056B00D0AAA5 /* Record Page */ = {
+			isa = PBXGroup;
+			children = (
+				F44B0C5D16DA404700E6CD88 /* ViewController.h */,
+				F44B0C5E16DA404700E6CD88 /* ViewController.m */,
+				37695E6C19BBC78F00C22E13 /* JEProgressView.h */,
+				37695E6D19BBC78F00C22E13 /* JEProgressView.m */,
+			);
+			name = "Record Page";
+			sourceTree = "<group>";
+		};
+		37695E5D19BB7A0B00C22E13 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				37695E7519BBE37A00C22E13 /* Microphone.png */,
+				37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */,
+				37695E6019BB86A700C22E13 /* RecordButtonRed.png */,
+				37695E6219BB97EA00C22E13 /* Arrow.png */,
+				37695E6419BB98DD00C22E13 /* CancelImage2.png */,
+				37695E6A19BBC06300C22E13 /* CancelImage.png */,
+				37695E7119BBC97900C22E13 /* ProgressViewBackgroundBlue.png */,
+				37695E7319BBC9DE00C22E13 /* ProgressViewBackgroundRed.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		37695E7D19BBEE8500C22E13 /* Contacts Page */ = {
+			isa = PBXGroup;
+			children = (
+				3793FDFD19BCF16B00FBBBCE /* PhoneContact.h */,
+				3793FDFE19BCF16B00FBBBCE /* PhoneContact.m */,
+				3793FDF219BCEF5700FBBBCE /* ContactsViewController.h */,
+				3793FDF319BCEF5700FBBBCE /* ContactsViewController.m */,
+				3793FDF519BCF0DC00FBBBCE /* ContactSelectionCell.h */,
+				3793FDF619BCF0DC00FBBBCE /* ContactSelectionCell.m */,
+				3793FDF719BCF0DC00FBBBCE /* ContactSelectionCell.xib */,
+				3793FDFA19BCF11E00FBBBCE /* UIViewController+Communication.h */,
+				3793FDFB19BCF11E00FBBBCE /* UIViewController+Communication.m */,
+			);
+			name = "Contacts Page";
+			sourceTree = "<group>";
+		};
+		37C3746C19BC4A97001A1D02 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				37C3746919BC4A8E001A1D02 /* MBProgressHUD.h */,
+				37C3746A19BC4A8E001A1D02 /* MBProgressHUD.m */,
+			);
+			name = HUD;
+			sourceTree = "<group>";
+		};
+		F44B0C3616DA404700E6CD88 = {
+			isa = PBXGroup;
+			children = (
+				F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */,
+				F44B0C4816DA404700E6CD88 /* YapSnap */,
+				37695E5D19BB7A0B00C22E13 /* Resources */,
+				F44B0C4116DA404700E6CD88 /* Frameworks */,
+				F44B0C4016DA404700E6CD88 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F44B0C4016DA404700E6CD88 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F44B0C3F16DA404700E6CD88 /* YapSnap.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F44B0C4116DA404700E6CD88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				371C2C8819BCF73800FDA390 /* AddressBook.framework */,
+				371C2C8919BCF73800FDA390 /* AddressBookUI.framework */,
+				F44B0C4216DA404700E6CD88 /* UIKit.framework */,
+				F44B0C4416DA404700E6CD88 /* Foundation.framework */,
+				F44B0C4616DA404700E6CD88 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F44B0C4816DA404700E6CD88 /* YapSnap */ = {
+			isa = PBXGroup;
+			children = (
+				371CCBDA19BD056B00D0AAA5 /* Record Page */,
+				37695E7D19BBEE8500C22E13 /* Contacts Page */,
+				F44B0C5116DA404700E6CD88 /* AppDelegate.h */,
+				F44B0C5216DA404700E6CD88 /* AppDelegate.m */,
+				F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */,
+				37C3746C19BC4A97001A1D02 /* HUD */,
+				F44B0C4916DA404700E6CD88 /* Supporting Files */,
+			);
+			name = YapSnap;
+			path = AudioDemo;
+			sourceTree = "<group>";
+		};
+		F44B0C4916DA404700E6CD88 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F44B0C4A16DA404700E6CD88 /* YapSnap-Info.plist */,
+				F44B0C4B16DA404700E6CD88 /* InfoPlist.strings */,
+				F44B0C4E16DA404700E6CD88 /* main.m */,
+				F44B0C5016DA404700E6CD88 /* YapSnap-Prefix.pch */,
+				F44B0C5416DA404700E6CD88 /* Default.png */,
+				F44B0C5616DA404700E6CD88 /* Default@2x.png */,
+				F44B0C5816DA404700E6CD88 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F44B0C3E16DA404700E6CD88 /* YapSnap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F44B0C6216DA404700E6CD88 /* Build configuration list for PBXNativeTarget "YapSnap" */;
+			buildPhases = (
+				F44B0C3B16DA404700E6CD88 /* Sources */,
+				F44B0C3C16DA404700E6CD88 /* Frameworks */,
+				F44B0C3D16DA404700E6CD88 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YapSnap;
+			productName = AudioDemo;
+			productReference = F44B0C3F16DA404700E6CD88 /* YapSnap.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F44B0C3716DA404700E6CD88 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Appcoda;
+			};
+			buildConfigurationList = F44B0C3A16DA404700E6CD88 /* Build configuration list for PBXProject "YapSnap" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F44B0C3616DA404700E6CD88;
+			productRefGroup = F44B0C4016DA404700E6CD88 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F44B0C3E16DA404700E6CD88 /* YapSnap */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F44B0C3D16DA404700E6CD88 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37695E7619BBE37A00C22E13 /* Microphone.png in Resources */,
+				37695E6519BB98DD00C22E13 /* CancelImage2.png in Resources */,
+				F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */,
+				3793FDF919BCF0DC00FBBBCE /* ContactSelectionCell.xib in Resources */,
+				F44B0C5516DA404700E6CD88 /* Default.png in Resources */,
+				37695E7419BBC9DE00C22E13 /* ProgressViewBackgroundRed.png in Resources */,
+				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
+				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
+				37695E6B19BBC06300C22E13 /* CancelImage.png in Resources */,
+				F44B0C5C16DA404700E6CD88 /* MainStoryboard.storyboard in Resources */,
+				37695E6119BB86A700C22E13 /* RecordButtonRed.png in Resources */,
+				37695E5F19BB7A2500C22E13 /* RecordButtonBlue.png in Resources */,
+				37695E7219BBC97900C22E13 /* ProgressViewBackgroundBlue.png in Resources */,
+				37695E6319BB97EA00C22E13 /* Arrow.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F44B0C3B16DA404700E6CD88 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F44B0C4F16DA404700E6CD88 /* main.m in Sources */,
+				3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */,
+				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,
+				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
+				F44B0C5316DA404700E6CD88 /* AppDelegate.m in Sources */,
+				37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */,
+				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
+				F44B0C5F16DA404700E6CD88 /* ViewController.m in Sources */,
+				37C3746B19BC4A8E001A1D02 /* MBProgressHUD.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F44B0C4B16DA404700E6CD88 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F44B0C4C16DA404700E6CD88 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F44B0C5B16DA404700E6CD88 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F44B0C6016DA404700E6CD88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F44B0C6116DA404700E6CD88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F44B0C6316DA404700E6CD88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AudioDemo/YapSnap-Prefix.pch";
+				INFOPLIST_FILE = "AudioDemo/YapSnap-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F44B0C6416DA404700E6CD88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AudioDemo/YapSnap-Prefix.pch";
+				INFOPLIST_FILE = "AudioDemo/YapSnap-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F44B0C3A16DA404700E6CD88 /* Build configuration list for PBXProject "YapSnap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F44B0C6016DA404700E6CD88 /* Debug */,
+				F44B0C6116DA404700E6CD88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F44B0C6216DA404700E6CD88 /* Build configuration list for PBXNativeTarget "YapSnap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F44B0C6316DA404700E6CD88 /* Debug */,
+				F44B0C6416DA404700E6CD88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F44B0C3716DA404700E6CD88 /* Project object */;
+}
