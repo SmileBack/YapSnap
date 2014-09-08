@@ -34,13 +34,28 @@ static NSString *CellIdentifier = @"Cell";
     
     self.bottomView.hidden = YES;
     self.navigationItem.title = @"Send To...";
-    
+    [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
     self.selectedContacts = [NSMutableArray new];
     
     [self registerCellOnTableView:self.tableView];
     [self registerCellOnTableView:self.searchDisplayController.searchResultsTableView];
     
     [self loadContacts];
+    
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) { // if iOS 7
+        self.edgesForExtendedLayout = UIRectEdgeNone; //layout adjustements
+    }
+    
+    
+    //BACKGROUND COLOR OF SEARCH BAR
+    //self.searchDisplayController.searchBar.barTintColor = [UIColor colorWithRed:232.0/255.0 green:237.0/255.0 blue:91.0/255.0 alpha:1.0f];
+    
+    // TEXT COLOR OF UINAVBAR
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+
 }
 
 - (void) loadContacts
@@ -127,7 +142,7 @@ static NSString *CellIdentifier = @"Cell";
     cell.selectionView.layer.cornerRadius = 12.5f;
     cell.selectionView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     cell.selectionView.layer.borderWidth = 0.5f;
-    cell.selectionView.backgroundColor = [self.selectedContacts containsObject:contact] ? [UIColor redColor] : [UIColor clearColor];
+    cell.selectionView.backgroundColor = [self.selectedContacts containsObject:contact] ? [UIColor colorWithRed:245.0f/255.0f green:75.0f/255.0f blue:75.0f/255.0f alpha:1] : [UIColor clearColor];
     
     if ([self.invitedPhones containsObject:contact.phoneNumber]) {
         cell.backgroundColor = [UIColor colorWithWhite:.8 alpha:1];
@@ -173,8 +188,10 @@ static NSString *CellIdentifier = @"Cell";
 {
     if (self.selectedContacts.count > 0) {
         self.bottomView.hidden = NO;
+        [self.tableView setFrame:CGRectMake(0, self.searchDisplayController.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.bottomView.frame.size.height - self.searchDisplayController.searchBar.frame.size.height)];
     } else {
         self.bottomView.hidden = YES;
+        [self.tableView setFrame:CGRectMake(0, self.searchDisplayController.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchDisplayController.searchBar.frame.size.height)];
     }
         
 }
