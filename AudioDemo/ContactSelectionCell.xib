@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKL-je-848">
-                        <rect key="frame" x="13" y="5" width="200" height="23"/>
+                        <rect key="frame" x="13" y="7" width="200" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -36,6 +36,12 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3sj-xV-Kls">
                         <rect key="frame" x="278" y="7" width="29" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CheckWhite.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sjg-wb-py8">
+                                <rect key="frame" x="7" y="4" width="14" height="22"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="29" id="BPZ-hF-ZVk"/>
@@ -43,7 +49,7 @@
                         </constraints>
                     </view>
                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nml-Jd-2e8">
-                        <rect key="frame" x="13" y="28" width="31" height="13"/>
+                        <rect key="frame" x="13" y="30" width="31" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
@@ -52,7 +58,7 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="zKL-je-848" firstAttribute="top" secondItem="FDa-3L-q1G" secondAttribute="top" constant="5" id="6jT-zE-H0d"/>
+                    <constraint firstItem="zKL-je-848" firstAttribute="top" secondItem="FDa-3L-q1G" secondAttribute="top" constant="7" id="6jT-zE-H0d"/>
                     <constraint firstAttribute="trailing" secondItem="1FH-Ly-NZT" secondAttribute="trailing" constant="59" id="9v4-lx-DIH"/>
                     <constraint firstItem="3sj-xV-Kls" firstAttribute="leading" secondItem="FDa-3L-q1G" secondAttribute="leading" constant="278" id="BQd-b4-pki"/>
                     <constraint firstItem="zKL-je-848" firstAttribute="leading" secondItem="nml-Jd-2e8" secondAttribute="leading" id="JAl-N1-foH"/>
@@ -70,4 +76,7 @@
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="CheckWhite.png" width="128" height="105"/>
+    </resources>
 </document>

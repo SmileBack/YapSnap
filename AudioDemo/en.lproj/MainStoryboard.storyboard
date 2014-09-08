@@ -28,6 +28,7 @@
                                 <connections>
                                     <action selector="recordTapped:" destination="2" eventType="touchDown" id="p0K-bZ-3nh"/>
                                     <action selector="recordUntapped:" destination="2" eventType="touchUpInside" id="MtL-ad-XAR"/>
+                                    <action selector="recordUntapped:" destination="2" eventType="touchDragExit" id="Q0s-7Y-xrS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chQ-Xu-KeN">

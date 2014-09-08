@@ -127,11 +127,14 @@ static NSString *CellIdentifier = @"Cell";
     cell.typeLabel.text = contact.label;
     
     cell.selectionView.layer.cornerRadius = 8.0f;
-    cell.selectionView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? [UIColor colorWithRed:245.0f/255.0f green:75.0f/255.0f blue:75.0f/255.0f alpha:1].CGColor : [UIColor lightGrayColor].CGColor;
     cell.selectionView.layer.borderWidth = 1.0f;
     cell.selectionView.backgroundColor = [self.selectedContacts containsObject:contact] ? [UIColor colorWithRed:245.0f/255.0f green:75.0f/255.0f blue:75.0f/255.0f alpha:1] : [UIColor clearColor];
     
     cell.backgroundColor = [UIColor whiteColor];
+    
+    cell.nameLabel.font = [self.selectedContacts containsObject:contact] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
+
     
     return cell;
 }
