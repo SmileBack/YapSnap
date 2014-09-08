@@ -18,6 +18,7 @@
 		37695E7219BBC97900C22E13 /* ProgressViewBackgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E7119BBC97900C22E13 /* ProgressViewBackgroundBlue.png */; };
 		37695E7419BBC9DE00C22E13 /* ProgressViewBackgroundRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E7319BBC9DE00C22E13 /* ProgressViewBackgroundRed.png */; };
 		37695E7619BBE37A00C22E13 /* Microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E7519BBE37A00C22E13 /* Microphone.png */; };
+		378FD61019BD784B007F3224 /* MonkeyIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 378FD60F19BD784B007F3224 /* MonkeyIcon.png */; };
 		3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDF319BCEF5700FBBBCE /* ContactsViewController.m */; };
 		3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDF619BCF0DC00FBBBCE /* ContactSelectionCell.m */; };
 		3793FDF919BCF0DC00FBBBCE /* ContactSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3793FDF719BCF0DC00FBBBCE /* ContactSelectionCell.xib */; };
@@ -51,6 +52,7 @@
 		37695E7119BBC97900C22E13 /* ProgressViewBackgroundBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundBlue.png; sourceTree = "<group>"; };
 		37695E7319BBC9DE00C22E13 /* ProgressViewBackgroundRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundRed.png; sourceTree = "<group>"; };
 		37695E7519BBE37A00C22E13 /* Microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone.png; sourceTree = "<group>"; };
+		378FD60F19BD784B007F3224 /* MonkeyIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MonkeyIcon.png; path = ../MonkeyIcon.png; sourceTree = "<group>"; };
 		3793FDF219BCEF5700FBBBCE /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		3793FDF319BCEF5700FBBBCE /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		3793FDF519BCF0DC00FBBBCE /* ContactSelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactSelectionCell.h; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				378FD60F19BD784B007F3224 /* MonkeyIcon.png */,
 				37695E7519BBE37A00C22E13 /* Microphone.png */,
 				37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */,
 				37695E6019BB86A700C22E13 /* RecordButtonRed.png */,
@@ -269,6 +272,7 @@
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
 				37695E6B19BBC06300C22E13 /* CancelImage.png in Resources */,
+				378FD61019BD784B007F3224 /* MonkeyIcon.png in Resources */,
 				F44B0C5C16DA404700E6CD88 /* MainStoryboard.storyboard in Resources */,
 				37695E6119BB86A700C22E13 /* RecordButtonRed.png in Resources */,
 				37695E5F19BB7A2500C22E13 /* RecordButtonBlue.png in Resources */,
