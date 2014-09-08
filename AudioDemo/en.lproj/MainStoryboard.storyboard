@@ -30,15 +30,16 @@
                                     <action selector="recordUntapped:" destination="2" eventType="touchUpInside" id="MtL-ad-XAR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chQ-Xu-KeN">
-                                <rect key="frame" x="127" y="543" width="67" height="25"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chQ-Xu-KeN">
+                                <rect key="frame" x="100" y="336" width="121" height="64"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="0Rq-0M-iM7"/>
-                                    <constraint firstAttribute="width" constant="67" id="HBa-u2-Z75"/>
+                                    <constraint firstAttribute="height" constant="64" id="0Rq-0M-iM7"/>
+                                    <constraint firstAttribute="width" constant="121" id="HBa-u2-Z75"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="19"/>
                                 <state key="normal" title="Play">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.90980392160000001" green="0.92941176469999998" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="playTapped:" destination="2" eventType="touchUpInside" id="wh9-AI-a10"/>
@@ -113,7 +114,7 @@
                             <constraint firstItem="g9f-Ex-CHR" firstAttribute="top" secondItem="3" secondAttribute="top" id="0BW-AA-aUK"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="leading" secondItem="NH3-XX-GgC" secondAttribute="trailing" constant="22" id="0E1-PQ-NlU"/>
                             <constraint firstItem="IZo-Gn-Og4" firstAttribute="baseline" secondItem="NH3-XX-GgC" secondAttribute="baseline" id="49H-Yx-jfU"/>
-                            <constraint firstItem="chQ-Xu-KeN" firstAttribute="leading" secondItem="aXd-eG-7Yq" secondAttribute="leading" constant="127" id="4s5-Wm-DRN"/>
+                            <constraint firstItem="chQ-Xu-KeN" firstAttribute="leading" secondItem="aXd-eG-7Yq" secondAttribute="leading" constant="100" id="4s5-Wm-DRN"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="leading" secondItem="aXd-eG-7Yq" secondAttribute="leading" id="4sd-4r-5rc"/>
                             <constraint firstItem="g9f-Ex-CHR" firstAttribute="trailing" secondItem="aXd-eG-7Yq" secondAttribute="trailing" id="9Tn-LN-PWl"/>
                             <constraint firstAttribute="trailing" secondItem="aXd-eG-7Yq" secondAttribute="trailing" id="Alq-zk-SVT"/>
@@ -121,20 +122,20 @@
                             <constraint firstItem="bsh-56-MCX" firstAttribute="trailing" secondItem="aXd-eG-7Yq" secondAttribute="trailing" id="FYz-r0-chx"/>
                             <constraint firstItem="v0o-hk-bRQ" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="40" id="FhU-Lf-60x"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="top" secondItem="aXd-eG-7Yq" secondAttribute="bottom" constant="71" id="KLn-WP-hNX"/>
-                            <constraint firstItem="v0o-hk-bRQ" firstAttribute="top" secondItem="chQ-Xu-KeN" secondAttribute="top" constant="-426" id="MoT-Ga-jZ2"/>
+                            <constraint firstItem="v0o-hk-bRQ" firstAttribute="top" secondItem="chQ-Xu-KeN" secondAttribute="top" constant="-219" id="MoT-Ga-jZ2"/>
                             <constraint firstItem="IZo-Gn-Og4" firstAttribute="leading" secondItem="Xtk-3T-WBS" secondAttribute="trailing" constant="21" id="Pab-3z-dOb"/>
                             <constraint firstItem="v0o-hk-bRQ" firstAttribute="bottom" secondItem="aXd-eG-7Yq" secondAttribute="bottom" id="ZXF-jL-H9T"/>
                             <constraint firstItem="aXd-eG-7Yq" firstAttribute="centerX" secondItem="v0o-hk-bRQ" secondAttribute="centerX" id="Zyl-JS-h4R"/>
-                            <constraint firstItem="g9f-Ex-CHR" firstAttribute="leading" secondItem="chQ-Xu-KeN" secondAttribute="leading" constant="-127" id="blR-aR-2Uc"/>
+                            <constraint firstItem="g9f-Ex-CHR" firstAttribute="leading" secondItem="chQ-Xu-KeN" secondAttribute="leading" constant="-100" id="blR-aR-2Uc"/>
                             <constraint firstAttribute="trailing" secondItem="IZo-Gn-Og4" secondAttribute="trailing" constant="12" id="f5J-Rn-ff9"/>
                             <constraint firstItem="aXd-eG-7Yq" firstAttribute="top" secondItem="g9f-Ex-CHR" secondAttribute="bottom" constant="77" id="hlq-S7-fYE"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="centerX" secondItem="Xtk-3T-WBS" secondAttribute="centerX" id="lRQ-2J-A05"/>
                             <constraint firstItem="IZo-Gn-Og4" firstAttribute="top" secondItem="NH3-XX-GgC" secondAttribute="top" id="nfv-FA-Smi"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="bottom" secondItem="NH3-XX-GgC" secondAttribute="bottom" id="q9K-ZK-203"/>
                             <constraint firstItem="g9f-Ex-CHR" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="rzw-bR-6xN"/>
-                            <constraint firstItem="chQ-Xu-KeN" firstAttribute="top" secondItem="g9f-Ex-CHR" secondAttribute="bottom" constant="478" id="st2-Yy-XXb"/>
+                            <constraint firstItem="chQ-Xu-KeN" firstAttribute="top" secondItem="g9f-Ex-CHR" secondAttribute="bottom" constant="271" id="st2-Yy-XXb"/>
                             <constraint firstItem="NH3-XX-GgC" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="12" id="u8f-SH-c0F"/>
-                            <constraint firstItem="chQ-Xu-KeN" firstAttribute="top" secondItem="3" secondAttribute="top" constant="543" id="wJv-pk-jIZ"/>
+                            <constraint firstItem="chQ-Xu-KeN" firstAttribute="top" secondItem="3" secondAttribute="top" constant="336" id="wJv-pk-jIZ"/>
                             <constraint firstAttribute="bottom" secondItem="NH3-XX-GgC" secondAttribute="bottom" constant="20" symbolic="YES" id="zaV-HH-PUS"/>
                         </constraints>
                     </view>
@@ -197,11 +198,11 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hGC-QS-5qY">
-                                <rect key="frame" x="0.0" y="426" width="320" height="78"/>
+                                <rect key="frame" x="0.0" y="434" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6j-MM-95B">
-                                        <rect key="frame" x="257" y="14" width="50" height="50"/>
+                                        <rect key="frame" x="257" y="10" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="Arrow.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
