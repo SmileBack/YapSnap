@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="wad-r6-cNF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -163,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-376" y="-193"/>
+            <point key="canvasLocation" x="1124" y="-189"/>
         </scene>
         <!--Contacts View Controller-->
         <scene sceneID="233-fw-KYK">
@@ -245,25 +245,160 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="158" y="-201"/>
+            <point key="canvasLocation" x="1596" y="-189"/>
+        </scene>
+        <!--Landing Page View Controller-->
+        <scene sceneID="2Ef-Fx-7Lp">
+            <objects>
+                <viewController id="ikG-0Y-sVh" customClass="LandingPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a23-SI-tr9"/>
+                        <viewControllerLayoutGuide type="bottom" id="ahr-YS-Ciy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WRr-H6-Zq6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sz6-r0-iUG">
+                                <rect key="frame" x="137" y="255" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Enter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapEnterButton" destination="ikG-0Y-sVh" eventType="touchUpInside" id="fMv-WR-reX"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YapSnap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIg-LB-ROP">
+                                <rect key="frame" x="57" y="125" width="207" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" red="0.96078431369999995" green="0.29411764709999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90980392160000001" green="0.92941176469999998" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cYn-UL-OuG"/>
+                    <connections>
+                        <segue destination="8Uc-K7-X1A" kind="push" identifier="LoginViewControllerSegue" id="hTr-x1-BzP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m8d-rJ-ZYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-702" y="-291"/>
+        </scene>
+        <!--Enter Phone Number View Controller-->
+        <scene sceneID="l9s-Vm-DtD">
+            <objects>
+                <viewController id="8Uc-K7-X1A" customClass="EnterPhoneNumberViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xss-AZ-ljx"/>
+                        <viewControllerLayoutGuide type="bottom" id="BTG-tm-4Dr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sp7-wY-lpX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fs3-EU-Uhl">
+                                <rect key="frame" x="112" y="302" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapContinueButton" destination="8Uc-K7-X1A" eventType="touchUpInside" id="nIk-Hi-EFO"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDN-b9-ZdN">
+                                <rect key="frame" x="41" y="221" width="239" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please verify your phone number so we know you're a real person!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="VUk-kK-sDF">
+                                <rect key="frame" x="20" y="125" width="280" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yVt-D7-V0C"/>
+                    <connections>
+                        <outlet property="continueButton" destination="fs3-EU-Uhl" id="Ag2-9m-66H"/>
+                        <segue destination="JSl-Ix-TF3" kind="push" identifier="EnterCodeViewControllerSegue" id="9jG-yd-bum"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zdk-Ki-ihh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-193" y="-291"/>
+        </scene>
+        <!--Enter Code View Controller-->
+        <scene sceneID="kBA-no-IN8">
+            <objects>
+                <viewController id="JSl-Ix-TF3" customClass="EnterCodeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2j3-AO-Ntx"/>
+                        <viewControllerLayoutGuide type="bottom" id="1E8-X3-vrC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uMh-R5-SHP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTz-kp-bGm">
+                                <rect key="frame" x="112" y="312" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapContinueButton" destination="8Uc-K7-X1A" eventType="touchUpInside" id="3ah-Mq-O1e"/>
+                                    <action selector="didTapContinueButton" destination="JSl-Ix-TF3" eventType="touchUpInside" id="dEH-tz-KKa"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sdv-mL-fyc">
+                                <rect key="frame" x="42" y="212" width="239" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="We just sent you a verification code. Type it here!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Kkf-vj-eKJ">
+                                <rect key="frame" x="20" y="111" width="280" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fJy-io-gnQ"/>
+                    <connections>
+                        <segue destination="2" kind="push" identifier="RecordViewControllerSegue" id="aUA-aH-Q0k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qqp-v6-G3N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="464" y="-291"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="oph-5U-GVI">
+        <scene sceneID="iU4-rq-GxL">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wad-r6-cNF" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9sH-V7-KSA" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QB4-Kl-U90">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZeF-C5-ebc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="rootViewController" id="5DV-WB-2ap"/>
+                        <segue destination="ikG-0Y-sVh" kind="relationship" relationship="rootViewController" id="Gu7-6l-C6i"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zjc-32-9wY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IQa-zj-YXn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-902" y="-193"/>
+            <point key="canvasLocation" x="-1268" y="-287"/>
         </scene>
     </scenes>
     <resources>

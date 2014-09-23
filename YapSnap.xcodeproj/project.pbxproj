@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		371C2C8A19BCF73800FDA390 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C2C8819BCF73800FDA390 /* AddressBook.framework */; };
 		371C2C8B19BCF73800FDA390 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C2C8919BCF73800FDA390 /* AddressBookUI.framework */; };
+		374383E019CE29880009C323 /* EnterPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374383DF19CE29880009C323 /* EnterPhoneNumberViewController.m */; };
+		374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374383E419CE2DCA0009C323 /* EnterCodeViewController.m */; };
+		374383E919CE323B0009C323 /* LandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374383E819CE323B0009C323 /* LandingPageViewController.m */; };
 		37695E5F19BB7A2500C22E13 /* RecordButtonBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */; };
 		37695E6119BB86A700C22E13 /* RecordButtonRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E6019BB86A700C22E13 /* RecordButtonRed.png */; };
 		37695E6319BB97EA00C22E13 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E6219BB97EA00C22E13 /* Arrow.png */; };
@@ -43,6 +46,12 @@
 /* Begin PBXFileReference section */
 		371C2C8819BCF73800FDA390 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		371C2C8919BCF73800FDA390 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		374383DE19CE29880009C323 /* EnterPhoneNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterPhoneNumberViewController.h; sourceTree = "<group>"; };
+		374383DF19CE29880009C323 /* EnterPhoneNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterPhoneNumberViewController.m; sourceTree = "<group>"; };
+		374383E319CE2DCA0009C323 /* EnterCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterCodeViewController.h; sourceTree = "<group>"; };
+		374383E419CE2DCA0009C323 /* EnterCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterCodeViewController.m; sourceTree = "<group>"; };
+		374383E719CE323B0009C323 /* LandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingPageViewController.h; sourceTree = "<group>"; };
+		374383E819CE323B0009C323 /* LandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingPageViewController.m; sourceTree = "<group>"; };
 		37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlue.png; sourceTree = "<group>"; };
 		37695E6019BB86A700C22E13 /* RecordButtonRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonRed.png; sourceTree = "<group>"; };
 		37695E6219BB97EA00C22E13 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow.png; sourceTree = "<group>"; };
@@ -102,7 +111,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		371CCBDA19BD056B00D0AAA5 /* Record Page */ = {
+		371CCBDA19BD056B00D0AAA5 /* Record Voice Page */ = {
 			isa = PBXGroup;
 			children = (
 				F44B0C5D16DA404700E6CD88 /* ViewController.h */,
@@ -110,7 +119,42 @@
 				37695E6C19BBC78F00C22E13 /* JEProgressView.h */,
 				37695E6D19BBC78F00C22E13 /* JEProgressView.m */,
 			);
-			name = "Record Page";
+			name = "Record Voice Page";
+			sourceTree = "<group>";
+		};
+		374383E119CE2B810009C323 /* Enter Phone Number Page */ = {
+			isa = PBXGroup;
+			children = (
+				374383DE19CE29880009C323 /* EnterPhoneNumberViewController.h */,
+				374383DF19CE29880009C323 /* EnterPhoneNumberViewController.m */,
+			);
+			name = "Enter Phone Number Page";
+			sourceTree = "<group>";
+		};
+		374383E219CE2D6B0009C323 /* Enter Code Page */ = {
+			isa = PBXGroup;
+			children = (
+				374383E319CE2DCA0009C323 /* EnterCodeViewController.h */,
+				374383E419CE2DCA0009C323 /* EnterCodeViewController.m */,
+			);
+			name = "Enter Code Page";
+			sourceTree = "<group>";
+		};
+		374383E619CE32250009C323 /* Landing Page */ = {
+			isa = PBXGroup;
+			children = (
+				374383E719CE323B0009C323 /* LandingPageViewController.h */,
+				374383E819CE323B0009C323 /* LandingPageViewController.m */,
+			);
+			name = "Landing Page";
+			sourceTree = "<group>";
+		};
+		374383ED19CE3C610009C323 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = API;
+			path = AudioDemo;
 			sourceTree = "<group>";
 		};
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
@@ -159,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */,
+				374383ED19CE3C610009C323 /* API */,
 				F44B0C4816DA404700E6CD88 /* YapSnap */,
 				37695E5D19BB7A0B00C22E13 /* Resources */,
 				F44B0C4116DA404700E6CD88 /* Frameworks */,
@@ -189,7 +234,10 @@
 		F44B0C4816DA404700E6CD88 /* YapSnap */ = {
 			isa = PBXGroup;
 			children = (
-				371CCBDA19BD056B00D0AAA5 /* Record Page */,
+				374383E619CE32250009C323 /* Landing Page */,
+				374383E119CE2B810009C323 /* Enter Phone Number Page */,
+				374383E219CE2D6B0009C323 /* Enter Code Page */,
+				371CCBDA19BD056B00D0AAA5 /* Record Voice Page */,
 				37695E7D19BBEE8500C22E13 /* Contacts Page */,
 				F44B0C5116DA404700E6CD88 /* AppDelegate.h */,
 				F44B0C5216DA404700E6CD88 /* AppDelegate.m */,
@@ -295,8 +343,11 @@
 				F44B0C4F16DA404700E6CD88 /* main.m in Sources */,
 				3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */,
 				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,
+				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
+				374383E019CE29880009C323 /* EnterPhoneNumberViewController.m in Sources */,
 				F44B0C5316DA404700E6CD88 /* AppDelegate.m in Sources */,
+				374383E919CE323B0009C323 /* LandingPageViewController.m in Sources */,
 				37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */,
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
 				F44B0C5F16DA404700E6CD88 /* ViewController.m in Sources */,
