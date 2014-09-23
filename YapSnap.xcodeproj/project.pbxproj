@@ -34,6 +34,7 @@
 		37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37D413BA19D21A1F00021548 /* FontAwesome.ttf */; };
 		37D413C019D21A1F00021548 /* UIColor+BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D413BC19D21A1F00021548 /* UIColor+BButton.m */; };
 		37D413C219D21FC300021548 /* RedCircleSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D413C119D21FC300021548 /* RedCircleSmall.png */; };
+		37D413C619D2235C00021548 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37D413C519D2235C00021548 /* Images.xcassets */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
 		F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4416DA404700E6CD88 /* Foundation.framework */; };
 		F44B0C4716DA404700E6CD88 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4616DA404700E6CD88 /* CoreGraphics.framework */; };
@@ -91,6 +92,7 @@
 		37D413C119D21FC300021548 /* RedCircleSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedCircleSmall.png; sourceTree = "<group>"; };
 		37D413C319D221C800021548 /* YapSnap App Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YapSnap App Icon.png"; sourceTree = "<group>"; };
 		37D413C419D2229A00021548 /* YapSnap App Icon 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YapSnap App Icon 114.png"; sourceTree = "<group>"; };
+		37D413C519D2235C00021548 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = YapSnap/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		F44B0C3F16DA404700E6CD88 /* YapSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YapSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44B0C4216DA404700E6CD88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F44B0C4416DA404700E6CD88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -294,6 +296,7 @@
 				F44B0C5216DA404700E6CD88 /* AppDelegate.m */,
 				F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */,
 				37C3746C19BC4A97001A1D02 /* HUD */,
+				37D413C519D2235C00021548 /* Images.xcassets */,
 				F44B0C4916DA404700E6CD88 /* Supporting Files */,
 			);
 			name = YapSnap;
@@ -380,6 +383,7 @@
 				37695E6119BB86A700C22E13 /* RecordButtonRed.png in Resources */,
 				37695E5F19BB7A2500C22E13 /* RecordButtonBlue.png in Resources */,
 				37695E7219BBC97900C22E13 /* ProgressViewBackgroundBlue.png in Resources */,
+				37D413C619D2235C00021548 /* Images.xcassets in Resources */,
 				37D413C219D21FC300021548 /* RedCircleSmall.png in Resources */,
 				37695E6319BB97EA00C22E13 /* Arrow.png in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
@@ -492,6 +496,8 @@
 		F44B0C6316DA404700E6CD88 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioDemo/YapSnap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapSnap-Info.plist";
@@ -503,6 +509,8 @@
 		F44B0C6416DA404700E6CD88 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioDemo/YapSnap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapSnap-Info.plist";
