@@ -29,6 +29,11 @@
 		3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDFB19BCF11E00FBBBCE /* UIViewController+Communication.m */; };
 		3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDFE19BCF16B00FBBBCE /* PhoneContact.m */; };
 		37C3746B19BC4A8E001A1D02 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3746A19BC4A8E001A1D02 /* MBProgressHUD.m */; };
+		37D413BD19D21A1F00021548 /* BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D413B619D21A1E00021548 /* BButton.m */; };
+		37D413BE19D21A1F00021548 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D413B819D21A1E00021548 /* NSString+FontAwesome.m */; };
+		37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37D413BA19D21A1F00021548 /* FontAwesome.ttf */; };
+		37D413C019D21A1F00021548 /* UIColor+BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D413BC19D21A1F00021548 /* UIColor+BButton.m */; };
+		37D413C219D21FC300021548 /* RedCircleSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D413C119D21FC300021548 /* RedCircleSmall.png */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
 		F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4416DA404700E6CD88 /* Foundation.framework */; };
 		F44B0C4716DA404700E6CD88 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4616DA404700E6CD88 /* CoreGraphics.framework */; };
@@ -75,6 +80,17 @@
 		3793FDFE19BCF16B00FBBBCE /* PhoneContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneContact.m; sourceTree = "<group>"; };
 		37C3746919BC4A8E001A1D02 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		37C3746A19BC4A8E001A1D02 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		37D413B319D2180600021548 /* FuturaStd-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FuturaStd-Medium.ttf"; sourceTree = "<group>"; };
+		37D413B519D21A1E00021548 /* BButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BButton.h; sourceTree = "<group>"; };
+		37D413B619D21A1E00021548 /* BButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BButton.m; sourceTree = "<group>"; };
+		37D413B719D21A1E00021548 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
+		37D413B819D21A1E00021548 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
+		37D413BA19D21A1F00021548 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		37D413BB19D21A1F00021548 /* UIColor+BButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BButton.h"; sourceTree = "<group>"; };
+		37D413BC19D21A1F00021548 /* UIColor+BButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BButton.m"; sourceTree = "<group>"; };
+		37D413C119D21FC300021548 /* RedCircleSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedCircleSmall.png; sourceTree = "<group>"; };
+		37D413C319D221C800021548 /* YapSnap App Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YapSnap App Icon.png"; sourceTree = "<group>"; };
+		37D413C419D2229A00021548 /* YapSnap App Icon 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YapSnap App Icon 114.png"; sourceTree = "<group>"; };
 		F44B0C3F16DA404700E6CD88 /* YapSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YapSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44B0C4216DA404700E6CD88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F44B0C4416DA404700E6CD88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -160,6 +176,8 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37D413B219D217FF00021548 /* Fonts */,
+				37D413C119D21FC300021548 /* RedCircleSmall.png */,
 				378FD61119BDF45C007F3224 /* CheckWhite.png */,
 				378FD60F19BD784B007F3224 /* MonkeyIcon.png */,
 				37695E7519BBE37A00C22E13 /* Microphone.png */,
@@ -199,12 +217,45 @@
 			name = HUD;
 			sourceTree = "<group>";
 		};
+		37D413B219D217FF00021548 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				37D413B319D2180600021548 /* FuturaStd-Medium.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		37D413B419D21A1E00021548 /* BButton */ = {
+			isa = PBXGroup;
+			children = (
+				37D413B519D21A1E00021548 /* BButton.h */,
+				37D413B619D21A1E00021548 /* BButton.m */,
+				37D413B719D21A1E00021548 /* NSString+FontAwesome.h */,
+				37D413B819D21A1E00021548 /* NSString+FontAwesome.m */,
+				37D413B919D21A1E00021548 /* resources */,
+				37D413BB19D21A1F00021548 /* UIColor+BButton.h */,
+				37D413BC19D21A1F00021548 /* UIColor+BButton.m */,
+			);
+			path = BButton;
+			sourceTree = "<group>";
+		};
+		37D413B919D21A1E00021548 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				37D413BA19D21A1F00021548 /* FontAwesome.ttf */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 		F44B0C3616DA404700E6CD88 = {
 			isa = PBXGroup;
 			children = (
+				37D413C419D2229A00021548 /* YapSnap App Icon 114.png */,
+				37D413C319D221C800021548 /* YapSnap App Icon.png */,
 				F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */,
 				374383ED19CE3C610009C323 /* API */,
 				F44B0C4816DA404700E6CD88 /* YapSnap */,
+				37D413B419D21A1E00021548 /* BButton */,
 				37695E5D19BB7A0B00C22E13 /* Resources */,
 				F44B0C4116DA404700E6CD88 /* Frameworks */,
 				F44B0C4016DA404700E6CD88 /* Products */,
@@ -329,7 +380,9 @@
 				37695E6119BB86A700C22E13 /* RecordButtonRed.png in Resources */,
 				37695E5F19BB7A2500C22E13 /* RecordButtonBlue.png in Resources */,
 				37695E7219BBC97900C22E13 /* ProgressViewBackgroundBlue.png in Resources */,
+				37D413C219D21FC300021548 /* RedCircleSmall.png in Resources */,
 				37695E6319BB97EA00C22E13 /* Arrow.png in Resources */,
+				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,8 +393,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37D413BE19D21A1F00021548 /* NSString+FontAwesome.m in Sources */,
 				F44B0C4F16DA404700E6CD88 /* main.m in Sources */,
 				3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */,
+				37D413C019D21A1F00021548 /* UIColor+BButton.m in Sources */,
 				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,
 				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
@@ -350,6 +405,7 @@
 				374383E919CE323B0009C323 /* LandingPageViewController.m in Sources */,
 				37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */,
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
+				37D413BD19D21A1F00021548 /* BButton.m in Sources */,
 				F44B0C5F16DA404700E6CD88 /* ViewController.m in Sources */,
 				37C3746B19BC4A8E001A1D02 /* MBProgressHUD.m in Sources */,
 			);

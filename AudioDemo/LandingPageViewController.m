@@ -32,6 +32,10 @@
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil
                                                                             action:nil];
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    
+    self.enterButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
+    [self.enterButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning
