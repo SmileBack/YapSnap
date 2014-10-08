@@ -9,17 +9,18 @@
 #import "ContactsViewController.h"
 #import "UIViewController+Communication.h"
 #import "MBProgressHUD.h"
+#import "API.h"
 
 
 @interface ContactsViewController ()
+
 @property (nonatomic, strong) NSArray *contacts;
 @property (nonatomic, strong) NSArray *filteredContacts;
-
 @property (nonatomic, strong) NSMutableArray *selectedContacts;
-
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
+
+- (IBAction)sendButton:(id)sender;
 
 @end
 
@@ -58,13 +59,6 @@ static NSString *CellIdentifier = @"Cell";
     __weak ContactsViewController *weakSelf = self;
     
     if (self.isAuthorizedForContacts) {
-//        [[API sharedAPI] fetchInvitedFriends:^(NSMutableArray *array) {
-//            for (PhoneContact *contact in array) {
-//                [weakSelf.invitedPhones addObject:contact.phoneNumber];
-//            }
-//            [weakSelf.tableView reloadData];
-//        }];
-        
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"Loading contacts...";
         
@@ -189,6 +183,17 @@ static NSString *CellIdentifier = @"Cell";
     NSPredicate *firstNamePredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[cd] %@", searchText];
     NSPredicate *fullPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[firstNamePredicate]];//, lastNamePredicate]];
     self.filteredContacts = [self.contacts filteredArrayUsingPredicate:fullPredicate];
+}
+
+- (IBAction)sendButton:(id)sender {
+    NSLog(@"send button pressed");
+    UNIHTTPJsonResponse *response = [API postYap];
+    if (response.code == 201) {
+        NSLog(@"success!!");
+    } else {
+        // uh oh spaghettios
+        NSLog(@"error!!");
+    }
 }
 
 @end

@@ -105,8 +105,6 @@
     
     progress += 0.001;
     
-    NSLog(@"%f",progress);
-    
     [self.progressView setProgress:progress];
     if(progress >= 1.0f) {
         
@@ -148,7 +146,6 @@
     [recorder stop];
     [timer invalidate];
     
-    NSLog(@"Time elapsed: %f", self.progressView.progress);
     if(self.progressView.progress < 0.02) {
         self.progressView.progress = 0.0;
 

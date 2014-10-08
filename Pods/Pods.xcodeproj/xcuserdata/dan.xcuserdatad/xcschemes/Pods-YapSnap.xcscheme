@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F44B0C3E16DA404700E6CD88"
-               BuildableName = "YapSnap.app"
-               BlueprintName = "YapSnap"
-               ReferencedContainer = "container:YapSnap.xcodeproj">
+               BlueprintIdentifier = "723CEE0A8685C962322FB9FC"
+               BuildableName = "libPods-YapSnap.a"
+               BlueprintName = "Pods-YapSnap"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F44B0C3E16DA404700E6CD88"
-            BuildableName = "YapSnap.app"
-            BlueprintName = "YapSnap"
-            ReferencedContainer = "container:YapSnap.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -48,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F44B0C3E16DA404700E6CD88"
-            BuildableName = "YapSnap.app"
-            BlueprintName = "YapSnap"
-            ReferencedContainer = "container:YapSnap.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -66,15 +48,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F44B0C3E16DA404700E6CD88"
-            BuildableName = "YapSnap.app"
-            BlueprintName = "YapSnap"
-            ReferencedContainer = "container:YapSnap.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

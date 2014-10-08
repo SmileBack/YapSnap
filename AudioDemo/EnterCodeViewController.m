@@ -7,6 +7,7 @@
 //
 
 #import "EnterCodeViewController.h"
+#import "API.h"
 
 @interface EnterCodeViewController ()
 
@@ -62,52 +63,23 @@
 
 - (IBAction) didTapContinueButton
 {
-    [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO - REMOVE THIS
+    NSString *path = @"/sessions/confirm";
+    NSMutableDictionary* parameters = [@{@"phone": @"12014508328",
+                                         @"confirmation_code": @"111111"} mutableCopy];
     
-    NSString *post = [NSString stringWithFormat:@"phone=%@&confirmation_code=%@", @"12014508328", @"111111"];
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://10.8.99.138:3000/sessions/confirm"]]];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
-    NSURLConnection *conn = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    if(conn) {
-        NSLog(@"Connection Successful");
-    } else {
-        NSLog(@"Connection could not be made");
-    }
-}
-
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"received data: ");
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-    NSInteger statusCode = (NSInteger)[httpResponse statusCode];
-    if (statusCode == 201) {
-        //we're good
+    UNIHTTPJsonResponse *result = [API postToPath:path withParameters:parameters];
+    
+    if ([result code] == 201) {
+        NSString *token = [[[result body] object] valueForKey:@"token"];
+        [API setToken:token];
         [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self];
     } else {
         // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
     }
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [json objectForKey:@"token"];
-    [userDefaults setObject:token forKey:@"authentication_token"];
-}
 
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"received error: ");
-    
-    // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (SOMETHING WENT WRONG)
-    // TODO - ADD TO MIXPANEL
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated]; //UNDO

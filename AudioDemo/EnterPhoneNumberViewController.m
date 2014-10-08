@@ -7,6 +7,7 @@
 //
 
 #import "EnterPhoneNumberViewController.h"
+#import "API.h"
 
 @interface EnterPhoneNumberViewController ()
 
@@ -51,45 +52,20 @@
 
 - (IBAction) didTapContinueButton
 {
-    [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self]; //UNDO - DELETE THIS
     
-    NSString *post = [NSString stringWithFormat:@"phone=%@", @"17186834668"];
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://10.8.99.138:3000/sessions"]]];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
-    NSURLConnection *conn = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    if(conn) {
-        NSLog(@"Connection Successful");
-    } else {
-        NSLog(@"Connection could not be made");
-    }
-}
-
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"received data: ");
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-    NSInteger statusCode = (NSInteger)[httpResponse statusCode];
-    if (statusCode == 201) {
+    NSString *path = @"/sessions";
+    NSMutableDictionary* parameters = [@{@"phone": @"12014508328"} mutableCopy];
+    
+    UNIHTTPJsonResponse *result = [API postToPath:path withParameters:parameters];
+    
+    if ([result code] == 201) {
         //we're good. go to next screen
         [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
     } else {
         // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
     }
-    
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"received error: ");
-    
-    // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (SOMETHING WENT WRONG)
-    // TODO - ADD TO MIXPANEL
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
