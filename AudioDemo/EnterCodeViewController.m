@@ -32,6 +32,26 @@
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil
                                                                             action:nil];
+    
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    
+    self.textField.keyboardType = UIKeyboardTypeNumberPad;
+    
+    double delay = 0.8;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.textField becomeFirstResponder];
+    });
+    
+    [self makeNavBarTransparent];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+}
+
+- (void)makeNavBarTransparent
+{
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                         forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,6 +62,8 @@
 
 - (IBAction) didTapContinueButton
 {
+    [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO - REMOVE THIS
+    
     NSString *post = [NSString stringWithFormat:@"phone=%@&confirmation_code=%@", @"12014508328", @"111111"];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
@@ -87,6 +109,18 @@
     // TODO - ADD TO MIXPANEL
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated]; //UNDO
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
+    
+    //Nav bar should not be transparent anymore after leaving this page
+    self.navigationController.navigationBar.translucent = NO;
+}
 
 /*
 #pragma mark - Navigation
