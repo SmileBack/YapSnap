@@ -81,7 +81,7 @@
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bsh-56-MCX" customClass="JEProgressView">
                                 <rect key="frame" x="0.0" y="307" width="320" height="2"/>
                             </progressView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="White Microphone.png" translatesAutoresizingMaskIntoConstraints="NO" id="v0o-hk-bRQ">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Microphone_White.png" translatesAutoresizingMaskIntoConstraints="NO" id="v0o-hk-bRQ">
                                 <rect key="frame" x="40" y="117" width="240" height="119"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YapSnap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwb-eQ-GX5">
@@ -469,9 +469,9 @@
     <resources>
         <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="Microphone_White.png" width="256" height="256"/>
         <image name="RecordButtonRedWhiteBorder.png" width="200" height="200"/>
         <image name="RedCircleSmall.png" width="67" height="67"/>
-        <image name="White Microphone.png" width="256" height="256"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

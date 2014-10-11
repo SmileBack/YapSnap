@@ -20,15 +20,14 @@
 		37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37695E6D19BBC78F00C22E13 /* JEProgressView.m */; };
 		37695E7219BBC97900C22E13 /* ProgressViewBackgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E7119BBC97900C22E13 /* ProgressViewBackgroundBlue.png */; };
 		37695E7419BBC9DE00C22E13 /* ProgressViewBackgroundRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E7319BBC9DE00C22E13 /* ProgressViewBackgroundRed.png */; };
-		37695E7619BBE37A00C22E13 /* Microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E7519BBE37A00C22E13 /* Microphone.png */; };
 		378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 378FD61119BDF45C007F3224 /* CheckWhite.png */; };
 		3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDF319BCEF5700FBBBCE /* ContactsViewController.m */; };
 		3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDF619BCF0DC00FBBBCE /* ContactSelectionCell.m */; };
 		3793FDF919BCF0DC00FBBBCE /* ContactSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3793FDF719BCF0DC00FBBBCE /* ContactSelectionCell.xib */; };
 		3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDFB19BCF11E00FBBBCE /* UIViewController+Communication.m */; };
 		3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDFE19BCF16B00FBBBCE /* PhoneContact.m */; };
+		37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF0DD919E8F9D60077B74F /* Microphone_White.png */; };
 		37C3746B19BC4A8E001A1D02 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3746A19BC4A8E001A1D02 /* MBProgressHUD.m */; };
-		37D20C2619E49DD8008530BF /* White Microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D20C2519E49DD8008530BF /* White Microphone.png */; };
 		37D20C2819E4A064008530BF /* ProgressViewBackgroundLightBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D20C2719E4A064008530BF /* ProgressViewBackgroundLightBlue.png */; };
 		37D20C2A19E4A0E5008530BF /* ProgressViewBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D20C2919E4A0E5008530BF /* ProgressViewBackgroundWhite.png */; };
 		37D20C2C19E4A19D008530BF /* RecordButtonRedWhiteBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D20C2B19E4A19D008530BF /* RecordButtonRedWhiteBorder.png */; };
@@ -73,7 +72,6 @@
 		37695E6D19BBC78F00C22E13 /* JEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JEProgressView.m; sourceTree = "<group>"; };
 		37695E7119BBC97900C22E13 /* ProgressViewBackgroundBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundBlue.png; sourceTree = "<group>"; };
 		37695E7319BBC9DE00C22E13 /* ProgressViewBackgroundRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundRed.png; sourceTree = "<group>"; };
-		37695E7519BBE37A00C22E13 /* Microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone.png; sourceTree = "<group>"; };
 		378FD61119BDF45C007F3224 /* CheckWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckWhite.png; sourceTree = "<group>"; };
 		3793FDF219BCEF5700FBBBCE /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		3793FDF319BCEF5700FBBBCE /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
@@ -84,9 +82,9 @@
 		3793FDFB19BCF11E00FBBBCE /* UIViewController+Communication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Communication.m"; sourceTree = "<group>"; };
 		3793FDFD19BCF16B00FBBBCE /* PhoneContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneContact.h; sourceTree = "<group>"; };
 		3793FDFE19BCF16B00FBBBCE /* PhoneContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneContact.m; sourceTree = "<group>"; };
+		37BF0DD919E8F9D60077B74F /* Microphone_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_White.png; sourceTree = "<group>"; };
 		37C3746919BC4A8E001A1D02 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		37C3746A19BC4A8E001A1D02 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		37D20C2519E49DD8008530BF /* White Microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "White Microphone.png"; sourceTree = "<group>"; };
 		37D20C2719E4A064008530BF /* ProgressViewBackgroundLightBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundLightBlue.png; sourceTree = "<group>"; };
 		37D20C2919E4A0E5008530BF /* ProgressViewBackgroundWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundWhite.png; sourceTree = "<group>"; };
 		37D20C2B19E4A19D008530BF /* RecordButtonRedWhiteBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonRedWhiteBorder.png; sourceTree = "<group>"; };
@@ -195,8 +193,7 @@
 				37D413C119D21FC300021548 /* RedCircleSmall.png */,
 				37D413CB19D230D000021548 /* ArrowWhite.png */,
 				378FD61119BDF45C007F3224 /* CheckWhite.png */,
-				37695E7519BBE37A00C22E13 /* Microphone.png */,
-				37D20C2519E49DD8008530BF /* White Microphone.png */,
+				37BF0DD919E8F9D60077B74F /* Microphone_White.png */,
 				37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */,
 				37695E6019BB86A700C22E13 /* RecordButtonRed.png */,
 				37D20C2B19E4A19D008530BF /* RecordButtonRedWhiteBorder.png */,
@@ -397,7 +394,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
-				37695E7619BBE37A00C22E13 /* Microphone.png in Resources */,
 				37695E6519BB98DD00C22E13 /* CancelImage2.png in Resources */,
 				37D20C2A19E4A0E5008530BF /* ProgressViewBackgroundWhite.png in Resources */,
 				F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */,
@@ -414,9 +410,9 @@
 				37695E5F19BB7A2500C22E13 /* RecordButtonBlue.png in Resources */,
 				37D413CC19D230D000021548 /* ArrowWhite.png in Resources */,
 				37695E7219BBC97900C22E13 /* ProgressViewBackgroundBlue.png in Resources */,
+				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
 				37D413C619D2235C00021548 /* Images.xcassets in Resources */,
 				37D20C2C19E4A19D008530BF /* RecordButtonRedWhiteBorder.png in Resources */,
-				37D20C2619E49DD8008530BF /* White Microphone.png in Resources */,
 				37D413C219D21FC300021548 /* RedCircleSmall.png in Resources */,
 				37695E6319BB97EA00C22E13 /* Arrow.png in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,

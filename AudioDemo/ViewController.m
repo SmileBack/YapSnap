@@ -27,7 +27,7 @@
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
-    self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR; //[UIColor colorWithRed:245.0f/255.0f green:75.0f/255.0f blue:75.0f/255.0f alpha:1];
+    self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
 
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                              style:UIBarButtonItemStylePlain
