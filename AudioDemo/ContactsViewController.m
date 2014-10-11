@@ -20,7 +20,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 
-- (IBAction)sendButton:(id)sender;
 
 @end
 
@@ -95,17 +94,17 @@ static NSString *CellIdentifier = @"Cell";
         }
     }
     
-    NSLog(@"No contact found for %@", number);
+    //NSLog(@"No contact found for %@", number);
     return nil;
 }
 
 #pragma UITableViewDataSource
-- (int) numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 
-- (int) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return tableView == self.searchDisplayController.searchResultsTableView ? self.filteredContacts.count :  self.contacts.count;
 }
@@ -163,7 +162,13 @@ static NSString *CellIdentifier = @"Cell";
 
 - (IBAction) didTapArrowButton
 {
-    [self performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
+    UNIHTTPJsonResponse *response = [API postYap];
+    if (response.code == 201) {
+        [self performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
+    } else {
+        // uh oh spaghettios
+        // TODO: tell the user something went wrong
+    }
 }
 
 #pragma mark - UISearchDisplayDelegate
@@ -183,17 +188,6 @@ static NSString *CellIdentifier = @"Cell";
     NSPredicate *firstNamePredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[cd] %@", searchText];
     NSPredicate *fullPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[firstNamePredicate]];//, lastNamePredicate]];
     self.filteredContacts = [self.contacts filteredArrayUsingPredicate:fullPredicate];
-}
-
-- (IBAction)sendButton:(id)sender {
-    NSLog(@"send button pressed");
-    UNIHTTPJsonResponse *response = [API postYap];
-    if (response.code == 201) {
-        NSLog(@"success!!");
-    } else {
-        // uh oh spaghettios
-        NSLog(@"error!!");
-    }
 }
 
 @end

@@ -46,7 +46,7 @@ static NSString *CellIdentifier = @"Cell";
 
 
 #pragma UITableViewDataSource
-- (int) numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
