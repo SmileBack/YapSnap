@@ -6,7 +6,9 @@
 //  Copyright (c) 2014 Appcoda. All rights reserved.
 //
 
+#import "Global.h"
 #import "LandingPageViewController.h"
+#import "RecordVoiceViewController.h"
 
 @interface LandingPageViewController ()
 
@@ -26,16 +28,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:nil
-                                                                            action:nil];
-    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
-    
-    self.enterButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
-    [self.enterButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
+    // if we're already authenticated, go right to the recording page
+    if ([Global retrieveValueForKey:@"session_token"] != nil){
+        RecordVoiceViewController* rvvc = [self.storyboard instantiateViewControllerWithIdentifier:@"RecordVoiceViewController"];
+        //RecordVoiceViewController* rvvc = [[RecordVoiceViewController alloc] init];
+        [self.navigationController pushViewController:rvvc animated:NO];
+    }else{
+        // Do any additional setup after loading the view.
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                                 style:UIBarButtonItemStylePlain
+                                                                                target:nil
+                                                                                action:nil];
+        self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+        
+        self.enterButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
+        [self.enterButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,16 +67,5 @@
 {
     [self performSegueWithIdentifier:@"EnterNameViewControllerSegue" sender:self];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

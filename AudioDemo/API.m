@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Appcoda. All rights reserved.
 //
 
+#import "Global.h"
 #import "API.h"
 #import <Unirest.h>
 
@@ -16,9 +17,9 @@
     NSString *fullUrl = [NSString stringWithFormat:@"%@%@", [self serverUrl], path];
     NSDictionary* headers = @{@"accept": @"application/json"};
     
-    NSString *session_token = [self getToken];
+    NSString *session_token = [Global retrieveValueForKey:@"session_token"];
     if (session_token) {
-        [parameters setValue:[self getToken] forKey:@"session_token"];
+        [parameters setValue:session_token forKey:@"session_token"];
     }
     
     // NOTE: this is a synchronous request
@@ -45,9 +46,9 @@
     //NSURL *fullUrl = [NSURL URLWithString:fullUrlString];
     NSDictionary* headers = @{@"accept": @"application/json"};
     
-    NSString *session_token = [self getToken];
+    NSString *session_token = [Global retrieveValueForKey:@"session_token"];
     if (session_token) {
-        [parameters setValue:[self getToken] forKey:@"session_token"];
+        [parameters setValue:session_token forKey:@"session_token"];
     }
     
     // NOTE: this is a synchronous request
@@ -60,19 +61,9 @@
     return response;
 }
 
-+ (void) setToken:(NSString *)token {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:token forKey:@"session_token"];
-    [defaults synchronize];
-}
-
-+ (NSString *) getToken {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults stringForKey:@"session_token"];
-}
-
 + (NSString *) serverUrl {
-    return @"http://localhost:4000";
+    //return @"http://localhost:4000"; // local dev server
+    return @"http://yapsnap.herokuapp.com"; // production
 }
 
 @end

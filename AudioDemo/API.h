@@ -14,6 +14,4 @@
 + (UNIHTTPJsonResponse *) postToPath:(NSString *)path withParameters:(NSMutableDictionary *)parameters;
 + (UNIHTTPJsonResponse *) postYap;
 
-+ (void) setToken:(NSString *)token;
-
 @end

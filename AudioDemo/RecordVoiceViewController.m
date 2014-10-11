@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Appcoda. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "RecordVoiceViewController.h"
 #import "ContactsViewController.h"
 
-@interface ViewController () {
+@interface RecordVoiceViewController () {
     AVAudioRecorder *recorder;
     AVAudioPlayer *player;
     NSTimer *timer;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation ViewController
+@implementation RecordVoiceViewController
 @synthesize playButton, recordButton; //stopButton
 
 - (void)viewDidLoad

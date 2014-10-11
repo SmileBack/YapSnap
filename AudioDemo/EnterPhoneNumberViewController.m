@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Appcoda. All rights reserved.
 //
 
+#import "Global.h"
 #import "EnterPhoneNumberViewController.h"
 #import "API.h"
 
@@ -55,12 +56,12 @@
     [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self]; // UNDO!!
     
     NSString *path = @"/sessions";
-    NSMutableDictionary* parameters = [@{@"phone": @"12014508328"} mutableCopy];
+    NSMutableDictionary* parameters = [@{@"phone": self.textField.text} mutableCopy];
     
     UNIHTTPJsonResponse *result = [API postToPath:path withParameters:parameters];
     
     if ([result code] == 201) {
-        //we're good. go to next screen
+        [Global storeValue:self.textField.text forKey:@"phone_number"];
         [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
     } else {
         // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
@@ -77,17 +78,5 @@
     //[self.navigationController setNavigationBarHidden:NO animated:animated];
     //[super viewWillDisappear:animated];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

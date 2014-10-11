@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Appcoda. All rights reserved.
 //
 
+#import "Global.h"
 #import "EnterCodeViewController.h"
 #import "API.h"
 
@@ -66,22 +67,19 @@
     [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO!!
     
     NSString *path = @"/sessions/confirm";
-    NSMutableDictionary* parameters = [@{@"phone": @"12014508328",
-                                         @"confirmation_code": @"111111"} mutableCopy];
+    NSMutableDictionary* parameters = [@{@"phone":[Global retrieveValueForKey:@"phone_number"],
+                                         @"confirmation_code": self.textField.text} mutableCopy];
     
     UNIHTTPJsonResponse *result = [API postToPath:path withParameters:parameters];
     
     if ([result code] == 201) {
-        NSString *token = [[[result body] object] valueForKey:@"token"];
-        [API setToken:token];
+        NSString *token = [[[result body] object] valueForKey:@"session_token"];
+        [Global storeValue:token forKey:@"session_token"];
         [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self];
     } else {
         // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
     }
 }
-
-
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated]; //UNDO
@@ -92,16 +90,5 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

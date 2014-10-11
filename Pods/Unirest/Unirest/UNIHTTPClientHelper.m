@@ -125,9 +125,12 @@
                         
                         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", key, filename] dataUsingEncoding:NSUTF8StringEncoding]];
                         [body appendData:[[NSString stringWithFormat:@"Content-Length: %lu", (unsigned long)data.length] dataUsingEncoding:NSUTF8StringEncoding]];
-                        [body appendData:[[NSString stringWithFormat:@"Content-Type: audio/m4a", (unsigned long)data.length] dataUsingEncoding:NSUTF8StringEncoding]];
+                        ////////////////////////////////////////////////////////
+                        // NOTE: I hacked this change right here
+                        [body appendData:[[NSString stringWithFormat:@"Content-Type: audio/m4a"] dataUsingEncoding:NSUTF8StringEncoding]];
                         [body appendData:[@"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
                         [body appendData:data];
+                        ////////////////////////////////////////////////////////
                     } else {
                         [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", BOUNDARY] dataUsingEncoding:NSUTF8StringEncoding]];
                         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key] dataUsingEncoding:NSUTF8StringEncoding]];
