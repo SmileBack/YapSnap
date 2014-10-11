@@ -108,7 +108,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.90980392156862744" green="0.92941176470588238" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="g9f-Ex-CHR" firstAttribute="top" secondItem="3" secondAttribute="top" id="0BW-AA-aUK"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="leading" secondItem="NH3-XX-GgC" secondAttribute="trailing" constant="22" id="0E1-PQ-NlU"/>
@@ -155,7 +155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1124" y="-189"/>
+            <point key="canvasLocation" x="1060" y="-291"/>
         </scene>
         <!--Contacts View Controller-->
         <scene sceneID="233-fw-KYK">
@@ -202,6 +202,10 @@
                                         <state key="normal" backgroundImage="ArrowWhite.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didTapArrowButton" destination="iTO-dn-ews" eventType="touchUpInside" id="fjT-AQ-8Qt"/>
+                                            <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsViewControllerSegue" id="Cj1-cz-PAe"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kza-wO-TLE">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
@@ -232,7 +236,39 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1596" y="-189"/>
+            <point key="canvasLocation" x="1604" y="-291"/>
+        </scene>
+        <!--Yaps View Controller-->
+        <scene sceneID="XHH-iK-vw0">
+            <objects>
+                <viewController id="Vua-bX-Wl1" customClass="YapsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fGq-4S-EbX"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Hh-Gz-1X0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c1Z-FI-M5X">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hWh-h3-qO7">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Vua-bX-Wl1" id="SSO-MP-NVG"/>
+                                    <outlet property="delegate" destination="Vua-bX-Wl1" id="lDD-PV-Xv9"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vaK-d3-AtD">
+                        <barButtonItem key="leftBarButtonItem" image="RedCircleIcon.png" id="bOB-18-QO4"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-WI-Tyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2166" y="-291"/>
         </scene>
         <!--Landing Page View Controller-->
         <scene sceneID="2Ef-Fx-7Lp">
@@ -471,6 +507,7 @@
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="Microphone_White.png" width="256" height="256"/>
         <image name="RecordButtonRedWhiteBorder.png" width="200" height="200"/>
+        <image name="RedCircleIcon.png" width="30" height="30"/>
         <image name="RedCircleSmall.png" width="67" height="67"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
