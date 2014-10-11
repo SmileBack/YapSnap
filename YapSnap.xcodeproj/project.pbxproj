@@ -12,6 +12,12 @@
 		374383E019CE29880009C323 /* EnterPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374383DF19CE29880009C323 /* EnterPhoneNumberViewController.m */; };
 		374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374383E419CE2DCA0009C323 /* EnterCodeViewController.m */; };
 		374383E919CE323B0009C323 /* LandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374383E819CE323B0009C323 /* LandingPageViewController.m */; };
+		3753AF8919E9A4D000B6391D /* Microphone_White2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF8819E9A4D000B6391D /* Microphone_White2.png */; };
+		3753AF8B19E9A68200B6391D /* YapsButtonRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF8A19E9A68200B6391D /* YapsButtonRed.png */; };
+		3753AF8D19E9C55400B6391D /* RedArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF8C19E9C55400B6391D /* RedArrow@2x.png */; };
+		3753AF8F19E9C65300B6391D /* RedArrowBackward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF8E19E9C65300B6391D /* RedArrowBackward@2x.png */; };
+		3753AF9119E9C94800B6391D /* BlueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF9019E9C94800B6391D /* BlueArrow@2x.png */; };
+		3753AF9319E9CAEC00B6391D /* Replay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF9219E9CAEC00B6391D /* Replay@2x.png */; };
 		37695E5F19BB7A2500C22E13 /* RecordButtonBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */; };
 		37695E6119BB86A700C22E13 /* RecordButtonRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E6019BB86A700C22E13 /* RecordButtonRed.png */; };
 		37695E6319BB97EA00C22E13 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E6219BB97EA00C22E13 /* Arrow.png */; };
@@ -20,7 +26,6 @@
 		37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37695E6D19BBC78F00C22E13 /* JEProgressView.m */; };
 		37695E7219BBC97900C22E13 /* ProgressViewBackgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E7119BBC97900C22E13 /* ProgressViewBackgroundBlue.png */; };
 		37695E7419BBC9DE00C22E13 /* ProgressViewBackgroundRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E7319BBC9DE00C22E13 /* ProgressViewBackgroundRed.png */; };
-		37695E7619BBE37A00C22E13 /* Microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E7519BBE37A00C22E13 /* Microphone.png */; };
 		378191D419E59B4A006EF98F /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 378191D319E59B4A006EF98F /* API.m */; };
 		378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 378FD61119BDF45C007F3224 /* CheckWhite.png */; };
 		3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDF319BCEF5700FBBBCE /* ContactsViewController.m */; };
@@ -70,6 +75,12 @@
 		374383E419CE2DCA0009C323 /* EnterCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterCodeViewController.m; sourceTree = "<group>"; };
 		374383E719CE323B0009C323 /* LandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingPageViewController.h; sourceTree = "<group>"; };
 		374383E819CE323B0009C323 /* LandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingPageViewController.m; sourceTree = "<group>"; };
+		3753AF8819E9A4D000B6391D /* Microphone_White2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_White2.png; sourceTree = "<group>"; };
+		3753AF8A19E9A68200B6391D /* YapsButtonRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsButtonRed.png; sourceTree = "<group>"; };
+		3753AF8C19E9C55400B6391D /* RedArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RedArrow@2x.png"; sourceTree = "<group>"; };
+		3753AF8E19E9C65300B6391D /* RedArrowBackward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RedArrowBackward@2x.png"; sourceTree = "<group>"; };
+		3753AF9019E9C94800B6391D /* BlueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueArrow@2x.png"; sourceTree = "<group>"; };
+		3753AF9219E9CAEC00B6391D /* Replay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Replay@2x.png"; sourceTree = "<group>"; };
 		37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlue.png; sourceTree = "<group>"; };
 		37695E6019BB86A700C22E13 /* RecordButtonRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonRed.png; sourceTree = "<group>"; };
 		37695E6219BB97EA00C22E13 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow.png; sourceTree = "<group>"; };
@@ -79,7 +90,6 @@
 		37695E6D19BBC78F00C22E13 /* JEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JEProgressView.m; sourceTree = "<group>"; };
 		37695E7119BBC97900C22E13 /* ProgressViewBackgroundBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundBlue.png; sourceTree = "<group>"; };
 		37695E7319BBC9DE00C22E13 /* ProgressViewBackgroundRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundRed.png; sourceTree = "<group>"; };
-		37695E7519BBE37A00C22E13 /* Microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone.png; sourceTree = "<group>"; };
 		378191D219E59B4A006EF98F /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		378191D319E59B4A006EF98F /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		378FD61119BDF45C007F3224 /* CheckWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckWhite.png; sourceTree = "<group>"; };
@@ -201,18 +211,23 @@
 			isa = PBXGroup;
 			children = (
 				37D413B219D217FF00021548 /* Fonts */,
+				3753AF8C19E9C55400B6391D /* RedArrow@2x.png */,
+				3753AF9019E9C94800B6391D /* BlueArrow@2x.png */,
+				3753AF8E19E9C65300B6391D /* RedArrowBackward@2x.png */,
+				3753AF9219E9CAEC00B6391D /* Replay@2x.png */,
 				37D413C119D21FC300021548 /* RedCircleSmall.png */,
 				37BF0DEE19E917F80077B74F /* MicrophoneSmall@2x.png */,
 				37BF0DEA19E912D00077B74F /* airplane@2x.png */,
 				37D413CB19D230D000021548 /* ArrowWhite.png */,
 				378FD61119BDF45C007F3224 /* CheckWhite.png */,
-				37695E7519BBE37A00C22E13 /* Microphone.png */,
 				37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */,
+				3753AF8819E9A4D000B6391D /* Microphone_White2.png */,
 				37695E6019BB86A700C22E13 /* RecordButtonRed.png */,
 				37D20C2B19E4A19D008530BF /* RecordButtonRedWhiteBorder.png */,
 				37695E6219BB97EA00C22E13 /* Arrow.png */,
 				37695E6419BB98DD00C22E13 /* CancelImage2.png */,
 				37695E6A19BBC06300C22E13 /* CancelImage.png */,
+				3753AF8A19E9A68200B6391D /* YapsButtonRed.png */,
 				37D20C2D19E4A2B3008530BF /* CancelImageWhite.png */,
 				37695E7119BBC97900C22E13 /* ProgressViewBackgroundBlue.png */,
 				37695E7319BBC9DE00C22E13 /* ProgressViewBackgroundRed.png */,
@@ -353,7 +368,6 @@
 				37695E7D19BBEE8500C22E13 /* Contacts Page */,
 				F44B0C5116DA404700E6CD88 /* AppDelegate.h */,
 				F44B0C5216DA404700E6CD88 /* AppDelegate.m */,
-				F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */,
 				378191D319E59B4A006EF98F /* API.m */,
 				378191D219E59B4A006EF98F /* API.h */,
 				37C3746C19BC4A97001A1D02 /* HUD */,
@@ -433,18 +447,22 @@
 			files = (
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
 				37695E6519BB98DD00C22E13 /* CancelImage2.png in Resources */,
+				3753AF8919E9A4D000B6391D /* Microphone_White2.png in Resources */,
 				37D20C2A19E4A0E5008530BF /* ProgressViewBackgroundWhite.png in Resources */,
 				37BF0DEB19E912D00077B74F /* airplane@2x.png in Resources */,
 				37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */,
 				F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */,
 				3793FDF919BCF0DC00FBBBCE /* ContactSelectionCell.xib in Resources */,
+				3753AF9119E9C94800B6391D /* BlueArrow@2x.png in Resources */,
 				F44B0C5516DA404700E6CD88 /* Default.png in Resources */,
+				3753AF9319E9CAEC00B6391D /* Replay@2x.png in Resources */,
 				37695E7419BBC9DE00C22E13 /* ProgressViewBackgroundRed.png in Resources */,
 				37D20C2819E4A064008530BF /* ProgressViewBackgroundLightBlue.png in Resources */,
 				37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */,
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
 				37695E6B19BBC06300C22E13 /* CancelImage.png in Resources */,
+				3753AF8B19E9A68200B6391D /* YapsButtonRed.png in Resources */,
 				F44B0C5C16DA404700E6CD88 /* MainStoryboard.storyboard in Resources */,
 				37695E6119BB86A700C22E13 /* RecordButtonRed.png in Resources */,
 				37695E5F19BB7A2500C22E13 /* RecordButtonBlue.png in Resources */,
@@ -457,6 +475,8 @@
 				37695E6319BB97EA00C22E13 /* Arrow.png in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				37BF0DEF19E917F80077B74F /* MicrophoneSmall@2x.png in Resources */,
+				3753AF8F19E9C65300B6391D /* RedArrowBackward@2x.png in Resources */,
+				3753AF8D19E9C55400B6391D /* RedArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

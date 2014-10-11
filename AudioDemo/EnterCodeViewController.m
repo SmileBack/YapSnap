@@ -63,6 +63,8 @@
 
 - (IBAction) didTapContinueButton
 {
+    [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO!!
+    
     NSString *path = @"/sessions/confirm";
     NSMutableDictionary* parameters = [@{@"phone": @"12014508328",
                                          @"confirmation_code": @"111111"} mutableCopy];

@@ -162,6 +162,8 @@ static NSString *CellIdentifier = @"Cell";
 
 - (IBAction) didTapArrowButton
 {
+    [self performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self]; // UNDO
+    
     UNIHTTPJsonResponse *response = [API postYap];
     if (response.code == 201) {
         [self performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];

@@ -58,7 +58,7 @@ static NSString *CellIdentifier = @"Cell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 65;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,11 +71,44 @@ static NSString *CellIdentifier = @"Cell";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:simpleTableIdentifier];
     }
     
+    if (indexPath.row == 2) {
+        cell.imageView.image = [UIImage imageNamed:@"RedArrowBackward.png"];
+    } else if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 6 ) {
+        cell.imageView.image = [UIImage imageNamed:@"BlueArrow.png"];
+    } else {
+        cell.imageView.image = [UIImage imageNamed:@"Replay.png"];
+    }
+    
+    
+    
     cell.textLabel.text = [yaps objectAtIndex:indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:@"airplane.png"];
-    cell.detailTextLabel.text = @"Reply";
+    cell.detailTextLabel.text = @"5 mins ago";
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:14.0f];
+    
+    if (indexPath.row == 2) {
+        UIProgressView* progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+        progressView.frame = CGRectMake(62,62, 258,10);
+        progressView.progress = 0.4;
+        [cell.contentView addSubview:progressView];
+    }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Tapped Row");
+    
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:   self action:@selector(doDoubleTap)];
+    doubleTap.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:doubleTap];
+}
+
+- (void)doDoubleTap
+{
+    NSLog(@"Double Tapped Row");
+    [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO
+
 }
 
 @end

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -81,7 +80,7 @@
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bsh-56-MCX" customClass="JEProgressView">
                                 <rect key="frame" x="0.0" y="307" width="320" height="2"/>
                             </progressView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Microphone_White.png" translatesAutoresizingMaskIntoConstraints="NO" id="v0o-hk-bRQ">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Microphone_White2.png" translatesAutoresizingMaskIntoConstraints="NO" id="v0o-hk-bRQ">
                                 <rect key="frame" x="40" y="117" width="240" height="119"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YapSnap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwb-eQ-GX5">
@@ -107,6 +106,17 @@
                                     <constraint firstAttribute="trailing" secondItem="83A-pl-xW7" secondAttribute="trailing" id="z2y-4D-B1T"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7q-Ko-Que">
+                                <rect key="frame" x="281" y="28" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="6" backgroundImage="YapsButtonRed.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Vua-bX-Wl1" kind="push" id="eEG-cA-gRo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -251,7 +261,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hWh-h3-qO7">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hWh-h3-qO7">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -265,7 +275,7 @@
                     <navigationItem key="navigationItem" id="vaK-d3-AtD">
                         <barButtonItem key="leftBarButtonItem" image="RedCircleIcon.png" id="bOB-18-QO4">
                             <connections>
-                                <segue destination="2" kind="push" id="D0i-XZ-oKa"/>
+                                <segue destination="2" kind="push" identifier="RecordViewControllerSegue" id="D0i-XZ-oKa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -273,7 +283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-WI-Tyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2056" y="-997"/>
+            <point key="canvasLocation" x="2236" y="-1013"/>
         </scene>
         <!--Landing Page View Controller-->
         <scene sceneID="2Ef-Fx-7Lp">
@@ -510,10 +520,11 @@
     <resources>
         <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="Microphone_White.png" width="256" height="256"/>
+        <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="RecordButtonRedWhiteBorder.png" width="200" height="200"/>
         <image name="RedCircleIcon.png" width="30" height="30"/>
         <image name="RedCircleSmall.png" width="67" height="67"/>
+        <image name="YapsButtonRed.png" width="60" height="60"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -522,5 +533,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="D0i-XZ-oKa"/>
+        <segue reference="eEG-cA-gRo"/>
     </inferredMetricsTieBreakers>
 </document>
