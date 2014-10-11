@@ -25,7 +25,9 @@
 {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:245.0f/255.0f green:75.0f/255.0f blue:75.0f/255.0f alpha:1]; //[UIColor colorWithRed:232.0/255.0 green:237.0/255.0 blue:91.0/255.0 alpha:1.0f];
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    
+    self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
 
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                              style:UIBarButtonItemStylePlain
@@ -64,7 +66,7 @@
     self.cancelButton.hidden = YES;
     
     self.progressView.progress = 0;
-    [self.progressView setTrackImage:[UIImage imageNamed:@"ProgressViewBackgroundBlue.png"]];
+    [self.progressView setTrackImage:[UIImage imageNamed:@"ProgressViewBackgroundWhite.png"]];
     [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewBackgroundRed.png"]];
 
 }
@@ -72,6 +74,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    
+    //Nav bar should not be transparent after finishing registration process
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

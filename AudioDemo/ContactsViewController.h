@@ -11,4 +11,6 @@
 
 @interface ContactsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 
+- (IBAction)didTapArrowButton;
+
 @end

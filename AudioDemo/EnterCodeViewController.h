@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface EnterCodeViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 - (IBAction)didTapContinueButton;
 

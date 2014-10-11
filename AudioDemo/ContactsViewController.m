@@ -167,6 +167,11 @@ static NSString *CellIdentifier = @"Cell";
         
 }
 
+- (IBAction) didTapArrowButton
+{
+    [self performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
+}
+
 #pragma mark - UISearchDisplayDelegate
 - (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
 {

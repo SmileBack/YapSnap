@@ -28,10 +28,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Retry"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil
                                                                             action:nil];
+    
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    
+    self.textField.keyboardType = UIKeyboardTypeNumberPad;
+    
+    double delay = 0.6;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.textField becomeFirstResponder];
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,6 +51,8 @@
 
 - (IBAction) didTapContinueButton
 {
+    [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self]; //UNDO - DELETE THIS
+    
     NSString *post = [NSString stringWithFormat:@"phone=%@", @"17186834668"];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
@@ -80,8 +91,15 @@
     // TODO - ADD TO MIXPANEL
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
 
-
+- (void)viewWillDisappear:(BOOL)animated {
+    //[self.navigationController setNavigationBarHidden:NO animated:animated];
+    //[super viewWillDisappear:animated];
+}
 
 
 /*
