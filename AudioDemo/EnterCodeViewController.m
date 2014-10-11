@@ -117,9 +117,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
-    
-    //Nav bar should not be transparent anymore after leaving this page
-    self.navigationController.navigationBar.translucent = NO;
 }
 
 /*

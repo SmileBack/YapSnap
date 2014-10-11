@@ -74,6 +74,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    
+    //Nav bar should not be transparent after finishing registration process
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
