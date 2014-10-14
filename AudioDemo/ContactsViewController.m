@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Appcoda. All rights reserved.
 //
 
+#import "Global.h"
 #import "ContactsViewController.h"
 #import "UIViewController+Communication.h"
 #import "MBProgressHUD.h"
@@ -50,7 +51,6 @@ static NSString *CellIdentifier = @"Cell";
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-
 }
 
 - (void) loadContacts
@@ -58,13 +58,13 @@ static NSString *CellIdentifier = @"Cell";
     __weak ContactsViewController *weakSelf = self;
     
     if (self.isAuthorizedForContacts) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.labelText = @"Loading contacts...";
+        //MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        //hud.labelText = @"Loading contacts...";
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             weakSelf.contacts = [weakSelf getAllContacts];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [hud hide:YES];
+                //[hud hide:YES];
                 [weakSelf.tableView reloadData];
             });
         });
@@ -127,7 +127,24 @@ static NSString *CellIdentifier = @"Cell";
     cell.backgroundColor = [UIColor whiteColor];
     
     cell.nameLabel.font = [self.selectedContacts containsObject:contact] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
-
+    
+    
+    // CHECK IF ANY CONTACTS SHOULD BE PRESELECTED
+    
+    NSString* recipient_number = [Global retrieveValueForKey:@"reply_recipient"];
+    for (PhoneContact* contact in self.contacts) {
+        NSLog(@"Phone number: %@", contact.phoneNumber);
+        if ([contact.phoneNumber isEqualToString:recipient_number]) {
+            [self.selectedContacts addObject:contact];
+            
+            [self showOrHideBottomView];
+            
+            // We now are removing the reply recipient from the global variable because we no longer need it
+            [Global storeValue:nil forKey:@"reply_recipient"];
+        }
+    }
+    
+    
     
     return cell;
 }
@@ -163,7 +180,7 @@ static NSString *CellIdentifier = @"Cell";
 - (IBAction) didTapArrowButton
 {
     [self performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self]; // UNDO
-    
+    /*
     UNIHTTPJsonResponse *response = [API postYap];
     if (response.code == 201) {
         [self performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
@@ -171,6 +188,7 @@ static NSString *CellIdentifier = @"Cell";
         // uh oh spaghettios
         // TODO: tell the user something went wrong
     }
+     */
 }
 
 #pragma mark - UISearchDisplayDelegate

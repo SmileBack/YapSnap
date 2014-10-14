@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Appcoda. All rights reserved.
 //
 
+#import "Global.h"
 #import "YapsViewController.h"
 #import "MBProgressHUD.h"
 
@@ -107,8 +108,8 @@ static NSString *CellIdentifier = @"Cell";
 - (void)doDoubleTap
 {
     NSLog(@"Double Tapped Row");
+    [Global storeValue:@"3475238941" forKey:@"reply_recipient"];
     [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO
-
 }
 
 @end

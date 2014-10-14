@@ -52,9 +52,7 @@
 }
 
 - (IBAction) didTapContinueButton
-{
-    [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self]; // UNDO!!
-    
+{    
     NSString *path = @"/sessions";
     NSMutableDictionary* parameters = [@{@"phone": self.textField.text} mutableCopy];
     
