@@ -12,6 +12,6 @@
 @interface API : NSObject
 
 + (UNIHTTPJsonResponse *) postToPath:(NSString *)path withParameters:(NSMutableDictionary *)parameters;
-+ (UNIHTTPJsonResponse *) postYap;
++ (UNIHTTPJsonResponse *) postYapToContacts:(NSArray*)contacts;
 
 @end

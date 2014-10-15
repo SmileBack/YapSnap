@@ -179,16 +179,13 @@ static NSString *CellIdentifier = @"Cell";
 
 - (IBAction) didTapArrowButton
 {
-    [self performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self]; // UNDO
-    /*
-    UNIHTTPJsonResponse *response = [API postYap];
+    UNIHTTPJsonResponse *response = [API postYapToContacts:self.selectedContacts];
     if (response.code == 201) {
         [self performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
     } else {
         // uh oh spaghettios
         // TODO: tell the user something went wrong
     }
-     */
 }
 
 #pragma mark - UISearchDisplayDelegate

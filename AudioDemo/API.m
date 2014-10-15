@@ -9,6 +9,7 @@
 #import "Global.h"
 #import "API.h"
 #import <Unirest.h>
+#import "PhoneContact.h"
 
 @implementation API
 
@@ -33,14 +34,15 @@
 }
 
 
-+ (UNIHTTPJsonResponse *) postYap {
++ (UNIHTTPJsonResponse *) postYapToContacts:(NSArray *)contacts {
     
     NSArray *pathComponents = [NSArray arrayWithObjects:
                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
                                @"MyAudioMemo.m4a",
                                nil];
     NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-    NSMutableDictionary *parameters = [@{@"recording":outputFileURL} mutableCopy];
+    NSString* recipients = [[contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
+    NSMutableDictionary *parameters = [@{@"recording":outputFileURL, @"recipients":recipients} mutableCopy];
     
     NSString *fullUrlString = [NSString stringWithFormat:@"%@%@", [self serverUrl], @"/yaps"];
     //NSURL *fullUrl = [NSURL URLWithString:fullUrlString];
@@ -62,8 +64,8 @@
 }
 
 + (NSString *) serverUrl {
-    //return @"http://localhost:4000"; // local dev server
-    return @"http://yapsnap.herokuapp.com"; // production
+    return @"http://localhost:4000"; // local dev server
+    //return @"http://yapsnap.herokuapp.com"; // production
 }
 
 @end
