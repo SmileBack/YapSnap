@@ -8,6 +8,7 @@
 
 #import "Global.h"
 #import "EnterNameViewController.h"
+#import "API.h"
 
 @interface EnterNameViewController ()
 
@@ -59,8 +60,27 @@
 
 - (IBAction) didTapContinueButton
 {
-    [Global storeValue:self.textField.text forKey:@"username"];
-    [self performSegueWithIdentifier:@"EnterPhoneNumberViewControllerSegue" sender:self];
+    //NSString *path = @"/sessions";
+    //NSMutableDictionary* parameters = [@{@"name": self.textField.text} mutableCopy];
+    
+    //UNIHTTPJsonResponse *result = [API postToPath:path withParameters:parameters];
+    
+    if ([self.textField.text length] < 2) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your name"
+                                                        message:@"Please enter your name so people can send you messages"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
+    } else {
+        //if ([result code] == 201) {
+            [Global storeValue:self.textField.text forKey:@"name"];
+            [self performSegueWithIdentifier:@"EnterPhoneNumberViewControllerSegue" sender:self];
+        //} else {
+            // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
+        //}
+    }
 }
 
 @end

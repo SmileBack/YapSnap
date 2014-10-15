@@ -58,11 +58,21 @@
     
     UNIHTTPJsonResponse *result = [API postToPath:path withParameters:parameters];
     
-    if ([result code] == 201) {
-        [Global storeValue:self.textField.text forKey:@"phone_number"];
-        [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
+    if ([self.textField.text length] < 10) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your number"
+                                                        message:@"Please enter your full number so we can verify that you're real"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
     } else {
-        // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
+        if ([result code] == 201) {
+            [Global storeValue:self.textField.text forKey:@"phone_number"];
+            [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
+        } else {
+            // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
+        }
     }
 }
 

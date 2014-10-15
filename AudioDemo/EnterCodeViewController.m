@@ -70,12 +70,30 @@
     
     UNIHTTPJsonResponse *result = [API postToPath:path withParameters:parameters];
     
-    if ([result code] == 201) {
-        NSString *token = [[[result body] object] valueForKey:@"session_token"];
-        [Global storeValue:token forKey:@"session_token"];
-        [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self];
+    if ([self.textField.text length] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter code"
+                                                        message:@"We sent you a code. Please enter it here to continue."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
     } else {
-        // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
+        if ([result code] == 201) {
+            NSString *token = [[[result body] object] valueForKey:@"session_token"];
+            [Global storeValue:token forKey:@"session_token"];
+            [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self];
+        } else if ([result code] == 0) { // THIS IS ACTUALLY A 401 - UNIHTTP ISN'T READING IT AS A 401
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again"
+                                                            message:@"That was the wrong code. Try again."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            
+            [alert show];
+        } else {
+            // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
+        }
     }
 }
 
