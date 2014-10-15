@@ -64,8 +64,8 @@
 }
 
 + (NSString *) serverUrl {
-    return @"http://localhost:4000"; // local dev server
-    //return @"http://yapsnap.herokuapp.com"; // production
+    //return @"http://localhost:4000"; // local dev server
+    return @"http://yapsnap.herokuapp.com"; // production
 }
 
 @end
