@@ -1,5 +1,6 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Unirest" "${PODS_ROOT}/Headers/Public/Unirest/HttpRequest" "${PODS_ROOT}/Headers/Public/Unirest/HttpResponse"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Unirest" -isystem "${PODS_ROOT}/Headers/Public/Unirest/HttpRequest" -isystem "${PODS_ROOT}/Headers/Public/Unirest/HttpResponse"
-OTHER_LDFLAGS = -ObjC -l"Pods-YapSnap-Unirest"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/SDWebImage" "${PODS_ROOT}/Headers/Public/Unirest" "${PODS_ROOT}/Headers/Public/Unirest/HttpRequest" "${PODS_ROOT}/Headers/Public/Unirest/HttpResponse" "${PODS_ROOT}/Headers/Public/iCarousel"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/SDWebImage" -isystem "${PODS_ROOT}/Headers/Public/Unirest" -isystem "${PODS_ROOT}/Headers/Public/Unirest/HttpRequest" -isystem "${PODS_ROOT}/Headers/Public/Unirest/HttpResponse" -isystem "${PODS_ROOT}/Headers/Public/iCarousel"
+OTHER_LDFLAGS = -ObjC -l"Pods-YapSnap-AFNetworking" -l"Pods-YapSnap-SDWebImage" -l"Pods-YapSnap-Unirest" -l"Pods-YapSnap-iCarousel" -framework "CoreGraphics" -framework "ImageIO" -framework "MobileCoreServices" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration"
+OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 PODS_ROOT = ${SRCROOT}/Pods

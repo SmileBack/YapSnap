@@ -6,6 +6,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 target "YapSnap" do
 
   pod 'Unirest'
-
+  pod 'AFNetworking', '~> 2.5.0'
+  pod 'iCarousel', '~> 1.8.1'
+  pod 'SDWebImage', '~> 3.7.1'
 end
 
