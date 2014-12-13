@@ -8,10 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <Unirest.h>
+#import <AFNetworking/AFNetworking.h>
+#import "YSTrack.h"
+
+typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
+
 
 @interface API : NSObject
 
++ (API *) sharedAPI;
+
 + (UNIHTTPJsonResponse *) postToPath:(NSString *)path withParameters:(NSMutableDictionary *)parameters;
 + (UNIHTTPJsonResponse *) postYapToContacts:(NSArray*)contacts;
+
+- (void) sendSong:(YSTrack *) song withCallback:(SuccessOrErrorCallback) callback;
 
 @end

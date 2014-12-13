@@ -1,10 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
+        <!--Spotify Search Controller-->
+        <scene sceneID="pQ9-Te-1O5">
+            <objects>
+                <viewController id="jNN-gb-fip" customClass="YSSpotifySearchController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="O41-vg-0Lg"/>
+                        <viewControllerLayoutGuide type="bottom" id="KEa-CH-3fd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B8N-jO-1bl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6hl-m2-tvk">
+                                <rect key="frame" x="16" y="80" width="158" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtT-oA-PQB">
+                                <rect key="frame" x="253" y="80" width="48" height="30"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchPressed:" destination="jNN-gb-fip" eventType="touchUpInside" id="Vt8-IY-kTM"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZNs-R1-CJc" customClass="iCarousel">
+                                <rect key="frame" x="0.0" y="144" width="320" height="232"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="jNN-gb-fip" id="WIV-5h-C9T"/>
+                                    <outlet property="delegate" destination="jNN-gb-fip" id="oMQ-PT-KYX"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="8VQ-xh-4vV"/>
+                    <connections>
+                        <outlet property="carousel" destination="ZNs-R1-CJc" id="5vb-SQ-OO6"/>
+                        <outlet property="searchBox" destination="6hl-m2-tvk" id="lF2-ss-GVa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eqw-WM-wJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1178" y="-1004"/>
+        </scene>
         <!--Record Voice View Controller-->
         <scene sceneID="5">
             <objects>
@@ -336,6 +383,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RedCircleSmall.png" translatesAutoresizingMaskIntoConstraints="NO" id="NaU-7V-dGh">
                                 <rect key="frame" x="141" y="47" width="38" height="38"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9P-fL-Yp0">
+                                <rect key="frame" x="0.0" y="72" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="jNN-gb-fip" kind="push" id="EWr-rF-gGf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -534,6 +590,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="D0i-XZ-oKa"/>
-        <segue reference="syO-tE-hvG"/>
+        <segue reference="eEG-cA-gRo"/>
     </inferredMetricsTieBreakers>
 </document>

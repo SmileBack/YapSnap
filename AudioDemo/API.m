@@ -11,7 +11,31 @@
 #import <Unirest.h>
 #import "PhoneContact.h"
 
+@interface API()
+
+@property (nonatomic, strong) NSString *sessionToken;
+@end
+
 @implementation API
+
+static API *sharedAPI;
+
++ (API *) sharedAPI
+{
+    if (!sharedAPI) {
+        sharedAPI = [API new];
+    }
+
+    return sharedAPI;
+}
+
+- (NSString *)sessionToken
+{
+    if (!_sessionToken) {
+        _sessionToken = [Global retrieveValueForKey:@"session_token"];
+    }
+    return _sessionToken;
+}
 
 + (UNIHTTPJsonResponse *) postToPath:(NSString *)path withParameters:(NSMutableDictionary *)parameters {
     
@@ -66,6 +90,27 @@
 + (NSString *) serverUrl {
     //return @"http://localhost:4000"; // local dev server
     return @"http://yapsnap.herokuapp.com"; // production
+}
+
+- (void) sendSong:(YSTrack *)song withCallback:(SuccessOrErrorCallback)callback
+{
+    NSString *url = [API serverUrl]; //TODO USE REAL ENDPOINT
+
+    //TODO USE REAL SESSION TOKEN
+    NSDictionary *params = @{@"session_token": @"dummy_token",//self.sessionToken,
+                             @"name": song.name,
+                             @"spotify_id": song.spotifyID,
+                             @"image": song.imageURL};
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"JSON: %@", responseObject);
+        NSDictionary *response = responseObject;
+        callback(YES, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        callback(NO, error);
+    }];
 }
 
 @end
