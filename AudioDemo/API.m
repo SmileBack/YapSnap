@@ -87,6 +87,24 @@ static API *sharedAPI;
     return response;
 }
 
+// returns all your yaps
++ (UNIHTTPJsonResponse *) getYaps {    // NOTE: this is a synchronous request
+    NSDictionary* headers = @{@"accept": @"application/json"};
+    NSString *fullUrlString = [NSString stringWithFormat:@"%@%@", [self serverUrl], @"/yaps"];
+    NSMutableDictionary *parameters = [@{} mutableCopy];
+    NSString *session_token = [Global retrieveValueForKey:@"session_token"];
+    if (session_token) {
+        [parameters setValue:session_token forKey:@"session_token"];
+    }
+    UNIHTTPJsonResponse *response = [[UNIRest get:^(UNISimpleRequest *request) {
+        [request setUrl:fullUrlString];
+        [request setHeaders:headers];
+        [request setParameters:parameters];
+    }] asJson];
+    
+    return response;
+}
+
 + (NSString *) serverUrl {
     //return @"http://localhost:4000"; // local dev server
     return @"http://yapsnap.herokuapp.com"; // production

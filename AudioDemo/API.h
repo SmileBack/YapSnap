@@ -20,6 +20,7 @@ typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 
 + (UNIHTTPJsonResponse *) postToPath:(NSString *)path withParameters:(NSMutableDictionary *)parameters;
 + (UNIHTTPJsonResponse *) postYapToContacts:(NSArray*)contacts;
++ (UNIHTTPJsonResponse *) getYaps;
 
 - (void) sendSong:(YSTrack *) song withCallback:(SuccessOrErrorCallback) callback;
 

@@ -54,7 +54,7 @@
 - (IBAction) didTapContinueButton
 {    
     NSString *path = @"/sessions";
-    NSMutableDictionary* parameters = [@{@"phone": self.textField.text} mutableCopy];
+    NSMutableDictionary* parameters = [@{@"phone": self.textField.text, @"name": [Global retrieveValueForKey:@"name"]} mutableCopy];
     
     UNIHTTPJsonResponse *result = [API postToPath:path withParameters:parameters];
     
@@ -69,6 +69,7 @@
     } else {
         if ([result code] == 201) {
             [Global storeValue:self.textField.text forKey:@"phone_number"];
+            [Global storeValue:[[[result body] JSONObject] valueForKey:@"user_id"] forKey:@"current_user_id"];
             [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
         } else {
             // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
