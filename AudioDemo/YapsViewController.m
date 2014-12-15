@@ -13,15 +13,12 @@
 
 
 @interface YapsViewController ()
-
+@property (nonatomic, strong) NSArray *yaps;
 @end
 
 static NSString *CellIdentifier = @"Cell";
 
 @implementation YapsViewController
-{
-    NSArray *yaps;
-}
 
 - (void)viewDidLoad
 {
@@ -56,7 +53,7 @@ static NSString *CellIdentifier = @"Cell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [yaps count];
+    return self.yaps.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,7 +71,7 @@ static NSString *CellIdentifier = @"Cell";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:simpleTableIdentifier];
     }
     
-    NSObject* yap = [yaps objectAtIndex:(NSInteger)[indexPath row]];
+    NSObject* yap = self.yaps[indexPath.row];
     
     if ([yap valueForKey:@"sender_id"] == [Global retrieveValueForKey:@"current_user_id"]){
         cell.textLabel.text = [yap valueForKey:@"receiver_name"];
