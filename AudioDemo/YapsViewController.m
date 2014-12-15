@@ -33,9 +33,16 @@ static NSString *CellIdentifier = @"Cell";
     self.navigationController.navigationBar.tintColor = THEME_RED_COLOR;
     
     self.navigationItem.hidesBackButton = YES;
-    
-    UNIHTTPJsonResponse* response = [API getYaps];
-    yaps = [[response body] JSONArray];
+
+    __weak YapsViewController *weakSelf = self;
+    [[API sharedAPI] getYapsWithCallback:^(NSArray *yaps, NSError *error) {
+        if (yaps) {
+            weakSelf.yaps = yaps;
+            //TODO weakSelf.tableView reloadData
+        } else {
+            NSLog(@"Error! %@", error);
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning

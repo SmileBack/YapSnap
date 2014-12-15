@@ -117,22 +117,19 @@ static API *sharedAPI;
           }];
 }
 
-// returns all your yaps
-+ (UNIHTTPJsonResponse *) getYaps {    // NOTE: this is a synchronous request
-    NSDictionary* headers = @{@"accept": @"application/json"};
-    NSString *fullUrlString = [NSString stringWithFormat:@"%@%@", [self serverUrl], @"/yaps"];
-    NSMutableDictionary *parameters = [@{} mutableCopy];
-    NSString *session_token = [Global retrieveValueForKey:@"session_token"];
-    if (session_token) {
-        [parameters setValue:session_token forKey:@"session_token"];
-    }
-    UNIHTTPJsonResponse *response = [[UNIRest get:^(UNISimpleRequest *request) {
-        [request setUrl:fullUrlString];
-        [request setHeaders:headers];
-        [request setParameters:parameters];
-    }] asJson];
-    
-    return response;
+- (void) getYapsWithCallback:(YapsCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:[self urlForEndpoint:@"/yaps"]
+       parameters:[self paramsWithDict:@{}]
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              NSArray *yaps = responseObject; //Assuming it is an array
+              NSLog(@"Got yaps: %@", yaps);
+              callback(yaps, nil);
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              callback(NO, error);
+          }];
 }
 
 - (void) sendSong:(YSTrack *)song withCallback:(SuccessOrErrorCallback)callback

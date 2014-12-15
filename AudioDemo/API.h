@@ -11,6 +11,7 @@
 #import "YSTrack.h"
 
 typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
+typedef void (^YapsCallback)(NSArray *yaps, NSError *error);
 
 
 @interface API : NSObject
@@ -20,8 +21,7 @@ typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 - (void) postYapToContacts:(NSArray *)contacts withCallback:(SuccessOrErrorCallback)callback;
 - (void) postSessions:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(SuccessOrErrorCallback)callback;
-
-+ (UNIHTTPJsonResponse *) getYaps;
+- (void) getYapsWithCallback:(YapsCallback)callback;
 
 #pragma mark - Music
 - (void) sendSong:(YSTrack *) song withCallback:(SuccessOrErrorCallback) callback;
