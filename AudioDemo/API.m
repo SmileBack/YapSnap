@@ -84,6 +84,10 @@ static API *sharedAPI;
        parameters:[self paramsWithDict:@{@"phone": phoneNumber}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSLog(@"sessions call finished: %@", responseObject);
+              NSDictionary *response = responseObject;
+              [Global storeValue:phoneNumber forKey:@"phone_number"];
+              [Global storeValue:response[@"user_id"] forKey:@"current_user_id"];
+
               callback(YES, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -111,6 +115,7 @@ static API *sharedAPI;
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               callback(NO, error);
           }];
+}
 
 // returns all your yaps
 + (UNIHTTPJsonResponse *) getYaps {    // NOTE: this is a synchronous request

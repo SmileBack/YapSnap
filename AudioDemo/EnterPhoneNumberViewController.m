@@ -66,8 +66,6 @@
 
     [[API sharedAPI] postSessions:self.textField.text withCallback:^(BOOL success, NSError *error) {
         if (success) {
-            [Global storeValue:self.textField.text forKey:@"phone_number"];
-            [Global storeValue:[[[result body] JSONObject] valueForKey:@"user_id"] forKey:@"current_user_id"];
             [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
         } else {
             // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
