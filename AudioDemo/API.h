@@ -21,6 +21,8 @@ typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 - (void) postSessions:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(SuccessOrErrorCallback)callback;
 
++ (UNIHTTPJsonResponse *) getYaps;
+
 #pragma mark - Music
 - (void) sendSong:(YSTrack *) song withCallback:(SuccessOrErrorCallback) callback;
 

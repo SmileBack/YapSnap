@@ -9,6 +9,7 @@
 #import "Global.h"
 #import "YapsViewController.h"
 #import "MBProgressHUD.h"
+#import "API.h"
 
 
 @interface YapsViewController ()
@@ -36,7 +37,8 @@ static NSString *CellIdentifier = @"Cell";
     
     self.navigationItem.hidesBackButton = YES;
     
-    yaps = [NSArray arrayWithObjects:@"Yap1", @"Yap2", @"Yap3", @"Yap4", @"Yap5", @"Yap6", @"Yap7", nil];
+    UNIHTTPJsonResponse* response = [API getYaps];
+    yaps = [[response body] JSONArray];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,26 +74,35 @@ static NSString *CellIdentifier = @"Cell";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:simpleTableIdentifier];
     }
     
-    if (indexPath.row == 2) {
-        cell.imageView.image = [UIImage imageNamed:@"RedArrowBackward.png"];
-    } else if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 6 ) {
-        cell.imageView.image = [UIImage imageNamed:@"BlueArrow.png"];
+    NSObject* yap = [yaps objectAtIndex:(NSInteger)[indexPath row]];
+    
+    if ([yap valueForKey:@"sender_id"] == [Global retrieveValueForKey:@"current_user_id"]){
+        cell.textLabel.text = [yap valueForKey:@"receiver_name"];
     } else {
-        cell.imageView.image = [UIImage imageNamed:@"Replay.png"];
+        cell.textLabel.text = [yap valueForKey:@"sender_name"];
     }
     
     
-    
-    cell.textLabel.text = [yaps objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = @"5 mins ago";
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:14.0f];
-    
-    if (indexPath.row == 2) {
-        UIProgressView* progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-        progressView.frame = CGRectMake(62,62, 258,10);
-        progressView.progress = 0.4;
-        [cell.contentView addSubview:progressView];
-    }
+//    if (indexPath.row == 2) {
+//        cell.imageView.image = [UIImage imageNamed:@"RedArrowBackward.png"];
+//    } else if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 6 ) {
+//        cell.imageView.image = [UIImage imageNamed:@"BlueArrow.png"];
+//    } else {
+//        cell.imageView.image = [UIImage imageNamed:@"Replay.png"];
+//    }
+//    
+//    
+//    
+//    cell.textLabel.text = [yaps objectAtIndex:indexPath.row];
+//    cell.detailTextLabel.text = @"5 mins ago";
+//    cell.detailTextLabel.font = [UIFont systemFontOfSize:14.0f];
+//    
+//    if (indexPath.row == 2) {
+//        UIProgressView* progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+//        progressView.frame = CGRectMake(62,62, 258,10);
+//        progressView.progress = 0.4;
+//        [cell.contentView addSubview:progressView];
+//    }
     
     return cell;
 }
