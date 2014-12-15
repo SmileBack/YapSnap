@@ -60,12 +60,6 @@
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
 
-// Unirest
-#define COCOAPODS_POD_AVAILABLE_Unirest
-#define COCOAPODS_VERSION_MAJOR_Unirest 1
-#define COCOAPODS_VERSION_MINOR_Unirest 1
-#define COCOAPODS_VERSION_PATCH_Unirest 3
-
 // iCarousel
 #define COCOAPODS_POD_AVAILABLE_iCarousel
 #define COCOAPODS_VERSION_MAJOR_iCarousel 1
