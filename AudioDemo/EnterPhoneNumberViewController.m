@@ -52,12 +52,7 @@
 }
 
 - (IBAction) didTapContinueButton
-{    
-    NSString *path = @"/sessions";
-    NSMutableDictionary* parameters = [@{@"phone": self.textField.text} mutableCopy];
-    
-    UNIHTTPJsonResponse *result = [API postToPath:path withParameters:parameters];
-    
+{
     if ([self.textField.text length] < 10) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your number"
                                                         message:@"Please enter your full number so we can verify that you're real"
@@ -66,14 +61,22 @@
                                               otherButtonTitles:nil];
         
         [alert show];
-    } else {
-        if ([result code] == 201) {
+        return;
+    }
+
+    [[API sharedAPI] postSessions:self.textField.text withCallback:^(BOOL success, NSError *error) {
+        if (success) {
             [Global storeValue:self.textField.text forKey:@"phone_number"];
             [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
         } else {
             // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:error.localizedDescription
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"otherButtonTitles:nil];
+            [alert show];
         }
-    }
+    }];
 }
 
 

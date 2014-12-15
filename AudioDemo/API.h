@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Unirest.h>
 #import <AFNetworking/AFNetworking.h>
 #import "YSTrack.h"
 
@@ -18,9 +17,11 @@ typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 
 + (API *) sharedAPI;
 
-+ (UNIHTTPJsonResponse *) postToPath:(NSString *)path withParameters:(NSMutableDictionary *)parameters;
-+ (UNIHTTPJsonResponse *) postYapToContacts:(NSArray*)contacts;
+- (void) postYapToContacts:(NSArray *)contacts withCallback:(SuccessOrErrorCallback)callback;
+- (void) postSessions:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback;
+- (void) confirmSessionWithCode:(NSString *)code withCallback:(SuccessOrErrorCallback)callback;
 
+#pragma mark - Music
 - (void) sendSong:(YSTrack *) song withCallback:(SuccessOrErrorCallback) callback;
 
 @end
