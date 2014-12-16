@@ -34,13 +34,13 @@
     NSDictionary *artist = artists[0];
     track.artistName = artist[@"name"];
 
+    track.spotifyURL = trackDictionary[@"external_urls"][@"spotify"];
+    
     NSDictionary *album = trackDictionary[@"album"];
     track.albumName = album[@"name"];
     NSArray *images = album[@"images"];
     track.imageURL = ((NSDictionary *)images[0])[@"url"];
-    
-    track.spotifyURL = trackDictionary[@"external_urls"][@"url"];
-    
+
     return track;
 }
 

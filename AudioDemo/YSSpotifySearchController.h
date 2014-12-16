@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <iCarousel/iCarousel.h>
+#import "JEProgressView.h"
 
 @interface YSSpotifySearchController : UIViewController<iCarouselDataSource, iCarouselDelegate>
 

@@ -32,23 +32,31 @@
     });
     
     self.searchBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    [self.searchBox setTintColor:[UIColor whiteColor]];
+    self.searchBox.font = [UIFont fontWithName:@"Futura-Medium" size:30];
+    self.searchBox.delegate = self;
     
-    self.searchBox.layer.borderColor=[[UIColor lightGrayColor]CGColor];
-    
-    self.searchBox.attributedPlaceholder =
+    /*self.searchBox.attributedPlaceholder =
     [[NSAttributedString alloc] initWithString:@"Type an artist, song, or album"
                                     attributes:@{
                                                  NSForegroundColorAttributeName: [UIColor lightGrayColor],
                                                  NSFontAttributeName : [UIFont fontWithName:@"Futura-Medium" size:17.0]
                                                  }
      ];
-    
+     */
 }
 
 - (IBAction)searchPressed:(id)sender
 {
     [self search:self.searchBox.text];
     [self.view endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self search:self.searchBox.text];
+    [self.view endEditing:YES];
+    
+    return YES;
 }
 
 - (void) search:(NSString *)search
@@ -94,20 +102,41 @@
     label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
     [trackView addSubview:label];
     
-    /*
-    UILabel *label = [UILabel new];
-    label.text = track.name;
-    [label sizeThatFits:CGSizeMake(100, 100)];
-    [trackView addSubview:label];
-     */
+    UIButton *spotifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    spotifyButton.frame = CGRectMake(160, 5, 35, 35);
+    [spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
+    [spotifyButton addTarget:self action:@selector(listenOnSpotify) forControlEvents:UIControlEventTouchUpInside];
+    [trackView addSubview:spotifyButton];
     
     return trackView;
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
+ 
     YSTrack *song = self.songs[index];
-    NSLog(@"Selected song: %@", song.name);
+    NSLog(@"Song name: %@", song.name);
+    NSLog(@"Spotify ID: %@", song.spotifyID);
+    NSLog(@"Spotify URL: %@", song.spotifyURL);
+    NSLog(@"Preview URL: %@", song.previewURL);
+    NSLog(@"Album Name: %@", song.albumName);
+    NSLog(@"Artist Name: %@", song.artistName);
+    NSLog(@"Image URL: %@", song.imageURL);
+    
+    
+    // LISTEN TO PREVIEW URL
+    
+    NSURL *url = [NSURL URLWithString:@"https://p.scdn.co/mp3-preview/5a9da4605959338f2363079af5895e74fba8a479"];
+                  
+
+    
+    
+    // LISTEN TO SONG ON SPOTIFY - how can we send user to spotify if he/she has it installed?
+    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:song.spotifyURL]];
+    
+    
+    // SEND YAP TO BACKEND - backend needs to be implemented
+    /*
     [[API sharedAPI] sendSong:song withCallback:^(BOOL success, NSError *error) {
         if (success) {
             NSLog(@"IT WORKED!!!!");
@@ -115,6 +144,12 @@
             NSLog(@"it didnt work: %@", error);
         }
     }];
+   */
+}
+
+-(void)listenOnSpotify
+{
+    //NSLog(@"Selected song: %@", song.name);
 }
 
 @end
