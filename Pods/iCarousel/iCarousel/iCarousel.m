@@ -134,7 +134,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
 
 - (void)setUp
 {
-    _decelerationRate = 0.95;
+    _decelerationRate = 0.9;
     _scrollEnabled = YES;
     _bounces = YES;
     _offsetMultiplier = 1.0;
@@ -142,7 +142,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     _contentOffset = CGSizeZero;
     _viewpointOffset = CGSizeZero;
     _scrollSpeed = 1.0;
-    _bounceDistance = 1.0;
+    _bounceDistance = 0.5;
     _stopAtItemBoundary = YES;
     _scrollToItemBoundary = YES;
     _ignorePerpendicularSwipes = YES;

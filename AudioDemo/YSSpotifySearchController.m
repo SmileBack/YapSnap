@@ -11,6 +11,7 @@
 #import "YSTrack.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "API.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface YSSpotifySearchController ()
 @property (nonatomic, strong) NSArray *songs;
@@ -24,6 +25,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    double delay = 0.6;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.searchBox becomeFirstResponder];
+    });
+    
+    self.searchBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    
+    self.searchBox.layer.borderColor=[[UIColor lightGrayColor]CGColor];
+    
+    self.searchBox.attributedPlaceholder =
+    [[NSAttributedString alloc] initWithString:@"Type an artist, song, or album"
+                                    attributes:@{
+                                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                                 NSFontAttributeName : [UIFont fontWithName:@"Futura-Medium" size:17.0]
+                                                 }
+     ];
+    
 }
 
 - (IBAction)searchPressed:(id)sender
@@ -59,17 +78,28 @@
     
     NSLog(@"getting view for %ld", (long)index);
     
-    CGRect frame = CGRectMake(0, 0, 100, 100);
+    CGRect frame = CGRectMake(0, 0, 200, 200);
     UIView *trackView = [[UIView alloc] initWithFrame:frame];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-    [imageView setImageWithURL:[NSURL URLWithString:track.imageURL]];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:track.imageURL]];
     [trackView addSubview:imageView];
 
+    UILabel *label = [[UILabel alloc]initWithFrame:
+                       CGRectMake(0, 200, 200, 25)];
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.text = track.name;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+    [trackView addSubview:label];
+    
+    /*
     UILabel *label = [UILabel new];
     label.text = track.name;
     [label sizeThatFits:CGSizeMake(100, 100)];
     [trackView addSubview:label];
+     */
     
     return trackView;
 }
