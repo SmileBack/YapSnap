@@ -64,12 +64,6 @@
 
 - (IBAction) didTapContinueButton
 {
-    NSString *path = @"/sessions/confirm";
-    NSMutableDictionary* parameters = [@{@"phone":[Global retrieveValueForKey:@"phone_number"],
-                                         @"confirmation_code": self.textField.text} mutableCopy];
-    
-    UNIHTTPJsonResponse *result = [API postToPath:path withParameters:parameters];
-    
     if ([self.textField.text length] == 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter code"
                                                         message:@"We sent you a code. Please enter it here to continue."
@@ -78,12 +72,15 @@
                                               otherButtonTitles:nil];
         
         [alert show];
-    } else {
-        if ([result code] == 201) {
-            NSString *token = [[[result body] object] valueForKey:@"session_token"];
-            [Global storeValue:token forKey:@"session_token"];
+        return;
+    }
+
+    NSString *code = self.textField.text;
+
+    [[API sharedAPI] confirmSessionWithCode:code withCallback:^(BOOL success, NSError *error) {
+        if (success) {
             [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self];
-        } else if ([result code] == 0) { // THIS IS ACTUALLY A 401 - UNIHTTP ISN'T READING IT AS A 401
+        } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again"
                                                             message:@"That was the wrong code. Try again."
                                                            delegate:nil
@@ -91,10 +88,8 @@
                                                   otherButtonTitles:nil];
             
             [alert show];
-        } else {
-            // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
         }
-    }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
