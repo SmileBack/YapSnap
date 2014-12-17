@@ -138,9 +138,13 @@ static API *sharedAPI;
 
     //TODO USE REAL SESSION TOKEN
     NSDictionary *params = @{@"session_token": @"dummy_token",//self.sessionToken,
-                             @"name": song.name,
+                             @"song_name": song.name,
                              @"spotify_id": song.spotifyID,
-                             @"image": song.imageURL};
+                             @"image_url": song.imageURL,
+                             @"album_name": song.albumName,
+                             @"artist_name": song.artistName,
+                             @"spotify_url": song.spotifyURL,
+                             @"song_preview_url": song.previewURL};
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
