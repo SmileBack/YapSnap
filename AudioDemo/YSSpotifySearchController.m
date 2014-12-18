@@ -126,10 +126,7 @@
     
     // LISTEN TO PREVIEW URL
     
-    NSURL *url = [NSURL URLWithString:@"https://p.scdn.co/mp3-preview/5a9da4605959338f2363079af5895e74fba8a479"];
-                  
-
-    
+    //NSURL *url = [NSURL URLWithString:@"https://p.scdn.co/mp3-preview/5a9da4605959338f2363079af5895e74fba8a479"];
     
     // LISTEN TO SONG ON SPOTIFY - how can we send user to spotify if he/she has it installed?
     //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:song.spotifyURL]];
