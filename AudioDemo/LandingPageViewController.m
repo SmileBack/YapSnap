@@ -8,7 +8,7 @@
 
 #import "Global.h"
 #import "LandingPageViewController.h"
-#import "RecordVoiceViewController.h"
+#import "AudioCaptureViewController.h"
 
 @interface LandingPageViewController ()
 
@@ -31,7 +31,7 @@
     
     // if we're already authenticated, go right to the recording page
     if ([Global retrieveValueForKey:@"session_token"] != nil){
-        RecordVoiceViewController* rvvc = [self.storyboard instantiateViewControllerWithIdentifier:@"RecordVoiceViewController"];
+        AudioCaptureViewController* rvvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AudioCaptureViewController"];
         //RecordVoiceViewController* rvvc = [[RecordVoiceViewController alloc] init];
         [self.navigationController pushViewController:rvvc animated:NO];
     }else{

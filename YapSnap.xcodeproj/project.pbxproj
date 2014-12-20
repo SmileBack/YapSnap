@@ -64,8 +64,11 @@
 		F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5616DA404700E6CD88 /* Default@2x.png */; };
 		F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5816DA404700E6CD88 /* Default-568h@2x.png */; };
 		F44B0C5C16DA404700E6CD88 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
-		F44B0C5F16DA404700E6CD88 /* RecordVoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44B0C5E16DA404700E6CD88 /* RecordVoiceViewController.m */; };
+		F44B0C5F16DA404700E6CD88 /* AudioCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44B0C5E16DA404700E6CD88 /* AudioCaptureViewController.m */; };
 		F44B0C6616DD09D900E6CD88 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */; };
+		FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D451A45F41600B148AB /* YSAudioSourceController.m */; };
+		FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */; };
+		FC0C1D4C1A45F98500B148AB /* YSMicSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D4B1A45F98500B148AB /* YSMicSourceController.m */; };
 		FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC609BC21A3CC24500182F08 /* SpotifyAPI.m */; };
 		FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */; };
 		FC80F3D51A3CCB5B00F7ABD0 /* YSSpotifySearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80F3D41A3CCB5B00F7ABD0 /* YSSpotifySearchController.m */; };
@@ -155,9 +158,15 @@
 		F44B0C5616DA404700E6CD88 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F44B0C5816DA404700E6CD88 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F44B0C5B16DA404700E6CD88 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		F44B0C5D16DA404700E6CD88 /* RecordVoiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordVoiceViewController.h; sourceTree = "<group>"; };
-		F44B0C5E16DA404700E6CD88 /* RecordVoiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordVoiceViewController.m; sourceTree = "<group>"; };
+		F44B0C5D16DA404700E6CD88 /* AudioCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioCaptureViewController.h; sourceTree = "<group>"; };
+		F44B0C5E16DA404700E6CD88 /* AudioCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioCaptureViewController.m; sourceTree = "<group>"; };
 		F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FC0C1D441A45F41600B148AB /* YSAudioSourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSAudioSourceController.h; sourceTree = "<group>"; };
+		FC0C1D451A45F41600B148AB /* YSAudioSourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSAudioSourceController.m; sourceTree = "<group>"; };
+		FC0C1D471A45F79000B148AB /* YSSpotifySourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSpotifySourceController.h; sourceTree = "<group>"; };
+		FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSpotifySourceController.m; sourceTree = "<group>"; };
+		FC0C1D4A1A45F98500B148AB /* YSMicSourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSMicSourceController.h; sourceTree = "<group>"; };
+		FC0C1D4B1A45F98500B148AB /* YSMicSourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSMicSourceController.m; sourceTree = "<group>"; };
 		FC609BC11A3CC24500182F08 /* SpotifyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyAPI.h; sourceTree = "<group>"; };
 		FC609BC21A3CC24500182F08 /* SpotifyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPI.m; sourceTree = "<group>"; };
 		FC80F3CF1A3CC6BD00F7ABD0 /* YSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTrack.h; sourceTree = "<group>"; };
@@ -187,10 +196,6 @@
 		371CCBDA19BD056B00D0AAA5 /* Record Voice Page */ = {
 			isa = PBXGroup;
 			children = (
-				F44B0C5D16DA404700E6CD88 /* RecordVoiceViewController.h */,
-				F44B0C5E16DA404700E6CD88 /* RecordVoiceViewController.m */,
-				37695E6C19BBC78F00C22E13 /* JEProgressView.h */,
-				37695E6D19BBC78F00C22E13 /* JEProgressView.m */,
 			);
 			name = "Record Voice Page";
 			sourceTree = "<group>";
@@ -376,8 +381,9 @@
 		F44B0C4816DA404700E6CD88 /* YapSnap */ = {
 			isa = PBXGroup;
 			children = (
+				FC0C1D4D1A46065B00B148AB /* Libraries */,
+				FC0C1D3F1A45EE5E00B148AB /* Controllers */,
 				FCA2CE9E1A3CCC9B0055C76A /* Views */,
-				FC80F3D21A3CCB4000F7ABD0 /* Spotify */,
 				FC609BC01A3CC22F00182F08 /* Model */,
 				374383E619CE32250009C323 /* Landing Page */,
 				37D413C719D22B3B00021548 /* Enter Name Page */,
@@ -412,6 +418,39 @@
 				F44B0C5816DA404700E6CD88 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FC0C1D3F1A45EE5E00B148AB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F44B0C5D16DA404700E6CD88 /* AudioCaptureViewController.h */,
+				F44B0C5E16DA404700E6CD88 /* AudioCaptureViewController.m */,
+				FC0C1D431A45F3DC00B148AB /* Audio Source */,
+				FC80F3D21A3CCB4000F7ABD0 /* Spotify */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FC0C1D431A45F3DC00B148AB /* Audio Source */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C1D441A45F41600B148AB /* YSAudioSourceController.h */,
+				FC0C1D451A45F41600B148AB /* YSAudioSourceController.m */,
+				FC0C1D471A45F79000B148AB /* YSSpotifySourceController.h */,
+				FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */,
+				FC0C1D4A1A45F98500B148AB /* YSMicSourceController.h */,
+				FC0C1D4B1A45F98500B148AB /* YSMicSourceController.m */,
+			);
+			name = "Audio Source";
+			sourceTree = "<group>";
+		};
+		FC0C1D4D1A46065B00B148AB /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				37695E6C19BBC78F00C22E13 /* JEProgressView.h */,
+				37695E6D19BBC78F00C22E13 /* JEProgressView.m */,
+			);
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 		FC609BC01A3CC22F00182F08 /* Model */ = {
@@ -580,15 +619,18 @@
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
 				3799501819E9C8070086711F /* Global.m in Sources */,
+				FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */,
 				374383E019CE29880009C323 /* EnterPhoneNumberViewController.m in Sources */,
 				F44B0C5316DA404700E6CD88 /* AppDelegate.m in Sources */,
 				374383E919CE323B0009C323 /* LandingPageViewController.m in Sources */,
+				FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */,
 				378191D419E59B4A006EF98F /* API.m in Sources */,
+				FC0C1D4C1A45F98500B148AB /* YSMicSourceController.m in Sources */,
 				FC80F3D51A3CCB5B00F7ABD0 /* YSSpotifySearchController.m in Sources */,
 				37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */,
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
 				37D413BD19D21A1F00021548 /* BButton.m in Sources */,
-				F44B0C5F16DA404700E6CD88 /* RecordVoiceViewController.m in Sources */,
+				F44B0C5F16DA404700E6CD88 /* AudioCaptureViewController.m in Sources */,
 				37C3746B19BC4A8E001A1D02 /* MBProgressHUD.m in Sources */,
 				37BF0DDF19E8FCF70077B74F /* YapsViewController.m in Sources */,
 				FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */,

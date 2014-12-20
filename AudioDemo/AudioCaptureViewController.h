@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  AudioCaptureViewController.h
 //  AudioDemo
 //
 //  Created by Simon on 24/2/13.
@@ -10,15 +10,13 @@
 #import <AVFoundation/AVFoundation.h>
 #import "JEProgressView.h"
 
-@interface RecordVoiceViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+@interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *arrowButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet JEProgressView *progressView;
-@property (weak, nonatomic) IBOutlet UIImageView *microphone;
 @property (weak, nonatomic) IBOutlet UIView *explanation;
 
 - (IBAction)recordTapped:(id)sender;

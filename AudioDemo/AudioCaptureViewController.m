@@ -1,0 +1,199 @@
+//
+//  AudioCaptureViewController.m
+//  AudioDemo
+//
+//  Created by Simon on 24/2/13.
+//  Copyright (c) 2013 Appcoda. All rights reserved.
+//
+
+#import "AudioCaptureViewController.h"
+#import "ContactsViewController.h"
+#import "YSAudioSourceController.h"
+#import "YSSpotifySourceController.h"
+#import "YSMicSourceController.h"
+
+
+
+@interface AudioCaptureViewController () {
+    NSTimer *timer;
+    CGFloat progress;
+}
+@property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
+@property (nonatomic, strong) YSAudioSourceController *audioSource;
+
+@property (nonatomic) float elapsedTime;
+
+@end
+
+@implementation AudioCaptureViewController
+//@synthesize playButton, recordButton; //stopButton
+
+static const float MAX_CAPTURE_TIME = 10.0;
+static const float TIMER_INTERVAL = .01;
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    
+    self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
+
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:nil
+                                                                            action:nil];
+    
+    
+    self.arrowButton.hidden = YES;
+    self.cancelButton.hidden = YES;
+    
+    self.progressView.progress = 0;
+    [self.progressView setTrackImage:[UIImage imageNamed:@"ProgressViewBackgroundWhite.png"]];
+    [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewBackgroundRed.png"]];
+
+    YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
+    [self addChildViewController:micSource];
+    micSource.view.frame = self.audioSourceContainer.bounds;
+    [self.audioSourceContainer addSubview:micSource.view];
+    self.audioSource = micSource;
+    
+    // Disable Stop/Play button when application launches
+    //[stopButton setEnabled:NO];
+    [self.playButton setEnabled:NO];
+    [[NSNotificationCenter defaultCenter] addObserverForName:AUDIO_CAPTURE_DID_END_NOTIFICATION object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [self.playButton setEnabled:YES];
+    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+    
+    //Nav bar should not be transparent after finishing registration process
+    self.navigationController.navigationBar.translucent = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
+}
+
+- (void) setupProgress {
+    // Reset everything and start moving the progressbar near its end of doom!
+    progress = 0.0;
+    [self.progressView setProgress:progress];
+    timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
+                                             target:self
+                                           selector:@selector(updateProgress)
+                                           userInfo:nil
+                                            repeats:YES];
+}
+
+- (void) updateProgress {
+    self.elapsedTime += TIMER_INTERVAL;
+    
+    [self.progressView setProgress:(self.elapsedTime / MAX_CAPTURE_TIME)];
+    if (self.elapsedTime >= MAX_CAPTURE_TIME) {
+        [timer invalidate];
+        [self.audioSource stopAudioCapture:self.elapsedTime];
+        [self setupEndCaptureInterface];
+    }
+}
+
+- (void) setupEndCaptureInterface
+{
+    self.recordButton.hidden = YES;
+    
+    self.arrowButton.hidden = NO;
+    self.cancelButton.hidden = NO;
+}
+
+- (IBAction)recordTapped:(id)sender
+{
+    [self setupProgress];
+    
+    self.explanation.hidden = YES;
+    [self.playButton setEnabled:NO];
+
+    [self.audioSource startAudioCapture];
+}
+
+- (IBAction)recordUntapped:(id)sender
+{
+    [timer invalidate];
+    
+    if (self.elapsedTime <= CAPTURE_THRESHOLD) {
+        self.progressView.progress = 0.0;
+
+        self.explanation.hidden = NO;
+    } else {
+        self.recordButton.hidden =YES;
+        self.arrowButton.hidden = NO;
+        self.cancelButton.hidden = NO;
+    }
+
+    [self.audioSource stopAudioCapture:self.elapsedTime];
+}
+
+
+- (IBAction)playTapped:(id)sender {
+    [self.audioSource startPlayback];
+}
+
+- (IBAction)cancelTapped:(id)sender {
+    self.arrowButton.hidden = YES;
+    self.cancelButton.hidden = YES;
+    self.recordButton.hidden = NO;
+    self.progressView.progress = 0.0;
+    self.elapsedTime = 0;
+    [self.audioSource resetUI];
+}
+
+- (IBAction) didTapArrowButton
+{
+    [self performSegueWithIdentifier:@"ContactsViewControllerSegue" sender:self];
+}
+
+- (IBAction)arrowTapped:(id)sender {
+}
+
+#pragma mark - Switch
+- (IBAction)switchChanged:(UISwitch *)sender {
+    if (sender.on) {
+        // Show Spotify
+        YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+        
+        [self flipController:self.audioSource to:spotifySource];
+    } else {
+        // Show Mic
+
+        YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
+        
+        [self flipController:self.audioSource to:micSource];
+    }
+}
+
+- (void) flipController:(UIViewController *)from to:(YSAudioSourceController *)to
+{
+    to.view.frame = from.view.bounds;
+    [self addChildViewController:to];
+    [from willMoveToParentViewController:self];
+
+    __weak AudioCaptureViewController *weakSelf = self;
+    [self transitionFromViewController:from
+                      toViewController:to
+                              duration:.5
+                               options:UIViewAnimationOptionCurveEaseInOut
+                            animations:^{
+                            }
+                            completion:^(BOOL finished) {
+                                [to didMoveToParentViewController:weakSelf];
+                                [from.view removeFromSuperview];
+                                [from removeFromParentViewController];
+                                weakSelf.audioSource = to;
+                            }];
+}
+
+
+@end
