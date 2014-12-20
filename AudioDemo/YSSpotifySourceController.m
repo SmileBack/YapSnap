@@ -10,6 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "API.h"
 #import "SpotifyAPI.h"
+#import <StreamingKit/STKAudioPlayer.h>
 
 
 @interface YSSpotifySourceController ()
@@ -17,6 +18,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *searchBox;
 @property (strong, nonatomic) IBOutlet iCarousel *carousel;
+@property (strong, nonatomic) STKAudioPlayer *player;
 @end
 
 @implementation YSSpotifySourceController
@@ -107,7 +109,7 @@
     UIButton *spotifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
     spotifyButton.frame = CGRectMake(160, 5, 35, 35);
     [spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
-    [spotifyButton addTarget:self action:@selector(listenOnSpotify) forControlEvents:UIControlEventTouchUpInside];
+//    [spotifyButton addTarget:self action:@selector(listenOnSpotify) forControlEvents:UIControlEventTouchUpInside];
     [trackView addSubview:spotifyButton];
     
     return trackView;
@@ -115,42 +117,51 @@
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
-    
     YSTrack *song = self.songs[index];
-    NSLog(@"Song name: %@", song.name);
-    NSLog(@"Spotify ID: %@", song.spotifyID);
-    NSLog(@"Spotify URL: %@", song.spotifyURL);
-    NSLog(@"Preview URL: %@", song.previewURL);
-    NSLog(@"Album Name: %@", song.albumName);
-    NSLog(@"Artist Name: %@", song.artistName);
-    NSLog(@"Image URL: %@", song.imageURL);
-    
-    
-    // LISTEN TO PREVIEW URL
-    
-    //NSURL *url = [NSURL URLWithString:@"https://p.scdn.co/mp3-preview/5a9da4605959338f2363079af5895e74fba8a479"];
-    
-    // LISTEN TO SONG ON SPOTIFY - how can we send user to spotify if he/she has it installed?
-    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:song.spotifyURL]];
-    
-    
-    // SEND YAP TO BACKEND - backend needs to be implemented
-    /*
-     [[API sharedAPI] sendSong:song withCallback:^(BOOL success, NSError *error) {
-     if (success) {
-     NSLog(@"IT WORKED!!!!");
-     } else {
-     NSLog(@"it didnt work: %@", error);
-     }
-     }];
-     */
+    NSString *url = [NSString stringWithFormat:@"spotify://track/%@", song.spotifyID];
+    BOOL success = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    if (!success) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:song.spotifyURL]];
+    }
 }
 
+- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
+{
+    switch (option)
+    {
+        case iCarouselOptionSpacing:
+        {
+            return 1.1;
+        }
+        default:
+        {
+            return value;
+        }
+    }
+}
 
 #pragma mark - Implement public audio methods
 - (void) startAudioCapture
 {
-    // Play Spotify Track here
+    YSTrack *song = self.songs[self.carousel.currentItemIndex];
+    self.player = [STKAudioPlayer new];
+    [self.player play:song.previewURL];
+}
+
+- (void) stopAudioCapture:(float)elapsedTime
+{
+    [self.player stop];
+
+// SEND YAP TO BACKEND - backend needs to be implemented
+/*
+ -    [[API sharedAPI] sendSong:song withCallback:^(BOOL success, NSError *error) {
+ -        if (success) {
+ -            NSLog(@"IT WORKED!!!!");
+ -        } else {
+ -            NSLog(@"it didnt work: %@", error);
+ -        }
+ -    }];
+ */
 }
 
 @end
