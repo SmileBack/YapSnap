@@ -134,7 +134,7 @@ static API *sharedAPI;
 
 - (void) sendSong:(YSTrack *)song withCallback:(SuccessOrErrorCallback)callback
 {
-    NSString *url = [self urlForEndpoint:@"send_song"]; //TODO USE REAL ENDPOINT
+    NSString *url = [self urlForEndpoint:@"/yaps/send_song"]; //TODO USE REAL ENDPOINT
 
     //TODO USE REAL SESSION TOKEN
     NSDictionary *params = @{@"session_token": @"dummy_token",//self.sessionToken,
