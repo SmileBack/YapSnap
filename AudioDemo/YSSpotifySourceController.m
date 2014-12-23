@@ -50,8 +50,19 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self search:self.searchBox.text];
-    [self.view endEditing:YES];
+    if ([self.searchBox.text length] == 0) {
+        NSLog(@"Searched Empty String");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search for a Song"
+                                                        message:@"Type the name of an artist, song, or album."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
+    } else {
+        [self search:self.searchBox.text];
+        [self.view endEditing:YES];
+    }
     
     return YES;
 }
@@ -62,11 +73,22 @@
     [[SpotifyAPI sharedApi] searchSongs:search withCallback:^(NSArray *songs, NSError *error) {
         NSLog(@"in callback");
         if (songs) {
-            NSLog(@"Returned Songs Successfully");
+            NSLog(@"Returned A Response");
             weakSelf.songs = songs;
             [weakSelf.carousel reloadData];
-            
-            self.musicIcon.hidden = YES;
+            if (songs.count == 0) {
+                NSLog(@"No Songs Returned For Search Query");
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
+                                                                message:@"We didn't find any songs for you. Try searching for something else."
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                
+                [alert show];
+            } else {
+                NSLog(@"Returned Songs Successfully");
+                self.musicIcon.hidden = YES;
+            }
         } else if (error) {
             // TODO do something with error
             NSLog(@"Error Returning Songs %@", error);
@@ -180,6 +202,15 @@
  -        }
  -    }];
  */
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    double delay = 0.4;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.searchBox becomeFirstResponder];
+    });
 }
 
 @end
