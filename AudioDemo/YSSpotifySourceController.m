@@ -62,9 +62,11 @@
     [[SpotifyAPI sharedApi] searchSongs:search withCallback:^(NSArray *songs, NSError *error) {
         NSLog(@"in callback");
         if (songs) {
+            NSLog(@"Returned Songs Successfully");
             weakSelf.songs = songs;
             [weakSelf.carousel reloadData];
-            NSLog(@"Returned Songs Successfully");
+            
+            self.musicIcon.hidden = YES;
         } else if (error) {
             // TODO do something with error
             NSLog(@"Error Returning Songs %@", error);
