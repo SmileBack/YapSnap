@@ -90,7 +90,6 @@
                 self.musicIcon.hidden = YES;
             }
         } else if (error) {
-            // TODO do something with error
             NSLog(@"Error Returning Songs %@", error);
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
                                                             message:@"There was an error. Please try again in a bit."
@@ -183,10 +182,22 @@
 #pragma mark - Implement public audio methods
 - (void) startAudioCapture
 {
-    self.musicIcon.hidden = YES;
-    YSTrack *song = self.songs[self.carousel.currentItemIndex];
-    self.player = [STKAudioPlayer new];
-    [self.player play:song.previewURL];
+    if (self.songs.count == 0) {
+        NSLog(@"No Song To Play");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search for a Song"
+                                                        message:@"To send a song, type the name of an artist, song, or album above."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
+        // TODO - Progress Bar shouldn't start filling up
+    } else {
+        self.musicIcon.hidden = YES;
+        YSTrack *song = self.songs[self.carousel.currentItemIndex];
+        self.player = [STKAudioPlayer new];
+        [self.player play:song.previewURL];
+    }
 }
 
 - (void) stopAudioCapture:(float)elapsedTime
