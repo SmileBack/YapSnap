@@ -92,6 +92,13 @@
         } else if (error) {
             // TODO do something with error
             NSLog(@"Error Returning Songs %@", error);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
+                                                            message:@"There was an error. Please try again in a bit."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            
+            [alert show];
         }
     }];
 }
