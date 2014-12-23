@@ -104,7 +104,7 @@ static const float TIMER_INTERVAL = .01;
 - (void) setupEndCaptureInterface
 {
     self.recordButton.hidden = YES;
-    
+    self.yapsPageButton.hidden = YES;
     self.arrowButton.hidden = NO;
     self.cancelButton.hidden = NO;
 }
@@ -125,12 +125,9 @@ static const float TIMER_INTERVAL = .01;
     
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
         self.progressView.progress = 0.0;
-
         self.explanation.hidden = NO;
     } else {
-        self.recordButton.hidden =YES;
-        self.arrowButton.hidden = NO;
-        self.cancelButton.hidden = NO;
+        [self setupEndCaptureInterface];
     }
 
     [self.audioSource stopAudioCapture:self.elapsedTime];
@@ -145,6 +142,7 @@ static const float TIMER_INTERVAL = .01;
     self.arrowButton.hidden = YES;
     self.cancelButton.hidden = YES;
     self.recordButton.hidden = NO;
+    self.yapsPageButton.hidden = NO;
     self.progressView.progress = 0.0;
     self.elapsedTime = 0;
     [self.audioSource resetUI];

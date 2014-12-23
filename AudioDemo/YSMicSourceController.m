@@ -60,8 +60,8 @@
 
 - (void) setupSendYapInterface
 {
+    //self.titleLabel.text = @"Send Yap";
     self.titleLabel.hidden = NO;
-    self.titleLabel.text = @"Send Yap";
     self.microphone.hidden = YES;
 }
 
@@ -100,9 +100,9 @@
 
 - (void) resetUI
 {
-    self.titleLabel.text = @"Record";
-    self.titleLabel.hidden = NO;
-    self.microphone.hidden = YES;
+    //self.titleLabel.text = @"Record";
+    self.titleLabel.hidden = YES;
+    self.microphone.hidden = NO;
 }
 
 - (void) startPlayback

@@ -11,17 +11,17 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A7EC910BD8BA49416F00C663F4513327437A4D70</key>
-		<string>ssh://github.com/SmileBack/YapSnap.git</string>
+		<string>https://github.com/SmileBack/YapSnap.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>YapSnap.xcodeproj/project.xcworkspace</string>
+	<string>YapSnap.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A7EC910BD8BA49416F00C663F4513327437A4D70</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/SmileBack/YapSnap.git</string>
+	<string>https://github.com/SmileBack/YapSnap.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

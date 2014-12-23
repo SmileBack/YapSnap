@@ -18,6 +18,8 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *searchBox;
 @property (strong, nonatomic) IBOutlet iCarousel *carousel;
+@property (weak, nonatomic) IBOutlet UIImageView *musicIcon;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @end
 
@@ -36,24 +38,15 @@
 #pragma mark - Search box stuff
 - (void) setupSearchBox
 {
-//    double delay = 0.6;
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self.searchBox becomeFirstResponder];
-//    });
+    double delay = 0.6;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.searchBox becomeFirstResponder];
+    });
     
     self.searchBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
     [self.searchBox setTintColor:[UIColor whiteColor]];
     self.searchBox.font = [UIFont fontWithName:@"Futura-Medium" size:30];
     self.searchBox.delegate = self;
-    
-    /*self.searchBox.attributedPlaceholder =
-     [[NSAttributedString alloc] initWithString:@"Type an artist, song, or album"
-     attributes:@{
-     NSForegroundColorAttributeName: [UIColor lightGrayColor],
-     NSFontAttributeName : [UIFont fontWithName:@"Futura-Medium" size:17.0]
-     }
-     ];
-     */
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -71,8 +64,10 @@
         if (songs) {
             weakSelf.songs = songs;
             [weakSelf.carousel reloadData];
+            NSLog(@"Returned Songs Successfully");
         } else if (error) {
             // TODO do something with error
+            NSLog(@"Error Returning Songs %@", error);
         }
     }];
 }
@@ -140,9 +135,24 @@
     }
 }
 
+- (void) setupSendSongInterface
+{
+    //self.titleLabel.hidden = NO;
+    self.carousel.hidden = YES;
+    self.musicIcon.hidden = YES;
+    self.titleLabel.hidden = NO;
+}
+
+- (void) resetUI
+{
+    self.carousel.hidden = NO;
+    self.titleLabel.hidden = YES;
+}
+
 #pragma mark - Implement public audio methods
 - (void) startAudioCapture
 {
+    self.musicIcon.hidden = YES;
     YSTrack *song = self.songs[self.carousel.currentItemIndex];
     self.player = [STKAudioPlayer new];
     [self.player play:song.previewURL];
@@ -151,6 +161,12 @@
 - (void) stopAudioCapture:(float)elapsedTime
 {
     [self.player stop];
+    
+    if (elapsedTime > CAPTURE_THRESHOLD) {
+        [self setupSendSongInterface];
+    } else {
+        [self resetUI];
+    }
 
 // SEND YAP TO BACKEND - backend needs to be implemented
 /*

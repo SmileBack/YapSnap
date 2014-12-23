@@ -190,13 +190,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		371CCBDA19BD056B00D0AAA5 /* Record Voice Page */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Record Voice Page";
-			sourceTree = "<group>";
-		};
 		374383E119CE2B810009C323 /* Enter Phone Number Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,7 +379,6 @@
 				37D413C719D22B3B00021548 /* Enter Name Page */,
 				374383E119CE2B810009C323 /* Enter Phone Number Page */,
 				374383E219CE2D6B0009C323 /* Enter Code Page */,
-				371CCBDA19BD056B00D0AAA5 /* Record Voice Page */,
 				37BF0DE019E8FD1F0077B74F /* Yaps Page */,
 				37695E7D19BBEE8500C22E13 /* Contacts Page */,
 				F44B0C5116DA404700E6CD88 /* AppDelegate.h */,
