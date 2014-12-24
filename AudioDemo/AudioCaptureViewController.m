@@ -224,7 +224,7 @@ static const float TIMER_INTERVAL = .01;
     __weak AudioCaptureViewController *weakSelf = self;
     [self transitionFromViewController:from
                       toViewController:to
-                              duration:.5
+                              duration:.25
                                options:UIViewAnimationOptionCurveEaseInOut
                             animations:^{
                             }

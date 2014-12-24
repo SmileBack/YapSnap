@@ -69,6 +69,7 @@
 		FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D451A45F41600B148AB /* YSAudioSourceController.m */; };
 		FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */; };
 		FC0C1D4C1A45F98500B148AB /* YSMicSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D4B1A45F98500B148AB /* YSMicSourceController.m */; };
+		FC1E89B81A4B852C007A8CDA /* SpotifyTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E89B71A4B852C007A8CDA /* SpotifyTrackView.m */; };
 		FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC609BC21A3CC24500182F08 /* SpotifyAPI.m */; };
 		FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */; };
 /* End PBXBuildFile section */
@@ -166,6 +167,8 @@
 		FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSpotifySourceController.m; sourceTree = "<group>"; };
 		FC0C1D4A1A45F98500B148AB /* YSMicSourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSMicSourceController.h; sourceTree = "<group>"; };
 		FC0C1D4B1A45F98500B148AB /* YSMicSourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSMicSourceController.m; sourceTree = "<group>"; };
+		FC1E89B61A4B852C007A8CDA /* SpotifyTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrackView.h; sourceTree = "<group>"; };
+		FC1E89B71A4B852C007A8CDA /* SpotifyTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrackView.m; sourceTree = "<group>"; };
 		FC609BC11A3CC24500182F08 /* SpotifyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyAPI.h; sourceTree = "<group>"; };
 		FC609BC21A3CC24500182F08 /* SpotifyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPI.m; sourceTree = "<group>"; };
 		FC80F3CF1A3CC6BD00F7ABD0 /* YSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTrack.h; sourceTree = "<group>"; };
@@ -455,6 +458,8 @@
 		FCA2CE9E1A3CCC9B0055C76A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FC1E89B61A4B852C007A8CDA /* SpotifyTrackView.h */,
+				FC1E89B71A4B852C007A8CDA /* SpotifyTrackView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -598,6 +603,7 @@
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
 				3799501819E9C8070086711F /* Global.m in Sources */,
+				FC1E89B81A4B852C007A8CDA /* SpotifyTrackView.m in Sources */,
 				FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */,
 				374383E019CE29880009C323 /* EnterPhoneNumberViewController.m in Sources */,
 				F44B0C5316DA404700E6CD88 /* AppDelegate.m in Sources */,

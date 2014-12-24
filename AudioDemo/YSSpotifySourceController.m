@@ -10,6 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "API.h"
 #import "SpotifyAPI.h"
+#import "SpotifyTrackView.h"
 
 
 @interface YSSpotifySourceController ()
@@ -110,30 +111,40 @@
 - (UIView *) carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
 {
     YSTrack *track = self.songs[index];
+    SpotifyTrackView *trackView;
+
+    if (view && [view isKindOfClass:[SpotifyTrackView class]]) {
+        trackView = (SpotifyTrackView *) view;
+    } else {
+        CGRect frame = CGRectMake(0, 0, 200, 200);
+        trackView = [[SpotifyTrackView alloc] initWithFrame:frame];
+
+        trackView.imageView = [[UIImageView alloc] initWithFrame:frame];
+        [trackView addSubview:trackView.imageView];
+
+        trackView.label = [[UILabel alloc]initWithFrame:
+                          CGRectMake(0, 200, 200, 25)];
+        [trackView addSubview:trackView.label];
+        
+        trackView.spotifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        trackView.spotifyButton.frame = CGRectMake(160, 5, 35, 35);
+        [trackView.spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
+        [trackView addSubview:trackView.spotifyButton];
+    }
+
+    if (track.imageURL) {
+        [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.imageURL]];
+    } else {
+        trackView.imageView.image = [UIImage imageNamed:@"Microphone_White2.png"];
+    }
     
-    NSLog(@"getting view for %ld", (long)index);
+    trackView.label.textColor = [UIColor whiteColor];
+    trackView.label.backgroundColor = [UIColor clearColor];
+    trackView.label.text = track.name;
+    trackView.label.textAlignment = NSTextAlignmentCenter;
+    trackView.label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
     
-    CGRect frame = CGRectMake(0, 0, 200, 200);
-    UIView *trackView = [[UIView alloc] initWithFrame:frame];
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:track.imageURL]];
-    [trackView addSubview:imageView];
-    
-    UILabel *label = [[UILabel alloc]initWithFrame:
-                      CGRectMake(0, 200, 200, 25)];
-    label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor clearColor];
-    label.text = track.name;
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
-    [trackView addSubview:label];
-    
-    UIButton *spotifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    spotifyButton.frame = CGRectMake(160, 5, 35, 35);
-    [spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
 //    [spotifyButton addTarget:self action:@selector(listenOnSpotify) forControlEvents:UIControlEventTouchUpInside];
-    [trackView addSubview:spotifyButton];
     
     return trackView;
 }

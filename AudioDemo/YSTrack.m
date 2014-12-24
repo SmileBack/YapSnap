@@ -38,8 +38,13 @@
     
     NSDictionary *album = trackDictionary[@"album"];
     track.albumName = album[@"name"];
+    
     NSArray *images = album[@"images"];
-    track.imageURL = ((NSDictionary *)images[0])[@"url"];
+    if (images && images.count > 0) {
+        track.imageURL = ((NSDictionary *)images[0])[@"url"];
+    } else {
+        track.imageURL = nil;
+    }
 
     return track;
 }
