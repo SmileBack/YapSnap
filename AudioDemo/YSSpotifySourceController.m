@@ -70,10 +70,9 @@
 {
     __weak YSSpotifySourceController *weakSelf = self;
     [[SpotifyAPI sharedApi] searchSongs:search withCallback:^(NSArray *songs, NSError *error) {
-        NSLog(@"in callback");
         if (songs) {
-            NSLog(@"Returned A Response");
             weakSelf.songs = songs;
+            weakSelf.carousel.currentItemIndex = 0;
             [weakSelf.carousel reloadData];
             if (songs.count == 0) {
                 NSLog(@"No Songs Returned For Search Query");
