@@ -61,7 +61,25 @@ static const float TIMER_INTERVAL = .01;
     // Disable Stop/Play button when application launches
     //[stopButton setEnabled:NO];
     [self.playButton setEnabled:NO];
+
+    [self setupNotifications];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
     
+    //Nav bar should not be transparent after finishing registration process
+    self.navigationController.navigationBar.translucent = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
+}
+
+- (void) setupNotifications
+{
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserverForName:AUDIO_CAPTURE_DID_END_NOTIFICATION
                         object:nil
@@ -81,19 +99,20 @@ static const float TIMER_INTERVAL = .01;
                                                                userInfo:nil
                                                                 repeats:YES];
                     }];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [super viewWillAppear:animated];
     
-    //Nav bar should not be transparent after finishing registration process
-    self.navigationController.navigationBar.translucent = NO;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [super viewWillDisappear:animated];
+    [center addObserverForName:AUDIO_CAPTURE_ERROR_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"Something went wrong"
+                                                                       message:@"Something didn't work - please try again."
+                                                                      delegate:nil
+                                                             cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [self.progressView setProgress:0];
+                        self.elapsedTime = 0;
+                        [timer invalidate];
+                        [alert show];
+                    }];
 }
 
 - (void) updateProgress {
