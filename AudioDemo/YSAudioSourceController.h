@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#define AUDIO_CAPTURE_DID_START_NOTIFICATION @"com.yapsnap.AudioCaptureDidStartNotification"
 #define AUDIO_CAPTURE_DID_END_NOTIFICATION @"com.yapsnap.AudioCaptureDidEndNotification"
 #define CAPTURE_THRESHOLD .2 //seconds
+
+
 /*
  * Base class for audio sources (i.e. Spotify or recording through the mic)
  */

@@ -10,7 +10,6 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "API.h"
 #import "SpotifyAPI.h"
-#import <StreamingKit/STKAudioPlayer.h>
 
 
 @interface YSSpotifySourceController ()
@@ -179,6 +178,30 @@
     self.titleLabel.hidden = YES;
 }
 
+#pragma mark - STKAudioPlayerDelegate
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didStartPlayingQueueItemId:(NSObject*)queueItemId
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
+}
+
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishBufferingSourceWithQueueItemId:(NSObject*)queueItemId
+{
+}
+
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer stateChanged:(STKAudioPlayerState)state previousState:(STKAudioPlayerState)previousState
+{
+}
+
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishPlayingQueueItemId:(NSObject*)queueItemId withReason:(STKAudioPlayerStopReason)stopReason andProgress:(double)progress andDuration:(double)duration
+{
+}
+
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer unexpectedError:(STKAudioPlayerErrorCode)errorCode
+{
+}
+
+
+
 #pragma mark - Implement public audio methods
 - (void) startAudioCapture
 {
@@ -196,6 +219,7 @@
         self.musicIcon.hidden = YES;
         YSTrack *song = self.songs[self.carousel.currentItemIndex];
         self.player = [STKAudioPlayer new];
+        self.player.delegate = self;
         [self.player play:song.previewURL];
     }
 }

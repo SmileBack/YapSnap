@@ -16,10 +16,10 @@
 
 @interface AudioCaptureViewController () {
     NSTimer *timer;
-    CGFloat progress;
 }
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *recordButtonSpinner;
 
 @property (nonatomic) float elapsedTime;
 
@@ -61,9 +61,26 @@ static const float TIMER_INTERVAL = .01;
     // Disable Stop/Play button when application launches
     //[stopButton setEnabled:NO];
     [self.playButton setEnabled:NO];
-    [[NSNotificationCenter defaultCenter] addObserverForName:AUDIO_CAPTURE_DID_END_NOTIFICATION object:nil queue:nil usingBlock:^(NSNotification *note) {
-        [self.playButton setEnabled:YES];
-    }];
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:AUDIO_CAPTURE_DID_END_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self.playButton setEnabled:YES];
+                    }];
+    
+    [center addObserverForName:AUDIO_CAPTURE_DID_START_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self.recordButtonSpinner stopAnimating];
+                        timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
+                                                                 target:self
+                                                               selector:@selector(updateProgress)
+                                                               userInfo:nil
+                                                                repeats:YES];
+                    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -77,17 +94,6 @@ static const float TIMER_INTERVAL = .01;
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
-}
-
-- (void) setupProgress {
-    // Reset everything and start moving the progressbar near its end of doom!
-    progress = 0.0;
-    [self.progressView setProgress:progress];
-    timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
-                                             target:self
-                                           selector:@selector(updateProgress)
-                                           userInfo:nil
-                                            repeats:YES];
 }
 
 - (void) updateProgress {
@@ -111,10 +117,13 @@ static const float TIMER_INTERVAL = .01;
 
 - (IBAction)recordTapped:(id)sender
 {
-    [self setupProgress];
-    
+    self.elapsedTime = 0;
+    [self.progressView setProgress:0];
+
     self.explanation.hidden = YES;
     [self.playButton setEnabled:NO];
+    
+    [self.recordButtonSpinner startAnimating];
 
     [self.audioSource startAudioCapture];
 }

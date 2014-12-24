@@ -79,9 +79,11 @@
 
     // Start recording
     [self.recorder record];
-    
+
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setActive:YES error:nil];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
 }
 
 - (void) stopAudioCapture:(float)elapsedTime

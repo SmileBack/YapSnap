@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -166,6 +166,9 @@
                                     <action selector="recordUntapped:" destination="2" eventType="touchDragExit" id="Q0s-7Y-xrS"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="3h8-nb-0t3">
+                                <rect key="frame" x="142" y="474" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -178,9 +181,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="noi-Et-bvO" secondAttribute="trailing" constant="-7" id="EOc-BP-cop"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="bottom" secondItem="IZo-Gn-Og4" secondAttribute="bottom" id="F9S-dS-OPx"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="top" secondItem="g9f-Ex-CHR" secondAttribute="bottom" constant="20" id="KYE-DH-SVM"/>
+                            <constraint firstItem="3h8-nb-0t3" firstAttribute="centerY" secondItem="Xtk-3T-WBS" secondAttribute="centerY" constant="-0.5" id="Kw6-kd-aVE"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="top" secondItem="3" secondAttribute="top" constant="85" id="PQw-rw-ftW"/>
                             <constraint firstItem="IZo-Gn-Og4" firstAttribute="leading" secondItem="Xtk-3T-WBS" secondAttribute="trailing" constant="33" id="Pab-3z-dOb"/>
                             <constraint firstItem="Dwb-eQ-GX5" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" constant="12" id="SlB-vE-ad8"/>
+                            <constraint firstItem="3h8-nb-0t3" firstAttribute="centerX" secondItem="Xtk-3T-WBS" secondAttribute="centerX" constant="0.5" id="awb-I1-eYF"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="leading" secondItem="Tf8-UJ-WxH" secondAttribute="leading" id="azK-Ud-Ext"/>
                             <constraint firstItem="IZo-Gn-Og4" firstAttribute="top" secondItem="noi-Et-bvO" secondAttribute="bottom" constant="21" id="d7p-fk-ZEC"/>
                             <constraint firstAttribute="trailing" secondItem="IZo-Gn-Og4" secondAttribute="trailing" constant="12" id="f5J-Rn-ff9"/>
@@ -215,6 +220,7 @@
                         <outlet property="playButton" destination="noi-Et-bvO" id="LoS-fw-ZU6"/>
                         <outlet property="progressView" destination="bsh-56-MCX" id="R4u-TB-S1K"/>
                         <outlet property="recordButton" destination="Xtk-3T-WBS" id="R1a-Wi-774"/>
+                        <outlet property="recordButtonSpinner" destination="3h8-nb-0t3" id="riE-Pe-mAJ"/>
                         <outlet property="titleLabel" destination="aXd-eG-7Yq" id="Gum-px-fdF"/>
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="ContactsViewControllerSegue" id="soO-0w-sBp"/>
