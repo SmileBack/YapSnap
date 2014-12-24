@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *recordButtonSpinner;
+@property (strong, nonatomic) IBOutlet UIButton *modeSelectionButton;
 
 @property (nonatomic) float elapsedTime;
 
@@ -181,22 +182,36 @@ static const float TIMER_INTERVAL = .01;
     [self performSegueWithIdentifier:@"ContactsViewControllerSegue" sender:self];
 }
 
-- (IBAction)arrowTapped:(id)sender {
+
+- (BOOL) isInSpotifyMode
+{
+    return [self.audioSource isKindOfClass:[YSSpotifySourceController class]];
 }
 
-#pragma mark - Switch
-- (IBAction)switchChanged:(UISwitch *)sender {
-    if (sender.on) {
+- (BOOL) isInRecordMode
+{
+    return [self.audioSource isKindOfClass:[YSMicSourceController class]];
+}
+
+#pragma mark - Mode Changing
+- (IBAction)modeButtonPressed:(UIButton *)sender
+{
+    if ([self isInSpotifyMode]) {
+        // Show Mic
+        YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
+        [self flipController:self.audioSource to:micSource];
+
+//        [self.modeSelectionButton setImage:[UIImage imageNamed:@"SPOTIFY IMAGE"] forState:UIControlStateNormal];  //TODO DAN
+        [self.modeSelectionButton setTitle:@"MUSIC" forState:UIControlStateNormal];
+
+    } else {
         // Show Spotify
         YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
         
         [self flipController:self.audioSource to:spotifySource];
-    } else {
-        // Show Mic
 
-        YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
-        
-        [self flipController:self.audioSource to:micSource];
+//        [self.modeSelectionButton setImage:[UIImage imageNamed:@"MIC IMAGE"] forState:UIControlStateNormal];  //TODO DAN
+        [self.modeSelectionButton setTitle:@"MIC" forState:UIControlStateNormal];
     }
 }
 
