@@ -10,6 +10,9 @@
 
 @interface SpotifyTrackView : UIView
 
+@property (nonatomic, strong) NSString *spotifySongID;
+@property (nonatomic, strong) NSString *spotifyURL;
+
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UIButton *spotifyButton;

@@ -137,6 +137,10 @@
     } else {
         trackView.imageView.image = [UIImage imageNamed:@"Microphone_White2.png"];
     }
+
+    // Needed so the Spotify button can work
+    trackView.spotifySongID = track.spotifyID;
+    trackView.spotifyURL = track.spotifyURL;
     
     trackView.label.textColor = [UIColor whiteColor];
     trackView.label.backgroundColor = [UIColor clearColor];
@@ -144,19 +148,27 @@
     trackView.label.textAlignment = NSTextAlignmentCenter;
     trackView.label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
     
-//    [spotifyButton addTarget:self action:@selector(listenOnSpotify) forControlEvents:UIControlEventTouchUpInside];
-    
+    [trackView.spotifyButton addTarget:self action:@selector(openInSpotify:) forControlEvents:UIControlEventTouchUpInside];
+
     return trackView;
+}
+
+- (void) openInSpotify:(UIButton *)button
+{
+    UIView *parent = button.superview;
+    if ([parent isKindOfClass:[SpotifyTrackView class]]) {
+        SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
+        NSString *url = [NSString stringWithFormat:@"spotify://track/%@", trackView.spotifySongID];
+        BOOL success = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        if (!success) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:trackView.spotifyURL]];
+        }
+    }
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
-    YSTrack *song = self.songs[index];
-    NSString *url = [NSString stringWithFormat:@"spotify://track/%@", song.spotifyID];
-    BOOL success = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-    if (!success) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:song.spotifyURL]];
-    }
+//    YSTrack *song = self.songs[index];
 }
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
