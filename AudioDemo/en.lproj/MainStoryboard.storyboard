@@ -15,42 +15,60 @@
                         <viewControllerLayoutGuide type="bottom" id="KEa-CH-3fd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B8N-jO-1bl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="233"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="279"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RkK-X4-YKu">
-                                <rect key="frame" x="88" y="87" width="144" height="107"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RkK-X4-YKu">
+                                <rect key="frame" x="88" y="86" width="144" height="107"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="144" id="R2t-5y-toV"/>
+                                    <constraint firstAttribute="height" constant="107" id="ZRK-aW-F6c"/>
+                                </constraints>
                             </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-fm-qLX">
-                                <rect key="frame" x="11" y="100" width="298" height="82"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-fm-qLX">
+                                <rect key="frame" x="35" y="104" width="249" height="71"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="60"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZNs-R1-CJc" customClass="iCarousel">
-                                <rect key="frame" x="16" y="20" width="288" height="265"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type an artist, song, or album" textAlignment="center" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="6hl-m2-tvk">
-                                        <rect key="frame" x="10" y="-4" width="268" height="49"/>
-                                        <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="go"/>
-                                    </textField>
-                                </subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNs-R1-CJc" customClass="iCarousel">
+                                <rect key="frame" x="0.0" y="20" width="320" height="259"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="jNN-gb-fip" id="WIV-5h-C9T"/>
                                     <outlet property="delegate" destination="jNN-gb-fip" id="oMQ-PT-KYX"/>
                                 </connections>
                             </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type an artist, song, or album" textAlignment="center" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="6hl-m2-tvk">
+                                <rect key="frame" x="26" y="20" width="268" height="40"/>
+                                <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="B78-vU-Hz8"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="6hl-m2-tvk" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" constant="26" id="0rA-ZM-LMs"/>
+                            <constraint firstItem="ZNs-R1-CJc" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" id="9Cq-I9-19w"/>
+                            <constraint firstItem="ZNs-R1-CJc" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" id="9zR-GB-wuh"/>
+                            <constraint firstAttribute="centerY" secondItem="RkK-X4-YKu" secondAttribute="centerY" id="BIu-NL-qMB"/>
+                            <constraint firstAttribute="trailing" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="26" id="BpS-sr-djQ"/>
+                            <constraint firstAttribute="bottom" secondItem="ZNs-R1-CJc" secondAttribute="bottom" id="Fcg-Ri-wcV"/>
+                            <constraint firstAttribute="centerX" secondItem="KbM-fm-qLX" secondAttribute="centerX" id="NaQ-e0-WRe"/>
+                            <constraint firstAttribute="centerX" secondItem="RkK-X4-YKu" secondAttribute="centerX" id="Vrl-SB-4xi"/>
+                            <constraint firstAttribute="trailing" secondItem="ZNs-R1-CJc" secondAttribute="trailing" id="f6a-b0-12B"/>
+                            <constraint firstItem="6hl-m2-tvk" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" id="mMM-JG-YVP"/>
+                            <constraint firstAttribute="centerY" secondItem="KbM-fm-qLX" secondAttribute="centerY" id="t5W-6R-rvp"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8VQ-xh-4vV"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="233"/>
+                    <size key="freeformSize" width="320" height="279"/>
                     <connections>
                         <outlet property="carousel" destination="ZNs-R1-CJc" id="5vb-SQ-OO6"/>
                         <outlet property="musicIcon" destination="RkK-X4-YKu" id="U4g-Tf-cMk"/>
