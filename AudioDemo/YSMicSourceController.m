@@ -67,7 +67,7 @@
 
 
 #pragma mark - Public API Methods
-- (void) startAudioCapture
+- (BOOL) startAudioCapture
 {
     self.titleLabel.hidden = YES;
     self.microphone.hidden = NO;
@@ -84,6 +84,8 @@
     [session setActive:YES error:nil];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
+
+    return YES;
 }
 
 - (void) stopAudioCapture:(float)elapsedTime

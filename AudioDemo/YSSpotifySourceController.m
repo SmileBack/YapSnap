@@ -203,7 +203,7 @@
 
 
 #pragma mark - Implement public audio methods
-- (void) startAudioCapture
+- (BOOL) startAudioCapture
 {
     if (self.songs.count == 0) {
         NSLog(@"No Song To Play");
@@ -214,6 +214,7 @@
                                               otherButtonTitles:nil];
         
         [alert show];
+        [NSException raise:@"NoSong" format:@"No songs"];
         // TODO - Progress Bar shouldn't start filling up
     } else {
         self.musicIcon.hidden = YES;

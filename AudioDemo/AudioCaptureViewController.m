@@ -141,10 +141,10 @@ static const float TIMER_INTERVAL = .01;
 
     self.explanation.hidden = YES;
     [self.playButton setEnabled:NO];
-    
-    [self.recordButtonSpinner startAnimating];
 
-    [self.audioSource startAudioCapture];
+    if ([self.audioSource startAudioCapture]) {
+        [self.recordButtonSpinner startAnimating];
+    }
 }
 
 - (IBAction)recordUntapped:(id)sender

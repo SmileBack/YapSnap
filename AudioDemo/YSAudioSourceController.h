@@ -19,7 +19,7 @@
  */
 @interface YSAudioSourceController : UIViewController
 
-- (void) startAudioCapture;
+- (BOOL) startAudioCapture;
 - (void) stopAudioCapture:(float)elapsedTime;
 
 - (void) resetUI;
