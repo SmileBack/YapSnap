@@ -93,7 +93,7 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self.recordButtonSpinner stopAnimating];
+                        //[self.recordButtonSpinner stopAnimating];
                         timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
                                                                  target:self
                                                                selector:@selector(updateProgress)
@@ -145,7 +145,7 @@ static const float TIMER_INTERVAL = .01;
     [self.playButton setEnabled:NO];
 
     if ([self.audioSource startAudioCapture]) {
-        [self.recordButtonSpinner startAnimating];
+        //[self.recordButtonSpinner startAnimating];
     }
 }
 
@@ -156,6 +156,10 @@ static const float TIMER_INTERVAL = .01;
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
         self.progressView.progress = 0.0;
         self.explanation.hidden = NO;
+        double delay = 3.0;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.explanation.hidden = YES;
+        });
     } else {
         [self setupEndCaptureInterface];
     }
