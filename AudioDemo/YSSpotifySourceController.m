@@ -38,7 +38,7 @@
 #pragma mark - Search box stuff
 - (void) setupSearchBox
 {
-    double delay = 2.0;
+    double delay = 1.5;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.searchBox becomeFirstResponder];
     });
