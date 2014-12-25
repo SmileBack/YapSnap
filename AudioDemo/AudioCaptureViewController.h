@@ -23,9 +23,7 @@
 - (IBAction)recordTapped:(id)sender;
 - (IBAction)playTapped:(id)sender;
 
-- (IBAction)arrowTapped:(id)sender;
 - (IBAction)cancelTapped:(id)sender;
-
 - (IBAction)didTapArrowButton;
 
 

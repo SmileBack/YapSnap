@@ -133,6 +133,7 @@ static const float TIMER_INTERVAL = .01;
     self.yapsPageButton.hidden = YES;
     self.arrowButton.hidden = NO;
     self.cancelButton.hidden = NO;
+    self.modeSelectionButton.hidden = YES;
 }
 
 - (IBAction)recordTapped:(id)sender
@@ -172,6 +173,7 @@ static const float TIMER_INTERVAL = .01;
     self.cancelButton.hidden = YES;
     self.recordButton.hidden = NO;
     self.yapsPageButton.hidden = NO;
+    self.modeSelectionButton.hidden = NO;
     self.progressView.progress = 0.0;
     self.elapsedTime = 0;
     [self.audioSource resetUI];
@@ -201,8 +203,8 @@ static const float TIMER_INTERVAL = .01;
         YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
         [self flipController:self.audioSource to:micSource];
 
-//        [self.modeSelectionButton setImage:[UIImage imageNamed:@"SPOTIFY IMAGE"] forState:UIControlStateNormal];  //TODO DAN
-        [self.modeSelectionButton setTitle:@"MUSIC" forState:UIControlStateNormal];
+        [self.modeSelectionButton setBackgroundImage:[UIImage imageNamed:@"MusicIconSmall.png"] forState:UIControlStateNormal];
+        //[self.modeSelectionButton setTitle:@"MUSIC" forState:UIControlStateNormal];
 
     } else {
         // Show Spotify
@@ -210,8 +212,8 @@ static const float TIMER_INTERVAL = .01;
         
         [self flipController:self.audioSource to:spotifySource];
 
-//        [self.modeSelectionButton setImage:[UIImage imageNamed:@"MIC IMAGE"] forState:UIControlStateNormal];  //TODO DAN
-        [self.modeSelectionButton setTitle:@"MIC" forState:UIControlStateNormal];
+        [self.modeSelectionButton setBackgroundImage:[UIImage imageNamed:@"Microphone_White2.png"] forState:UIControlStateNormal];
+        //[self.modeSelectionButton setTitle:@"MIC" forState:UIControlStateNormal];
     }
 }
 

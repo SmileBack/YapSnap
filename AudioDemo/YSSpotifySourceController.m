@@ -38,7 +38,7 @@
 #pragma mark - Search box stuff
 - (void) setupSearchBox
 {
-    double delay = 1.5;
+    double delay = 1.0;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.searchBox becomeFirstResponder];
     });
@@ -188,8 +188,8 @@
 
 - (void) setupSendSongInterface
 {
-    //self.titleLabel.hidden = NO;
     self.carousel.hidden = YES;
+    self.searchBox.hidden = YES;
     self.musicIcon.hidden = YES;
     self.titleLabel.hidden = NO;
 }
@@ -197,6 +197,7 @@
 - (void) resetUI
 {
     self.carousel.hidden = NO;
+    self.searchBox.hidden = NO;
     self.titleLabel.hidden = YES;
 }
 
@@ -237,8 +238,7 @@
                                               otherButtonTitles:nil];
         
         [alert show];
-        [NSException raise:@"NoSong" format:@"No songs"];
-        // TODO - Progress Bar shouldn't start filling up
+        //[NSException raise:@"NoSong" format:@"No songs"]; // Is this necessary?
     } else {
         self.musicIcon.hidden = YES;
         YSTrack *song = self.songs[self.carousel.currentItemIndex];
