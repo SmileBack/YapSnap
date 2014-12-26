@@ -55,6 +55,7 @@
 		37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */; };
 		787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */; };
 		787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */; };
+		787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A6D941A4DD8A2001551C6 /* Crashlytics.framework */; };
 		C1A8A28BEEE98012F2950D09 /* libPods-YapSnap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C8F94496586F87E59A61FD /* libPods-YapSnap.a */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
 		F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4416DA404700E6CD88 /* Foundation.framework */; };
@@ -145,6 +146,7 @@
 		37E122E51A4011560073684D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconLarge@2x.png"; sourceTree = "<group>"; };
 		787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconSmall@2x.png"; sourceTree = "<group>"; };
+		787A6D941A4DD8A2001551C6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA961E944F5B46EDE7E7229C /* Pods-YapSnap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.release.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.release.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			files = (
 				371C2C8A19BCF73800FDA390 /* AddressBook.framework in Frameworks */,
 				371C2C8B19BCF73800FDA390 /* AddressBookUI.framework in Frameworks */,
+				787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */,
 				F44B0C6616DD09D900E6CD88 /* AVFoundation.framework in Frameworks */,
 				F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */,
 				F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */,
@@ -342,6 +345,7 @@
 		F44B0C3616DA404700E6CD88 = {
 			isa = PBXGroup;
 			children = (
+				787A6D941A4DD8A2001551C6 /* Crashlytics.framework */,
 				37D413C419D2229A00021548 /* YapSnap App Icon 114.png */,
 				37D413C319D221C800021548 /* YapSnap App Icon.png */,
 				F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */,
@@ -482,6 +486,7 @@
 				F44B0C3C16DA404700E6CD88 /* Frameworks */,
 				F44B0C3D16DA404700E6CD88 /* Resources */,
 				A62B2CFFDA4212A856214F19 /* Copy Pods Resources */,
+				787A6D931A4DD800001551C6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -583,6 +588,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		787A6D931A4DD800001551C6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 6621dbca453461988440d16db5e4fbe9a79da991 1e9913b7a1892da0cc9252dc74c1d7ce3b1762db7128e1a1ae963030516a691c";
 		};
 		A62B2CFFDA4212A856214F19 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -721,6 +739,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioDemo/YapSnap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapSnap-Info.plist";
@@ -738,6 +760,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioDemo/YapSnap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapSnap-Info.plist";

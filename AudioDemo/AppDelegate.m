@@ -8,12 +8,15 @@
 
 #import "AppDelegate.h"
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
+    [Crashlytics startWithAPIKey:@"6621dbca453461988440d16db5e4fbe9a79da991"];
 
     return YES;
 }

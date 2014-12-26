@@ -13,7 +13,6 @@
 #import "YSMicSourceController.h"
 
 
-
 @interface AudioCaptureViewController () {
     NSTimer *timer;
 }
@@ -137,12 +136,12 @@ static const float TIMER_INTERVAL = .01;
 }
 
 - (IBAction)recordTapped:(id)sender
-{
+{    
     self.elapsedTime = 0;
     [self.progressView setProgress:0];
 
     self.explanation.hidden = YES;
-    //[self.playButton setEnabled:NO]; This isn't in the UI currently
+    //[self.playButton setEnabled:NO]; Play button isn't in the UI currently
     
     self.yapsPageButton.userInteractionEnabled = NO;
     self.modeSelectionButton.userInteractionEnabled = NO;
@@ -176,7 +175,7 @@ static const float TIMER_INTERVAL = .01;
 
 
 - (IBAction)playTapped:(id)sender {
-    [self.audioSource startPlayback];
+    [self.audioSource startPlayback]; //Play button isn't in the UI currently
 }
 
 - (IBAction)cancelTapped:(id)sender {
