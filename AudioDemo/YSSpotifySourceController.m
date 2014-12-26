@@ -12,6 +12,9 @@
 #import "SpotifyAPI.h"
 #import "SpotifyTrackView.h"
 
+#define NO_SONGS_TO_PLAY_ALERT @"NoSongs"
+#define SPOTIFY_ALERT @"Spotify"
+
 
 @interface YSSpotifySourceController ()
 @property (nonatomic, strong) NSArray *songs;
@@ -21,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *musicIcon;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) STKAudioPlayer *player;
+@property (nonatomic, strong) NSString *alertViewString;
+
 @end
 
 @implementation YSSpotifySourceController
@@ -238,6 +243,7 @@
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
+        self.alertViewString = NO_SONGS_TO_PLAY_ALERT;
         [alert show];
         //[NSException raise:@"NoSong" format:@"No songs"]; // Is this necessary?
     } else {
@@ -276,10 +282,14 @@
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    double delay = 0.4;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.searchBox becomeFirstResponder];
-    });
+    if ([NO_SONGS_TO_PLAY_ALERT isEqualToString:self.alertViewString]) {
+        double delay = 0.4;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.searchBox becomeFirstResponder];
+        });
+    } else if ([SPOTIFY_ALERT isEqualToString:self.alertViewString]) {
+        
+    }
 }
 
 @end
