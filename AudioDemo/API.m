@@ -23,6 +23,7 @@ static API *sharedAPI;
 {
     if (!sharedAPI) {
         sharedAPI = [API new];
+        [AFHTTPRequestOperationManager manager].requestSerializer = [AFJSONRequestSerializer serializer];
     }
 
     return sharedAPI;
@@ -31,7 +32,7 @@ static API *sharedAPI;
 - (NSString *)sessionToken
 {
     if (!_sessionToken) {
-        _sessionToken = [Global retrieveValueForKey:@"session_token"];
+//        _sessionToken = [Global retrieveValueForKey:@"session_token"];
     }
     return _sessionToken;
 }
@@ -120,11 +121,12 @@ static API *sharedAPI;
 - (void) getYapsWithCallback:(YapsCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self urlForEndpoint:@"/yaps"]
+
+    [manager GET:[self urlForEndpoint:@"/yaps"]
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSArray *yaps = responseObject; //Assuming it is an array
-              NSLog(@"Got yaps: %@", yaps);
+              NSArray *yapDicts = responseObject; //Assuming it is an array
+              NSArray *yaps = [YSYap yapsWithArray:yapDicts];
               callback(yaps, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {

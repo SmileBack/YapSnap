@@ -364,10 +364,32 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="hWh-h3-qO7" id="klJ-nF-XsM"/>
+                        <segue destination="Dgp-JD-d1e" kind="modal" identifier="Show Playback Segue" modalPresentationStyle="fullScreen" animates="NO" id="lVC-Av-43R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-WI-Tyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2780" y="-1197"/>
+        </scene>
+        <!--Music PlaybackVC-->
+        <scene sceneID="Z9q-A6-PA1">
+            <objects>
+                <viewController id="Dgp-JD-d1e" customClass="MusicPlaybackVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VsM-tW-JgD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mzh-6Q-CnN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8Sd-XX-W3O">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XYH-W9-ahW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3126" y="-1621"/>
         </scene>
         <!--Landing Page View Controller-->
         <scene sceneID="2Ef-Fx-7Lp">
@@ -681,7 +703,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="D0i-XZ-oKa"/>
         <segue reference="eEG-cA-gRo"/>
-        <segue reference="aUA-aH-Q0k"/>
     </inferredMetricsTieBreakers>
 </document>

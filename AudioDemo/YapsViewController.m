@@ -11,8 +11,11 @@
 #import "MBProgressHUD.h"
 #import "API.h"
 
+#import "MusicPlaybackVC.h"
+
 
 @interface YapsViewController ()
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *yaps;
 @end
 
@@ -38,19 +41,12 @@ static NSString *CellIdentifier = @"Cell";
     [[API sharedAPI] getYapsWithCallback:^(NSArray *yaps, NSError *error) {
         if (yaps) {
             weakSelf.yaps = yaps;
-            //TODO weakSelf.tableView reloadData
+            [weakSelf.tableView reloadData];
         } else {
             NSLog(@"Error! %@", error);
         }
     }];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 #pragma UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -78,12 +74,12 @@ static NSString *CellIdentifier = @"Cell";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:simpleTableIdentifier];
     }
     
-    NSObject* yap = self.yaps[indexPath.row];
+    YSYap* yap = self.yaps[indexPath.row];
     
-    if ([yap valueForKey:@"sender_id"] == [Global retrieveValueForKey:@"current_user_id"]){
-        cell.textLabel.text = [yap valueForKey:@"receiver_name"];
+    if ([yap.senderID isEqual:[Global retrieveValueForKey:@"current_user_id"]]){
+        cell.textLabel.text = [yap.receiverName isKindOfClass:[NSNull class]] ? @"no receiver" : yap.receiverName;
     } else {
-        cell.textLabel.text = [yap valueForKey:@"sender_name"];
+        cell.textLabel.text = [yap.senderName isKindOfClass:[NSNull class]] ? @"no sender" : yap.senderName;
     }
     
     
@@ -113,11 +109,11 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Tapped Row");
+//    NSLog(@"didSelectRow");
     
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:   self action:@selector(doDoubleTap)];
-    doubleTap.numberOfTapsRequired = 2;
-    [self.view addGestureRecognizer:doubleTap];
+//    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:   self action:@selector(doDoubleTap)];
+//    doubleTap.numberOfTapsRequired = 2;
+//    [self.view addGestureRecognizer:doubleTap];
 }
 
 - (void)doDoubleTap
@@ -126,5 +122,30 @@ static NSString *CellIdentifier = @"Cell";
     [Global storeValue:@"3475238941" forKey:@"reply_recipient"];
     [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO
 }
+
+- (void) tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"didHighlight");
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    NSArray *gest = cell.contentView.gestureRecognizers;
+    UILongPressGestureRecognizer *longPress = gest[0];
+    NSLog(@"long press: %@", longPress);
+    [self performSegueWithIdentifier:@"Show Playback Segue" sender:longPress];
+}
+
+- (void) tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"didUnHighlight");
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    UILongPressGestureRecognizer *longPress = sender;
+    MusicPlaybackVC *vc = segue.destinationViewController;
+    vc.longPress = longPress;
+}
+
+
 
 @end
