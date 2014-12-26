@@ -197,6 +197,8 @@
 - (void) resetUI
 {
     self.carousel.hidden = NO;
+    self.carousel.scrollEnabled = YES;
+    self.searchBox.enabled = YES;
     self.searchBox.hidden = NO;
     self.titleLabel.hidden = YES;
 }
@@ -236,11 +238,12 @@
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
-        
         [alert show];
         //[NSException raise:@"NoSong" format:@"No songs"]; // Is this necessary?
     } else {
         self.musicIcon.hidden = YES;
+        self.carousel.scrollEnabled = NO;
+        self.searchBox.enabled = NO;
         YSTrack *song = self.songs[self.carousel.currentItemIndex];
         self.player = [STKAudioPlayer new];
         self.player.delegate = self;
