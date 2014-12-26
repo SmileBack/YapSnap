@@ -125,7 +125,8 @@
 
 #pragma mark - AVAudioPlayerDelegate
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    
+    [self.player stop];
+    [self.player prepareToPlay];
 }
 
 

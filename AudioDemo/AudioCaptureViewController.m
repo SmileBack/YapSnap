@@ -61,7 +61,7 @@ static const float TIMER_INTERVAL = .01;
     
     // Disable Stop/Play button when application launches
     //[stopButton setEnabled:NO];
-    [self.playButton setEnabled:NO];
+    //[self.playButton setEnabled:NO];
 
     [self setupNotifications];
 }
@@ -86,7 +86,7 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self.playButton setEnabled:YES];
+                        // [self.playButton setEnabled:YES]; This isn't in the UI currently
                     }];
     
     [center addObserverForName:AUDIO_CAPTURE_DID_START_NOTIFICATION
@@ -120,6 +120,7 @@ static const float TIMER_INTERVAL = .01;
     self.elapsedTime += TIMER_INTERVAL;
     
     [self.progressView setProgress:(self.elapsedTime / MAX_CAPTURE_TIME)];
+    
     if (self.elapsedTime >= MAX_CAPTURE_TIME) {
         [timer invalidate];
         [self.audioSource stopAudioCapture:self.elapsedTime];
@@ -142,7 +143,7 @@ static const float TIMER_INTERVAL = .01;
     [self.progressView setProgress:0];
 
     self.explanation.hidden = YES;
-    [self.playButton setEnabled:NO];
+    //[self.playButton setEnabled:NO]; This isn't in the UI currently
     
     self.yapsPageButton.userInteractionEnabled = NO;
     self.modeSelectionButton.userInteractionEnabled = NO;
@@ -159,10 +160,14 @@ static const float TIMER_INTERVAL = .01;
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
         self.progressView.progress = 0.0;
         self.explanation.hidden = NO;
+        //Make explanation label disappear
         double delay = 3.0;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.explanation.hidden = YES;
         });
+        
+        self.modeSelectionButton.userInteractionEnabled = YES;
+        self.yapsPageButton.userInteractionEnabled = YES;
     } else {
         [self setupEndCaptureInterface];
     }
