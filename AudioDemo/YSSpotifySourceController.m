@@ -174,6 +174,13 @@
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
 //    YSTrack *song = self.songs[index];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Press Red Button"
+                                                    message:@"Press the button below to record and send this song."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    
+    [alert show];
 }
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
@@ -202,7 +209,7 @@
 - (void) resetUI
 {
     self.carousel.hidden = NO;
-    self.carousel.scrollEnabled = YES;
+    [self.carousel setUserInteractionEnabled:YES];
     self.searchBox.enabled = YES;
     self.searchBox.hidden = NO;
     self.titleLabel.hidden = YES;
@@ -248,8 +255,11 @@
         //[NSException raise:@"NoSong" format:@"No songs"]; // Is this necessary?
     } else {
         self.musicIcon.hidden = YES;
-        self.carousel.scrollEnabled = NO;
+        
+        //Disable User Interactions
+        [self.carousel setUserInteractionEnabled:NO];
         self.searchBox.enabled = NO;
+        
         YSTrack *song = self.songs[self.carousel.currentItemIndex];
         self.player = [STKAudioPlayer new];
         self.player.delegate = self;

@@ -143,6 +143,9 @@ static const float TIMER_INTERVAL = .01;
 
     self.explanation.hidden = YES;
     [self.playButton setEnabled:NO];
+    
+    self.yapsPageButton.userInteractionEnabled = NO;
+    self.modeSelectionButton.userInteractionEnabled = NO;
 
     if ([self.audioSource startAudioCapture]) {
         //[self.recordButtonSpinner startAnimating];
@@ -177,7 +180,9 @@ static const float TIMER_INTERVAL = .01;
     self.cancelButton.hidden = YES;
     self.recordButton.hidden = NO;
     self.yapsPageButton.hidden = NO;
+    self.yapsPageButton.userInteractionEnabled = YES;
     self.modeSelectionButton.hidden = NO;
+    self.modeSelectionButton.userInteractionEnabled = YES;
     self.progressView.progress = 0.0;
     self.elapsedTime = 0;
     [self.audioSource resetUI];
