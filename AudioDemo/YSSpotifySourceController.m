@@ -106,6 +106,16 @@
     }];
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    NSLog(@"Textfield did begin editing");
+    [self.carousel setUserInteractionEnabled:NO];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"Textfield did end editing");
+    [self.carousel setUserInteractionEnabled:YES];
+}
+
 #pragma mark - iCarousel Stuff
 #pragma mark iCarousel
 - (NSInteger) numberOfItemsInCarousel:(iCarousel *)carousel

@@ -27,7 +27,6 @@
 @end
 
 @implementation AudioCaptureViewController
-//@synthesize playButton, recordButton; //stopButton
 
 static const float MAX_CAPTURE_TIME = 10.0;
 static const float TIMER_INTERVAL = .01;
@@ -218,8 +217,6 @@ static const float TIMER_INTERVAL = .01;
         [self flipController:self.audioSource to:micSource];
 
         [self.modeSelectionButton setBackgroundImage:[UIImage imageNamed:@"MusicIconSmall.png"] forState:UIControlStateNormal];
-        //[self.modeSelectionButton setTitle:@"MUSIC" forState:UIControlStateNormal];
-
     } else {
         // Show Spotify
         YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
@@ -227,7 +224,6 @@ static const float TIMER_INTERVAL = .01;
         [self flipController:self.audioSource to:spotifySource];
 
         [self.modeSelectionButton setBackgroundImage:[UIImage imageNamed:@"Microphone_White2.png"] forState:UIControlStateNormal];
-        //[self.modeSelectionButton setTitle:@"MIC" forState:UIControlStateNormal];
     }
 }
 
