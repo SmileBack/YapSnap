@@ -233,7 +233,6 @@
 #pragma mark - STKAudioPlayerDelegate
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer didStartPlayingQueueItemId:(NSObject*)queueItemId
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
 }
 
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishBufferingSourceWithQueueItemId:(NSObject*)queueItemId
@@ -242,6 +241,9 @@
 
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer stateChanged:(STKAudioPlayerState)state previousState:(STKAudioPlayerState)previousState
 {
+    if (state == STKAudioPlayerStatePlaying) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
+    }
 }
 
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishPlayingQueueItemId:(NSObject*)queueItemId withReason:(STKAudioPlayerStopReason)stopReason andProgress:(double)progress andDuration:(double)duration
@@ -267,7 +269,7 @@
                                               otherButtonTitles:nil];
         self.alertViewString = NO_SONGS_TO_PLAY_ALERT;
         [alert show];
-        //[NSException raise:@"NoSong" format:@"No songs"]; // Is this necessary?
+        return NO;
     } else {
         self.musicIcon.hidden = YES;
         
@@ -279,6 +281,7 @@
         self.player = [STKAudioPlayer new];
         self.player.delegate = self;
         [self.player play:song.previewURL];
+        return YES;
     }
 }
 

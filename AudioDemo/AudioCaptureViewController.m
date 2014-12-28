@@ -91,7 +91,7 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        //[self.recordButtonSpinner stopAnimating];
+                        [self.recordButtonSpinner stopAnimating];
                         timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
                                                                  target:self
                                                                selector:@selector(updateProgress)
@@ -147,7 +147,9 @@ static const float TIMER_INTERVAL = .01;
     self.modeSelectionButton.userInteractionEnabled = NO;
 
     if ([self.audioSource startAudioCapture]) {
-        //[self.recordButtonSpinner startAnimating];
+        if (self.audioSource.class == [YSSpotifySourceController class]) {
+            [self.recordButtonSpinner startAnimating];
+        }
     }
 }
 
