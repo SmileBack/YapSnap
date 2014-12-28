@@ -75,6 +75,7 @@
 		FC1E89B81A4B852C007A8CDA /* SpotifyTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E89B71A4B852C007A8CDA /* SpotifyTrackView.m */; };
 		FC1E89BB1A4B8E94007A8CDA /* YSYap.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E89BA1A4B8E94007A8CDA /* YSYap.m */; };
 		FC1E89BE1A4B9518007A8CDA /* MusicPlaybackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E89BD1A4B9518007A8CDA /* MusicPlaybackVC.m */; };
+		FC342F381A5099D200518765 /* OpenInSpotifyAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC342F371A5099D200518765 /* OpenInSpotifyAlertView.m */; };
 		FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC609BC21A3CC24500182F08 /* SpotifyAPI.m */; };
 		FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */; };
 /* End PBXBuildFile section */
@@ -181,6 +182,8 @@
 		FC1E89BA1A4B8E94007A8CDA /* YSYap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSYap.m; sourceTree = "<group>"; };
 		FC1E89BC1A4B9518007A8CDA /* MusicPlaybackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicPlaybackVC.h; sourceTree = "<group>"; };
 		FC1E89BD1A4B9518007A8CDA /* MusicPlaybackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlaybackVC.m; sourceTree = "<group>"; };
+		FC342F361A5099D200518765 /* OpenInSpotifyAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInSpotifyAlertView.h; sourceTree = "<group>"; };
+		FC342F371A5099D200518765 /* OpenInSpotifyAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInSpotifyAlertView.m; sourceTree = "<group>"; };
 		FC609BC11A3CC24500182F08 /* SpotifyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyAPI.h; sourceTree = "<group>"; };
 		FC609BC21A3CC24500182F08 /* SpotifyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPI.m; sourceTree = "<group>"; };
 		FC80F3CF1A3CC6BD00F7ABD0 /* YSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTrack.h; sourceTree = "<group>"; };
@@ -449,6 +452,8 @@
 				FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */,
 				FC0C1D4A1A45F98500B148AB /* YSMicSourceController.h */,
 				FC0C1D4B1A45F98500B148AB /* YSMicSourceController.m */,
+				FC342F361A5099D200518765 /* OpenInSpotifyAlertView.h */,
+				FC342F371A5099D200518765 /* OpenInSpotifyAlertView.m */,
 			);
 			name = "Audio Source";
 			sourceTree = "<group>";
@@ -657,6 +662,7 @@
 				37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */,
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
 				37D413BD19D21A1F00021548 /* BButton.m in Sources */,
+				FC342F381A5099D200518765 /* OpenInSpotifyAlertView.m in Sources */,
 				F44B0C5F16DA404700E6CD88 /* AudioCaptureViewController.m in Sources */,
 				37C3746B19BC4A8E001A1D02 /* MBProgressHUD.m in Sources */,
 				37BF0DDF19E8FCF70077B74F /* YapsViewController.m in Sources */,

@@ -11,6 +11,7 @@
 #import "API.h"
 #import "SpotifyAPI.h"
 #import "SpotifyTrackView.h"
+#import "OpenInSpotifyAlertView.h"
 
 #define NO_SONGS_TO_PLAY_ALERT @"NoSongs"
 #define SPOTIFY_ALERT @"Spotify"
@@ -168,23 +169,28 @@
     trackView.label.textAlignment = NSTextAlignmentCenter;
     trackView.label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
     
-    [trackView.spotifyButton addTarget:self action:@selector(openInSpotify:) forControlEvents:UIControlEventTouchUpInside];
+    [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
 
     return trackView;
 }
 
-- (void) openInSpotify:(UIButton *)button
+- (void) confirmOpenInSpotify:(UIButton *)button
 {
     UIView *parent = button.superview;
     if ([parent isKindOfClass:[SpotifyTrackView class]]) {
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        NSString *url = [NSString stringWithFormat:@"spotify://track/%@", trackView.spotifySongID];
-        BOOL success = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-        if (!success) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:trackView.spotifyURL]];
+        YSTrack *selectedTrack = nil;
+        for (YSTrack *track in self.songs) {
+            if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+                selectedTrack = track;
+                break;
+            }
         }
+        OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithTrack:selectedTrack];
+        [alert show];
     }
 }
+
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
