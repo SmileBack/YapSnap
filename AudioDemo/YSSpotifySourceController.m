@@ -57,8 +57,9 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if ([self.searchBox.text length] == 0) {
         NSLog(@"Searched Empty String");
+        [self.view endEditing:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search for a Song"
-                                                        message:@"Type the name of an artist, song, or album."
+                                                        message:@"To send a song, type the name of an artist, song, or album above."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -67,6 +68,10 @@
     } else {
         [self search:self.searchBox.text];
         [self.view endEditing:YES];
+        //Background text color
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
+        [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, textField.text.length)];
+        textField.attributedText = attributedString;
     }
     
     return YES;
@@ -185,7 +190,7 @@
 {
 //    YSTrack *song = self.songs[index];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Press Red Button"
-                                                    message:@"Press the button below to record and send this song."
+                                                    message:@"Press down on the button below to listen to and send this song."
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
