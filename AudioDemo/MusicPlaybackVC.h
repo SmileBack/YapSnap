@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <StreamingKit/STKAudioPlayer.h>
+#import "JEProgressView.h"
+#import "YSYap.h"
 
-@interface MusicPlaybackVC : UIViewController
+@interface MusicPlaybackVC : UIViewController<STKAudioPlayerDelegate>
+@property (nonatomic, strong) YSYap *yap;
 
-@property (nonatomic, strong) UILongPressGestureRecognizer *longPress;
+- (void) stop;
 @end

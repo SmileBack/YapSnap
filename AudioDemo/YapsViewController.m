@@ -17,6 +17,7 @@
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *yaps;
+@property (nonatomic, strong) MusicPlaybackVC *playbackVC;
 @end
 
 static NSString *CellIdentifier = @"Cell";
@@ -46,6 +47,15 @@ static NSString *CellIdentifier = @"Cell";
             NSLog(@"Error! %@", error);
         }
     }];
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"Playback stopped"
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [self.playbackVC.view removeFromSuperview];
+                                                      [self.playbackVC removeFromParentViewController];
+                                                      self.playbackVC = nil;
+                                                  }];
 }
 
 #pragma UITableViewDataSource
@@ -82,6 +92,12 @@ static NSString *CellIdentifier = @"Cell";
         cell.textLabel.text = [yap.senderName isKindOfClass:[NSNull class]] ? @"no sender" : yap.senderName;
     }
     
+    UILongPressGestureRecognizer *longPress = [UILongPressGestureRecognizer new];
+    longPress.minimumPressDuration = 0;
+    longPress.allowableMovement = 50;
+    [longPress addTarget:self action:@selector(isPressingLong:)];
+    [cell.contentView addGestureRecognizer:longPress];
+    
     
 //    if (indexPath.row == 2) {
 //        cell.imageView.image = [UIImage imageNamed:@"RedArrowBackward.png"];
@@ -107,14 +123,14 @@ static NSString *CellIdentifier = @"Cell";
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
 //    NSLog(@"didSelectRow");
     
 //    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:   self action:@selector(doDoubleTap)];
 //    doubleTap.numberOfTapsRequired = 2;
 //    [self.view addGestureRecognizer:doubleTap];
-}
+//}
 
 - (void)doDoubleTap
 {
@@ -125,25 +141,42 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void) tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"didHighlight");
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    NSArray *gest = cell.contentView.gestureRecognizers;
-    UILongPressGestureRecognizer *longPress = gest[0];
-    NSLog(@"long press: %@", longPress);
-    [self performSegueWithIdentifier:@"Show Playback Segue" sender:longPress];
+//    NSLog(@"didHighlight");
+//    longPress addTarget:self action:<#(SEL)#>
+//    [self performSegueWithIdentifier:@"Show Playback Segue" sender:longPress];
 }
 
 - (void) tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"didUnHighlight");
-    [self.navigationController popViewControllerAnimated:NO];
+//    NSLog(@"didUnHighlight");
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     UILongPressGestureRecognizer *longPress = sender;
     MusicPlaybackVC *vc = segue.destinationViewController;
-    vc.longPress = longPress;
+    [vc.view addGestureRecognizer:longPress];
+//    vc.longPress = longPress;
+}
+
+- (void) isPressingLong:(UILongPressGestureRecognizer *)gest
+{
+    if (gest.state == UIGestureRecognizerStateBegan) {
+        self.playbackVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playYapVC"];
+        self.playbackVC.yap = self.yaps[0];//TODO FIX THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        self.playbackVC.view.frame = self.view.frame;
+//        [self addChildViewController:self.playbackVC];
+//        UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
+//        [currentWindow addSubview:self.playbackVC.view];
+//        self.navigationController.navigationBar.alpha = 0;
+//        self.navigationItem
+        [self.navigationController.view addSubview:self.playbackVC.view];
+//        [self.navigationController.view insertSubview:self.playbackVC.view atIndex:self.navigationController.view.subviews.count];
+    } else if (gest.state == UIGestureRecognizerStateEnded) {
+//        self.navigationController.navigationBarHidden = NO;
+        [self.playbackVC stop];
+        [self.navigationController.view sendSubviewToBack:self.playbackVC.view];
+    }
 }
 
 

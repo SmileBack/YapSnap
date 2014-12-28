@@ -9,36 +9,56 @@
 #import "MusicPlaybackVC.h"
 
 @interface MusicPlaybackVC ()
-
+@property (strong, nonatomic) IBOutlet JEProgressView *progressView;
+@property (strong, nonatomic) STKAudioPlayer *player;
+@property (strong, nonatomic) NSTimer *timer;
 @end
 
 @implementation MusicPlaybackVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"Long Press: %@", self.longPress);
-    [self.longPress addTarget:self action:@selector(pressed:)];
-    
-    [self.longPress addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
+
+    self.player = [STKAudioPlayer new];
+    self.player.delegate = self;
+    [self.player play:self.yap.playbackURL];
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void) stop
 {
-    NSLog(@"change: %@", change);
-    NSLog(@"long press is: %@", self.longPress);
+    self.player.volume = 0;
 }
 
-- (void) pressed:(UILongPressGestureRecognizer *)gest
+#pragma mark - STKAudioPlayerDelegate
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didStartPlayingQueueItemId:(NSObject*)queueItemId
 {
-    NSLog(@"PRESSED?");
 }
 
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishBufferingSourceWithQueueItemId:(NSObject*)queueItemId
+{
+}
+
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer stateChanged:(STKAudioPlayerState)state previousState:(STKAudioPlayerState)previousState
+{
+    if (state == STKAudioPlayerStatePlaying) {
+        NSLog(@"Playing!");
+    } else if (state == STKAudioPlayerStateDisposed) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Playback stopped" object:nil];
+    }
+}
+
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishPlayingQueueItemId:(NSObject*)queueItemId withReason:(STKAudioPlayerStopReason)stopReason andProgress:(double)progress andDuration:(double)duration
+{
+}
+
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer unexpectedError:(STKAudioPlayerErrorCode)errorCode
+{
+    [audioPlayer stop];
+}
 
 @end
