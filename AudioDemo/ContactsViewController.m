@@ -51,6 +51,26 @@ static NSString *CellIdentifier = @"Cell";
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    if ([self internetIsNotReachable]) {
+        NSLog(@"Internet is not reachable");
+    } else {
+        NSLog(@"Internet is reachable");
+    }
+}
+
+-(BOOL) internetIsNotReachable
+{
+    return ![AFNetworkReachabilityManager sharedManager].reachable;
+}
+
+- (void) showNoInternetAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection"
+                                                    message:@"Please connect to the internet and try again."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void) loadContacts
@@ -179,15 +199,19 @@ static NSString *CellIdentifier = @"Cell";
 
 - (IBAction) didTapArrowButton
 {
-    __weak ContactsViewController *weakSelf = self;
-    [[API sharedAPI] postYapToContacts:self.selectedContacts withCallback:^(BOOL success, NSError *error) {
-        if (success) {
-            [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
-        } else {
-            // uh oh spaghettios
-            // TODO: tell the user something went wrong
-        }
-    }];
+    if ([self internetIsNotReachable]) {
+        [self showNoInternetAlert];
+    } else {
+        __weak ContactsViewController *weakSelf = self;
+        [[API sharedAPI] postYapToContacts:self.selectedContacts withCallback:^(BOOL success, NSError *error) {
+            if (success) {
+                [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
+            } else {
+                // uh oh spaghettios
+                // TODO: tell the user something went wrong
+            }
+        }];
+    }
 }
 
 #pragma mark - UISearchDisplayDelegate

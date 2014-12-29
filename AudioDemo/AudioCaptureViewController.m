@@ -92,6 +92,7 @@ static const float TIMER_INTERVAL = .01;
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self.recordButtonSpinner stopAnimating];
+                        NSLog(@"Loading spinner stopped animating");
                         timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
                                                                  target:self
                                                                selector:@selector(updateProgress)
@@ -157,6 +158,9 @@ static const float TIMER_INTERVAL = .01;
 {
     [timer invalidate];
     
+    self.modeSelectionButton.userInteractionEnabled = YES;
+    self.yapsPageButton.userInteractionEnabled = YES;
+    
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
         self.progressView.progress = 0.0;
         self.explanation.hidden = NO;
@@ -165,9 +169,6 @@ static const float TIMER_INTERVAL = .01;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.explanation.hidden = YES;
         });
-        
-        self.modeSelectionButton.userInteractionEnabled = YES;
-        self.yapsPageButton.userInteractionEnabled = YES;
     } else {
         [self setupEndCaptureInterface];
     }

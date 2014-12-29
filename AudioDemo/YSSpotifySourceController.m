@@ -14,8 +14,6 @@
 #import "OpenInSpotifyAlertView.h"
 
 #define NO_SONGS_TO_PLAY_ALERT @"NoSongs"
-#define SPOTIFY_ALERT @"Spotify"
-
 
 @interface YSSpotifySourceController ()
 @property (nonatomic, strong) NSArray *songs;
@@ -35,6 +33,26 @@
     [super viewDidLoad];
 
     [self setupSearchBox];
+    
+    if ([self internetIsNotReachable]) {
+        NSLog(@"Internet is not reachable");
+    } else {
+        NSLog(@"Internet is reachable");
+    }
+}
+
+-(BOOL) internetIsNotReachable
+{
+    return ![AFNetworkReachabilityManager sharedManager].reachable;
+}
+
+- (void) showNoInternetAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection"
+                                                    message:@"Please connect to the internet and try again."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,9 +87,13 @@
     } else {
         [self search:self.searchBox.text];
         [self.view endEditing:YES];
+        
+        //Remove extra space at end of string
+        self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
         //Background text color
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
-        [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, textField.text.length)];
+        [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.15] range:NSMakeRange(0, textField.text.length)];
         textField.attributedText = attributedString;
     }
     
@@ -100,14 +122,18 @@
                 self.musicIcon.hidden = YES;
             }
         } else if (error) {
-            NSLog(@"Error Returning Songs %@", error);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
-                                                            message:@"There was an error. Please try again in a bit."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
+            if ([self internetIsNotReachable]) {
+                [self showNoInternetAlert];
+            } else {
+                NSLog(@"Error Returning Songs %@", error);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
+                                                                message:@"There was an error. Please try again in a bit."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                
+                [alert show];
+            }
         }
     }];
 }
@@ -196,7 +222,7 @@
 {
 //    YSTrack *song = self.songs[index];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Press Red Button"
-                                                    message:@"Press down on the button below to listen to and send this song."
+                                                    message:@"Hold the button below to listen to and send this song."
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -266,8 +292,10 @@
 #pragma mark - Implement public audio methods
 - (BOOL) startAudioCapture
 {
-    if (self.songs.count == 0) {
-        NSLog(@"No Song To Play");
+    if ([self internetIsNotReachable]){
+        [self showNoInternetAlert];
+    } else if (self.songs.count == 0) {
+        NSLog(@"Can't Play Because No Song");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search for a Song"
                                                         message:@"To send a song, type the name of an artist, song, or album above."
                                                        delegate:self
@@ -321,8 +349,6 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.searchBox becomeFirstResponder];
         });
-    } else if ([SPOTIFY_ALERT isEqualToString:self.alertViewString]) {
-        
     }
 }
 
