@@ -11,6 +11,7 @@
 #import "YSAudioSourceController.h"
 #import "YSSpotifySourceController.h"
 #import "YSMicSourceController.h"
+#import "API.h"
 
 
 @interface AudioCaptureViewController () {
@@ -62,6 +63,26 @@ static const float TIMER_INTERVAL = .01;
     //[self.playButton setEnabled:NO];
 
     [self setupNotifications];
+    
+    if ([self internetIsNotReachable]) {
+        NSLog(@"Internet is not reachable");
+    } else {
+        NSLog(@"Internet is reachable");
+    }
+}
+
+-(BOOL) internetIsNotReachable
+{
+    return ![AFNetworkReachabilityManager sharedManager].reachable;
+}
+
+- (void) showNoInternetAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection"
+                                                    message:@"Please connect to the internet and try again."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -144,8 +165,8 @@ static const float TIMER_INTERVAL = .01;
     self.explanation.hidden = YES;
     //[self.playButton setEnabled:NO]; Play button isn't in the UI currently
     
-    self.yapsPageButton.userInteractionEnabled = NO;
-    self.modeSelectionButton.userInteractionEnabled = NO;
+    //self.yapsPageButton.userInteractionEnabled = NO;
+    //self.modeSelectionButton.userInteractionEnabled = NO;
 
     if ([self.audioSource startAudioCapture]) {
         if (self.audioSource.class == [YSSpotifySourceController class]) {

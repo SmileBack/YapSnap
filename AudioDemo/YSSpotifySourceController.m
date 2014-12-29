@@ -77,7 +77,7 @@
     if ([self.searchBox.text length] == 0) {
         NSLog(@"Searched Empty String");
         [self.view endEditing:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search for a Song"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song"
                                                         message:@"To send a song, type the name of an artist, song, or album above."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
@@ -296,7 +296,7 @@
         [self showNoInternetAlert];
     } else if (self.songs.count == 0) {
         NSLog(@"Can't Play Because No Song");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search for a Song"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song"
                                                         message:@"To send a song, type the name of an artist, song, or album above."
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
