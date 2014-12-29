@@ -220,6 +220,15 @@ static const float TIMER_INTERVAL = .01;
     [self performSegueWithIdentifier:@"ContactsViewControllerSegue" sender:self];
 }
 
+- (IBAction) didTapYapsPageButton
+{
+    if ([self internetIsNotReachable]){
+        [self showNoInternetAlert];
+    } else {
+        [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:self];
+    }
+}
+
 
 - (BOOL) isInSpotifyMode
 {

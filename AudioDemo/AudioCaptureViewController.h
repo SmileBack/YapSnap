@@ -26,5 +26,7 @@
 - (IBAction)cancelTapped:(id)sender;
 - (IBAction)didTapArrowButton;
 
+- (IBAction)didTapYapsPageButton;
+
 
 @end
