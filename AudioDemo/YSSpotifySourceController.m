@@ -140,12 +140,12 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     NSLog(@"Textfield did begin editing");
-    [self.carousel setUserInteractionEnabled:NO];
+    self.carousel.scrollEnabled = NO;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"Textfield did end editing");
-    [self.carousel setUserInteractionEnabled:YES];
+    self.carousel.scrollEnabled = YES;
 }
 
 #pragma mark - iCarousel Stuff
@@ -202,18 +202,27 @@
 
 - (void) confirmOpenInSpotify:(UIButton *)button
 {
-    UIView *parent = button.superview;
-    if ([parent isKindOfClass:[SpotifyTrackView class]]) {
-        SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        YSTrack *selectedTrack = nil;
-        for (YSTrack *track in self.songs) {
-            if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
-                selectedTrack = track;
-                break;
+    if([self.searchBox isFirstResponder])
+    {
+        NSLog(@"Search box is in focus");
+        [self.view endEditing:YES];
+    }
+    else
+    {
+        NSLog(@"Search box not in focus");
+        UIView *parent = button.superview;
+        if ([parent isKindOfClass:[SpotifyTrackView class]]) {
+            SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
+            YSTrack *selectedTrack = nil;
+            for (YSTrack *track in self.songs) {
+                if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+                    selectedTrack = track;
+                    break;
+                }
             }
+            OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithTrack:selectedTrack];
+            [alert show];
         }
-        OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithTrack:selectedTrack];
-        [alert show];
     }
 }
 
@@ -221,13 +230,22 @@
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
 //    YSTrack *song = self.songs[index];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Press Red Button"
-                                                    message:@"Hold the button below to listen to and send this song."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    
-    [alert show];
+    if([self.searchBox isFirstResponder])
+    {
+        NSLog(@"Search box is in focus");
+        [self.view endEditing:YES];
+    }
+    else
+    {
+        NSLog(@"Search box not in focus");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Press Red Button"
+                                                        message:@"Hold the button below to listen to and send this song."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
+    }
 }
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value

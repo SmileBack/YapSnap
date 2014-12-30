@@ -186,7 +186,7 @@ static const float TIMER_INTERVAL = .01;
         self.progressView.progress = 0.0;
         self.explanation.hidden = NO;
         //Make explanation label disappear
-        double delay = 3.0;
+        double delay = 2.0;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.explanation.hidden = YES;
         });
