@@ -203,7 +203,11 @@ static NSString *CellIdentifier = @"Cell";
         [self showNoInternetAlert];
     } else {
         __weak ContactsViewController *weakSelf = self;
-        [[API sharedAPI] postYapToContacts:self.selectedContacts withCallback:^(BOOL success, NSError *error) {
+        
+        // THIS NEEDS TO CALL DIFFERENT API CALLS BASED ON WHETHER IT IS SPOTIFY OR VOICE RECORDING
+        
+        /*
+        [[API sharedAPI] sendVoiceRecordingToContacts:self.selectedContacts withCallback:^(BOOL success, NSError *error) {
             if (success) {
                 [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
             } else {
@@ -211,6 +215,8 @@ static NSString *CellIdentifier = @"Cell";
                 // TODO: tell the user something went wrong
             }
         }];
+         */
+        [[API sharedAPI] sendSong:nil toContacts:self.selectedContacts withCallback:nil];
     }
 }
 

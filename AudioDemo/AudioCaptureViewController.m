@@ -171,6 +171,7 @@ static const float TIMER_INTERVAL = .01;
     if ([self.audioSource startAudioCapture]) {
         if (self.audioSource.class == [YSSpotifySourceController class]) {
             [self.recordButtonSpinner startAnimating];
+            NSLog(@"Loading spinner started animating");
         }
     }
 }

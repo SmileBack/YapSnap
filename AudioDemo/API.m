@@ -32,7 +32,7 @@ static API *sharedAPI;
 - (NSString *)sessionToken
 {
     if (!_sessionToken) {
-//        _sessionToken = [Global retrieveValueForKey:@"session_token"];
+        _sessionToken = [Global retrieveValueForKey:@"session_token"];
     }
     return _sessionToken;
 }
@@ -41,6 +41,7 @@ static API *sharedAPI;
 {
     //return @"http://localhost:4000"; // local dev server
     return @"http://yapsnap.herokuapp.com"; // production
+    //return @"http://192.168.1.177:3000";
 }
 
 #pragma mark - Generic Methods
@@ -62,12 +63,21 @@ static API *sharedAPI;
 
 #pragma mark - Public APIs
 
-- (void) postYapToContacts:(NSArray *)contacts withCallback:(SuccessOrErrorCallback)callback
+- (void) sendVoiceRecordingToContacts:(NSArray *)contacts withCallback:(SuccessOrErrorCallback)callback
 {
-    NSDictionary *params = [self yapParamsForContacts:contacts];
+    NSArray *pathComponents = @[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject], @"MyAudioMemo.m4a"];
+    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+    
+    NSString* recipients = [[contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
+    
+    NSDictionary *params = [self paramsWithDict:@{@"session_token": self.sessionToken,
+                                                  @"recording":outputFileURL,
+                                                  @"recipients":recipients,
+                                                  @"type": @"VoiceMessage"
+                                                  }];
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self urlForEndpoint:@"/yaps"]
+    [manager POST:[self urlForEndpoint:@"/audio_messages"]
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSLog(@"yaps call finished: %@", responseObject);\
@@ -76,6 +86,36 @@ static API *sharedAPI;
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               callback(NO, error);
           }];
+}
+
+- (void) sendSong:(YSTrack *)song toContacts:(NSArray *)contacts withCallback:(SuccessOrErrorCallback)callback
+{
+    NSString *url = [self urlForEndpoint:@"/audio_messages"]; //TODO USE REAL ENDPOINT
+    
+    NSString* recipients = [[contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
+    
+    //TODO USE REAL SESSION TOKEN
+    NSDictionary *params = @{@"session_token": self.sessionToken,
+                             @"spotify_song_name": @"Eminem Song Name", //song.name,
+                             @"spotify_song_id": @"1ftvBBcu7jYIvXyt3JWB8S", //song.spotifyID,
+                             @"spotify_image_url": @"https://i.scdn.co/image/1f881110ff752c80069da0308b1de30196d4f8a1", //song.imageURL,
+                             @"spotify_album_name": @"The Eminem Show", //song.albumName,
+                             @"spotify_artist_name": @"Eminem", //song.artistName,
+                             @"spotify_full_song_url": @"https://open.spotify.com/artist/7dGJo4pcD2V6oG8kP0tJRR", //song.spotifyURL,
+                             @"spotify_preview_url": @"https://p.scdn.co/mp3-preview/42fa6e912ef113dcd8d125abf08270fb5fea41af", //song.previewURL,
+                             @"recipients": recipients,
+                             @"type": @"SpotifyMessage"
+                             };
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"JSON: %@", responseObject);
+        //        NSDictionary *response = responseObject;
+        
+        callback(YES, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        callback(NO, error);
+    }];
 }
 
 - (void) postSessions:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback
@@ -122,7 +162,7 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
-    [manager GET:[self urlForEndpoint:@"/yaps"]
+    [manager GET:[self urlForEndpoint:@"/audio_messages"]
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSArray *yapDicts = responseObject; //Assuming it is an array
@@ -132,42 +172,6 @@ static API *sharedAPI;
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               callback(NO, error);
           }];
-}
-
-- (void) sendSong:(YSTrack *)song withCallback:(SuccessOrErrorCallback)callback
-{
-    NSString *url = [self urlForEndpoint:@"/yaps/send_song"]; //TODO USE REAL ENDPOINT
-
-    //TODO USE REAL SESSION TOKEN
-    NSDictionary *params = @{@"session_token": @"dummy_token",//self.sessionToken,
-                             @"song_name": song.name,
-                             @"spotify_id": song.spotifyID,
-                             @"image_url": song.imageURL,
-                             @"album_name": song.albumName,
-                             @"artist_name": song.artistName,
-                             @"spotify_url": song.spotifyURL,
-                             @"song_preview_url": song.previewURL};
-
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //        NSLog(@"JSON: %@", responseObject);
-//        NSDictionary *response = responseObject;
-        
-        callback(YES, nil);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        callback(NO, error);
-    }];
-}
-
-#pragma mark - API Helpers
-- (NSDictionary *) yapParamsForContacts:(NSArray *)contacts
-{
-    NSArray *pathComponents = @[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject], @"MyAudioMemo.m4a"];
-    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-
-    NSString* recipients = [[contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
-    return [self paramsWithDict:@{@"recording":outputFileURL,
-                                  @"recipients":recipients}];
 }
 
 @end

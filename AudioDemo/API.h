@@ -19,12 +19,12 @@ typedef void (^YapsCallback)(NSArray *yaps, NSError *error);
 
 + (API *) sharedAPI;
 
-- (void) postYapToContacts:(NSArray *)contacts withCallback:(SuccessOrErrorCallback)callback;
+- (void) sendVoiceRecordingToContacts:(NSArray *)contacts withCallback:(SuccessOrErrorCallback)callback;
 - (void) postSessions:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(SuccessOrErrorCallback)callback;
 - (void) getYapsWithCallback:(YapsCallback)callback;
 
 #pragma mark - Music
-- (void) sendSong:(YSTrack *) song withCallback:(SuccessOrErrorCallback) callback;
+- (void) sendSong:(YSTrack *) song toContacts:(NSArray *)contacts withCallback:(SuccessOrErrorCallback) callback;
 
 @end
