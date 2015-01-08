@@ -15,18 +15,18 @@
                         <viewControllerLayoutGuide type="bottom" id="KEa-CH-3fd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B8N-jO-1bl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="279"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MusicIconLarge.png" translatesAutoresizingMaskIntoConstraints="NO" id="RkK-X4-YKu">
-                                <rect key="frame" x="88" y="78" width="144" height="100"/>
+                                <rect key="frame" x="88" y="98" width="144" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="144" id="R2t-5y-toV"/>
                                     <constraint firstAttribute="height" constant="100" id="ZRK-aW-F6c"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNs-R1-CJc" customClass="iCarousel">
-                                <rect key="frame" x="0.0" y="50" width="320" height="259"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="300"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="jNN-gb-fip" id="WIV-5h-C9T"/>
@@ -59,7 +59,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="8VQ-xh-4vV"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="279"/>
+                    <size key="freeformSize" width="320" height="320"/>
                     <connections>
                         <outlet property="carousel" destination="ZNs-R1-CJc" id="5vb-SQ-OO6"/>
                         <outlet property="musicIcon" destination="RkK-X4-YKu" id="U4g-Tf-cMk"/>
@@ -140,7 +140,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf8-UJ-WxH" userLabel="Source Container">
-                                <rect key="frame" x="0.0" y="121" width="320" height="279"/>
+                                <rect key="frame" x="0.0" y="121" width="320" height="320"/>
                             </containerView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bsh-56-MCX" customClass="JEProgressView">
                                 <rect key="frame" x="0.0" y="85" width="320" height="2"/>
@@ -203,14 +203,14 @@
                             <constraint firstItem="bsh-56-MCX" firstAttribute="centerX" secondItem="Dwb-eQ-GX5" secondAttribute="centerX" id="jiz-vi-ZJI"/>
                             <constraint firstItem="noi-Et-bvO" firstAttribute="leading" secondItem="Xtk-3T-WBS" secondAttribute="trailing" constant="20" id="kxx-F1-lKi"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="centerX" secondItem="Xtk-3T-WBS" secondAttribute="centerX" id="lRQ-2J-A05"/>
-                            <constraint firstItem="noi-Et-bvO" firstAttribute="top" secondItem="Tf8-UJ-WxH" secondAttribute="bottom" constant="15" id="n7U-or-Msm"/>
+                            <constraint firstItem="noi-Et-bvO" firstAttribute="top" secondItem="Tf8-UJ-WxH" secondAttribute="bottom" constant="-26" id="n7U-or-Msm"/>
                             <constraint firstItem="IZo-Gn-Og4" firstAttribute="top" secondItem="NH3-XX-GgC" secondAttribute="top" id="nfv-FA-Smi"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="trailing" secondItem="g9f-Ex-CHR" secondAttribute="trailing" id="onO-Kg-7ba"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="bottom" secondItem="NH3-XX-GgC" secondAttribute="bottom" constant="5" id="q9K-ZK-203"/>
                             <constraint firstItem="g9f-Ex-CHR" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="rzw-bR-6xN"/>
                             <constraint firstItem="NH3-XX-GgC" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="12" id="u8f-SH-c0F"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="trailing" secondItem="Tf8-UJ-WxH" secondAttribute="trailing" id="uFX-Ct-kiK"/>
-                            <constraint firstAttribute="bottom" secondItem="Tf8-UJ-WxH" secondAttribute="bottom" constant="168" id="wSd-ep-FNn"/>
+                            <constraint firstAttribute="bottom" secondItem="Tf8-UJ-WxH" secondAttribute="bottom" constant="127" id="wSd-ep-FNn"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="top" secondItem="bsh-56-MCX" secondAttribute="bottom" constant="34" id="xoa-kp-tKK"/>
                             <constraint firstAttribute="bottom" secondItem="NH3-XX-GgC" secondAttribute="bottom" constant="20" symbolic="YES" id="zaV-HH-PUS"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="top" secondItem="Dwb-eQ-GX5" secondAttribute="bottom" constant="32" id="zrk-dG-hV8"/>
@@ -626,10 +626,10 @@
                         <viewControllerLayoutGuide type="bottom" id="FAH-yo-bpJ"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3lk-k2-w1W">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="279"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Microphone_White2.png" translatesAutoresizingMaskIntoConstraints="NO" id="v0o-hk-bRQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Microphone_White2.png" translatesAutoresizingMaskIntoConstraints="NO" id="v0o-hk-bRQ">
                                 <rect key="frame" x="40" y="59" width="239" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="PXN-fp-aZa"/>
@@ -645,7 +645,7 @@
                     </view>
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="279"/>
+                    <size key="freeformSize" width="320" height="320"/>
                     <connections>
                         <outlet property="microphone" destination="v0o-hk-bRQ" id="tnz-KQ-9I4"/>
                     </connections>
