@@ -26,7 +26,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNs-R1-CJc" customClass="iCarousel">
-                                <rect key="frame" x="0.0" y="50" width="320" height="300"/>
+                                <rect key="frame" x="0.0" y="60" width="320" height="240"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="jNN-gb-fip" id="WIV-5h-C9T"/>
@@ -47,11 +47,11 @@
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" constant="26" id="0rA-ZM-LMs"/>
-                            <constraint firstItem="ZNs-R1-CJc" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="30" id="9Cq-I9-19w"/>
+                            <constraint firstItem="ZNs-R1-CJc" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="40" id="9Cq-I9-19w"/>
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" id="9zR-GB-wuh"/>
                             <constraint firstAttribute="centerY" secondItem="RkK-X4-YKu" secondAttribute="centerY" constant="11.5" id="BIu-NL-qMB"/>
                             <constraint firstAttribute="trailing" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="26" id="BpS-sr-djQ"/>
-                            <constraint firstAttribute="bottom" secondItem="ZNs-R1-CJc" secondAttribute="bottom" constant="-30" id="Fcg-Ri-wcV"/>
+                            <constraint firstAttribute="bottom" secondItem="ZNs-R1-CJc" secondAttribute="bottom" constant="20" id="Fcg-Ri-wcV"/>
                             <constraint firstAttribute="centerX" secondItem="RkK-X4-YKu" secondAttribute="centerX" id="Vrl-SB-4xi"/>
                             <constraint firstAttribute="trailing" secondItem="ZNs-R1-CJc" secondAttribute="trailing" id="f6a-b0-12B"/>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" id="mMM-JG-YVP"/>
@@ -68,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eqw-WM-wJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1425" y="-1203.5"/>
+            <point key="canvasLocation" x="1425" y="-1204"/>
         </scene>
         <!--Audio Capture View Controller-->
         <scene sceneID="5">
