@@ -10,7 +10,6 @@
 
 
 @interface YSMicSourceController ()
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *microphone;
 
 @property (nonatomic, strong) AVAudioRecorder *recorder;
@@ -60,8 +59,6 @@
 
 - (void) setupSendYapInterface
 {
-    //self.titleLabel.text = @"Send Yap";
-    self.titleLabel.hidden = NO;
     self.microphone.hidden = YES;
 }
 
@@ -69,7 +66,6 @@
 #pragma mark - Public API Methods
 - (BOOL) startAudioCapture
 {
-    self.titleLabel.hidden = YES;
     self.microphone.hidden = NO;
 
     // Stop the audio player before recording
@@ -104,8 +100,6 @@
 
 - (void) resetUI
 {
-    //self.titleLabel.text = @"Record";
-    self.titleLabel.hidden = YES;
     self.microphone.hidden = NO;
 }
 

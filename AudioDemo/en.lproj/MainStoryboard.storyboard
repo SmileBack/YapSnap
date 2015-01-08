@@ -25,12 +25,6 @@
                                     <constraint firstAttribute="height" constant="100" id="ZRK-aW-F6c"/>
                                 </constraints>
                             </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-fm-qLX">
-                                <rect key="frame" x="35" y="104" width="249" height="71"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="60"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNs-R1-CJc" customClass="iCarousel">
                                 <rect key="frame" x="0.0" y="50" width="320" height="259"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -58,11 +52,9 @@
                             <constraint firstAttribute="centerY" secondItem="RkK-X4-YKu" secondAttribute="centerY" constant="11.5" id="BIu-NL-qMB"/>
                             <constraint firstAttribute="trailing" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="26" id="BpS-sr-djQ"/>
                             <constraint firstAttribute="bottom" secondItem="ZNs-R1-CJc" secondAttribute="bottom" constant="-30" id="Fcg-Ri-wcV"/>
-                            <constraint firstAttribute="centerX" secondItem="KbM-fm-qLX" secondAttribute="centerX" id="NaQ-e0-WRe"/>
                             <constraint firstAttribute="centerX" secondItem="RkK-X4-YKu" secondAttribute="centerX" id="Vrl-SB-4xi"/>
                             <constraint firstAttribute="trailing" secondItem="ZNs-R1-CJc" secondAttribute="trailing" id="f6a-b0-12B"/>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" id="mMM-JG-YVP"/>
-                            <constraint firstAttribute="centerY" secondItem="KbM-fm-qLX" secondAttribute="centerY" id="t5W-6R-rvp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8VQ-xh-4vV"/>
@@ -72,7 +64,6 @@
                         <outlet property="carousel" destination="ZNs-R1-CJc" id="5vb-SQ-OO6"/>
                         <outlet property="musicIcon" destination="RkK-X4-YKu" id="U4g-Tf-cMk"/>
                         <outlet property="searchBox" destination="6hl-m2-tvk" id="lF2-ss-GVa"/>
-                        <outlet property="titleLabel" destination="KbM-fm-qLX" id="YcH-9H-f7u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eqw-WM-wJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -91,6 +82,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7q-Ko-Que">
+                                <rect key="frame" x="281" y="29" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="6" backgroundImage="YapsButtonRed.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapYapsPageButton" destination="2" eventType="touchUpInside" id="92d-sT-MaR"/>
+                                    <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="q5t-rN-FjJ"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZo-Gn-Og4">
                                 <rect key="frame" x="248" y="488" width="60" height="60"/>
                                 <state key="normal" backgroundImage="ArrowWhite.png">
@@ -136,18 +139,6 @@
                                     <constraint firstAttribute="trailing" secondItem="83A-pl-xW7" secondAttribute="trailing" id="z2y-4D-B1T"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7q-Ko-Que">
-                                <rect key="frame" x="12" y="511" width="30" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="6" backgroundImage="YapsButtonRed.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapYapsPageButton" destination="2" eventType="touchUpInside" id="92d-sT-MaR"/>
-                                    <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="q5t-rN-FjJ"/>
-                                </connections>
-                            </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf8-UJ-WxH" userLabel="Source Container">
                                 <rect key="frame" x="0.0" y="121" width="320" height="279"/>
                             </containerView>
@@ -240,7 +231,6 @@
                         <outlet property="progressView" destination="bsh-56-MCX" id="R4u-TB-S1K"/>
                         <outlet property="recordButton" destination="Xtk-3T-WBS" id="R1a-Wi-774"/>
                         <outlet property="recordButtonSpinner" destination="3h8-nb-0t3" id="riE-Pe-mAJ"/>
-                        <outlet property="titleLabel" destination="aXd-eG-7Yq" id="Gum-px-fdF"/>
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="ContactsViewControllerSegue" id="soO-0w-sBp"/>
                     </connections>
@@ -636,20 +626,11 @@
                         <viewControllerLayoutGuide type="bottom" id="FAH-yo-bpJ"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3lk-k2-w1W">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="279"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXd-eG-7Yq">
-                                <rect key="frame" x="16" y="254" width="288" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="hOv-Er-19k"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="60"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Microphone_White2.png" translatesAutoresizingMaskIntoConstraints="NO" id="v0o-hk-bRQ">
-                                <rect key="frame" x="40" y="204" width="239" height="120"/>
+                                <rect key="frame" x="40" y="59" width="239" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="PXN-fp-aZa"/>
                                     <constraint firstAttribute="width" constant="239" id="X2v-1h-Bpp"/>
@@ -660,20 +641,18 @@
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="v0o-hk-bRQ" secondAttribute="centerY" constant="20" id="3hw-w5-9PK"/>
                             <constraint firstAttribute="centerX" secondItem="v0o-hk-bRQ" secondAttribute="centerX" id="duN-UP-9L5"/>
-                            <constraint firstAttribute="centerY" secondItem="aXd-eG-7Yq" secondAttribute="centerY" id="hDd-bg-pig"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aXd-eG-7Yq" secondAttribute="trailing" id="hpy-UG-pfg"/>
-                            <constraint firstItem="aXd-eG-7Yq" firstAttribute="leading" secondItem="3lk-k2-w1W" secondAttribute="leadingMargin" id="iWa-DC-DBp"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="279"/>
                     <connections>
                         <outlet property="microphone" destination="v0o-hk-bRQ" id="tnz-KQ-9I4"/>
-                        <outlet property="titleLabel" destination="aXd-eG-7Yq" id="kft-BV-dvu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYb-Fr-0gL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1043" y="-1048"/>
+            <point key="canvasLocation" x="1043" y="-1203.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="IbL-yk-9T1">

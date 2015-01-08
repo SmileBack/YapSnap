@@ -21,7 +21,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *searchBox;
 @property (strong, nonatomic) IBOutlet iCarousel *carousel;
 @property (weak, nonatomic) IBOutlet UIImageView *musicIcon;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic, strong) NSString *alertViewString;
 
@@ -268,7 +267,6 @@
     self.carousel.hidden = YES;
     self.searchBox.hidden = YES;
     self.musicIcon.hidden = YES;
-    self.titleLabel.hidden = NO;
 }
 
 - (void) resetUI
@@ -277,7 +275,6 @@
     [self.carousel setUserInteractionEnabled:YES];
     self.searchBox.enabled = YES;
     self.searchBox.hidden = NO;
-    self.titleLabel.hidden = YES;
 }
 
 #pragma mark - STKAudioPlayerDelegate
