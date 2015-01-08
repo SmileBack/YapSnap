@@ -134,6 +134,14 @@ static const float TIMER_INTERVAL = .01;
                         [timer invalidate];
                         [alert show];
                     }];
+    
+    [center addObserverForName:AUDIO_CAPTURE_FAILED_TO_START_DUE_TO_INTERNET
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self.recordButtonSpinner stopAnimating];
+                        NSLog(@"Loading spinner stopped animating");
+                    }];
 }
 
 - (void) updateProgress {

@@ -10,7 +10,8 @@
 
 #define AUDIO_CAPTURE_DID_START_NOTIFICATION @"com.yapsnap.AudioCaptureDidStartNotification"
 #define AUDIO_CAPTURE_DID_END_NOTIFICATION @"com.yapsnap.AudioCaptureDidEndNotification"
-#define AUDIO_CAPTURE_ERROR_NOTIFICATION @"com.yapsnap.AudioCaptureErrorEndNotification"
+#define AUDIO_CAPTURE_ERROR_NOTIFICATION @"com.yapsnap.AudioCaptureErrorNotification"
+#define AUDIO_CAPTURE_FAILED_TO_START_DUE_TO_INTERNET @"com.yapsnap.AudioCaptureFailedToStartNotification"
 #define CAPTURE_THRESHOLD .2 //seconds
 
 

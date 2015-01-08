@@ -303,11 +303,15 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_ERROR_NOTIFICATION object:nil];
 }
 
-
 #pragma mark - Implement public audio methods
 - (BOOL) startAudioCapture
 {
     if ([self internetIsNotReachable]){
+        //Delay is added here to ensure that [self.recordButtonSpinner stopAnimating] is called AFTER [self.recordButtonSpinner startAnimating] is called
+        double delay = 0.3;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_FAILED_TO_START_DUE_TO_INTERNET object:nil];
+        });
         [self showNoInternetAlert];
     } else if (self.songs.count == 0) {
         NSLog(@"Can't Play Because No Song");
