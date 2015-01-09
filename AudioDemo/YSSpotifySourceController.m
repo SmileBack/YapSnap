@@ -280,21 +280,54 @@
 #pragma mark - STKAudioPlayerDelegate
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer didStartPlayingQueueItemId:(NSObject*)queueItemId
 {
+    NSLog(@"audioPlayer didStartPlayingQueueItemId");
 }
 
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishBufferingSourceWithQueueItemId:(NSObject*)queueItemId
 {
+    NSLog(@"audioPlayer didFinishBufferingSourceWithQueueItemId");
 }
 
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer stateChanged:(STKAudioPlayerState)state previousState:(STKAudioPlayerState)previousState
 {
+    if (state == STKAudioPlayerStateReady) {
+        NSLog(@"state == STKAudioPlayerStateReady");
+    }
+    
+    if (state == STKAudioPlayerStateRunning) {
+        NSLog(@"state == STKAudioPlayerStateRunning");
+    }
+    
     if (state == STKAudioPlayerStatePlaying) {
+        NSLog(@"state == STKAudioPlayerStatePlaying");
         [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
+    }
+    
+    if (state == STKAudioPlayerStateBuffering) {
+        NSLog(@"state == STKAudioPlayerStateBuffering");
+    }
+    
+    if (state == STKAudioPlayerStatePaused) {
+        NSLog(@"state == STKAudioPlayerStatePaused");
+    }
+    
+    if (state == STKAudioPlayerStateStopped) {
+        NSLog(@"state == STKAudioPlayerStateStopped");
+        [[NSNotificationCenter defaultCenter] postNotificationName:STK_AUDIO_PLAYER_STOPPED_NOTIFICATION object:nil];
+    }
+    
+    if (state == STKAudioPlayerStateError) {
+        NSLog(@"state == STKAudioPlayerStateError");
+    }
+    
+    if (state == STKAudioPlayerStateDisposed) {
+        NSLog(@"state == STKAudioPlayerStateDisposed");
     }
 }
 
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishPlayingQueueItemId:(NSObject*)queueItemId withReason:(STKAudioPlayerStopReason)stopReason andProgress:(double)progress andDuration:(double)duration
 {
+    NSLog(@"audioPlayer didFinishPlayingQueueItemId");
 }
 
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer unexpectedError:(STKAudioPlayerErrorCode)errorCode

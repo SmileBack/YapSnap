@@ -134,6 +134,14 @@ static const float TIMER_INTERVAL = .01;
                         [timer invalidate];
                         [alert show];
                     }];
+    
+    [center addObserverForName:STK_AUDIO_PLAYER_STOPPED_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self.recordButtonSpinner stopAnimating];
+                        NSLog(@"Loading spinner stopped animating");
+                    }];
 }
 
 - (void) updateProgress {
