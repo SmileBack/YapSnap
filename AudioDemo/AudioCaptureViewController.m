@@ -20,7 +20,9 @@
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *recordButtonSpinner;
-@property (strong, nonatomic) IBOutlet UIButton *modeSelectionButton;
+@property (strong, nonatomic) IBOutlet UIButton *spotifyModeButton;
+@property (strong, nonatomic) IBOutlet UIButton *micModeButton;
+
 
 @property (nonatomic) float elapsedTime;
 
@@ -162,7 +164,8 @@ static const float TIMER_INTERVAL = .01;
     self.yapsPageButton.hidden = YES;
     self.arrowButton.hidden = NO;
     self.cancelButton.hidden = NO;
-    self.modeSelectionButton.hidden = YES;
+    self.spotifyModeButton.hidden = YES;
+    self.micModeButton.hidden = YES;
 }
 
 - (IBAction)recordTapped:(id)sender
@@ -174,7 +177,8 @@ static const float TIMER_INTERVAL = .01;
     //[self.playButton setEnabled:NO]; Play button isn't in the UI currently
     
     //self.yapsPageButton.userInteractionEnabled = NO;
-    //self.modeSelectionButton.userInteractionEnabled = NO;
+    //self.spotifyStateButton.userInteractionEnabled = NO;
+    //self.micStateButton.userInteractionEnabled = NO;
 
     if ([self.audioSource startAudioCapture]) {
         if (self.audioSource.class == [YSSpotifySourceController class]) {
@@ -188,7 +192,8 @@ static const float TIMER_INTERVAL = .01;
 {
     [timer invalidate];
     
-    self.modeSelectionButton.userInteractionEnabled = YES;
+    self.spotifyModeButton.userInteractionEnabled = YES;
+    self.micModeButton.userInteractionEnabled = YES;
     self.yapsPageButton.userInteractionEnabled = YES;
     
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
@@ -217,8 +222,10 @@ static const float TIMER_INTERVAL = .01;
     self.recordButton.hidden = NO;
     self.yapsPageButton.hidden = NO;
     self.yapsPageButton.userInteractionEnabled = YES;
-    self.modeSelectionButton.hidden = NO;
-    self.modeSelectionButton.userInteractionEnabled = YES;
+    self.spotifyModeButton.hidden = NO;
+    self.micModeButton.hidden = NO;
+    self.spotifyModeButton.userInteractionEnabled = YES;
+    self.micModeButton.userInteractionEnabled = YES;
     self.progressView.progress = 0.0;
     self.elapsedTime = 0;
     [self.audioSource resetUI];
@@ -250,22 +257,20 @@ static const float TIMER_INTERVAL = .01;
 }
 
 #pragma mark - Mode Changing
-- (IBAction)modeButtonPressed:(UIButton *)sender
+- (IBAction)spotifyModeButtonPressed:(UIButton *)sender
 {
-    if ([self isInSpotifyMode]) {
-        // Show Mic
-        YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
-        [self flipController:self.audioSource to:micSource];
+    YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+    self.micModeButton.alpha = .3;
+    self.spotifyModeButton.alpha = 1;
+    [self flipController:self.audioSource to:spotifySource];
+}
 
-        [self.modeSelectionButton setBackgroundImage:[UIImage imageNamed:@"MusicIconSmall.png"] forState:UIControlStateNormal];
-    } else {
-        // Show Spotify
-        YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
-        
-        [self flipController:self.audioSource to:spotifySource];
-
-        [self.modeSelectionButton setBackgroundImage:[UIImage imageNamed:@"Microphone_White2.png"] forState:UIControlStateNormal];
-    }
+- (IBAction)micModeButtonPressed:(UIButton *)sender
+{
+    YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
+    self.micModeButton.alpha = 1;
+    self.spotifyModeButton.alpha = .3;
+    [self flipController:self.audioSource to:micSource];
 }
 
 - (void) flipController:(UIViewController *)from to:(YSAudioSourceController *)to

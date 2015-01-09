@@ -53,6 +53,8 @@
 		37D413CA19D22B5E00021548 /* EnterNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D413C919D22B5E00021548 /* EnterNameViewController.m */; };
 		37D413CC19D230D000021548 /* ArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D413CB19D230D000021548 /* ArrowWhite.png */; };
 		37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */; };
+		78650BBD1A6075B800C21233 /* YapSnap Mic Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 78650BBB1A6075B800C21233 /* YapSnap Mic Button.png */; };
+		78650BBE1A6075B800C21233 /* YapSnap Spotify Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 78650BBC1A6075B800C21233 /* YapSnap Spotify Button.png */; };
 		787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */; };
 		787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */; };
 		787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A6D941A4DD8A2001551C6 /* Crashlytics.framework */; };
@@ -147,6 +149,8 @@
 		37D413CB19D230D000021548 /* ArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArrowWhite.png; sourceTree = "<group>"; };
 		37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpotifyLogo@2x.png"; sourceTree = "<group>"; };
 		37E122E51A4011560073684D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		78650BBB1A6075B800C21233 /* YapSnap Mic Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YapSnap Mic Button.png"; sourceTree = "<group>"; };
+		78650BBC1A6075B800C21233 /* YapSnap Spotify Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YapSnap Spotify Button.png"; sourceTree = "<group>"; };
 		787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconLarge@2x.png"; sourceTree = "<group>"; };
 		787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconSmall@2x.png"; sourceTree = "<group>"; };
 		787A6D941A4DD8A2001551C6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 				37D413B219D217FF00021548 /* Fonts */,
 				787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */,
 				787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */,
+				78650BBB1A6075B800C21233 /* YapSnap Mic Button.png */,
+				78650BBC1A6075B800C21233 /* YapSnap Spotify Button.png */,
 				3753AF8C19E9C55400B6391D /* RedArrow@2x.png */,
 				3753AF9019E9C94800B6391D /* BlueArrow@2x.png */,
 				3753AF8E19E9C65300B6391D /* RedArrowBackward@2x.png */,
@@ -570,10 +576,12 @@
 				787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */,
 				F44B0C5C16DA404700E6CD88 /* MainStoryboard.storyboard in Resources */,
 				37695E6119BB86A700C22E13 /* RecordButtonRed.png in Resources */,
+				78650BBD1A6075B800C21233 /* YapSnap Mic Button.png in Resources */,
 				37695E5F19BB7A2500C22E13 /* RecordButtonBlue.png in Resources */,
 				37D413CC19D230D000021548 /* ArrowWhite.png in Resources */,
 				37695E7219BBC97900C22E13 /* ProgressViewBackgroundBlue.png in Resources */,
 				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
+				78650BBE1A6075B800C21233 /* YapSnap Spotify Button.png in Resources */,
 				37D413C619D2235C00021548 /* Images.xcassets in Resources */,
 				37D20C2C19E4A19D008530BF /* RecordButtonRedWhiteBorder.png in Resources */,
 				37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */,

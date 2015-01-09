@@ -154,10 +154,33 @@
                                     <action selector="playTapped:" destination="2" eventType="touchUpInside" id="bYQ-hA-hT6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dje-2i-9YC" userLabel="Spotify Mode Button">
+                                <rect key="frame" x="0.0" y="523" width="158" height="45"/>
+                                <state key="normal" backgroundImage="YapSnap Spotify Button.png">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="spotifyModeButtonPressed:" destination="2" eventType="touchUpInside" id="UTY-6X-TIB"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3h8-nb-0t3">
+                                <rect key="frame" x="150" y="76" width="20" height="20"/>
+                                <color key="color" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI5-ha-IW9" userLabel="Mic Mode Button">
+                                <rect key="frame" x="162" y="523" width="158" height="45"/>
+                                <state key="normal" image="YapSnap Mic Button.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="micModeButtonPressed:" destination="2" eventType="touchUpInside" id="Gfg-N0-l6F"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtk-3T-WBS">
-                                <rect key="frame" x="105" y="443" width="110" height="110"/>
+                                <rect key="frame" x="103" y="442" width="114" height="114"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="wix-zK-cHq"/>
+                                    <constraint firstAttribute="height" constant="114" id="wix-zK-cHq"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="RecordButtonRedWhiteBorder.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -168,45 +191,31 @@
                                     <action selector="recordUntapped:" destination="2" eventType="touchDragExit" id="Q0s-7Y-xrS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dje-2i-9YC" userLabel="Mode Button">
-                                <rect key="frame" x="260" y="508" width="40" height="43"/>
-                                <state key="normal" backgroundImage="MusicIconSmall.png">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="modeButtonPressed:" destination="2" eventType="touchUpInside" id="tg7-7j-tOK"/>
-                                </connections>
-                            </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3h8-nb-0t3">
-                                <rect key="frame" x="150" y="76" width="20" height="20"/>
-                                <color key="color" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="g9f-Ex-CHR" firstAttribute="top" secondItem="3" secondAttribute="top" id="0BW-AA-aUK"/>
-                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="leading" secondItem="NH3-XX-GgC" secondAttribute="trailing" constant="33" id="0E1-PQ-NlU"/>
+                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="leading" secondItem="NH3-XX-GgC" secondAttribute="trailing" constant="31" id="0E1-PQ-NlU"/>
                             <constraint firstItem="IZo-Gn-Og4" firstAttribute="baseline" secondItem="NH3-XX-GgC" secondAttribute="baseline" id="49H-Yx-jfU"/>
                             <constraint firstItem="Dwb-eQ-GX5" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="4" id="9vA-z8-T0D"/>
                             <constraint firstAttribute="trailing" secondItem="bsh-56-MCX" secondAttribute="trailing" id="BC3-Jp-PfF"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="leading" secondItem="g9f-Ex-CHR" secondAttribute="leading" id="EJo-5x-Umv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="noi-Et-bvO" secondAttribute="trailing" constant="-7" id="EOc-BP-cop"/>
-                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="bottom" secondItem="IZo-Gn-Og4" secondAttribute="bottom" constant="5" id="F9S-dS-OPx"/>
+                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="bottom" secondItem="IZo-Gn-Og4" secondAttribute="bottom" constant="8" id="F9S-dS-OPx"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="top" secondItem="g9f-Ex-CHR" secondAttribute="bottom" constant="20" id="KYE-DH-SVM"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="top" secondItem="3" secondAttribute="top" constant="85" id="PQw-rw-ftW"/>
-                            <constraint firstItem="IZo-Gn-Og4" firstAttribute="leading" secondItem="Xtk-3T-WBS" secondAttribute="trailing" constant="33" id="Pab-3z-dOb"/>
+                            <constraint firstItem="IZo-Gn-Og4" firstAttribute="leading" secondItem="Xtk-3T-WBS" secondAttribute="trailing" constant="31" id="Pab-3z-dOb"/>
                             <constraint firstItem="Dwb-eQ-GX5" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" constant="12" id="SlB-vE-ad8"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="leading" secondItem="Tf8-UJ-WxH" secondAttribute="leading" id="azK-Ud-Ext"/>
                             <constraint firstItem="IZo-Gn-Og4" firstAttribute="top" secondItem="noi-Et-bvO" secondAttribute="bottom" constant="21" id="d7p-fk-ZEC"/>
                             <constraint firstAttribute="trailing" secondItem="IZo-Gn-Og4" secondAttribute="trailing" constant="12" id="f5J-Rn-ff9"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="centerX" secondItem="Dwb-eQ-GX5" secondAttribute="centerX" id="jiz-vi-ZJI"/>
-                            <constraint firstItem="noi-Et-bvO" firstAttribute="leading" secondItem="Xtk-3T-WBS" secondAttribute="trailing" constant="20" id="kxx-F1-lKi"/>
+                            <constraint firstItem="noi-Et-bvO" firstAttribute="leading" secondItem="Xtk-3T-WBS" secondAttribute="trailing" constant="18" id="kxx-F1-lKi"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="centerX" secondItem="Xtk-3T-WBS" secondAttribute="centerX" id="lRQ-2J-A05"/>
                             <constraint firstItem="noi-Et-bvO" firstAttribute="top" secondItem="Tf8-UJ-WxH" secondAttribute="bottom" constant="-26" id="n7U-or-Msm"/>
                             <constraint firstItem="IZo-Gn-Og4" firstAttribute="top" secondItem="NH3-XX-GgC" secondAttribute="top" id="nfv-FA-Smi"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="trailing" secondItem="g9f-Ex-CHR" secondAttribute="trailing" id="onO-Kg-7ba"/>
-                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="bottom" secondItem="NH3-XX-GgC" secondAttribute="bottom" constant="5" id="q9K-ZK-203"/>
+                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="bottom" secondItem="NH3-XX-GgC" secondAttribute="bottom" constant="8" id="q9K-ZK-203"/>
                             <constraint firstItem="g9f-Ex-CHR" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="rzw-bR-6xN"/>
                             <constraint firstItem="NH3-XX-GgC" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="12" id="u8f-SH-c0F"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="trailing" secondItem="Tf8-UJ-WxH" secondAttribute="trailing" id="uFX-Ct-kiK"/>
@@ -225,12 +234,12 @@
                         <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="dxv-8x-Abq"/>
                         <outlet property="cancelButton" destination="NH3-XX-GgC" id="81f-4H-Sga"/>
                         <outlet property="explanation" destination="g9f-Ex-CHR" id="kUM-mN-i57"/>
-                        <outlet property="microphone" destination="v0o-hk-bRQ" id="eBi-wo-B7Y"/>
-                        <outlet property="modeSelectionButton" destination="dje-2i-9YC" id="1gs-kh-63z"/>
+                        <outlet property="micModeButton" destination="dI5-ha-IW9" id="X8L-1K-fmn"/>
                         <outlet property="playButton" destination="noi-Et-bvO" id="LoS-fw-ZU6"/>
                         <outlet property="progressView" destination="bsh-56-MCX" id="R4u-TB-S1K"/>
                         <outlet property="recordButton" destination="Xtk-3T-WBS" id="R1a-Wi-774"/>
                         <outlet property="recordButtonSpinner" destination="3h8-nb-0t3" id="riE-Pe-mAJ"/>
+                        <outlet property="spotifyModeButton" destination="dje-2i-9YC" id="xRf-Q6-xxF"/>
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="ContactsViewControllerSegue" id="soO-0w-sBp"/>
                     </connections>
@@ -677,10 +686,11 @@
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIconLarge.png" width="256" height="256"/>
-        <image name="MusicIconSmall.png" width="64" height="64"/>
         <image name="RecordButtonRedWhiteBorder.png" width="200" height="200"/>
         <image name="RedCircleIcon.png" width="30" height="30"/>
         <image name="RedCircleSmall.png" width="67" height="67"/>
+        <image name="YapSnap Mic Button.png" width="316" height="89"/>
+        <image name="YapSnap Spotify Button.png" width="316" height="89"/>
         <image name="YapsButtonRed.png" width="60" height="60"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
