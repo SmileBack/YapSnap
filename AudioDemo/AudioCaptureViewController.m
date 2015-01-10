@@ -115,6 +115,12 @@ static const float TIMER_INTERVAL = .01;
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self.recordButtonSpinner stopAnimating];
+                        
+                        //Uncomment the following lines after you handle cases where recording gets "interrupted"
+                        //self.yapsPageButton.userInteractionEnabled = NO;
+                        //self.spotifyModeButton.userInteractionEnabled = NO;
+                        //self.micModeButton.userInteractionEnabled = NO;
+                        
                         NSLog(@"Loading spinner stopped animating");
                         timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
                                                                  target:self
@@ -175,10 +181,6 @@ static const float TIMER_INTERVAL = .01;
 
     self.explanation.hidden = YES;
     //[self.playButton setEnabled:NO]; Play button isn't in the UI currently
-    
-    //self.yapsPageButton.userInteractionEnabled = NO;
-    //self.spotifyStateButton.userInteractionEnabled = NO;
-    //self.micStateButton.userInteractionEnabled = NO;
 
     if ([self.audioSource startAudioCapture]) {
         if (self.audioSource.class == [YSSpotifySourceController class]) {
