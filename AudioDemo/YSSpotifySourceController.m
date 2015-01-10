@@ -38,6 +38,15 @@
     } else {
         NSLog(@"Internet is reachable");
     }
+
+    UITapGestureRecognizer *tappedd = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMusicIconImage)];
+    tappedd.numberOfTapsRequired = 1;
+    [self.musicIcon addGestureRecognizer:tappedd];
+}
+
+- (void)tappedMusicIconImage {
+    NSLog(@"Tapped Music Icon Image");
+    [self.searchBox becomeFirstResponder];
 }
 
 -(BOOL) internetIsNotReachable

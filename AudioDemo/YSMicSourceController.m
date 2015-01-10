@@ -22,6 +22,21 @@
     [super viewDidLoad];
 
     [self setupRecorder];
+    
+    UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMicrophoneImage)];
+    tapped.numberOfTapsRequired = 1;
+    [self.microphone addGestureRecognizer:tapped];
+}
+
+- (void)tappedMicrophoneImage {
+    NSLog(@"Tapped Microphone Image");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Press Red Button"
+                                                    message:@"Hold the button below to record and send your voice."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning {

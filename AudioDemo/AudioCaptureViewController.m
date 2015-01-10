@@ -259,18 +259,22 @@ static const float TIMER_INTERVAL = .01;
 #pragma mark - Mode Changing
 - (IBAction)spotifyModeButtonPressed:(UIButton *)sender
 {
-    YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
-    self.micModeButton.alpha = .3;
-    self.spotifyModeButton.alpha = 1;
-    [self flipController:self.audioSource to:spotifySource];
+    if (![self isInSpotifyMode]) {
+        YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+        self.micModeButton.alpha = .2;
+        self.spotifyModeButton.alpha = 1;
+        [self flipController:self.audioSource to:spotifySource];
+    }
 }
 
 - (IBAction)micModeButtonPressed:(UIButton *)sender
 {
-    YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
-    self.micModeButton.alpha = 1;
-    self.spotifyModeButton.alpha = .3;
-    [self flipController:self.audioSource to:micSource];
+    if (![self isInRecordMode]) {
+        YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
+        self.micModeButton.alpha = 1;
+        self.spotifyModeButton.alpha = .2;
+        [self flipController:self.audioSource to:micSource];
+    }
 }
 
 - (void) flipController:(UIViewController *)from to:(YSAudioSourceController *)to
