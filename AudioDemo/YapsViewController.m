@@ -48,7 +48,7 @@ static NSString *CellIdentifier = @"Cell";
         }
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"Playback stopped"
+    [[NSNotificationCenter defaultCenter] addObserverForName:PLAYBACK_STOPPED_NOTIFICATION
                                                       object:nil
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note) {
@@ -139,25 +139,13 @@ static NSString *CellIdentifier = @"Cell";
     [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO
 }
 
-- (void) tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    NSLog(@"didHighlight");
-//    longPress addTarget:self action:<#(SEL)#>
-//    [self performSegueWithIdentifier:@"Show Playback Segue" sender:longPress];
-}
-
-- (void) tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    NSLog(@"didUnHighlight");
-}
-
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    UILongPressGestureRecognizer *longPress = sender;
-    MusicPlaybackVC *vc = segue.destinationViewController;
-    [vc.view addGestureRecognizer:longPress];
-//    vc.longPress = longPress;
-}
+//- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    UILongPressGestureRecognizer *longPress = sender;
+//    MusicPlaybackVC *vc = segue.destinationViewController;
+//    [vc.view addGestureRecognizer:longPress];
+////    vc.longPress = longPress;
+//}
 
 - (void) isPressingLong:(UILongPressGestureRecognizer *)gest
 {
@@ -165,15 +153,8 @@ static NSString *CellIdentifier = @"Cell";
         self.playbackVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playYapVC"];
         self.playbackVC.yap = self.yaps[0];//TODO FIX THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         self.playbackVC.view.frame = self.view.frame;
-//        [self addChildViewController:self.playbackVC];
-//        UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
-//        [currentWindow addSubview:self.playbackVC.view];
-//        self.navigationController.navigationBar.alpha = 0;
-//        self.navigationItem
         [self.navigationController.view addSubview:self.playbackVC.view];
-//        [self.navigationController.view insertSubview:self.playbackVC.view atIndex:self.navigationController.view.subviews.count];
     } else if (gest.state == UIGestureRecognizerStateEnded) {
-//        self.navigationController.navigationBarHidden = NO;
         [self.playbackVC stop];
         [self.navigationController.view sendSubviewToBack:self.playbackVC.view];
     }

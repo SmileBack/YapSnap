@@ -11,6 +11,8 @@
 #import "JEProgressView.h"
 #import "YSYap.h"
 
+#define PLAYBACK_STOPPED_NOTIFICATION @"com.yapsnap.PlaybackStoppedNotification"
+
 @interface MusicPlaybackVC : UIViewController<STKAudioPlayerDelegate>
 @property (nonatomic, strong) YSYap *yap;
 

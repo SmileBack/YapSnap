@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -91,7 +91,6 @@
                                 </state>
                                 <connections>
                                     <action selector="didTapYapsPageButton" destination="2" eventType="touchUpInside" id="92d-sT-MaR"/>
-                                    <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="q5t-rN-FjJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZo-Gn-Og4">
@@ -242,6 +241,7 @@
                         <outlet property="spotifyModeButton" destination="dje-2i-9YC" id="xRf-Q6-xxF"/>
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="ContactsViewControllerSegue" id="soO-0w-sBp"/>
+                        <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="AEp-MY-7pq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -663,6 +663,22 @@
             </objects>
             <point key="canvasLocation" x="1043" y="-1203.5"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KT1-ht-sCy">
+            <objects>
+                <navigationController id="Hzd-Gm-pXo" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="54l-yL-sJW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="lKy-WC-TGO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zN8-Jg-hI8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="398" y="-972"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="IbL-yk-9T1">
             <objects>
@@ -700,6 +716,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="D0i-XZ-oKa"/>
-        <segue reference="q5t-rN-FjJ"/>
+        <segue reference="AEp-MY-7pq"/>
     </inferredMetricsTieBreakers>
 </document>
