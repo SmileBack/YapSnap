@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSString *alertViewString;
 @property (weak, nonatomic) IBOutlet UIButton *addTextButton;
 @property (strong, nonatomic) IBOutlet UITextField *textForYapBox;
+@property (weak, nonatomic) IBOutlet UIImageView *pictureForYap;
 
 - (IBAction)didTapAddTextButton;
 
@@ -46,6 +47,8 @@
     UITapGestureRecognizer *tappedMusicIconImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMusicIconImage)];
     tappedMusicIconImage.numberOfTapsRequired = 1;
     [self.musicIcon addGestureRecognizer:tappedMusicIconImage];
+    
+    [self.textForYapBox addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged]; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 
 - (void)tappedMusicIconImage {
@@ -316,6 +319,7 @@
     
     self.textForYapBox.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
     self.textForYapBox.text = @""; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
+    self.pictureForYap.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 
 #pragma mark - STKAudioPlayerDelegate
@@ -449,6 +453,37 @@
     
     self.textForYapBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
     self.textForYapBox.delegate = self;
+}
+
+-(void)textFieldDidChange :(UITextField *)theTextField{
+    NSLog( @"text changed: %@", self.textForYapBox.text);
+    if ([self.textForYapBox.text isEqual: @"Flashback"]) {
+        NSLog( @"Hoorayyyy");
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+    }
+}
+
+#pragma mark - Image Picker Controller delegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.pictureForYap.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
 }
 
 @end

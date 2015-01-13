@@ -59,6 +59,9 @@
                                     <action selector="didTapAddTextButton" destination="jNN-gb-fip" eventType="touchUpInside" id="Z0W-ey-Upo"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i48-XP-77e">
+                                <rect key="frame" x="10" y="0.0" width="300" height="300"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -80,6 +83,7 @@
                         <outlet property="addTextButton" destination="b9Y-0A-yFE" id="Afv-Ic-vOs"/>
                         <outlet property="carousel" destination="ZNs-R1-CJc" id="5vb-SQ-OO6"/>
                         <outlet property="musicIcon" destination="RkK-X4-YKu" id="U4g-Tf-cMk"/>
+                        <outlet property="pictureForYap" destination="i48-XP-77e" id="0FC-O6-opD"/>
                         <outlet property="searchBox" destination="6hl-m2-tvk" id="lF2-ss-GVa"/>
                         <outlet property="textForYapBox" destination="rYD-gX-Wa3" id="bMQ-CP-gLi"/>
                     </connections>
