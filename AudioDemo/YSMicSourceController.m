@@ -34,6 +34,8 @@
     UITapGestureRecognizer *tappedView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedView)];
     tappedView.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tappedView];
+    
+    [self.textForYapBox addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged]; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 //REMOVE
 - (void)tappedView {
@@ -178,6 +180,13 @@
     }
     
     return YES;
+}
+
+-(void)textFieldDidChange :(UITextField *)theTextField{
+    NSLog( @"text changed: %@", self.textForYapBox.text);
+    if ([self.textForYapBox.text isEqual: @"Flashback"]) {
+        NSLog( @"Hoorayyyy");
+    }
 }
 
 
