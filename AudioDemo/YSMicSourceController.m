@@ -11,10 +11,10 @@
 
 @interface YSMicSourceController ()
 @property (weak, nonatomic) IBOutlet UIImageView *microphone;
-@property (weak, nonatomic) IBOutlet UIButton *pencil;
-
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) AVAudioPlayer *player;
+@property (weak, nonatomic) IBOutlet UIButton *pencil;
+
 @end
 
 @implementation YSMicSourceController

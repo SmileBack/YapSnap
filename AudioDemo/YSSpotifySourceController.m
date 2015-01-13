@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *musicIcon;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic, strong) NSString *alertViewString;
+@property (weak, nonatomic) IBOutlet UIButton *pencil;
 
 @end
 
@@ -282,6 +283,7 @@
     self.carousel.hidden = YES;
     self.searchBox.hidden = YES;
     self.musicIcon.hidden = YES;
+    self.pencil.hidden = NO;
 }
 
 - (void) resetUI
@@ -290,6 +292,7 @@
     [self.carousel setUserInteractionEnabled:YES];
     self.searchBox.enabled = YES;
     self.searchBox.hidden = NO;
+    self.pencil.hidden = YES;
 }
 
 #pragma mark - STKAudioPlayerDelegate
