@@ -281,7 +281,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		37695E7D19BBEE8500C22E13 /* Contacts Page */ = {
+		37695E7D19BBEE8500C22E13 /* Select Contacts Page */ = {
 			isa = PBXGroup;
 			children = (
 				3793FDF519BCF0DC00FBBBCE /* ContactSelectionCell.h */,
@@ -294,7 +294,7 @@
 				3793FDFA19BCF11E00FBBBCE /* UIViewController+Communication.h */,
 				3793FDFB19BCF11E00FBBBCE /* UIViewController+Communication.m */,
 			);
-			name = "Contacts Page";
+			name = "Select Contacts Page";
 			sourceTree = "<group>";
 		};
 		37BF0DE019E8FD1F0077B74F /* Yaps Page */ = {
@@ -354,6 +354,26 @@
 			name = "Enter Name Page";
 			sourceTree = "<group>";
 		};
+		784E35E91A659B8C0029AA01 /* Registration Screens */ = {
+			isa = PBXGroup;
+			children = (
+				37D413C719D22B3B00021548 /* Enter Name Page */,
+				374383E119CE2B810009C323 /* Enter Phone Number Page */,
+				374383E219CE2D6B0009C323 /* Enter Code Page */,
+			);
+			name = "Registration Screens";
+			sourceTree = "<group>";
+		};
+		784E35EA1A659BD00029AA01 /* Audio Capture */ = {
+			isa = PBXGroup;
+			children = (
+				F44B0C5D16DA404700E6CD88 /* AudioCaptureViewController.h */,
+				F44B0C5E16DA404700E6CD88 /* AudioCaptureViewController.m */,
+				FC0C1D431A45F3DC00B148AB /* Audio Source */,
+			);
+			name = "Audio Capture";
+			sourceTree = "<group>";
+		};
 		D7F0B05C2CE000894BFB84FE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,12 +429,6 @@
 				FC0C1D3F1A45EE5E00B148AB /* Controllers */,
 				FCA2CE9E1A3CCC9B0055C76A /* Views */,
 				FC609BC01A3CC22F00182F08 /* Model */,
-				374383E619CE32250009C323 /* Landing Page */,
-				37D413C719D22B3B00021548 /* Enter Name Page */,
-				374383E119CE2B810009C323 /* Enter Phone Number Page */,
-				374383E219CE2D6B0009C323 /* Enter Code Page */,
-				37BF0DE019E8FD1F0077B74F /* Yaps Page */,
-				37695E7D19BBEE8500C22E13 /* Contacts Page */,
 				F44B0C5116DA404700E6CD88 /* AppDelegate.h */,
 				F44B0C5216DA404700E6CD88 /* AppDelegate.m */,
 				378191D319E59B4A006EF98F /* API.m */,
@@ -446,11 +460,13 @@
 		FC0C1D3F1A45EE5E00B148AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F44B0C5D16DA404700E6CD88 /* AudioCaptureViewController.h */,
-				F44B0C5E16DA404700E6CD88 /* AudioCaptureViewController.m */,
-				FC0C1D431A45F3DC00B148AB /* Audio Source */,
+				374383E619CE32250009C323 /* Landing Page */,
+				784E35E91A659B8C0029AA01 /* Registration Screens */,
+				784E35EA1A659BD00029AA01 /* Audio Capture */,
+				37695E7D19BBEE8500C22E13 /* Select Contacts Page */,
 				FC1E89BC1A4B9518007A8CDA /* MusicPlaybackVC.h */,
 				FC1E89BD1A4B9518007A8CDA /* MusicPlaybackVC.m */,
+				37BF0DE019E8FD1F0077B74F /* Yaps Page */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
