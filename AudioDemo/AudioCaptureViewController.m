@@ -49,6 +49,7 @@ static const float TIMER_INTERVAL = .01;
     
     self.arrowButton.hidden = YES;
     self.cancelButton.hidden = YES;
+    self.colorPickerSpectrum.hidden = YES;
     
     self.progressView.progress = 0;
     [self.progressView setTrackImage:[UIImage imageNamed:@"ProgressViewBackgroundWhite.png"]];
@@ -170,6 +171,7 @@ static const float TIMER_INTERVAL = .01;
     self.yapsPageButton.hidden = YES;
     self.arrowButton.hidden = NO;
     self.cancelButton.hidden = NO;
+    self.colorPickerSpectrum.hidden = NO;
     self.spotifyModeButton.hidden = YES;
     self.micModeButton.hidden = YES;
 }
@@ -221,6 +223,7 @@ static const float TIMER_INTERVAL = .01;
 - (IBAction)cancelTapped:(id)sender {
     self.arrowButton.hidden = YES;
     self.cancelButton.hidden = YES;
+    self.colorPickerSpectrum.hidden = YES;
     self.recordButton.hidden = NO;
     self.yapsPageButton.hidden = NO;
     self.yapsPageButton.userInteractionEnabled = YES;

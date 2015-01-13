@@ -11,6 +11,7 @@
 
 @interface YSMicSourceController ()
 @property (weak, nonatomic) IBOutlet UIImageView *microphone;
+@property (weak, nonatomic) IBOutlet UIButton *pencil;
 
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) AVAudioPlayer *player;
@@ -83,14 +84,13 @@
 - (void) setupSendYapInterface
 {
     self.microphone.hidden = YES;
+    self.pencil.hidden = NO;
 }
 
 
 #pragma mark - Public API Methods
 - (BOOL) startAudioCapture
 {
-    self.microphone.hidden = NO;
-
     // Stop the audio player before recording
     if (self.player.playing) {
         [self.player stop];
@@ -124,6 +124,7 @@
 - (void) resetUI
 {
     self.microphone.hidden = NO;
+    self.pencil.hidden = YES;
 }
 
 - (void) startPlayback

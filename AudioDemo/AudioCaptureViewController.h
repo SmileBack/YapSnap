@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *arrowButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;
+@property (weak, nonatomic) IBOutlet UIImageView *colorPickerSpectrum;
 @property (weak, nonatomic) IBOutlet JEProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIView *explanation;
 

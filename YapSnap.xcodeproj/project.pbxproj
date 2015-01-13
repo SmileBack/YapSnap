@@ -18,11 +18,6 @@
 		3753AF8F19E9C65300B6391D /* RedArrowBackward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF8E19E9C65300B6391D /* RedArrowBackward@2x.png */; };
 		3753AF9119E9C94800B6391D /* BlueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF9019E9C94800B6391D /* BlueArrow@2x.png */; };
 		3753AF9319E9CAEC00B6391D /* Replay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF9219E9CAEC00B6391D /* Replay@2x.png */; };
-		37695E5F19BB7A2500C22E13 /* RecordButtonBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */; };
-		37695E6119BB86A700C22E13 /* RecordButtonRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E6019BB86A700C22E13 /* RecordButtonRed.png */; };
-		37695E6319BB97EA00C22E13 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E6219BB97EA00C22E13 /* Arrow.png */; };
-		37695E6519BB98DD00C22E13 /* CancelImage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E6419BB98DD00C22E13 /* CancelImage2.png */; };
-		37695E6B19BBC06300C22E13 /* CancelImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 37695E6A19BBC06300C22E13 /* CancelImage.png */; };
 		37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37695E6D19BBC78F00C22E13 /* JEProgressView.m */; };
 		378191D419E59B4A006EF98F /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 378191D319E59B4A006EF98F /* API.m */; };
 		378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 378FD61119BDF45C007F3224 /* CheckWhite.png */; };
@@ -34,9 +29,7 @@
 		3799501819E9C8070086711F /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799501719E9C8070086711F /* Global.m */; };
 		37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF0DD919E8F9D60077B74F /* Microphone_White.png */; };
 		37BF0DDF19E8FCF70077B74F /* YapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF0DDE19E8FCF70077B74F /* YapsViewController.m */; };
-		37BF0DEB19E912D00077B74F /* airplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF0DEA19E912D00077B74F /* airplane@2x.png */; };
 		37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF0DEC19E9164C0077B74F /* RedCircleIcon@2x.png */; };
-		37BF0DEF19E917F80077B74F /* MicrophoneSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF0DEE19E917F80077B74F /* MicrophoneSmall@2x.png */; };
 		37C3746B19BC4A8E001A1D02 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3746A19BC4A8E001A1D02 /* MBProgressHUD.m */; };
 		37D20C2C19E4A19D008530BF /* RecordButtonRedWhiteBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D20C2B19E4A19D008530BF /* RecordButtonRedWhiteBorder.png */; };
 		37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D20C2D19E4A2B3008530BF /* CancelImageWhite.png */; };
@@ -55,8 +48,8 @@
 		784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67F01A626F7B0084894D /* ProgressViewNotches5.png */; };
 		784E35E61A6339EE0029AA01 /* SpotifyModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */; };
 		784E35E81A633B3B0029AA01 /* RecordModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35E71A633B3B0029AA01 /* RecordModeButton.png */; };
-		78650BBD1A6075B800C21233 /* YapSnap Mic Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 78650BBB1A6075B800C21233 /* YapSnap Mic Button.png */; };
-		78650BBE1A6075B800C21233 /* YapSnap Spotify Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 78650BBC1A6075B800C21233 /* YapSnap Spotify Button.png */; };
+		784E35EE1A659DB40029AA01 /* ColorPickerSpectrum.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35ED1A659DB40029AA01 /* ColorPickerSpectrum.png */; };
+		784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35EF1A65A0ED0029AA01 /* PencilIcon.png */; };
 		787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */; };
 		787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */; };
 		787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A6D941A4DD8A2001551C6 /* Crashlytics.framework */; };
@@ -99,11 +92,6 @@
 		3753AF8E19E9C65300B6391D /* RedArrowBackward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RedArrowBackward@2x.png"; sourceTree = "<group>"; };
 		3753AF9019E9C94800B6391D /* BlueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueArrow@2x.png"; sourceTree = "<group>"; };
 		3753AF9219E9CAEC00B6391D /* Replay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Replay@2x.png"; sourceTree = "<group>"; };
-		37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlue.png; sourceTree = "<group>"; };
-		37695E6019BB86A700C22E13 /* RecordButtonRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonRed.png; sourceTree = "<group>"; };
-		37695E6219BB97EA00C22E13 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow.png; sourceTree = "<group>"; };
-		37695E6419BB98DD00C22E13 /* CancelImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImage2.png; sourceTree = "<group>"; };
-		37695E6A19BBC06300C22E13 /* CancelImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImage.png; sourceTree = "<group>"; };
 		37695E6C19BBC78F00C22E13 /* JEProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JEProgressView.h; sourceTree = "<group>"; };
 		37695E6D19BBC78F00C22E13 /* JEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JEProgressView.m; sourceTree = "<group>"; };
 		378191D219E59B4A006EF98F /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
@@ -123,9 +111,7 @@
 		37BF0DD919E8F9D60077B74F /* Microphone_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_White.png; sourceTree = "<group>"; };
 		37BF0DDD19E8FCF70077B74F /* YapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YapsViewController.h; sourceTree = "<group>"; };
 		37BF0DDE19E8FCF70077B74F /* YapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YapsViewController.m; sourceTree = "<group>"; };
-		37BF0DEA19E912D00077B74F /* airplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "airplane@2x.png"; sourceTree = "<group>"; };
 		37BF0DEC19E9164C0077B74F /* RedCircleIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RedCircleIcon@2x.png"; sourceTree = "<group>"; };
-		37BF0DEE19E917F80077B74F /* MicrophoneSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MicrophoneSmall@2x.png"; sourceTree = "<group>"; };
 		37C3746919BC4A8E001A1D02 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		37C3746A19BC4A8E001A1D02 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		37D20C2B19E4A19D008530BF /* RecordButtonRedWhiteBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonRedWhiteBorder.png; sourceTree = "<group>"; };
@@ -153,8 +139,8 @@
 		784C67F01A626F7B0084894D /* ProgressViewNotches5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewNotches5.png; sourceTree = "<group>"; };
 		784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyModeButton.png; sourceTree = "<group>"; };
 		784E35E71A633B3B0029AA01 /* RecordModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordModeButton.png; sourceTree = "<group>"; };
-		78650BBB1A6075B800C21233 /* YapSnap Mic Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YapSnap Mic Button.png"; sourceTree = "<group>"; };
-		78650BBC1A6075B800C21233 /* YapSnap Spotify Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YapSnap Spotify Button.png"; sourceTree = "<group>"; };
+		784E35ED1A659DB40029AA01 /* ColorPickerSpectrum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorPickerSpectrum.png; sourceTree = "<group>"; };
+		784E35EF1A65A0ED0029AA01 /* PencilIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PencilIcon.png; sourceTree = "<group>"; };
 		787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconLarge@2x.png"; sourceTree = "<group>"; };
 		787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconSmall@2x.png"; sourceTree = "<group>"; };
 		787A6D941A4DD8A2001551C6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -251,32 +237,25 @@
 				784C67E01A6253CE0084894D /* MusicIcon@2x.png */,
 				787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */,
 				787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */,
-				78650BBB1A6075B800C21233 /* YapSnap Mic Button.png */,
-				78650BBC1A6075B800C21233 /* YapSnap Spotify Button.png */,
 				3753AF8C19E9C55400B6391D /* RedArrow@2x.png */,
 				3753AF9019E9C94800B6391D /* BlueArrow@2x.png */,
 				3753AF8E19E9C65300B6391D /* RedArrowBackward@2x.png */,
 				3753AF9219E9CAEC00B6391D /* Replay@2x.png */,
 				37D413C119D21FC300021548 /* RedCircleSmall.png */,
-				37BF0DEE19E917F80077B74F /* MicrophoneSmall@2x.png */,
-				37BF0DEA19E912D00077B74F /* airplane@2x.png */,
 				37D413CB19D230D000021548 /* ArrowWhite.png */,
 				378FD61119BDF45C007F3224 /* CheckWhite.png */,
-				37695E5E19BB7A2500C22E13 /* RecordButtonBlue.png */,
 				3753AF8819E9A4D000B6391D /* Microphone_White2.png */,
 				784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */,
 				784E35E71A633B3B0029AA01 /* RecordModeButton.png */,
-				37695E6019BB86A700C22E13 /* RecordButtonRed.png */,
 				37D20C2B19E4A19D008530BF /* RecordButtonRedWhiteBorder.png */,
 				37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */,
-				37695E6219BB97EA00C22E13 /* Arrow.png */,
-				37695E6419BB98DD00C22E13 /* CancelImage2.png */,
-				37695E6A19BBC06300C22E13 /* CancelImage.png */,
 				3753AF8A19E9A68200B6391D /* YapsButtonRed.png */,
 				37D20C2D19E4A2B3008530BF /* CancelImageWhite.png */,
 				784C67E21A625D110084894D /* ProgressViewBackgroundRed.png */,
 				784C67E31A625D110084894D /* ProgressViewBackgroundWhite.png */,
 				784C67F01A626F7B0084894D /* ProgressViewNotches5.png */,
+				784E35ED1A659DB40029AA01 /* ColorPickerSpectrum.png */,
+				784E35EF1A65A0ED0029AA01 /* PencilIcon.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -369,6 +348,8 @@
 			children = (
 				F44B0C5D16DA404700E6CD88 /* AudioCaptureViewController.h */,
 				F44B0C5E16DA404700E6CD88 /* AudioCaptureViewController.m */,
+				FC1E89BC1A4B9518007A8CDA /* MusicPlaybackVC.h */,
+				FC1E89BD1A4B9518007A8CDA /* MusicPlaybackVC.m */,
 				FC0C1D431A45F3DC00B148AB /* Audio Source */,
 			);
 			name = "Audio Capture";
@@ -464,8 +445,6 @@
 				784E35E91A659B8C0029AA01 /* Registration Screens */,
 				784E35EA1A659BD00029AA01 /* Audio Capture */,
 				37695E7D19BBEE8500C22E13 /* Select Contacts Page */,
-				FC1E89BC1A4B9518007A8CDA /* MusicPlaybackVC.h */,
-				FC1E89BD1A4B9518007A8CDA /* MusicPlaybackVC.m */,
 				37BF0DE019E8FD1F0077B74F /* Yaps Page */,
 			);
 			name = Controllers;
@@ -577,10 +556,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
-				37695E6519BB98DD00C22E13 /* CancelImage2.png in Resources */,
 				787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */,
 				3753AF8919E9A4D000B6391D /* Microphone_White2.png in Resources */,
-				37BF0DEB19E912D00077B74F /* airplane@2x.png in Resources */,
 				37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */,
 				F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */,
 				784E35E81A633B3B0029AA01 /* RecordModeButton.png in Resources */,
@@ -592,28 +569,23 @@
 				37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */,
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
-				37695E6B19BBC06300C22E13 /* CancelImage.png in Resources */,
 				784C67E51A625D110084894D /* ProgressViewBackgroundWhite.png in Resources */,
 				3753AF8B19E9A68200B6391D /* YapsButtonRed.png in Resources */,
 				784C67E41A625D110084894D /* ProgressViewBackgroundRed.png in Resources */,
 				784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */,
 				787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */,
 				F44B0C5C16DA404700E6CD88 /* MainStoryboard.storyboard in Resources */,
-				37695E6119BB86A700C22E13 /* RecordButtonRed.png in Resources */,
-				78650BBD1A6075B800C21233 /* YapSnap Mic Button.png in Resources */,
-				37695E5F19BB7A2500C22E13 /* RecordButtonBlue.png in Resources */,
 				37D413CC19D230D000021548 /* ArrowWhite.png in Resources */,
 				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
-				78650BBE1A6075B800C21233 /* YapSnap Spotify Button.png in Resources */,
 				37D413C619D2235C00021548 /* Images.xcassets in Resources */,
 				37D20C2C19E4A19D008530BF /* RecordButtonRedWhiteBorder.png in Resources */,
 				37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */,
 				37D413C219D21FC300021548 /* RedCircleSmall.png in Resources */,
-				37695E6319BB97EA00C22E13 /* Arrow.png in Resources */,
+				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum.png in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
-				37BF0DEF19E917F80077B74F /* MicrophoneSmall@2x.png in Resources */,
 				3753AF8F19E9C65300B6391D /* RedArrowBackward@2x.png in Resources */,
+				784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */,
 				3753AF8D19E9C55400B6391D /* RedArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
