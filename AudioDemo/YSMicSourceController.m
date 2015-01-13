@@ -130,6 +130,7 @@
     self.addTextButton.hidden = YES;
     
     self.textForYapBox.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
+    self.textForYapBox.text = @""; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 
 - (void) startPlayback
