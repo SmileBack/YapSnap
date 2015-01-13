@@ -49,6 +49,11 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rYD-gX-Wa3">
+                                <rect key="frame" x="5" y="0.0" width="310" height="178"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -69,8 +74,9 @@
                     <connections>
                         <outlet property="carousel" destination="ZNs-R1-CJc" id="5vb-SQ-OO6"/>
                         <outlet property="musicIcon" destination="RkK-X4-YKu" id="U4g-Tf-cMk"/>
-                        <outlet property="pencil" destination="b9Y-0A-yFE" id="i1s-Ci-U2m"/>
                         <outlet property="searchBox" destination="6hl-m2-tvk" id="lF2-ss-GVa"/>
+                        <outlet property="textForYapBox" destination="rYD-gX-Wa3" id="bMQ-CP-gLi"/>
+                        <outlet property="textForYapButton" destination="b9Y-0A-yFE" id="9Ck-V9-R59"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eqw-WM-wJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -665,6 +671,11 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jUL-be-hJd">
+                                <rect key="frame" x="5" y="0.0" width="310" height="178"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -677,7 +688,8 @@
                     <size key="freeformSize" width="320" height="320"/>
                     <connections>
                         <outlet property="microphone" destination="v0o-hk-bRQ" id="Z4i-Gp-vEh"/>
-                        <outlet property="pencil" destination="XTK-Mm-uq8" id="2Zi-1k-VrH"/>
+                        <outlet property="textForYapBox" destination="jUL-be-hJd" id="MaP-Do-wxX"/>
+                        <outlet property="textForYapButton" destination="XTK-Mm-uq8" id="ev9-wb-kmM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYb-Fr-0gL" userLabel="First Responder" sceneMemberID="firstResponder"/>

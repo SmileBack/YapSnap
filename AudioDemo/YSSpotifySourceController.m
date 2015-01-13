@@ -23,7 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *musicIcon;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic, strong) NSString *alertViewString;
-@property (weak, nonatomic) IBOutlet UIButton *pencil;
+@property (weak, nonatomic) IBOutlet UIButton *textForYapButton;
+@property (strong, nonatomic) IBOutlet UITextField *textForYapBox;
 
 @end
 
@@ -283,7 +284,7 @@
     self.carousel.hidden = YES;
     self.searchBox.hidden = YES;
     self.musicIcon.hidden = YES;
-    self.pencil.hidden = NO;
+    self.textForYapButton.hidden = NO;
 }
 
 - (void) resetUI
@@ -292,7 +293,7 @@
     [self.carousel setUserInteractionEnabled:YES];
     self.searchBox.enabled = YES;
     self.searchBox.hidden = NO;
-    self.pencil.hidden = YES;
+    self.textForYapButton.hidden = YES;
 }
 
 #pragma mark - STKAudioPlayerDelegate
@@ -416,6 +417,39 @@
             [self.searchBox becomeFirstResponder];
         });
     }
+}
+
+#pragma mark - AddTextButton
+- (void) didTapAddTextButton {
+    [self setupTextForYapBox];
+    [self.textForYapBox becomeFirstResponder];
+}
+
+#pragma mark - Search box stuff
+- (void) setupTextForYapBox
+{
+    self.textForYapBox.hidden = NO;
+    [self.textForYapBox becomeFirstResponder];
+    
+    self.textForYapBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.textForYapBox.delegate = self;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view endEditing:YES];
+    
+    if ([[self.textForYapBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        self.textForYapBox.hidden = YES;
+        self.textForYapButton.hidden = NO;
+    } else {
+        //Remove extra space at end of string
+        self.textForYapBox.text = [self.textForYapBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        self.textForYapButton.hidden = YES;
+    }
+    
+    return YES;
 }
 
 @end
