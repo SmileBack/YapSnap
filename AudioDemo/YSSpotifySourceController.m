@@ -313,6 +313,8 @@
     self.searchBox.enabled = YES;
     self.searchBox.hidden = NO;
     self.addTextButton.hidden = YES;
+    
+    self.textForYapBox.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 
 #pragma mark - STKAudioPlayerDelegate
@@ -438,16 +440,10 @@
     }
 }
 
-#pragma mark - AddTextButton
+#pragma mark - TextForYap Stuff
 - (void) didTapAddTextButton {
-    [self setupTextForYapBox];
-    [self.textForYapBox becomeFirstResponder];
-}
-
-#pragma mark - Search box stuff
-- (void) setupTextForYapBox
-{
     self.textForYapBox.hidden = NO;
+    self.addTextButton.hidden = YES;
     [self.textForYapBox becomeFirstResponder];
     
     self.textForYapBox.autocapitalizationType = UITextAutocapitalizationTypeWords;

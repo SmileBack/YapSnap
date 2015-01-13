@@ -43,20 +43,22 @@
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go"/>
                             </textField>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9Y-0A-yFE">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.14999999999999999" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rYD-gX-Wa3" userLabel="Text For Yap Box">
+                                <rect key="frame" x="5" y="0.0" width="310" height="178"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="125"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9Y-0A-yFE" userLabel="Add Text Button">
                                 <rect key="frame" x="275" y="8" width="30" height="30"/>
                                 <state key="normal" image="PencilIcon.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rYD-gX-Wa3">
-                                <rect key="frame" x="5" y="0.0" width="310" height="178"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="didTapAddTextButton" destination="jNN-gb-fip" eventType="touchUpInside" id="jgs-bN-IJr"/>
+                                    <action selector="didTapAddTextButton" destination="jNN-gb-fip" eventType="touchUpInside" id="Z0W-ey-Upo"/>
                                 </connections>
-                            </textField>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -210,7 +212,7 @@
                                 <rect key="frame" x="0.0" y="66" width="320" height="40"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ColorPickerSpectrum.png" translatesAutoresizingMaskIntoConstraints="NO" id="1kR-Vf-5Uv">
-                                <rect key="frame" x="0.0" y="556" width="320" height="12"/>
+                                <rect key="frame" x="0.0" y="558" width="320" height="10"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -668,20 +670,22 @@
                                     <constraint firstAttribute="width" constant="239" id="X2v-1h-Bpp"/>
                                 </constraints>
                             </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTK-Mm-uq8">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.14999999999999999" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jUL-be-hJd" userLabel="Text For Yap Box">
+                                <rect key="frame" x="5" y="0.0" width="310" height="178"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="125"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTK-Mm-uq8" userLabel="Add Text Button">
                                 <rect key="frame" x="275" y="8" width="30" height="30"/>
                                 <state key="normal" image="PencilIcon.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jUL-be-hJd">
-                                <rect key="frame" x="5" y="0.0" width="310" height="178"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="didTapAddTextButton" destination="M44-X7-xcI" eventType="touchUpInside" id="vYF-9q-7W9"/>
+                                    <action selector="didTapAddTextButton" destination="M44-X7-xcI" eventType="touchUpInside" id="6eW-pI-d5m"/>
                                 </connections>
-                            </textField>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -700,7 +704,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYb-Fr-0gL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1043" y="-1203.5"/>
+            <point key="canvasLocation" x="1043" y="-1204"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KT1-ht-sCy">

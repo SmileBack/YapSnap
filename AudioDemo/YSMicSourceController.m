@@ -128,6 +128,8 @@
 {
     self.microphone.hidden = NO;
     self.addTextButton.hidden = YES;
+    
+    self.textForYapBox.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 
 - (void) startPlayback
@@ -148,6 +150,33 @@
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
     [self.player stop];
     [self.player prepareToPlay];
+}
+
+#pragma mark - TextForYap Stuff
+- (void) didTapAddTextButton {
+    self.textForYapBox.hidden = NO;
+    self.addTextButton.hidden = YES;
+    [self.textForYapBox becomeFirstResponder];
+    
+    self.textForYapBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.textForYapBox.delegate = self;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view endEditing:YES];
+    
+    if ([[self.textForYapBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        self.textForYapBox.hidden = YES;
+        self.addTextButton.hidden = NO;
+    } else {
+        //Remove extra space at end of string
+        self.textForYapBox.text = [self.textForYapBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        self.addTextButton.hidden = YES;
+    }
+    
+    return YES;
 }
 
 
