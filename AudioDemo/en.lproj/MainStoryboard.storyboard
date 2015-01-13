@@ -686,6 +686,9 @@
                                     <action selector="didTapAddTextButton" destination="M44-X7-xcI" eventType="touchUpInside" id="6eW-pI-d5m"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mkB-BC-Rmk">
+                                <rect key="frame" x="10" y="0.0" width="300" height="300"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -699,6 +702,7 @@
                     <connections>
                         <outlet property="addTextButton" destination="XTK-Mm-uq8" id="OIn-X7-GH0"/>
                         <outlet property="microphone" destination="v0o-hk-bRQ" id="Z4i-Gp-vEh"/>
+                        <outlet property="pictureForYap" destination="mkB-BC-Rmk" id="CP7-lt-3Xx"/>
                         <outlet property="textForYapBox" destination="jUL-be-hJd" id="MaP-Do-wxX"/>
                     </connections>
                 </viewController>
