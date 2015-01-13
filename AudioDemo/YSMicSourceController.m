@@ -26,6 +26,14 @@
     UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMicrophoneImage)];
     tapped.numberOfTapsRequired = 1;
     [self.microphone addGestureRecognizer:tapped];
+    //REMOVE
+    UITapGestureRecognizer *tappedView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedView)];
+    tappedView.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tappedView];
+}
+//REMOVE
+- (void)tappedView {
+    NSLog(@"Tapped View");
 }
 
 - (void)tappedMicrophoneImage {

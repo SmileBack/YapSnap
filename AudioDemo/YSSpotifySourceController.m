@@ -38,15 +38,21 @@
     } else {
         NSLog(@"Internet is reachable");
     }
-
-    UITapGestureRecognizer *tappedd = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMusicIconImage)];
-    tappedd.numberOfTapsRequired = 1;
-    [self.musicIcon addGestureRecognizer:tappedd];
+    
+    UITapGestureRecognizer *tappedMusicIconImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMusicIconImage)];
+    tappedMusicIconImage.numberOfTapsRequired = 1;
+    [self.musicIcon addGestureRecognizer:tappedMusicIconImage];
 }
 
 - (void)tappedMusicIconImage {
     NSLog(@"Tapped Music Icon Image");
-    [self.searchBox becomeFirstResponder];
+    if (self.searchBox.isFirstResponder) {
+        NSLog(@"Search Box Is First Responder");
+        [self.view endEditing:YES];
+    } else {
+        NSLog(@"Search Box Is Not First Responder");
+        [self.searchBox becomeFirstResponder];
+    }
 }
 
 -(BOOL) internetIsNotReachable
