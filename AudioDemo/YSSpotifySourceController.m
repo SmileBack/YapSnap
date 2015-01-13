@@ -23,8 +23,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *musicIcon;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic, strong) NSString *alertViewString;
-@property (weak, nonatomic) IBOutlet UIButton *textForYapButton;
+@property (weak, nonatomic) IBOutlet UIButton *addTextButton;
 @property (strong, nonatomic) IBOutlet UITextField *textForYapBox;
+
+- (IBAction)didTapAddTextButton;
 
 @end
 
@@ -90,28 +92,45 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if ([self.searchBox.text length] == 0) {
-        NSLog(@"Searched Empty String");
-        [self.view endEditing:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song"
-                                                        message:@"To send a song, type the name of an artist, song, or album above."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        
-        [alert show];
-    } else {
-        [self search:self.searchBox.text];
-        [self.view endEditing:YES];
-        
-        //Remove extra space at end of string
-        self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    // Tag == 1 refers to the textfield where user searches for song
+   if (textField.tag == 1) {
+        if ([self.searchBox.text length] == 0) {
+            NSLog(@"Searched Empty String");
+            [self.view endEditing:YES];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song"
+                                                            message:@"To send a song, type the name of an artist, song, or album above."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            
+            [alert show];
+        } else {
+            [self search:self.searchBox.text];
+            [self.view endEditing:YES];
+            
+            //Remove extra space at end of string
+            self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-        //Background text color
-        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
-        [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.15] range:NSMakeRange(0, textField.text.length)];
-        textField.attributedText = attributedString;
-    }
+            //Background text color
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
+            [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.15] range:NSMakeRange(0, textField.text.length)];
+            textField.attributedText = attributedString;
+        }
+    // Tag == 2 refers to the textfield where user adds text to yap
+   } else if (textField.tag == 2) {
+       [self.view endEditing:YES];
+       
+       if ([[self.textForYapBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+           self.textForYapBox.hidden = YES;
+           self.addTextButton.hidden = NO;
+       } else {
+           //Remove extra space at end of string
+           self.textForYapBox.text = [self.textForYapBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+           
+           self.addTextButton.hidden = YES;
+       }
+   }
     
     return YES;
 }
@@ -284,7 +303,7 @@
     self.carousel.hidden = YES;
     self.searchBox.hidden = YES;
     self.musicIcon.hidden = YES;
-    self.textForYapButton.hidden = NO;
+    self.addTextButton.hidden = NO;
 }
 
 - (void) resetUI
@@ -293,7 +312,7 @@
     [self.carousel setUserInteractionEnabled:YES];
     self.searchBox.enabled = YES;
     self.searchBox.hidden = NO;
-    self.textForYapButton.hidden = YES;
+    self.addTextButton.hidden = YES;
 }
 
 #pragma mark - STKAudioPlayerDelegate
@@ -433,23 +452,6 @@
     
     self.textForYapBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
     self.textForYapBox.delegate = self;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self.view endEditing:YES];
-    
-    if ([[self.textForYapBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
-        self.textForYapBox.hidden = YES;
-        self.textForYapButton.hidden = NO;
-    } else {
-        //Remove extra space at end of string
-        self.textForYapBox.text = [self.textForYapBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        
-        self.textForYapButton.hidden = YES;
-    }
-    
-    return YES;
 }
 
 @end

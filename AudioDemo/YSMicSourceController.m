@@ -13,8 +13,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *microphone;
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) AVAudioPlayer *player;
-@property (weak, nonatomic) IBOutlet UIButton *textForYapButton;
+@property (weak, nonatomic) IBOutlet UIButton *addTextButton;
 @property (strong, nonatomic) IBOutlet UITextField *textForYapBox;
+
+- (IBAction)didTapAddTextButton;
 
 @end
 
@@ -85,7 +87,7 @@
 - (void) setupSendYapInterface
 {
     self.microphone.hidden = YES;
-    self.textForYapButton.hidden = NO;
+    self.addTextButton.hidden = NO;
 }
 
 
@@ -125,7 +127,7 @@
 - (void) resetUI
 {
     self.microphone.hidden = NO;
-    self.textForYapButton.hidden = YES;
+    self.addTextButton.hidden = YES;
 }
 
 - (void) startPlayback
