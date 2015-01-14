@@ -60,18 +60,12 @@
 
 - (IBAction) didTapContinueButton
 {
-    //NSString *path = @"/sessions";
-    //NSMutableDictionary* parameters = [@{@"name": self.textField.text} mutableCopy];
-    
-    //UNIHTTPJsonResponse *result = [API postToPath:path withParameters:parameters];
-    
     if ([self.textField.text length] < 2) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your name"
                                                         message:@"Please enter your name so people can send you messages"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
-        
         [alert show];
     } else {
         //if ([result code] == 201) {
