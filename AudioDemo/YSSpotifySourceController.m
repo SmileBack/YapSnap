@@ -156,6 +156,7 @@
                                                       otherButtonTitles:nil];
                 
                 [alert show];
+                self.musicIcon.hidden = NO;
             } else {
                 NSLog(@"Returned Songs Successfully");
                 self.musicIcon.hidden = YES;
