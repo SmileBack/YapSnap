@@ -48,6 +48,7 @@
     tappedMusicIconImage.numberOfTapsRequired = 1;
     [self.musicIcon addGestureRecognizer:tappedMusicIconImage];
     
+    self.textForYapBox.autocapitalizationType = UITextAutocapitalizationTypeSentences; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
     [self.textForYapBox addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged]; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 
@@ -463,6 +464,7 @@
         
         self.pictureForYap.hidden = NO;
         self.textForYapBox.hidden = YES;
+        self.textForYapBox.text = @""; 
         
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
@@ -487,7 +489,7 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
+    self.addTextButton.hidden = NO;
 }
 
 @end
