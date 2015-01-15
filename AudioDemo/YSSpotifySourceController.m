@@ -320,6 +320,7 @@
     self.textForYapBox.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
     self.textForYapBox.text = @""; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
     self.pictureForYap.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
+    self.pictureForYap.image = nil; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 
 #pragma mark - STKAudioPlayerDelegate
@@ -459,6 +460,9 @@
     NSLog( @"text changed: %@", self.textForYapBox.text);
     if ([self.textForYapBox.text isEqual: @"Flashback"]) {
         NSLog( @"Hoorayyyy");
+        
+        self.pictureForYap.hidden = NO;
+        self.textForYapBox.hidden = YES;
         
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
