@@ -208,6 +208,8 @@ static const float TIMER_INTERVAL = .01;
         });
     } else {
         [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+        self.progressView.progress = 0.0;
+        self.elapsedTime = 0;
     }
 
     [self.audioSource stopAudioCapture:self.elapsedTime];
@@ -216,12 +218,6 @@ static const float TIMER_INTERVAL = .01;
 
 - (IBAction)playTapped:(id)sender {
     [self.audioSource startPlayback]; //Play button isn't in the UI currently
-}
-
-- (IBAction)cancelTapped:(id)sender { // NO LONGER USED
-    self.progressView.progress = 0.0;
-    self.elapsedTime = 0;
-    [self.audioSource resetUI];
 }
 
 - (IBAction) didTapYapsPageButton
