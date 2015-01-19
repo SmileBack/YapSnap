@@ -9,9 +9,11 @@
 #import "AddTextViewController.h"
 #import "ContactsViewController.h"
 #import "YSAudioSourceController.h"
+#import "JEProgressView.h"
 
 @interface AddTextViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet JEProgressView *progressView;
 
 @end
 
@@ -21,6 +23,10 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    
+    self.progressView.progress = .5;
+    [self.progressView setTrackImage:[UIImage imageNamed:@"ProgressViewBackgroundWhite.png"]];
+    [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewBackgroundRed.png"]];
 }
 
 - (void) viewWillAppear:(BOOL)animated
