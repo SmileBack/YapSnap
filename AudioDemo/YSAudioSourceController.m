@@ -18,7 +18,7 @@
     [super viewDidLoad];
 }
 
-- (void) startAudioCapture
+- (BOOL) startAudioCapture
 {
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
