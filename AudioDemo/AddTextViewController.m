@@ -8,6 +8,7 @@
 
 #import "AddTextViewController.h"
 #import "ContactsViewController.h"
+#import "YSAudioSourceController.h"
 
 @interface AddTextViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *textField;
@@ -18,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
 }
 
 - (void) viewWillAppear:(BOOL)animated

@@ -47,11 +47,6 @@ static const float TIMER_INTERVAL = .01;
                                                                             target:nil
                                                                             action:nil];
     
-    
-    self.arrowButton.hidden = YES;
-    self.cancelButton.hidden = YES;
-    self.colorPickerSpectrum.hidden = YES;
-    
     self.progressView.progress = 0;
     [self.progressView setTrackImage:[UIImage imageNamed:@"ProgressViewBackgroundWhite.png"]];
     [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewBackgroundRed.png"]];
@@ -176,13 +171,7 @@ static const float TIMER_INTERVAL = .01;
 
 - (void) setupEndCaptureInterface
 {
-    self.recordButton.hidden = YES;
-    self.yapsPageButton.hidden = YES;
-    self.arrowButton.hidden = NO;
-    self.cancelButton.hidden = NO;
-    self.colorPickerSpectrum.hidden = NO;
-    self.spotifyModeButton.hidden = YES;
-    self.micModeButton.hidden = YES;
+
 }
 
 - (IBAction)recordTapped:(id)sender
@@ -218,8 +207,6 @@ static const float TIMER_INTERVAL = .01;
             self.explanation.hidden = YES;
         });
     } else {
-//        [self setupEndCaptureInterface];
-        
         [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
     }
 
@@ -231,25 +218,10 @@ static const float TIMER_INTERVAL = .01;
     [self.audioSource startPlayback]; //Play button isn't in the UI currently
 }
 
-- (IBAction)cancelTapped:(id)sender {
-    self.arrowButton.hidden = YES;
-    self.cancelButton.hidden = YES;
-    self.colorPickerSpectrum.hidden = YES;
-    self.recordButton.hidden = NO;
-    self.yapsPageButton.hidden = NO;
-    self.yapsPageButton.userInteractionEnabled = YES;
-    self.spotifyModeButton.hidden = NO;
-    self.micModeButton.hidden = NO;
-    self.spotifyModeButton.userInteractionEnabled = YES;
-    self.micModeButton.userInteractionEnabled = YES;
+- (IBAction)cancelTapped:(id)sender { // NO LONGER USED
     self.progressView.progress = 0.0;
     self.elapsedTime = 0;
     [self.audioSource resetUI];
-}
-
-- (IBAction) didTapArrowButton
-{
-    [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:self];
 }
 
 - (IBAction) didTapYapsPageButton

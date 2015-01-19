@@ -14,18 +14,12 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
-@property (weak, nonatomic) IBOutlet UIButton *arrowButton;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;
-@property (weak, nonatomic) IBOutlet UIImageView *colorPickerSpectrum;
 @property (weak, nonatomic) IBOutlet JEProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIView *explanation;
 
 - (IBAction)recordTapped:(id)sender;
 - (IBAction)playTapped:(id)sender;
-
-- (IBAction)cancelTapped:(id)sender;
-- (IBAction)didTapArrowButton;
 
 - (IBAction)didTapYapsPageButton;
 

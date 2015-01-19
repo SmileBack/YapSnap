@@ -23,11 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *musicIcon;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic, strong) NSString *alertViewString;
-@property (weak, nonatomic) IBOutlet UIButton *addTextButton;
-@property (strong, nonatomic) IBOutlet UITextField *textForYapBox;
-@property (weak, nonatomic) IBOutlet UIImageView *pictureForYap;
-
-- (IBAction)didTapAddTextButton;
 
 @end
 
@@ -47,9 +42,6 @@
     UITapGestureRecognizer *tappedMusicIconImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMusicIconImage)];
     tappedMusicIconImage.numberOfTapsRequired = 1;
     [self.musicIcon addGestureRecognizer:tappedMusicIconImage];
-    
-    self.textForYapBox.autocapitalizationType = UITextAutocapitalizationTypeSentences; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
-    [self.textForYapBox addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged]; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 
 - (void)tappedMusicIconImage {
@@ -108,44 +100,28 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    // Tag == 1 refers to the textfield where user searches for song
-   if (textField.tag == 1) {
-        if ([self.searchBox.text length] == 0) {
-            NSLog(@"Searched Empty String");
-            [self.view endEditing:YES];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song"
-                                                            message:@"To send a song, type the name of an artist, song, or album above."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        } else {
-            [self search:self.searchBox.text];
-            [self.view endEditing:YES];
-            
-            //Remove extra space at end of string
-            self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if ([self.searchBox.text length] == 0) {
+        NSLog(@"Searched Empty String");
+        [self.view endEditing:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song"
+                                                        message:@"To send a song, type the name of an artist, song, or album above."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
+    } else {
+        [self search:self.searchBox.text];
+        [self.view endEditing:YES];
+        
+        //Remove extra space at end of string
+        self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-            //Background text color
-            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
-            [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.15] range:NSMakeRange(0, textField.text.length)];
-            textField.attributedText = attributedString;
-        }
-    // Tag == 2 refers to the textfield where user adds text to yap
-   } else if (textField.tag == 2) {
-       [self.view endEditing:YES];
-       
-       if ([[self.textForYapBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
-           self.textForYapBox.hidden = YES;
-           self.addTextButton.hidden = NO;
-       } else {
-           //Remove extra space at end of string
-           self.textForYapBox.text = [self.textForYapBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-           
-           self.addTextButton.hidden = YES;
-       }
-   }
+        //Background text color
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
+        [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.15] range:NSMakeRange(0, textField.text.length)];
+        textField.attributedText = attributedString;
+    }
     
     return YES;
 }
@@ -314,26 +290,16 @@
     }
 }
 
-- (void) setupSendSongInterface
+- (void) stopAudioCapture:(float)elapsedTime
 {
-    self.carousel.hidden = YES;
-    self.searchBox.hidden = YES;
-    self.musicIcon.hidden = YES;
-    self.addTextButton.hidden = NO;
+    [self.player stop];
+    [self enableUserInteraction];
 }
 
-- (void) resetUI
+- (void) enableUserInteraction
 {
-    self.carousel.hidden = NO;
     [self.carousel setUserInteractionEnabled:YES];
     self.searchBox.enabled = YES;
-    self.searchBox.hidden = NO;
-    self.addTextButton.hidden = YES;
-    
-    self.textForYapBox.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
-    self.textForYapBox.text = @""; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
-    self.pictureForYap.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
-    self.pictureForYap.image = nil; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 
 #pragma mark - STKAudioPlayerDelegate
@@ -426,28 +392,6 @@
     }
 }
 
-- (void) stopAudioCapture:(float)elapsedTime
-{
-    [self.player stop];
-    
-    if (elapsedTime > CAPTURE_THRESHOLD) {
-        [self setupSendSongInterface];
-    } else {
-        [self resetUI];
-    }
-
-// SEND YAP TO BACKEND - backend needs to be implemented
-/*
- -    [[API sharedAPI] sendSong:song withCallback:^(BOOL success, NSError *error) {
- -        if (success) {
- -            NSLog(@"IT WORKED!!!!");
- -        } else {
- -            NSLog(@"it didnt work: %@", error);
- -        }
- -    }];
- */
-}
-
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
@@ -457,51 +401,6 @@
             [self.searchBox becomeFirstResponder];
         });
     }
-}
-
-#pragma mark - TextForYap Stuff
-- (void) didTapAddTextButton {
-    self.textForYapBox.hidden = NO;
-    self.addTextButton.hidden = YES;
-    [self.textForYapBox becomeFirstResponder];
-    
-    self.textForYapBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    self.textForYapBox.delegate = self;
-}
-
--(void)textFieldDidChange :(UITextField *)theTextField{
-    NSLog( @"text changed: %@", self.textForYapBox.text);
-    if ([self.textForYapBox.text isEqual: @"Flashback"]) {
-        NSLog( @"Hoorayyyy");
-        
-        self.pictureForYap.hidden = NO;
-        self.textForYapBox.hidden = YES;
-        self.textForYapBox.text = @""; 
-        
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        
-        [self presentViewController:picker animated:YES completion:NULL];
-    }
-}
-
-#pragma mark - Image Picker Controller delegate methods
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.pictureForYap.image = chosenImage;
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    self.addTextButton.hidden = NO;
 }
 
 @end

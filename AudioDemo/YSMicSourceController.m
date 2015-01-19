@@ -98,13 +98,6 @@
     [self.recorder prepareToRecord];
 }
 
-- (void) setupSendYapInterface
-{
-    self.microphone.hidden = YES;
-//    self.addTextButton.hidden = NO;
-}
-
-
 #pragma mark - Public API Methods
 - (BOOL) startAudioCapture
 {
@@ -130,23 +123,6 @@
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:NO error:nil];
-
-    if (elapsedTime > CAPTURE_THRESHOLD) {
-        [self setupSendYapInterface];
-    } else {
-        [self resetUI];
-    }
-}
-
-- (void) resetUI
-{
-    self.microphone.hidden = NO;
-   // self.addTextButton.hidden = YES;
-    
-   // self.textForYapBox.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
-   // self.textForYapBox.text = @""; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
-   // self.pictureForYap.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
-   // self.pictureForYap.image = nil; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 
 - (void) startPlayback
@@ -168,70 +144,5 @@
     [self.player stop];
     [self.player prepareToPlay];
 }
-
-
-/*
-#pragma mark - TextForYap Stuff
-- (void) didTapAddTextButton {
-    self.textForYapBox.hidden = NO;
-    self.addTextButton.hidden = YES;
-    [self.textForYapBox becomeFirstResponder];
-    
-    self.textForYapBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    self.textForYapBox.delegate = self;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self.view endEditing:YES];
-    
-    if ([[self.textForYapBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
-        self.textForYapBox.hidden = YES;
-        self.addTextButton.hidden = NO;
-    } else {
-        //Remove extra space at end of string
-        self.textForYapBox.text = [self.textForYapBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        
-        self.addTextButton.hidden = YES;
-    }
-    
-    return YES;
-}
-
--(void)textFieldDidChange :(UITextField *)theTextField{
-    NSLog( @"text changed: %@", self.textForYapBox.text);
-    if ([self.textForYapBox.text isEqual: @"Flashback"]) {
-        NSLog( @"Hoorayyyy");
-        
-        self.pictureForYap.hidden = NO;
-        self.textForYapBox.hidden = YES;
-        self.textForYapBox.text = @"";
-        
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        
-        [self presentViewController:picker animated:YES completion:NULL];
-    }
-}
-
-#pragma mark - Image Picker Controller delegate methods
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.pictureForYap.image = chosenImage;
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    self.addTextButton.hidden = NO;
-}
-*/
 
 @end
