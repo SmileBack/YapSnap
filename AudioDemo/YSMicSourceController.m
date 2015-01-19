@@ -13,12 +13,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *microphone;
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) AVAudioPlayer *player;
-@property (weak, nonatomic) IBOutlet UIButton *addTextButton;
-@property (strong, nonatomic) IBOutlet UITextField *textForYapBox;
-@property (weak, nonatomic) IBOutlet UIImageView *pictureForYap;
+//@property (weak, nonatomic) IBOutlet UIButton *addTextButton;
+//@property (strong, nonatomic) IBOutlet UITextField *textForYapBox;
+//@property (weak, nonatomic) IBOutlet UIImageView *pictureForYap;
 
 
-- (IBAction)didTapAddTextButton;
+//- (IBAction)didTapAddTextButton;
 
 @end
 
@@ -37,8 +37,8 @@
     tappedView.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tappedView];
     
-    self.textForYapBox.autocapitalizationType = UITextAutocapitalizationTypeSentences; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
-    [self.textForYapBox addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged]; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
+//    self.textForYapBox.autocapitalizationType = UITextAutocapitalizationTypeSentences; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
+//    [self.textForYapBox addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged]; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 //REMOVE
 - (void)tappedView {
@@ -59,6 +59,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (YapBuilder *) getYapBuilder
+{
+    YapBuilder *builder = [YapBuilder new];
+    
+    builder.messageType = MESSAGE_TYPE_VOICE;
+    
+    return builder;
 }
 
 #pragma mark - Recorder Stuff
@@ -92,7 +101,7 @@
 - (void) setupSendYapInterface
 {
     self.microphone.hidden = YES;
-    self.addTextButton.hidden = NO;
+//    self.addTextButton.hidden = NO;
 }
 
 
@@ -132,12 +141,12 @@
 - (void) resetUI
 {
     self.microphone.hidden = NO;
-    self.addTextButton.hidden = YES;
+   // self.addTextButton.hidden = YES;
     
-    self.textForYapBox.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
-    self.textForYapBox.text = @""; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
-    self.pictureForYap.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
-    self.pictureForYap.image = nil; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
+   // self.textForYapBox.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
+   // self.textForYapBox.text = @""; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
+   // self.pictureForYap.hidden = YES; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
+   // self.pictureForYap.image = nil; // TODO: REMOVE AFTER RE-WRITING SEND YAP PAGE
 }
 
 - (void) startPlayback
@@ -160,6 +169,8 @@
     [self.player prepareToPlay];
 }
 
+
+/*
 #pragma mark - TextForYap Stuff
 - (void) didTapAddTextButton {
     self.textForYapBox.hidden = NO;
@@ -221,6 +232,6 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
     self.addTextButton.hidden = NO;
 }
-
+*/
 
 @end

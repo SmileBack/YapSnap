@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -145,7 +145,7 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9f-Ex-CHR">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold Down To Record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83A-pl-xW7">
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold Down To Record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83A-pl-xW7">
                                         <rect key="frame" x="0.0" y="31" width="320" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
@@ -215,9 +215,6 @@
                             <imageView alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ProgressViewNotches5.png" translatesAutoresizingMaskIntoConstraints="NO" id="4kI-Nm-pE3">
                                 <rect key="frame" x="0.0" y="66" width="320" height="40"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ColorPickerSpectrum.png" translatesAutoresizingMaskIntoConstraints="NO" id="1kR-Vf-5Uv">
-                                <rect key="frame" x="0.0" y="558" width="320" height="10"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -260,7 +257,6 @@
                         <outlet property="arrowButton" destination="IZo-Gn-Og4" id="oem-dU-n9b"/>
                         <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="dxv-8x-Abq"/>
                         <outlet property="cancelButton" destination="NH3-XX-GgC" id="81f-4H-Sga"/>
-                        <outlet property="colorPickerSpectrum" destination="1kR-Vf-5Uv" id="8Tj-Fb-p63"/>
                         <outlet property="explanation" destination="g9f-Ex-CHR" id="kUM-mN-i57"/>
                         <outlet property="micModeButton" destination="dI5-ha-IW9" id="X8L-1K-fmn"/>
                         <outlet property="playButton" destination="noi-Et-bvO" id="LoS-fw-ZU6"/>
@@ -269,13 +265,13 @@
                         <outlet property="recordButtonSpinner" destination="3h8-nb-0t3" id="riE-Pe-mAJ"/>
                         <outlet property="spotifyModeButton" destination="dje-2i-9YC" id="xRf-Q6-xxF"/>
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
-                        <segue destination="iTO-dn-ews" kind="push" identifier="ContactsViewControllerSegue" id="soO-0w-sBp"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="AEp-MY-7pq"/>
+                        <segue destination="j1Z-Ou-SMe" kind="custom" identifier="Prepare Yap For Text Segue" customClass="NoAnimationPushSegue" id="nBD-Sc-cVG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1060" y="-291"/>
+            <point key="canvasLocation" x="1043" y="-283"/>
         </scene>
         <!--Contacts View Controller-->
         <scene sceneID="233-fw-KYK">
@@ -356,7 +352,68 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1664" y="204"/>
+            <point key="canvasLocation" x="2184" y="69"/>
+        </scene>
+        <!--Add Text View Controller-->
+        <scene sceneID="xd9-E1-nLy">
+            <objects>
+                <viewController id="j1Z-Ou-SMe" customClass="AddTextViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lCE-Z1-y9T"/>
+                        <viewControllerLayoutGuide type="bottom" id="T1S-dg-Qvf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="54R-6y-Wab">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ProgressViewNotches5.png" translatesAutoresizingMaskIntoConstraints="NO" id="8fd-95-ofI">
+                                <rect key="frame" x="0.0" y="58" width="320" height="40"/>
+                            </imageView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="38e-bV-c4v" customClass="JEProgressView">
+                                <rect key="frame" x="0.0" y="77" width="320" height="2"/>
+                            </progressView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YapSnap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-0v-8cp">
+                                <rect key="frame" x="20" y="35" width="280" height="21"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VnF-Dl-MOn">
+                                <rect key="frame" x="66" y="121" width="164" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9XV-zO-GXP">
+                                <rect key="frame" x="210" y="149" width="110" height="30"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapNextButton:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="BbC-wH-EEb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyU-Er-gqZ">
+                                <rect key="frame" x="39" y="149" width="35" height="30"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapBackButton:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="wda-sG-KAZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="M5r-U7-dCX"/>
+                    <connections>
+                        <outlet property="textField" destination="VnF-Dl-MOn" id="Onq-gY-Lry"/>
+                        <segue destination="iTO-dn-ews" kind="push" identifier="Contacts Segue" id="0bM-75-hD3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3i7-3r-yTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1590" y="-146"/>
         </scene>
         <!--Yaps View Controller-->
         <scene sceneID="XHH-iK-vw0">
@@ -395,7 +452,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-WI-Tyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1814" y="-757"/>
+            <point key="canvasLocation" x="2274" y="-939"/>
         </scene>
         <!--Music PlaybackVC-->
         <scene sceneID="Z9q-A6-PA1">
@@ -422,7 +479,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XYH-W9-ahW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2342" y="-633"/>
+            <point key="canvasLocation" x="2772" y="-683"/>
         </scene>
         <!--Landing Page View Controller-->
         <scene sceneID="2Ef-Fx-7Lp">
@@ -668,25 +725,6 @@
                                     <constraint firstAttribute="width" constant="239" id="X2v-1h-Bpp"/>
                                 </constraints>
                             </imageView>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.14999999999999999" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jUL-be-hJd" userLabel="Text For Yap Box">
-                                <rect key="frame" x="5" y="0.0" width="310" height="178"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="125"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTK-Mm-uq8" userLabel="Add Text Button">
-                                <rect key="frame" x="275" y="8" width="30" height="30"/>
-                                <state key="normal" image="PencilIcon.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapAddTextButton" destination="M44-X7-xcI" eventType="touchUpInside" id="6eW-pI-d5m"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mkB-BC-Rmk">
-                                <rect key="frame" x="10" y="0.0" width="300" height="300"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -698,10 +736,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="320"/>
                     <connections>
-                        <outlet property="addTextButton" destination="XTK-Mm-uq8" id="OIn-X7-GH0"/>
                         <outlet property="microphone" destination="v0o-hk-bRQ" id="Z4i-Gp-vEh"/>
-                        <outlet property="pictureForYap" destination="mkB-BC-Rmk" id="CP7-lt-3Xx"/>
-                        <outlet property="textForYapBox" destination="jUL-be-hJd" id="MaP-Do-wxX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYb-Fr-0gL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -745,7 +780,6 @@
     <resources>
         <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="ColorPickerSpectrum.png" width="640" height="14"/>
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PencilIcon.png" width="75" height="75"/>
@@ -764,6 +798,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="D0i-XZ-oKa"/>
-        <segue reference="AEp-MY-7pq"/>
+        <segue reference="syO-tE-hvG"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YapBuilder.h"
 
 #define AUDIO_CAPTURE_DID_START_NOTIFICATION @"com.yapsnap.AudioCaptureDidStartNotification"
 #define AUDIO_CAPTURE_DID_END_NOTIFICATION @"com.yapsnap.AudioCaptureDidEndNotification"
@@ -27,5 +28,9 @@
 
 - (void) startPlayback;
 - (void) stopPlayback;
+
+// Spotify source will return the YSTrack.
+// Mic source could return the audio file. for now will return nothing.
+- (YapBuilder *) getYapBuilder;
 
 @end

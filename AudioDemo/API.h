@@ -10,21 +10,18 @@
 #import <AFNetworking/AFNetworking.h>
 #import "YSTrack.h"
 #import "YSYap.h"
+#import "YapBuilder.h"
 
 typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 typedef void (^YapsCallback)(NSArray *yaps, NSError *error);
-
 
 @interface API : NSObject
 
 + (API *) sharedAPI;
 
-- (void) sendVoiceRecordingToContacts:(NSArray *)contacts withCallback:(SuccessOrErrorCallback)callback;
+- (void) sendYap:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback;
 - (void) postSessions:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(SuccessOrErrorCallback)callback;
 - (void) getYapsWithCallback:(YapsCallback)callback;
-
-#pragma mark - Music
-- (void) sendSong:(YSTrack *) song toContacts:(NSArray *)contacts withCallback:(SuccessOrErrorCallback) callback;
 
 @end

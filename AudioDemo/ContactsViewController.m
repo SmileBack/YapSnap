@@ -10,7 +10,6 @@
 #import "ContactsViewController.h"
 #import "UIViewController+Communication.h"
 #import "MBProgressHUD.h"
-#import "API.h"
 
 
 @interface ContactsViewController ()
@@ -204,19 +203,18 @@ static NSString *CellIdentifier = @"Cell";
     } else {
         __weak ContactsViewController *weakSelf = self;
         
-        // THIS NEEDS TO CALL DIFFERENT API CALLS BASED ON WHETHER IT IS SPOTIFY OR VOICE RECORDING
+        self.yapBuilder.contacts = self.selectedContacts;
         
-        /*
-        [[API sharedAPI] sendVoiceRecordingToContacts:self.selectedContacts withCallback:^(BOOL success, NSError *error) {
-            if (success) {
-                [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
-            } else {
-                // uh oh spaghettios
-                // TODO: tell the user something went wrong
-            }
-        }];
-         */
-        [[API sharedAPI] sendSong:nil toContacts:self.selectedContacts withCallback:nil];
+        [[API sharedAPI] sendYap:self.yapBuilder
+                    withCallback:^(BOOL success, NSError *error) {
+                        if (success) {
+                            [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
+                        } else {
+                            // uh oh spaghettios
+                            // TODO: tell the user something went wrong
+                        }
+                        
+                    }];
     }
 }
 

@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ContactSelectionCell.h"
+#import "API.h"
+#import "YapBuilder.h"
 
 @interface ContactsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+
+@property (nonatomic, strong) YapBuilder *yapBuilder;
 
 - (IBAction)didTapArrowButton;
 

@@ -28,6 +28,11 @@
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
 
+- (YapBuilder *) getYapBuilder
+{
+    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
+}
+
 - (void) resetUI{};
 - (void) startPlayback{}
 - (void) stopPlayback{}

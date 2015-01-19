@@ -63,55 +63,70 @@ static API *sharedAPI;
 
 #pragma mark - Public APIs
 
-- (void) sendVoiceRecordingToContacts:(NSArray *)contacts withCallback:(SuccessOrErrorCallback)callback
+- (void) sendYap:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback
+{
+    if ([MESSAGE_TYPE_VOICE isEqualToString:yapBuilder.messageType]) {
+        [[API sharedAPI] sendVoiceYap:yapBuilder withCallback:callback];
+    } else {
+        [[API sharedAPI] sendSongYap:yapBuilder withCallback:callback];
+    }
+}
+
+- (void) sendVoiceYap:(YapBuilder *)builder withCallback:(SuccessOrErrorCallback)callback
 {
     NSArray *pathComponents = @[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject], @"MyAudioMemo.m4a"];
     NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
     
-    NSString* recipients = [[contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
+    NSString* recipients = [[builder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
     
     NSDictionary *params = [self paramsWithDict:@{@"session_token": self.sessionToken,
-                                                  @"recording":outputFileURL,
                                                   @"recipients":recipients,
-                                                  @"type": @"VoiceMessage"
+                                                  @"text": builder.text,
+                                                  @"duration": [NSNumber numberWithFloat:builder.duration],
+                                                  @"type": MESSAGE_TYPE_VOICE
                                                   }];
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:[self urlForEndpoint:@"/audio_messages"]
        parameters:params
+constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFileURL:outputFileURL name:@"recording" error:nil];
+}
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSLog(@"yaps call finished: %@", responseObject);\
               callback(YES, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              NSLog(@"Error: %@", error);
               callback(NO, error);
           }];
 }
 
-- (void) sendSong:(YSTrack *)song toContacts:(NSArray *)contacts withCallback:(SuccessOrErrorCallback)callback
+- (void) sendSongYap:(YapBuilder *)builder withCallback:(SuccessOrErrorCallback)callback
 {
     NSString *url = [self urlForEndpoint:@"/audio_messages"]; //TODO USE REAL ENDPOINT
     
-    NSString* recipients = [[contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
+    NSString* recipients = [[builder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
+    
+    YSTrack *song = builder.track;
     
     //TODO USE REAL SESSION TOKEN
     NSDictionary *params = @{@"session_token": self.sessionToken,
-                             @"spotify_song_name": @"Eminem Song Name", //song.name,
-                             @"spotify_song_id": @"1ftvBBcu7jYIvXyt3JWB8S", //song.spotifyID,
-                             @"spotify_image_url": @"https://i.scdn.co/image/1f881110ff752c80069da0308b1de30196d4f8a1", //song.imageURL,
-                             @"spotify_album_name": @"The Eminem Show", //song.albumName,
-                             @"spotify_artist_name": @"Eminem", //song.artistName,
-                             @"spotify_full_song_url": @"https://open.spotify.com/artist/7dGJo4pcD2V6oG8kP0tJRR", //song.spotifyURL,
-                             @"spotify_preview_url": @"https://p.scdn.co/mp3-preview/42fa6e912ef113dcd8d125abf08270fb5fea41af", //song.previewURL,
+                             @"spotify_song_name": song.name,
+                             @"spotify_song_id": song.spotifyID,
+                             @"spotify_image_url": song.imageURL,
+                             @"spotify_album_name": song.albumName,
+                             @"spotify_artist_name": song.artistName,
+                             @"spotify_full_song_url": song.spotifyURL,
+                             @"spotify_preview_url": song.previewURL,
                              @"recipients": recipients,
-                             @"type": @"SpotifyMessage"
+                             @"text": builder.text,
+                             @"duration": [NSNumber numberWithFloat:builder.duration],
+                             @"type": MESSAGE_TYPE_SPOTIFY
                              };
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //        NSLog(@"JSON: %@", responseObject);
-        //        NSDictionary *response = responseObject;
-        
         callback(YES, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         callback(NO, error);

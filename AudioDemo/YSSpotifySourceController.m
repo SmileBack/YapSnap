@@ -81,6 +81,17 @@
     [super didReceiveMemoryWarning];
 }
 
+- (YapBuilder *) getYapBuilder
+{
+    YapBuilder *builder = [YapBuilder new];
+    
+    builder.messageType = MESSAGE_TYPE_SPOTIFY;
+    builder.track = self.songs[self.carousel.currentItemIndex];
+    
+    
+    return builder;
+}
+
 #pragma mark - Search box stuff
 - (void) setupSearchBox
 {

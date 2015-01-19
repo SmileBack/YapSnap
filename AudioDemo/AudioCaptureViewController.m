@@ -7,11 +7,12 @@
 //
 
 #import "AudioCaptureViewController.h"
-#import "ContactsViewController.h"
+#import "AddTextViewController.h"
 #import "YSAudioSourceController.h"
 #import "YSSpotifySourceController.h"
 #import "YSMicSourceController.h"
 #import "API.h"
+#import "YapBuilder.h"
 
 
 @interface AudioCaptureViewController () {
@@ -97,7 +98,7 @@ static const float TIMER_INTERVAL = .01;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+//    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
 }
 
@@ -209,7 +210,9 @@ static const float TIMER_INTERVAL = .01;
             self.explanation.hidden = YES;
         });
     } else {
-        [self setupEndCaptureInterface];
+//        [self setupEndCaptureInterface];
+        
+        [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
     }
 
     [self.audioSource stopAudioCapture:self.elapsedTime];
@@ -238,7 +241,7 @@ static const float TIMER_INTERVAL = .01;
 
 - (IBAction) didTapArrowButton
 {
-    [self performSegueWithIdentifier:@"ContactsViewControllerSegue" sender:self];
+    [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:self];
 }
 
 - (IBAction) didTapYapsPageButton
@@ -259,6 +262,18 @@ static const float TIMER_INTERVAL = .01;
 - (BOOL) isInRecordMode
 {
     return [self.audioSource isKindOfClass:[YSMicSourceController class]];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([@"Prepare Yap For Text Segue" isEqualToString:segue.identifier]) {
+        AddTextViewController *vc = segue.destinationViewController;
+
+        //Create yap object
+        YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
+        yapBuilder.duration = self.elapsedTime;
+        vc.yapBuilder = yapBuilder;
+    }
 }
 
 #pragma mark - Mode Changing

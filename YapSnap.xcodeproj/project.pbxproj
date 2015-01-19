@@ -75,6 +75,9 @@
 		FC342F381A5099D200518765 /* OpenInSpotifyAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC342F371A5099D200518765 /* OpenInSpotifyAlertView.m */; };
 		FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC609BC21A3CC24500182F08 /* SpotifyAPI.m */; };
 		FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */; };
+		FCEF99361A6D6B22000FDE4C /* AddTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */; };
+		FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */; };
+		FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF993C1A6D6F06000FDE4C /* NoAnimationPushSegue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -182,6 +185,12 @@
 		FC609BC21A3CC24500182F08 /* SpotifyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPI.m; sourceTree = "<group>"; };
 		FC80F3CF1A3CC6BD00F7ABD0 /* YSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTrack.h; sourceTree = "<group>"; };
 		FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSTrack.m; sourceTree = "<group>"; };
+		FCEF99341A6D6B22000FDE4C /* AddTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTextViewController.h; sourceTree = "<group>"; };
+		FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTextViewController.m; sourceTree = "<group>"; };
+		FCEF99371A6D6B9A000FDE4C /* YapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YapBuilder.h; sourceTree = "<group>"; };
+		FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YapBuilder.m; sourceTree = "<group>"; };
+		FCEF993B1A6D6F06000FDE4C /* NoAnimationPushSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoAnimationPushSegue.h; sourceTree = "<group>"; };
+		FCEF993C1A6D6F06000FDE4C /* NoAnimationPushSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoAnimationPushSegue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,11 +450,14 @@
 		FC0C1D3F1A45EE5E00B148AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FCEF993A1A6D6EF0000FDE4C /* Segues */,
 				374383E619CE32250009C323 /* Landing Page */,
 				784E35E91A659B8C0029AA01 /* Registration Screens */,
 				784E35EA1A659BD00029AA01 /* Audio Capture */,
 				37695E7D19BBEE8500C22E13 /* Select Contacts Page */,
 				37BF0DE019E8FD1F0077B74F /* Yaps Page */,
+				FCEF99341A6D6B22000FDE4C /* AddTextViewController.h */,
+				FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -483,6 +495,8 @@
 				FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */,
 				FC1E89B91A4B8E94007A8CDA /* YSYap.h */,
 				FC1E89BA1A4B8E94007A8CDA /* YSYap.m */,
+				FCEF99371A6D6B9A000FDE4C /* YapBuilder.h */,
+				FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -494,6 +508,15 @@
 				FC1E89B71A4B852C007A8CDA /* SpotifyTrackView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		FCEF993A1A6D6EF0000FDE4C /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				FCEF993B1A6D6F06000FDE4C /* NoAnimationPushSegue.h */,
+				FCEF993C1A6D6F06000FDE4C /* NoAnimationPushSegue.m */,
+			);
+			name = Segues;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -651,6 +674,7 @@
 				37D413C019D21A1F00021548 /* UIColor+BButton.m in Sources */,
 				FC1E89BE1A4B9518007A8CDA /* MusicPlaybackVC.m in Sources */,
 				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,
+				FCEF99361A6D6B22000FDE4C /* AddTextViewController.m in Sources */,
 				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
@@ -663,11 +687,13 @@
 				FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */,
 				378191D419E59B4A006EF98F /* API.m in Sources */,
 				FC0C1D4C1A45F98500B148AB /* YSMicSourceController.m in Sources */,
+				FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */,
 				37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */,
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
 				37D413BD19D21A1F00021548 /* BButton.m in Sources */,
 				FC342F381A5099D200518765 /* OpenInSpotifyAlertView.m in Sources */,
 				F44B0C5F16DA404700E6CD88 /* AudioCaptureViewController.m in Sources */,
+				FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */,
 				37C3746B19BC4A8E001A1D02 /* MBProgressHUD.m in Sources */,
 				37BF0DDF19E8FCF70077B74F /* YapsViewController.m in Sources */,
 				FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */,
