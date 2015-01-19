@@ -64,7 +64,6 @@
 
 - (IBAction) didTapContinueButton
 {
-    /*
     if ([self.textField.text length] == 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter code"
                                                         message:@"We sent you a code. Please enter it here to continue."
@@ -91,9 +90,8 @@
             [alert show];
         }
     }];
-     */
     
-    [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO - DELETE THIS
+    //[self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO - DELETE THIS
 }
 
 - (void)viewWillAppear:(BOOL)animated {
