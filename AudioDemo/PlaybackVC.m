@@ -7,6 +7,7 @@
 //
 
 #import "PlaybackVC.h"
+#import "API.h"
 
 @interface PlaybackVC ()
 @property (strong, nonatomic) IBOutlet JEProgressView *progressView;
@@ -34,12 +35,15 @@
     [self.player play:self.yap.playbackURL];
     
     self.textLabel.text = @"TEXT HERE";//self.yap.text;  //TODO REPLACE THIS
+    
+    [[API sharedAPI] yapOpened:self.yap withCallback:^(BOOL success, NSError *error) {
+        //TODO do something?
+    }];
 }
 
 - (IBAction)didTapStopButton:(id)sender {
     [self stop];
 }
-
 
 - (void) stop
 {

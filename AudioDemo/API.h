@@ -23,5 +23,6 @@ typedef void (^YapsCallback)(NSArray *yaps, NSError *error);
 - (void) postSessions:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(SuccessOrErrorCallback)callback;
 - (void) getYapsWithCallback:(YapsCallback)callback;
+- (void) yapOpened:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback;
 
 @end

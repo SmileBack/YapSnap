@@ -190,4 +190,18 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
           }];
 }
 
+- (void) yapOpened:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:[self urlForEndpoint:@"/yap_opened"]
+      parameters:[self paramsWithDict:@{@"yap_id": yap.yapID}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             callback(YES, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             callback(NO, error);
+         }];
+}
+
 @end
