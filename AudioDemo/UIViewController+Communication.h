@@ -18,8 +18,4 @@ typedef void (^ContactCompletionBlock)(BOOL completed, NSArray *recipients);
 
 - (void) presentPeoplePickerWithBlock:(ContactCompletionBlock)block;
 
-- (NSArray *) getAllContacts;
-
-- (BOOL) isAuthorizedForContacts;
-
 @end

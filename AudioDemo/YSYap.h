@@ -21,12 +21,17 @@
 // Sender
 @property (strong, nonatomic) NSNumber *senderID;
 @property (strong, nonatomic) NSString *senderName;
+@property (strong, nonatomic) NSString *senderPhone;
 
 // Receiver
 @property (strong, nonatomic) NSNumber *receiverID;
 @property (strong, nonatomic) NSString *receiverName;
+@property (strong, nonatomic) NSString *receiverPhone;
 
 + (YSYap *) yapWithDictionary:(NSDictionary *)dict;
 + (NSArray *) yapsWithArray:(NSArray *)array;
+
+@property (nonatomic, readonly) NSString *displayReceiverName;
+@property (nonatomic, readonly) NSString *displaySenderName;
 
 @end

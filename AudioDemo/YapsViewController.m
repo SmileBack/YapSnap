@@ -90,9 +90,9 @@ static NSString *CellIdentifier = @"Cell";
     YapCell *cell = [tableView dequeueReusableCellWithIdentifier:cellType];
     
     if (didSendYap) {
-        cell.nameLabel.text = @"yap.receiverName";
+        cell.nameLabel.text = yap.displayReceiverName;
     } else {
-        cell.nameLabel.text = @"yap.senderName";
+        cell.nameLabel.text = yap.displaySenderName;
     }
 //    NSDateFormatter
     cell.createdTimeLabel.text = yap.createdAt.description;

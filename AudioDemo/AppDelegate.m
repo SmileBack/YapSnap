@@ -10,6 +10,7 @@
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <Crashlytics/Crashlytics.h>
+#import "ContactManager.h"
 
 @implementation AppDelegate
 
@@ -20,6 +21,8 @@
     [self startMonitoringReachability];
     
     [Crashlytics startWithAPIKey:@"6621dbca453461988440d16db5e4fbe9a79da991"];
+    
+    [ContactManager sharedContactManager];
 
     return YES;
 }

@@ -8,8 +8,8 @@
 
 #import "Global.h"
 #import "ContactsViewController.h"
-#import "UIViewController+Communication.h"
 #import "MBProgressHUD.h"
+#import "ContactManager.h"
 
 
 @interface ContactsViewController ()
@@ -76,12 +76,12 @@ static NSString *CellIdentifier = @"Cell";
 {
     __weak ContactsViewController *weakSelf = self;
     
-    if (self.isAuthorizedForContacts) {
+    if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
         //MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         //hud.labelText = @"Loading contacts...";
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            weakSelf.contacts = [weakSelf getAllContacts];
+            weakSelf.contacts = [[ContactManager sharedContactManager] getAllContacts];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //[hud hide:YES];
                 [weakSelf.tableView reloadData];

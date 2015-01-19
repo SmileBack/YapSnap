@@ -7,6 +7,7 @@
 //
 
 #import "YSYap.h"
+#import "ContactManager.h"
 
 @implementation YSYap
 
@@ -23,9 +24,11 @@
     
     yap.senderID = dict[@"sender_id"];
     yap.senderName = dict[@"sender_name"];
+    yap.senderPhone = dict[@"sender_phone"];
 
     yap.receiverID = dict[@"receiver_id"];
     yap.receiverName = dict[@"receiver_name"];
+    yap.receiverPhone = dict[@"receiver_phone"];
 
     return yap;
 }
@@ -37,6 +40,30 @@
         [yaps addObject:[YSYap yapWithDictionary:dict]];
     }
     return yaps;
+}
+
+- (NSString *) displayReceiverName
+{
+    if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
+        NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.receiverPhone];
+        if (displayName) {
+            return displayName;
+        }
+    }
+    
+    return self.receiverName;
+}
+
+- (NSString *) displaySenderName
+{
+    if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
+        NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.senderPhone];
+        if (displayName) {
+            return displayName;
+        }
+    }
+    
+    return self.senderName;
 }
 
 @end
