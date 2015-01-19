@@ -95,6 +95,14 @@ static const float TIMER_INTERVAL = .01;
     
     //Nav bar should not be transparent after finishing registration process
     self.navigationController.navigationBar.translucent = NO;
+    
+    [[API sharedAPI] unopenedYapsCountWithCallback:^(NSNumber *count, NSError *error) {
+        if (error) {
+            [self.yapsPageButton setTitle:@"E" forState:UIControlStateNormal];
+        } else {
+            [self.yapsPageButton setTitle:count.description forState:UIControlStateNormal];
+        }
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

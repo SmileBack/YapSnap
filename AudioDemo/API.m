@@ -204,4 +204,20 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
          }];
 }
 
+- (void) unopenedYapsCountWithCallback:(YapCountCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:[self urlForEndpoint:@"/unopened_yaps"]
+      parameters:[self paramsWithDict:@{}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             // Expecting: {"count" : 6}
+             NSDictionary *response = responseObject;
+             callback(response[@"count"], nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             callback(NO, error);
+         }];
+}
+
 @end

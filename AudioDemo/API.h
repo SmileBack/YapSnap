@@ -14,6 +14,7 @@
 
 typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 typedef void (^YapsCallback)(NSArray *yaps, NSError *error);
+typedef void (^YapCountCallback)(NSNumber *count, NSError *error);
 
 @interface API : NSObject
 
@@ -24,5 +25,6 @@ typedef void (^YapsCallback)(NSArray *yaps, NSError *error);
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(SuccessOrErrorCallback)callback;
 - (void) getYapsWithCallback:(YapsCallback)callback;
 - (void) yapOpened:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback;
+- (void) unopenedYapsCountWithCallback:(YapCountCallback)callback;
 
 @end
