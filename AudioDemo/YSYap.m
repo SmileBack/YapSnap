@@ -17,7 +17,9 @@
     yap.yapID = dict[@"id"];
     yap.createdAt = dict[@"created_at"];
 
-    yap.playbackURL = @"https://s3.amazonaws.com/yapsnap/uploads/yap/recording/41/yap.m4a"; //@"https://p.scdn.co/mp3-preview/42fa6e912ef113dcd8d125abf08270fb5fea41af"; //TODO TOTAL HACK!!!!!!
+    yap.artist = dict[@"spotify_artist_name"];
+    
+    yap.playbackURL = dict[@"spotify_preview_url"];
     
     yap.senderID = dict[@"sender_id"];
     yap.senderName = dict[@"sender_name"];

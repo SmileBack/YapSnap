@@ -13,7 +13,7 @@
 
 #define PLAYBACK_STOPPED_NOTIFICATION @"com.yapsnap.PlaybackStoppedNotification"
 
-@interface MusicPlaybackVC : UIViewController<STKAudioPlayerDelegate>
+@interface PlaybackVC : UIViewController<STKAudioPlayerDelegate>
 @property (nonatomic, strong) YSYap *yap;
 
 - (void) stop;

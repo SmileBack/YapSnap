@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Appcoda. All rights reserved.
 //
 
-#import "MusicPlaybackVC.h"
+#import "PlaybackVC.h"
 
-@interface MusicPlaybackVC ()
+@interface PlaybackVC ()
 @property (strong, nonatomic) IBOutlet JEProgressView *progressView;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (strong, nonatomic) NSTimer *timer;
@@ -17,7 +17,7 @@
 
 #define TIME_INTERVAL .01f
 
-@implementation MusicPlaybackVC
+@implementation PlaybackVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,13 +27,15 @@
 
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
+    NSLog(@"URL: %@", self.yap.playbackURL);
     [self.player play:self.yap.playbackURL];
 }
 
 - (void) stop
 {
     NSLog(@"Stopping");
-    [self.player pause];
+    [self.timer invalidate];
+    [self.player stop];
     self.player.volume = 0;
 }
 
@@ -42,9 +44,13 @@
 {
     self.elapsedTime += TIME_INTERVAL;
 
-    CGFloat trackLength = 2.5f;//TODO replace with duration from yap object when available
+    CGFloat trackLength = 8.0f;//TODO replace with duration from yap object when available
     CGFloat progress = self.elapsedTime / trackLength;
     [self.progressView setProgress:progress];
+    
+    if (self.elapsedTime >= trackLength) {
+        [self stop];
+    }
 }
 
 #pragma mark - STKAudioPlayerDelegate
@@ -70,7 +76,11 @@
         NSLog(@"Stopped!");
         [self.timer invalidate];
         self.timer = nil;
-        [[NSNotificationCenter defaultCenter] postNotificationName:PLAYBACK_STOPPED_NOTIFICATION object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PLAYBACK_STOPPED_NOTIFICATION object:nil]; //May not be needed
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self dismissViewControllerAnimated:NO completion:nil];
+        });
     }
 }
 

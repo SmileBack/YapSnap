@@ -13,6 +13,9 @@
 @property (strong, nonatomic) NSNumber *yapID;
 @property (strong, nonatomic) NSDate *createdAt;
 
+// Spotify stuff
+@property (strong, nonatomic) NSString *artist;
+
 @property (strong, nonatomic) NSString *playbackURL;
 
 // Sender

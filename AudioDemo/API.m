@@ -181,6 +181,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSArray *yapDicts = responseObject; //Assuming it is an array
+              NSLog(@"yaps: %@", yapDicts);
               NSArray *yaps = [YSYap yapsWithArray:yapDicts];
               callback(yaps, nil);
           }

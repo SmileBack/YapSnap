@@ -10,14 +10,14 @@
 #import "YapsViewController.h"
 #import "MBProgressHUD.h"
 #import "API.h"
-
-#import "MusicPlaybackVC.h"
+#import "YapCell.h"
+#import "PlaybackVC.h"
 
 
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *yaps;
-@property (nonatomic, strong) MusicPlaybackVC *playbackVC;
+@property (nonatomic, strong) PlaybackVC *playbackVC;
 @end
 
 static NSString *CellIdentifier = @"Cell";
@@ -48,14 +48,20 @@ static NSString *CellIdentifier = @"Cell";
         }
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:PLAYBACK_STOPPED_NOTIFICATION
-                                                      object:nil
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *note) {
-                                                      [self.playbackVC.view removeFromSuperview];
-                                                      [self.playbackVC removeFromParentViewController];
-                                                      self.playbackVC = nil;
-                                                  }];
+//    [[NSNotificationCenter defaultCenter] addObserverForName:PLAYBACK_STOPPED_NOTIFICATION
+//                                                      object:nil
+//                                                       queue:nil
+//                                                  usingBlock:^(NSNotification *note) {
+//                                                      [self.playbackVC.view removeFromSuperview];
+//                                                      [self.playbackVC removeFromParentViewController];
+//                                                      self.playbackVC = nil;
+//                                                  }];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 #pragma UITableViewDataSource
@@ -76,27 +82,26 @@ static NSString *CellIdentifier = @"Cell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"SimpleTableCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:simpleTableIdentifier];
-    }
-    
     YSYap* yap = self.yaps[indexPath.row];
+
+    BOOL didSendYap = [yap.senderID isEqual:[Global retrieveValueForKey:@"current_user_id"]];
+    NSString *cellType = didSendYap ? @"Sent Cell" : @"Received Cell";
     
-    if ([yap.senderID isEqual:[Global retrieveValueForKey:@"current_user_id"]]){
-        cell.textLabel.text = [yap.receiverName isKindOfClass:[NSNull class]] ? @"no receiver" : yap.receiverName;
+    YapCell *cell = [tableView dequeueReusableCellWithIdentifier:cellType];
+    
+    if (didSendYap) {
+        cell.nameLabel.text = @"yap.receiverName";
     } else {
-        cell.textLabel.text = [yap.senderName isKindOfClass:[NSNull class]] ? @"no sender" : yap.senderName;
+        cell.nameLabel.text = @"yap.senderName";
     }
+//    NSDateFormatter
+    cell.createdTimeLabel.text = yap.createdAt.description;
     
-    UILongPressGestureRecognizer *longPress = [UILongPressGestureRecognizer new];
-    longPress.minimumPressDuration = 0;
-    longPress.allowableMovement = 50;
-    [longPress addTarget:self action:@selector(isPressingLong:)];
-    [cell.contentView addGestureRecognizer:longPress];
+//    UILongPressGestureRecognizer *longPress = [UILongPressGestureRecognizer new];
+//    longPress.minimumPressDuration = 0;
+//    longPress.allowableMovement = 50;
+//    [longPress addTarget:self action:@selector(isPressingLong:)];
+//    [cell.contentView addGestureRecognizer:longPress];
     
     
 //    if (indexPath.row == 2) {
@@ -123,42 +128,42 @@ static NSString *CellIdentifier = @"Cell";
     return cell;
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSLog(@"didSelectRow");
-    
-//    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:   self action:@selector(doDoubleTap)];
-//    doubleTap.numberOfTapsRequired = 2;
-//    [self.view addGestureRecognizer:doubleTap];
-//}
-
-- (void)doDoubleTap
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Double Tapped Row");
-    [Global storeValue:@"3475238941" forKey:@"reply_recipient"];
-    [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO
+    NSLog(@"didSelectRow");
+    
+    YSYap *yap = self.yaps[indexPath.row];
+    [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
 }
 
-//- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//- (void)doDoubleTap
 //{
-//    UILongPressGestureRecognizer *longPress = sender;
-//    MusicPlaybackVC *vc = segue.destinationViewController;
-//    [vc.view addGestureRecognizer:longPress];
-////    vc.longPress = longPress;
+//    NSLog(@"Double Tapped Row");
+//    [Global storeValue:@"3475238941" forKey:@"reply_recipient"];
+//    [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO
 //}
 
-- (void) isPressingLong:(UILongPressGestureRecognizer *)gest
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if (gest.state == UIGestureRecognizerStateBegan) {
-        self.playbackVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playYapVC"];
-        self.playbackVC.yap = self.yaps[0];//TODO FIX THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        self.playbackVC.view.frame = self.view.frame;
-        [self.navigationController.view addSubview:self.playbackVC.view];
-    } else if (gest.state == UIGestureRecognizerStateEnded) {
-        [self.playbackVC stop];
-        [self.navigationController.view sendSubviewToBack:self.playbackVC.view];
+    if ([@"Playback Segue" isEqualToString:segue.identifier]) {
+        PlaybackVC *vc = segue.destinationViewController;
+        YSYap *yap = sender;
+        vc.yap = yap;
     }
 }
+
+//- (void) isPressingLong:(UILongPressGestureRecognizer *)gest
+//{
+//    if (gest.state == UIGestureRecognizerStateBegan) {
+//        self.playbackVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playYapVC"];
+//        self.playbackVC.yap = self.yaps[0];//TODO FIX THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//        self.playbackVC.view.frame = self.view.frame;
+//        [self.navigationController.view addSubview:self.playbackVC.view];
+//    } else if (gest.state == UIGestureRecognizerStateEnded) {
+//        [self.playbackVC stop];
+//        [self.navigationController.view sendSubviewToBack:self.playbackVC.view];
+//    }
+//}
 
 
 
