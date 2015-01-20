@@ -92,11 +92,12 @@ static NSString *CellIdentifier = @"Cell";
     
     if (didSendYap) {
         cell.nameLabel.text = yap.displayReceiverName;
+        cell.createdTimeLabel.text = [NSString stringWithFormat:@"Sent: %@", yap.createdAt.description];
     } else {
         cell.nameLabel.text = yap.displaySenderName;
+        cell.createdTimeLabel.text = [NSString stringWithFormat:@"Received: %@", yap.createdAt.description];
     }
-//    NSDateFormatter
-    cell.createdTimeLabel.text = yap.createdAt.description;
+
     
 //    UILongPressGestureRecognizer *longPress = [UILongPressGestureRecognizer new];
 //    longPress.minimumPressDuration = 0;
