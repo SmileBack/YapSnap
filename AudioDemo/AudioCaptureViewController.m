@@ -101,7 +101,8 @@ static const float TIMER_INTERVAL = .01;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-//    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    // TODO: Confirm the following change with Jon
+    //[self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillDisappear:animated];
 }
 
@@ -164,14 +165,9 @@ static const float TIMER_INTERVAL = .01;
     
     if (self.elapsedTime >= MAX_CAPTURE_TIME) {
         [timer invalidate];
+        [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
         [self.audioSource stopAudioCapture:self.elapsedTime];
-        [self setupEndCaptureInterface];
     }
-}
-
-- (void) setupEndCaptureInterface
-{
-
 }
 
 - (IBAction)recordTapped:(id)sender
@@ -208,8 +204,6 @@ static const float TIMER_INTERVAL = .01;
         });
     } else {
         [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
-        self.progressView.progress = 0.0;
-        self.elapsedTime = 0;
     }
 
     [self.audioSource stopAudioCapture:self.elapsedTime];
@@ -249,6 +243,9 @@ static const float TIMER_INTERVAL = .01;
         YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
         yapBuilder.duration = self.elapsedTime;
         vc.yapBuilder = yapBuilder;
+        
+        self.progressView.progress = 0.0;
+        self.elapsedTime = 0;
     }
 }
 
