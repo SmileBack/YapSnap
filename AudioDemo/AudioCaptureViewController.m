@@ -149,7 +149,7 @@ static const float TIMER_INTERVAL = .01;
                         [alert show];
                     }];
     
-    [center addObserverForName:STK_AUDIO_PLAYER_STOPPED_NOTIFICATION
+    [center addObserverForName:STOP_LOADING_SPINNER_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {

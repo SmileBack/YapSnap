@@ -338,7 +338,7 @@
     
     if (state == STKAudioPlayerStateStopped) {
         NSLog(@"state == STKAudioPlayerStateStopped");
-        [[NSNotificationCenter defaultCenter] postNotificationName:STK_AUDIO_PLAYER_STOPPED_NOTIFICATION object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
     }
     
     if (state == STKAudioPlayerStateError) {
@@ -387,7 +387,23 @@
         YSTrack *song = self.songs[self.carousel.currentItemIndex];
         self.player = [STKAudioPlayer new];
         self.player.delegate = self;
-        [self.player play:song.previewURL];
+        if ([song.previewURL isEqual: [NSNull null]]) {
+            NSLog(@"URL is Null");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Song Not Available"
+                                                            message:@"Unfortunately this song is not currently available."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [self enableUserInteraction];
+            //THE FOLLOWING LINES STOP THE LOADING SPINNER
+            double delay = 0.2;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
+            });
+        } else {
+            [self.player play:song.previewURL];
+        }
         return YES;
     }
 }
