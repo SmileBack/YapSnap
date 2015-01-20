@@ -14,7 +14,9 @@
 @interface AddTextViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet JEProgressView *progressView;
+@property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
 
+- (IBAction)didTapAddTextButton;
 
 @end
 
@@ -25,9 +27,12 @@
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
-    self.progressView.progress = .5;
+    self.progressView.progress = self.yapBuilder.duration/10;
     [self.progressView setTrackImage:[UIImage imageNamed:@"ProgressViewBackgroundWhite.png"]];
     [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewBackgroundRed.png"]];
+    
+    self.textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    self.textField.delegate = self;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -59,5 +64,25 @@
 {
     [self.navigationController popViewControllerAnimated:NO];
 }
+
+- (IBAction)didTapAddTextButton {
+    [self.textField becomeFirstResponder];
+    self.textField.hidden = NO;
+    self.addTextToYapButton.hidden = YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.view endEditing:YES];
+    //Remove extra space at end of string
+    self.textField.text = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if (self.textField.text.length == 0) {
+        self.textField.hidden = YES;
+        self.addTextToYapButton.hidden = NO;
+    }
+    
+    return YES;
+}
+
 
 @end
