@@ -60,7 +60,6 @@
 
 - (IBAction) didTapContinueButton
 {
-    /*
     if ([self.textField.text length] < 2) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your name"
                                                         message:@"Please enter your name so people can send you messages"
@@ -76,9 +75,8 @@
             // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
         //}
     }
-     */
     
-    [self performSegueWithIdentifier:@"EnterPhoneNumberViewControllerSegue" sender:self];
+    //[self performSegueWithIdentifier:@"EnterPhoneNumberViewControllerSegue" sender:self];
 }
 
 @end

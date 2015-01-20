@@ -14,9 +14,6 @@
 		374383E919CE323B0009C323 /* LandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374383E819CE323B0009C323 /* LandingPageViewController.m */; };
 		3753AF8919E9A4D000B6391D /* Microphone_White2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF8819E9A4D000B6391D /* Microphone_White2.png */; };
 		3753AF8B19E9A68200B6391D /* YapsButtonRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF8A19E9A68200B6391D /* YapsButtonRed.png */; };
-		3753AF8D19E9C55400B6391D /* RedArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF8C19E9C55400B6391D /* RedArrow@2x.png */; };
-		3753AF8F19E9C65300B6391D /* RedArrowBackward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF8E19E9C65300B6391D /* RedArrowBackward@2x.png */; };
-		3753AF9119E9C94800B6391D /* BlueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF9019E9C94800B6391D /* BlueArrow@2x.png */; };
 		3753AF9319E9CAEC00B6391D /* Replay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF9219E9CAEC00B6391D /* Replay@2x.png */; };
 		37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37695E6D19BBC78F00C22E13 /* JEProgressView.m */; };
 		378191D419E59B4A006EF98F /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 378191D319E59B4A006EF98F /* API.m */; };
@@ -50,6 +47,12 @@
 		784E35E81A633B3B0029AA01 /* RecordModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35E71A633B3B0029AA01 /* RecordModeButton.png */; };
 		784E35EE1A659DB40029AA01 /* ColorPickerSpectrum.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35ED1A659DB40029AA01 /* ColorPickerSpectrum.png */; };
 		784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35EF1A65A0ED0029AA01 /* PencilIcon.png */; };
+		786D910F1A6EEA5000177E25 /* BlueArrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D910E1A6EEA5000177E25 /* BlueArrow2.png */; };
+		786D91131A6EEEDE00177E25 /* BlueArrowWhiteFilling.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91121A6EEEDE00177E25 /* BlueArrowWhiteFilling.png */; };
+		786D91151A6EF0C800177E25 /* GrayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91141A6EF0C800177E25 /* GrayArrow.png */; };
+		786D91171A6EF16000177E25 /* RedRoundedSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91161A6EF16000177E25 /* RedRoundedSquare.png */; };
+		786D91191A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91181A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png */; };
+		786D911B1A6EF6AF00177E25 /* listen_on_spotify-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D911A1A6EF6AF00177E25 /* listen_on_spotify-black.png */; };
 		787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */; };
 		787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */; };
 		787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A6D941A4DD8A2001551C6 /* Crashlytics.framework */; };
@@ -93,9 +96,6 @@
 		374383E819CE323B0009C323 /* LandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingPageViewController.m; sourceTree = "<group>"; };
 		3753AF8819E9A4D000B6391D /* Microphone_White2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_White2.png; sourceTree = "<group>"; };
 		3753AF8A19E9A68200B6391D /* YapsButtonRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsButtonRed.png; sourceTree = "<group>"; };
-		3753AF8C19E9C55400B6391D /* RedArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RedArrow@2x.png"; sourceTree = "<group>"; };
-		3753AF8E19E9C65300B6391D /* RedArrowBackward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RedArrowBackward@2x.png"; sourceTree = "<group>"; };
-		3753AF9019E9C94800B6391D /* BlueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueArrow@2x.png"; sourceTree = "<group>"; };
 		3753AF9219E9CAEC00B6391D /* Replay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Replay@2x.png"; sourceTree = "<group>"; };
 		37695E6C19BBC78F00C22E13 /* JEProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JEProgressView.h; sourceTree = "<group>"; };
 		37695E6D19BBC78F00C22E13 /* JEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JEProgressView.m; sourceTree = "<group>"; };
@@ -146,6 +146,12 @@
 		784E35E71A633B3B0029AA01 /* RecordModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordModeButton.png; sourceTree = "<group>"; };
 		784E35ED1A659DB40029AA01 /* ColorPickerSpectrum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorPickerSpectrum.png; sourceTree = "<group>"; };
 		784E35EF1A65A0ED0029AA01 /* PencilIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PencilIcon.png; sourceTree = "<group>"; };
+		786D910E1A6EEA5000177E25 /* BlueArrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueArrow2.png; sourceTree = "<group>"; };
+		786D91121A6EEEDE00177E25 /* BlueArrowWhiteFilling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueArrowWhiteFilling.png; sourceTree = "<group>"; };
+		786D91141A6EF0C800177E25 /* GrayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrayArrow.png; sourceTree = "<group>"; };
+		786D91161A6EF16000177E25 /* RedRoundedSquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedRoundedSquare.png; sourceTree = "<group>"; };
+		786D91181A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedRoundedSquareWhiteFilling.png; sourceTree = "<group>"; };
+		786D911A1A6EF6AF00177E25 /* listen_on_spotify-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black.png"; sourceTree = "<group>"; };
 		787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconLarge@2x.png"; sourceTree = "<group>"; };
 		787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconSmall@2x.png"; sourceTree = "<group>"; };
 		787A6D941A4DD8A2001551C6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -250,11 +256,14 @@
 			children = (
 				37D413B219D217FF00021548 /* Fonts */,
 				784C67E01A6253CE0084894D /* MusicIcon@2x.png */,
+				786D911A1A6EF6AF00177E25 /* listen_on_spotify-black.png */,
+				786D91161A6EF16000177E25 /* RedRoundedSquare.png */,
+				786D91181A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png */,
+				786D910E1A6EEA5000177E25 /* BlueArrow2.png */,
+				786D91121A6EEEDE00177E25 /* BlueArrowWhiteFilling.png */,
+				786D91141A6EF0C800177E25 /* GrayArrow.png */,
 				787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */,
 				787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */,
-				3753AF8C19E9C55400B6391D /* RedArrow@2x.png */,
-				3753AF9019E9C94800B6391D /* BlueArrow@2x.png */,
-				3753AF8E19E9C65300B6391D /* RedArrowBackward@2x.png */,
 				3753AF9219E9CAEC00B6391D /* Replay@2x.png */,
 				37D413C119D21FC300021548 /* RedCircleSmall.png */,
 				37D413CB19D230D000021548 /* ArrowWhite.png */,
@@ -596,17 +605,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786D91131A6EEEDE00177E25 /* BlueArrowWhiteFilling.png in Resources */,
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
+				786D91171A6EF16000177E25 /* RedRoundedSquare.png in Resources */,
 				787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */,
 				3753AF8919E9A4D000B6391D /* Microphone_White2.png in Resources */,
 				37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */,
 				F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */,
+				786D911B1A6EF6AF00177E25 /* listen_on_spotify-black.png in Resources */,
 				784E35E81A633B3B0029AA01 /* RecordModeButton.png in Resources */,
 				3793FDF919BCF0DC00FBBBCE /* ContactSelectionCell.xib in Resources */,
-				3753AF9119E9C94800B6391D /* BlueArrow@2x.png in Resources */,
 				F44B0C5516DA404700E6CD88 /* Default.png in Resources */,
 				784E35E61A6339EE0029AA01 /* SpotifyModeButton.png in Resources */,
 				3753AF9319E9CAEC00B6391D /* Replay@2x.png in Resources */,
+				786D91191A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png in Resources */,
+				786D910F1A6EEA5000177E25 /* BlueArrow2.png in Resources */,
 				37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */,
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
@@ -625,9 +638,8 @@
 				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum.png in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
-				3753AF8F19E9C65300B6391D /* RedArrowBackward@2x.png in Resources */,
+				786D91151A6EF0C800177E25 /* GrayArrow.png in Resources */,
 				784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */,
-				3753AF8D19E9C55400B6391D /* RedArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

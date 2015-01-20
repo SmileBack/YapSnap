@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *yaps;
 @property (nonatomic, strong) PlaybackVC *playbackVC;
+
 @end
 
 static NSString *CellIdentifier = @"Cell";
@@ -77,7 +78,7 @@ static NSString *CellIdentifier = @"Cell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 65;
+    return 70;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
