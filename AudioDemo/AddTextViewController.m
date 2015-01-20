@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet JEProgressView *progressView;
 
+
 @end
 
 @implementation AddTextViewController
