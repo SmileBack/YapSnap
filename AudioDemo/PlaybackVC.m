@@ -14,8 +14,8 @@
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic) CGFloat elapsedTime;
-
 @property (strong, nonatomic) IBOutlet UILabel *textLabel;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *recordButtonSpinner;
 
 @end
 
@@ -33,6 +33,8 @@
     self.player.delegate = self;
     NSLog(@"URL: %@", self.yap.playbackURL);
     [self.player play:self.yap.playbackURL];
+    
+    [self.recordButtonSpinner startAnimating];
     
     self.textLabel.text = @"TEXT HERE";//self.yap.text;  //TODO REPLACE THIS
     
@@ -96,6 +98,7 @@
                                                     selector:@selector(timerFired)
                                                     userInfo:nil
                                                      repeats:YES];
+        [self.recordButtonSpinner stopAnimating];
     } else if (state == STKAudioPlayerStateStopped) {
         NSLog(@"Stopped!");
         [self.timer invalidate];
