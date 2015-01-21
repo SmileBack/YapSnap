@@ -15,6 +15,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet JEProgressView *progressView;
 @property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
+@property (strong, nonatomic) IBOutlet UILabel *sendYapLabel;
+
 
 - (IBAction)didTapAddTextButton;
 
@@ -68,6 +70,7 @@
 - (IBAction)didTapAddTextButton {
     [self.textField becomeFirstResponder];
     self.textField.hidden = NO;
+    self.sendYapLabel.hidden = YES;
     self.addTextToYapButton.hidden = YES;
 }
 
@@ -78,6 +81,7 @@
     
     if (self.textField.text.length == 0) {
         self.textField.hidden = YES;
+        self.sendYapLabel.hidden = NO;
         self.addTextToYapButton.hidden = NO;
     }
     

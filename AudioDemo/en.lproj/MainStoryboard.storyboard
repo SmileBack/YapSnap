@@ -374,7 +374,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDf-Vb-ilr">
-                                <rect key="frame" x="273" y="133" width="31" height="31"/>
+                                <rect key="frame" x="278" y="133" width="26" height="26"/>
                                 <state key="normal" image="PencilIcon.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -382,6 +382,12 @@
                                     <action selector="didTapAddTextButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="LwJ-mR-UKq"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VT6-V5-MtX">
+                                <rect key="frame" x="16" y="248" width="288" height="83"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="65"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -389,6 +395,7 @@
                     <connections>
                         <outlet property="addTextToYapButton" destination="KDf-Vb-ilr" id="jTv-Uo-Wb4"/>
                         <outlet property="progressView" destination="38e-bV-c4v" id="AgX-HI-9eq"/>
+                        <outlet property="sendYapLabel" destination="VT6-V5-MtX" id="BBs-eg-hOt"/>
                         <outlet property="textField" destination="VnF-Dl-MOn" id="Onq-gY-Lry"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="Contacts Segue" id="0bM-75-hD3"/>
                     </connections>
