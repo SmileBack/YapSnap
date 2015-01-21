@@ -36,7 +36,8 @@
     
     [self.recordButtonSpinner startAnimating];
     
-    self.textField.text = @"Text will be here";//self.yap.text;  //TODO REPLACE THIS
+    // Snapchat allows for 48 characters horizontally; 31 vertically 
+    self.textField.text = @"1234567890123456789012345678901234567890";//self.yap.text;  //TODO REPLACE THIS
     
     if ([self.textField.text length] == 0) {
         self.textField.hidden = YES;
