@@ -512,9 +512,9 @@
                                 <rect key="frame" x="0.0" y="58" width="320" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjl-Kr-TQg">
-                                <rect key="frame" x="31" y="130" width="33" height="30"/>
-                                <state key="normal" title="Stop">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjl-Kr-TQg">
+                                <rect key="frame" x="123" y="484" width="74" height="74"/>
+                                <state key="normal" image="CancelImageWhiteCircle.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -528,11 +528,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view autoresizesSubviews="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Kj-1X-Ut8" customClass="MPVolumeView">
-                                <rect key="frame" x="38" y="525" width="271" height="35"/>
+                                <rect key="frame" x="38" y="426" width="271" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Eq-XB-fej" userLabel="View For Covering AirPlay Button">
-                                <rect key="frame" x="287" y="525" width="32" height="35"/>
+                                <rect key="frame" x="287" y="426" width="32" height="35"/>
                                 <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
@@ -849,6 +849,7 @@
         <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="BlueArrow2.png" width="100" height="100"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
         <image name="MicrophoneWhiteSmall2.png" width="17" height="30"/>
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
