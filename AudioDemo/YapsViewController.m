@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *yaps;
 @property (nonatomic, strong) PlaybackVC *playbackVC;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -39,16 +40,13 @@ static NSString *CellIdentifier = @"Cell";
     
     self.navigationItem.hidesBackButton = YES;
 
-    __weak YapsViewController *weakSelf = self;
-    [[API sharedAPI] getYapsWithCallback:^(NSArray *yaps, NSError *error) {
-        if (yaps) {
-            weakSelf.yaps = yaps;
-            [weakSelf.tableView reloadData];
-        } else {
-            NSLog(@"Error! %@", error);
-        }
-    }];
+    [self loadYaps];
 
+    // Pull down to refresh
+    self.refreshControl = [UIRefreshControl new];
+    [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+    
 //    [[NSNotificationCenter defaultCenter] addObserverForName:PLAYBACK_STOPPED_NOTIFICATION
 //                                                      object:nil
 //                                                       queue:nil
@@ -63,6 +61,23 @@ static NSString *CellIdentifier = @"Cell";
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
+- (void) refresh:(UIRefreshControl *)refreshControl {
+    [self loadYaps];
+}
+
+- (void) loadYaps {
+    __weak YapsViewController *weakSelf = self;
+    [[API sharedAPI] getYapsWithCallback:^(NSArray *yaps, NSError *error) {
+        if (yaps) {
+            [weakSelf.refreshControl endRefreshing];
+            weakSelf.yaps = yaps;
+            [weakSelf.tableView reloadData];
+        } else {
+            NSLog(@"Error! %@", error);
+        }
+    }];
 }
 
 #pragma UITableViewDataSource
