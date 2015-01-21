@@ -525,15 +525,6 @@
                                     <action selector="didTapStopButton:" destination="Dgp-JD-d1e" eventType="touchUpInside" id="7zq-En-3Gj"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFy-fW-gSQ">
-                                <rect key="frame" x="23" y="177" width="281" height="126"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="126" id="aDB-Rf-y7L"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view autoresizesSubviews="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Kj-1X-Ut8" customClass="MPVolumeView">
                                 <rect key="frame" x="25" y="426" width="270" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -550,21 +541,25 @@
                                 <rect key="frame" x="150" y="74" width="20" height="20"/>
                                 <color key="color" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.14999999999999999" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5ti-AL-urc">
+                                <rect key="frame" x="5" y="123" width="310" height="178"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="180"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="IFy-fW-gSQ" firstAttribute="top" secondItem="rSQ-Pl-w4L" secondAttribute="bottom" constant="73" id="2uc-Jn-jAb"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="Cjl-Kr-TQg" secondAttribute="centerX" id="6no-wm-KzC"/>
                             <constraint firstItem="7Kj-1X-Ut8" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="9" id="Ccx-YT-bph"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="rSQ-Pl-w4L" secondAttribute="centerX" id="D0e-h8-ZNT"/>
-                            <constraint firstItem="IFy-fW-gSQ" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="7" id="KOo-Az-HwN"/>
                             <constraint firstItem="rSQ-Pl-w4L" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leading" id="Kfm-8g-zPZ"/>
                             <constraint firstItem="rSQ-Pl-w4L" firstAttribute="top" secondItem="kCt-ck-W3X" secondAttribute="bottom" constant="11" id="Mcr-nI-Ohl"/>
                             <constraint firstItem="Cjl-Kr-TQg" firstAttribute="centerX" secondItem="rSQ-Pl-w4L" secondAttribute="centerX" id="P6a-Ad-mmj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7Kj-1X-Ut8" secondAttribute="trailing" constant="9" id="XKO-gr-3sK"/>
                             <constraint firstItem="Cjl-Kr-TQg" firstAttribute="top" secondItem="7Kj-1X-Ut8" secondAttribute="bottom" constant="23" id="a7v-uK-L4p"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="12" id="cDz-bJ-qjT"/>
-                            <constraint firstItem="IFy-fW-gSQ" firstAttribute="trailing" secondItem="8Sd-XX-W3O" secondAttribute="trailingMargin" id="eZ5-tg-yC9"/>
                             <constraint firstItem="7Kj-1X-Ut8" firstAttribute="top" secondItem="8Sd-XX-W3O" secondAttribute="top" constant="426" id="onD-yf-SD1"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="4" id="u71-UM-Hfp"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="Cjl-Kr-TQg" secondAttribute="bottom" constant="10" id="vft-y5-02u"/>
@@ -576,7 +571,7 @@
                     <connections>
                         <outlet property="progressView" destination="rSQ-Pl-w4L" id="3PN-yl-Zkg"/>
                         <outlet property="recordButtonSpinner" destination="ZSy-MK-810" id="KpB-r5-oxN"/>
-                        <outlet property="textLabel" destination="IFy-fW-gSQ" id="tON-fN-txE"/>
+                        <outlet property="textField" destination="5ti-AL-urc" id="50n-Xb-ftJ"/>
                         <outlet property="volumeView" destination="7Kj-1X-Ut8" id="Bfa-tn-xSP"/>
                     </connections>
                 </viewController>

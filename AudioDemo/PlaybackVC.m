@@ -14,7 +14,7 @@
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic) CGFloat elapsedTime;
-@property (strong, nonatomic) IBOutlet UILabel *textLabel;
+@property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *recordButtonSpinner;
 
 @end
@@ -36,7 +36,13 @@
     
     [self.recordButtonSpinner startAnimating];
     
-    self.textLabel.text = @"TEXT HERE";//self.yap.text;  //TODO REPLACE THIS
+    self.textField.text = @"Text will be here";//self.yap.text;  //TODO REPLACE THIS
+    
+    if ([self.textField.text length] == 0) {
+        self.textField.hidden = YES;
+    } else {
+        self.textField.hidden = NO;
+    }
     
     [[API sharedAPI] yapOpened:self.yap withCallback:^(BOOL success, NSError *error) {
         //TODO do something?
@@ -70,7 +76,7 @@
 {
     self.elapsedTime += TIME_INTERVAL;
 
-    CGFloat trackLength = 8.0f;//TODO replace with duration from yap object when available
+    CGFloat trackLength = 10.0f;//TODO replace with duration from yap object when available
     CGFloat progress = self.elapsedTime / trackLength;
     [self.progressView setProgress:progress];
     
