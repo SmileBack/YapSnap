@@ -10,11 +10,15 @@
 #import <StreamingKit/STKAudioPlayer.h>
 #import "JEProgressView.h"
 #import "YSYap.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 #define PLAYBACK_STOPPED_NOTIFICATION @"com.yapsnap.PlaybackStoppedNotification"
 
-@interface PlaybackVC : UIViewController<STKAudioPlayerDelegate>
+@interface PlaybackVC : UIViewController<STKAudioPlayerDelegate> {
+    MPVolumeView *_mpVolumeView;
+}
 @property (nonatomic, strong) YSYap *yap;
+@property (nonatomic, strong) IBOutlet MPVolumeView *volumeView;
 
 - (void) stop;
 @end

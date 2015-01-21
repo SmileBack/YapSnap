@@ -41,6 +41,16 @@
     }];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [UIView animateWithDuration:.1
+                          delay:.9
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.volumeView.alpha = .8;
+                     }
+                     completion:nil];
+}
+
 - (IBAction)didTapStopButton:(id)sender {
     [self stop];
 }

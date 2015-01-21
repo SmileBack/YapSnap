@@ -107,6 +107,7 @@ static NSString *CellIdentifier = @"Cell";
                     forControlEvents:UIControlEventTouchUpInside];
             [spotifyButton setBackgroundImage:[UIImage imageNamed:@"listen_on_spotify-black.png"] forState:UIControlStateNormal];
             spotifyButton.frame = CGRectMake(223, 18, 89, 33);
+            spotifyButton.alpha = .75;
             [cell addSubview:spotifyButton];
         }
     }
