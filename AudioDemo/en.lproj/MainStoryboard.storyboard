@@ -459,15 +459,9 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RedRoundedSquare.png" translatesAutoresizingMaskIntoConstraints="NO" id="aKx-2J-vHl">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RedRoundedSquareWhiteFilling.png" translatesAutoresizingMaskIntoConstraints="NO" id="aKx-2J-vHl">
                                                     <rect key="frame" x="12" y="23" width="24" height="24"/>
                                                 </imageView>
-                                                <button opaque="NO" alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsc-cO-wTe">
-                                                    <rect key="frame" x="223" y="18" width="89" height="33"/>
-                                                    <state key="normal" backgroundImage="listen_on_spotify-black.png">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -533,6 +527,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Kj-1X-Ut8" customClass="MPVolumeView">
+                                <rect key="frame" x="23" y="525" width="271" height="35"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -854,10 +852,9 @@
         <image name="RecordButtonRedWhiteBorder.png" width="200" height="200"/>
         <image name="RecordModeButton.png" width="316" height="89"/>
         <image name="RedCircleSmall.png" width="67" height="67"/>
-        <image name="RedRoundedSquare.png" width="100" height="100"/>
+        <image name="RedRoundedSquareWhiteFilling.png" width="100" height="100"/>
         <image name="SpotifyModeButton.png" width="316" height="89"/>
         <image name="YapsButtonRed.png" width="60" height="60"/>
-        <image name="listen_on_spotify-black.png" width="178" height="66"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

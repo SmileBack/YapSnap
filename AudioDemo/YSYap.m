@@ -17,10 +17,13 @@
     
     yap.yapID = dict[@"id"];
     yap.createdAt = dict[@"created_at"];
+    yap.status = dict[@"status"];
+    yap.type = dict[@"type"];
 
     yap.artist = dict[@"spotify_artist_name"];
     
     yap.playbackURL = dict[@"spotify_preview_url"];
+    yap.listenOnSpotifyURL = dict[@"spotify_full_song_url"];
     
     yap.senderID = dict[@"sender_id"];
     yap.senderName = dict[@"sender_name"];
