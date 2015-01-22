@@ -56,6 +56,7 @@
     if ([@"Contacts Segue" isEqualToString:segue.identifier]) {
         ContactsViewController *vc = segue.destinationViewController;
         self.yapBuilder.text = self.textField.text;
+        self.yapBuilder.colorComponents = [NSArray arrayWithObjects:@"0", @"84", @"255", nil]; //TODO: Un-hardcode this after implementing the color picker.
         vc.yapBuilder = self.yapBuilder;
     }
 }

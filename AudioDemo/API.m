@@ -123,7 +123,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                              @"recipients": recipients,
                              @"text": builder.text,
                              @"duration": [NSNumber numberWithFloat:builder.duration],
-                             @"color": [NSArray arrayWithObjects:@"0", @"84", @"255", nil], //What is the best way to store these numbers on the back end?
+                             @"color":  builder.colorComponents, //What is the best way to store these numbers on the back end? See line 59 on AddTextViewController to see how it is currently stored.
                              @"type": MESSAGE_TYPE_SPOTIFY
                              };
     
