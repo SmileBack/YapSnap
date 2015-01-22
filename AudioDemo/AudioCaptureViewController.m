@@ -206,7 +206,11 @@ static const float TIMER_INTERVAL = .01;
         [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
     }
 
-    [self.audioSource stopAudioCapture:self.elapsedTime];
+    // The following 0.1 second delay is here because otherwise the page takes an extra half second to transition to the AddTextViewController (not sure why that happens)
+    double delay = 0.1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.audioSource stopAudioCapture:self.elapsedTime];
+    });
 }
 
 
