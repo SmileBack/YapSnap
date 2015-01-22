@@ -39,6 +39,8 @@
 		37D413CA19D22B5E00021548 /* EnterNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D413C919D22B5E00021548 /* EnterNameViewController.m */; };
 		37D413CC19D230D000021548 /* ArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D413CB19D230D000021548 /* ArrowWhite.png */; };
 		37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */; };
+		780005A81A70EA66005E6CD4 /* listen_on_spotify-black-long.png in Resources */ = {isa = PBXBuildFile; fileRef = 780005A71A70EA66005E6CD4 /* listen_on_spotify-black-long.png */; };
+		780005AA1A70EE69005E6CD4 /* listen_on_spotify-black-long3.png in Resources */ = {isa = PBXBuildFile; fileRef = 780005A91A70EE69005E6CD4 /* listen_on_spotify-black-long3.png */; };
 		784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E01A6253CE0084894D /* MusicIcon@2x.png */; };
 		784C67E41A625D110084894D /* ProgressViewBackgroundRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E21A625D110084894D /* ProgressViewBackgroundRed.png */; };
 		784C67E51A625D110084894D /* ProgressViewBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E31A625D110084894D /* ProgressViewBackgroundWhite.png */; };
@@ -140,6 +142,8 @@
 		37D413CB19D230D000021548 /* ArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArrowWhite.png; sourceTree = "<group>"; };
 		37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpotifyLogo@2x.png"; sourceTree = "<group>"; };
 		37E122E51A4011560073684D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		780005A71A70EA66005E6CD4 /* listen_on_spotify-black-long.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black-long.png"; sourceTree = "<group>"; };
+		780005A91A70EE69005E6CD4 /* listen_on_spotify-black-long3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black-long3.png"; sourceTree = "<group>"; };
 		784C67E01A6253CE0084894D /* MusicIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIcon@2x.png"; sourceTree = "<group>"; };
 		784C67E21A625D110084894D /* ProgressViewBackgroundRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundRed.png; sourceTree = "<group>"; };
 		784C67E31A625D110084894D /* ProgressViewBackgroundWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundWhite.png; sourceTree = "<group>"; };
@@ -261,6 +265,8 @@
 				37D413B219D217FF00021548 /* Fonts */,
 				784C67E01A6253CE0084894D /* MusicIcon@2x.png */,
 				786D911A1A6EF6AF00177E25 /* listen_on_spotify-black.png */,
+				780005A71A70EA66005E6CD4 /* listen_on_spotify-black-long.png */,
+				780005A91A70EE69005E6CD4 /* listen_on_spotify-black-long3.png */,
 				786D91161A6EF16000177E25 /* RedRoundedSquare.png */,
 				786D91181A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png */,
 				786D910E1A6EEA5000177E25 /* BlueArrow2.png */,
@@ -631,6 +637,7 @@
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
 				784C67E51A625D110084894D /* ProgressViewBackgroundWhite.png in Resources */,
 				3753AF8B19E9A68200B6391D /* YapsButtonRed.png in Resources */,
+				780005AA1A70EE69005E6CD4 /* listen_on_spotify-black-long3.png in Resources */,
 				784C67E41A625D110084894D /* ProgressViewBackgroundRed.png in Resources */,
 				784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */,
 				787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */,
@@ -647,6 +654,7 @@
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
 				786D91231A6EFBCE00177E25 /* MicrophoneWhiteSmall2@2x.png in Resources */,
 				786D91151A6EF0C800177E25 /* GrayArrow.png in Resources */,
+				780005A81A70EA66005E6CD4 /* listen_on_spotify-black-long.png in Resources */,
 				784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

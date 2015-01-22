@@ -93,7 +93,7 @@ static NSString *CellIdentifier = @"Cell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    return 90;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,8 +120,8 @@ static NSString *CellIdentifier = @"Cell";
             [spotifyButton addTarget:self
                               action:@selector(tappedListenOnSpotifyButton)
                     forControlEvents:UIControlEventTouchUpInside];
-            [spotifyButton setBackgroundImage:[UIImage imageNamed:@"listen_on_spotify-black.png"] forState:UIControlStateNormal];
-            spotifyButton.frame = CGRectMake(223, 18, 89, 33);
+            [spotifyButton setBackgroundImage:[UIImage imageNamed:@"listen_on_spotify-black-long3.png"] forState:UIControlStateNormal];
+            spotifyButton.frame = CGRectMake(232, 73, 86, 15);
             spotifyButton.alpha = .75;
             [cell addSubview:spotifyButton];
         }
