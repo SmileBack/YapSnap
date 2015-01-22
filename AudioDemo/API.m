@@ -83,6 +83,7 @@ static API *sharedAPI;
                                                   @"recipients":recipients,
                                                   @"text": builder.text,
                                                   @"duration": [NSNumber numberWithFloat:builder.duration],
+                                                  @"color": [NSArray arrayWithObjects:@"0", @"84", @"255", nil], //What is the best way to store these numbers on the back end?
                                                   @"type": MESSAGE_TYPE_VOICE
                                                   }];
 
@@ -122,6 +123,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                              @"recipients": recipients,
                              @"text": builder.text,
                              @"duration": [NSNumber numberWithFloat:builder.duration],
+                             @"color": [NSArray arrayWithObjects:@"0", @"84", @"255", nil], //What is the best way to store these numbers on the back end?
                              @"type": MESSAGE_TYPE_SPOTIFY
                              };
     
@@ -208,7 +210,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:[self urlForEndpoint:@"/unopened_yaps"]
+    [manager GET:[self urlForEndpoint:@"/number_of_unopened_yaps"]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              // Expecting: {"count" : 6}
