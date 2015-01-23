@@ -100,7 +100,11 @@ static NSString *CellIdentifier = @"Cell";
 {
     YSYap* yap = self.yaps[indexPath.row];
 
-    BOOL didSendYap = [yap.senderID isEqual:[Global retrieveValueForKey:@"current_user_id"]];
+    BOOL didSendYap = [[yap.senderID stringValue] isEqualToString:[Global retrieveValueForKey:@"current_user_id"]];
+    NSLog(@"yap sender id: %@", yap.senderID);
+    NSString *currentUserID = [Global retrieveValueForKey:@"current_user_id"];
+    NSLog(@"Current User ID: %@", currentUserID);
+    NSLog(@"Did Send Yap?: %hhd", didSendYap);
     NSString *cellType = didSendYap ? @"Sent Cell" : @"Received Cell";
     
     YapCell *cell = [tableView dequeueReusableCellWithIdentifier:cellType];

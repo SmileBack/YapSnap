@@ -34,10 +34,10 @@
     
     yap.senderID = dict[@"sender_id"];
     yap.senderName = @"Sender Name"; //dict[@"sender_name"];
-    yap.senderPhone = @"Receiver Name"; //dict[@"sender_phone"];
+    yap.senderPhone = dict[@"sender_phone"];
 
     yap.receiverID = dict[@"receiver_id"];
-    yap.receiverName = dict[@"receiver_name"];
+    yap.receiverName = @"Receiver Name"; //dict[@"receiver_name"];
     yap.receiverPhone = dict[@"receiver_phone"];
 
     return yap;
