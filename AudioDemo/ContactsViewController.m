@@ -201,10 +201,11 @@ static NSString *CellIdentifier = @"Cell";
     if ([self internetIsNotReachable]) {
         [self showNoInternetAlert];
     } else {
+        /* Undo
         __weak ContactsViewController *weakSelf = self;
         
         self.yapBuilder.contacts = self.selectedContacts;
-        
+       
         [[API sharedAPI] sendYap:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
                         if (success) {
@@ -215,6 +216,7 @@ static NSString *CellIdentifier = @"Cell";
                         }
                         
                     }];
+         */
     }
 }
 
