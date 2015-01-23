@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSString *status;
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) NSNumber *duration;
+@property (strong, nonatomic) NSString *text;
 
 // Spotify stuff
 @property (strong, nonatomic) NSString *artist;

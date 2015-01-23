@@ -60,6 +60,7 @@
 		787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */; };
 		787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */; };
 		787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A6D941A4DD8A2001551C6 /* Crashlytics.framework */; };
+		78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */; };
 		C1A8A28BEEE98012F2950D09 /* libPods-YapSnap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C8F94496586F87E59A61FD /* libPods-YapSnap.a */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
 		F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4416DA404700E6CD88 /* Foundation.framework */; };
@@ -163,6 +164,7 @@
 		787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconLarge@2x.png"; sourceTree = "<group>"; };
 		787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconSmall@2x.png"; sourceTree = "<group>"; };
 		787A6D941A4DD8A2001551C6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black2.png"; sourceTree = "<group>"; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA961E944F5B46EDE7E7229C /* Pods-YapSnap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.release.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.release.xcconfig"; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				37D413B219D217FF00021548 /* Fonts */,
 				784C67E01A6253CE0084894D /* MusicIcon@2x.png */,
 				786D911A1A6EF6AF00177E25 /* listen_on_spotify-black.png */,
+				78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */,
 				780005A71A70EA66005E6CD4 /* listen_on_spotify-black-long.png */,
 				780005A91A70EE69005E6CD4 /* listen_on_spotify-black-long3.png */,
 				786D91161A6EF16000177E25 /* RedRoundedSquare.png */,
@@ -652,6 +655,7 @@
 				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum.png in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
+				78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */,
 				786D91231A6EFBCE00177E25 /* MicrophoneWhiteSmall2@2x.png in Resources */,
 				786D91151A6EF0C800177E25 /* GrayArrow.png in Resources */,
 				780005A81A70EA66005E6CD4 /* listen_on_spotify-black-long.png in Resources */,

@@ -20,6 +20,7 @@
     yap.status = dict[@"status"];
     yap.type = dict[@"type"];
     yap.duration = dict[@"duration"];
+    yap.text = dict[@"text"];
 
     yap.artist = dict[@"spotify_artist_name"];
     
