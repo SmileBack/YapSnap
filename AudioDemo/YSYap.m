@@ -33,8 +33,8 @@
     yap.listenOnSpotifyURL = dict[@"spotify_full_song_url"];
     
     yap.senderID = dict[@"sender_id"];
-    yap.senderName = dict[@"sender_name"];
-    yap.senderPhone = dict[@"sender_phone"];
+    yap.senderName = @"Sender Name"; //dict[@"sender_name"];
+    yap.senderPhone = @"Receiver Name"; //dict[@"sender_phone"];
 
     yap.receiverID = dict[@"receiver_id"];
     yap.receiverName = dict[@"receiver_name"];
