@@ -114,6 +114,7 @@ static NSString *CellIdentifier = @"Cell";
         }
     } else {
         cell.nameLabel.text = yap.displaySenderName;
+        
         cell.createdTimeLabel.text = [NSString stringWithFormat:@"Received %@" , yap.createdAt.description];
         if ([yap.type  isEqual: @"SpotifyMessage"]) {
             UIButton *spotifyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];

@@ -59,7 +59,7 @@ static const float TIMER_INTERVAL = .01;
     
     // Disable Stop/Play button when application launches
     //[stopButton setEnabled:NO];
-    //[self.playButton setEnabled:NO];
+    [self.playButton setEnabled:YES];
 
     [self setupNotifications];
     
@@ -91,6 +91,7 @@ static const float TIMER_INTERVAL = .01;
     //Nav bar should not be transparent after finishing registration process
     self.navigationController.navigationBar.translucent = NO;
     
+    /*
     [[API sharedAPI] unopenedYapsCountWithCallback:^(NSNumber *count, NSError *error) {
         if (error) {
             [self.yapsPageButton setTitle:@"E" forState:UIControlStateNormal];
@@ -98,6 +99,7 @@ static const float TIMER_INTERVAL = .01;
             [self.yapsPageButton setTitle:count.description forState:UIControlStateNormal];
         }
     }];
+     */
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -176,7 +178,6 @@ static const float TIMER_INTERVAL = .01;
     [self.progressView setProgress:0];
 
     self.explanation.hidden = YES;
-    //[self.playButton setEnabled:NO]; Play button isn't in the UI currently
 
     if ([self.audioSource startAudioCapture]) {
         if (self.audioSource.class == [YSSpotifySourceController class]) {
@@ -207,7 +208,7 @@ static const float TIMER_INTERVAL = .01;
     }
 
     // The following 0.1 second delay is here because otherwise the page takes an extra half second to transition to the AddTextViewController (not sure why that happens)
-    double delay = 0.1;
+    double delay = .1;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.audioSource stopAudioCapture:self.elapsedTime];
     });

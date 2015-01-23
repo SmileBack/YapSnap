@@ -132,11 +132,12 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="40"/>
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noi-Et-bvO">
-                                <rect key="frame" x="235" y="415" width="76" height="52"/>
+                                <rect key="frame" x="235" y="444" width="76" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="gH2-6x-gED"/>
                                 </constraints>
                                 <state key="normal" title="Play">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -201,7 +202,7 @@
                             <constraint firstItem="bsh-56-MCX" firstAttribute="centerX" secondItem="3h8-nb-0t3" secondAttribute="centerX" id="dnW-ne-J0O"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="centerY" secondItem="3h8-nb-0t3" secondAttribute="centerY" id="em8-xj-rcQ"/>
                             <constraint firstAttribute="bottom" secondItem="dje-2i-9YC" secondAttribute="bottom" constant="-5" id="g9A-Yd-i3R"/>
-                            <constraint firstItem="dI5-ha-IW9" firstAttribute="top" secondItem="noi-Et-bvO" secondAttribute="bottom" constant="61" id="hMk-OX-bMh"/>
+                            <constraint firstItem="dI5-ha-IW9" firstAttribute="top" secondItem="noi-Et-bvO" secondAttribute="bottom" constant="32" id="hMk-OX-bMh"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="trailing" secondItem="dI5-ha-IW9" secondAttribute="trailing" id="hs6-ae-soB"/>
                             <constraint firstItem="g9f-Ex-CHR" firstAttribute="top" secondItem="3" secondAttribute="top" id="i4T-yI-qEr"/>
                             <constraint firstItem="dje-2i-9YC" firstAttribute="top" secondItem="dI5-ha-IW9" secondAttribute="top" id="krB-a7-wtn"/>
@@ -621,7 +622,7 @@
                                     <action selector="didTapEnterButton" destination="ikG-0Y-sVh" eventType="touchUpInside" id="fMv-WR-reX"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YapSnap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIg-LB-ROP">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="?QuackBack?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIg-LB-ROP">
                                 <rect key="frame" x="0.0" y="121" width="320" height="91"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="60"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

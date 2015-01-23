@@ -41,7 +41,7 @@ static API *sharedAPI;
 {
     //return @"http://localhost:4000"; // local dev server
     return @"http://yapsnap.herokuapp.com"; // production
-    //return @"http://192.168.1.177:3000";
+    //return @"http://192.168.1.177:4000";
 }
 
 #pragma mark - Generic Methods
@@ -83,7 +83,7 @@ static API *sharedAPI;
                                                   @"recipients":recipients,
                                                   @"text": builder.text,
                                                   @"duration": [NSNumber numberWithFloat:builder.duration],
-                                                  @"color": [NSArray arrayWithObjects:@"0", @"84", @"255", nil], //What is the best way to store these numbers on the back end?
+                                                  @"color_rgb": [NSArray arrayWithObjects:@"0", @"84", @"255", nil],//builder.colorComponents,
                                                   @"type": MESSAGE_TYPE_VOICE
                                                   }];
 
@@ -123,7 +123,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                              @"recipients": recipients,
                              @"text": builder.text,
                              @"duration": [NSNumber numberWithFloat:builder.duration],
-                             @"color": builder.colorComponents, //What is the best way to store these numbers on the back end? See line 59 on AddTextViewController to see how it is currently stored.
+                             @"color_rgb": [NSArray arrayWithObjects:@"0", @"84", @"255", nil],//builder.colorComponents,
                              @"type": MESSAGE_TYPE_SPOTIFY
                              };
     
@@ -196,8 +196,9 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:[self urlForEndpoint:@"/yap_opened"]
-      parameters:[self paramsWithDict:@{@"yap_id": yap.yapID}]
+    [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"/audio_messages/%@", yap.yapID]]
+      parameters:[self paramsWithDict:@{@"id": yap.yapID,
+                                        @"status" : @"opened"}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              callback(YES, nil);
          }

@@ -77,7 +77,7 @@
 {
     self.elapsedTime += TIME_INTERVAL;
 
-    CGFloat trackLength = 10.0f;//TODO replace with duration from yap object when available
+    CGFloat trackLength = [self.yap.duration floatValue];
     CGFloat progress = self.elapsedTime / trackLength;
     [self.progressView setProgress:progress];
     
