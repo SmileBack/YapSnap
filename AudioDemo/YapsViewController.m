@@ -105,27 +105,12 @@ static NSString *CellIdentifier = @"Cell";
     
     YapCell *cell = [tableView dequeueReusableCellWithIdentifier:cellType];
     
+    cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@" , yap.createdAt.description];
+    
     if (didSendYap) {
         cell.nameLabel.text = yap.displayReceiverName;
-        if ([yap.status isEqual: @"unopened"]) {
-            cell.createdTimeLabel.text = [NSString stringWithFormat:@"Sent %@ | Delivered" , yap.createdAt.description];
-        } else if ([yap.status  isEqual: @"opened"]) {
-            cell.createdTimeLabel.text = [NSString stringWithFormat:@"Sent %@ | Opened" , yap.createdAt.description];
-        }
     } else {
         cell.nameLabel.text = yap.displaySenderName;
-        cell.createdTimeLabel.text = [NSString stringWithFormat:@"Received %@" , yap.createdAt.description];
-        if ([yap.type  isEqual: @"SpotifyMessage"]) {
-            UIButton *spotifyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [spotifyButton addTarget:self
-                              action:@selector(tappedListenOnSpotifyButton)
-                    forControlEvents:UIControlEventTouchUpInside];
-            [spotifyButton setBackgroundImage:[UIImage imageNamed:@"listen_on_spotify-black2.png"] forState:UIControlStateNormal];
-            spotifyButton.frame = CGRectMake(238, 60, 74, 22);
-            [cell addSubview:spotifyButton];
-        } else {
-            
-        }
     }
     
     return cell;
@@ -134,9 +119,6 @@ static NSString *CellIdentifier = @"Cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"didSelectRow");
-    
-    YSYap *yap = self.yaps[indexPath.row];
-    [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
 }
 
 //- (void)doDoubleTap
@@ -154,11 +136,6 @@ static NSString *CellIdentifier = @"Cell";
         vc.yap = yap;
     }
 }
-
-- (void) tappedListenOnSpotifyButton {
-    NSLog(@"tappedListenOnSpotifyButton");
-}
-
 
 
 @end
