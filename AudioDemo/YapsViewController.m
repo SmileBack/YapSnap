@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *yaps;
 @property (nonatomic, strong) PlaybackVC *playbackVC;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSDateFormatter* dateFormatter;
 
 @end
 
@@ -29,6 +30,12 @@ static NSString *CellIdentifier = @"Cell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
+    self.dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    self.dateFormatter.doesRelativeDateFormatting = YES;
+    self.dateFormatter.locale = [NSLocale currentLocale];
     
     self.navigationItem.title = @"Your Yaps";
     
@@ -104,8 +111,7 @@ static NSString *CellIdentifier = @"Cell";
     NSString *cellType = didSendYap ? @"Sent Cell" : @"Received Cell";
     
     YapCell *cell = [tableView dequeueReusableCellWithIdentifier:cellType];
-    
-    cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@" , yap.createdAt.description];
+    cell.createdTimeLabel.text = [self.dateFormatter stringFromDate:yap.createdAt];
     
     if (didSendYap) {
         cell.nameLabel.text = yap.displayReceiverName;

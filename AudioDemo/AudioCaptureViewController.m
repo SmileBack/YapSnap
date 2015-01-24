@@ -32,7 +32,7 @@
 @implementation AudioCaptureViewController
 
 static const float MAX_CAPTURE_TIME = 10.0;
-static const float TIMER_INTERVAL = .01;
+static const float TIMER_INTERVAL = 0.1;
 
 - (void)viewDidLoad
 {
@@ -160,7 +160,7 @@ static const float TIMER_INTERVAL = .01;
                     }];
 }
 
-- (void) updateProgress {
+- (void) updateProgress{
     self.elapsedTime += TIMER_INTERVAL;
     
     [self.progressView setProgress:(self.elapsedTime / MAX_CAPTURE_TIME)];

@@ -19,6 +19,6 @@
 @property (nonatomic) CGFloat duration;
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSArray *contacts;
-@property (nonatomic, strong) NSArray *colorComponents;
+@property (nonatomic, strong) UIColor *color;
 
 @end

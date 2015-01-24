@@ -8,6 +8,7 @@
 
 #import "YSYap.h"
 #import "ContactManager.h"
+#import "NSDate+InternetDateTime.h"
 
 @implementation YSYap
 
@@ -16,7 +17,7 @@
     YSYap *yap = [YSYap new];
     
     yap.yapID = dict[@"id"];
-    yap.createdAt = dict[@"created_at"];
+    yap.createdAt = [NSDate dateFromInternetDateTimeString:dict[@"created_at"] formatHint:DateFormatHintRFC3339];
     yap.status = dict[@"status"];
     yap.type = dict[@"type"];
     yap.duration = dict[@"duration"];

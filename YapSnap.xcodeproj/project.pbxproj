@@ -60,6 +60,8 @@
 		787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */; };
 		787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */; };
 		787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A6D941A4DD8A2001551C6 /* Crashlytics.framework */; };
+		787FD5F51A72E5DF00F8E205 /* YSColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FD5F31A72E5DF00F8E205 /* YSColorPicker.m */; };
+		787FD5FD1A72F22100F8E205 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FD5FB1A72F22100F8E205 /* NSDate+InternetDateTime.m */; };
 		78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */; };
 		C1A8A28BEEE98012F2950D09 /* libPods-YapSnap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C8F94496586F87E59A61FD /* libPods-YapSnap.a */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
@@ -164,6 +166,10 @@
 		787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconLarge@2x.png"; sourceTree = "<group>"; };
 		787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconSmall@2x.png"; sourceTree = "<group>"; };
 		787A6D941A4DD8A2001551C6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		787FD5F31A72E5DF00F8E205 /* YSColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSColorPicker.m; sourceTree = "<group>"; };
+		787FD5F41A72E5DF00F8E205 /* YSColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSColorPicker.h; sourceTree = "<group>"; };
+		787FD5FB1A72F22100F8E205 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
+		787FD5FC1A72F22100F8E205 /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
 		78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black2.png"; sourceTree = "<group>"; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -400,6 +406,15 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
+		787FD5FA1A72F21100F8E205 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				787FD5FB1A72F22100F8E205 /* NSDate+InternetDateTime.m */,
+				787FD5FC1A72F22100F8E205 /* NSDate+InternetDateTime.h */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		D7F0B05C2CE000894BFB84FE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +466,7 @@
 		F44B0C4816DA404700E6CD88 /* YapSnap */ = {
 			isa = PBXGroup;
 			children = (
+				787FD5FA1A72F21100F8E205 /* Categories */,
 				FC0C1D4D1A46065B00B148AB /* Libraries */,
 				FC0C1D3F1A45EE5E00B148AB /* Controllers */,
 				FCA2CE9E1A3CCC9B0055C76A /* Views */,
@@ -552,6 +568,8 @@
 		FCA2CE9E1A3CCC9B0055C76A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				787FD5F31A72E5DF00F8E205 /* YSColorPicker.m */,
+				787FD5F41A72E5DF00F8E205 /* YSColorPicker.h */,
 				FC1E89B61A4B852C007A8CDA /* SpotifyTrackView.h */,
 				FC1E89B71A4B852C007A8CDA /* SpotifyTrackView.m */,
 				FCEF993E1A6D7BF2000FDE4C /* YapCell.h */,
@@ -745,8 +763,10 @@
 				F44B0C5316DA404700E6CD88 /* AppDelegate.m in Sources */,
 				374383E919CE323B0009C323 /* LandingPageViewController.m in Sources */,
 				FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */,
+				787FD5F51A72E5DF00F8E205 /* YSColorPicker.m in Sources */,
 				378191D419E59B4A006EF98F /* API.m in Sources */,
 				FC0C1D4C1A45F98500B148AB /* YSMicSourceController.m in Sources */,
+				787FD5FD1A72F22100F8E205 /* NSDate+InternetDateTime.m in Sources */,
 				FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */,
 				37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */,
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
