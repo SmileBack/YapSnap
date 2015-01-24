@@ -47,7 +47,7 @@
 		784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67F01A626F7B0084894D /* ProgressViewNotches5.png */; };
 		784E35E61A6339EE0029AA01 /* SpotifyModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */; };
 		784E35E81A633B3B0029AA01 /* RecordModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35E71A633B3B0029AA01 /* RecordModeButton.png */; };
-		784E35EE1A659DB40029AA01 /* ColorPickerSpectrum.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35ED1A659DB40029AA01 /* ColorPickerSpectrum.png */; };
+		784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */; };
 		784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35EF1A65A0ED0029AA01 /* PencilIcon.png */; };
 		786D910F1A6EEA5000177E25 /* BlueArrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D910E1A6EEA5000177E25 /* BlueArrow2.png */; };
 		786D91131A6EEEDE00177E25 /* BlueArrowWhiteFilling.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91121A6EEEDE00177E25 /* BlueArrowWhiteFilling.png */; };
@@ -62,6 +62,7 @@
 		787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A6D941A4DD8A2001551C6 /* Crashlytics.framework */; };
 		78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */; };
 		78A569A31A73227200818A17 /* YSColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A569A21A73227200818A17 /* YSColorPicker.m */; };
+		78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */; };
 		78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */; };
 		C1A8A28BEEE98012F2950D09 /* libPods-YapSnap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C8F94496586F87E59A61FD /* libPods-YapSnap.a */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
@@ -153,7 +154,7 @@
 		784C67F01A626F7B0084894D /* ProgressViewNotches5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewNotches5.png; sourceTree = "<group>"; };
 		784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyModeButton.png; sourceTree = "<group>"; };
 		784E35E71A633B3B0029AA01 /* RecordModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordModeButton.png; sourceTree = "<group>"; };
-		784E35ED1A659DB40029AA01 /* ColorPickerSpectrum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorPickerSpectrum.png; sourceTree = "<group>"; };
+		784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum@2x.png"; sourceTree = "<group>"; };
 		784E35EF1A65A0ED0029AA01 /* PencilIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PencilIcon.png; sourceTree = "<group>"; };
 		786D910E1A6EEA5000177E25 /* BlueArrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueArrow2.png; sourceTree = "<group>"; };
 		786D91121A6EEEDE00177E25 /* BlueArrowWhiteFilling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueArrowWhiteFilling.png; sourceTree = "<group>"; };
@@ -170,6 +171,7 @@
 		78A569A11A73200900818A17 /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
 		78A569A21A73227200818A17 /* YSColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSColorPicker.m; sourceTree = "<group>"; };
 		78A569A41A73227700818A17 /* YSColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YSColorPicker.h; sourceTree = "<group>"; };
+		78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum2@2x.png"; sourceTree = "<group>"; };
 		78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black2.png"; sourceTree = "<group>"; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,7 +301,8 @@
 				784C67E21A625D110084894D /* ProgressViewBackgroundRed.png */,
 				784C67E31A625D110084894D /* ProgressViewBackgroundWhite.png */,
 				784C67F01A626F7B0084894D /* ProgressViewNotches5.png */,
-				784E35ED1A659DB40029AA01 /* ColorPickerSpectrum.png */,
+				78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */,
+				784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */,
 				784E35EF1A65A0ED0029AA01 /* PencilIcon.png */,
 			);
 			name = Resources;
@@ -644,6 +647,7 @@
 				787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */,
 				3753AF8919E9A4D000B6391D /* Microphone_White2.png in Resources */,
 				37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */,
+				78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */,
 				F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */,
 				786D911B1A6EF6AF00177E25 /* listen_on_spotify-black.png in Resources */,
 				784E35E81A633B3B0029AA01 /* RecordModeButton.png in Resources */,
@@ -670,7 +674,7 @@
 				37D20C2C19E4A19D008530BF /* RecordButtonRedWhiteBorder.png in Resources */,
 				37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */,
 				37D413C219D21FC300021548 /* RedCircleSmall.png in Resources */,
-				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum.png in Resources */,
+				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
 				78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */,

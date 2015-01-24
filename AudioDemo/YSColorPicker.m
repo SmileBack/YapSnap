@@ -28,7 +28,7 @@
 {
     self.clipsToBounds = YES;
     
-    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ColorPickerSpectrum"]];
+    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ColorPickerSpectrum2.png"]];
     [self addSubview:imageView];
     imageView.contentMode = UIViewContentModeTop;
     [imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -58,11 +58,11 @@
 
 - (void)updateHueSatWithMovement:(CGPoint) position { //important
     
-    CGFloat currentHue = (position.x - CGRectGetMinX(self.frame))/CGRectGetWidth(self.frame);
+    CGFloat currentHue = (1 - (position.x - CGRectGetMinX(self.frame))/CGRectGetWidth(self.frame));
     
     UIColor* selectedColor = [UIColor colorWithHue:currentHue
                                         saturation:1.0
-                                        brightness:1.0
+                                        brightness:0.85
                                              alpha:1.0];
     
     CGFloat brightness;
@@ -74,7 +74,7 @@
     {
         newColor = [UIColor colorWithHue:0
                               saturation:1.0
-                              brightness:1.0
+                              brightness:0.85
                                    alpha:1.0];
     }
     else
