@@ -62,7 +62,7 @@
     
     UIColor* selectedColor = [UIColor colorWithHue:currentHue
                                         saturation:1.0
-                                        brightness:0.85
+                                        brightness:0.9
                                              alpha:1.0];
     
     CGFloat brightness;
@@ -74,7 +74,7 @@
     {
         newColor = [UIColor colorWithHue:0
                               saturation:1.0
-                              brightness:0.85
+                              brightness:0.9
                                    alpha:1.0];
     }
     else

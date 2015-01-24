@@ -348,12 +348,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="310" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="VnF-Dl-MOn">
-                                <rect key="frame" x="5" y="123" width="310" height="178"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="132"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9XV-zO-GXP">
                                 <rect key="frame" x="240" y="481" width="60" height="60"/>
                                 <state key="normal" title="Next" image="ArrowWhite.png">
@@ -380,7 +374,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapAddTextButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="LwJ-mR-UKq"/>
+                                    <action selector="didTapAddTextButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="IXL-xB-NU4"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VT6-V5-MtX">
@@ -393,6 +387,13 @@
                                 <rect key="frame" x="0.0" y="554" width="320" height="14"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Yo4-ls-PqW">
+                                <rect key="frame" x="5" y="123" width="310" height="200"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="45"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -402,7 +403,7 @@
                         <outlet property="colorPicker" destination="EFe-hN-LX9" id="MKP-hO-rrG"/>
                         <outlet property="progressView" destination="38e-bV-c4v" id="AgX-HI-9eq"/>
                         <outlet property="sendYapLabel" destination="VT6-V5-MtX" id="BBs-eg-hOt"/>
-                        <outlet property="textField" destination="VnF-Dl-MOn" id="Onq-gY-Lry"/>
+                        <outlet property="textView" destination="Yo4-ls-PqW" id="5he-52-51O"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="Contacts Segue" id="0bM-75-hD3"/>
                     </connections>
                 </viewController>
@@ -558,13 +559,12 @@
                                 <rect key="frame" x="150" y="74" width="20" height="20"/>
                                 <color key="color" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.14999999999999999" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="5ti-AL-urc">
-                                <rect key="frame" x="5" y="123" width="310" height="178"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i6A-Iw-epG">
+                                <rect key="frame" x="5" y="123" width="310" height="200"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="132"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="45"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -588,7 +588,7 @@
                     <connections>
                         <outlet property="progressView" destination="rSQ-Pl-w4L" id="3PN-yl-Zkg"/>
                         <outlet property="recordButtonSpinner" destination="ZSy-MK-810" id="KpB-r5-oxN"/>
-                        <outlet property="textField" destination="5ti-AL-urc" id="50n-Xb-ftJ"/>
+                        <outlet property="textView" destination="i6A-Iw-epG" id="5Gi-rN-03J"/>
                         <outlet property="volumeView" destination="7Kj-1X-Ut8" id="Bfa-tn-xSP"/>
                     </connections>
                 </viewController>

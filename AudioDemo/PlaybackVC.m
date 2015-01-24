@@ -14,7 +14,7 @@
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic) CGFloat elapsedTime;
-@property (strong, nonatomic) IBOutlet UITextField *textField;
+@property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *recordButtonSpinner;
 
 @end
@@ -37,12 +37,12 @@
     [self.recordButtonSpinner startAnimating];
     
     // Snapchat allows for 48 characters horizontally; 31 vertically 
-    self.textField.text = self.yap.text;  //TODO REPLACE THIS
+    self.textView.text = self.yap.text;  //TODO REPLACE THIS
     
-    if ([self.textField.text length] == 0) {
-        self.textField.hidden = YES;
+    if ([self.textView.text length] == 0) {
+        self.textView.hidden = YES;
     } else {
-        self.textField.hidden = NO;
+        self.textView.hidden = NO;
     }
     
     self.view.backgroundColor = [UIColor colorWithRed:[self.yap.rgbColorComponents[0] floatValue] green:[self.yap.rgbColorComponents[1] floatValue] blue:[self.yap.rgbColorComponents[2] floatValue] alpha:1];
