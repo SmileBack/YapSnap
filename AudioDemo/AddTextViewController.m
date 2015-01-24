@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet JEProgressView *progressView;
 @property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
 @property (strong, nonatomic) IBOutlet UILabel *sendYapLabel;
+@property (weak, nonatomic) IBOutlet YSColorPicker *colorPicker;
 
 
 - (IBAction)didTapAddTextButton;
@@ -35,6 +36,7 @@
     
     self.textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textField.delegate = self;
+    self.colorPicker.delegate = self;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -56,7 +58,7 @@
     if ([@"Contacts Segue" isEqualToString:segue.identifier]) {
         ContactsViewController *vc = segue.destinationViewController;
         self.yapBuilder.text = self.textField.text;
-        self.yapBuilder.colorComponents = [NSArray arrayWithObjects:@"0", @"84", @"255", nil]; //TODO: Un-hardcode this after implementing the color picker.
+        self.yapBuilder.color = self.view.backgroundColor;
         vc.yapBuilder = self.yapBuilder;
     }
 }
@@ -87,6 +89,13 @@
     }
     
     return YES;
+}
+
+#pragma mark - YSColorPickerDelegate
+
+- (void)colorPicker:(YSColorPicker *)picker didSelectColor:(UIColor *)color
+{
+    self.view.backgroundColor = color;
 }
 
 

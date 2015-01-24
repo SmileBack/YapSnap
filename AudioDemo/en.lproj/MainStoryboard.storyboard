@@ -389,12 +389,17 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EFe-hN-LX9" customClass="YSColorPicker">
+                                <rect key="frame" x="0.0" y="548" width="320" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="M5r-U7-dCX"/>
                     <connections>
                         <outlet property="addTextToYapButton" destination="KDf-Vb-ilr" id="jTv-Uo-Wb4"/>
+                        <outlet property="colorPicker" destination="EFe-hN-LX9" id="MKP-hO-rrG"/>
                         <outlet property="progressView" destination="38e-bV-c4v" id="AgX-HI-9eq"/>
                         <outlet property="sendYapLabel" destination="VT6-V5-MtX" id="BBs-eg-hOt"/>
                         <outlet property="textField" destination="VnF-Dl-MOn" id="Onq-gY-Lry"/>

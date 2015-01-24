@@ -22,6 +22,7 @@
     yap.type = dict[@"type"];
     yap.duration = dict[@"duration"];
     yap.text = dict[@"text"];
+    yap.rgbColorComponents = dict[@"color_rgb"];
 
     yap.artist = dict[@"spotify_artist_name"];
     

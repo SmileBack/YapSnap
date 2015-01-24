@@ -79,11 +79,23 @@ static API *sharedAPI;
     
     NSString* recipients = [[builder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
     
+    // Send Color
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alpha;
+    [builder.color getRed:&red green:&green blue:&blue alpha:&alpha];
+    NSMutableArray* rgbColorComponents = [NSMutableArray arrayWithCapacity:3];
+    for (NSNumber* number in @[[NSNumber numberWithFloat:red * 255.0], [NSNumber numberWithFloat:green * 255.0], [NSNumber numberWithFloat:blue * 255.0]])
+    {
+        [rgbColorComponents addObject:number.stringValue];
+    }
+    
     NSDictionary *params = [self paramsWithDict:@{@"session_token": self.sessionToken,
                                                   @"recipients":recipients,
                                                   @"text": builder.text,
                                                   @"duration": [NSNumber numberWithFloat:builder.duration],
-                                                  @"color_rgb": [NSArray arrayWithObjects:@"0", @"84", @"255", nil],//builder.colorComponents,
+                                                  @"color_rgb": rgbColorComponents, //[NSArray arrayWithObjects:@"0", @"84", @"255", nil],
                                                   @"type": MESSAGE_TYPE_VOICE
                                                   }];
 
@@ -111,6 +123,18 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     
     YSTrack *song = builder.track;
     
+    // Send Color
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alpha;
+    [builder.color getRed:&red green:&green blue:&blue alpha:&alpha];
+    NSMutableArray* rgbColorComponents = [NSMutableArray arrayWithCapacity:3];
+    for (NSNumber* number in @[[NSNumber numberWithFloat:red * 255.0], [NSNumber numberWithFloat:green * 255.0], [NSNumber numberWithFloat:blue * 255.0]])
+    {
+        [rgbColorComponents addObject:number.stringValue];
+    }
+    
     //TODO USE REAL SESSION TOKEN
     NSDictionary *params = @{@"session_token": self.sessionToken,
                              @"spotify_song_name": song.name,
@@ -123,7 +147,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                              @"recipients": recipients,
                              @"text": builder.text,
                              @"duration": [NSNumber numberWithFloat:builder.duration],
-                             @"color_rgb": [NSArray arrayWithObjects:@"0", @"84", @"255", nil],//builder.colorComponents,
+                             @"color_rgb": rgbColorComponents, //[NSArray arrayWithObjects:@"0", @"84", @"255", nil],
                              @"type": MESSAGE_TYPE_SPOTIFY
                              };
     

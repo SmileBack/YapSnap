@@ -61,6 +61,7 @@
 		787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */; };
 		787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A6D941A4DD8A2001551C6 /* Crashlytics.framework */; };
 		78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */; };
+		78A569A31A73227200818A17 /* YSColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A569A21A73227200818A17 /* YSColorPicker.m */; };
 		78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */; };
 		C1A8A28BEEE98012F2950D09 /* libPods-YapSnap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C8F94496586F87E59A61FD /* libPods-YapSnap.a */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
@@ -167,6 +168,8 @@
 		787A6D941A4DD8A2001551C6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
 		78A569A11A73200900818A17 /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
+		78A569A21A73227200818A17 /* YSColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSColorPicker.m; sourceTree = "<group>"; };
+		78A569A41A73227700818A17 /* YSColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YSColorPicker.h; sourceTree = "<group>"; };
 		78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black2.png"; sourceTree = "<group>"; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -561,6 +564,8 @@
 				FC1E89B71A4B852C007A8CDA /* SpotifyTrackView.m */,
 				FCEF993E1A6D7BF2000FDE4C /* YapCell.h */,
 				FCEF993F1A6D7BF2000FDE4C /* YapCell.m */,
+				78A569A41A73227700818A17 /* YSColorPicker.h */,
+				78A569A21A73227200818A17 /* YSColorPicker.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -731,6 +736,7 @@
 			files = (
 				FC1E89BB1A4B8E94007A8CDA /* YSYap.m in Sources */,
 				FC0595821A6D87A700FCCED2 /* ContactManager.m in Sources */,
+				78A569A31A73227200818A17 /* YSColorPicker.m in Sources */,
 				37D413BE19D21A1F00021548 /* NSString+FontAwesome.m in Sources */,
 				F44B0C4F16DA404700E6CD88 /* main.m in Sources */,
 				37D413CA19D22B5E00021548 /* EnterNameViewController.m in Sources */,

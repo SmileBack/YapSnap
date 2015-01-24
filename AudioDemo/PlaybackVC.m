@@ -45,9 +45,7 @@
         self.textField.hidden = NO;
     }
     
-    [[API sharedAPI] yapOpened:self.yap withCallback:^(BOOL success, NSError *error) {
-        //TODO do something?
-    }];
+    self.view.backgroundColor = [UIColor colorWithRed:[self.yap.rgbColorComponents[0] floatValue] green:[self.yap.rgbColorComponents[1] floatValue] blue:[self.yap.rgbColorComponents[2] floatValue] alpha:1];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -106,6 +104,9 @@
                                                     userInfo:nil
                                                      repeats:YES];
         [self.recordButtonSpinner stopAnimating];
+        [[API sharedAPI] yapOpened:self.yap withCallback:^(BOOL success, NSError *error) {
+            //TODO do something?
+        }];
     } else if (state == STKAudioPlayerStateStopped) {
         NSLog(@"Stopped!");
         [self.timer invalidate];
