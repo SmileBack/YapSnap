@@ -1,5 +1,5 @@
 //
-//  ContactsViewController.m
+//  YapsViewController.m
 //  AudioDemo
 //
 //  Created by Dan Berenholtz on 9/7/14.
@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *yaps;
 @property (nonatomic, strong) PlaybackVC *playbackVC;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSDateFormatter* dateFormatter;
 
 @end
 
@@ -29,6 +30,12 @@ static NSString *CellIdentifier = @"Cell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
+    self.dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    self.dateFormatter.doesRelativeDateFormatting = YES;
+    self.dateFormatter.locale = [NSLocale currentLocale];
     
     self.navigationItem.title = @"Your Yaps";
     
@@ -108,13 +115,13 @@ static NSString *CellIdentifier = @"Cell";
     if (didSendYap) {
         cell.nameLabel.text = yap.displayReceiverName;
         if ([yap.status isEqual: @"unopened"]) {
-            cell.createdTimeLabel.text = [NSString stringWithFormat:@"Sent %@ | Delivered" , yap.createdAt.description];
+            cell.createdTimeLabel.text = [NSString stringWithFormat:@"Sent %@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
         } else if ([yap.status  isEqual: @"opened"]) {
-            cell.createdTimeLabel.text = [NSString stringWithFormat:@"Sent %@ | Opened" , yap.createdAt.description];
+            cell.createdTimeLabel.text = [NSString stringWithFormat:@"Sent %@  |  Opened" , [self.dateFormatter stringFromDate:yap.createdAt]];
         }
     } else {
         cell.nameLabel.text = yap.displaySenderName;
-        cell.createdTimeLabel.text = [NSString stringWithFormat:@"Received %@" , yap.createdAt.description];
+        cell.createdTimeLabel.text = [NSString stringWithFormat:@"Received %@" , [self.dateFormatter stringFromDate:yap.createdAt]];
         if ([yap.type  isEqual: @"SpotifyMessage"]) {
             UIButton *spotifyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [spotifyButton addTarget:self
