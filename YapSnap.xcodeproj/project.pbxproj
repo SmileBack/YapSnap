@@ -63,6 +63,7 @@
 		78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */; };
 		78A569A31A73227200818A17 /* YSColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A569A21A73227200818A17 /* YSColorPicker.m */; };
 		78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */; };
+		78A569A81A74386700818A17 /* ColdplayAlbumImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78A569A71A74386700818A17 /* ColdplayAlbumImage.jpg */; };
 		78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */; };
 		C1A8A28BEEE98012F2950D09 /* libPods-YapSnap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C8F94496586F87E59A61FD /* libPods-YapSnap.a */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
@@ -172,6 +173,7 @@
 		78A569A21A73227200818A17 /* YSColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSColorPicker.m; sourceTree = "<group>"; };
 		78A569A41A73227700818A17 /* YSColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YSColorPicker.h; sourceTree = "<group>"; };
 		78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum2@2x.png"; sourceTree = "<group>"; };
+		78A569A71A74386700818A17 /* ColdplayAlbumImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ColdplayAlbumImage.jpg; sourceTree = "<group>"; };
 		78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black2.png"; sourceTree = "<group>"; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,6 +306,7 @@
 				78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */,
 				784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */,
 				784E35EF1A65A0ED0029AA01 /* PencilIcon.png */,
+				78A569A71A74386700818A17 /* ColdplayAlbumImage.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				3753AF8B19E9A68200B6391D /* YapsButtonRed.png in Resources */,
 				780005AA1A70EE69005E6CD4 /* listen_on_spotify-black-long3.png in Resources */,
 				784C67E41A625D110084894D /* ProgressViewBackgroundRed.png in Resources */,
+				78A569A81A74386700818A17 /* ColdplayAlbumImage.jpg in Resources */,
 				784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */,
 				787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */,
 				F44B0C5C16DA404700E6CD88 /* MainStoryboard.storyboard in Resources */,

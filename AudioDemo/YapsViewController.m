@@ -20,6 +20,7 @@
 @property (nonatomic, strong) PlaybackVC *playbackVC;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
+@property (nonatomic, strong) UIView *goToSpotifyView;
 
 @end
 
@@ -43,25 +44,14 @@ static NSString *CellIdentifier = @"Cell";
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    self.navigationController.navigationBar.tintColor = THEME_RED_COLOR;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-    self.navigationItem.hidesBackButton = YES;
-
     [self loadYaps];
 
     // Pull down to refresh
     self.refreshControl = [UIRefreshControl new];
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
-    
-//    [[NSNotificationCenter defaultCenter] addObserverForName:PLAYBACK_STOPPED_NOTIFICATION
-//                                                      object:nil
-//                                                       queue:nil
-//                                                  usingBlock:^(NSNotification *note) {
-//                                                      [self.playbackVC.view removeFromSuperview];
-//                                                      [self.playbackVC removeFromParentViewController];
-//                                                      self.playbackVC = nil;
-//                                                  }];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -112,26 +102,63 @@ static NSString *CellIdentifier = @"Cell";
     
     YapCell *cell = [tableView dequeueReusableCellWithIdentifier:cellType];
     
+    // DID SEND YAP
     if (didSendYap) {
         cell.nameLabel.text = yap.displayReceiverName;
+        UIImageView *cellIcon = [[UIImageView alloc] init];
+        cellIcon.frame = CGRectMake(12, 31, 24, 27);
+        [cell addSubview:cellIcon];
+        
+        // UNOPENED
         if ([yap.status isEqual: @"unopened"]) {
             cell.createdTimeLabel.text = [NSString stringWithFormat:@"Sent %@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
+            cellIcon.image = [UIImage imageNamed:@"BlueArrow2.png"];
+        
+        // OPENED
         } else if ([yap.status  isEqual: @"opened"]) {
             cell.createdTimeLabel.text = [NSString stringWithFormat:@"Sent %@  |  Opened" , [self.dateFormatter stringFromDate:yap.createdAt]];
+            cellIcon.image = [UIImage imageNamed:@"BlueArrowWhiteFilling.png"];
         }
+        
+    // DID RECEIVE YAP
     } else {
         cell.nameLabel.text = yap.displaySenderName;
         cell.createdTimeLabel.text = [NSString stringWithFormat:@"Received %@" , [self.dateFormatter stringFromDate:yap.createdAt]];
-        if ([yap.type  isEqual: @"SpotifyMessage"]) {
-            UIButton *spotifyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [spotifyButton addTarget:self
-                              action:@selector(tappedListenOnSpotifyButton)
-                    forControlEvents:UIControlEventTouchUpInside];
-            [spotifyButton setBackgroundImage:[UIImage imageNamed:@"listen_on_spotify-black2.png"] forState:UIControlStateNormal];
-            spotifyButton.frame = CGRectMake(238, 60, 74, 22);
-            [cell addSubview:spotifyButton];
-        } else {
+        
+        UIImageView *cellIcon = [[UIImageView alloc] init];
+        cellIcon.frame = CGRectMake(11, 29, 24, 24);
+        [cell addSubview:cellIcon];
+        
+        // UNOPENED
+        if ([yap.status isEqual: @"unopened"]) {
+            cellIcon.image = [UIImage imageNamed:@"RedRoundedSquare.png"];
             
+        // OPENED
+        } else if ([yap.status  isEqual: @"opened"]) {
+            cellIcon.image = [UIImage imageNamed:@"RedRoundedSquareWhiteFilling.png"];
+            
+            // SPOTIFY
+            if ([yap.type  isEqual: @"SpotifyMessage"]) {
+                self.goToSpotifyView = [[UIView alloc] init];
+                self.goToSpotifyView.frame = CGRectMake(238, 8, 74, 74);
+                [cell addSubview:self.goToSpotifyView];
+                
+                //Add gesture recognizer
+                UITapGestureRecognizer *singleFingerTap =
+                [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                        action:@selector(handleSingleTap:)];
+                [self.goToSpotifyView addGestureRecognizer:singleFingerTap];
+                
+                UIImageView *albumImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ColdplayAlbumImage.jpg"]];
+                albumImage.frame = CGRectMake(0, 0, 74, 74);
+                [self.goToSpotifyView addSubview:albumImage];
+                
+                UIImageView *listenOnSpotifyImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"listen_on_spotify-black2.png"]];
+                listenOnSpotifyImage.frame = CGRectMake(0, 52, 74, 22);
+                [self.goToSpotifyView addSubview:listenOnSpotifyImage];
+            } else {
+                
+            }
         }
     }
     
@@ -162,10 +189,11 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
-- (void) tappedListenOnSpotifyButton {
-    NSLog(@"tappedListenOnSpotifyButton");
+//The event handling method
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+    //CGPoint location = [recognizer locationInView:[recognizer.view superview]];
+    NSLog(@"Tapped go to spotify view");
 }
-
 
 
 @end
