@@ -45,7 +45,7 @@
         self.textView.hidden = NO;
     }
     
-    self.view.backgroundColor = [UIColor colorWithRed:[self.yap.rgbColorComponents[0] floatValue] green:[self.yap.rgbColorComponents[1] floatValue] blue:[self.yap.rgbColorComponents[2] floatValue] alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:[self.yap.rgbColorComponents[0] floatValue]/255 green:[self.yap.rgbColorComponents[1] floatValue]/255 blue:[self.yap.rgbColorComponents[2] floatValue]/255 alpha:1];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
