@@ -42,6 +42,9 @@
     self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textView.delegate = self;
     self.colorPicker.delegate = self;
+    
+    self.textView.textContainer.maximumNumberOfLines = 2;
+    self.textView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -97,22 +100,6 @@
     }
     return YES;
 }
-
-/*
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self.view endEditing:YES];
-    //Remove extra space at end of string
-    self.textView.text = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    if (self.textView.text.length == 0) {
-        self.textView.hidden = YES;
-        self.sendYapLabel.hidden = NO;
-        self.addTextToYapButton.hidden = NO;
-    }
-    
-    return YES;
-}
- */
 
 #pragma mark - YSColorPickerDelegate
 

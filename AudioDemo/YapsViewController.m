@@ -187,7 +187,7 @@ static NSString *CellIdentifier = @"Cell";
 {
     NSLog(@"didSelectRow");
     
-    if ([self internetIsNotReachable]){
+    if ([self internetIsNotReachable]){ // Only apply reachability code to situation where user can listen to the yap
         [self showNoInternetAlert];
     } else {        
         YSYap *yap = self.yaps[indexPath.row];
