@@ -43,7 +43,7 @@
     tappedMusicIconImage.numberOfTapsRequired = 1;
     [self.musicIcon addGestureRecognizer:tappedMusicIconImage];
 }
-
+ 
 - (void)tappedMusicIconImage {
     NSLog(@"Tapped Music Icon Image");
     if (self.searchBox.isFirstResponder) {

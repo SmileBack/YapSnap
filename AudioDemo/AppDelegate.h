@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define OPENED_APP_NOTIFICATION @"com.yapsnap.OpenedAppNotification"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

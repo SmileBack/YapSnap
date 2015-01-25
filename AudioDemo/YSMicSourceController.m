@@ -13,12 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *microphone;
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) AVAudioPlayer *player;
-//@property (weak, nonatomic) IBOutlet UIButton *addTextButton;
-//@property (strong, nonatomic) IBOutlet UITextField *textForYapBox;
-//@property (weak, nonatomic) IBOutlet UIImageView *pictureForYap;
-
-
-//- (IBAction)didTapAddTextButton;
 
 @end
 

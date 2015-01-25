@@ -13,6 +13,7 @@
 #import "YapCell.h"
 #import "PlaybackVC.h"
 #import "AudioCaptureViewController.h"
+#import "AppDelegate.h"
 
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -56,6 +57,21 @@ static NSString *CellIdentifier = @"Cell";
     self.refreshControl = [UIRefreshControl new];
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:OPENED_APP_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSArray *viewControllers = [[self navigationController] viewControllers];
+                        for( int i=0;i<[viewControllers count];i++){
+                            id obj=[viewControllers objectAtIndex:[viewControllers count]-i-1];
+                            if([obj isKindOfClass:[AudioCaptureViewController class]]){
+                                [[self navigationController] popToViewController:obj animated:NO];
+                                return;
+                            }
+                        }
+                    }];
 }
 
 - (void) viewWillAppear:(BOOL)animated
