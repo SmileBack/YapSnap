@@ -10,4 +10,6 @@
 
 @interface YapsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic) BOOL comingFromAudioCaptureScreen;
+
 @end

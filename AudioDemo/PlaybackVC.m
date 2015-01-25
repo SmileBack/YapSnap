@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *recordButtonSpinner;
 @property (strong, nonatomic) UIView *progressViewRemainder;
+@property (strong, nonatomic) IBOutlet UIImageView *progressViewNotchesView;
 
 @end
 
@@ -120,6 +121,7 @@
                          }
                          completion:nil];
         
+        [self.view bringSubviewToFront:self.progressViewNotchesView];
         
         [[API sharedAPI] yapOpened:self.yap withCallback:^(BOOL success, NSError *error) {
             //TODO do something?

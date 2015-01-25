@@ -12,7 +12,7 @@
 #import "API.h"
 #import "YapCell.h"
 #import "PlaybackVC.h"
-
+#import "AudioCaptureViewController.h"
 
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -21,6 +21,8 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
 @property (nonatomic, strong) UIView *goToSpotifyView;
+
+- (IBAction)didTapGoToAudioCaptureButton;
 
 @end
 
@@ -39,6 +41,8 @@ static NSString *CellIdentifier = @"Cell";
     self.dateFormatter.locale = [NSLocale currentLocale];
     
     self.navigationItem.title = @"Your Yaps";
+    
+    //self.navigationItem.hidesBackButton = YES;
     
     // TEXT COLOR OF UINAVBAR
     [self.navigationController.navigationBar
@@ -180,7 +184,7 @@ static NSString *CellIdentifier = @"Cell";
 //    [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO
 //}
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([@"Playback Segue" isEqualToString:segue.identifier]) {
         PlaybackVC *vc = segue.destinationViewController;
@@ -193,6 +197,23 @@ static NSString *CellIdentifier = @"Cell";
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
     //CGPoint location = [recognizer locationInView:[recognizer.view superview]];
     NSLog(@"Tapped go to spotify view");
+}
+
+- (void)didTapGoToAudioCaptureButton {
+    NSLog(@"Tapped Go To Audio Capture Page");
+    
+    NSArray *viewControllers = [[self navigationController] viewControllers];
+    for( int i=0;i<[viewControllers count];i++){
+        id obj=[viewControllers objectAtIndex:[viewControllers count]-i-1];
+        if([obj isKindOfClass:[AudioCaptureViewController class]]){
+            if (self.comingFromAudioCaptureScreen) {
+                [[self navigationController] popToViewController:obj animated:YES];
+            } else {
+                [[self navigationController] popToViewController:obj animated:NO];
+            }
+            return;
+        }
+    }
 }
 
 

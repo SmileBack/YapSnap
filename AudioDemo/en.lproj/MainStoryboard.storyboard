@@ -486,7 +486,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="vaK-d3-AtD"/>
+                    <navigationItem key="navigationItem" id="vaK-d3-AtD">
+                        <barButtonItem key="leftBarButtonItem" image="MicrophoneWhiteSmall2.png" id="B8h-I6-JOI">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="didTapGoToAudioCaptureButton" destination="Vua-bX-Wl1" id="bhX-gA-Rs0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="hWh-h3-qO7" id="klJ-nF-XsM"/>
@@ -548,6 +555,9 @@
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="45"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ProgressViewNotches5.png" translatesAutoresizingMaskIntoConstraints="NO" id="Juk-tW-zwr">
+                                <rect key="frame" x="0.0" y="64" width="320" height="40"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -570,6 +580,7 @@
                     <navigationItem key="navigationItem" id="xVH-kE-ZoD"/>
                     <connections>
                         <outlet property="progressView" destination="rSQ-Pl-w4L" id="3PN-yl-Zkg"/>
+                        <outlet property="progressViewNotchesView" destination="Juk-tW-zwr" id="1j7-t7-PrK"/>
                         <outlet property="recordButtonSpinner" destination="ZSy-MK-810" id="KpB-r5-oxN"/>
                         <outlet property="textView" destination="i6A-Iw-epG" id="5Gi-rN-03J"/>
                         <outlet property="volumeView" destination="7Kj-1X-Ut8" id="Bfa-tn-xSP"/>
@@ -880,6 +891,7 @@
         <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
+        <image name="MicrophoneWhiteSmall2.png" width="17" height="30"/>
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PencilIcon.png" width="75" height="75"/>

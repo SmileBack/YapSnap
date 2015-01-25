@@ -13,6 +13,7 @@
 #import "YSMicSourceController.h"
 #import "API.h"
 #import "YapBuilder.h"
+#import "YapsViewController.h"
 
 
 @interface AudioCaptureViewController () {
@@ -242,15 +243,18 @@ static const float TIMER_INTERVAL = .01;
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([@"Prepare Yap For Text Segue" isEqualToString:segue.identifier]) {
-        AddTextViewController *vc = segue.destinationViewController;
+        AddTextViewController *addTextVC = segue.destinationViewController;
 
         //Create yap object
         YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
         yapBuilder.duration = self.elapsedTime;
-        vc.yapBuilder = yapBuilder;
+        addTextVC.yapBuilder = yapBuilder;
         
         self.progressView.progress = 0.0;
         self.elapsedTime = 0;
+    } else if ([@"YapsPageViewControllerSegue" isEqualToString:segue.identifier]) {
+        YapsViewController *yapsVC = segue.destinationViewController;
+        yapsVC.comingFromAudioCaptureScreen = YES;
     }
 }
 
