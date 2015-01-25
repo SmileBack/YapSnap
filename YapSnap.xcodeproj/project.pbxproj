@@ -64,6 +64,9 @@
 		78A569A31A73227200818A17 /* YSColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A569A21A73227200818A17 /* YSColorPicker.m */; };
 		78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */; };
 		78A569A81A74386700818A17 /* ColdplayAlbumImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78A569A71A74386700818A17 /* ColdplayAlbumImage.jpg */; };
+		78A569B01A74A37000818A17 /* Microphone_Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569AF1A74A37000818A17 /* Microphone_Yellow.png */; };
+		78A569B21A74A6AC00818A17 /* Microphone_Yellow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569B11A74A6AC00818A17 /* Microphone_Yellow2.png */; };
+		78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569B51A74A8B900818A17 /* Microphone_Gray2.png */; };
 		78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */; };
 		C1A8A28BEEE98012F2950D09 /* libPods-YapSnap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C8F94496586F87E59A61FD /* libPods-YapSnap.a */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
@@ -174,6 +177,9 @@
 		78A569A41A73227700818A17 /* YSColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YSColorPicker.h; sourceTree = "<group>"; };
 		78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum2@2x.png"; sourceTree = "<group>"; };
 		78A569A71A74386700818A17 /* ColdplayAlbumImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ColdplayAlbumImage.jpg; sourceTree = "<group>"; };
+		78A569AF1A74A37000818A17 /* Microphone_Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_Yellow.png; sourceTree = "<group>"; };
+		78A569B11A74A6AC00818A17 /* Microphone_Yellow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_Yellow2.png; sourceTree = "<group>"; };
+		78A569B51A74A8B900818A17 /* Microphone_Gray2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_Gray2.png; sourceTree = "<group>"; };
 		78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black2.png"; sourceTree = "<group>"; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -293,6 +299,9 @@
 				378FD61119BDF45C007F3224 /* CheckWhite.png */,
 				3753AF8819E9A4D000B6391D /* Microphone_White2.png */,
 				786D91221A6EFBCE00177E25 /* MicrophoneWhiteSmall2@2x.png */,
+				78A569AF1A74A37000818A17 /* Microphone_Yellow.png */,
+				78A569B11A74A6AC00818A17 /* Microphone_Yellow2.png */,
+				78A569B51A74A8B900818A17 /* Microphone_Gray2.png */,
 				784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */,
 				784E35E71A633B3B0029AA01 /* RecordModeButton.png */,
 				37D20C2B19E4A19D008530BF /* RecordButtonRedWhiteBorder.png */,
@@ -660,6 +669,7 @@
 				3753AF9319E9CAEC00B6391D /* Replay@2x.png in Resources */,
 				786D91191A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png in Resources */,
 				786D910F1A6EEA5000177E25 /* BlueArrow2.png in Resources */,
+				78A569B01A74A37000818A17 /* Microphone_Yellow.png in Resources */,
 				37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */,
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
@@ -677,6 +687,7 @@
 				786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */,
 				37D20C2C19E4A19D008530BF /* RecordButtonRedWhiteBorder.png in Resources */,
 				37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */,
+				78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */,
 				37D413C219D21FC300021548 /* RedCircleSmall.png in Resources */,
 				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
@@ -686,6 +697,7 @@
 				786D91151A6EF0C800177E25 /* GrayArrow.png in Resources */,
 				780005A81A70EA66005E6CD4 /* listen_on_spotify-black-long.png in Resources */,
 				784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */,
+				78A569B21A74A6AC00818A17 /* Microphone_Yellow2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

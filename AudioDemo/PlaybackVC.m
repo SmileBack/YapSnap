@@ -16,6 +16,7 @@
 @property (nonatomic) CGFloat elapsedTime;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *recordButtonSpinner;
+@property (strong, nonatomic) UIView *progressViewRemainder;
 
 @end
 
@@ -76,7 +77,7 @@
     self.elapsedTime += TIME_INTERVAL;
 
     CGFloat trackLength = [self.yap.duration floatValue];
-    CGFloat progress = self.elapsedTime / trackLength;
+    CGFloat progress = self.elapsedTime / 10; //trackLength;
     [self.progressView setProgress:progress];
     
     if (self.elapsedTime >= trackLength) {
@@ -104,6 +105,22 @@
                                                     userInfo:nil
                                                      repeats:YES];
         [self.recordButtonSpinner stopAnimating];
+        
+        CGFloat progressViewRemainderWidth = (10 - [self.yap.duration floatValue])*32;
+        self.progressViewRemainder = [[UIView alloc] init];
+        self.progressViewRemainder.frame = CGRectMake(320 - progressViewRemainderWidth, 64, progressViewRemainderWidth, 40);
+        self.progressViewRemainder.backgroundColor = [UIColor lightGrayColor];
+        self.progressViewRemainder.alpha = 0;
+        [self.view addSubview:self.progressViewRemainder];
+        [UIView animateWithDuration:0.4
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.progressViewRemainder.alpha = 1;
+                         }
+                         completion:nil];
+        
+        
         [[API sharedAPI] yapOpened:self.yap withCallback:^(BOOL success, NSError *error) {
             //TODO do something?
         }];

@@ -49,6 +49,11 @@ static NSString *CellIdentifier = @"Cell";
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:nil
+                                                                            action:nil];
+    
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     if ([self internetIsNotReachable]) {

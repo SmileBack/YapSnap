@@ -110,6 +110,8 @@
     [session setActive:YES error:nil];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
+    
+    self.microphone.image = [UIImage imageNamed:@"Microphone_Gray2.png"];
 
     return YES;
 }
@@ -120,6 +122,8 @@
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:NO error:nil];
+    
+    self.microphone.image = [UIImage imageNamed:@"Microphone_White2.png"];
 }
 
 - (void) startPlayback

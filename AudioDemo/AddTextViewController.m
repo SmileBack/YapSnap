@@ -17,7 +17,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
 @property (strong, nonatomic) IBOutlet UILabel *sendYapLabel;
 @property (weak, nonatomic) IBOutlet YSColorPicker *colorPicker;
-
+@property (strong, nonatomic) UIView *progressViewRemainder;
 
 - (IBAction)didTapAddTextButton;
 
