@@ -81,6 +81,20 @@ static NSString *CellIdentifier = @"Cell";
     }];
 }
 
+-(BOOL) internetIsNotReachable
+{
+    return ![AFNetworkReachabilityManager sharedManager].reachable;
+}
+
+- (void) showNoInternetAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection"
+                                                    message:@"Please connect to the internet and try again."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
 #pragma UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -173,8 +187,43 @@ static NSString *CellIdentifier = @"Cell";
 {
     NSLog(@"didSelectRow");
     
-    YSYap *yap = self.yaps[indexPath.row];
-    [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
+    if ([self internetIsNotReachable]){
+        [self showNoInternetAlert];
+    } else {        
+        YSYap *yap = self.yaps[indexPath.row];
+        [self performSegueWithIdentifier:@"Playback Segue" sender:yap]; // Remove this line from here eventually
+        
+    //    BOOL didSendYap = [[yap.senderID stringValue] isEqualToString:[Global retrieveValueForKey:@"current_user_id"]];
+
+        // DID SEND YAP
+    //    if (didSendYap) {
+    //        // REPLACE THIS WITH A LESS INTRUSIVE UI
+    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your message has been delivered"
+    //                                                        message:@"(Replace this with something less intrusive)."
+    //                                                       delegate:nil
+    //                                              cancelButtonTitle:@"OK"
+    //                                              otherButtonTitles:nil];
+    //        [alert show];
+    //        
+    //    // DID RECEIVE YAP
+    //    } else {
+    //        
+    //        // UNOPENED
+    //        if ([yap.status  isEqual: @"unopened"]) {
+    //            [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
+    //        
+    //        // OPENED
+    //        } else {
+    //            // REPLACE THIS WITH A LESS INTRUSIVE UI
+    //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Already Opened"
+    //                                                            message:@"(Replace this with something less intrusive)."
+    //                                                           delegate:nil
+    //                                                  cancelButtonTitle:@"OK"
+    //                                                  otherButtonTitles:nil];
+    //            [alert show];
+    //        }
+    //    }
+    }
 }
 
 //- (void)doDoubleTap
