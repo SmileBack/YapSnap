@@ -12,6 +12,11 @@
 
 @interface EnterPhoneNumberViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *continueButton;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+
+- (IBAction)didTapContinueButton;
+
 @end
 
 @implementation EnterPhoneNumberViewController
@@ -45,6 +50,13 @@
     });
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.continueButton.userInteractionEnabled = YES;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -53,6 +65,9 @@
 
 - (IBAction) didTapContinueButton
 {
+    // This is to prevent user from clicking this multiple times before segue occurs (results in multiple segues)
+    self.continueButton.userInteractionEnabled = NO;
+
     if ([self.textField.text length] < 10) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your number"
                                                         message:@"Please enter your full number so we can verify that you're real"
@@ -61,10 +76,15 @@
                                               otherButtonTitles:nil];
         
         [alert show];
+        
+        // Enable the continue button again
+        self.continueButton.userInteractionEnabled = YES;
         return;
     }
+    
+    NSString *phoneNumber = self.textField.text;
 
-    [[API sharedAPI] postSessions:self.textField.text withCallback:^(BOOL success, NSError *error) {
+    [[API sharedAPI] postSessions:phoneNumber withCallback:^(BOOL success, NSError *error) {
         if (success) {
             [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
         } else {
@@ -74,11 +94,11 @@
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"otherButtonTitles:nil];
             [alert show];
+            
+            // Enable the continue button again
+            self.continueButton.userInteractionEnabled = YES;
         }
     }];
-     
-    
-    //[self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self]; // UNDO - DELETE THIS
 }
 
 
@@ -88,8 +108,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    //[self.navigationController setNavigationBarHidden:NO animated:animated];
-    //[super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 @end

@@ -32,7 +32,6 @@
     // if we're already authenticated, go right to the recording page
     if ([Global retrieveValueForKey:@"session_token"] != nil){
         AudioCaptureViewController* rvvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AudioCaptureViewController"];
-        //RecordVoiceViewController* rvvc = [[RecordVoiceViewController alloc] init];
         [self.navigationController pushViewController:rvvc animated:NO];
     }else{
         // Do any additional setup after loading the view.
@@ -59,13 +58,12 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    //[self.navigationController setNavigationBarHidden:NO animated:animated];
-    //[super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (IBAction) didTapEnterButton
 {
-    [self performSegueWithIdentifier:@"EnterNameViewControllerSegue" sender:self];
+    [self performSegueWithIdentifier:@"EnterPhoneNumberViewControllerSegue" sender:self];
 }
 
 @end

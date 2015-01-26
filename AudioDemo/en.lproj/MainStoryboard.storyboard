@@ -618,7 +618,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="didTapEnterButton" destination="ikG-0Y-sVh" eventType="touchUpInside" id="fMv-WR-reX"/>
+                                    <segue destination="8Uc-K7-X1A" kind="push" identifier="EnterPhoneNumberViewControllerSegue" id="VJW-v4-fft"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YapSnap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIg-LB-ROP">
@@ -640,7 +640,6 @@
                     <navigationItem key="navigationItem" id="cYn-UL-OuG"/>
                     <connections>
                         <outlet property="enterButton" destination="Sz6-r0-iUG" id="JXk-TZ-Vwb"/>
-                        <segue destination="gKu-qF-bJg" kind="push" identifier="EnterNameViewControllerSegue" id="e7I-04-InO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m8d-rJ-ZYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -690,12 +689,12 @@
                     <connections>
                         <outlet property="continueButton" destination="mY2-J4-2ui" id="k4F-nE-yLr"/>
                         <outlet property="textField" destination="p2C-z2-Tyv" id="RBA-0U-OoW"/>
-                        <segue destination="8Uc-K7-X1A" kind="push" identifier="EnterPhoneNumberViewControllerSegue" id="FnR-hq-DSN"/>
+                        <segue destination="2" kind="push" identifier="RecordViewControllerSegue" id="2PQ-Bb-2Ke"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzN-be-bxQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-673" y="-291"/>
+            <point key="canvasLocation" x="339" y="-291"/>
         </scene>
         <!--Enter Phone Number View Controller-->
         <scene sceneID="l9s-Vm-DtD">
@@ -745,7 +744,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zdk-Ki-ihh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-193" y="-291"/>
+            <point key="canvasLocation" x="-681" y="-291"/>
         </scene>
         <!--Enter Code View Controller-->
         <scene sceneID="kBA-no-IN8">
@@ -765,8 +764,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapContinueButton" destination="8Uc-K7-X1A" eventType="touchUpInside" id="3ah-Mq-O1e"/>
-                                    <action selector="didTapContinueButton" destination="JSl-Ix-TF3" eventType="touchUpInside" id="dEH-tz-KKa"/>
+                                    <action selector="didTapContinueButton" destination="JSl-Ix-TF3" eventType="touchUpInside" id="JbD-VO-rWJ"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sdv-mL-fyc">
@@ -789,13 +787,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="fJy-io-gnQ"/>
                     <connections>
+                        <outlet property="continueButton" destination="mTz-kp-bGm" id="2NX-Y8-32m"/>
                         <outlet property="textField" destination="sdv-mL-fyc" id="sBq-eO-7CY"/>
-                        <segue destination="2" kind="push" identifier="RecordViewControllerSegue" id="aUA-aH-Q0k"/>
+                        <segue destination="gKu-qF-bJg" kind="push" identifier="EnterNameAndEmailViewControllerSegue" id="VlH-FK-GED"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqp-v6-G3N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="464" y="-291"/>
+            <point key="canvasLocation" x="-210" y="-291"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iU4-rq-GxL">
@@ -908,7 +907,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="lKy-WC-TGO"/>
+        <segue reference="2PQ-Bb-2Ke"/>
         <segue reference="AEp-MY-7pq"/>
     </inferredMetricsTieBreakers>
 </document>

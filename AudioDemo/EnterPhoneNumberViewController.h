@@ -10,9 +10,4 @@
 
 @interface EnterPhoneNumberViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIButton *continueButton;
-@property (weak, nonatomic) IBOutlet UITextField *textField;
-
-- (IBAction)didTapContinueButton;
-
 @end

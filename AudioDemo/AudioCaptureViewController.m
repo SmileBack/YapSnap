@@ -99,8 +99,6 @@ static const float TIMER_INTERVAL = .01;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    // TODO: Confirm the following change with Jon
-    //[self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillDisappear:animated];
 }
 

@@ -53,8 +53,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    //[self.navigationController setNavigationBarHidden:NO animated:animated];
-    //[super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 
@@ -68,15 +67,9 @@
                                               otherButtonTitles:nil];
         [alert show];
     } else {
-        //if ([result code] == 201) {
-            [Global storeValue:self.textField.text forKey:@"name"];
-            [self performSegueWithIdentifier:@"EnterPhoneNumberViewControllerSegue" sender:self];
-        //} else {
-            // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
-        //}
+        //ADD API Call here
+        [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self];
     }
-    
-    //[self performSegueWithIdentifier:@"EnterPhoneNumberViewControllerSegue" sender:self];
 }
 
 @end

@@ -51,6 +51,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
     [UIView animateWithDuration:.1
                           delay:.9
                         options:UIViewAnimationOptionCurveEaseOut

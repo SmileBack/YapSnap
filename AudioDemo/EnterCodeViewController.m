@@ -12,6 +12,11 @@
 
 @interface EnterCodeViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *continueButton;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+
+- (IBAction)didTapContinueButton;
+
 @end
 
 @implementation EnterCodeViewController
@@ -23,6 +28,13 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.continueButton.userInteractionEnabled = YES;
 }
 
 - (void)viewDidLoad
@@ -64,6 +76,9 @@
 
 - (IBAction) didTapContinueButton
 {
+    // This is to prevent user from clicking this multiple times before segue occurs (results in multiple segues)
+    self.continueButton.userInteractionEnabled = NO;
+    
     if ([self.textField.text length] == 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter code"
                                                         message:@"We sent you a code. Please enter it here to continue."
@@ -72,6 +87,10 @@
                                               otherButtonTitles:nil];
         
         [alert show];
+        
+        // Enable the continue button again
+        self.continueButton.userInteractionEnabled = YES;
+        
         return;
     }
 
@@ -79,7 +98,7 @@
 
     [[API sharedAPI] confirmSessionWithCode:code withCallback:^(BOOL success, NSError *error) {
         if (success) {
-            [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self];
+            [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again"
                                                             message:@"That was the wrong code. Try again."
@@ -88,10 +107,11 @@
                                                   otherButtonTitles:nil];
             
             [alert show];
+            
+            // Enable the continue button again
+            self.continueButton.userInteractionEnabled = YES;
         }
     }];
-    
-    //[self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO - DELETE THIS
 }
 
 - (void)viewWillAppear:(BOOL)animated {
