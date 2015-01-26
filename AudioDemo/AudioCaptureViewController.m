@@ -8,7 +8,6 @@
 
 #import "AudioCaptureViewController.h"
 #import "AddTextViewController.h"
-#import "YSAudioSourceController.h"
 #import "YSSpotifySourceController.h"
 #import "YSMicSourceController.h"
 #import "API.h"
@@ -19,12 +18,8 @@
 @interface AudioCaptureViewController () {
     NSTimer *timer;
 }
-@property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
-@property (nonatomic, strong) YSAudioSourceController *audioSource;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *recordButtonSpinner;
-@property (strong, nonatomic) IBOutlet UIButton *spotifyModeButton;
-@property (strong, nonatomic) IBOutlet UIButton *micModeButton;
-
+@property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 
 @property (nonatomic) float elapsedTime;
 

@@ -14,6 +14,7 @@
 #import "PlaybackVC.h"
 #import "AudioCaptureViewController.h"
 #import "AppDelegate.h"
+#import "YSMicSourceController.h"
 
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -63,14 +64,25 @@ static NSString *CellIdentifier = @"Cell";
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
+                        
                         NSArray *viewControllers = [[self navigationController] viewControllers];
                         for( int i=0;i<[viewControllers count];i++){
                             id obj=[viewControllers objectAtIndex:[viewControllers count]-i-1];
                             if([obj isKindOfClass:[AudioCaptureViewController class]]){
+                                // Reset AudioCaptureViewController, then pop
+                                AudioCaptureViewController* audioCaptureVC = obj;
+                                if (![audioCaptureVC isInRecordMode]) {
+                                    YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
+                                    audioCaptureVC.micModeButton.alpha = 1;
+                                    audioCaptureVC.spotifyModeButton.alpha = .2;
+                                    [audioCaptureVC flipController:audioCaptureVC.audioSource to:micSource];
+                                }
+                                
                                 [[self navigationController] popToViewController:obj animated:NO];
                                 return;
                             }
                         }
+                        
                     }];
 }
 
@@ -274,12 +286,20 @@ static NSString *CellIdentifier = @"Cell";
             if (self.comingFromAudioCaptureScreen) {
                 [[self navigationController] popToViewController:obj animated:YES];
             } else {
+                // Reset AudioCaptureViewController, then pop
+                AudioCaptureViewController* audioCaptureVC = obj;
+                if (![audioCaptureVC isInRecordMode]) {
+                    YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
+                    audioCaptureVC.micModeButton.alpha = 1;
+                    audioCaptureVC.spotifyModeButton.alpha = .2;
+                    [audioCaptureVC flipController:audioCaptureVC.audioSource to:micSource];
+                }
+                
                 [[self navigationController] popToViewController:obj animated:NO];
             }
             return;
         }
     }
 }
-
 
 @end

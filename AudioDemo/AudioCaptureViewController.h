@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "JEProgressView.h"
+#import "YSAudioSourceController.h"
 
 @interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
@@ -17,11 +18,17 @@
 @property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;
 @property (weak, nonatomic) IBOutlet JEProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIView *explanation;
+@property (strong, nonatomic) IBOutlet UIButton *spotifyModeButton;
+@property (strong, nonatomic) IBOutlet UIButton *micModeButton;
+@property (nonatomic, strong) YSAudioSourceController *audioSource;
+
 
 - (IBAction)recordTapped:(id)sender;
 - (IBAction)playTapped:(id)sender;
 
 - (IBAction)didTapYapsPageButton;
+- (BOOL)isInRecordMode;
 
+- (void) flipController:(UIViewController *)from to:(YSAudioSourceController *)to;
 
 @end
