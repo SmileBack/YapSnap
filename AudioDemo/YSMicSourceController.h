@@ -8,6 +8,7 @@
 
 #import "YSAudioSourceController.h"
 #import <AVFoundation/AVFoundation.h>
+#import <Foundation/Foundation.h> // IS THIS NECESSARY HERE? Added this for short sound feature
 
 @interface YSMicSourceController : YSAudioSourceController<AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 

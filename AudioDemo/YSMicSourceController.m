@@ -7,12 +7,13 @@
 //
 
 #import "YSMicSourceController.h"
-
+#import <AudioToolbox/AudioToolbox.h> // IS THIS NECESSARY HERE? Added this for short sound feature. If not necessary, remove framework
 
 @interface YSMicSourceController ()
 @property (weak, nonatomic) IBOutlet UIImageView *microphone;
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) AVAudioPlayer *player;
+@property (assign) SystemSoundID soundID; // Added this for short sound feature
 
 @end
 
@@ -92,6 +93,19 @@
 #pragma mark - Public API Methods
 - (BOOL) startAudioCapture
 {
+//    NSLog(@"soundID:%u", (unsigned int)self.soundID); // 0 - this looks good
+
+//    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"pew-pew-lei" ofType:@"caf"];
+//    NSLog(@"mainBundle:%@", [NSBundle mainBundle]);
+//    NSLog(@"soundPath:%@", soundPath); // null - WHY?????
+    
+//    NSURL *soundUrl = [NSURL fileURLWithPath:soundPath];
+//    NSLog(@"soundURL:%@", soundUrl); // doesn't even reach this point
+    
+//    AudioServicesCreateSystemSoundID ((__bridge CFURLRef)soundUrl, &_soundID);
+//    AudioServicesPlaySystemSound(self.soundID); // doesn't even reach this point
+    
+    
     // Stop the audio player before recording
     if (self.player.playing) {
         [self.player stop];
@@ -120,7 +134,7 @@
     self.microphone.image = [UIImage imageNamed:@"Microphone_White2.png"];
 }
 
-- (void) startPlayback
+- (void) startPlayback //Play button isn't in the UI currently
 {
     if (!self.recorder.recording){
         self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recorder.url error:nil];
