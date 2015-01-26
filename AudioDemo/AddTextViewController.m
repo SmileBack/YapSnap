@@ -42,9 +42,6 @@
     self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textView.delegate = self;
     self.colorPicker.delegate = self;
-    
-    self.textView.textContainer.maximumNumberOfLines = 2;
-    self.textView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
 }
 
 - (void) viewWillAppear:(BOOL)animated
