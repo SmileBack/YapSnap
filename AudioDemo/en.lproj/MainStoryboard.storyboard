@@ -289,7 +289,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapArrowButton" destination="iTO-dn-ews" eventType="touchUpInside" id="fjT-AQ-8Qt"/>
+                                            <action selector="didTapContinueButton" destination="iTO-dn-ews" eventType="touchUpInside" id="2Rz-rB-yAR"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kza-wO-TLE">
@@ -306,6 +306,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="bottomView" destination="hGC-QS-5qY" id="B8D-gO-UTv"/>
+                        <outlet property="continueButton" destination="K6j-MM-95B" id="8DH-Ii-Vuv"/>
                         <outlet property="searchDisplayController" destination="rX9-eN-FWa" id="wiS-if-c5s"/>
                         <outlet property="tableView" destination="W8t-1a-vba" id="ZzW-5c-uyZ"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsViewControllerSegue" id="syO-tE-hvG"/>
@@ -908,6 +909,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="2PQ-Bb-2Ke"/>
-        <segue reference="AEp-MY-7pq"/>
+        <segue reference="syO-tE-hvG"/>
     </inferredMetricsTieBreakers>
 </document>

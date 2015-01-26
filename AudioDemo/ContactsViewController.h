@@ -15,6 +15,6 @@
 
 @property (nonatomic, strong) YapBuilder *yapBuilder;
 
-- (IBAction)didTapArrowButton;
+- (IBAction)didTapContinueButton;
 
 @end

@@ -11,7 +11,6 @@
 #import "MBProgressHUD.h"
 #import "ContactManager.h"
 
-
 @interface ContactsViewController ()
 
 @property (nonatomic, strong) NSArray *contacts;
@@ -19,7 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *selectedContacts;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
-
+@property (weak, nonatomic) IBOutlet UIButton *continueButton;
 
 @end
 
@@ -61,6 +60,13 @@ static NSString *CellIdentifier = @"Cell";
     } else {
         NSLog(@"Internet is reachable");
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.continueButton.userInteractionEnabled = YES;
 }
 
 -(BOOL) internetIsNotReachable
@@ -201,10 +207,13 @@ static NSString *CellIdentifier = @"Cell";
         
 }
 
-- (IBAction) didTapArrowButton
+- (IBAction) didTapContinueButton
 {
+    self.continueButton.userInteractionEnabled = NO;
+    
     if ([self internetIsNotReachable]) {
         [self showNoInternetAlert];
+        self.continueButton.userInteractionEnabled = YES;
     } else {
         __weak ContactsViewController *weakSelf = self;
         
@@ -217,8 +226,8 @@ static NSString *CellIdentifier = @"Cell";
                         } else {
                             // uh oh spaghettios
                             // TODO: tell the user something went wrong
+                            self.continueButton.userInteractionEnabled = YES;
                         }
-                        
                     }];
     }
 }
