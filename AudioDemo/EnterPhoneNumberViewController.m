@@ -9,11 +9,13 @@
 #import "Global.h"
 #import "EnterPhoneNumberViewController.h"
 #import "API.h"
+#import "PhoneNumberChecker.h"
 
 @interface EnterPhoneNumberViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (nonatomic, strong) PhoneNumberChecker *phoneNumberChecker;
 
 - (IBAction)didTapContinueButton;
 
@@ -48,6 +50,8 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.textField becomeFirstResponder];
     });
+    
+    self.phoneNumberChecker = [[PhoneNumberChecker alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -76,29 +80,38 @@
                                               otherButtonTitles:nil];
         
         [alert show];
-        
         // Enable the continue button again
         self.continueButton.userInteractionEnabled = YES;
         return;
     }
     
-    NSString *phoneNumber = self.textField.text;
-
-    [[API sharedAPI] postSessions:phoneNumber withCallback:^(BOOL success, NSError *error) {
-        if (success) {
-            [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
-        } else {
-            // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:error.localizedDescription
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"otherButtonTitles:nil];
-            [alert show];
-            
-            // Enable the continue button again
-            self.continueButton.userInteractionEnabled = YES;
-        }
-    }];
+    if (![self.phoneNumberChecker isPhoneNumberValid:self.textField.text]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Number not valid"
+                                                        message:@"Please enter a valid number."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
+        self.continueButton.userInteractionEnabled = YES;
+    } else {
+        NSString *phoneNumber = self.textField.text;
+        [[API sharedAPI] postSessions:phoneNumber withCallback:^(BOOL success, NSError *error) {
+            if (success) {
+                [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
+            } else {
+                // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:error.localizedDescription
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"otherButtonTitles:nil];
+                [alert show];
+                
+                // Enable the continue button again
+                self.continueButton.userInteractionEnabled = YES;
+            }
+        }];
+    }
 }
 
 
