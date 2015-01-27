@@ -27,13 +27,38 @@
 
 - (BOOL)isPhoneNumberValid:(NSString *)phoneNumber
 {
+    // Strip phone number to just its digits so that it will work with phoneNumberChecker
+    NSString *strippedPhoneNumber = [self stripPhoneNumberToNumbers:phoneNumber];
+    
     for (NSString* prefix in self.areaCodes) {
-        if ([phoneNumber hasPrefix:prefix]) {
+        if ([strippedPhoneNumber hasPrefix:prefix]) {
             return YES;
         }
     }
     
     return NO;
+}
+
+- (NSString *) stripPhoneNumberToNumbers:(NSString *) originalString
+{
+    NSMutableString *strippedString = [NSMutableString
+                                       stringWithCapacity:originalString.length];
+    
+    NSScanner *scanner = [NSScanner scannerWithString:originalString];
+    NSCharacterSet *numbers = [NSCharacterSet
+                               characterSetWithCharactersInString:@"0123456789"];
+    
+    while ([scanner isAtEnd] == NO) {
+        NSString *buffer;
+        if ([scanner scanCharactersFromSet:numbers intoString:&buffer]) {
+            [strippedString appendString:buffer];
+            
+        } else {
+            [scanner setScanLocation:([scanner scanLocation] + 1)];
+        }
+    }
+    
+    return strippedString;
 }
 
 @end

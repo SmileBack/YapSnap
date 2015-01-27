@@ -87,9 +87,7 @@
         return;
     }
     
-    // Strip phone number to just its digits so that it will work with phoneNumberChecker
-    NSString *strippedPhoneNumber = [self stripPhoneNumberToNumbers:self.textField.text];
-    if (![self.phoneNumberChecker isPhoneNumberValid:strippedPhoneNumber]) {
+    if (![self.phoneNumberChecker isPhoneNumberValid:self.textField.text]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Number not valid"
                                                         message:@"Please enter a valid number."
                                                        delegate:nil
@@ -116,28 +114,6 @@
             }
         }];
     }
-}
-
-- (NSString *) stripPhoneNumberToNumbers:(NSString *) originalString
-{
-    NSMutableString *strippedString = [NSMutableString
-                                       stringWithCapacity:originalString.length];
-    
-    NSScanner *scanner = [NSScanner scannerWithString:originalString];
-    NSCharacterSet *numbers = [NSCharacterSet
-                               characterSetWithCharactersInString:@"0123456789"];
-    
-    while ([scanner isAtEnd] == NO) {
-        NSString *buffer;
-        if ([scanner scanCharactersFromSet:numbers intoString:&buffer]) {
-            [strippedString appendString:buffer];
-            
-        } else {
-            [scanner setScanLocation:([scanner scanLocation] + 1)];
-        }
-    }
-    
-    return strippedString;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
