@@ -37,8 +37,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self setupTextFields];
+    
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
+    double delay = 0.6;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.firstNameTextField becomeFirstResponder];
+    });
+}
+
+- (void)setupTextFields {
     self.firstNameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     self.firstNameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     
@@ -48,10 +57,9 @@
     self.emailTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     self.emailTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     
-    double delay = 0.6;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.firstNameTextField becomeFirstResponder];
-    });
+    self.firstNameTextField.delegate = self;
+    self.lastNameTextField.delegate = self;
+    self.emailTextField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,7 +76,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 }
-
 
 - (IBAction) didTapContinueButton
 {
@@ -107,6 +114,18 @@
     NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:checkString];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.firstNameTextField) {
+        [self.lastNameTextField becomeFirstResponder];
+    } else if (textField == self.lastNameTextField) {
+        [self.emailTextField becomeFirstResponder];
+    } else if (textField == self.emailTextField) {
+        [self didTapContinueButton];
+    }
+    
+    return YES;
 }
 
 @end

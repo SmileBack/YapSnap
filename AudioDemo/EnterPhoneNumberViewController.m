@@ -76,7 +76,7 @@
 
     if ([self.textField.text length] < 10) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your number"
-                                                        message:@"Please enter your full number so we can verify that you're real"
+                                                        message:@"Please enter your phone number so we can verify that you're real"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
