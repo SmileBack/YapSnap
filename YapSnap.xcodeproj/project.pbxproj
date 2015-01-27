@@ -36,7 +36,7 @@
 		37D413C019D21A1F00021548 /* UIColor+BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D413BC19D21A1F00021548 /* UIColor+BButton.m */; };
 		37D413C219D21FC300021548 /* RedCircleSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D413C119D21FC300021548 /* RedCircleSmall.png */; };
 		37D413C619D2235C00021548 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37D413C519D2235C00021548 /* Images.xcassets */; };
-		37D413CA19D22B5E00021548 /* EnterNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D413C919D22B5E00021548 /* EnterNameViewController.m */; };
+		37D413CA19D22B5E00021548 /* EnterNameEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D413C919D22B5E00021548 /* EnterNameEmailViewController.m */; };
 		37D413CC19D230D000021548 /* ArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D413CB19D230D000021548 /* ArrowWhite.png */; };
 		37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */; };
 		780005A81A70EA66005E6CD4 /* listen_on_spotify-black-long.png in Resources */ = {isa = PBXBuildFile; fileRef = 780005A71A70EA66005E6CD4 /* listen_on_spotify-black-long.png */; };
@@ -146,8 +146,8 @@
 		37D413C319D221C800021548 /* YapSnap App Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YapSnap App Icon.png"; sourceTree = "<group>"; };
 		37D413C419D2229A00021548 /* YapSnap App Icon 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YapSnap App Icon 114.png"; sourceTree = "<group>"; };
 		37D413C519D2235C00021548 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = YapSnap/Images.xcassets; sourceTree = SOURCE_ROOT; };
-		37D413C819D22B5E00021548 /* EnterNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterNameViewController.h; sourceTree = "<group>"; };
-		37D413C919D22B5E00021548 /* EnterNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterNameViewController.m; sourceTree = "<group>"; };
+		37D413C819D22B5E00021548 /* EnterNameEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterNameEmailViewController.h; sourceTree = "<group>"; };
+		37D413C919D22B5E00021548 /* EnterNameEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterNameEmailViewController.m; sourceTree = "<group>"; };
 		37D413CB19D230D000021548 /* ArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArrowWhite.png; sourceTree = "<group>"; };
 		37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpotifyLogo@2x.png"; sourceTree = "<group>"; };
 		37E122E51A4011560073684D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -390,8 +390,8 @@
 		37D413C719D22B3B00021548 /* Enter Name Page */ = {
 			isa = PBXGroup;
 			children = (
-				37D413C819D22B5E00021548 /* EnterNameViewController.h */,
-				37D413C919D22B5E00021548 /* EnterNameViewController.m */,
+				37D413C819D22B5E00021548 /* EnterNameEmailViewController.h */,
+				37D413C919D22B5E00021548 /* EnterNameEmailViewController.m */,
 			);
 			name = "Enter Name Page";
 			sourceTree = "<group>";
@@ -765,7 +765,7 @@
 				78A569A31A73227200818A17 /* YSColorPicker.m in Sources */,
 				37D413BE19D21A1F00021548 /* NSString+FontAwesome.m in Sources */,
 				F44B0C4F16DA404700E6CD88 /* main.m in Sources */,
-				37D413CA19D22B5E00021548 /* EnterNameViewController.m in Sources */,
+				37D413CA19D22B5E00021548 /* EnterNameEmailViewController.m in Sources */,
 				3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */,
 				37D413C019D21A1F00021548 /* UIColor+BButton.m in Sources */,
 				FC1E89BE1A4B9518007A8CDA /* PlaybackVC.m in Sources */,
