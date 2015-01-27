@@ -60,6 +60,12 @@
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
 
+// STPhoneFormatter
+#define COCOAPODS_POD_AVAILABLE_STPhoneFormatter
+#define COCOAPODS_VERSION_MAJOR_STPhoneFormatter 1
+#define COCOAPODS_VERSION_MINOR_STPhoneFormatter 1
+#define COCOAPODS_VERSION_PATCH_STPhoneFormatter 1
+
 // StreamingKit
 #define COCOAPODS_POD_AVAILABLE_StreamingKit
 #define COCOAPODS_VERSION_MAJOR_StreamingKit 0

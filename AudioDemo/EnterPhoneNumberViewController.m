@@ -1,5 +1,5 @@
 //
-//  LoginViewController.m
+//  EnterPhoneNumberViewController.m
 //  YapSnap
 //
 //  Created by Dan Berenholtz on 9/20/14.
@@ -10,6 +10,7 @@
 #import "EnterPhoneNumberViewController.h"
 #import "API.h"
 #import "PhoneNumberChecker.h"
+#import "STPhoneFormatter.h"
 
 @interface EnterPhoneNumberViewController ()
 
@@ -44,6 +45,7 @@
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
+    self.textField.delegate = self;
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
     
     double delay = 0.6;
@@ -85,15 +87,17 @@
         return;
     }
     
-    if (![self.phoneNumberChecker isPhoneNumberValid:self.textField.text]) {
+    // Strip phone number to just its digits so that it will work with phoneNumberChecker
+    NSString *strippedPhoneNumber = [self stripPhoneNumberToNumbers:self.textField.text];
+    if (![self.phoneNumberChecker isPhoneNumberValid:strippedPhoneNumber]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Number not valid"
                                                         message:@"Please enter a valid number."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
-        
         [alert show];
         self.continueButton.userInteractionEnabled = YES;
+    
     } else {
         NSString *phoneNumber = self.textField.text;
         [[API sharedAPI] postSessions:phoneNumber withCallback:^(BOOL success, NSError *error) {
@@ -114,6 +118,27 @@
     }
 }
 
+- (NSString *) stripPhoneNumberToNumbers:(NSString *) originalString
+{
+    NSMutableString *strippedString = [NSMutableString
+                                       stringWithCapacity:originalString.length];
+    
+    NSScanner *scanner = [NSScanner scannerWithString:originalString];
+    NSCharacterSet *numbers = [NSCharacterSet
+                               characterSetWithCharactersInString:@"0123456789"];
+    
+    while ([scanner isAtEnd] == NO) {
+        NSString *buffer;
+        if ([scanner scanCharactersFromSet:numbers intoString:&buffer]) {
+            [strippedString appendString:buffer];
+            
+        } else {
+            [scanner setScanLocation:([scanner scanLocation] + 1)];
+        }
+    }
+    
+    return strippedString;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
@@ -122,6 +147,17 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    BOOL phoneNumberHasChanged = [[STPhoneFormatter phoneFormatter] phoneNumberMustChangeInRange:range replacementString:string];
+    
+    if (phoneNumberHasChanged) {
+        textField.text = [[STPhoneFormatter phoneFormatter] formattedPhoneNumber];
+    }
+    
+    return NO;
 }
 
 @end
