@@ -74,14 +74,14 @@
 {
     if ([self.firstNameTextField.text length] < 2) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your name"
-                                                        message:@"Please enter your name so people can send you messages"
+                                                        message:@"Please enter your name."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
     } else if ([self.lastNameTextField.text length] < 1) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your name"
-                                                        message:@"Please enter your name so people can send you messages"
+                                                        message:@"Please enter your last name."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
