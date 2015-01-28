@@ -15,6 +15,8 @@
 #import "AudioCaptureViewController.h"
 #import "AppDelegate.h"
 #import "YSMicSourceController.h"
+#import "YSSpotifyTapGestureRecognizer.h"
+#import "OpenInSpotifyAlertView.h"
 
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -184,15 +186,15 @@ static NSString *CellIdentifier = @"Cell";
             cellIcon.image = [UIImage imageNamed:@"RedRoundedSquareWhiteFilling.png"];
             
             // SPOTIFY
-            if ([yap.type  isEqual: @"SpotifyMessage"]) {
-                self.goToSpotifyView = [[UIView alloc] init];
-                self.goToSpotifyView.frame = CGRectMake(238, 8, 74, 74);
+            if ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY]) {
+                self.goToSpotifyView = [[UIView alloc] initWithFrame:CGRectMake(238, 8, 74, 74)];
                 [cell addSubview:self.goToSpotifyView];
                 
                 //Add gesture recognizer
-                UITapGestureRecognizer *singleFingerTap =
-                [[UITapGestureRecognizer alloc] initWithTarget:self
+                YSSpotifyTapGestureRecognizer *singleFingerTap =
+                [[YSSpotifyTapGestureRecognizer alloc] initWithTarget:self
                                                         action:@selector(handleSingleTap:)];
+                singleFingerTap.yap = yap;
                 [self.goToSpotifyView addGestureRecognizer:singleFingerTap];
                 
                 UIImageView *albumImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ColdplayAlbumImage.jpg"]];
@@ -271,9 +273,12 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 //The event handling method
-- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+- (void)handleSingleTap:(YSSpotifyTapGestureRecognizer *)recognizer {
     //CGPoint location = [recognizer locationInView:[recognizer.view superview]];
-    NSLog(@"Tapped go to spotify view");
+    YSYap *yap = recognizer.yap;
+    NSLog(@"Tapped go to spotify view for yap: %@", yap.playbackURL);
+    OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithYap:yap];
+    [alert show];
 }
 
 - (void)didTapGoToAudioCaptureButton {

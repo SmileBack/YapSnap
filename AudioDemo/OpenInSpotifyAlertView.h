@@ -8,10 +8,11 @@
 
 #import <UIKit/UIAlertView.h>
 #import "YSTrack.h"
+#import "YSYap.h"
 
 @interface OpenInSpotifyAlertView : UIAlertView<UIAlertViewDelegate>
 
-@property (nonatomic, strong) YSTrack *track;
-
 - (id) initWithTrack:(YSTrack *)track;
+- (id) initWithYap:(YSYap *)yap;
+
 @end

@@ -42,6 +42,11 @@
     yap.receiverName = @"Receiver Name"; //dict[@"receiver_name"];
     yap.receiverPhone = dict[@"receiver_phone"];
 
+    //TODO
+    // SET THE VALUES OF THESE 2 PROPERTIES
+//    @property (strong, nonatomic) NSString *songName;
+//    @property (strong, nonatomic) NSString *spotifyID;
+    
     return yap;
 }
 

@@ -9,6 +9,11 @@
 #import "OpenInSpotifyAlertView.h"
 
 @interface OpenInSpotifyAlertView()
+@property (nonatomic, strong) NSString *spotifyURL;
+@property (nonatomic, strong) NSString *spotifyID;
+@property (nonatomic, strong) NSString *songName;
+@property (nonatomic, strong) NSString *artistName;
+
 - (void) openInSpotify;
 @end
 
@@ -21,7 +26,26 @@
                        delegate:self
               cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
     if (self) {
-        self.track = track;
+        self.spotifyID = track.spotifyID;
+        self.spotifyURL = track.spotifyURL;
+        self.songName = track.name;
+        self.artistName = track.artistName;
+    }
+    return self;
+}
+
+
+- (id) initWithYap:(YSYap *)yap
+{
+    self = [super initWithTitle:@"Listen on Spotify"
+                        message:@"Are you sure you want to listen to the full song on Spotify?"
+                       delegate:self
+              cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    if (self) {
+        self.spotifyID = yap.spotifyID;
+        self.spotifyURL = yap.listenOnSpotifyURL;
+        self.songName = yap.songName;
+        self.artistName = yap.artist;
     }
     return self;
 }
@@ -35,10 +59,10 @@
 
 - (void) openInSpotify
 {
-    NSString *url = [NSString stringWithFormat:@"spotify://track/%@", self.track.spotifyID];
+    NSString *url = [NSString stringWithFormat:@"spotify://track/%@", self.spotifyID];
     BOOL success = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     if (!success) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.track.spotifyURL]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.spotifyURL]];
     }
 }
 

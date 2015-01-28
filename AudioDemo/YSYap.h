@@ -22,6 +22,8 @@
 @property (strong, nonatomic) NSString *artist;
 @property (strong, nonatomic) NSString *playbackURL;
 @property (strong, nonatomic) NSString *listenOnSpotifyURL;
+@property (strong, nonatomic) NSString *songName;
+@property (strong, nonatomic) NSString *spotifyID;
 
 // Sender
 @property (strong, nonatomic) NSNumber *senderID;
