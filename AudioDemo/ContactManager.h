@@ -21,5 +21,10 @@
 - (BOOL) isAuthorizedForContacts;
 
 - (NSString *) nameForPhoneNumber:(NSString *)phoneNumber;
+- (PhoneContact *) contactForContactID:(NSNumber *)contactID;
+- (PhoneContact *) recentContactAtIndex:(NSInteger)index;
 
+#pragma mark - Recent Contact Stuff
+@property (nonatomic, strong) NSMutableArray *recentContacts;
+- (void) sentYapTo:(NSArray *)contacts;
 @end

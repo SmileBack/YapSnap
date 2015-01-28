@@ -7,11 +7,16 @@
 //
 
 #import "ContactManager.h"
+#import "RecentContact.h"
+
+#define RECENT_CONTACTS_KEY @"yapsnap.RecentContacts"
+#define RECENT_CONTACTS_CONTACT_ID @"contactID"
+#define RECENT_CONTACTS_CONTACT_TIME @"contactTime"
 
 static ContactManager *sharedInstance;
 
 @interface ContactManager()
-@property (nonatomic, strong) NSArray *contacts;
+@property (nonatomic, strong) NSMutableDictionary *contacts;
 @end
 
 @implementation ContactManager
@@ -22,7 +27,12 @@ static ContactManager *sharedInstance;
         sharedInstance = [ContactManager new];
         if (sharedInstance.isAuthorizedForContacts) {
             [sharedInstance loadAllContacts];
+            [sharedInstance loadRecentContacts];
         }
+        
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        [center addObserver:sharedInstance selector:@selector(syncRecentContacts) name:UIApplicationWillTerminateNotification object:nil];
+        [center addObserver:sharedInstance selector:@selector(syncRecentContacts) name:UIApplicationWillResignActiveNotification object:nil];
     }
     return sharedInstance;
 }
@@ -35,7 +45,7 @@ static ContactManager *sharedInstance;
 - (NSString *)nameForPhoneNumber:(NSString *)phoneNumber
 {
     NSString *scrubbedPhone = [self stringPhoneNumber:phoneNumber];
-    for (PhoneContact *contact in self.contacts) {
+    for (PhoneContact *contact in [self getAllContacts]) {
         if ([contact.phoneNumber isEqualToString:scrubbedPhone]) {
             return contact.name;
         }
@@ -46,7 +56,24 @@ static ContactManager *sharedInstance;
 - (NSArray *) getAllContacts
 {
     [self loadAllContacts];
-    return self.contacts;
+    NSArray *contacts = self.contacts.allValues;
+    return [contacts sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        PhoneContact *contact1 = obj1;
+        PhoneContact *contact2 = obj2;
+
+        return [contact1.name compare:contact2.name];
+    }];
+}
+
+- (PhoneContact *) contactForContactID:(NSNumber *)contactID
+{
+    return self.contacts[contactID];
+}
+
+- (PhoneContact *) recentContactAtIndex:(NSInteger)index
+{
+    RecentContact *recent = self.recentContacts[index];
+    return [self contactForContactID:recent.contactID];
 }
 
 - (void) loadAllContacts
@@ -55,7 +82,7 @@ static ContactManager *sharedInstance;
     CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeople( addressBook );
     CFIndex nPeople = ABAddressBookGetPersonCount( addressBook );
     
-    NSMutableArray *contacts = [NSMutableArray new];
+    NSMutableDictionary *contacts = [NSMutableDictionary new];
     
     for ( int i = 0; i < nPeople; i++ )
     {
@@ -64,6 +91,7 @@ static ContactManager *sharedInstance;
         ABMutableMultiValueRef phones = ABRecordCopyValue(person, kABPersonPhoneProperty);
         
         NSString *fullName = [self nameFromRef:person];
+        ABRecordID recordID = ABRecordGetRecordID(person);
         
         for (CFIndex i = 0; i < ABMultiValueGetCount(phones); i++) {
             CFStringRef labelRef = ABMultiValueCopyLabelAtIndex(phones, i);
@@ -77,21 +105,15 @@ static ContactManager *sharedInstance;
                 phone = [self stringPhoneNumber:phone];
                 
                 PhoneContact *contact = [PhoneContact phoneContactWithName:fullName phoneLabel:label andPhoneNumber:phone];
-                [contacts addObject:contact];
+                contact.contactID = [NSNumber numberWithInt:recordID];
+                contacts[contact.contactID] = contact;
                 
                 CFRelease(phoneRef);
                 CFRelease(labelRef);
             }
         }
     }
-    
-    [contacts sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        PhoneContact *contact1 = obj1;
-        PhoneContact *contact2 = obj2;
-        
-        return [contact1.name compare:contact2.name];
-    }];
-    
+
     self.contacts = contacts;
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CONTACTS_LOADED object:nil];
 }
@@ -142,6 +164,87 @@ static ContactManager *sharedInstance;
     }
     
     return strippedString;
+}
+
+- (PhoneContact *) contactForId:(NSNumber *)contactID
+{
+    @try {
+        id contact = self.contacts[contactID];
+        return ([contact isKindOfClass:[PhoneContact class]]) ? contact : nil;
+    }
+    @catch (NSException *exception) {
+        return nil;
+    }
+}
+
+#pragma mark - Recent Contact Stuff
+- (void) addRecentContactAndUpdateOrder:(PhoneContact *)contact andTime:(NSDate *)time
+{
+    if (!self.recentContacts)
+        self.recentContacts = [NSMutableArray new];
+
+    RecentContact *recent;
+    // First if the person is already if our recent contact list we'll just update the time
+    for (RecentContact *recentContact in self.recentContacts) {
+        if ([recentContact.contactID isEqualToNumber:contact.contactID]) {
+            recent = recentContact;
+        }
+    }
+
+    // If they aren't in our recent contact list we'll make a new entry.
+    if (!recent) {
+        recent = [RecentContact new];
+        recent.contactID = contact.contactID;
+        [self.recentContacts addObject:recent];
+    }
+    recent.contactTime = time;
+
+    // We've updated or added the contact.  Now sort.
+    [self.recentContacts sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        RecentContact *cont1 = obj1;
+        RecentContact *cont2 = obj2;
+        
+        NSString *name1 = [self contactForId:cont1.contactID].name;
+        NSString *name2 = [self contactForId:cont2.contactID].name;
+        return [name1 compare:name2];
+    }];
+}
+
+- (void) sentYapTo:(NSArray *)contacts
+{
+    for (PhoneContact *contact in contacts) {
+        [self addRecentContactAndUpdateOrder:contact andTime:[NSDate date]];
+    }
+}
+
+- (void) loadRecentContacts
+{
+    NSArray *contacts = [[NSUserDefaults standardUserDefaults] arrayForKey:RECENT_CONTACTS_KEY];
+    for (NSDictionary *recentContact in contacts) {
+        NSNumber *contactID = recentContact[RECENT_CONTACTS_CONTACT_ID];
+        PhoneContact *contact = [self contactForId:contactID];
+        NSDate *time = recentContact[RECENT_CONTACTS_CONTACT_TIME];
+        if (contact) {
+            [self addRecentContactAndUpdateOrder:contact andTime:time];
+        }
+    }
+}
+
+- (void) syncRecentContacts
+{
+    if (!self.recentContacts || self.recentContacts.count == 0)
+        return;
+
+    NSMutableArray *contactsToSave = [NSMutableArray arrayWithCapacity:self.recentContacts.count];
+    for (RecentContact *contact in self.recentContacts) {
+        NSDictionary *c = @{RECENT_CONTACTS_CONTACT_ID: contact.contactID,
+                            RECENT_CONTACTS_CONTACT_TIME: contact.contactTime};
+        [contactsToSave addObject:c];
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:contactsToSave forKey:RECENT_CONTACTS_KEY];
+    [defaults synchronize];
 }
 
 

@@ -131,17 +131,27 @@ static NSString *CellIdentifier = @"Cell";
 #pragma UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return tableView == self.searchDisplayController.searchResultsTableView ? self.filteredContacts.count :  self.contacts.count;
+    if (section == 0) {
+        return [ContactManager sharedContactManager].recentContacts.count;
+    } else {
+        return tableView == self.searchDisplayController.searchResultsTableView ? self.filteredContacts.count :  self.contacts.count;
+    }
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PhoneContact *contact = tableView == self.searchDisplayController.searchResultsTableView ? self.filteredContacts[indexPath.row] : self.contacts[indexPath.row];
+    PhoneContact *contact;
+    if (indexPath.section == 0) {
+        contact = [[ContactManager sharedContactManager] recentContactAtIndex:indexPath.row];
+    } else {
+        
+        contact = tableView == self.searchDisplayController.searchResultsTableView ? self.filteredContacts[indexPath.row] : self.contacts[indexPath.row];
+    }
     
     ContactSelectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
@@ -158,25 +168,24 @@ static NSString *CellIdentifier = @"Cell";
     
     cell.nameLabel.font = [self.selectedContacts containsObject:contact] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
     
-    
-    // CHECK IF ANY CONTACTS SHOULD BE PRESELECTED
-    
-    NSString* recipient_number = [Global retrieveValueForKey:@"reply_recipient"];
-    for (PhoneContact* contact in self.contacts) {
-        NSLog(@"Phone number: %@", contact.phoneNumber);
-        if ([contact.phoneNumber isEqualToString:recipient_number]) {
-            [self.selectedContacts addObject:contact];
-            
-            [self showOrHideBottomView];
-            
-            // We now are removing the reply recipient from the global variable because we no longer need it
-            [Global storeValue:nil forKey:@"reply_recipient"];
+        return cell;
+}
+
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        if ([ContactManager sharedContactManager].recentContacts.count > 0) {
+            return @"Recent Contacts";
+        } else {
+            return nil;
+        }
+    } else {
+        if ([ContactManager sharedContactManager].recentContacts.count > 0) {
+            return @"Everyone else";
+        } else {
+            return nil;
         }
     }
-    
-    
-    
-    return cell;
 }
 
 #pragma mark UITableViewCellDelegate
@@ -222,6 +231,7 @@ static NSString *CellIdentifier = @"Cell";
         [[API sharedAPI] sendYap:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
                         if (success) {
+                            [[ContactManager sharedContactManager] sentYapTo:self.selectedContacts];
                             [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
                         } else {
                             // uh oh spaghettios
