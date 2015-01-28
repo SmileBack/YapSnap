@@ -31,8 +31,10 @@
     } else {
         yap.playbackURL = dict[@"recording"][@"url"];
     };
-    
     yap.listenOnSpotifyURL = dict[@"spotify_full_song_url"];
+    yap.songName = dict[@"spotify_song_name"];
+    yap.spotifyID = dict[@"spotify_song_id"];
+    yap.imageURL = dict[@"spotify_image_url"];
     
     yap.senderID = dict[@"sender_id"];
     yap.senderName = @"Sender Name"; //dict[@"sender_name"];
@@ -42,11 +44,6 @@
     yap.receiverName = @"Receiver Name"; //dict[@"receiver_name"];
     yap.receiverPhone = dict[@"receiver_phone"];
 
-    //TODO
-    // SET THE VALUES OF THESE 2 PROPERTIES
-//    @property (strong, nonatomic) NSString *songName;
-//    @property (strong, nonatomic) NSString *spotifyID;
-    
     return yap;
 }
 

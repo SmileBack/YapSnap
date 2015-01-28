@@ -38,7 +38,7 @@
 - (id) initWithYap:(YSYap *)yap
 {
     self = [super initWithTitle:@"Listen on Spotify"
-                        message:@"Are you sure you want to listen to the full song on Spotify?"
+                        message:[NSString stringWithFormat:@"Listen to '%@' by %@ on Spotify?", yap.songName, yap.artist]
                        delegate:self
               cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
     if (self) {

@@ -17,6 +17,8 @@
 #import "YSMicSourceController.h"
 #import "YSSpotifyTapGestureRecognizer.h"
 #import "OpenInSpotifyAlertView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -197,8 +199,10 @@ static NSString *CellIdentifier = @"Cell";
                 singleFingerTap.yap = yap;
                 [self.goToSpotifyView addGestureRecognizer:singleFingerTap];
                 
-                UIImageView *albumImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ColdplayAlbumImage.jpg"]];
-                albumImage.frame = CGRectMake(0, 0, 74, 74);
+                UIImageView *albumImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 74, 74)];
+                [albumImage sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
+                [albumImage.layer setBorderColor: [[UIColor darkGrayColor] CGColor]];
+                [albumImage.layer setBorderWidth: 0.5];
                 [self.goToSpotifyView addSubview:albumImage];
                 
                 UIImageView *listenOnSpotifyImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"listen_on_spotify-black2.png"]];
@@ -255,13 +259,6 @@ static NSString *CellIdentifier = @"Cell";
     //    }
     }
 }
-
-//- (void)doDoubleTap
-//{
-//    NSLog(@"Double Tapped Row");
-//    [Global storeValue:@"3475238941" forKey:@"reply_recipient"];
-//    [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self]; // UNDO
-//}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
