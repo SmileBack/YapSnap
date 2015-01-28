@@ -259,4 +259,27 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
          }];
 }
 
+# pragma mark - Updating of User Data
+- (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+
+    NSDictionary *params = [self paramsWithDict:properties];
+    [manager POST:@"/user"
+       parameters:params
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [self processFailedOperation:operation];
+              callback(NO, error);
+          }];
+}
+
+- (void) updateUserPushToken:(NSString *)token withCallBack:(SuccessOrErrorCallback)callback
+{
+    [self updateUserData:@{@"push_token" : token}
+            withCallback:callback];
+}
+
 @end
