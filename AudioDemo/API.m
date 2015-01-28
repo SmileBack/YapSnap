@@ -61,6 +61,13 @@ static API *sharedAPI;
     return params;
 }
 
+- (void) processFailedOperation:(AFHTTPRequestOperation *)operation
+{
+    if (operation.response.statusCode == 401) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_INVALID_SESSION object:nil];
+    }
+}
+
 #pragma mark - Public APIs
 
 - (void) sendYap:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback
@@ -173,6 +180,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
               callback(YES, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [self processFailedOperation:operation];
               NSLog(@"Error! %@", error);
               callback(NO, error);
           }];
@@ -195,6 +203,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
               callback(YES, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [self processFailedOperation:operation];
               callback(NO, error);
           }];
 }
@@ -212,6 +221,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
               callback(yaps, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [self processFailedOperation:operation];
               callback(NO, error);
           }];
 }
@@ -227,6 +237,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
              callback(YES, nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [self processFailedOperation:operation];
              callback(NO, error);
          }];
 }
@@ -243,6 +254,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
              callback(response[@"count"], nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [self processFailedOperation:operation];
              callback(NO, error);
          }];
 }

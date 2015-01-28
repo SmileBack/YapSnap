@@ -815,7 +815,7 @@
         <!--Navigation Controller-->
         <scene sceneID="iU4-rq-GxL">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9sH-V7-KSA" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="9sH-V7-KSA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZeF-C5-ebc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -867,22 +867,6 @@
             </objects>
             <point key="canvasLocation" x="1043" y="-1204"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="KT1-ht-sCy">
-            <objects>
-                <navigationController id="Hzd-Gm-pXo" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="54l-yL-sJW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="2" kind="relationship" relationship="rootViewController" id="lKy-WC-TGO"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zN8-Jg-hI8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="398" y="-972"/>
-        </scene>
     </scenes>
     <resources>
         <image name="ArrowWhite.png" width="256" height="256"/>
@@ -905,7 +889,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2PQ-Bb-2Ke"/>
         <segue reference="syO-tE-hvG"/>
     </inferredMetricsTieBreakers>
 </document>
