@@ -64,7 +64,7 @@ static NSString *CellIdentifier = @"Cell";
     [self.tableView addSubview:self.refreshControl];
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserverForName:OPENED_APP_NOTIFICATION
+    [center addObserverForName:APP_ENTERED_BACKGROUND_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
