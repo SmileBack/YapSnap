@@ -162,7 +162,12 @@ static const float TIMER_INTERVAL = .01;
     if (self.elapsedTime >= MAX_CAPTURE_TIME) {
         [timer invalidate];
         [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil]; // TODO: this was previously causing issues. make sure it's not anymore
-        [self.audioSource stopAudioCapture:self.elapsedTime];
+        
+        // The following 0.1 second delay is here because otherwise the page takes an extra half second to transition to the AddTextViewController (not sure why that happens)
+        double delay = .1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.audioSource stopAudioCapture:self.elapsedTime];
+        });
     }
 }
 
