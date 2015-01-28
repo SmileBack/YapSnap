@@ -161,7 +161,7 @@ static const float TIMER_INTERVAL = .01;
     
     if (self.elapsedTime >= MAX_CAPTURE_TIME) {
         [timer invalidate];
-        //[self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+        [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil]; // TODO: this was previously causing issues. make sure it's not anymore
         [self.audioSource stopAudioCapture:self.elapsedTime];
     }
 }

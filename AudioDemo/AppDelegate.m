@@ -24,13 +24,14 @@
     [Crashlytics startWithAPIKey:@"6621dbca453461988440d16db5e4fbe9a79da991"];
     
     [ContactManager sharedContactManager];
-    
+   
+    /*
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self
                selector:@selector(invalidSessionNotification)
                    name:NOTIFICATION_INVALID_SESSION
                  object:nil];
-    
+    */
     return YES;
 }
 
