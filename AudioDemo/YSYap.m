@@ -80,4 +80,9 @@
     return self.senderName;
 }
 
+- (BOOL) isOpened
+{
+    return [@"opened" isEqualToString:self.status];
+}
+
 @end
