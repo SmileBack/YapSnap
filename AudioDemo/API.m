@@ -268,7 +268,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [manager POST:@"/user"
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              
+              callback(YES, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              [self processFailedOperation:operation];
