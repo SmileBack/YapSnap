@@ -149,33 +149,34 @@ static NSString *CellIdentifier = @"Cell";
 {
     YSYap* yap = self.yaps[indexPath.row];
 
-    BOOL didSendYap = [[yap.senderID stringValue] isEqualToString:[Global retrieveValueForKey:@"current_user_id"]];
-    NSString *cellType = didSendYap ? @"Sent Cell" : @"Received Cell";
+    NSString *cellType = yap.sentByCurrentUser ? @"Sent Cell" : @"Received Cell";
     
     YapCell *cell = [tableView dequeueReusableCellWithIdentifier:cellType];
     
+    cell.createdTimeLabel.font = [UIFont systemFontOfSize:11];
+    
     // DID SEND YAP
-    if (didSendYap) {
+    if (yap.sentByCurrentUser) {
         cell.nameLabel.text = yap.displayReceiverName;
         UIImageView *cellIcon = [[UIImageView alloc] init];
         cellIcon.frame = CGRectMake(12, 31, 24, 27);
         [cell addSubview:cellIcon];
         
         // UNOPENED
-        if ([yap.status isEqual: @"unopened"]) {
-            cell.createdTimeLabel.text = [NSString stringWithFormat:@"Sent %@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
+        if (!yap.wasOpened) {
+            cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
             cellIcon.image = [UIImage imageNamed:@"BlueArrow2.png"];
         
         // OPENED
-        } else if ([yap.status  isEqual: @"opened"]) {
-            cell.createdTimeLabel.text = [NSString stringWithFormat:@"Sent %@  |  Opened" , [self.dateFormatter stringFromDate:yap.createdAt]];
+        } else if (yap.wasOpened) {
+            cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Opened" , [self.dateFormatter stringFromDate:yap.createdAt]];
             cellIcon.image = [UIImage imageNamed:@"BlueArrowWhiteFilling.png"];
         }
         
     // DID RECEIVE YAP
-    } else {
+    } else if (yap.receivedByCurrentUser) {
         cell.nameLabel.text = yap.displaySenderName;
-        cell.createdTimeLabel.text = [NSString stringWithFormat:@"Received %@" , [self.dateFormatter stringFromDate:yap.createdAt]];
+        cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@" , [self.dateFormatter stringFromDate:yap.createdAt]];
         
         UIImageView *cellIcon = [[UIImageView alloc] init];
         cellIcon.frame = CGRectMake(11, 29, 24, 24);
@@ -227,13 +228,21 @@ static NSString *CellIdentifier = @"Cell";
         [self showNoInternetAlert];
     } else {        
         YSYap *yap = self.yaps[indexPath.row];
-        if (yap.isOpened) {
+        if (yap.wasOpened && yap.receivedByCurrentUser) {
             YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-            cell.createdTimeLabel.text = @"Double Tap to reply bitches";
+            cell.createdTimeLabel.text = @"Double Tap to Reply";
+            cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             });
-        } else {
+        } else if (yap.wasOpened && yap.sentByCurrentUser) {
+            YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            cell.createdTimeLabel.text = [NSString stringWithFormat:@"Yap has been %@", yap.status];
+            cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            });
+        } else if (!yap.wasOpened) {
             [self performSegueWithIdentifier:@"Playback Segue" sender:yap]; // Remove this line from here eventually
         }
         
@@ -276,7 +285,7 @@ static NSString *CellIdentifier = @"Cell";
     
     UIViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
     if ([vc isKindOfClass:[AudioCaptureViewController class]]) {
-        AudioCaptureViewController *audioCaptureVC = vc;
+        //AudioCaptureViewController *audioCaptureVC = vc;
         
     } else {
         // ERROR!  shouldn't be here...

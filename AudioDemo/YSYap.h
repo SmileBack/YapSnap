@@ -42,6 +42,7 @@
 @property (nonatomic, readonly) NSString *displayReceiverName;
 @property (nonatomic, readonly) NSString *displaySenderName;
 
-- (BOOL) isOpened;
-
+- (BOOL) wasOpened;
+- (BOOL) sentByCurrentUser;
+- (BOOL) receivedByCurrentUser;
 @end

@@ -65,6 +65,7 @@ static API *sharedAPI;
 {
     if (operation.response.statusCode == 401) {
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_INVALID_SESSION object:nil];
+        NSLog(@"Invalid Session Notification triggered");
     }
 }
 

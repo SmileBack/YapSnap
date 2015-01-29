@@ -9,6 +9,7 @@
 #import "YSYap.h"
 #import "ContactManager.h"
 #import "NSDate+InternetDateTime.h"
+#import "Global.h"
 
 @implementation YSYap
 
@@ -80,9 +81,19 @@
     return self.senderName;
 }
 
-- (BOOL) isOpened
+- (BOOL) wasOpened
 {
     return [@"opened" isEqualToString:self.status];
+}
+
+- (BOOL) sentByCurrentUser
+{
+    return [[self.senderID stringValue] isEqualToString:[Global retrieveValueForKey:@"current_user_id"]];
+}
+
+- (BOOL) receivedByCurrentUser
+{
+    return [[self.receiverID stringValue] isEqualToString:[Global retrieveValueForKey:@"current_user_id"]];
 }
 
 @end
