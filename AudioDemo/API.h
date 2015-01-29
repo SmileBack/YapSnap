@@ -30,6 +30,7 @@ typedef void (^YapCountCallback)(NSNumber *count, NSError *error);
 - (void) unopenedYapsCountWithCallback:(YapCountCallback)callback;
 
 # pragma mark - Updating of User Data
+- (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback;
 - (void) updateUserPushToken:(NSString *)token withCallBack:(SuccessOrErrorCallback)callback;
 
 @end

@@ -101,7 +101,8 @@
                                               otherButtonTitles:nil];
         [alert show];
     } else {
-        //ADD API Call here
+        //TODO: ADD Callback
+        [[API sharedAPI] updateUserData:@{@"first_name" : self.firstNameTextField.text} withCallback:nil];
         [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self];
     }
 }

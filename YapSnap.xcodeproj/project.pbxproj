@@ -399,19 +399,19 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
-		37D413C719D22B3B00021548 /* Enter Name Page */ = {
+		37D413C719D22B3B00021548 /* Enter Name & Email Page */ = {
 			isa = PBXGroup;
 			children = (
 				37D413C819D22B5E00021548 /* EnterNameEmailViewController.h */,
 				37D413C919D22B5E00021548 /* EnterNameEmailViewController.m */,
 			);
-			name = "Enter Name Page";
+			name = "Enter Name & Email Page";
 			sourceTree = "<group>";
 		};
 		784E35E91A659B8C0029AA01 /* Registration Screens */ = {
 			isa = PBXGroup;
 			children = (
-				37D413C719D22B3B00021548 /* Enter Name Page */,
+				37D413C719D22B3B00021548 /* Enter Name & Email Page */,
 				374383E119CE2B810009C323 /* Enter Phone Number Page */,
 				374383E219CE2D6B0009C323 /* Enter Code Page */,
 			);

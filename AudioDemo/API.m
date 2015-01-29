@@ -40,8 +40,8 @@ static API *sharedAPI;
 - (NSString *) serverUrl
 {
     //return @"http://localhost:4000"; // local dev server
-    return @"http://yapsnap.herokuapp.com"; // production
-    //return @"http://192.168.1.177:4000";
+    //return @"http://yapsnap.herokuapp.com"; // production
+    return @"http://192.168.1.177:4000";
 }
 
 #pragma mark - Generic Methods
@@ -265,8 +265,11 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
-    NSDictionary *params = [self paramsWithDict:properties];
-    [manager POST:@"/user"
+    NSDictionary *params = [self paramsWithDict:@{@"first_name": @"Dan",
+                                                  @"last_name" : @"Berenholtz",
+                                                  @"email" : @"dan@dan.co"}];
+    // TODO: un-hardcode user id
+    [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"/users/%@", @"1"]]
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               callback(YES, nil);
