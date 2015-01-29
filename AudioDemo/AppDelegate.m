@@ -11,6 +11,7 @@
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <Crashlytics/Crashlytics.h>
 #import "ContactManager.h"
+#import "YSPushManager.h"
 #import "API.h"
 
 @implementation AppDelegate
@@ -25,13 +26,13 @@
     
     [ContactManager sharedContactManager];
    
-    /*
+    [self checkLaunchOptions:launchOptions];
+    
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self
                selector:@selector(invalidSessionNotification)
                    name:NOTIFICATION_INVALID_SESSION
                  object:nil];
-    */
     return YES;
 }
 
@@ -45,6 +46,15 @@
     UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
+}
+
+- (void) checkLaunchOptions:(NSDictionary *)launchOptions
+{
+    NSDictionary *remoteInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (remoteInfo && [remoteInfo isKindOfClass:[NSDictionary class]] && remoteInfo.count > 0) {
+        // TODO do something with launch options.  For example:
+        //   NSNumber *smileGameID = remoteInfo[@"smile_game_id"];
+    }
 }
 
 - (void)startMonitoringReachability
@@ -98,11 +108,34 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 
     NSLog(@"Did Become Active");
+    
+    [[YSPushManager sharedPushManager] registerForNotifications];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Push Stuff
+
+// Delegation methods
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
+    [[YSPushManager sharedPushManager] registeredWithDeviceToken:devToken];
+}
+
+- (void) application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    [application registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    [[YSPushManager sharedPushManager] registrationFailedWithError:err];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [[YSPushManager sharedPushManager] receivedNotification:userInfo];
 }
 
 

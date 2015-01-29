@@ -91,6 +91,7 @@
 		FC1E89BB1A4B8E94007A8CDA /* YSYap.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E89BA1A4B8E94007A8CDA /* YSYap.m */; };
 		FC1E89BE1A4B9518007A8CDA /* PlaybackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E89BD1A4B9518007A8CDA /* PlaybackVC.m */; };
 		FC342F381A5099D200518765 /* OpenInSpotifyAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC342F371A5099D200518765 /* OpenInSpotifyAlertView.m */; };
+		FC52C1AD1A785D2800D85FA8 /* YSPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1AC1A785D2800D85FA8 /* YSPushManager.m */; };
 		FC52C1B01A786F0F00D85FA8 /* RecentContact.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1AF1A786F0F00D85FA8 /* RecentContact.m */; };
 		FC52C1B41A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1B31A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m */; };
 		FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC609BC21A3CC24500182F08 /* SpotifyAPI.m */; };
@@ -225,6 +226,8 @@
 		FC1E89BD1A4B9518007A8CDA /* PlaybackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybackVC.m; sourceTree = "<group>"; };
 		FC342F361A5099D200518765 /* OpenInSpotifyAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInSpotifyAlertView.h; sourceTree = "<group>"; };
 		FC342F371A5099D200518765 /* OpenInSpotifyAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInSpotifyAlertView.m; sourceTree = "<group>"; };
+		FC52C1AB1A785D2800D85FA8 /* YSPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSPushManager.h; sourceTree = "<group>"; };
+		FC52C1AC1A785D2800D85FA8 /* YSPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSPushManager.m; sourceTree = "<group>"; };
 		FC52C1AE1A786F0F00D85FA8 /* RecentContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentContact.h; sourceTree = "<group>"; };
 		FC52C1AF1A786F0F00D85FA8 /* RecentContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentContact.m; sourceTree = "<group>"; };
 		FC52C1B21A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSpotifyTapGestureRecognizer.h; sourceTree = "<group>"; };
@@ -588,6 +591,8 @@
 		FC609BC01A3CC22F00182F08 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FC52C1AB1A785D2800D85FA8 /* YSPushManager.h */,
+				FC52C1AC1A785D2800D85FA8 /* YSPushManager.m */,
 				FC0595831A6D87AE00FCCED2 /* Contacts */,
 				FC609BC11A3CC24500182F08 /* SpotifyAPI.h */,
 				FC609BC21A3CC24500182F08 /* SpotifyAPI.m */,
@@ -819,6 +824,7 @@
 				F44B0C5F16DA404700E6CD88 /* AudioCaptureViewController.m in Sources */,
 				FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */,
 				37C3746B19BC4A8E001A1D02 /* MBProgressHUD.m in Sources */,
+				FC52C1AD1A785D2800D85FA8 /* YSPushManager.m in Sources */,
 				37BF0DDF19E8FCF70077B74F /* YapsViewController.m in Sources */,
 				FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */,
 			);
