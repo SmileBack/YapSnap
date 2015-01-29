@@ -88,6 +88,8 @@ static NSString *CellIdentifier = @"Cell";
                         }
                         
                     }];
+
+    [self setupTableViewGestureRecognizers];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -195,7 +197,7 @@ static NSString *CellIdentifier = @"Cell";
                 //Add gesture recognizer
                 YSSpotifyTapGestureRecognizer *singleFingerTap =
                 [[YSSpotifyTapGestureRecognizer alloc] initWithTarget:self
-                                                        action:@selector(handleSingleTap:)];
+                                                        action:@selector(handleSpotifyTap:)];
                 singleFingerTap.yap = yap;
                 [self.goToSpotifyView addGestureRecognizer:singleFingerTap];
                 
@@ -217,7 +219,7 @@ static NSString *CellIdentifier = @"Cell";
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void) cellTappedOnceAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"didSelectRow");
     
@@ -225,7 +227,15 @@ static NSString *CellIdentifier = @"Cell";
         [self showNoInternetAlert];
     } else {        
         YSYap *yap = self.yaps[indexPath.row];
-        [self performSegueWithIdentifier:@"Playback Segue" sender:yap]; // Remove this line from here eventually
+        if (yap.isOpened) {
+            YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            cell.createdTimeLabel.text = @"Double Tap to reply bitches";
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            });
+        } else {
+            [self performSegueWithIdentifier:@"Playback Segue" sender:yap]; // Remove this line from here eventually
+        }
         
     //    BOOL didSendYap = [[yap.senderID stringValue] isEqualToString:[Global retrieveValueForKey:@"current_user_id"]];
 
@@ -260,6 +270,21 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
+- (void) cellTappedTwiceAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Double tap on: %@", indexPath);
+    
+    UIViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
+    if ([vc isKindOfClass:[AudioCaptureViewController class]]) {
+        AudioCaptureViewController *audioCaptureVC = vc;
+        
+    } else {
+        // ERROR!  shouldn't be here...
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([@"Playback Segue" isEqualToString:segue.identifier]) {
@@ -269,8 +294,45 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
+# pragma mark - Gesture Recognition
+- (void) setupTableViewGestureRecognizers
+{
+    UITapGestureRecognizer* doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    doubleTap.numberOfTapsRequired = 2;
+    doubleTap.numberOfTouchesRequired = 1;
+    [self.tableView addGestureRecognizer:doubleTap];
+    
+    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.numberOfTouchesRequired = 1;
+    [singleTap requireGestureRecognizerToFail:doubleTap];
+    [self.tableView addGestureRecognizer:singleTap];
+}
+
+- (void) handleDoubleTap:(UIGestureRecognizer *)tap
+{
+    if (UIGestureRecognizerStateEnded == tap.state)
+    {
+        CGPoint p = [tap locationInView:tap.view];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+        [self cellTappedTwiceAtIndexPath:indexPath];
+    }
+}
+
+- (void) handleSingleTap:(UIGestureRecognizer *)tap
+{
+    if (UIGestureRecognizerStateEnded == tap.state)
+    {
+        CGPoint p = [tap locationInView:tap.view];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+        [self cellTappedOnceAtIndexPath:indexPath];
+    }
+}
+
+
+
 //The event handling method
-- (void)handleSingleTap:(YSSpotifyTapGestureRecognizer *)recognizer {
+- (void)handleSpotifyTap:(YSSpotifyTapGestureRecognizer *)recognizer {
     //CGPoint location = [recognizer locationInView:[recognizer.view superview]];
     YSYap *yap = recognizer.yap;
     NSLog(@"Tapped go to spotify view for yap: %@", yap.playbackURL);

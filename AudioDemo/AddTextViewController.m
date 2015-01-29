@@ -68,6 +68,10 @@
     }
 }
 - (IBAction)didTapNextButton:(UIButton *)sender {
+    // TODO think about this
+//    if (self.yapBuilder.contacts.count > 0) {
+        //TODO send yap here
+
     [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
 }
 - (IBAction)didTapBackButton:(id)sender

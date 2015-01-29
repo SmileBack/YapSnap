@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "JEProgressView.h"
 #import "YSAudioSourceController.h"
+#import "PhoneContact.h"
 
 @interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
@@ -21,6 +22,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *spotifyModeButton;
 @property (strong, nonatomic) IBOutlet UIButton *micModeButton;
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
+
+// This is set if the recording is initiated as a reply to a contact
+@property (nonatomic) PhoneContact *contactReplyingTo;
 
 
 - (IBAction)recordTapped:(id)sender;

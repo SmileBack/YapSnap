@@ -247,6 +247,9 @@ static const float TIMER_INTERVAL = .01;
         YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
         yapBuilder.duration = self.elapsedTime;
         addTextVC.yapBuilder = yapBuilder;
+        if (self.contactReplyingTo) {
+            yapBuilder.contacts = @[self.contactReplyingTo];
+        }
         
         self.progressView.progress = 0.0;
         self.elapsedTime = 0;
