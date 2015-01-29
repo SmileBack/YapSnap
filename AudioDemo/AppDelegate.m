@@ -127,7 +127,7 @@
 
 - (void) application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
-    NSLog(@"didRegisterUserNotificationSettings: %@", notificationSettings);
+    [application registerForRemoteNotifications];
 }
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
@@ -138,5 +138,6 @@
 {
     [[YSPushManager sharedPushManager] receivedNotification:userInfo];
 }
+
 
 @end
