@@ -19,10 +19,14 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
+@property (nonatomic, strong) NSArray *allLetters;
 
+// Map of section letter to contacts:  A : [cont1, cont2]
+@property (nonatomic, strong) NSMutableDictionary *contactDict;
 @end
 
 static NSString *CellIdentifier = @"Cell";
+
 
 @implementation ContactsViewController
 
@@ -83,6 +87,29 @@ static NSString *CellIdentifier = @"Cell";
     [alert show];
 }
 
+#pragma mark - Contacts
+- (NSArray *)allLetters
+{
+    if (!_allLetters) {
+        _allLetters = @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
+    }
+    return _allLetters;
+}
+
+- (void) prepareContactDict
+{
+    self.contactDict = [NSMutableDictionary dictionaryWithCapacity:self.allLetters.count];
+    for (NSString *letter in self.allLetters) {
+        self.contactDict[letter] = [NSMutableArray new];
+    }
+
+    for (PhoneContact *c in self.contacts) {
+        NSString *sectionName = c.sectionLetter;
+        NSMutableArray *contacts = self.contactDict[sectionName];
+        [contacts addObject:c];
+    }
+}
+
 - (void) loadContacts
 {
     __weak ContactsViewController *weakSelf = self;
@@ -93,6 +120,8 @@ static NSString *CellIdentifier = @"Cell";
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             weakSelf.contacts = [[ContactManager sharedContactManager] getAllContacts];
+            
+            [weakSelf prepareContactDict];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //[hud hide:YES];
                 [weakSelf.tableView reloadData];
@@ -118,6 +147,7 @@ static NSString *CellIdentifier = @"Cell";
 
 - (PhoneContact *) contactForNumber:(NSString *)number
 {
+    
     for (PhoneContact *contact in self.contacts) {
         if ([contact.phoneNumber isEqualToString:number]) {
             return contact;
@@ -131,7 +161,7 @@ static NSString *CellIdentifier = @"Cell";
 #pragma UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1 + self.allLetters.count;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -139,7 +169,13 @@ static NSString *CellIdentifier = @"Cell";
     if (section == 0) {
         return [ContactManager sharedContactManager].recentContacts.count;
     } else {
-        return tableView == self.searchDisplayController.searchResultsTableView ? self.filteredContacts.count :  self.contacts.count;
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            return self.filteredContacts.count;
+        } else {
+            NSString *letter = self.allLetters[section - 1];
+            NSArray *contactsInRow = self.contactDict[letter];
+            return contactsInRow.count;
+        }
     }
 }
 
@@ -148,9 +184,12 @@ static NSString *CellIdentifier = @"Cell";
     PhoneContact *contact;
     if (indexPath.section == 0) {
         contact = [[ContactManager sharedContactManager] recentContactAtIndex:indexPath.row];
+    } else if (tableView == self.searchDisplayController.searchResultsTableView) {
+        contact = self.filteredContacts[indexPath.row];
     } else {
-        
-        contact = tableView == self.searchDisplayController.searchResultsTableView ? self.filteredContacts[indexPath.row] : self.contacts[indexPath.row];
+        NSString *letter = self.allLetters[indexPath.section - 1];
+        NSArray *contacts = self.contactDict[letter];
+        contact = contacts[indexPath.row];
     }
     
     ContactSelectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
@@ -180,18 +219,23 @@ static NSString *CellIdentifier = @"Cell";
             return nil;
         }
     } else {
-        if ([ContactManager sharedContactManager].recentContacts.count > 0) {
-            return @"Everyone else";
-        } else {
-            return nil;
-        }
+        NSString *letter = self.allLetters[section - 1];
+        NSArray *contacts = self.contactDict[letter];
+        return contacts.count > 0 ? letter : nil;
     }
 }
 
 #pragma mark UITableViewCellDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PhoneContact *contact = tableView == self.searchDisplayController.searchResultsTableView ? self.filteredContacts[indexPath.row] : self.contacts[indexPath.row];
+    PhoneContact *contact;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        contact = self.filteredContacts[indexPath.row];
+    } else {
+        NSString *letter = self.allLetters[indexPath.section - 1];
+        NSArray *contacts = self.contactDict[letter];
+        contact = contacts[indexPath.row];
+    }
     
     if ([self.selectedContacts containsObject:contact]) {
         [self.selectedContacts removeObject:contact];

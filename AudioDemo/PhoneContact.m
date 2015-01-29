@@ -39,4 +39,12 @@
              @"phone_number" : self.phoneNumber};
 }
 
+- (NSString *) sectionLetter
+{
+    if (self.name && self.name.length > 0) {
+        return [self.name substringToIndex:1];
+    }
+    return @"";
+}
+
 @end

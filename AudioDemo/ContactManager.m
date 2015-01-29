@@ -56,7 +56,12 @@ static ContactManager *sharedInstance;
 - (NSArray *) getAllContacts
 {
     [self loadAllContacts];
-    NSArray *contacts = self.contacts.allValues;
+    NSMutableArray *contacts = [NSMutableArray new];
+    for (PhoneContact *contact in self.contacts.allValues) {
+        if (contact.name && contact.name.length > 0) {
+            [contacts addObject:contact];
+        }
+    }
     return [contacts sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         PhoneContact *contact1 = obj1;
         PhoneContact *contact2 = obj2;
