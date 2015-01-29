@@ -97,6 +97,16 @@
         self.continueButton.userInteractionEnabled = YES;
     
     } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Number"
+                                                        message:[NSString stringWithFormat:@"Is your number %@?", self.textField.text]
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:@"Yes", nil];
+        [alert show];
+    }
+}
+
+/*
         NSString *phoneNumber = self.textField.text;
         [[API sharedAPI] postSessions:phoneNumber withCallback:^(BOOL success, NSError *error) {
             if (success) {
@@ -113,8 +123,7 @@
                 self.continueButton.userInteractionEnabled = YES;
             }
         }];
-    }
-}
+*/
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
@@ -134,6 +143,27 @@
     }
     
     return NO;
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSString *phoneNumber = self.textField.text;
+    [[API sharedAPI] postSessions:phoneNumber withCallback:^(BOOL success, NSError *error) {
+        if (success) {
+            [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
+        } else {
+            // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:error.localizedDescription
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"otherButtonTitles:nil];
+            [alert show];
+            
+            // Enable the continue button again
+            self.continueButton.userInteractionEnabled = YES;
+        }
+    }];
 }
 
 @end
