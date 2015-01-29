@@ -68,11 +68,13 @@
     }
 }
 - (IBAction)didTapNextButton:(UIButton *)sender {
-    // TODO think about this
-//    if (self.yapBuilder.contacts.count > 0) {
-        //TODO send yap here
-
-    [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
+    if (self.yapBuilder.contacts.count > 0) {
+        // We have yaps set already because we're in a reply flow
+        // TODO SEND THE YAP FROM HERE
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
+    }
 }
 - (IBAction)didTapBackButton:(id)sender
 {

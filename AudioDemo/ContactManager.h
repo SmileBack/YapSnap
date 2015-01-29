@@ -23,6 +23,7 @@
 - (NSString *) nameForPhoneNumber:(NSString *)phoneNumber;
 - (PhoneContact *) contactForContactID:(NSNumber *)contactID;
 - (PhoneContact *) recentContactAtIndex:(NSInteger)index;
+- (PhoneContact *) contactForPhoneNumber:(NSString *)phoneNumber;
 
 #pragma mark - Recent Contact Stuff
 @property (nonatomic, strong) NSMutableArray *recentContacts;

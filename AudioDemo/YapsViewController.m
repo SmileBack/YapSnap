@@ -19,6 +19,7 @@
 #import "OpenInSpotifyAlertView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
+#import "ContactManager.h"
 
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -274,15 +275,12 @@ static NSString *CellIdentifier = @"Cell";
 {
     NSLog(@"Double tap on: %@", indexPath);
     
-    UIViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-    if ([vc isKindOfClass:[AudioCaptureViewController class]]) {
-        AudioCaptureViewController *audioCaptureVC = vc;
-        
-    } else {
-        // ERROR!  shouldn't be here...
-    }
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    YSYap *yap = self.yaps[indexPath.row];
+
+    AudioCaptureViewController *audioVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AudioCaptureViewController"];
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:audioVC];
+    audioVC.contactReplyingTo = [[ContactManager sharedContactManager] contactForPhoneNumber:yap.senderPhone];
+    [self presentViewController:navVC animated:NO completion:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

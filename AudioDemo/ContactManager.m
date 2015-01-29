@@ -53,6 +53,17 @@ static ContactManager *sharedInstance;
     return nil;
 }
 
+- (PhoneContact *) contactForPhoneNumber:(NSString *)phoneNumber
+{
+    NSString *phone = [self stringPhoneNumber:phoneNumber];
+    for (PhoneContact *contact in self.contacts.allValues) {
+        if ([phone isEqualToString:contact.phoneNumber]) {
+            return contact;
+        }
+    }
+    return nil;
+}
+
 - (NSArray *) getAllContacts
 {
     [self loadAllContacts];

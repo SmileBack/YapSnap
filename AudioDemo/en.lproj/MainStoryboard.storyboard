@@ -500,6 +500,7 @@
                     <connections>
                         <outlet property="tableView" destination="hWh-h3-qO7" id="klJ-nF-XsM"/>
                         <segue destination="Dgp-JD-d1e" kind="modal" identifier="Playback Segue" animates="NO" id="LuI-mK-8FP"/>
+                        <segue destination="2" kind="modal" identifier="Reply Segue" animates="NO" id="G5E-eK-yVZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-WI-Tyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -889,6 +890,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="syO-tE-hvG"/>
+        <segue reference="AEp-MY-7pq"/>
+        <segue reference="G5E-eK-yVZ"/>
     </inferredMetricsTieBreakers>
 </document>
