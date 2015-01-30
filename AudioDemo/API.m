@@ -39,9 +39,8 @@ static API *sharedAPI;
 
 - (NSString *) serverUrl
 {
-    //return @"http://localhost:4000"; // local dev server
-    //return @"http://yapsnap.herokuapp.com"; // production
-    return @"http://192.168.1.177:4000";
+    return @"http://yapsnap.herokuapp.com"; // production
+    //return @"http://192.168.1.177:4000"; // local dev server
 }
 
 #pragma mark - Generic Methods
@@ -272,11 +271,11 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"/api/v1/users/%@", @"1"]]
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              callback(YES, nil);
+              //callback(YES, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              [self processFailedOperation:operation];
-              callback(NO, error);
+              //callback(NO, error);
           }];
 }
 
