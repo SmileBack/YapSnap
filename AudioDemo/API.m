@@ -108,7 +108,7 @@ static API *sharedAPI;
                                                   }];
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self urlForEndpoint:@"/audio_messages"]
+    [manager POST:[self urlForEndpoint:@"/api/v1/audio_messages"]
        parameters:params
 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [formData appendPartWithFileURL:outputFileURL name:@"recording" error:nil];
@@ -125,7 +125,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 
 - (void) sendSongYap:(YapBuilder *)builder withCallback:(SuccessOrErrorCallback)callback
 {
-    NSString *url = [self urlForEndpoint:@"/audio_messages"]; //TODO USE REAL ENDPOINT
+    NSString *url = [self urlForEndpoint:@"/api/v1/audio_messages"]; //TODO USE REAL ENDPOINT
     
     NSString* recipients = [[builder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
     
@@ -170,7 +170,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 - (void) postSessions:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self urlForEndpoint:@"/sessions"]
+    [manager POST:[self urlForEndpoint:@"/api/v1/sessions"]
        parameters:[self paramsWithDict:@{@"phone": phoneNumber}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSLog(@"sessions call finished: %@", responseObject);
@@ -194,7 +194,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self urlForEndpoint:@"/sessions/confirm"]
+    [manager POST:[self urlForEndpoint:@"/api/v1/sessions/confirm"]
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSLog(@"confirmed session code. response: %@", responseObject);
@@ -213,7 +213,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
-    [manager GET:[self urlForEndpoint:@"/audio_messages"]
+    [manager GET:[self urlForEndpoint:@"/api/v1/audio_messages"]
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSArray *yapDicts = responseObject; //Assuming it is an array
@@ -231,7 +231,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"/audio_messages/%@", yap.yapID]]
+    [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"/api/v1/audio_messages/%@", yap.yapID]]
       parameters:[self paramsWithDict:@{@"id": yap.yapID,
                                         @"status" : @"opened"}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -247,7 +247,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:[self urlForEndpoint:@"/number_of_unopened_yaps"]
+    [manager GET:[self urlForEndpoint:@"/api/v1/number_of_unopened_yaps"]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              // Expecting: {"count" : 6}
@@ -269,7 +269,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                                   @"last_name" : @"Berenholtz",
                                                   @"email" : @"dan@dan.co"}];
     // TODO: un-hardcode user id
-    [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"/users/%@", @"1"]]
+    [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"/api/v1/users/%@", @"1"]]
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               callback(YES, nil);
