@@ -41,6 +41,9 @@
 		37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */; };
 		780005A81A70EA66005E6CD4 /* listen_on_spotify-black-long.png in Resources */ = {isa = PBXBuildFile; fileRef = 780005A71A70EA66005E6CD4 /* listen_on_spotify-black-long.png */; };
 		780005AA1A70EE69005E6CD4 /* listen_on_spotify-black-long3.png in Resources */ = {isa = PBXBuildFile; fileRef = 780005A91A70EE69005E6CD4 /* listen_on_spotify-black-long3.png */; };
+		781996231A7B3D5F0004C2DB /* SettingsIconWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 781996221A7B3D5F0004C2DB /* SettingsIconWhite@2x.png */; };
+		781996251A7B45070004C2DB /* RedCircleSmallNoBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 781996241A7B45070004C2DB /* RedCircleSmallNoBorder.png */; };
+		781996271A7B45CE0004C2DB /* RedCircleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 781996261A7B45CE0004C2DB /* RedCircleButton.png */; };
 		784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E01A6253CE0084894D /* MusicIcon@2x.png */; };
 		784C67E41A625D110084894D /* ProgressViewBackgroundRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E21A625D110084894D /* ProgressViewBackgroundRed.png */; };
 		784C67E51A625D110084894D /* ProgressViewBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E31A625D110084894D /* ProgressViewBackgroundWhite.png */; };
@@ -65,7 +68,6 @@
 		78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */; };
 		78A569A31A73227200818A17 /* YSColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A569A21A73227200818A17 /* YSColorPicker.m */; };
 		78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */; };
-		78A569A81A74386700818A17 /* ColdplayAlbumImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78A569A71A74386700818A17 /* ColdplayAlbumImage.jpg */; };
 		78A569B01A74A37000818A17 /* Microphone_Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569AF1A74A37000818A17 /* Microphone_Yellow.png */; };
 		78A569B21A74A6AC00818A17 /* Microphone_Yellow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569B11A74A6AC00818A17 /* Microphone_Yellow2.png */; };
 		78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569B51A74A8B900818A17 /* Microphone_Gray2.png */; };
@@ -157,6 +159,9 @@
 		37E122E51A4011560073684D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		780005A71A70EA66005E6CD4 /* listen_on_spotify-black-long.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black-long.png"; sourceTree = "<group>"; };
 		780005A91A70EE69005E6CD4 /* listen_on_spotify-black-long3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black-long3.png"; sourceTree = "<group>"; };
+		781996221A7B3D5F0004C2DB /* SettingsIconWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIconWhite@2x.png"; sourceTree = "<group>"; };
+		781996241A7B45070004C2DB /* RedCircleSmallNoBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedCircleSmallNoBorder.png; sourceTree = "<group>"; };
+		781996261A7B45CE0004C2DB /* RedCircleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedCircleButton.png; sourceTree = "<group>"; };
 		784C67E01A6253CE0084894D /* MusicIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIcon@2x.png"; sourceTree = "<group>"; };
 		784C67E21A625D110084894D /* ProgressViewBackgroundRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundRed.png; sourceTree = "<group>"; };
 		784C67E31A625D110084894D /* ProgressViewBackgroundWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundWhite.png; sourceTree = "<group>"; };
@@ -185,7 +190,6 @@
 		78A569A21A73227200818A17 /* YSColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSColorPicker.m; sourceTree = "<group>"; };
 		78A569A41A73227700818A17 /* YSColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YSColorPicker.h; sourceTree = "<group>"; };
 		78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum2@2x.png"; sourceTree = "<group>"; };
-		78A569A71A74386700818A17 /* ColdplayAlbumImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ColdplayAlbumImage.jpg; sourceTree = "<group>"; };
 		78A569AF1A74A37000818A17 /* Microphone_Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_Yellow.png; sourceTree = "<group>"; };
 		78A569B11A74A6AC00818A17 /* Microphone_Yellow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_Yellow2.png; sourceTree = "<group>"; };
 		78A569B51A74A8B900818A17 /* Microphone_Gray2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_Gray2.png; sourceTree = "<group>"; };
@@ -332,7 +336,9 @@
 				78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */,
 				784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */,
 				784E35EF1A65A0ED0029AA01 /* PencilIcon.png */,
-				78A569A71A74386700818A17 /* ColdplayAlbumImage.jpg */,
+				781996221A7B3D5F0004C2DB /* SettingsIconWhite@2x.png */,
+				781996241A7B45070004C2DB /* RedCircleSmallNoBorder.png */,
+				781996261A7B45CE0004C2DB /* RedCircleButton.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -711,13 +717,13 @@
 				3753AF8B19E9A68200B6391D /* YapsButtonRed.png in Resources */,
 				780005AA1A70EE69005E6CD4 /* listen_on_spotify-black-long3.png in Resources */,
 				784C67E41A625D110084894D /* ProgressViewBackgroundRed.png in Resources */,
-				78A569A81A74386700818A17 /* ColdplayAlbumImage.jpg in Resources */,
 				784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */,
 				787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */,
 				F44B0C5C16DA404700E6CD88 /* MainStoryboard.storyboard in Resources */,
 				37D413CC19D230D000021548 /* ArrowWhite.png in Resources */,
 				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
 				37D413C619D2235C00021548 /* Images.xcassets in Resources */,
+				781996231A7B3D5F0004C2DB /* SettingsIconWhite@2x.png in Resources */,
 				786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */,
 				37D20C2C19E4A19D008530BF /* RecordButtonRedWhiteBorder.png in Resources */,
 				37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */,
@@ -727,6 +733,8 @@
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
 				78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */,
+				781996271A7B45CE0004C2DB /* RedCircleButton.png in Resources */,
+				781996251A7B45070004C2DB /* RedCircleSmallNoBorder.png in Resources */,
 				786D91231A6EFBCE00177E25 /* MicrophoneWhiteSmall2@2x.png in Resources */,
 				786D91151A6EF0C800177E25 /* GrayArrow.png in Resources */,
 				780005A81A70EA66005E6CD4 /* listen_on_spotify-black-long.png in Resources */,
