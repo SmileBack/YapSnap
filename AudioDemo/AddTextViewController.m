@@ -139,12 +139,15 @@
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.flashbackImageView.image = chosenImage;
     
-    [picker dismissViewControllerAnimated:YES completion:NULL];    
+    self.textView.text = @"";
+    self.textView.userInteractionEnabled = NO;
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:NULL];
     self.textView.text = @"";
+    self.textView.userInteractionEnabled = YES;
     [self.textView becomeFirstResponder];
 }
 
