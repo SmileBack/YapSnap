@@ -18,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *sendYapLabel;
 @property (weak, nonatomic) IBOutlet YSColorPicker *colorPicker;
 @property (strong, nonatomic) UIView *progressViewRemainder;
+@property (strong, nonatomic) IBOutlet UIImageView *flashbackImageView;
+
 
 - (IBAction)didTapAddTextButton;
 
@@ -42,6 +44,8 @@
     self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textView.delegate = self;
     self.colorPicker.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:self.textView];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -102,11 +106,46 @@
     return YES;
 }
 
+- (void)textViewDidChange:(NSNotification *)notification {
+   
+    if ([self.textView.text isEqualToString:@"Flashback"] || [self.textView.text isEqualToString:@"flashback"] || [self.textView.text isEqualToString:@"Flashback "] || [self.textView.text isEqualToString:@"flashback "]) {
+        [self selectPhoto];
+    }
+}
+
 #pragma mark - YSColorPickerDelegate
 
 - (void)colorPicker:(YSColorPicker *)picker didSelectColor:(UIColor *)color
 {
     self.view.backgroundColor = color;
+}
+
+#pragma mark - Select Photo
+
+- (void) selectPhoto {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+#pragma mark - Image Picker Controller delegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.flashbackImageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    self.textView.text = @"";
+    [self.textView becomeFirstResponder];
 }
 
 

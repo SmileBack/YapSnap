@@ -403,6 +403,9 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-LF-pEZ" userLabel="Flashback Image">
+                                <rect key="frame" x="10" y="123" width="300" height="300"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -410,6 +413,7 @@
                     <connections>
                         <outlet property="addTextToYapButton" destination="KDf-Vb-ilr" id="jTv-Uo-Wb4"/>
                         <outlet property="colorPicker" destination="EFe-hN-LX9" id="MKP-hO-rrG"/>
+                        <outlet property="flashbackImageView" destination="gWj-LF-pEZ" id="F1Y-0q-0w5"/>
                         <outlet property="progressView" destination="38e-bV-c4v" id="AgX-HI-9eq"/>
                         <outlet property="sendYapLabel" destination="VT6-V5-MtX" id="BBs-eg-hOt"/>
                         <outlet property="textView" destination="Yo4-ls-PqW" id="5he-52-51O"/>
