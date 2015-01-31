@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EnterNameEmailViewController : UIViewController
+@interface EnterNameEmailViewController : UIViewController<UITextFieldDelegate>
 
 @end
