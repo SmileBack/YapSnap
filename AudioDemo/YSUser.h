@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface YSUser : NSObject
+@interface YSUser : NSObject<NSCoding>
 
 @property (nonatomic, strong) NSNumber *userID;
 @property (nonatomic, strong) NSString *email;
@@ -21,8 +21,12 @@
 @property (nonatomic, strong) NSString *sessionToken;
 @property (nonatomic, strong) NSString *pushToken;
 
-@property (nonatomic, readonly) BOOL isUserInfoComplete;
 
 + (YSUser *) userFromDictionary:(NSDictionary *) dictionary;
++ (YSUser *) currentUser;
++ (void) setCurrentUser:(YSUser *)user;
+
+@property (nonatomic, readonly) BOOL isUserInfoComplete;
+@property (nonatomic, readonly) BOOL hasSessionToken;
 
 @end

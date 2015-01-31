@@ -8,6 +8,9 @@
 
 #import "YSUser.h"
 
+#define USER_KEY @"com.yapsnap.CurrentUser"
+static YSUser *currentUser;
+
 @implementation YSUser
 
 + (YSUser *) userFromDictionary:(NSDictionary *)dictionary
@@ -28,6 +31,14 @@
     return user;
 }
 
++ (YSUser *) currentUser
+{
+    if (!currentUser) {
+        currentUser = [YSUser userFromDisk];
+    }
+    return currentUser;
+}
+
 - (BOOL) stringIsIncomplete:(NSString *)string
 {
     return !string || [string isKindOfClass:[NSNull class]] || [@"" isEqualToString:string];
@@ -39,5 +50,64 @@
         [self stringIsIncomplete:self.firstName] ||
         [self stringIsIncomplete:self.lastName];
 }
+
+- (BOOL) hasSessionToken
+{
+    return ![self stringIsIncomplete:self.sessionToken];
+}
+
+#pragma mark - User persisting
+
++ (YSUser *) userFromDisk
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *encodedObject = [defaults objectForKey:USER_KEY];
+    YSUser *user = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+    return user;
+}
+
++ (void) setCurrentUser:(YSUser *)user
+{
+    currentUser = user;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:user];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:encodedObject forKey:USER_KEY];
+        [defaults synchronize];
+    });
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    [encoder encodeObject:self.userID forKey:@"userID"];
+    [encoder encodeObject:self.email forKey:@"email"];
+    [encoder encodeObject:self.firstName forKey:@"firstName"];
+    [encoder encodeObject:self.lastName forKey:@"lastName"];
+    [encoder encodeObject:self.phone forKey:@"phone"];
+
+    [encoder encodeObject:self.createdAt forKey:@"createdAt"];
+    [encoder encodeObject:self.updatedAt forKey:@"updatedAt"];
+    [encoder encodeObject:self.sessionToken forKey:@"sessionToken"];
+    [encoder encodeObject:self.pushToken forKey:@"pushToken"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        //decode properties, other class vars
+        self.userID = [decoder decodeObjectForKey:@"userID"];
+        self.email = [decoder decodeObjectForKey:@"email"];
+        self.firstName = [decoder decodeObjectForKey:@"firstName"];
+        self.lastName = [decoder decodeObjectForKey:@"lastName"];
+        self.phone = [decoder decodeObjectForKey:@"phone"];
+
+        self.createdAt = [decoder decodeObjectForKey:@"createdAt"];
+        self.updatedAt = [decoder decodeObjectForKey:@"updatedAt"];
+        self.sessionToken = [decoder decodeObjectForKey:@"sessionToken"];
+        self.pushToken = [decoder decodeObjectForKey:@"pushToken"];
+    }
+    return self;
+}
+
+
 
 @end

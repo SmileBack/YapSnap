@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Appcoda. All rights reserved.
 //
 
-#import "Global.h"
 #import "EnterNameEmailViewController.h"
 #import "API.h"
 

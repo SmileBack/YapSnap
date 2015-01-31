@@ -23,7 +23,6 @@
 		3793FDF919BCF0DC00FBBBCE /* ContactSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3793FDF719BCF0DC00FBBBCE /* ContactSelectionCell.xib */; };
 		3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDFB19BCF11E00FBBBCE /* UIViewController+Communication.m */; };
 		3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDFE19BCF16B00FBBBCE /* PhoneContact.m */; };
-		3799501819E9C8070086711F /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799501719E9C8070086711F /* Global.m */; };
 		37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF0DD919E8F9D60077B74F /* Microphone_White.png */; };
 		37BF0DDF19E8FCF70077B74F /* YapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF0DDE19E8FCF70077B74F /* YapsViewController.m */; };
 		37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF0DEC19E9164C0077B74F /* RedCircleIcon@2x.png */; };
@@ -131,8 +130,6 @@
 		3793FDFB19BCF11E00FBBBCE /* UIViewController+Communication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Communication.m"; sourceTree = "<group>"; };
 		3793FDFD19BCF16B00FBBBCE /* PhoneContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneContact.h; sourceTree = "<group>"; };
 		3793FDFE19BCF16B00FBBBCE /* PhoneContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneContact.m; sourceTree = "<group>"; };
-		3799501619E9C8070086711F /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
-		3799501719E9C8070086711F /* Global.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
 		37BF0DD919E8F9D60077B74F /* Microphone_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_White.png; sourceTree = "<group>"; };
 		37BF0DDD19E8FCF70077B74F /* YapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YapsViewController.h; sourceTree = "<group>"; };
 		37BF0DDE19E8FCF70077B74F /* YapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YapsViewController.m; sourceTree = "<group>"; };
@@ -485,8 +482,6 @@
 				F44B0C5216DA404700E6CD88 /* AppDelegate.m */,
 				378191D319E59B4A006EF98F /* API.m */,
 				378191D219E59B4A006EF98F /* API.h */,
-				3799501619E9C8070086711F /* Global.h */,
-				3799501719E9C8070086711F /* Global.m */,
 				37C3746C19BC4A97001A1D02 /* HUD */,
 				37D413C519D2235C00021548 /* Images.xcassets */,
 				F44B0C4916DA404700E6CD88 /* Supporting Files */,
@@ -795,7 +790,6 @@
 				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
-				3799501819E9C8070086711F /* Global.m in Sources */,
 				FC1E89B81A4B852C007A8CDA /* SpotifyTrackView.m in Sources */,
 				FCEF99401A6D7BF2000FDE4C /* YapCell.m in Sources */,
 				FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */,

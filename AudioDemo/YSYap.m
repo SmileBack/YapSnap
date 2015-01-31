@@ -9,7 +9,7 @@
 #import "YSYap.h"
 #import "ContactManager.h"
 #import "NSDate+InternetDateTime.h"
-#import "Global.h"
+#import "YSUser.h"
 
 @implementation YSYap
 
@@ -88,12 +88,12 @@
 
 - (BOOL) sentByCurrentUser
 {
-    return [[self.senderID stringValue] isEqualToString:[Global retrieveValueForKey:@"current_user_id"]];
+    return [self.senderID isEqualToNumber:[YSUser currentUser].userID];
 }
 
 - (BOOL) receivedByCurrentUser
 {
-    return [[self.receiverID stringValue] isEqualToString:[Global retrieveValueForKey:@"current_user_id"]];
+    return [self.receiverID isEqualToNumber:[YSUser currentUser].userID];
 }
 
 @end

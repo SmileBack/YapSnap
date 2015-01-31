@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Appcoda. All rights reserved.
 //
 
-#import "Global.h"
 #import "API.h"
 #import "PhoneContact.h"
 
@@ -32,7 +31,7 @@ static API *sharedAPI;
 - (NSString *)sessionToken
 {
     if (!_sessionToken) {
-        _sessionToken = [Global retrieveValueForKey:@"session_token"];
+        _sessionToken = [YSUser currentUser].sessionToken;
     }
     return _sessionToken;
 }
@@ -174,9 +173,10 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
        parameters:[self paramsWithDict:@{@"phone": phoneNumber}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSLog(@"sessions call finished: %@", responseObject);
-              NSDictionary *response = responseObject;
-              [Global storeValue:phoneNumber forKey:@"phone_number"];
-              [Global storeValue:response[@"user_id"] forKey:@"current_user_id"];
+              
+              YSUser *user = [YSUser new];
+              user.phone = phoneNumber;
+              [YSUser setCurrentUser:user];
 
               callback(YES, nil);
           }
@@ -189,7 +189,8 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(UserCallback)callback
 {
-    NSDictionary *params = [self paramsWithDict:@{@"phone":[Global retrieveValueForKey:@"phone_number"],
+    YSUser *currentUser = [YSUser currentUser];
+    NSDictionary *params = [self paramsWithDict:@{@"phone": currentUser.phone,
                                                   @"confirmation_code": code}];
     
     
@@ -198,12 +199,9 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSDictionary *json = responseObject;
-              NSString *token = json[@"session_token"];
-              [Global storeValue:token forKey:@"session_token"];
 
-              // TODO SAVE USER STATE
-              
               YSUser *user = [YSUser userFromDictionary:json];
+              [YSUser setCurrentUser:user];
               
               callback(user, nil);
           }
@@ -270,11 +268,19 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
     NSDictionary *params = [self paramsWithDict:properties];
-    // TODO: un-hardcode user id
-    [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"/api/v1/users/%@", @"1"]]
+
+    YSUser *currentUser = [YSUser currentUser];
+    [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"/api/v1/users/%d", currentUser.userID.intValue]]
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              callback(YES, nil);
+              if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                  NSDictionary *dict = responseObject;
+                  YSUser *user = [YSUser userFromDictionary:dict];
+                  [YSUser setCurrentUser:user];
+                  callback(YES, nil);
+              } else {
+                  callback(NO, nil);
+              }
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              [self processFailedOperation:operation];

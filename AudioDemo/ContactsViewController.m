@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Appcoda. All rights reserved.
 //
 
-#import "Global.h"
 #import "ContactsViewController.h"
 #import "MBProgressHUD.h"
 #import "ContactManager.h"

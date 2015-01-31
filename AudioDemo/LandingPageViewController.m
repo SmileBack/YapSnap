@@ -6,31 +6,20 @@
 //  Copyright (c) 2014 Appcoda. All rights reserved.
 //
 
-#import "Global.h"
 #import "LandingPageViewController.h"
 #import "AudioCaptureViewController.h"
-
-@interface LandingPageViewController ()
-
-@end
+#import "YSUser.h"
 
 @implementation LandingPageViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    YSUser *user = [YSUser currentUser];
+    
     // if we're already authenticated, go right to the recording page
-    if ([Global retrieveValueForKey:@"session_token"] != nil){
+    if (user.hasSessionToken){
         AudioCaptureViewController* rvvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AudioCaptureViewController"];
         [self.navigationController pushViewController:rvvc animated:NO];
     }else{
