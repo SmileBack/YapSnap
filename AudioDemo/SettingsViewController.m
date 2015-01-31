@@ -1,0 +1,114 @@
+//
+//  SettingsViewController.m
+//  YapSnap
+//
+//  Created by Jon Deokule on 1/31/15.
+//  Copyright (c) 2015 Appcoda. All rights reserved.
+//
+
+#import "SettingsViewController.h"
+#import "YSUser.h"
+#import "EditFieldViewController.h"
+#import "API.h"
+
+@interface SettingsViewController ()
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *sections;
+@end
+
+@implementation SettingsViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (NSArray *) sections
+{
+    if (!_sections) {
+        _sections = @[FIRST_NAME_SECTION, LAST_NAME_SECTION, EMAIL_SECTION, PHONE_NUMBER_SECTION, LOGOUT_SECTION];
+    }
+    return _sections;
+}
+
+#pragma mark - TableView Data Source
+
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.sections.count;
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+
+    NSString *section = self.sections[indexPath.row];
+    cell.textLabel.text = section;
+    
+    YSUser *user = [YSUser currentUser];
+
+    if ([section isEqualToString:FIRST_NAME_SECTION]) {
+        cell.detailTextLabel.text = user.displayFirstName;
+    } else if ([section isEqualToString:LAST_NAME_SECTION]) {
+        cell.detailTextLabel.text = user.displayLastName;
+    } else if ([section isEqualToString:EMAIL_SECTION]) {
+        cell.detailTextLabel.text = user.displayEmail;
+    } else if ([section isEqualToString:PHONE_NUMBER_SECTION]) {
+        cell.detailTextLabel.text = user.phone;
+    } else {
+        cell.detailTextLabel.text = nil;
+    }
+
+    return cell;
+}
+
+#pragma mark - TableView Delegate
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *section = self.sections[indexPath.row];
+    if (indexPath.row <= 2) { // First, Last, or Email
+        [self performSegueWithIdentifier:@"Edit Field Segue" sender:section];
+    } else if ([LOGOUT_SECTION isEqualToString:section]) {
+        [[[UIAlertView alloc] initWithTitle:@"Logout"
+                                    message:@"Are you sure?"
+                                   delegate:self
+                          cancelButtonTitle:@"No"
+                          otherButtonTitles:@"Yes", nil] show];
+    }
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [[API sharedAPI] logout:^(BOOL success, NSError *error) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+    }
+}
+
+#pragma mark - Navigation
+- (IBAction)didPressDone:(UIBarButtonItem *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([@"Edit Field Segue" isEqualToString:segue.identifier]) {
+        EditFieldViewController *vc = segue.destinationViewController;
+        vc.editingField = sender;
+    }
+}
+
+
+@end

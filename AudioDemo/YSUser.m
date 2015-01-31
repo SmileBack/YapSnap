@@ -46,7 +46,9 @@ static YSUser *currentUser;
 
 - (BOOL) isUserInfoComplete
 {
-    return [self stringIsIncomplete:self.email] ||
+    BOOL emailIncomp = [self stringIsIncomplete:self.email];
+    
+    return emailIncomp ||
         [self stringIsIncomplete:self.firstName] ||
         [self stringIsIncomplete:self.lastName];
 }
@@ -54,6 +56,30 @@ static YSUser *currentUser;
 - (BOOL) hasSessionToken
 {
     return ![self stringIsIncomplete:self.sessionToken];
+}
+
+#pragma mark - Display Properties
+- (NSString *) displayStringForString:(NSString *) string
+{
+    if (!string || [string isKindOfClass:[NSNull class]]) {
+        return @"";
+    }
+    return string;
+}
+
+- (NSString *) displayEmail
+{
+    return [self displayStringForString:self.email];
+}
+
+- (NSString *) displayFirstName
+{
+    return [self displayStringForString:self.firstName];
+}
+
+- (NSString *) displayLastName
+{
+    return [self displayStringForString:self.lastName];
 }
 
 #pragma mark - User persisting
@@ -73,6 +99,15 @@ static YSUser *currentUser;
         NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:user];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:encodedObject forKey:USER_KEY];
+        [defaults synchronize];
+    });
+}
+
++ (void) wipeCurrentUserData
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults removeObjectForKey:USER_KEY];
         [defaults synchronize];
     });
 }

@@ -98,6 +98,8 @@
 		FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC609BC21A3CC24500182F08 /* SpotifyAPI.m */; };
 		FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */; };
 		FCBB96FF1A7D4C97003D5F24 /* YSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB96FE1A7D4C97003D5F24 /* YSUser.m */; };
+		FCBB97031A7D636A003D5F24 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB97021A7D636A003D5F24 /* SettingsViewController.m */; };
+		FCBB97061A7D6CDF003D5F24 /* EditFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB97051A7D6CDF003D5F24 /* EditFieldViewController.m */; };
 		FCEF99361A6D6B22000FDE4C /* AddTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */; };
 		FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */; };
 		FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF993C1A6D6F06000FDE4C /* NoAnimationPushSegue.m */; };
@@ -240,6 +242,10 @@
 		FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSTrack.m; sourceTree = "<group>"; };
 		FCBB96FD1A7D4C97003D5F24 /* YSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSUser.h; sourceTree = "<group>"; };
 		FCBB96FE1A7D4C97003D5F24 /* YSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSUser.m; sourceTree = "<group>"; };
+		FCBB97011A7D636A003D5F24 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		FCBB97021A7D636A003D5F24 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		FCBB97041A7D6CDF003D5F24 /* EditFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFieldViewController.h; sourceTree = "<group>"; };
+		FCBB97051A7D6CDF003D5F24 /* EditFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFieldViewController.m; sourceTree = "<group>"; };
 		FCEF99341A6D6B22000FDE4C /* AddTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTextViewController.h; sourceTree = "<group>"; };
 		FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTextViewController.m; sourceTree = "<group>"; };
 		FCEF99371A6D6B9A000FDE4C /* YapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YapBuilder.h; sourceTree = "<group>"; };
@@ -520,6 +526,7 @@
 		FC0C1D3F1A45EE5E00B148AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FCBB97001A7D635B003D5F24 /* Settings */,
 				FC52C1B11A787DA600D85FA8 /* Helpers */,
 				FCEF993A1A6D6EF0000FDE4C /* Segues */,
 				374383E619CE32250009C323 /* Landing Page */,
@@ -599,6 +606,17 @@
 				78A569A21A73227200818A17 /* YSColorPicker.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		FCBB97001A7D635B003D5F24 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FCBB97011A7D636A003D5F24 /* SettingsViewController.h */,
+				FCBB97021A7D636A003D5F24 /* SettingsViewController.m */,
+				FCBB97041A7D6CDF003D5F24 /* EditFieldViewController.h */,
+				FCBB97051A7D6CDF003D5F24 /* EditFieldViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		FCEF993A1A6D6EF0000FDE4C /* Segues */ = {
@@ -787,6 +805,7 @@
 				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,
 				FCEF99361A6D6B22000FDE4C /* AddTextViewController.m in Sources */,
 				FCBB96FF1A7D4C97003D5F24 /* YSUser.m in Sources */,
+				FCBB97061A7D6CDF003D5F24 /* EditFieldViewController.m in Sources */,
 				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
@@ -799,6 +818,7 @@
 				78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */,
 				FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */,
 				378191D419E59B4A006EF98F /* API.m in Sources */,
+				FCBB97031A7D636A003D5F24 /* SettingsViewController.m in Sources */,
 				FC0C1D4C1A45F98500B148AB /* YSMicSourceController.m in Sources */,
 				FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */,
 				37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */,

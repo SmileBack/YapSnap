@@ -21,10 +21,15 @@
 @property (nonatomic, strong) NSString *sessionToken;
 @property (nonatomic, strong) NSString *pushToken;
 
+// Helpers for displaying these possibly-nil propertier
+@property (nonatomic, readonly) NSString *displayEmail;
+@property (nonatomic, readonly) NSString *displayFirstName;
+@property (nonatomic, readonly) NSString *displayLastName;
 
 + (YSUser *) userFromDictionary:(NSDictionary *) dictionary;
 + (YSUser *) currentUser;
 + (void) setCurrentUser:(YSUser *)user;
++ (void) wipeCurrentUserData;
 
 @property (nonatomic, readonly) BOOL isUserInfoComplete;
 @property (nonatomic, readonly) BOOL hasSessionToken;

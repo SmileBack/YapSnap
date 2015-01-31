@@ -152,6 +152,10 @@ static const float TIMER_INTERVAL = .01;
                         [self.recordButtonSpinner stopAnimating];
                         NSLog(@"Loading spinner stopped animating");
                     }];
+    
+    [center addObserverForName:NOTIFICATION_LOGOUT object:nil queue:nil usingBlock:^ (NSNotification *note) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
 }
 
 - (void) updateProgress {

@@ -14,6 +14,7 @@
 #import "YapBuilder.h"
 
 #define NOTIFICATION_INVALID_SESSION @"com.yapsnap.InvalidSessionNotification"
+#define NOTIFICATION_LOGOUT @"com.yapsnap.LogoutNotification"
 
 typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 typedef void (^YapsCallback)(NSArray *yaps, NSError *error);
@@ -30,10 +31,14 @@ typedef void (^UserCallback)(YSUser *user, NSError *error);
 - (void) getYapsWithCallback:(YapsCallback)callback;
 - (void) yapOpened:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback;
 - (void) unopenedYapsCountWithCallback:(YapCountCallback)callback;
+- (void) logout:(SuccessOrErrorCallback)callback;
 
 # pragma mark - Updating of User Data
 - (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback;
 - (void) updateUserPushToken:(NSString *)token withCallBack:(SuccessOrErrorCallback)callback;
 - (void) updateFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email withCallBack:(SuccessOrErrorCallback)callback;
+- (void) updateFirstName:(NSString *)firstName withCallBack:(SuccessOrErrorCallback)callback;
+- (void) updateLastName:(NSString *)lastName withCallBack:(SuccessOrErrorCallback)callback;
+- (void) updateEmail:(NSString *)email withCallBack:(SuccessOrErrorCallback)callback;
 
 @end

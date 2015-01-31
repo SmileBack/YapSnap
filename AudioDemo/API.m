@@ -262,6 +262,15 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
          }];
 }
 
+- (void) logout:(SuccessOrErrorCallback)callback
+{
+    // TODO POST a call to the backend
+    NSLog(@"Logging out");
+    [YSUser wipeCurrentUserData];
+    callback(YES, nil);
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT object:nil];
+}
+
 # pragma mark - Updating of User Data
 - (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback
 {
@@ -270,7 +279,8 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     NSDictionary *params = [self paramsWithDict:properties];
 
     YSUser *currentUser = [YSUser currentUser];
-    [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"/api/v1/users/%d", currentUser.userID.intValue]]
+    NSString *endpoint = [NSString stringWithFormat:@"/api/v1/users/%d", currentUser.userID.intValue];
+    [manager PUT:[self urlForEndpoint:endpoint]
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               if ([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -300,6 +310,21 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                            @"last_name": lastName,
                            @"email": email}
             withCallback:callback];
+}
+
+- (void) updateFirstName:(NSString *)firstName withCallBack:(SuccessOrErrorCallback)callback
+{
+    [self updateUserData:@{@"first_name": firstName} withCallback:callback];
+}
+
+- (void) updateLastName:(NSString *)lastName withCallBack:(SuccessOrErrorCallback)callback
+{
+    [self updateUserData:@{@"last_name": lastName} withCallback:callback];
+}
+
+- (void) updateEmail:(NSString *)email withCallBack:(SuccessOrErrorCallback)callback
+{
+    [self updateUserData:@{@"email": email} withCallback:callback];
 }
 
 @end
