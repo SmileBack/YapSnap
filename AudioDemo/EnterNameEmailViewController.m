@@ -108,9 +108,19 @@
         // Start loading spinner
         [self.loadingSpinner startAnimating];
         
-        //TODO: ADD Callback and stop loading spinner if call fails
-        [[API sharedAPI] updateUserData:@{@"first_name" : self.firstNameTextField.text} withCallback:nil];
-        [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self];
+        [[API sharedAPI] updateFirstName:self.firstNameTextField.text
+                                lastName:self.lastNameTextField.text
+                                   email:self.emailTextField.text
+                            withCallBack:^(BOOL success, NSError *error) {
+                                if (success) {
+                                    [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
+                                } else {
+                                    //TODO: ADD Callback and stop loading spinner if call fails
+
+                                    [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Error updating your info" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                                    // TODO DAN update the text
+                                }
+                            }];
     }
 }
 

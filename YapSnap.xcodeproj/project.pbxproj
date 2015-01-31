@@ -98,6 +98,7 @@
 		FC52C1B41A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1B31A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m */; };
 		FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC609BC21A3CC24500182F08 /* SpotifyAPI.m */; };
 		FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */; };
+		FCBB96FF1A7D4C97003D5F24 /* YSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB96FE1A7D4C97003D5F24 /* YSUser.m */; };
 		FCEF99361A6D6B22000FDE4C /* AddTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */; };
 		FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */; };
 		FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF993C1A6D6F06000FDE4C /* NoAnimationPushSegue.m */; };
@@ -240,6 +241,8 @@
 		FC609BC21A3CC24500182F08 /* SpotifyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPI.m; sourceTree = "<group>"; };
 		FC80F3CF1A3CC6BD00F7ABD0 /* YSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTrack.h; sourceTree = "<group>"; };
 		FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSTrack.m; sourceTree = "<group>"; };
+		FCBB96FD1A7D4C97003D5F24 /* YSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSUser.h; sourceTree = "<group>"; };
+		FCBB96FE1A7D4C97003D5F24 /* YSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSUser.m; sourceTree = "<group>"; };
 		FCEF99341A6D6B22000FDE4C /* AddTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTextViewController.h; sourceTree = "<group>"; };
 		FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTextViewController.m; sourceTree = "<group>"; };
 		FCEF99371A6D6B9A000FDE4C /* YapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YapBuilder.h; sourceTree = "<group>"; };
@@ -270,24 +273,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		374383E119CE2B810009C323 /* Enter Phone Number Page */ = {
-			isa = PBXGroup;
-			children = (
-				374383DE19CE29880009C323 /* EnterPhoneNumberViewController.h */,
-				374383DF19CE29880009C323 /* EnterPhoneNumberViewController.m */,
-			);
-			name = "Enter Phone Number Page";
-			sourceTree = "<group>";
-		};
-		374383E219CE2D6B0009C323 /* Enter Code Page */ = {
-			isa = PBXGroup;
-			children = (
-				374383E319CE2DCA0009C323 /* EnterCodeViewController.h */,
-				374383E419CE2DCA0009C323 /* EnterCodeViewController.m */,
-			);
-			name = "Enter Code Page";
-			sourceTree = "<group>";
-		};
 		374383E619CE32250009C323 /* Landing Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,21 +390,15 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
-		37D413C719D22B3B00021548 /* Enter Name & Email Page */ = {
+		784E35E91A659B8C0029AA01 /* Registration Screens */ = {
 			isa = PBXGroup;
 			children = (
 				37D413C819D22B5E00021548 /* EnterNameEmailViewController.h */,
 				37D413C919D22B5E00021548 /* EnterNameEmailViewController.m */,
-			);
-			name = "Enter Name & Email Page";
-			sourceTree = "<group>";
-		};
-		784E35E91A659B8C0029AA01 /* Registration Screens */ = {
-			isa = PBXGroup;
-			children = (
-				37D413C719D22B3B00021548 /* Enter Name & Email Page */,
-				374383E119CE2B810009C323 /* Enter Phone Number Page */,
-				374383E219CE2D6B0009C323 /* Enter Code Page */,
+				374383DE19CE29880009C323 /* EnterPhoneNumberViewController.h */,
+				374383DF19CE29880009C323 /* EnterPhoneNumberViewController.m */,
+				374383E319CE2DCA0009C323 /* EnterCodeViewController.h */,
+				374383E419CE2DCA0009C323 /* EnterCodeViewController.m */,
 			);
 			name = "Registration Screens";
 			sourceTree = "<group>";
@@ -608,6 +587,8 @@
 				FC1E89BA1A4B8E94007A8CDA /* YSYap.m */,
 				FCEF99371A6D6B9A000FDE4C /* YapBuilder.h */,
 				FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */,
+				FCBB96FD1A7D4C97003D5F24 /* YSUser.h */,
+				FCBB96FE1A7D4C97003D5F24 /* YSUser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -810,6 +791,7 @@
 				FC1E89BE1A4B9518007A8CDA /* PlaybackVC.m in Sources */,
 				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,
 				FCEF99361A6D6B22000FDE4C /* AddTextViewController.m in Sources */,
+				FCBB96FF1A7D4C97003D5F24 /* YSUser.m in Sources */,
 				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
@@ -923,7 +905,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dan Berenholtz (LYD6Q5NGQD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -933,7 +915,7 @@
 				GCC_PREFIX_HEADER = "AudioDemo/YapSnap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapSnap-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3aa078e2-2199-4dd7-a2d9-09a63fc19745";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -944,7 +926,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dan Berenholtz (LYD6Q5NGQD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -954,7 +936,7 @@
 				GCC_PREFIX_HEADER = "AudioDemo/YapSnap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapSnap-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3aa078e2-2199-4dd7-a2d9-09a63fc19745";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

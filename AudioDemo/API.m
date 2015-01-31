@@ -187,7 +187,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
           }];
 }
 
-- (void) confirmSessionWithCode:(NSString *)code withCallback:(SuccessOrErrorCallback)callback
+- (void) confirmSessionWithCode:(NSString *)code withCallback:(UserCallback)callback
 {
     NSDictionary *params = [self paramsWithDict:@{@"phone":[Global retrieveValueForKey:@"phone_number"],
                                                   @"confirmation_code": code}];
@@ -197,15 +197,19 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [manager POST:[self urlForEndpoint:@"/api/v1/sessions/confirm"]
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSLog(@"confirmed session code. response: %@", responseObject);
               NSDictionary *json = responseObject;
               NSString *token = json[@"session_token"];
               [Global storeValue:token forKey:@"session_token"];
-              callback(YES, nil);
+
+              // TODO SAVE USER STATE
+              
+              YSUser *user = [YSUser userFromDictionary:json];
+              
+              callback(user, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              [self processFailedOperation:operation];
-              callback(NO, error);
+              callback(nil, error);
           }];
 }
 
@@ -265,24 +269,30 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
-    NSDictionary *params = [self paramsWithDict:@{@"first_name": @"Dan",
-                                                  @"last_name" : @"Berenholtz",
-                                                  @"email" : @"dan@dan.co"}];
+    NSDictionary *params = [self paramsWithDict:properties];
     // TODO: un-hardcode user id
     [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"/api/v1/users/%@", @"1"]]
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              //callback(YES, nil);
+              callback(YES, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              [self processFailedOperation:operation];
-              //callback(NO, error);
+              callback(NO, error);
           }];
 }
 
 - (void) updateUserPushToken:(NSString *)token withCallBack:(SuccessOrErrorCallback)callback
 {
     [self updateUserData:@{@"push_token" : token}
+            withCallback:callback];
+}
+
+- (void) updateFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email withCallBack:(SuccessOrErrorCallback)callback
+{
+    [self updateUserData:@{@"first_name": firstName,
+                           @"last_name": lastName,
+                           @"email": email}
             withCallback:callback];
 }
 

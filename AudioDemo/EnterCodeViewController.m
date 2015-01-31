@@ -101,10 +101,16 @@
 
     NSString *code = self.textField.text;
 
-    [[API sharedAPI] confirmSessionWithCode:code withCallback:^(BOOL success, NSError *error) {
-        if (success) {
-            [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
-            [self.loadingSpinner stopAnimating];
+    [[API sharedAPI] confirmSessionWithCode:code withCallback:^(YSUser *user, NSError *error) {
+        [self.loadingSpinner stopAnimating];
+        if (user) {
+            // TODO save user state??? - do in API
+            
+            if (user.isUserInfoComplete) {
+                [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
+            } else {
+                [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
+            }
         } else {
             // TODO: different UIAlert depending on error (no internet, wrong code, etc.)
             // NSLog([NSString stringWithFormat:@"error: %@", error]);
@@ -118,7 +124,6 @@
             
             // Enable the continue button again
             self.continueButton.userInteractionEnabled = YES;
-            [self.loadingSpinner stopAnimating];
         }
     }];
 }
