@@ -19,10 +19,10 @@
     YSUser *user = [YSUser currentUser];
     
     // if we're already authenticated, go right to the recording page
-    if (user.hasSessionToken){
+    if (user.hasSessionToken && user.isUserInfoComplete) {
         AudioCaptureViewController* rvvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AudioCaptureViewController"];
         [self.navigationController pushViewController:rvvc animated:NO];
-    }else{
+    } else {
         // Do any additional setup after loading the view.
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                                  style:UIBarButtonItemStylePlain
