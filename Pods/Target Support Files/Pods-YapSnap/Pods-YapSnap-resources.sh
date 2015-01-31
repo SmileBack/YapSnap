@@ -31,10 +31,6 @@ install_resource()
       echo "xcrun momc \"${PODS_ROOT}/$1\" \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodeld`.momd\""
       xcrun momc "${PODS_ROOT}/$1" "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodeld`.momd"
       ;;
-    *.xcmappingmodel)
-      echo "xcrun mapc \"${PODS_ROOT}/$1\" \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcmappingmodel`.cdm\""
-      xcrun mapc "${PODS_ROOT}/$1" "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcmappingmodel`.cdm"
-      ;;
     *.xcassets)
       ;;
     /*)
@@ -47,7 +43,21 @@ install_resource()
       ;;
   esac
 }
-          install_resource "STPhoneFormatter/STPhoneFormatter/FormatsCountriesPhone.plist"
+          install_resource "AWSiOSSDKv2/AWSCore/CognitoIdentity/Resources/cognito-identity-2014-06-30.json"
+                    install_resource "AWSiOSSDKv2/AWSCore/MobileAnalyticsERS/Resources/mobileanalytics-2014-06-30.json"
+                    install_resource "AWSiOSSDKv2/AWSCore/STS/Resources/sts-2011-06-15.json"
+                    install_resource "AWSiOSSDKv2/AutoScaling/Resources/autoscaling-2011-01-01.json"
+                    install_resource "AWSiOSSDKv2/CloudWatch/Resources/monitoring-2010-08-01.json"
+                    install_resource "AWSiOSSDKv2/DynamoDB/Resources/dynamodb-2012-08-10.json"
+                    install_resource "AWSiOSSDKv2/EC2/Resources/ec2-2014-09-01.json"
+                    install_resource "AWSiOSSDKv2/ElasticLoadBalancing/Resources/elasticloadbalancing-2012-06-01.json"
+                    install_resource "AWSiOSSDKv2/Kinesis/Resources/kinesis-2013-12-02.json"
+                    install_resource "AWSiOSSDKv2/S3/Resources/s3-2006-03-01.json"
+                    install_resource "AWSiOSSDKv2/SES/Resources/email-2010-12-01.json"
+                    install_resource "AWSiOSSDKv2/SNS/Resources/sns-2010-03-31.json"
+                    install_resource "AWSiOSSDKv2/SQS/Resources/sqs-2012-11-05.json"
+                    install_resource "AWSiOSSDKv2/SimpleDB/Resources/sdb-2009-04-15.json"
+                    install_resource "STPhoneFormatter/STPhoneFormatter/FormatsCountriesPhone.plist"
           
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then

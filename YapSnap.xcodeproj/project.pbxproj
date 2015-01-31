@@ -88,6 +88,7 @@
 		FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D451A45F41600B148AB /* YSAudioSourceController.m */; };
 		FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */; };
 		FC0C1D4C1A45F98500B148AB /* YSMicSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D4B1A45F98500B148AB /* YSMicSourceController.m */; };
+		FC1A03701A7D775A00074E6A /* AmazonAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1A036F1A7D775A00074E6A /* AmazonAPI.m */; };
 		FC1E89B81A4B852C007A8CDA /* SpotifyTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E89B71A4B852C007A8CDA /* SpotifyTrackView.m */; };
 		FC1E89BB1A4B8E94007A8CDA /* YSYap.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E89BA1A4B8E94007A8CDA /* YSYap.m */; };
 		FC1E89BE1A4B9518007A8CDA /* PlaybackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E89BD1A4B9518007A8CDA /* PlaybackVC.m */; };
@@ -222,6 +223,8 @@
 		FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSpotifySourceController.m; sourceTree = "<group>"; };
 		FC0C1D4A1A45F98500B148AB /* YSMicSourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSMicSourceController.h; sourceTree = "<group>"; };
 		FC0C1D4B1A45F98500B148AB /* YSMicSourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSMicSourceController.m; sourceTree = "<group>"; };
+		FC1A036E1A7D775A00074E6A /* AmazonAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonAPI.h; sourceTree = "<group>"; };
+		FC1A036F1A7D775A00074E6A /* AmazonAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonAPI.m; sourceTree = "<group>"; };
 		FC1E89B61A4B852C007A8CDA /* SpotifyTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrackView.h; sourceTree = "<group>"; };
 		FC1E89B71A4B852C007A8CDA /* SpotifyTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrackView.m; sourceTree = "<group>"; };
 		FC1E89B91A4B8E94007A8CDA /* YSYap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSYap.h; sourceTree = "<group>"; };
@@ -486,8 +489,6 @@
 				FC609BC01A3CC22F00182F08 /* Model */,
 				F44B0C5116DA404700E6CD88 /* AppDelegate.h */,
 				F44B0C5216DA404700E6CD88 /* AppDelegate.m */,
-				378191D319E59B4A006EF98F /* API.m */,
-				378191D219E59B4A006EF98F /* API.h */,
 				37C3746C19BC4A97001A1D02 /* HUD */,
 				37D413C519D2235C00021548 /* Images.xcassets */,
 				F44B0C4916DA404700E6CD88 /* Supporting Files */,
@@ -566,6 +567,19 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
+		FC1A036D1A7D773F00074E6A /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				FC609BC11A3CC24500182F08 /* SpotifyAPI.h */,
+				FC609BC21A3CC24500182F08 /* SpotifyAPI.m */,
+				378191D319E59B4A006EF98F /* API.m */,
+				378191D219E59B4A006EF98F /* API.h */,
+				FC1A036E1A7D775A00074E6A /* AmazonAPI.h */,
+				FC1A036F1A7D775A00074E6A /* AmazonAPI.m */,
+			);
+			name = APIs;
+			sourceTree = "<group>";
+		};
 		FC52C1B11A787DA600D85FA8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,11 +592,10 @@
 		FC609BC01A3CC22F00182F08 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FC1A036D1A7D773F00074E6A /* APIs */,
 				FC52C1AB1A785D2800D85FA8 /* YSPushManager.h */,
 				FC52C1AC1A785D2800D85FA8 /* YSPushManager.m */,
 				FC0595831A6D87AE00FCCED2 /* Contacts */,
-				FC609BC11A3CC24500182F08 /* SpotifyAPI.h */,
-				FC609BC21A3CC24500182F08 /* SpotifyAPI.m */,
 				FC80F3CF1A3CC6BD00F7ABD0 /* YSTrack.h */,
 				FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */,
 				FC1E89B91A4B8E94007A8CDA /* YSYap.h */,
@@ -800,6 +813,7 @@
 				787C84DF1A7732E4005D80D5 /* PhoneNumberChecker.m in Sources */,
 				37D413CA19D22B5E00021548 /* EnterNameEmailViewController.m in Sources */,
 				3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */,
+				FC1A03701A7D775A00074E6A /* AmazonAPI.m in Sources */,
 				37D413C019D21A1F00021548 /* UIColor+BButton.m in Sources */,
 				FC1E89BE1A4B9518007A8CDA /* PlaybackVC.m in Sources */,
 				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,

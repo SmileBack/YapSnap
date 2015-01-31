@@ -10,5 +10,6 @@ target "YapSnap" do
   pod 'SDWebImage', '~> 3.7.1'
   pod 'StreamingKit', '~> 0.1.25'
   pod 'STPhoneFormatter', '~> 1.1.1'
+  pod 'AWSiOSSDKv2'
 end
 

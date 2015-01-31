@@ -8,6 +8,7 @@
 
 #import "API.h"
 #import "PhoneContact.h"
+#import "AmazonAPI.h"
 
 @interface API()
 
@@ -78,47 +79,57 @@ static API *sharedAPI;
     }
 }
 
+
+
 - (void) sendVoiceYap:(YapBuilder *)builder withCallback:(SuccessOrErrorCallback)callback
 {
     NSArray *pathComponents = @[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject], @"MyAudioMemo.m4a"];
     NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
     
-    NSString* recipients = [[builder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
+    __weak API *weakSelf = self;
     
-    // Send Color
-    CGFloat red;
-    CGFloat green;
-    CGFloat blue;
-    CGFloat alpha;
-    [builder.color getRed:&red green:&green blue:&blue alpha:&alpha];
-    NSMutableArray* rgbColorComponents = [NSMutableArray arrayWithCapacity:3];
-    for (NSNumber* number in @[[NSNumber numberWithFloat:red * 255.0], [NSNumber numberWithFloat:green * 255.0], [NSNumber numberWithFloat:blue * 255.0]])
-    {
-        [rgbColorComponents addObject:number.stringValue];
-    }
-    
-    NSDictionary *params = [self paramsWithDict:@{@"session_token": self.sessionToken,
-                                                  @"recipients":recipients,
-                                                  @"text": builder.text,
-                                                  @"duration": [NSNumber numberWithFloat:builder.duration],
-                                                  @"color_rgb": rgbColorComponents, //[NSArray arrayWithObjects:@"0", @"84", @"255", nil],
-                                                  @"type": MESSAGE_TYPE_VOICE
-                                                  }];
-
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self urlForEndpoint:@"/api/v1/audio_messages"]
-       parameters:params
-constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFileURL:outputFileURL name:@"recording" error:nil];
-}
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSLog(@"yaps call finished: %@", responseObject);\
-              callback(YES, nil);
-          }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              NSLog(@"Error: %@", error);
-              callback(NO, error);
-          }];
+    [[AmazonAPI sharedAPI] uploadYap:outputFileURL withCallback:^(NSString *url, NSString *etag, NSError *error) {
+        if (error) {
+            NSLog(@"Error uploading to amazon! %@", error);
+            return;
+        }
+        NSString* recipients = [[builder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
+        
+        // Send Color
+        CGFloat red;
+        CGFloat green;
+        CGFloat blue;
+        CGFloat alpha;
+        [builder.color getRed:&red green:&green blue:&blue alpha:&alpha];
+        NSMutableArray* rgbColorComponents = [NSMutableArray arrayWithCapacity:3];
+        for (NSNumber* number in @[[NSNumber numberWithFloat:red * 255.0], [NSNumber numberWithFloat:green * 255.0], [NSNumber numberWithFloat:blue * 255.0]])
+        {
+            [rgbColorComponents addObject:number.stringValue];
+        }
+        
+        NSDictionary *params = [weakSelf paramsWithDict:@{@"recipients":recipients,
+                                                          @"text": builder.text,
+                                                          @"duration": [NSNumber numberWithFloat:builder.duration],
+                                                          @"color_rgb": rgbColorComponents, //[NSArray arrayWithObjects:@"0", @"84", @"255", nil],
+                                                          @"type": MESSAGE_TYPE_VOICE,
+                                                          @"url": url,
+                                                          @"etag": etag
+                                                          }];
+        
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:[weakSelf urlForEndpoint:@"/api/v1/audio_messages"]
+           parameters:params
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  NSLog(@"yaps call finished: %@", responseObject);\
+                  callback(YES, nil);
+              }
+              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  NSLog(@"Error: %@", error);
+                  callback(NO, error);
+              }];
+        
+    }];
 }
 
 - (void) sendSongYap:(YapBuilder *)builder withCallback:(SuccessOrErrorCallback)callback
