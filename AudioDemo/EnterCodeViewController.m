@@ -106,9 +106,9 @@
             // TODO save user state??? - do in API
             
             if (user.isUserInfoComplete) {
-                [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
-            } else {
                 [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
+            } else {
+                [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
             }
         } else {
             // TODO: different UIAlert depending on error (no internet, wrong code, etc.)
