@@ -23,8 +23,8 @@ typedef void (^YapCountCallback)(NSNumber *count, NSError *error);
 + (API *) sharedAPI;
 
 - (void) sendYap:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback;
-- (void) postSessions:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(SuccessOrErrorCallback)callback;
+- (void) openSession:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback;
 - (void) getYapsWithCallback:(YapsCallback)callback;
 - (void) yapOpened:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback;
 - (void) unopenedYapsCountWithCallback:(YapCountCallback)callback;

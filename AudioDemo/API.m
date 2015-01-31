@@ -167,7 +167,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     }];
 }
 
-- (void) postSessions:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback
+- (void) openSession:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:[self urlForEndpoint:@"/api/v1/sessions"]

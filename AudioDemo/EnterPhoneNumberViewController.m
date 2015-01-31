@@ -151,7 +151,7 @@
         [self.loadingSpinner startAnimating];
 
         NSString *phoneNumber = self.textField.text;
-        [[API sharedAPI] postSessions:phoneNumber withCallback:^(BOOL success, NSError *error) {
+        [[API sharedAPI] openSession:phoneNumber withCallback:^(BOOL success, NSError *error) {
             if (success) {
                 [self.loadingSpinner stopAnimating];
                 [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
