@@ -115,7 +115,7 @@
                                     [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
                                 } else {
                                     //TODO: ADD Callback and stop loading spinner if call fails
-
+                                    NSLog(@"Error! %@", error);
                                     [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Error updating your info" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
                                     // TODO DAN update the text
                                 }
