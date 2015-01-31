@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic, strong) PhoneNumberChecker *phoneNumberChecker;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 
 - (IBAction)didTapContinueButton;
 
@@ -71,19 +72,15 @@
 
 - (IBAction) didTapContinueButton
 {
-    // This is to prevent user from clicking this multiple times before segue occurs (results in multiple segues)
-    self.continueButton.userInteractionEnabled = NO;
-
+    NSLog(@"Tapped Continue Button");
+    
     if ([self.textField.text length] < 10) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your number"
                                                         message:@"Please enter your phone number so we can verify that you're real."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
-        
         [alert show];
-        // Enable the continue button again
-        self.continueButton.userInteractionEnabled = YES;
         return;
     }
     
@@ -94,13 +91,11 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-        self.continueButton.userInteractionEnabled = YES;
-    
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Number"
                                                         message:[NSString stringWithFormat:@"Is your number %@?", self.textField.text]
                                                        delegate:self
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:@"No"
                                               otherButtonTitles:@"Yes", nil];
         [alert show];
     }
@@ -146,24 +141,34 @@
 }
 
 #pragma mark - UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSString *phoneNumber = self.textField.text;
-    [[API sharedAPI] postSessions:phoneNumber withCallback:^(BOOL success, NSError *error) {
-        if (success) {
-            [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
-        } else {
-            // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:error.localizedDescription
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"otherButtonTitles:nil];
-            [alert show];
-            
-            // Enable the continue button again
-            self.continueButton.userInteractionEnabled = YES;
-        }
-    }];
+    if (buttonIndex == 1) {
+        // This is to prevent user from clicking this multiple times before segue occurs (results in multiple segues)
+        self.continueButton.userInteractionEnabled = NO;
+        
+        [self.loadingSpinner startAnimating];
+
+        NSString *phoneNumber = self.textField.text;
+        [[API sharedAPI] postSessions:phoneNumber withCallback:^(BOOL success, NSError *error) {
+            if (success) {
+                [self.loadingSpinner stopAnimating];
+                [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
+                self.continueButton.userInteractionEnabled = YES;
+            } else {
+                // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:error.localizedDescription
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"otherButtonTitles:nil];
+                [alert show];
+                
+                // Enable the continue button again
+                self.continueButton.userInteractionEnabled = YES;
+            }
+        }];
+    }
 }
 
 @end

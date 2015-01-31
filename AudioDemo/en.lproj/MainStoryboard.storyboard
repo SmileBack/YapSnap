@@ -707,6 +707,9 @@
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="go"/>
                             </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WeI-6r-4od">
+                                <rect key="frame" x="142" y="292" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -716,6 +719,7 @@
                         <outlet property="emailTextField" destination="MfG-PN-jQu" id="nas-Im-1vZ"/>
                         <outlet property="firstNameTextField" destination="p2C-z2-Tyv" id="27i-zZ-YEF"/>
                         <outlet property="lastNameTextField" destination="irE-n9-5jj" id="5YO-wL-jZd"/>
+                        <outlet property="loadingSpinner" destination="WeI-6r-4od" id="8rJ-yr-EdF"/>
                         <segue destination="2" kind="push" identifier="RecordViewControllerSegue" id="2PQ-Bb-2Ke"/>
                     </connections>
                 </viewController>
@@ -759,12 +763,16 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RedCircleSmall.png" translatesAutoresizingMaskIntoConstraints="NO" id="jtb-rQ-6da">
                                 <rect key="frame" x="141" y="47" width="38" height="38"/>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="3kK-sL-Jnl">
+                                <rect key="frame" x="142" y="292" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="yVt-D7-V0C"/>
                     <connections>
                         <outlet property="continueButton" destination="fs3-EU-Uhl" id="Ag2-9m-66H"/>
+                        <outlet property="loadingSpinner" destination="3kK-sL-Jnl" id="XsC-LX-7mT"/>
                         <outlet property="textField" destination="TDN-b9-ZdN" id="6uR-6Z-cQf"/>
                         <segue destination="JSl-Ix-TF3" kind="push" identifier="EnterCodeViewControllerSegue" id="9jG-yd-bum"/>
                     </connections>
@@ -809,12 +817,16 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="26v-Xd-KWK">
+                                <rect key="frame" x="142" y="292" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="fJy-io-gnQ"/>
                     <connections>
                         <outlet property="continueButton" destination="mTz-kp-bGm" id="2NX-Y8-32m"/>
+                        <outlet property="loadingSpinner" destination="26v-Xd-KWK" id="FXk-Q9-uPg"/>
                         <outlet property="textField" destination="sdv-mL-fyc" id="sBq-eO-7CY"/>
                         <segue destination="gKu-qF-bJg" kind="push" identifier="EnterNameAndEmailViewControllerSegue" id="VlH-FK-GED"/>
                     </connections>

@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 
 - (IBAction)didTapContinueButton;
 
@@ -101,7 +102,13 @@
                                               otherButtonTitles:nil];
         [alert show];
     } else {
-        //TODO: ADD Callback
+        // This is to prevent user from clicking this multiple times before segue occurs (results in multiple segues)
+        self.continueButton.userInteractionEnabled = NO;
+        
+        // Start loading spinner
+        [self.loadingSpinner startAnimating];
+        
+        //TODO: ADD Callback and stop loading spinner if call fails
         [[API sharedAPI] updateUserData:@{@"first_name" : self.firstNameTextField.text} withCallback:nil];
         [self performSegueWithIdentifier:@"RecordViewControllerSegue" sender:self];
     }

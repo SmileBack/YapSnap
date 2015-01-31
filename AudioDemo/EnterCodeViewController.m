@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 
 - (IBAction)didTapContinueButton;
 
@@ -76,9 +77,6 @@
 
 - (IBAction) didTapContinueButton
 {
-    // This is to prevent user from clicking this multiple times before segue occurs (results in multiple segues)
-    self.continueButton.userInteractionEnabled = NO;
-    
     if ([self.textField.text length] == 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter code"
                                                         message:@"We sent you a code. Please enter it here to continue."
@@ -93,13 +91,23 @@
         
         return;
     }
+    
+    // This is to prevent user from clicking this multiple times before segue occurs (results in multiple segues)
+    self.continueButton.userInteractionEnabled = NO;
+    
+    // Start loading spinner
+    [self.loadingSpinner startAnimating];
+    NSLog(@"Loading spinner started animating");
 
     NSString *code = self.textField.text;
 
     [[API sharedAPI] confirmSessionWithCode:code withCallback:^(BOOL success, NSError *error) {
         if (success) {
             [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
+            [self.loadingSpinner stopAnimating];
         } else {
+            // TODO: different UIAlert depending on error (no internet, wrong code, etc.)
+            // NSLog([NSString stringWithFormat:@"error: %@", error]);
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again"
                                                             message:@"That was the wrong code. Try again."
                                                            delegate:nil
@@ -110,6 +118,7 @@
             
             // Enable the continue button again
             self.continueButton.userInteractionEnabled = YES;
+            [self.loadingSpinner stopAnimating];
         }
     }];
 }
