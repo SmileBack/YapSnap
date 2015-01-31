@@ -163,6 +163,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         callback(YES, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         callback(NO, error);
+        NSLog(@"Error: %@", error);
     }];
 }
 
