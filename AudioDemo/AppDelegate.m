@@ -28,24 +28,7 @@
    
     [self checkLaunchOptions:launchOptions];
     
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self
-               selector:@selector(invalidSessionNotification)
-                   name:NOTIFICATION_INVALID_SESSION
-                 object:nil];
     return YES;
-}
-
-- (void) invalidSessionNotification
-{
-    // TODO Remove these 2 lines after the Global session_token storing stuff goes away.
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"session_token"];
-
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
-    self.window.rootViewController = vc;
-    [self.window makeKeyAndVisible];
 }
 
 - (void) checkLaunchOptions:(NSDictionary *)launchOptions

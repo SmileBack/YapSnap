@@ -62,7 +62,7 @@ static API *sharedAPI;
 - (void) processFailedOperation:(AFHTTPRequestOperation *)operation
 {
     if (operation.response.statusCode == 401) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_INVALID_SESSION object:nil];
+        [self logout:nil];
         NSLog(@"Invalid Session Notification triggered");
     }
 }
