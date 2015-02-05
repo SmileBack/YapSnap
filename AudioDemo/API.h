@@ -21,6 +21,7 @@ typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 typedef void (^YapsCallback)(NSArray *yaps, NSError *error);
 typedef void (^YapCountCallback)(NSNumber *count, NSError *error);
 typedef void (^UserCallback)(YSUser *user, NSError *error);
+typedef void (^FriendsCallback)(NSArray *friends, NSError *error);
 
 @interface API : NSObject
 
@@ -33,6 +34,7 @@ typedef void (^UserCallback)(YSUser *user, NSError *error);
 - (void) yapOpened:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback;
 - (void) unopenedYapsCountWithCallback:(YapCountCallback)callback;
 - (void) logout:(SuccessOrErrorCallback)callback;
+- (void) friends:(FriendsCallback)callback;
 
 # pragma mark - Updating of User Data
 - (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback;

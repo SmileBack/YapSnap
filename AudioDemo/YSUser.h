@@ -27,6 +27,7 @@
 @property (nonatomic, readonly) NSString *displayLastName;
 
 + (YSUser *) userFromDictionary:(NSDictionary *) dictionary;
++ (NSArray *) usersFromArray:(NSArray *)array;
 + (YSUser *) currentUser;
 + (void) setCurrentUser:(YSUser *)user;
 + (void) wipeCurrentUserData;

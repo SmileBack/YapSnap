@@ -46,7 +46,7 @@ static API *sharedAPI;
 #pragma mark - Generic Methods
 - (NSString *) urlForEndpoint:(NSString *)endpoint
 {
-    return [NSString stringWithFormat:@"%@%@", self.serverUrl, endpoint];
+    return [NSString stringWithFormat:@"%@/api/v1/%@", self.serverUrl, endpoint];
 }
 
 - (NSDictionary *)paramsWithDict:(NSDictionary *)dict
@@ -118,7 +118,7 @@ static API *sharedAPI;
         
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager POST:[weakSelf urlForEndpoint:@"/api/v1/audio_messages"]
+        [manager POST:[weakSelf urlForEndpoint:@"audio_messages"]
            parameters:params
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
                   NSLog(@"yaps call finished: %@", responseObject);
@@ -134,7 +134,7 @@ static API *sharedAPI;
 
 - (void) sendSongYap:(YapBuilder *)builder withCallback:(SuccessOrErrorCallback)callback
 {
-    NSString *url = [self urlForEndpoint:@"/api/v1/audio_messages"]; //TODO USE REAL ENDPOINT
+    NSString *url = [self urlForEndpoint:@"audio_messages"]; //TODO USE REAL ENDPOINT
     
     NSString* recipients = [[builder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
     
@@ -180,7 +180,7 @@ static API *sharedAPI;
 - (void) openSession:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self urlForEndpoint:@"/api/v1/sessions"]
+    [manager POST:[self urlForEndpoint:@"sessions"]
        parameters:[self paramsWithDict:@{@"phone": phoneNumber}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSLog(@"sessions call finished: %@", responseObject);
@@ -206,7 +206,7 @@ static API *sharedAPI;
     
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self urlForEndpoint:@"/api/v1/sessions/confirm"]
+    [manager POST:[self urlForEndpoint:@"sessions/confirm"]
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSDictionary *json = responseObject;
@@ -226,7 +226,7 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
-    [manager GET:[self urlForEndpoint:@"/api/v1/audio_messages"]
+    [manager GET:[self urlForEndpoint:@"audio_messages"]
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSArray *yapDicts = responseObject; //Assuming it is an array
@@ -243,12 +243,13 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"/api/v1/audio_messages/%@", yap.yapID]]
+    [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"audio_messages/%@", yap.yapID]]
       parameters:[self paramsWithDict:@{@"id": yap.yapID,
                                         @"status" : @"opened"}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              if (![responseObject isKindOfClass:[NSDictionary class]]) {
                  callback(NO, nil);
+                 return;
              }
              NSDictionary *responseDict = responseObject;
              YSYap *yap = [YSYap yapWithDictionary:responseDict];
@@ -265,7 +266,7 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:[self urlForEndpoint:@"/api/v1/number_of_unopened_yaps"]
+    [manager GET:[self urlForEndpoint:@"number_of_unopened_yaps"]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              // Expecting: {"count" : 6}
@@ -287,6 +288,25 @@ static API *sharedAPI;
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT object:nil];
 }
 
+- (void) friends:(FriendsCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+
+    [manager GET:[self urlForEndpoint:@"friends"]
+      parameters:[self paramsWithDict:@{}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             if (![responseObject isKindOfClass:[NSArray class]]) {
+                 callback(nil, NO);
+                 return;
+             }
+             NSArray *users = [YSUser usersFromArray:responseObject];
+             callback(users, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             callback(nil, error);
+         }];
+}
+
 # pragma mark - Updating of User Data
 - (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback
 {
@@ -295,7 +315,7 @@ static API *sharedAPI;
     NSDictionary *params = [self paramsWithDict:properties];
 
     YSUser *currentUser = [YSUser currentUser];
-    NSString *endpoint = [NSString stringWithFormat:@"/api/v1/users/%d", currentUser.userID.intValue];
+    NSString *endpoint = [NSString stringWithFormat:@"users/%d", currentUser.userID.intValue];
     [manager PUT:[self urlForEndpoint:endpoint]
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {

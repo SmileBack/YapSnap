@@ -90,6 +90,11 @@ static NSString *CellIdentifier = @"Cell";
     }];
 }
 
+- (IBAction)didPressFriendsButton:(UIBarButtonItem *)sender
+{
+    [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
+}
+
 - (void) setupNotifications
 {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];

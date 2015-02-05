@@ -93,6 +93,7 @@
 		FC1E89BB1A4B8E94007A8CDA /* YSYap.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E89BA1A4B8E94007A8CDA /* YSYap.m */; };
 		FC1E89BE1A4B9518007A8CDA /* PlaybackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E89BD1A4B9518007A8CDA /* PlaybackVC.m */; };
 		FC342F381A5099D200518765 /* OpenInSpotifyAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC342F371A5099D200518765 /* OpenInSpotifyAlertView.m */; };
+		FC3ECAE91A830496002678F6 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3ECAE81A830496002678F6 /* FriendsViewController.m */; };
 		FC52C1AD1A785D2800D85FA8 /* YSPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1AC1A785D2800D85FA8 /* YSPushManager.m */; };
 		FC52C1B01A786F0F00D85FA8 /* RecentContact.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1AF1A786F0F00D85FA8 /* RecentContact.m */; };
 		FC52C1B41A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1B31A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m */; };
@@ -233,6 +234,8 @@
 		FC1E89BD1A4B9518007A8CDA /* PlaybackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybackVC.m; sourceTree = "<group>"; };
 		FC342F361A5099D200518765 /* OpenInSpotifyAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInSpotifyAlertView.h; sourceTree = "<group>"; };
 		FC342F371A5099D200518765 /* OpenInSpotifyAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInSpotifyAlertView.m; sourceTree = "<group>"; };
+		FC3ECAE71A830496002678F6 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		FC3ECAE81A830496002678F6 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		FC52C1AB1A785D2800D85FA8 /* YSPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSPushManager.h; sourceTree = "<group>"; };
 		FC52C1AC1A785D2800D85FA8 /* YSPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSPushManager.m; sourceTree = "<group>"; };
 		FC52C1AE1A786F0F00D85FA8 /* RecentContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentContact.h; sourceTree = "<group>"; };
@@ -527,6 +530,7 @@
 		FC0C1D3F1A45EE5E00B148AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FC3ECAE61A830482002678F6 /* Friends */,
 				FCBB97001A7D635B003D5F24 /* Settings */,
 				FC52C1B11A787DA600D85FA8 /* Helpers */,
 				FCEF993A1A6D6EF0000FDE4C /* Segues */,
@@ -578,6 +582,15 @@
 				FC1A036F1A7D775A00074E6A /* AmazonAPI.m */,
 			);
 			name = APIs;
+			sourceTree = "<group>";
+		};
+		FC3ECAE61A830482002678F6 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				FC3ECAE71A830496002678F6 /* FriendsViewController.h */,
+				FC3ECAE81A830496002678F6 /* FriendsViewController.m */,
+			);
+			name = Friends;
 			sourceTree = "<group>";
 		};
 		FC52C1B11A787DA600D85FA8 /* Helpers */ = {
@@ -806,6 +819,7 @@
 				FC1E89BB1A4B8E94007A8CDA /* YSYap.m in Sources */,
 				FC0595821A6D87A700FCCED2 /* ContactManager.m in Sources */,
 				78A569A31A73227200818A17 /* YSColorPicker.m in Sources */,
+				FC3ECAE91A830496002678F6 /* FriendsViewController.m in Sources */,
 				37D413BE19D21A1F00021548 /* NSString+FontAwesome.m in Sources */,
 				F44B0C4F16DA404700E6CD88 /* main.m in Sources */,
 				FC52C1B41A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m in Sources */,

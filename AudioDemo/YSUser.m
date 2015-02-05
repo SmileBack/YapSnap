@@ -31,6 +31,15 @@ static YSUser *currentUser;
     return user;
 }
 
++ (NSArray *) usersFromArray:(NSArray *)array
+{
+    NSMutableArray *users = [NSMutableArray arrayWithCapacity:array.count];
+    for (NSDictionary *dict in array) {
+        [users addObject:[YSUser userFromDictionary:dict]];
+    }
+    return users;
+}
+
 + (YSUser *) currentUser
 {
     if (!currentUser) {
