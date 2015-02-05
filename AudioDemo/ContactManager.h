@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import "PhoneContact.h"
+#import "RecentContact.h"
 
 #define NOTIFICATION_CONTACTS_LOADED @"com.yapsnap.ContactsLoaded"
 

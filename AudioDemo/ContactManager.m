@@ -7,7 +7,6 @@
 //
 
 #import "ContactManager.h"
-#import "RecentContact.h"
 
 #define RECENT_CONTACTS_KEY @"yapsnap.RecentContacts"
 #define RECENT_CONTACTS_CONTACT_ID @"contactID"
@@ -73,12 +72,6 @@ static ContactManager *sharedInstance;
 - (PhoneContact *) contactForContactID:(NSNumber *)contactID
 {
     return self.contacts[contactID];
-}
-
-- (PhoneContact *) recentContactAtIndex:(NSInteger)index
-{
-    RecentContact *recent = self.recentContacts[index];
-    return [self contactForContactID:recent.contactID];
 }
 
 - (void) loadAllContacts
@@ -213,6 +206,9 @@ static ContactManager *sharedInstance;
         NSString *name2 = [self contactForId:cont2.contactID].name;
         return [name1 compare:name2];
     }];
+
+    // todo save
+    [self performSelectorInBackground:@selector(saveRecentContacts) withObject:nil];
 }
 
 - (void) sentYapTo:(NSArray *)contacts
@@ -222,15 +218,25 @@ static ContactManager *sharedInstance;
     }
 }
 
+- (void) saveRecentContacts
+{
+    NSMutableArray *toSave = [NSMutableArray arrayWithCapacity:self.recentContacts.count];
+    for (RecentContact *contact in self.recentContacts) {
+        [toSave addObject:[NSKeyedArchiver archivedDataWithRootObject:contact]];
+    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:toSave forKey:RECENT_CONTACTS_KEY];
+    [defaults synchronize];
+}
+
 - (void) loadRecentContacts
 {
     NSArray *contacts = [[NSUserDefaults standardUserDefaults] arrayForKey:RECENT_CONTACTS_KEY];
-    for (NSDictionary *recentContact in contacts) {
-        NSNumber *contactID = recentContact[RECENT_CONTACTS_CONTACT_ID];
-        PhoneContact *contact = [self contactForId:contactID];
-        NSDate *time = recentContact[RECENT_CONTACTS_CONTACT_TIME];
+    for (NSData *contactData in contacts) {
+        RecentContact *recentContact = [NSKeyedUnarchiver unarchiveObjectWithData:contactData];
+        PhoneContact *contact = [self contactForId:recentContact.contactID];
         if (contact) {
-            [self addRecentContactAndUpdateOrder:contact andTime:time];
+            [self addRecentContactAndUpdateOrder:contact andTime:recentContact.contactTime];
         }
     }
 }
@@ -252,6 +258,11 @@ static ContactManager *sharedInstance;
     [defaults synchronize];
 }
 
+- (PhoneContact *) recentContactAtIndex:(NSInteger)index
+{
+    RecentContact *recent = self.recentContacts[index];
+    return [self contactForContactID:recent.contactID];
+}
 
 
 @end

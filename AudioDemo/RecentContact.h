@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RecentContact : NSObject
+@interface RecentContact : NSObject<NSCoding>
 
 @property (nonatomic, strong) NSNumber *contactID;
 @property (nonatomic, strong) NSDate *contactTime;
