@@ -230,7 +230,6 @@ static API *sharedAPI;
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSArray *yapDicts = responseObject; //Assuming it is an array
-              NSLog(@"yaps: %@", yapDicts);
               NSArray *yaps = [YSYap yapsWithArray:yapDicts];
               callback(yaps, nil);
           }
