@@ -232,14 +232,19 @@ static ContactManager *sharedInstance;
 - (void) loadRecentContacts
 {
     NSArray *contacts = [[NSUserDefaults standardUserDefaults] arrayForKey:RECENT_CONTACTS_KEY];
-    for (NSDictionary *contactData in contacts) {
-        RecentContact *recentContact = [RecentContact new];
-        recentContact.contactID = contactData[@"contactID"];
-        recentContact.contactTime = contactData[@"contactTime"];
-        PhoneContact *contact = [self contactForId:recentContact.contactID];
-        if (contact) {
-            [self addRecentContactAndUpdateOrder:contact andTime:recentContact.contactTime];
+    @try {
+        for (NSDictionary *contactData in contacts) {
+            RecentContact *recentContact = [RecentContact new];
+            recentContact.contactID = contactData[@"contactID"];
+            recentContact.contactTime = contactData[@"contactTime"];
+            PhoneContact *contact = [self contactForId:recentContact.contactID];
+            if (contact) {
+                [self addRecentContactAndUpdateOrder:contact andTime:recentContact.contactTime];
+            }
         }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Error in load recent contacts: %@", exception);
     }
 }
 
