@@ -30,7 +30,7 @@
     if ([dict[@"type"]  isEqual: @"SpotifyMessage"]) {
         yap.playbackURL = dict[@"spotify_preview_url"];
     } else {
-        yap.playbackURL = dict[@"recording"][@"url"];
+        yap.playbackURL = dict[@"aws_recording_url"]; // this has been changed with the AWS change
     };
     yap.listenOnSpotifyURL = dict[@"spotify_full_song_url"];
     yap.songName = dict[@"spotify_song_name"];

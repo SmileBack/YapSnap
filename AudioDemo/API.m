@@ -112,8 +112,8 @@ static API *sharedAPI;
                                                           @"duration": [NSNumber numberWithFloat:builder.duration],
                                                           @"color_rgb": rgbColorComponents, //[NSArray arrayWithObjects:@"0", @"84", @"255", nil],
                                                           @"type": MESSAGE_TYPE_VOICE,
-                                                          @"url": url,
-                                                          @"etag": etag
+                                                          @"aws_recording_url": url,
+                                                          @"aws_etag": etag
                                                           }];
         
         
@@ -121,7 +121,7 @@ static API *sharedAPI;
         [manager POST:[weakSelf urlForEndpoint:@"/api/v1/audio_messages"]
            parameters:params
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                  NSLog(@"yaps call finished: %@", responseObject);\
+                  NSLog(@"yaps call finished: %@", responseObject);
                   callback(YES, nil);
               }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
