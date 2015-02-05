@@ -231,9 +231,15 @@ static NSString *CellIdentifier = @"Cell";
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         contact = self.filteredContacts[indexPath.row];
     } else {
-        NSString *letter = self.allLetters[indexPath.section - 1];
-        NSArray *contacts = self.contactDict[letter];
-        contact = contacts[indexPath.row];
+        if (indexPath.section == 0) {
+            ContactManager *contactManager = [ContactManager sharedContactManager];
+            RecentContact *recent = contactManager.recentContacts[indexPath.row];
+            contact = [contactManager contactForContactID:recent.contactID];
+        } else {
+            NSString *letter = self.allLetters[indexPath.section - 1];
+            NSArray *contacts = self.contactDict[letter];
+            contact = contacts[indexPath.row];
+        }
     }
     
     if ([self.selectedContacts containsObject:contact]) {
