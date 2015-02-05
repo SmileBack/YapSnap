@@ -15,6 +15,7 @@
 
 #define NOTIFICATION_INVALID_SESSION @"com.yapsnap.InvalidSessionNotification"
 #define NOTIFICATION_LOGOUT @"com.yapsnap.LogoutNotification"
+#define NOTIFICATION_YAP_OPENED @"com.yapsnap.YapOpened"
 
 typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 typedef void (^YapsCallback)(NSArray *yaps, NSError *error);

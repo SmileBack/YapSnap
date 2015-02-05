@@ -62,31 +62,7 @@ static NSString *CellIdentifier = @"Cell";
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
     
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserverForName:APP_ENTERED_BACKGROUND_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        
-                        NSArray *viewControllers = [[self navigationController] viewControllers];
-                        for( int i=0;i<[viewControllers count];i++){
-                            id obj=[viewControllers objectAtIndex:[viewControllers count]-i-1];
-                            if([obj isKindOfClass:[AudioCaptureViewController class]]){
-                                // Reset AudioCaptureViewController, then pop
-                                AudioCaptureViewController* audioCaptureVC = obj;
-                                if (![audioCaptureVC isInRecordMode]) {
-                                    YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
-                                    audioCaptureVC.micModeButton.alpha = 1;
-                                    audioCaptureVC.spotifyModeButton.alpha = .2;
-                                    [audioCaptureVC flipController:audioCaptureVC.audioSource to:micSource];
-                                }
-                                
-                                [[self navigationController] popToViewController:obj animated:NO];
-                                return;
-                            }
-                        }
-                        
-                    }];
+    [self setupNotifications];
 
     [self setupTableViewGestureRecognizers];
 }
@@ -112,6 +88,53 @@ static NSString *CellIdentifier = @"Cell";
             NSLog(@"Error! %@", error);
         }
     }];
+}
+
+- (void) setupNotifications
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    __weak YapsViewController *weakSelf = self;
+
+    [center addObserverForName:APP_ENTERED_BACKGROUND_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSArray *viewControllers = [[weakSelf navigationController] viewControllers];
+                        for( int i=0;i<[viewControllers count];i++){
+                            id obj=[viewControllers objectAtIndex:[viewControllers count]-i-1];
+                            if([obj isKindOfClass:[AudioCaptureViewController class]]){
+                                // Reset AudioCaptureViewController, then pop
+                                AudioCaptureViewController* audioCaptureVC = obj;
+                                if (![audioCaptureVC isInRecordMode]) {
+                                    YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
+                                    audioCaptureVC.micModeButton.alpha = 1;
+                                    audioCaptureVC.spotifyModeButton.alpha = .2;
+                                    [audioCaptureVC flipController:audioCaptureVC.audioSource to:micSource];
+                                }
+
+                                [[weakSelf navigationController] popToViewController:obj animated:NO];
+                                return;
+                            }
+                        }
+                        
+                    }];
+    
+    [center addObserverForName:NOTIFICATION_YAP_OPENED
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        YSYap *newYap = note.object;
+                        for (int i = 0; i < weakSelf.yaps.count; i++) {
+                            YSYap *yap = weakSelf.yaps[i];
+                            if ([yap.yapID isEqualToNumber:newYap.yapID]) {
+                                NSMutableArray *yaps = [NSMutableArray arrayWithArray:weakSelf.yaps];
+                                [yaps replaceObjectAtIndex:i withObject:newYap];
+                                weakSelf.yaps = yaps;
+                                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                                break;
+                            }
+                        }
+                    }];
 }
 
 -(BOOL) internetIsNotReachable

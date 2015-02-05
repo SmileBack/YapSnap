@@ -247,6 +247,12 @@ static API *sharedAPI;
       parameters:[self paramsWithDict:@{@"id": yap.yapID,
                                         @"status" : @"opened"}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             if (![responseObject isKindOfClass:[NSDictionary class]]) {
+                 callback(NO, nil);
+             }
+             NSDictionary *responseDict = responseObject;
+             YSYap *yap = [YSYap yapWithDictionary:responseDict];
+             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_OPENED object:yap];
              callback(YES, nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
