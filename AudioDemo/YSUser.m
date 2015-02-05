@@ -48,9 +48,9 @@ static YSUser *currentUser;
 {
     BOOL emailIncomp = [self stringIsIncomplete:self.email];
     
-    return emailIncomp ||
-        [self stringIsIncomplete:self.firstName] ||
-        [self stringIsIncomplete:self.lastName];
+    return !(emailIncomp ||
+             [self stringIsIncomplete:self.firstName] ||
+             [self stringIsIncomplete:self.lastName]);
 }
 
 - (BOOL) hasSessionToken
