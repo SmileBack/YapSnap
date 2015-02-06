@@ -255,22 +255,34 @@ static NSString *CellIdentifier = @"Cell";
         [self showNoInternetAlert];
     } else {        
         YSYap *yap = self.yaps[indexPath.row];
-        if (yap.wasOpened && yap.receivedByCurrentUser) {
-            YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-            cell.createdTimeLabel.text = @"Double Tap to Reply";
-            cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            });
-        } else if (yap.wasOpened && yap.sentByCurrentUser) {
-            YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-            cell.createdTimeLabel.text = [NSString stringWithFormat:@"Your yap has been %@", yap.status];
-            cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            });
-        } else if (!yap.wasOpened) {
-            [self performSegueWithIdentifier:@"Playback Segue" sender:yap]; // Remove this line from here eventually
+        if (yap.receivedByCurrentUser) {
+            if (yap.wasOpened) {
+                YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+                cell.createdTimeLabel.text = @"Double Tap to Reply";
+                cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                });
+            } else if (!yap.wasOpened) {
+                [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
+            }
+        } else if (yap.sentByCurrentUser) {
+            if (yap.wasOpened) {
+                YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+                cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@ opened your yap", yap.displayReceiverName];
+                cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                });
+            } else if (!yap.wasOpened) {
+                YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+                cell.createdTimeLabel.text = @"Your yap has been delivered";
+                cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                });
+            // Once pending status is added: "Dan will see your yap once he/she joins"
+            }
         }
         
     //    BOOL didSendYap = [[yap.senderID stringValue] isEqualToString:[Global retrieveValueForKey:@"current_user_id"]];
