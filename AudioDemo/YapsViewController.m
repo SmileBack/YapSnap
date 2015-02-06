@@ -342,6 +342,36 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YSYap *yap = self.yaps[indexPath.row];
+    
+    if (yap.receivedByCurrentUser) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YSYap *yap = self.yaps[indexPath.row];
+    
+    if (yap.receivedByCurrentUser) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Block User"
+                                                            message:[NSString stringWithFormat:@"You will no longer receive messages from %@. This cannot be undone.", yap.displaySenderName]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel" otherButtonTitles:@"Block", nil];
+        
+        [alertView show];
+    }
+}
+
+- (NSString *) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Block";
+}
+
 # pragma mark - Gesture Recognition
 - (void) setupTableViewGestureRecognizers
 {
@@ -377,8 +407,6 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
-
-
 //The event handling method
 - (void)handleSpotifyTap:(YSSpotifyTapGestureRecognizer *)recognizer {
     //CGPoint location = [recognizer locationInView:[recognizer.view superview]];
@@ -413,5 +441,15 @@ static NSString *CellIdentifier = @"Cell";
         }
     }
 }
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        // If user confirms blocking do this:
+        NSLog(@"User confirms blocking");
+    }
+}
+
 
 @end
