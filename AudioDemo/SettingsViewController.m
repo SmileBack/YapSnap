@@ -33,7 +33,7 @@
 - (NSArray *) sections
 {
     if (!_sections) {
-        _sections = @[FIRST_NAME_SECTION, LAST_NAME_SECTION, EMAIL_SECTION, PHONE_NUMBER_SECTION, LOGOUT_SECTION];
+        _sections = @[FIRST_NAME_SECTION, LAST_NAME_SECTION, EMAIL_SECTION, PHONE_NUMBER_SECTION, FEEDBACK_SECTION, LOGOUT_SECTION];
     }
     return _sections;
 }
@@ -86,6 +86,9 @@
                                    delegate:self
                           cancelButtonTitle:@"No"
                           otherButtonTitles:@"Yes", nil] show];
+    } else if ([FEEDBACK_SECTION isEqualToString:section]) {
+        [self showFeedbackEmailViewControllerWithDelegate:self andCompletion:^{
+        }];
     }
 }
 
@@ -109,6 +112,44 @@
     if ([@"Edit Field Segue" isEqualToString:segue.identifier]) {
         EditFieldViewController *vc = segue.destinationViewController;
         vc.editingField = sender;
+    }
+}
+
+#pragma mark - Message Delegate
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    if (result == MessageComposeResultSent) {
+        [controller dismissViewControllerAnimated:YES completion:^{
+            //[self callBlock:YES withRecipients:controller.recipients];
+        }];
+    } else {
+        [controller dismissViewControllerAnimated:YES completion:^{
+            //[self callBlock:NO withRecipients:NO];
+        }];
+    }
+}
+
+#pragma mark - Feedback
+- (void) showFeedbackEmailViewControllerWithDelegate:(id<MFMailComposeViewControllerDelegate>)delegate andCompletion:(void (^)(void))completion
+{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+        mailer.mailComposeDelegate = delegate;
+        [mailer setSubject:@"My Feedback"];
+        NSArray *toRecipients = [NSArray arrayWithObjects:@"team@smilebackapp.com", nil];
+        [mailer setToRecipients:toRecipients];
+        NSString *emailBody = @"";
+        [mailer setMessageBody:emailBody isHTML:NO];
+        [self presentViewController:mailer animated:YES completion:completion];
+        
+        [mailer becomeFirstResponder];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"team@smilebackapp.com"
+                                                        message:@"You don't have your e-mail setup. Please contact us at team@smilebackapp.com."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
     }
 }
 

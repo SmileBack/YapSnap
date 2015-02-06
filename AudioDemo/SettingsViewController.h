@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
 #define FIRST_NAME_SECTION @"First Name"
 #define LAST_NAME_SECTION @"Last Name"
 #define EMAIL_SECTION @"Email"
 #define PHONE_NUMBER_SECTION @"Phone"
+#define FEEDBACK_SECTION @"Send Us Feedback"
 #define LOGOUT_SECTION @"Logout"
 
-@interface SettingsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+@interface SettingsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate,MFMessageComposeViewControllerDelegate>
+
 @end
