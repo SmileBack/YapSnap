@@ -283,10 +283,19 @@ static API *sharedAPI;
 
 - (void) logout:(SuccessOrErrorCallback)callback
 {
-    // TODO POST a call to the backend
     NSLog(@"Logging out");
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:[self urlForEndpoint:@"logout"]
+      parameters:[self paramsWithDict:@{}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            callback(YES, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             callback(NO, error);
+         }];
+
     [YSUser wipeCurrentUserData];
-    callback(YES, nil);
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT object:nil];
 }
 
