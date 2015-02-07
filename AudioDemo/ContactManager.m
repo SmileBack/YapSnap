@@ -41,11 +41,32 @@ static ContactManager *sharedInstance;
     return ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized;
 }
 
-- (NSString *)nameForPhoneNumber:(NSString *)phoneNumber
+/**
+ * Returns a phone number with numbers only starting with a 1
+ */
+- (NSString *) usNumberFromPhoneNumber:(NSString *)phoneNumber
 {
     NSString *scrubbedPhone = [self stringPhoneNumber:phoneNumber];
+
+    if ([scrubbedPhone hasPrefix:@"1"]) {
+        return scrubbedPhone;
+    }
+
+    // TODO normalize for international numbers
+    return [NSString stringWithFormat:@"1%@", scrubbedPhone];
+}
+
+- (NSString *)nameForPhoneNumber:(NSString *)phoneNumber
+{
+    NSString *usNumber = [self usNumberFromPhoneNumber:phoneNumber];
+    NSString *scrubbedNumber = [self stringPhoneNumber:phoneNumber];
+    
     for (PhoneContact *contact in [self getAllContacts]) {
-        if ([contact.phoneNumber isEqualToString:scrubbedPhone]) {
+        NSString *contactUsNumber = [self usNumberFromPhoneNumber:contact.phoneNumber];
+        if ([contactUsNumber isEqualToString:usNumber] ||
+            [contact.phoneNumber isEqualToString:usNumber] ||
+            [contactUsNumber isEqualToString:scrubbedNumber] ||
+            [contact.phoneNumber isEqualToString:scrubbedNumber]) {
             return contact.name;
         }
     }
