@@ -279,7 +279,7 @@ static NSString *CellIdentifier = @"Cell";
         
         self.yapBuilder.contacts = self.selectedContacts;
         
-        [[API sharedAPI] sendYap:self.yapBuilder
+        [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.selectedContacts];

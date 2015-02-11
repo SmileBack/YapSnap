@@ -49,7 +49,7 @@ static API *sharedAPI;
     return [NSString stringWithFormat:@"%@/api/v1/%@", self.serverUrl, endpoint];
 }
 
-- (NSDictionary *)paramsWithDict:(NSDictionary *)dict
+- (NSMutableDictionary *)paramsWithDict:(NSDictionary *)dict
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:dict];
 
@@ -59,6 +59,38 @@ static API *sharedAPI;
 
     return params;
 }
+
+- (NSDictionary *) paramsWithDict:(NSDictionary *)dict andYapBuilder:(YapBuilder *)yapBuilder
+{
+    NSMutableDictionary *params = [self paramsWithDict:dict];
+    
+    params[@"text"] = yapBuilder.text;
+    
+    NSString* recipients = [[yapBuilder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
+    params[@"recipients"] = recipients;
+    
+    params[@"duration"] = [NSNumber numberWithFloat:yapBuilder.duration];
+    
+    // Send Color
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alpha;
+    [yapBuilder.color getRed:&red green:&green blue:&blue alpha:&alpha];
+    NSMutableArray* rgbColorComponents = [NSMutableArray arrayWithCapacity:3];
+    for (NSNumber* number in @[[NSNumber numberWithFloat:red * 255.0], [NSNumber numberWithFloat:green * 255.0], [NSNumber numberWithFloat:blue * 255.0]])
+    {
+        [rgbColorComponents addObject:number.stringValue];
+    }
+    params[@"color_rgb"] = rgbColorComponents; //[NSArray arrayWithObjects:@"0", @"84", @"255", nil],
+    
+    // Photo stuff
+    params[@"aws_photo_url"] = yapBuilder.imageAwsUrl;
+    params[@"aws_photo_etag"] = yapBuilder.imageAwsEtag;
+    
+    return params;
+}
+
 
 - (void) processFailedOperation:(AFHTTPRequestOperation *)operation
 {
@@ -70,6 +102,25 @@ static API *sharedAPI;
 
 #pragma mark - Public APIs
 
+- (void) sendYapBuilder:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback
+{
+    // First, if there is a photo upload it to AWS.  The URL and Etag will be returned.
+    if (yapBuilder.image) {
+        __weak API *weakSelf = self;
+        [[AmazonAPI sharedAPI] uploadPhoto:yapBuilder.image withCallback:^(NSString *url, NSString *etag, NSError *error) {
+            if (error) {
+                callback(NO, error);
+            } else {
+                yapBuilder.imageAwsUrl = url;
+                yapBuilder.imageAwsEtag = etag;
+                [weakSelf sendYap:yapBuilder withCallback:callback];
+            }
+        }];
+    } else {
+        [self sendYap:yapBuilder withCallback:callback];
+    }
+}
+
 - (void) sendYap:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback
 {
     if ([MESSAGE_TYPE_VOICE isEqualToString:yapBuilder.messageType]) {
@@ -78,8 +129,6 @@ static API *sharedAPI;
         [[API sharedAPI] sendSongYap:yapBuilder withCallback:callback];
     }
 }
-
-
 
 - (void) sendVoiceYap:(YapBuilder *)builder withCallback:(SuccessOrErrorCallback)callback
 {
@@ -91,31 +140,15 @@ static API *sharedAPI;
     [[AmazonAPI sharedAPI] uploadYap:outputFileURL withCallback:^(NSString *url, NSString *etag, NSError *error) {
         if (error) {
             NSLog(@"Error uploading to amazon! %@", error);
-            return;
-        }
-        NSString* recipients = [[builder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
-        
-        // Send Color
-        CGFloat red;
-        CGFloat green;
-        CGFloat blue;
-        CGFloat alpha;
-        [builder.color getRed:&red green:&green blue:&blue alpha:&alpha];
-        NSMutableArray* rgbColorComponents = [NSMutableArray arrayWithCapacity:3];
-        for (NSNumber* number in @[[NSNumber numberWithFloat:red * 255.0], [NSNumber numberWithFloat:green * 255.0], [NSNumber numberWithFloat:blue * 255.0]])
-        {
-            [rgbColorComponents addObject:number.stringValue];
+            callback(NO, error);
         }
         
-        NSDictionary *params = [weakSelf paramsWithDict:@{@"recipients":recipients,
-                                                          @"text": builder.text,
-                                                          @"duration": [NSNumber numberWithFloat:builder.duration],
-                                                          @"color_rgb": rgbColorComponents, //[NSArray arrayWithObjects:@"0", @"84", @"255", nil],
-                                                          @"type": MESSAGE_TYPE_VOICE,
+        
+        NSDictionary *params = [weakSelf paramsWithDict:@{@"type": MESSAGE_TYPE_VOICE,
                                                           @"aws_recording_url": url,
-                                                          @"aws_etag": etag
-                                                          }];
-        
+                                                          @"aws_etag": etag}
+                                          andYapBuilder:builder];
+
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:[weakSelf urlForEndpoint:@"audio_messages"]
@@ -132,41 +165,22 @@ static API *sharedAPI;
     }];
 }
 
+
 - (void) sendSongYap:(YapBuilder *)builder withCallback:(SuccessOrErrorCallback)callback
 {
     NSString *url = [self urlForEndpoint:@"audio_messages"]; //TODO USE REAL ENDPOINT
     
-    NSString* recipients = [[builder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
-    
     YSTrack *song = builder.track;
     
-    // Send Color
-    CGFloat red;
-    CGFloat green;
-    CGFloat blue;
-    CGFloat alpha;
-    [builder.color getRed:&red green:&green blue:&blue alpha:&alpha];
-    NSMutableArray* rgbColorComponents = [NSMutableArray arrayWithCapacity:3];
-    for (NSNumber* number in @[[NSNumber numberWithFloat:red * 255.0], [NSNumber numberWithFloat:green * 255.0], [NSNumber numberWithFloat:blue * 255.0]])
-    {
-        [rgbColorComponents addObject:number.stringValue];
-    }
-    
-    //TODO USE REAL SESSION TOKEN
-    NSDictionary *params = @{@"session_token": self.sessionToken,
-                             @"spotify_song_name": song.name,
-                             @"spotify_song_id": song.spotifyID,
-                             @"spotify_image_url": song.imageURL,
-                             @"spotify_album_name": song.albumName,
-                             @"spotify_artist_name": song.artistName,
-                             @"spotify_full_song_url": song.spotifyURL,
-                             @"spotify_preview_url": song.previewURL,
-                             @"recipients": recipients,
-                             @"text": builder.text,
-                             @"duration": [NSNumber numberWithFloat:builder.duration],
-                             @"color_rgb": rgbColorComponents, //[NSArray arrayWithObjects:@"0", @"84", @"255", nil],
-                             @"type": MESSAGE_TYPE_SPOTIFY
-                             };
+    NSDictionary *params = [self paramsWithDict:@{@"spotify_song_name": song.name,
+                                                  @"spotify_song_id": song.spotifyID,
+                                                  @"spotify_image_url": song.imageURL,
+                                                  @"spotify_album_name": song.albumName,
+                                                  @"spotify_artist_name": song.artistName,
+                                                  @"spotify_full_song_url": song.spotifyURL,
+                                                  @"spotify_preview_url": song.previewURL,
+                                                  @"type": MESSAGE_TYPE_SPOTIFY}
+                                  andYapBuilder:builder];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {

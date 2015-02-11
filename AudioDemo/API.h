@@ -27,7 +27,7 @@ typedef void (^FriendsCallback)(NSArray *friends, NSError *error);
 
 + (API *) sharedAPI;
 
-- (void) sendYap:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback;
+- (void) sendYapBuilder:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback;
 - (void) openSession:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(UserCallback)callback;
 - (void) getYapsWithCallback:(YapsCallback)callback;

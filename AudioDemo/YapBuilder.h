@@ -21,4 +21,9 @@
 @property (nonatomic, strong) NSArray *contacts;
 @property (nonatomic, strong) UIColor *color;
 
+#pragma mark - Photo Stuff
+@property (nonatomic, strong) NSURL *image;
+@property (nonatomic, strong) NSString *imageAwsUrl;
+@property (nonatomic, strong) NSString *imageAwsEtag;
+
 @end

@@ -10,7 +10,7 @@
 #import "YapBuilder.h"
 #import "YSColorPicker.h"
 
-@interface AddTextViewController : UIViewController<YSColorPickerDelegate>
+@interface AddTextViewController : UIViewController<YSColorPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 
 @property (nonatomic, strong) YapBuilder *yapBuilder;
 

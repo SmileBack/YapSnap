@@ -15,5 +15,6 @@ typedef void (^UploadedFileCallback)(NSString *url, NSString *etag, NSError *err
 + (AmazonAPI *) sharedAPI;
 
 - (void) uploadYap:(NSURL *)url withCallback:(UploadedFileCallback)callback;
+- (void) uploadPhoto:(NSURL *)imageURL withCallback:(UploadedFileCallback)callback;
 
 @end

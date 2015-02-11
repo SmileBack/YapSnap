@@ -99,7 +99,7 @@
     } else {
         __weak AddTextViewController *weakSelf = self;
         
-        [[API sharedAPI] sendYap:self.yapBuilder
+        [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
@@ -183,7 +183,14 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.flashbackImageView.image = chosenImage;
-    
+
+    // create a local image that we can use to upload to s3
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"image.png"];
+    NSData *imageData = UIImagePNGRepresentation(chosenImage);
+    [imageData writeToFile:path atomically:YES];
+    NSURL *url = [[NSURL alloc] initFileURLWithPath:path];
+    self.yapBuilder.image = url;
+
     self.textView.text = @"";
     self.textView.userInteractionEnabled = NO;
     [picker dismissViewControllerAnimated:YES completion:NULL];

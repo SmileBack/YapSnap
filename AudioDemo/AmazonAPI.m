@@ -69,4 +69,31 @@ static AmazonAPI *sharedAPI;
     }];
 }
 
+- (void) uploadPhoto:(NSURL *)imageURL withCallback:(UploadedFileCallback)callback
+{
+    NSString *fileName = [NSString stringWithFormat:@"%d_%f", [YSUser currentUser].userID.intValue, [NSDate date].timeIntervalSince1970];
+    NSString *bucket = @"audiomessenger/uploads/photo";
+
+    AWSS3TransferManager *transferManager = [AWSS3TransferManager defaultS3TransferManager];
+    AWSS3TransferManagerUploadRequest *uploadRequest = [AWSS3TransferManagerUploadRequest new];
+    uploadRequest.bucket = bucket;
+    uploadRequest.key = fileName;
+    uploadRequest.body = imageURL;
+    uploadRequest.contentType = @"image/png"; //Saved as PNG in AddTextVC
+    uploadRequest.ACL = AWSS3ObjectCannedACLPublicRead;
+
+    NSString *url = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, fileName];
+    
+    [[transferManager upload:uploadRequest] continueWithBlock:^id(BFTask *task) {
+        if (task.error) {
+            NSLog(@"Amazon image error: %@", task.error);
+            callback(nil, nil, task.error);
+        } else {
+            AWSS3TransferManagerUploadOutput *output = task.result;
+            callback(url, output.ETag, nil);
+        }
+        return nil;
+    }];
+}
+
 @end
