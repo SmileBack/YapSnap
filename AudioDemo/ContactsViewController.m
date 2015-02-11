@@ -160,39 +160,45 @@ static NSString *CellIdentifier = @"Cell";
 #pragma UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1 + self.allLetters.count;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return 1;
+    }else {
+        return 1 + self.allLetters.count;
+    }
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return self.filteredContacts.count;
+    }
+
     if (section == 0) {
         return [ContactManager sharedContactManager].recentContacts.count;
     } else {
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return self.filteredContacts.count;
-        } else {
-            NSString *letter = self.allLetters[section - 1];
-            NSArray *contactsInRow = self.contactDict[letter];
-            return contactsInRow.count;
-        }
+        NSString *letter = self.allLetters[section - 1];
+        NSArray *contactsInRow = self.contactDict[letter];
+        return contactsInRow.count;
     }
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PhoneContact *contact;
-    if (indexPath.section == 0) {
-        contact = [[ContactManager sharedContactManager] recentContactAtIndex:indexPath.row];
-    } else if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
         contact = self.filteredContacts[indexPath.row];
+    } else if (indexPath.section == 0) {
+        contact = [[ContactManager sharedContactManager] recentContactAtIndex:indexPath.row];
     } else {
         NSString *letter = self.allLetters[indexPath.section - 1];
         NSArray *contacts = self.contactDict[letter];
         contact = contacts[indexPath.row];
     }
     
+    NSLog(@"Contact: %@", contact.name);
+    NSLog(@"IndexPath: section %d   row %d", indexPath.section, indexPath.row);
     ContactSelectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
+
     cell.nameLabel.text = contact.name;
     cell.phoneLabel.text = contact.phoneNumber;
     cell.typeLabel.text = contact.label;
@@ -211,6 +217,10 @@ static NSString *CellIdentifier = @"Cell";
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return nil;
+    }
+
     if (section == 0) {
         if ([ContactManager sharedContactManager].recentContacts.count > 0) {
             return @"Recent Contacts";
