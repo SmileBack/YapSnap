@@ -7,6 +7,7 @@
 //
 
 #import "FriendsViewController.h"
+#import "API.h"
 
 @implementation FriendsViewController
 
@@ -14,6 +15,9 @@
     [super viewDidLoad];
     
     // TODO make users call
+    [[API sharedAPI] friends:^(NSArray *friends, NSError *error) {
+        NSLog(@"Friends: %@", friends);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

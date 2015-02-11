@@ -318,6 +318,7 @@ static API *sharedAPI;
              callback(users, nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Friends Error: %@", error);
              callback(nil, error);
          }];
 }
