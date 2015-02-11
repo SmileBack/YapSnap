@@ -102,6 +102,8 @@ static const float TIMER_INTERVAL = .01;
 
 - (void) setupNotifications
 {
+    __weak AudioCaptureViewController *weakSelf = self;
+
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserverForName:AUDIO_CAPTURE_DID_END_NOTIFICATION
                         object:nil
@@ -121,12 +123,14 @@ static const float TIMER_INTERVAL = .01;
                         //self.spotifyModeButton.userInteractionEnabled = NO;
                         //self.micModeButton.userInteractionEnabled = NO;
                         
-                        NSLog(@"Loading spinner stopped animating");
-                        timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
-                                                                 target:self
-                                                               selector:@selector(updateProgress)
-                                                               userInfo:nil
-                                                                repeats:YES];
+                        if (note.object == weakSelf.audioSource) {
+                            NSLog(@"Loading spinner stopped animating");
+                            timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
+                                                                     target:self
+                                                                   selector:@selector(updateProgress)
+                                                                   userInfo:nil
+                                                                    repeats:YES];
+                        }
                     }];
     
     [center addObserverForName:AUDIO_CAPTURE_ERROR_NOTIFICATION

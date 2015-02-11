@@ -325,7 +325,7 @@
     
     if (state == STKAudioPlayerStatePlaying) {
         NSLog(@"state == STKAudioPlayerStatePlaying");
-        [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
     }
     
     if (state == STKAudioPlayerStateBuffering) {
