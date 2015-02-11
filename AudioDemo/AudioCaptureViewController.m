@@ -64,6 +64,30 @@ static const float TIMER_INTERVAL = .01;
     } else {
         NSLog(@"Internet is reachable");
     }
+    
+    [self setupNavBarStuff];
+}
+
+- (BOOL) isInReplyMode
+{
+    return self.contactReplyingTo != nil;
+}
+
+- (void) setupNavBarStuff
+{
+    if ([self isInReplyMode]) {
+        self.yapsPageButton.hidden = YES;
+        // TODO change to BACK icon here
+    }
+}
+
+- (IBAction)leftButtonPressed:(id)sender
+{
+    if ([self isInReplyMode]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self performSegueWithIdentifier:@"Settings Segue" sender:nil];
+    }
 }
 
 -(BOOL) internetIsNotReachable

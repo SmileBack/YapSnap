@@ -82,14 +82,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjE-ev-SsG" userLabel="Settings Button">
+                            <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjE-ev-SsG" userLabel="Top Left Button">
                                 <rect key="frame" x="12" y="28" width="24" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" image="SettingsIconWhite.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="99I-02-yZb" kind="modal" id="U5E-vh-3Z1"/>
+                                    <action selector="leftButtonPressed:" destination="2" eventType="touchUpInside" id="cIN-Qr-oA9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7q-Ko-Que" userLabel="Yaps Button">
@@ -247,6 +247,7 @@
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="AEp-MY-7pq"/>
                         <segue destination="j1Z-Ou-SMe" kind="custom" identifier="Prepare Yap For Text Segue" customClass="NoAnimationPushSegue" id="nBD-Sc-cVG"/>
+                        <segue destination="99I-02-yZb" kind="modal" identifier="Settings Segue" id="POl-Pz-fbY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -1106,6 +1107,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="czb-n6-hbf"/>
+        <segue reference="AEp-MY-7pq"/>
     </inferredMetricsTieBreakers>
 </document>
