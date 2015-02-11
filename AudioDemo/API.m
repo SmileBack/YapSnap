@@ -268,7 +268,7 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:[self urlForEndpoint:@"number_of_unopened_yaps"]
+    [manager GET:[self urlForEndpoint:@"audio_messages/number_of_unopened_yaps"]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              // Expecting: {"count" : 6}
@@ -278,6 +278,7 @@ static API *sharedAPI;
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              [self processFailedOperation:operation];
              callback(NO, error);
+             NSLog(@"Error Getting Yaps Unopened Count %@", error);
          }];
 }
 
@@ -303,7 +304,7 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
-    [manager GET:[self urlForEndpoint:@"friends"]
+    [manager GET:[self urlForEndpoint:@"friends"] // top friends endpoint is @"top_friends/id" 
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              if (![responseObject isKindOfClass:[NSArray class]]) {
@@ -325,8 +326,7 @@ static API *sharedAPI;
 
     NSDictionary *params = [self paramsWithDict:properties];
 
-    YSUser *currentUser = [YSUser currentUser];
-    NSString *endpoint = [NSString stringWithFormat:@"users/%d", currentUser.userID.intValue];
+    NSString *endpoint = @"users";
     [manager PUT:[self urlForEndpoint:endpoint]
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
