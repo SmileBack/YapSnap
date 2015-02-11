@@ -85,8 +85,11 @@ static API *sharedAPI;
     params[@"color_rgb"] = rgbColorComponents; //[NSArray arrayWithObjects:@"0", @"84", @"255", nil],
     
     // Photo stuff
-    params[@"aws_photo_url"] = yapBuilder.imageAwsUrl;
-    params[@"aws_photo_etag"] = yapBuilder.imageAwsEtag;
+    if (yapBuilder.imageAwsUrl)
+        params[@"aws_photo_url"] = yapBuilder.imageAwsUrl;
+    
+    if (yapBuilder.imageAwsEtag)
+        params[@"aws_photo_etag"] = yapBuilder.imageAwsEtag;
     
     return params;
 }
