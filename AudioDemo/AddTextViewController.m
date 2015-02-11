@@ -10,6 +10,9 @@
 #import "ContactsViewController.h"
 #import "YSAudioSourceController.h"
 #import "JEProgressView.h"
+#import "PhoneContact.h"
+#import "UIViewController+Alerts.h"
+#import "ContactManager.h"
 
 @interface AddTextViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
@@ -19,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet YSColorPicker *colorPicker;
 @property (strong, nonatomic) UIView *progressViewRemainder;
 @property (strong, nonatomic) IBOutlet UIImageView *flashbackImageView;
+@property (strong, nonatomic) IBOutlet UILabel *contactLabel;
+@property (strong, nonatomic) IBOutlet UIButton *continueButton;
 
 
 - (IBAction)didTapAddTextButton;
@@ -46,6 +51,13 @@
     self.colorPicker.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:self.textView];
+    
+    if (self.yapBuilder.contacts.count > 0) {
+        PhoneContact *contact = self.yapBuilder.contacts.firstObject;
+        self.contactLabel.text = [NSString stringWithFormat:@"Send yap to %@", contact.name];
+    } else {
+        self.contactLabel.text = @"";
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -71,12 +83,45 @@
         vc.yapBuilder = self.yapBuilder;
     }
 }
-- (IBAction)didTapNextButton:(UIButton *)sender {
-    // TODO think about this
-//    if (self.yapBuilder.contacts.count > 0) {
-        //TODO send yap here
 
-    [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
+-(BOOL) internetIsNotReachable
+{
+    return ![AFNetworkReachabilityManager sharedManager].reachable;
+}
+
+- (void) sendYap
+{
+    self.continueButton.userInteractionEnabled = NO;
+    
+    if ([self internetIsNotReachable]) {
+        [self showNoInternetAlert];
+        self.continueButton.userInteractionEnabled = YES;
+    } else {
+        __weak AddTextViewController *weakSelf = self;
+        
+        [[API sharedAPI] sendYap:self.yapBuilder
+                    withCallback:^(BOOL success, NSError *error) {
+                        if (success) {
+                            [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
+                            [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
+                        } else {
+                            // uh oh spaghettios
+                            // TODO: tell the user something went wrong
+                            NSLog(@"Error: %@", error);
+                            self.continueButton.userInteractionEnabled = YES;
+                        }
+                    }];
+        NSLog(@"Sent yaps call");
+    }
+
+}
+
+- (IBAction)didTapNextButton:(UIButton *)sender {
+    if (self.yapBuilder.contacts.count > 0) {
+        [self sendYap];
+    } else {
+        [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
+    }
 }
 - (IBAction)didTapBackButton:(id)sender
 {

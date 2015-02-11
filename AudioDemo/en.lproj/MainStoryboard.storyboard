@@ -581,6 +581,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-LF-pEZ" userLabel="Flashback Image">
                                 <rect key="frame" x="10" y="123" width="300" height="300"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2R-OB-er0">
+                                <rect key="frame" x="185" y="493" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -588,11 +594,14 @@
                     <connections>
                         <outlet property="addTextToYapButton" destination="KDf-Vb-ilr" id="jTv-Uo-Wb4"/>
                         <outlet property="colorPicker" destination="EFe-hN-LX9" id="MKP-hO-rrG"/>
+                        <outlet property="contactLabel" destination="B2R-OB-er0" id="efQ-Ea-t9a"/>
+                        <outlet property="continueButton" destination="9XV-zO-GXP" id="849-UU-MZ0"/>
                         <outlet property="flashbackImageView" destination="gWj-LF-pEZ" id="F1Y-0q-0w5"/>
                         <outlet property="progressView" destination="38e-bV-c4v" id="AgX-HI-9eq"/>
                         <outlet property="sendYapLabel" destination="VT6-V5-MtX" id="BBs-eg-hOt"/>
                         <outlet property="textView" destination="Yo4-ls-PqW" id="5he-52-51O"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="Contacts Segue" id="0bM-75-hD3"/>
+                        <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsViewControllerSegue" id="czb-n6-hbf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3i7-3r-yTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -692,6 +701,7 @@
                         <outlet property="tableView" destination="hWh-h3-qO7" id="klJ-nF-XsM"/>
                         <segue destination="Dgp-JD-d1e" kind="modal" identifier="Playback Segue" animates="NO" id="LuI-mK-8FP"/>
                         <segue destination="IdD-6v-OZr" kind="push" identifier="Friends Segue" id="X3Y-yy-QzJ"/>
+                        <segue destination="2" kind="push" identifier="Reply Segue" id="Enn-ka-dSJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-WI-Tyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1095,7 +1105,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="AEp-MY-7pq"/>
-        <segue reference="1l7-bL-RcX"/>
+        <segue reference="Enn-ka-dSJ"/>
+        <segue reference="czb-n6-hbf"/>
     </inferredMetricsTieBreakers>
 </document>

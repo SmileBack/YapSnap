@@ -18,6 +18,7 @@
 #import "OpenInSpotifyAlertView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
+#import "ContactManager.h"
 
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -260,7 +261,7 @@ static NSString *CellIdentifier = @"Cell";
                 YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
                 cell.createdTimeLabel.text = @"Double Tap to Reply";
                 cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 });
             } else if (!yap.wasOpened) {
@@ -271,14 +272,14 @@ static NSString *CellIdentifier = @"Cell";
                 YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@ opened your yap", yap.displayReceiverName];
                 cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 });
             } else if (!yap.wasOpened) {
                 YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
                 cell.createdTimeLabel.text = @"Your yap has been delivered";
                 cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 });
             // Once pending status is added: "Dan will see your yap once he/she joins"
@@ -322,15 +323,10 @@ static NSString *CellIdentifier = @"Cell";
 {
     NSLog(@"Double tap on: %@", indexPath);
     
-    UIViewController *vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-    if ([vc isKindOfClass:[AudioCaptureViewController class]]) {
-        //AudioCaptureViewController *audioCaptureVC = vc;
-        
-    } else {
-        // ERROR!  shouldn't be here...
+    YSYap *yap = self.yaps[indexPath.row];
+    if (yap.receivedByCurrentUser) {
+        [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
     }
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -339,6 +335,11 @@ static NSString *CellIdentifier = @"Cell";
         PlaybackVC *vc = segue.destinationViewController;
         YSYap *yap = sender;
         vc.yap = yap;
+    } else if ([@"Reply Segue" isEqualToString:segue.identifier]) {
+        AudioCaptureViewController *audioVC = segue.destinationViewController;
+        YSYap *yap = sender;
+        PhoneContact *contact = [[ContactManager sharedContactManager] contactForPhoneNumber:yap.senderPhone];
+        audioVC.contactReplyingTo = contact;
     }
 }
 

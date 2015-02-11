@@ -9,6 +9,7 @@
 #import "ContactsViewController.h"
 #import "MBProgressHUD.h"
 #import "ContactManager.h"
+#import "UIViewController+Alerts.h"
 
 @interface ContactsViewController ()
 
@@ -75,15 +76,6 @@ static NSString *CellIdentifier = @"Cell";
 -(BOOL) internetIsNotReachable
 {
     return ![AFNetworkReachabilityManager sharedManager].reachable;
-}
-
-- (void) showNoInternetAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection"
-                                                    message:@"Please connect to the internet and try again."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
 }
 
 #pragma mark - Contacts
