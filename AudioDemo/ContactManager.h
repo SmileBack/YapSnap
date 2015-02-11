@@ -22,6 +22,7 @@
 - (BOOL) isAuthorizedForContacts;
 
 - (NSString *) nameForPhoneNumber:(NSString *)phoneNumber;
+- (PhoneContact *) contactForPhoneNumber:(NSString *)phoneNumber;
 - (PhoneContact *) contactForContactID:(NSNumber *)contactID;
 - (PhoneContact *) recentContactAtIndex:(NSInteger)index;
 

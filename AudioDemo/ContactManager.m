@@ -56,7 +56,7 @@ static ContactManager *sharedInstance;
     return [NSString stringWithFormat:@"1%@", scrubbedPhone];
 }
 
-- (NSString *)nameForPhoneNumber:(NSString *)phoneNumber
+- (PhoneContact *) contactForPhoneNumber:(NSString *)phoneNumber
 {
     NSString *usNumber = [self usNumberFromPhoneNumber:phoneNumber];
     NSString *scrubbedNumber = [self stringPhoneNumber:phoneNumber];
@@ -67,10 +67,15 @@ static ContactManager *sharedInstance;
             [contact.phoneNumber isEqualToString:usNumber] ||
             [contactUsNumber isEqualToString:scrubbedNumber] ||
             [contact.phoneNumber isEqualToString:scrubbedNumber]) {
-            return contact.name;
+            return contact;
         }
     }
     return nil;
+}
+
+- (NSString *)nameForPhoneNumber:(NSString *)phoneNumber
+{
+    return [self contactForPhoneNumber:phoneNumber].name;
 }
 
 - (NSArray *) getAllContacts
