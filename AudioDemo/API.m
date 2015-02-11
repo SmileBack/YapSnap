@@ -286,18 +286,21 @@ static API *sharedAPI;
 {
     NSLog(@"Logging out");
 
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:[self urlForEndpoint:@"logout"]
-      parameters:[self paramsWithDict:@{}]
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            callback(YES, nil);
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             callback(NO, error);
-         }];
-
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager GET:[self urlForEndpoint:@"logout"]
+//      parameters:[self paramsWithDict:@{}]
+//         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            callback(YES, nil);
+//         }
+//         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//             callback(NO, error);
+//         }];
+    
     [YSUser wipeCurrentUserData];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT object:nil];
+
+    //TODO REMOVE THIS AND UNCOMMENT ABOVE
+    callback(YES, nil);
 }
 
 - (void) friends:(FriendsCallback)callback
