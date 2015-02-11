@@ -10,4 +10,13 @@
 
 @implementation YapBuilder
 
+- (id) init
+{
+    self = [super init];
+    if (self) {
+        self.text = @"";
+    }
+    return self;
+}
+
 @end
