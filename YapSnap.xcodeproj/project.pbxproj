@@ -975,7 +975,7 @@
 				GCC_PREFIX_HEADER = "AudioDemo/YapSnap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapSnap-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "85ab4adc-3015-43b8-9986-83b9dd7cecea";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -986,8 +986,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dan Berenholtz (LYD6Q5NGQD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dan Berenholtz (LYD6Q5NGQD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -996,7 +996,7 @@
 				GCC_PREFIX_HEADER = "AudioDemo/YapSnap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapSnap-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "85ab4adc-3015-43b8-9986-83b9dd7cecea";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
