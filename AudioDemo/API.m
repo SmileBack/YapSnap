@@ -324,7 +324,7 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
-    [manager GET:[self urlForEndpoint:@"friends"] // top friends endpoint is @"top_friends/id" 
+    [manager GET:[self urlForEndpoint:@"users/friends"] // top friends endpoint is @"top_friends/id" 
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              if (![responseObject isKindOfClass:[NSArray class]]) {
