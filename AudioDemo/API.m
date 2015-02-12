@@ -325,7 +325,7 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
-    [manager GET:[self urlForEndpoint:@"users/friends"] // top friends endpoint is @"top_friends/id"
+    [manager GET:[self urlForEndpoint:@"users/friends"]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              if (![responseObject isKindOfClass:[NSArray class]]) {
@@ -337,6 +337,30 @@ static API *sharedAPI;
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Friends Error: %@", error);
+             callback(nil, error);
+         }];
+}
+
+- (void) topFriendsForUser:(YSUser *)user withCallback:(FriendsCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    NSString *endpoint = [NSString stringWithFormat:@"users/top_friends/%d", user.userID.intValue];
+
+    [manager GET:[self urlForEndpoint:endpoint]
+      parameters:[self paramsWithDict:@{}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             if (![responseObject isKindOfClass:[NSArray class]]) {
+                 callback(nil, NO);
+                 return;
+             }
+             NSArray *friends = [YSUser usersFromArray:responseObject];
+             NSLog(@"Top Friends: %@", friends);
+             
+             callback(friends, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Top Friends Error: %@", error);
              callback(nil, error);
          }];
 }

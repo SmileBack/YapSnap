@@ -19,6 +19,7 @@
 
 @interface FriendsViewController()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *myTopFriends;
 @property (nonatomic, strong) NSArray *friends;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @end
@@ -35,7 +36,16 @@
         if (error) {
             // TODO handle error
         } else {
-            weakSelf.friends = friends;
+            if (friends.count > 0) {
+                // TODO account for when count is 1 and 2
+                self.myTopFriends = [friends subarrayWithRange:NSMakeRange(0, 3)];
+            }
+
+            weakSelf.friends = [friends sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                YSUser *user1 = obj1;
+                YSUser *user2 = obj2;
+                return [user1.displayName compare:user2.displayName];
+            }];
             [weakSelf.tableView reloadData];
         }
     }];
@@ -65,6 +75,17 @@
     UserCell *cell;
     if (indexPath.section == 0 || [indexPath isEqual:self.selectedIndexPath]) {
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_EXPANDED forIndexPath:indexPath];
+        if (self.myTopFriends.count >= 3) {
+            //TODO account for counts lower than 3
+            YSUser *user = self.myTopFriends[0];
+            cell.friendOneLabel.text = user.displayName;
+
+            user = self.myTopFriends[1];
+            cell.friendTwoLabel.text = user.displayName;
+
+            user = self.myTopFriends[2];
+            cell.friendThreeLabel.text = user.displayName;
+        }
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_COLLAPSED forIndexPath:indexPath];
     }
@@ -91,7 +112,7 @@
     if (indexPath.section == 0) {
         return;
     }
-
+    YSUser *expandingUser = self.friends[indexPath.row];
     NSMutableArray *changedIndexPaths = [NSMutableArray array];
     [changedIndexPaths addObject:indexPath];
 
@@ -102,6 +123,7 @@
     } else if ([indexPath isEqual:self.selectedIndexPath]) {
         // We clicked on the currently selected cell. Just collapse it.
         self.selectedIndexPath = nil;
+        expandingUser = nil; // Don't reload the selected user since its collapsing.
     } else {
         // We're expanding this friend and closing another.
         [changedIndexPaths addObject:self.selectedIndexPath];
@@ -111,6 +133,30 @@
     [tableView reloadRowsAtIndexPaths:changedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     
     [tableView endUpdates];
+
+    if (expandingUser) {
+        FriendsViewController *weakSelf = self;
+        [[API sharedAPI] topFriendsForUser:expandingUser withCallback:^(NSArray *friends, NSError *error) {
+            UserCell *cell = (UserCell *)[weakSelf.tableView cellForRowAtIndexPath:indexPath];
+
+            if (friends.count == 0) {
+                cell.friendOneLabel.text = @"No top friends";
+                [cell.friendOneLabel sizeToFit];
+            } else {
+                YSUser *userOne = friends[0];
+                cell.friendOneLabel.text = userOne.displayName;
+                [cell.friendOneLabel sizeToFit];
+            }
+
+            YSUser *userTwo = friends.count > 1 ? friends[1] : nil;
+            cell.friendTwoLabel.text = userTwo.displayName;
+            [cell.friendTwoLabel sizeToFit];
+            
+            YSUser *userThree = friends.count > 2 ? friends[2] : nil;
+            cell.friendThreeLabel.text = userThree.displayName;
+            [cell.friendThreeLabel sizeToFit];
+        }];
+    }
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

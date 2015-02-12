@@ -11,4 +11,8 @@
 @interface UserCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 
+@property (strong, nonatomic) IBOutlet UILabel *friendOneLabel;
+@property (strong, nonatomic) IBOutlet UILabel *friendTwoLabel;
+@property (strong, nonatomic) IBOutlet UILabel *friendThreeLabel;
+
 @end
