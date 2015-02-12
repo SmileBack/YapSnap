@@ -151,20 +151,18 @@
 
         NSString *phoneNumber = self.textField.text;
         [[API sharedAPI] openSession:phoneNumber withCallback:^(BOOL success, NSError *error) {
+            [self.loadingSpinner stopAnimating];
+            self.continueButton.userInteractionEnabled = YES;
             if (success) {
-                [self.loadingSpinner stopAnimating];
                 [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
-                self.continueButton.userInteractionEnabled = YES;
             } else {
                 // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                                 message:error.localizedDescription
                                                                delegate:nil
                                                       cancelButtonTitle:@"OK"otherButtonTitles:nil];
-                [alert show];
-                
+                [alert show];                
                 // Enable the continue button again
-                self.continueButton.userInteractionEnabled = YES;
             }
         }];
     }

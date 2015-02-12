@@ -102,6 +102,7 @@
 
     [[API sharedAPI] confirmSessionWithCode:code withCallback:^(YSUser *user, NSError *error) {
         [self.loadingSpinner stopAnimating];
+        self.continueButton.userInteractionEnabled = YES;
         if (user) {
             // TODO save user state??? - do in API
             
@@ -122,7 +123,6 @@
             [alert show];
             
             // Enable the continue button again
-            self.continueButton.userInteractionEnabled = YES;
         }
     }];
 }

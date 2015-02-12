@@ -111,10 +111,12 @@
                                 lastName:self.lastNameTextField.text
                                    email:self.emailTextField.text
                             withCallBack:^(BOOL success, NSError *error) {
+                                [self.loadingSpinner stopAnimating];
+                                self.continueButton.userInteractionEnabled = YES;
+                                
                                 if (success) {
                                     [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
                                 } else {
-                                    //TODO: ADD Callback and stop loading spinner if call fails
                                     NSLog(@"Error! %@", error);
                                     [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Error updating your info" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
                                     // TODO DAN update the text
