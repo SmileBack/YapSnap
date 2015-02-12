@@ -93,7 +93,8 @@
     cell.nameLabel.text = user.displayName;
     [cell.nameLabel sizeToFit];
     
-//    cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score.intValue];
+    cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score.intValue];
+    [cell.scoreLabel sizeToFit];
     
     return cell;
 }

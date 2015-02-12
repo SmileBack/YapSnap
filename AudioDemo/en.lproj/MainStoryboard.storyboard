@@ -489,14 +489,23 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-8O-5rY">
+                                                    <rect key="frame" x="283" y="8" width="29" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="w9x-8O-5rY" firstAttribute="trailing" secondItem="Jlw-my-iup" secondAttribute="trailingMargin" id="62W-eE-bkb"/>
                                                 <constraint firstItem="KPR-Eu-HNk" firstAttribute="top" secondItem="Jlw-my-iup" secondAttribute="topMargin" id="eTn-3r-Z0P"/>
+                                                <constraint firstItem="w9x-8O-5rY" firstAttribute="top" secondItem="Jlw-my-iup" secondAttribute="topMargin" id="lfw-cg-Rvy"/>
                                                 <constraint firstItem="KPR-Eu-HNk" firstAttribute="leading" secondItem="Jlw-my-iup" secondAttribute="leadingMargin" id="qqi-NA-kvO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLabel" destination="KPR-Eu-HNk" id="uvZ-H9-0Hm"/>
+                                            <outlet property="scoreLabel" destination="w9x-8O-5rY" id="J1I-Ag-pdt"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Expanded Cell" rowHeight="100" id="StL-Qb-M7C" customClass="UserCell">
@@ -529,8 +538,16 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwQ-he-lDm">
+                                                    <rect key="frame" x="283" y="8" width="29" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="MwQ-he-lDm" firstAttribute="top" secondItem="VtK-kq-5Zi" secondAttribute="topMargin" id="2H0-yr-2Kf"/>
+                                                <constraint firstItem="MwQ-he-lDm" firstAttribute="trailing" secondItem="VtK-kq-5Zi" secondAttribute="trailingMargin" id="Kqi-3I-9jW"/>
                                                 <constraint firstItem="z8e-t2-7lm" firstAttribute="top" secondItem="VtK-kq-5Zi" secondAttribute="topMargin" id="hVz-1O-obK"/>
                                                 <constraint firstItem="z8e-t2-7lm" firstAttribute="leading" secondItem="VtK-kq-5Zi" secondAttribute="leadingMargin" id="zdB-aL-5z0"/>
                                             </constraints>
@@ -540,6 +557,7 @@
                                             <outlet property="friendThreeLabel" destination="ZY6-9W-qIu" id="eqE-4r-RR5"/>
                                             <outlet property="friendTwoLabel" destination="4VE-9w-Vfb" id="UO8-e9-efF"/>
                                             <outlet property="nameLabel" destination="z8e-t2-7lm" id="cgi-NV-msM"/>
+                                            <outlet property="scoreLabel" destination="MwQ-he-lDm" id="eAR-XX-nej"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

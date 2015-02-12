@@ -7,6 +7,7 @@
 //
 
 #import "YSUser.h"
+#import "ContactManager.h"
 
 #define USER_KEY @"com.yapsnap.CurrentUser"
 static YSUser *currentUser;
@@ -84,16 +85,26 @@ static YSUser *currentUser;
 
 - (NSString *) displayName
 {
+    if (_displayName) {
+        return _displayName;
+    }
+
+    _displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.phone];
+    if (_displayName) {
+        return _displayName;
+    }
+    
     NSString *first = self.displayFirstName;
     NSString *last = self.displayLastName;
     
     if ([@"" isEqualToString:first]) {
-        return last;
+        _displayName = last;
     } else if ([@"" isEqualToString:last]) {
-        return first;
+        _displayName = first;
+    } else {
+        _displayName = [NSString stringWithFormat:@"%@ %@", first, last];
     }
-    
-    return [NSString stringWithFormat:@"%@ %@", first, last];
+    return _displayName;
 }
 
 - (NSString *) displayFirstName
