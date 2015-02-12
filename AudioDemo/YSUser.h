@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSNumber *score;
 
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSDate *updatedAt;
@@ -23,6 +24,7 @@
 
 // Helpers for displaying these possibly-nil propertier
 @property (nonatomic, readonly) NSString *displayEmail;
+@property (nonatomic, readonly) NSString *displayName;
 @property (nonatomic, readonly) NSString *displayFirstName;
 @property (nonatomic, readonly) NSString *displayLastName;
 

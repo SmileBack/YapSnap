@@ -54,6 +54,7 @@ static API *sharedAPI;
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:dict];
 
     if (self.sessionToken) {
+        NSLog(@"Session token: %@", self.sessionToken);
         params[@"session_token"] = self.sessionToken;
     }
 
@@ -324,15 +325,15 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
-    [manager GET:[self urlForEndpoint:@"users/friends"] // top friends endpoint is @"top_friends/id" 
+    [manager GET:[self urlForEndpoint:@"users/friends"] // top friends endpoint is @"top_friends/id"
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              if (![responseObject isKindOfClass:[NSArray class]]) {
                  callback(nil, NO);
                  return;
              }
-             NSArray *users = [YSUser usersFromArray:responseObject];
-             callback(users, nil);
+             NSArray *friends = [YSUser usersFromArray:responseObject];
+             callback(friends, nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Friends Error: %@", error);

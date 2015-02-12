@@ -22,6 +22,7 @@ static YSUser *currentUser;
     user.firstName = dictionary[@"first_name"];
     user.lastName = dictionary[@"last_name"];
     user.phone = dictionary[@"phone"];
+    user.score = dictionary[@"score"];
 
     user.createdAt = dictionary[@"created_at"];
     user.updatedAt = dictionary[@"updated_at"];
@@ -79,6 +80,20 @@ static YSUser *currentUser;
 - (NSString *) displayEmail
 {
     return [self displayStringForString:self.email];
+}
+
+- (NSString *) displayName
+{
+    NSString *first = self.displayFirstName;
+    NSString *last = self.displayLastName;
+    
+    if ([@"" isEqualToString:first]) {
+        return last;
+    } else if ([@"" isEqualToString:last]) {
+        return first;
+    }
+    
+    return [NSString stringWithFormat:@"%@ %@", first, last];
 }
 
 - (NSString *) displayFirstName

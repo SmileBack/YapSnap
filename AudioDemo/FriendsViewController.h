@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FriendsViewController : UIViewController
+@interface FriendsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end

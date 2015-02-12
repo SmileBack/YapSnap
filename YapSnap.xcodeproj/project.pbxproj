@@ -100,6 +100,7 @@
 		FC52C1B41A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1B31A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m */; };
 		FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC609BC21A3CC24500182F08 /* SpotifyAPI.m */; };
 		FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */; };
+		FCAA32901A8C2FD900FDCC78 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA328F1A8C2FD900FDCC78 /* UserCell.m */; };
 		FCAFD5A31A8AE6410030B923 /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAFD5A21A8AE6410030B923 /* UIViewController+Alerts.m */; };
 		FCBB96FF1A7D4C97003D5F24 /* YSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB96FE1A7D4C97003D5F24 /* YSUser.m */; };
 		FCBB97031A7D636A003D5F24 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB97021A7D636A003D5F24 /* SettingsViewController.m */; };
@@ -249,6 +250,8 @@
 		FC609BC21A3CC24500182F08 /* SpotifyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPI.m; sourceTree = "<group>"; };
 		FC80F3CF1A3CC6BD00F7ABD0 /* YSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTrack.h; sourceTree = "<group>"; };
 		FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSTrack.m; sourceTree = "<group>"; };
+		FCAA328E1A8C2FD900FDCC78 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		FCAA328F1A8C2FD900FDCC78 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		FCAFD5A11A8AE6410030B923 /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
 		FCAFD5A21A8AE6410030B923 /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alerts.m"; sourceTree = "<group>"; };
 		FCBB96FD1A7D4C97003D5F24 /* YSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSUser.h; sourceTree = "<group>"; };
@@ -632,14 +635,24 @@
 		FCA2CE9E1A3CCC9B0055C76A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FCAA328D1A8C2FC000FDCC78 /* Cells */,
 				FC1E89B61A4B852C007A8CDA /* SpotifyTrackView.h */,
 				FC1E89B71A4B852C007A8CDA /* SpotifyTrackView.m */,
-				FCEF993E1A6D7BF2000FDE4C /* YapCell.h */,
-				FCEF993F1A6D7BF2000FDE4C /* YapCell.m */,
 				78A569A41A73227700818A17 /* YSColorPicker.h */,
 				78A569A21A73227200818A17 /* YSColorPicker.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		FCAA328D1A8C2FC000FDCC78 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FCEF993E1A6D7BF2000FDE4C /* YapCell.h */,
+				FCEF993F1A6D7BF2000FDE4C /* YapCell.m */,
+				FCAA328E1A8C2FD900FDCC78 /* UserCell.h */,
+				FCAA328F1A8C2FD900FDCC78 /* UserCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		FCAFD5A01A8AE6130030B923 /* Categories */ = {
@@ -846,6 +859,7 @@
 				3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */,
 				FC1A03701A7D775A00074E6A /* AmazonAPI.m in Sources */,
 				37D413C019D21A1F00021548 /* UIColor+BButton.m in Sources */,
+				FCAA32901A8C2FD900FDCC78 /* UserCell.m in Sources */,
 				FC1E89BE1A4B9518007A8CDA /* PlaybackVC.m in Sources */,
 				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,
 				FCEF99361A6D6B22000FDE4C /* AddTextViewController.m in Sources */,
