@@ -20,4 +20,16 @@
     // Configure the view for the selected state
 }
 
+- (void) prepareForReuse
+{
+    [super prepareForReuse];
+    
+    [self clearFields];
+}
+
+- (void) clearFields
+{
+// Add code here to remove spotify image
+}
+
 @end
