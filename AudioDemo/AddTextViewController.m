@@ -54,7 +54,7 @@
     
     if (self.yapBuilder.contacts.count > 0) {
         PhoneContact *contact = self.yapBuilder.contacts.firstObject;
-        self.contactLabel.text = [NSString stringWithFormat:@"Send yap to %@", contact.name];
+        self.contactLabel.text = [NSString stringWithFormat:@"Send to\n%@", contact.name];
     } else {
         self.contactLabel.text = @"";
     }
