@@ -809,7 +809,7 @@
                                 </connections>
                             </button>
                             <view autoresizesSubviews="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Kj-1X-Ut8" customClass="MPVolumeView">
-                                <rect key="frame" x="25" y="426" width="270" height="35"/>
+                                <rect key="frame" x="25" y="446" width="270" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YapSnap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCt-ck-W3X">
@@ -833,6 +833,9 @@
                             <imageView alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ProgressViewNotches5.png" translatesAutoresizingMaskIntoConstraints="NO" id="Juk-tW-zwr">
                                 <rect key="frame" x="0.0" y="64" width="320" height="40"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-3F-cQc">
+                                <rect key="frame" x="10" y="123" width="300" height="300"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -843,9 +846,9 @@
                             <constraint firstItem="rSQ-Pl-w4L" firstAttribute="top" secondItem="kCt-ck-W3X" secondAttribute="bottom" constant="11" id="Mcr-nI-Ohl"/>
                             <constraint firstItem="Cjl-Kr-TQg" firstAttribute="centerX" secondItem="rSQ-Pl-w4L" secondAttribute="centerX" id="P6a-Ad-mmj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7Kj-1X-Ut8" secondAttribute="trailing" constant="9" id="XKO-gr-3sK"/>
-                            <constraint firstItem="Cjl-Kr-TQg" firstAttribute="top" secondItem="7Kj-1X-Ut8" secondAttribute="bottom" constant="23" id="a7v-uK-L4p"/>
+                            <constraint firstItem="Cjl-Kr-TQg" firstAttribute="top" secondItem="7Kj-1X-Ut8" secondAttribute="bottom" constant="3" id="a7v-uK-L4p"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="12" id="cDz-bJ-qjT"/>
-                            <constraint firstItem="7Kj-1X-Ut8" firstAttribute="top" secondItem="8Sd-XX-W3O" secondAttribute="top" constant="426" id="onD-yf-SD1"/>
+                            <constraint firstItem="7Kj-1X-Ut8" firstAttribute="top" secondItem="8Sd-XX-W3O" secondAttribute="top" constant="446" id="onD-yf-SD1"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="4" id="u71-UM-Hfp"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="Cjl-Kr-TQg" secondAttribute="bottom" constant="10" id="vft-y5-02u"/>
                             <constraint firstAttribute="bottom" secondItem="rSQ-Pl-w4L" secondAttribute="bottom" constant="464" id="zcO-2u-Iq5"/>
@@ -859,6 +862,7 @@
                         <outlet property="recordButtonSpinner" destination="ZSy-MK-810" id="KpB-r5-oxN"/>
                         <outlet property="textView" destination="i6A-Iw-epG" id="5Gi-rN-03J"/>
                         <outlet property="volumeView" destination="7Kj-1X-Ut8" id="Bfa-tn-xSP"/>
+                        <outlet property="yapPhoto" destination="cEy-3F-cQc" id="pna-2L-vFM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XYH-W9-ahW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1177,6 +1181,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="AEp-MY-7pq"/>
+        <segue reference="czb-n6-hbf"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -26,6 +26,9 @@
 @property (strong, nonatomic) NSString *spotifyID;
 @property (strong, nonatomic) NSString *imageURL;
 
+// Photo
+@property (strong, nonatomic) NSString *yapPhotoURL;
+
 // Sender
 @property (strong, nonatomic) NSNumber *senderID;
 @property (strong, nonatomic) NSString *senderName;
