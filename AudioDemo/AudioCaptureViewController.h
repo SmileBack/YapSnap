@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 @property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;
+@property (weak, nonatomic) IBOutlet UIButton *topLeftButton;
 @property (weak, nonatomic) IBOutlet JEProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIView *explanation;
 @property (strong, nonatomic) IBOutlet UIButton *spotifyModeButton;

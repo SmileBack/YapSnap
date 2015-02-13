@@ -77,7 +77,9 @@ static const float TIMER_INTERVAL = .01;
 {
     if ([self isInReplyMode]) {
         self.yapsPageButton.hidden = YES;
-        // TODO change to BACK icon here
+        UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
+        [self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
+        self.topLeftButton.alpha = 1;
     }
 }
 
@@ -114,7 +116,16 @@ static const float TIMER_INTERVAL = .01;
     [[API sharedAPI] unopenedYapsCountWithCallback:^(NSNumber *count, NSError *error) {
         if (error) {
             [self.yapsPageButton setTitle:@"E" forState:UIControlStateNormal];
+        } else if (count.description.intValue == 0) {
+            NSLog(@"0 Yaps");
+            UIImage *buttonImage = [UIImage imageNamed:@"SquareOutlineRed.png"];
+            [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+            // Remove number from button
+            [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
         } else {
+            UIImage *buttonImage = [UIImage imageNamed:@"YapsButtonRed.png"];
+            [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+            // Add number to button
             [self.yapsPageButton setTitle:count.description forState:UIControlStateNormal];
         }
     }];
