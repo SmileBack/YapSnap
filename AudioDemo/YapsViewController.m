@@ -48,7 +48,10 @@ static NSString *CellIdentifier = @"Cell";
     
     self.navigationItem.title = @"Your Yaps";
     
-    //self.navigationItem.hidesBackButton = YES;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:nil
+                                                                            action:nil];
     
     // TEXT COLOR OF UINAVBAR
     [self.navigationController.navigationBar

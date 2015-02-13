@@ -30,6 +30,8 @@
     [super viewDidLoad];
 
     self.tableView.rowHeight = 50;
+    
+    self.navigationItem.title = @"Your Friends";
 
     __weak FriendsViewController *weakSelf = self;
     [[API sharedAPI] friends:^(NSArray *friends, NSError *error) {

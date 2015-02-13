@@ -40,7 +40,7 @@ static API *sharedAPI;
 - (NSString *) serverUrl
 {
     return @"http://yapsnap.herokuapp.com"; // production
-    //return @"http://192.168.1.177:4000"; // local dev server
+    //return @"http://192.168.1.177:5000"; // local dev server
 }
 
 #pragma mark - Generic Methods
