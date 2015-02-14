@@ -228,10 +228,13 @@ static API *sharedAPI;
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSDictionary *json = responseObject;
-
+              
               YSUser *user = [YSUser userFromDictionary:json];
               [YSUser setCurrentUser:user];
               
+              NSLog(@"responseObject: %@", responseObject);
+              NSLog(@"user: %@", user);
+
               callback(user, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
