@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 @property (nonatomic, strong) NSArray *allLetters;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 
 // Map of section letter to contacts:  A : [cont1, cont2]
 @property (nonatomic, strong) NSMutableDictionary *contactDict;
@@ -270,6 +271,7 @@ static NSString *CellIdentifier = @"Cell";
 - (IBAction) didTapContinueButton
 {
     self.continueButton.userInteractionEnabled = NO;
+    [self.loadingSpinner startAnimating];
     
     if ([self internetIsNotReachable]) {
         [self showNoInternetAlert];
@@ -281,13 +283,15 @@ static NSString *CellIdentifier = @"Cell";
         
         [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
+                        self.continueButton.userInteractionEnabled = YES;
+                        [self.loadingSpinner stopAnimating];
+
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.selectedContacts];
                             [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
                         } else {
                             // uh oh spaghettios
                             // TODO: tell the user something went wrong
-                            self.continueButton.userInteractionEnabled = YES;
                         }
                     }];
     }

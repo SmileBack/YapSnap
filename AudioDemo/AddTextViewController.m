@@ -18,12 +18,12 @@
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet JEProgressView *progressView;
 @property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
-@property (strong, nonatomic) IBOutlet UILabel *sendYapLabel;
 @property (weak, nonatomic) IBOutlet YSColorPicker *colorPicker;
 @property (strong, nonatomic) UIView *progressViewRemainder;
 @property (strong, nonatomic) IBOutlet UIImageView *flashbackImageView;
 @property (strong, nonatomic) IBOutlet UILabel *contactLabel;
 @property (strong, nonatomic) IBOutlet UIButton *continueButton;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 
 
 - (IBAction)didTapAddTextButton;
@@ -90,6 +90,7 @@
 - (void) sendYap
 {
     self.continueButton.userInteractionEnabled = NO;
+    [self.loadingSpinner startAnimating];
     
     if ([self internetIsNotReachable]) {
         [self showNoInternetAlert];
@@ -99,6 +100,8 @@
         
         [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
+                        [self.loadingSpinner stopAnimating];
+
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
                             [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
