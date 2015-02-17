@@ -12,5 +12,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *createdTimeLabel;
+@property (nonatomic, strong) UIView *goToSpotifyView;
 
 @end

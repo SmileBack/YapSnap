@@ -24,12 +24,8 @@
 {
     [super prepareForReuse];
     
-    [self clearFields];
-}
-
-- (void) clearFields
-{
-// Add code here to remove spotify image
+    [self.goToSpotifyView removeFromSuperview];
+    self.goToSpotifyView = nil;
 }
 
 @end

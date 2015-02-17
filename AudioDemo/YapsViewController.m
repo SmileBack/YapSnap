@@ -26,7 +26,6 @@
 @property (nonatomic, strong) PlaybackVC *playbackVC;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
-@property (nonatomic, strong) UIView *goToSpotifyView;
 
 - (IBAction)didTapGoToAudioCaptureButton;
 
@@ -223,25 +222,25 @@ static NSString *CellIdentifier = @"Cell";
             
             // SPOTIFY
             if ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY]) {
-                self.goToSpotifyView = [[UIView alloc] initWithFrame:CGRectMake(238, 8, 74, 74)];
-                [cell addSubview:self.goToSpotifyView];
+                cell.goToSpotifyView = [[UIView alloc] initWithFrame:CGRectMake(238, 8, 74, 74)];
+                [cell addSubview:cell.goToSpotifyView];
                 
                 //Add gesture recognizer
                 YSSpotifyTapGestureRecognizer *singleFingerTap =
                 [[YSSpotifyTapGestureRecognizer alloc] initWithTarget:self
                                                         action:@selector(handleSpotifyTap:)];
                 singleFingerTap.yap = yap;
-                [self.goToSpotifyView addGestureRecognizer:singleFingerTap];
+                [cell.goToSpotifyView addGestureRecognizer:singleFingerTap];
                 
                 UIImageView *albumImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 74, 74)];
                 [albumImage sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
                 [albumImage.layer setBorderColor: [[UIColor darkGrayColor] CGColor]];
                 [albumImage.layer setBorderWidth: 0.5];
-                [self.goToSpotifyView addSubview:albumImage];
+                [cell.goToSpotifyView addSubview:albumImage];
                 
                 UIImageView *listenOnSpotifyImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"listen_on_spotify-black2.png"]];
                 listenOnSpotifyImage.frame = CGRectMake(0, 52, 74, 22);
-                [self.goToSpotifyView addSubview:listenOnSpotifyImage];
+                [cell.goToSpotifyView addSubview:listenOnSpotifyImage];
             } else {
                 
             }
