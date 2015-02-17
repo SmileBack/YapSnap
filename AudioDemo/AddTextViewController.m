@@ -78,8 +78,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([@"Contacts Segue" isEqualToString:segue.identifier]) {
         ContactsViewController *vc = segue.destinationViewController;
-        self.yapBuilder.text = self.textView.text;
-        self.yapBuilder.color = self.view.backgroundColor;
         vc.yapBuilder = self.yapBuilder;
     }
 }
@@ -117,6 +115,9 @@
 }
 
 - (IBAction)didTapNextButton:(UIButton *)sender {
+    self.yapBuilder.text = self.textView.text;
+    self.yapBuilder.color = self.view.backgroundColor;
+    
     if (self.yapBuilder.contacts.count > 0) {
         [self sendYap];
     } else {
