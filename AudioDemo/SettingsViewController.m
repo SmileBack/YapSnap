@@ -21,6 +21,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
+    
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -48,6 +57,11 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.sections.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -86,6 +100,13 @@
                                    delegate:self
                           cancelButtonTitle:@"No"
                           otherButtonTitles:@"Yes", nil] show];
+    } else if ([PHONE_NUMBER_SECTION isEqualToString:section]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Phone Number"
+                                                        message:@"You cannot edit your number. If you have a new number, create a new account with that number."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     } else if ([FEEDBACK_SECTION isEqualToString:section]) {
         [self showFeedbackEmailViewControllerWithDelegate:self andCompletion:^{
         }];

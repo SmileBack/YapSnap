@@ -346,17 +346,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hBL-8E-dV6">
-                                <rect key="frame" x="16" y="92" width="288" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hBL-8E-dV6">
+                                <rect key="frame" x="16" y="92" width="288" height="45"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hBL-8E-dV6" firstAttribute="top" secondItem="ucs-b2-6Ad" secondAttribute="bottom" constant="28" id="4JZ-pF-1mm"/>
-                            <constraint firstItem="hBL-8E-dV6" firstAttribute="leading" secondItem="zdM-Wx-iIj" secondAttribute="leadingMargin" id="8e9-Et-ZO2"/>
-                            <constraint firstItem="hBL-8E-dV6" firstAttribute="trailing" secondItem="zdM-Wx-iIj" secondAttribute="trailingMargin" id="oQx-PM-SDI"/>
+                            <constraint firstItem="hBL-8E-dV6" firstAttribute="trailing" secondItem="zdM-Wx-iIj" secondAttribute="trailingMargin" id="5qe-p7-6M8"/>
+                            <constraint firstItem="hBL-8E-dV6" firstAttribute="leading" secondItem="zdM-Wx-iIj" secondAttribute="leadingMargin" id="9OG-5O-DVn"/>
+                            <constraint firstItem="hBL-8E-dV6" firstAttribute="top" secondItem="ucs-b2-6Ad" secondAttribute="bottom" constant="28" id="Qge-0y-ex2"/>
+                            <constraint firstItem="6DQ-z1-9tf" firstAttribute="top" secondItem="hBL-8E-dV6" secondAttribute="bottom" constant="431" id="d38-cK-VtV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LGc-b7-6qc">
