@@ -104,7 +104,76 @@ static API *sharedAPI;
     }
 }
 
-#pragma mark - Public APIs
+#pragma mark - Sessions
+
+- (void) openSession:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:[self urlForEndpoint:@"sessions"]
+       parameters:[self paramsWithDict:@{@"phone": phoneNumber}]
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              NSLog(@"sessions call finished: %@", responseObject);
+              
+              YSUser *user = [YSUser new];
+              user.phone = phoneNumber;
+              [YSUser setCurrentUser:user];
+              
+              callback(YES, nil);
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              [self processFailedOperation:operation];
+              NSLog(@"Error! %@", error);
+              callback(NO, error);
+          }];
+}
+
+- (void) confirmSessionWithCode:(NSString *)code withCallback:(UserCallback)callback
+{
+    YSUser *currentUser = [YSUser currentUser];
+    NSDictionary *params = [self paramsWithDict:@{@"phone": currentUser.phone,
+                                                  @"confirmation_code": code}];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:[self urlForEndpoint:@"sessions/confirm"]
+       parameters:params
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              NSDictionary *json = responseObject;
+              
+              YSUser *user = [YSUser userFromDictionary:json];
+              [YSUser setCurrentUser:user];
+              
+              NSLog(@"responseObject: %@", responseObject);
+              NSLog(@"user: %@", user);
+              
+              callback(user, nil);
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              [self processFailedOperation:operation];
+              callback(nil, error);
+          }];
+}
+
+- (void) logout:(SuccessOrErrorCallback)callback
+{
+    NSLog(@"Logging out");
+    /*
+     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+     [manager POST:[self urlForEndpoint:@"sessions/logout"]
+     parameters:[self paramsWithDict:@{}]
+     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+     callback(YES, nil);
+     }
+     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+     callback(NO, error);
+     NSLog(@"Error logging out: %@", error);
+     }];
+     
+     [YSUser wipeCurrentUserData];
+     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT object:nil];
+     */
+}
+
+#pragma mark - Yaps
 
 - (void) sendYapBuilder:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback
 {
@@ -169,7 +238,6 @@ static API *sharedAPI;
     }];
 }
 
-
 - (void) sendSongYap:(YapBuilder *)builder withCallback:(SuccessOrErrorCallback)callback
 {
     NSString *url = [self urlForEndpoint:@"audio_messages"]; //TODO USE REAL ENDPOINT
@@ -193,54 +261,6 @@ static API *sharedAPI;
         callback(NO, error);
         NSLog(@"Error: %@", error);
     }];
-}
-
-- (void) openSession:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self urlForEndpoint:@"sessions"]
-       parameters:[self paramsWithDict:@{@"phone": phoneNumber}]
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSLog(@"sessions call finished: %@", responseObject);
-              
-              YSUser *user = [YSUser new];
-              user.phone = phoneNumber;
-              [YSUser setCurrentUser:user];
-
-              callback(YES, nil);
-          }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             [self processFailedOperation:operation];
-              NSLog(@"Error! %@", error);
-              callback(NO, error);
-          }];
-}
-
-- (void) confirmSessionWithCode:(NSString *)code withCallback:(UserCallback)callback
-{
-    YSUser *currentUser = [YSUser currentUser];
-    NSDictionary *params = [self paramsWithDict:@{@"phone": currentUser.phone,
-                                                  @"confirmation_code": code}];
-    
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self urlForEndpoint:@"sessions/confirm"]
-       parameters:params
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSDictionary *json = responseObject;
-              
-              YSUser *user = [YSUser userFromDictionary:json];
-              [YSUser setCurrentUser:user];
-              
-              NSLog(@"responseObject: %@", responseObject);
-              NSLog(@"user: %@", user);
-
-              callback(user, nil);
-          }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             [self processFailedOperation:operation];
-              callback(nil, error);
-          }];
 }
 
 - (void) getYapsWithCallback:(YapsCallback)callback
@@ -303,25 +323,27 @@ static API *sharedAPI;
          }];
 }
 
-- (void) logout:(SuccessOrErrorCallback)callback
+# pragma mark - Block User
+
+- (void) blockUser:(YSUser *)user withCallback:(SuccessOrErrorCallback)callback
 {
-    NSLog(@"Logging out");
-/*
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self urlForEndpoint:@"sessions/logout"]
-      parameters:[self paramsWithDict:@{}]
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            callback(YES, nil);
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             callback(NO, error);
-             NSLog(@"Error logging out: %@", error);
-         }];
-    
-    [YSUser wipeCurrentUserData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT object:nil];
- */
+    [manager POST:[self urlForEndpoint:@"users/block_user/2"]
+       parameters:[self paramsWithDict:@{}]
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              //NSLog(@"user: %@", user);
+              NSLog(@"responseObject: %@", responseObject);
+              
+              // Should we return list of yaps here?
+              callback(user, nil);
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              [self processFailedOperation:operation];
+              callback(nil, error);
+          }];
 }
+
+# pragma mark - Friends & Top Friends
 
 - (void) friends:(FriendsCallback)callback
 {

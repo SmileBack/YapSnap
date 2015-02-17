@@ -451,8 +451,16 @@ static NSString *CellIdentifier = @"Cell";
     if (buttonIndex == 1) {
         // If user confirms blocking do this:
         NSLog(@"User confirms blocking");
+        
+        [[API sharedAPI] blockUser:nil
+                    withCallback:^(BOOL success, NSError *error) {
+                                          if (success) {
+                                              
+                                          } else {
+                                              
+                                          }
+                                      }];
     }
 }
-
 
 @end
