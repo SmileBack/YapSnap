@@ -328,18 +328,18 @@ static API *sharedAPI;
 - (void) blockUser:(YSUser *)user withCallback:(SuccessOrErrorCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[self urlForEndpoint:@"users/block_user/2"]
+    [manager PATCH:[self urlForEndpoint:@"users/self/block_user/6"]
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               //NSLog(@"user: %@", user);
               NSLog(@"responseObject: %@", responseObject);
               
               // Should we return list of yaps here?
-              callback(user, nil);
+              //callback(user, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               [self processFailedOperation:operation];
-              callback(nil, error);
+              //callback(nil, error);
           }];
 }
 
