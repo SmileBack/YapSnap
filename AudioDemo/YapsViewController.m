@@ -27,8 +27,6 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
 
-- (IBAction)didTapGoToAudioCaptureButton;
-
 @end
 
 static NSString *CellIdentifier = @"Cell";
@@ -287,37 +285,6 @@ static NSString *CellIdentifier = @"Cell";
             // Once pending status is added: "Dan will see your yap once he/she joins"
             }
         }
-        
-    //    BOOL didSendYap = [[yap.senderID stringValue] isEqualToString:[Global retrieveValueForKey:@"current_user_id"]];
-
-        // DID SEND YAP
-    //    if (didSendYap) {
-    //        // REPLACE THIS WITH A LESS INTRUSIVE UI
-    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your message has been delivered"
-    //                                                        message:@"(Replace this with something less intrusive)."
-    //                                                       delegate:nil
-    //                                              cancelButtonTitle:@"OK"
-    //                                              otherButtonTitles:nil];
-    //        [alert show];
-    //        
-    //    // DID RECEIVE YAP
-    //    } else {
-    //        
-    //        // UNOPENED
-    //        if ([yap.status  isEqual: @"unopened"]) {
-    //            [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
-    //        
-    //        // OPENED
-    //        } else {
-    //            // REPLACE THIS WITH A LESS INTRUSIVE UI
-    //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Already Opened"
-    //                                                            message:@"(Replace this with something less intrusive)."
-    //                                                           delegate:nil
-    //                                                  cancelButtonTitle:@"OK"
-    //                                                  otherButtonTitles:nil];
-    //            [alert show];
-    //        }
-    //    }
     }
 }
 
@@ -359,7 +326,7 @@ static NSString *CellIdentifier = @"Cell";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     YSYap *yap = self.yaps[indexPath.row];
-    
+        
     if (yap.receivedByCurrentUser) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Block User"
                                                             message:[NSString stringWithFormat:@"You will no longer receive messages from %@. This cannot be undone.", yap.displaySenderName]

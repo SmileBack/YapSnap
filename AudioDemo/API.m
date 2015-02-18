@@ -312,7 +312,6 @@ static API *sharedAPI;
     [manager GET:[self urlForEndpoint:@"audio_messages/number_of_unopened_yaps"]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             // Expecting: {"count" : 6}
              NSDictionary *response = responseObject;
              callback(response[@"count"], nil);
          }
@@ -334,7 +333,6 @@ static API *sharedAPI;
               //NSLog(@"user: %@", user);
               NSLog(@"responseObject: %@", responseObject);
               
-              // Should we return list of yaps here?
               //callback(user, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
