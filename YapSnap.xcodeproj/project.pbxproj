@@ -295,15 +295,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		374383E619CE32250009C323 /* Landing Page */ = {
-			isa = PBXGroup;
-			children = (
-				374383E719CE323B0009C323 /* LandingPageViewController.h */,
-				374383E819CE323B0009C323 /* LandingPageViewController.m */,
-			);
-			name = "Landing Page";
-			sourceTree = "<group>";
-		};
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +408,8 @@
 		784E35E91A659B8C0029AA01 /* Registration Screens */ = {
 			isa = PBXGroup;
 			children = (
+				374383E719CE323B0009C323 /* LandingPageViewController.h */,
+				374383E819CE323B0009C323 /* LandingPageViewController.m */,
 				37D413C819D22B5E00021548 /* EnterNameEmailViewController.h */,
 				37D413C919D22B5E00021548 /* EnterNameEmailViewController.m */,
 				374383DE19CE29880009C323 /* EnterPhoneNumberViewController.h */,
@@ -550,7 +543,6 @@
 				FCBB97001A7D635B003D5F24 /* Settings */,
 				FC52C1B11A787DA600D85FA8 /* Helpers */,
 				FCEF993A1A6D6EF0000FDE4C /* Segues */,
-				374383E619CE32250009C323 /* Landing Page */,
 				784E35E91A659B8C0029AA01 /* Registration Screens */,
 				784E35EA1A659BD00029AA01 /* Audio Capture */,
 				37695E7D19BBEE8500C22E13 /* Select Contacts Page */,

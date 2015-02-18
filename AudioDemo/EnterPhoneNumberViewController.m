@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic, strong) PhoneNumberChecker *phoneNumberChecker;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 - (IBAction)didTapContinueButton;
 
@@ -54,6 +55,11 @@
     });
     
     self.phoneNumberChecker = [[PhoneNumberChecker alloc] init];
+    
+    [self makeNavBarTransparent];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    self.titleLabel.text = self.titleLabelString;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -61,6 +67,14 @@
     [super viewDidAppear:animated];
     
     self.continueButton.userInteractionEnabled = YES;
+}
+
+- (void)makeNavBarTransparent
+{
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,27 +114,8 @@
     }
 }
 
-/*
-        NSString *phoneNumber = self.textField.text;
-        [[API sharedAPI] postSessions:phoneNumber withCallback:^(BOOL success, NSError *error) {
-            if (success) {
-                [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
-            } else {
-                // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                message:error.localizedDescription
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"otherButtonTitles:nil];
-                [alert show];
-                
-                // Enable the continue button again
-                self.continueButton.userInteractionEnabled = YES;
-            }
-        }];
-*/
-
 - (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
 }
 
@@ -156,13 +151,11 @@
             if (success) {
                 [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
             } else {
-                // TODO - ADD A UIALERT TELLING USER TO TRY AGAIN (WRONG CODE)
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                                 message:error.localizedDescription
                                                                delegate:nil
                                                       cancelButtonTitle:@"OK"otherButtonTitles:nil];
                 [alert show];                
-                // Enable the continue button again
             }
         }];
     }

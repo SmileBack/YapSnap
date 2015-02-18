@@ -10,4 +10,6 @@
 
 @interface EnterPhoneNumberViewController : UIViewController<UITextFieldDelegate>
 
+@property (weak, nonatomic) NSString *titleLabelString;
+
 @end

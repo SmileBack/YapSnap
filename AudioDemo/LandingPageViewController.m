@@ -9,6 +9,7 @@
 #import "LandingPageViewController.h"
 #import "AudioCaptureViewController.h"
 #import "YSUser.h"
+#import "EnterPhoneNumberViewController.h"
 
 @implementation LandingPageViewController
 
@@ -35,8 +36,11 @@
                                                                                 target:nil
                                                                                 action:nil];
 
-        self.enterButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
-        [self.enterButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
+        self.logInButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
+        [self.logInButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
+        
+        self.signUpButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
+        [self.signUpButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
     }
 }
 
@@ -56,9 +60,26 @@
     [super viewWillDisappear:animated];
 }
 
-- (IBAction) didTapEnterButton
+- (IBAction) didTapSignUpButton
 {
-    [self performSegueWithIdentifier:@"EnterPhoneNumberViewControllerSegue" sender:self];
+    [self performSegueWithIdentifier:@"SignUpWithPhoneNumberViewControllerSegue" sender:self];
+}
+
+- (IBAction) didTapLogInButton
+{
+    [self performSegueWithIdentifier:@"LogInWithPhoneNumberViewControllerSegue" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"SignUpWithPhoneNumberViewControllerSegue"]) {
+        EnterPhoneNumberViewController *enterPhoneNumberVC = segue.destinationViewController;
+        enterPhoneNumberVC.titleLabelString = @"Verify your number so we know you're real.";
+
+    } else if ([segue.identifier isEqualToString:@"LogInWithPhoneNumberViewControllerSegue"]) {
+        EnterPhoneNumberViewController *enterPhoneNumberVC = segue.destinationViewController;
+        enterPhoneNumberVC.titleLabelString = @"Log in with your phone number.";
+    }
 }
 
 @end

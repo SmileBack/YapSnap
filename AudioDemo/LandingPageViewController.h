@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BButton.h"
 
 @interface LandingPageViewController : UIViewController
 
-@property (nonatomic, strong)  IBOutlet BButton *enterButton;
+@property (nonatomic, strong)  IBOutlet UIButton *logInButton;
+@property (nonatomic, strong)  IBOutlet UIButton *signUpButton;
 
-- (IBAction)didTapEnterButton;
+- (IBAction)didTapSignUpButton;
+- (IBAction)didTapLogInButton;
 
 @end
