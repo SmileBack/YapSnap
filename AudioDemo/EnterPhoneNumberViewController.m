@@ -106,7 +106,7 @@
         [alert show];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Number"
-                                                        message:[NSString stringWithFormat:@"Is your number %@?", self.textField.text]
+                                                        message:[NSString stringWithFormat:@"Is your mobile number %@?", self.textField.text]
                                                        delegate:self
                                               cancelButtonTitle:@"No"
                                               otherButtonTitles:@"Yes", nil];
