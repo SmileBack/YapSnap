@@ -188,9 +188,7 @@ static NSString *CellIdentifier = @"Cell";
         contact = contacts[indexPath.row];
     }
     
-    NSLog(@"Contact: %@", contact.name);
-    NSLog(@"IndexPath: section %d   row %d", indexPath.section, indexPath.row);
-    ContactSelectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    ContactSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
     cell.nameLabel.text = contact.name;
     cell.phoneLabel.text = contact.phoneNumber;
@@ -312,7 +310,7 @@ static NSString *CellIdentifier = @"Cell";
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     NSPredicate *firstNamePredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[cd] %@", searchText];
-    NSPredicate *fullPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[firstNamePredicate]];//, lastNamePredicate]];
+    NSPredicate *fullPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[firstNamePredicate]];
     self.filteredContacts = [self.contacts filteredArrayUsingPredicate:fullPredicate];
 }
 
