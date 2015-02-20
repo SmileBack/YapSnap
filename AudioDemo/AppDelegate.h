@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define APP_ENTERED_BACKGROUND_NOTIFICATION @"com.yapsnap.OpenedAppNotification"
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

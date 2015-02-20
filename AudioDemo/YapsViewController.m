@@ -102,28 +102,12 @@ static NSString *CellIdentifier = @"Cell";
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     __weak YapsViewController *weakSelf = self;
 
-    [center addObserverForName:APP_ENTERED_BACKGROUND_NOTIFICATION
+    [center addObserverForName:UIApplicationDidEnterBackgroundNotification
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        NSArray *viewControllers = [[weakSelf navigationController] viewControllers];
-                        for( int i=0;i<[viewControllers count];i++){
-                            id obj=[viewControllers objectAtIndex:[viewControllers count]-i-1];
-                            if([obj isKindOfClass:[AudioCaptureViewController class]]){
-                                // Reset AudioCaptureViewController, then pop
-                                AudioCaptureViewController* audioCaptureVC = obj;
-                                if (![audioCaptureVC isInRecordMode]) {
-                                    YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
-                                    audioCaptureVC.micModeButton.alpha = 1;
-                                    audioCaptureVC.spotifyModeButton.alpha = .2;
-                                    [audioCaptureVC flipController:audioCaptureVC.audioSource to:micSource];
-                                }
-
-                                [[weakSelf navigationController] popToViewController:obj animated:NO];
-                                return;
-                            }
-                        }
-                        
+                        NSLog(@"popToBaseAudioCaptureController");
+                        [weakSelf popToBaseAudioCaptureController];
                     }];
     
     [center addObserverForName:NOTIFICATION_YAP_OPENED
@@ -393,9 +377,8 @@ static NSString *CellIdentifier = @"Cell";
     [alert show];
 }
 
-- (void)didTapGoToAudioCaptureButton {
-    NSLog(@"Tapped Go To Audio Capture Page");
-    
+- (void) popToBaseAudioCaptureController
+{
     NSArray *vcs = self.navigationController.viewControllers;
     for (UIViewController *vc in vcs) {
         if ([vc isKindOfClass:[AudioCaptureViewController class]]) {
@@ -408,6 +391,10 @@ static NSString *CellIdentifier = @"Cell";
             break;
         }
     }
+}
+
+- (void)didTapGoToAudioCaptureButton {
+    [self popToBaseAudioCaptureController];
 }
 
 - (void) removeBlockedYap
