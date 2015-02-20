@@ -38,9 +38,10 @@
         if (error) {
             // TODO handle error
         } else {
-            if (friends.count > 0) {
-                // TODO account for when count is 1 and 2
+            if (friends.count > 2) {
                 self.myTopFriends = [friends subarrayWithRange:NSMakeRange(0, 3)];
+            } else if (friends.count > 0) {
+                self.myTopFriends = friends;
             }
 
             weakSelf.friends = [friends sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
