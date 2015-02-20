@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSArray *myTopFriends;
 @property (nonatomic, strong) NSArray *friends;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+@property (nonatomic, strong) NSMutableDictionary *topFriendMap; //Friend ID :: Top friends array
 @end
 
 @implementation FriendsViewController
@@ -111,6 +112,28 @@
     return [indexPath isEqual:self.selectedIndexPath] ? HEIGHT_EXPANDED : HEIGHT_COLLAPSED;
 }
 
+- (void) showTopFriendsForIndexPath:(NSIndexPath *)indexPath andFriends:(NSArray *)friends
+{
+    UserCell *cell = (UserCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    if (friends.count == 0) {
+        cell.friendOneLabel.text = @"No top friends";
+        [cell.friendOneLabel sizeToFit];
+    } else {
+        YSUser *userOne = friends[0];
+        cell.friendOneLabel.text = userOne.displayName;
+        [cell.friendOneLabel sizeToFit];
+    }
+    
+    YSUser *userTwo = friends.count > 1 ? friends[1] : nil;
+    cell.friendTwoLabel.text = userTwo.displayName;
+    [cell.friendTwoLabel sizeToFit];
+    
+    YSUser *userThree = friends.count > 2 ? friends[2] : nil;
+    cell.friendThreeLabel.text = userThree.displayName;
+    [cell.friendThreeLabel sizeToFit];
+}
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
@@ -139,33 +162,30 @@
     [tableView endUpdates];
 
     if (expandingUser) {
-        FriendsViewController *weakSelf = self;
-        [[API sharedAPI] topFriendsForUser:expandingUser withCallback:^(NSArray *friends, NSError *error) {
-            UserCell *cell = (UserCell *)[weakSelf.tableView cellForRowAtIndexPath:indexPath];
-
-            if (friends.count == 0) {
-                cell.friendOneLabel.text = @"No top friends";
-                [cell.friendOneLabel sizeToFit];
-            } else {
-                YSUser *userOne = friends[0];
-                cell.friendOneLabel.text = userOne.displayName;
-                [cell.friendOneLabel sizeToFit];
-            }
-
-            YSUser *userTwo = friends.count > 1 ? friends[1] : nil;
-            cell.friendTwoLabel.text = userTwo.displayName;
-            [cell.friendTwoLabel sizeToFit];
-            
-            YSUser *userThree = friends.count > 2 ? friends[2] : nil;
-            cell.friendThreeLabel.text = userThree.displayName;
-            [cell.friendThreeLabel sizeToFit];
-        }];
+        NSArray *topFriends = self.topFriendMap[expandingUser.userID];
+        if (topFriends && [topFriends isKindOfClass:[NSArray class]]) {
+            [self showTopFriendsForIndexPath:indexPath andFriends:topFriends];
+        } else {
+            FriendsViewController *weakSelf = self;
+            [[API sharedAPI] topFriendsForUser:expandingUser withCallback:^(NSArray *friends, NSError *error) {
+                weakSelf.topFriendMap[expandingUser.userID] = friends;
+                [weakSelf showTopFriendsForIndexPath:indexPath andFriends:friends];
+            }];
+        }
     }
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return section == 0 ? @"You" : @"Friends";
+}
+
+- (NSMutableDictionary *) topFriendMap
+{
+    if (!_topFriendMap) {
+        _topFriendMap = [NSMutableDictionary new];
+    }
+    return _topFriendMap;
 }
 
 @end
