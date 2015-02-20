@@ -774,7 +774,7 @@
                         <outlet property="tableView" destination="hWh-h3-qO7" id="klJ-nF-XsM"/>
                         <segue destination="Dgp-JD-d1e" kind="modal" identifier="Playback Segue" animates="NO" id="LuI-mK-8FP"/>
                         <segue destination="IdD-6v-OZr" kind="push" identifier="Friends Segue" id="X3Y-yy-QzJ"/>
-                        <segue destination="2" kind="push" identifier="Reply Segue" id="Enn-ka-dSJ"/>
+                        <segue destination="2" kind="custom" identifier="Reply Segue" customClass="NoAnimationPushSegue" id="Enn-ka-dSJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-WI-Tyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
