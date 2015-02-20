@@ -16,6 +16,6 @@
 #define FEEDBACK_SECTION @"Send Us Feedback"
 #define LOGOUT_SECTION @"Logout"
 
-@interface SettingsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate,MFMessageComposeViewControllerDelegate>
+@interface SettingsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
 @end

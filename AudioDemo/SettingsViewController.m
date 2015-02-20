@@ -108,7 +108,7 @@
                                               otherButtonTitles:nil];
         [alert show];
     } else if ([FEEDBACK_SECTION isEqualToString:section]) {
-        [self showFeedbackEmailViewControllerWithDelegate:self andCompletion:^{
+        [self showFeedbackEmailViewControllerWithCompletion:^{
         }];
     }
 }
@@ -136,36 +136,27 @@
     }
 }
 
-#pragma mark - Message Delegate
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+#pragma mark - Mail Delegate
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-    if (result == MessageComposeResultSent) {
-        [controller dismissViewControllerAnimated:YES completion:^{
-            //[self callBlock:YES withRecipients:controller.recipients];
-        }];
-    } else {
-        [controller dismissViewControllerAnimated:YES completion:^{
-            //[self callBlock:NO withRecipients:NO];
-        }];
-    }
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Feedback
-- (void) showFeedbackEmailViewControllerWithDelegate:(id<MFMailComposeViewControllerDelegate>)delegate andCompletion:(void (^)(void))completion
+- (void) showFeedbackEmailViewControllerWithCompletion:(void (^)(void))completion
 {
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
-        mailer.mailComposeDelegate = delegate;
+        mailer.mailComposeDelegate = self;
         [mailer setSubject:@"My Feedback"];
-        NSArray *toRecipients = [NSArray arrayWithObjects:@"team@smilebackapp.com", nil];
+        NSArray *toRecipients = [NSArray arrayWithObjects:@"team@yapsnapapp.com", nil];
         [mailer setToRecipients:toRecipients];
         NSString *emailBody = @"";
         [mailer setMessageBody:emailBody isHTML:NO];
         [self presentViewController:mailer animated:YES completion:completion];
-        
         [mailer becomeFirstResponder];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"team@smilebackapp.com"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"team@yapsnapapp.com"
                                                         message:@"You don't have your e-mail setup. Please contact us at team@smilebackapp.com."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"

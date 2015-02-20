@@ -361,11 +361,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LGc-b7-6qc">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="mbR-yT-i6z">
-                            <connections>
-                                <action selector="cancelPressed:" destination="5bA-8y-jd8" id="49F-NH-kXD"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="nCC-Me-ePb">
                             <connections>
                                 <action selector="savePressed:" destination="5bA-8y-jd8" id="8M0-xn-VhG"/>
