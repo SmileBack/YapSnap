@@ -27,6 +27,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
 
+@property (nonatomic, strong) YSYap *yapToBlock; //Saved when the AlertView is shown
 @end
 
 static NSString *CellIdentifier = @"Cell";
@@ -337,7 +338,8 @@ static NSString *CellIdentifier = @"Cell";
                                                             message:[NSString stringWithFormat:@"You will no longer receive messages from %@. This cannot be undone.", yap.displaySenderName]
                                                            delegate:self
                                                   cancelButtonTitle:@"Cancel" otherButtonTitles:@"Block", nil];
-        
+        self.yapToBlock = yap;
+
         [alertView show];
     }
 }
@@ -417,6 +419,18 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
+- (void) removeBlockedYap
+{
+    NSMutableArray *mutableYaps = [NSMutableArray arrayWithArray:self.yaps];
+    [self.tableView beginUpdates];
+    NSUInteger index = [mutableYaps indexOfObject:self.yapToBlock];
+    [mutableYaps removeObjectAtIndex:index];
+    self.yaps = mutableYaps;
+    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+}
+
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -424,14 +438,17 @@ static NSString *CellIdentifier = @"Cell";
         // If user confirms blocking do this:
         NSLog(@"User confirms blocking");
         
-        [[API sharedAPI] blockUser:nil
-                    withCallback:^(BOOL success, NSError *error) {
-                                          if (success) {
-                                              
-                                          } else {
-                                              
-                                          }
-                                      }];
+        __weak YapsViewController *weakSelf = self;
+        
+        [[API sharedAPI] blockUserId:self.yapToBlock.senderID
+                        withCallback:^(BOOL success, NSError *error) {
+                            if (success) {
+                                NSLog(@"Blocking Worked");
+                                [weakSelf removeBlockedYap];
+                            } else {
+                                NSLog(@"Error blocking! %@", error);
+                            }
+                        }];
     }
 }
 

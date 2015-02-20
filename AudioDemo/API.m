@@ -324,20 +324,19 @@ static API *sharedAPI;
 
 # pragma mark - Block User
 
-- (void) blockUser:(YSUser *)user withCallback:(SuccessOrErrorCallback)callback
+- (void) blockUserId:(NSNumber *)userId withCallback:(SuccessOrErrorCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager PATCH:[self urlForEndpoint:@"users/self/block_user/6"]
+    NSString *endpoint = [NSString stringWithFormat:@"users/self/block_user/%d", userId.intValue];
+    [manager PATCH:[self urlForEndpoint:endpoint]
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              //NSLog(@"user: %@", user);
               NSLog(@"responseObject: %@", responseObject);
-              
-              //callback(user, nil);
+              callback(YES, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               [self processFailedOperation:operation];
-              //callback(nil, error);
+              callback(nil, error);
           }];
 }
 

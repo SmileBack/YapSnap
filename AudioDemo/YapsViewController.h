@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YapsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface YapsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) BOOL comingFromAudioCaptureScreen;
 

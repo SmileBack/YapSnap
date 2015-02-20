@@ -36,7 +36,7 @@ typedef void (^FriendsCallback)(NSArray *friends, NSError *error);
 - (void) logout:(SuccessOrErrorCallback)callback;
 - (void) friends:(FriendsCallback)callback;
 - (void) topFriendsForUser:(YSUser *)user withCallback:(FriendsCallback)callback;
-- (void) blockUser:(YSUser *)user withCallback:(SuccessOrErrorCallback)callback;
+- (void) blockUserId:(NSNumber *)userId withCallback:(SuccessOrErrorCallback)callback;
 
 # pragma mark - Updating of User Data
 - (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback;

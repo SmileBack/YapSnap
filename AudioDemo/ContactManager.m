@@ -241,7 +241,7 @@ static ContactManager *sharedInstance;
 {
     for (YSContact *contact in contacts) {
         if ([contact isKindOfClass:[PhoneContact class]]) {
-            PhoneContact *phoneContact = (PhoneContact *) contact;
+            PhoneContact *phoneContact = (PhoneContact *)       contact;
             [self addRecentContactAndUpdateOrder:phoneContact andTime:[NSDate date]];
         }
     }
