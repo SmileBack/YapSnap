@@ -239,8 +239,11 @@ static ContactManager *sharedInstance;
 
 - (void) sentYapTo:(NSArray *)contacts
 {
-    for (PhoneContact *contact in contacts) {
-        [self addRecentContactAndUpdateOrder:contact andTime:[NSDate date]];
+    for (YSContact *contact in contacts) {
+        if ([contact isKindOfClass:[PhoneContact class]]) {
+            PhoneContact *phoneContact = (PhoneContact *) contact;
+            [self addRecentContactAndUpdateOrder:phoneContact andTime:[NSDate date]];
+        }
     }
 }
 

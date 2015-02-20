@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YSContact.h"
 
-@interface PhoneContact : NSObject
+@interface PhoneContact : YSContact
 
-@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *label;
-@property (nonatomic, strong) NSString *phoneNumber;
 @property (nonatomic, strong) NSNumber *contactID;
 
 @property (nonatomic, readonly) NSString *sectionLetter;

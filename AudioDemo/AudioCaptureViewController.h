@@ -25,7 +25,7 @@
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
 
 // This is set if the recording is initiated as a reply to a contact
-@property (nonatomic) PhoneContact *contactReplyingTo;
+@property (nonatomic) YSContact *contactReplyingTo;
 
 
 - (IBAction)recordTapped:(id)sender;

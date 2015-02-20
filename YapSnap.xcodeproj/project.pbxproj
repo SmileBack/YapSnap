@@ -87,6 +87,7 @@
 		F44B0C5C16DA404700E6CD88 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
 		F44B0C5F16DA404700E6CD88 /* AudioCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44B0C5E16DA404700E6CD88 /* AudioCaptureViewController.m */; };
 		F44B0C6616DD09D900E6CD88 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */; };
+		FC029EA21A96BC190013B866 /* YSContact.m in Sources */ = {isa = PBXBuildFile; fileRef = FC029EA11A96BC190013B866 /* YSContact.m */; };
 		FC0595821A6D87A700FCCED2 /* ContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0595811A6D87A700FCCED2 /* ContactManager.m */; };
 		FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D451A45F41600B148AB /* YSAudioSourceController.m */; };
 		FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */; };
@@ -224,6 +225,8 @@
 		F44B0C5D16DA404700E6CD88 /* AudioCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioCaptureViewController.h; sourceTree = "<group>"; };
 		F44B0C5E16DA404700E6CD88 /* AudioCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioCaptureViewController.m; sourceTree = "<group>"; };
 		F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FC029EA01A96BC190013B866 /* YSContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSContact.h; sourceTree = "<group>"; };
+		FC029EA11A96BC190013B866 /* YSContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSContact.m; sourceTree = "<group>"; };
 		FC0595801A6D87A700FCCED2 /* ContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactManager.h; sourceTree = "<group>"; };
 		FC0595811A6D87A700FCCED2 /* ContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactManager.m; sourceTree = "<group>"; };
 		FC0C1D441A45F41600B148AB /* YSAudioSourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSAudioSourceController.h; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 				FC0595811A6D87A700FCCED2 /* ContactManager.m */,
 				FC52C1AE1A786F0F00D85FA8 /* RecentContact.h */,
 				FC52C1AF1A786F0F00D85FA8 /* RecentContact.m */,
+				FC029EA01A96BC190013B866 /* YSContact.h */,
+				FC029EA11A96BC190013B866 /* YSContact.m */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -870,6 +875,7 @@
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
 				FC1E89B81A4B852C007A8CDA /* SpotifyTrackView.m in Sources */,
 				FCEF99401A6D7BF2000FDE4C /* YapCell.m in Sources */,
+				FC029EA21A96BC190013B866 /* YSContact.m in Sources */,
 				FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */,
 				374383E019CE29880009C323 /* EnterPhoneNumberViewController.m in Sources */,
 				F44B0C5316DA404700E6CD88 /* AppDelegate.m in Sources */,

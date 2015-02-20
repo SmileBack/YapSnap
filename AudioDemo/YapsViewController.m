@@ -308,7 +308,12 @@ static NSString *CellIdentifier = @"Cell";
         AudioCaptureViewController *audioVC = segue.destinationViewController;
         YSYap *yap = sender;
         PhoneContact *contact = [[ContactManager sharedContactManager] contactForPhoneNumber:yap.senderPhone];
-        audioVC.contactReplyingTo = contact;
+        if (contact) {
+            audioVC.contactReplyingTo = contact;
+        } else {
+            YSContact *contact = [YSContact contactWithName:yap.senderName andPhoneNumber:yap.senderPhone];
+            audioVC.contactReplyingTo = contact;
+        }
     }
 }
 
