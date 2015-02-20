@@ -396,25 +396,16 @@ static NSString *CellIdentifier = @"Cell";
 - (void)didTapGoToAudioCaptureButton {
     NSLog(@"Tapped Go To Audio Capture Page");
     
-    NSArray *viewControllers = [[self navigationController] viewControllers];
-    for( int i=0;i<[viewControllers count];i++){
-        id obj=[viewControllers objectAtIndex:[viewControllers count]-i-1];
-        if([obj isKindOfClass:[AudioCaptureViewController class]]){
-            if (self.comingFromAudioCaptureScreen) {
-                [[self navigationController] popToViewController:obj animated:YES];
-            } else {
-                // Reset AudioCaptureViewController, then pop
-                AudioCaptureViewController* audioCaptureVC = obj;
-                if (![audioCaptureVC isInRecordMode]) {
-                    YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
-                    audioCaptureVC.micModeButton.alpha = 1;
-                    audioCaptureVC.spotifyModeButton.alpha = .2;
-                    [audioCaptureVC flipController:audioCaptureVC.audioSource to:micSource];
-                }
-                
-                [[self navigationController] popToViewController:obj animated:NO];
+    NSArray *vcs = self.navigationController.viewControllers;
+    for (UIViewController *vc in vcs) {
+        if ([vc isKindOfClass:[AudioCaptureViewController class]]) {
+            BOOL animated = [vcs indexOfObject:self] - 1 == [vcs indexOfObject:vc];
+            if (!animated) {
+                AudioCaptureViewController *audioVC = (AudioCaptureViewController *)vc;
+                [audioVC resetUI];
             }
-            return;
+            [self.navigationController popToViewController:vc animated:animated];
+            break;
         }
     }
 }

@@ -36,4 +36,6 @@
 
 - (void) flipController:(UIViewController *)from to:(YSAudioSourceController *)to;
 
+- (void) resetUI;
+
 @end

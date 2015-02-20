@@ -297,10 +297,12 @@ static const float TIMER_INTERVAL = .01;
         
         self.progressView.progress = 0.0;
         self.elapsedTime = 0;
-    } else if ([@"YapsPageViewControllerSegue" isEqualToString:segue.identifier]) {
-        YapsViewController *yapsVC = segue.destinationViewController;
-        yapsVC.comingFromAudioCaptureScreen = YES;
     }
+}
+
+- (void) resetUI
+{
+    [self micModeButtonPressed:nil];
 }
 
 #pragma mark - Mode Changing
