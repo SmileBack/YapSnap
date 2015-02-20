@@ -123,16 +123,16 @@
     [super viewWillDisappear:animated];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    BOOL phoneNumberHasChanged = [[STPhoneFormatter phoneFormatter] phoneNumberMustChangeInRange:range replacementString:string];
-    
-    if (phoneNumberHasChanged) {
-        textField.text = [[STPhoneFormatter phoneFormatter] formattedPhoneNumber];
-    }
-    
-    return NO;
-}
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    BOOL phoneNumberHasChanged = [[STPhoneFormatter phoneFormatter] phoneNumberMustChangeInRange:range replacementString:string];
+//    
+//    if (phoneNumberHasChanged) {
+//        textField.text = [[STPhoneFormatter phoneFormatter] formattedPhoneNumber];
+//    }
+//    
+//    return NO;
+//}
 
 #pragma mark - UIAlertViewDelegate
 

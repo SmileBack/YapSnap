@@ -8,6 +8,7 @@
 
 #import "EnterNameEmailViewController.h"
 #import "API.h"
+#import "YSPushManager.h"
 
 @interface EnterNameEmailViewController ()
 
@@ -116,6 +117,7 @@
                                 
                                 if (success) {
                                     [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
+                                    [[YSPushManager sharedPushManager] registerForNotifications];
                                 } else {
                                     NSLog(@"Error! %@", error);
                                     [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Error updating your info" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];

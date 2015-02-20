@@ -99,7 +99,8 @@ static API *sharedAPI;
 - (void) processFailedOperation:(AFHTTPRequestOperation *)operation
 {
     if (operation.response.statusCode == 401) {
-        [self logout:nil];
+        [self logout:^(BOOL success, NSError *error) {
+        }];
         NSLog(@"Invalid Session Notification triggered");
     }
 }
@@ -141,6 +142,7 @@ static API *sharedAPI;
               
               YSUser *user = [YSUser userFromDictionary:json];
               [YSUser setCurrentUser:user];
+              self.sessionToken = user.sessionToken;
               
               NSLog(@"responseObject: %@", responseObject);
               NSLog(@"user: %@", user);
@@ -156,21 +158,21 @@ static API *sharedAPI;
 - (void) logout:(SuccessOrErrorCallback)callback
 {
     NSLog(@"Logging out");
-    /*
-     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-     [manager POST:[self urlForEndpoint:@"sessions/logout"]
-     parameters:[self paramsWithDict:@{}]
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-     callback(YES, nil);
-     }
-     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-     callback(NO, error);
-     NSLog(@"Error logging out: %@", error);
-     }];
-     
-     [YSUser wipeCurrentUserData];
-     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT object:nil];
-     */
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:[self urlForEndpoint:@"sessions/logout"]
+       parameters:[self paramsWithDict:@{}]
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              callback(YES, nil);
+              [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT object:nil];
+              [YSUser wipeCurrentUserData];
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              callback(NO, error);
+              NSLog(@"Error logging out: %@", error);
+              [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT object:nil];
+              [YSUser wipeCurrentUserData];
+          }];
 }
 
 #pragma mark - Yaps
@@ -336,7 +338,7 @@ static API *sharedAPI;
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               [self processFailedOperation:operation];
-              callback(nil, error);
+              callback(NO, error);
           }];
 }
 
