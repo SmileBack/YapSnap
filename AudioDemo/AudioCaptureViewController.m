@@ -109,13 +109,8 @@ static const float TIMER_INTERVAL = .01;
     [alert show];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [super viewWillAppear:animated];
-    
-    //Nav bar should not be transparent after finishing registration process
-    self.navigationController.navigationBar.translucent = NO;
-    
+- (void) reloadUnopenedYapsCount
+{
     [[API sharedAPI] unopenedYapsCountWithCallback:^(NSNumber *count, NSError *error) {
         if (error) {
             [self.yapsPageButton setTitle:@"E" forState:UIControlStateNormal];
@@ -132,6 +127,16 @@ static const float TIMER_INTERVAL = .01;
             [self.yapsPageButton setTitle:count.description forState:UIControlStateNormal];
         }
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+    
+    //Nav bar should not be transparent after finishing registration process
+    self.navigationController.navigationBar.translucent = NO;
+
+    [self reloadUnopenedYapsCount];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -196,6 +201,13 @@ static const float TIMER_INTERVAL = .01;
     [center addObserverForName:NOTIFICATION_LOGOUT object:nil queue:nil usingBlock:^ (NSNotification *note) {
         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
     }];
+    
+    [center addObserverForName:UIApplicationDidBecomeActiveNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [weakSelf reloadUnopenedYapsCount];
+                    }];
 }
 
 - (void) updateProgress {
