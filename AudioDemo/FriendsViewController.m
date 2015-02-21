@@ -77,19 +77,24 @@
     YSUser *user = indexPath.section == 0 ? [YSUser currentUser] : self.friends[indexPath.row];
 
     UserCell *cell;
-    if (indexPath.section == 0 || [indexPath isEqual:self.selectedIndexPath]) {
+    if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_EXPANDED forIndexPath:indexPath];
-        if (self.myTopFriends.count >= 3) {
-            //TODO account for counts lower than 3
-            YSUser *user = self.myTopFriends[0];
-            cell.friendOneLabel.text = user.displayName;
+        [cell clearLabels];
+        YSUser *myFriend = self.myTopFriends.count > 0 ? self.myTopFriends[0] : nil;
+        cell.friendOneLabel.text = myFriend.displayName;
+        [cell.friendOneLabel sizeToFit];
 
-            user = self.myTopFriends[1];
-            cell.friendTwoLabel.text = user.displayName;
+        myFriend = self.myTopFriends.count > 1 ? self.myTopFriends[1] : nil;
+        cell.friendTwoLabel.text = myFriend.displayName;
+        [cell.friendTwoLabel sizeToFit];
 
-            user = self.myTopFriends[2];
-            cell.friendThreeLabel.text = user.displayName;
-        }
+        myFriend = self.myTopFriends.count > 2 ? self.myTopFriends[2] : nil;
+        cell.friendThreeLabel.text = myFriend.displayName;
+        [cell.friendThreeLabel sizeToFit];
+    } else if ([indexPath isEqual:self.selectedIndexPath]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:CELL_EXPANDED forIndexPath:indexPath];
+        [cell clearLabels];
+        // Labels will be set in showTopFriendsForIndexPath
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_COLLAPSED forIndexPath:indexPath];
     }

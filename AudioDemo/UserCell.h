@@ -17,4 +17,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *friendTwoLabel;
 @property (strong, nonatomic) IBOutlet UILabel *friendThreeLabel;
 
+- (void) clearLabels;
+
 @end
