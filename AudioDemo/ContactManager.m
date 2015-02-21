@@ -262,10 +262,8 @@ static ContactManager *sharedInstance;
 {
     NSArray *contacts = [[NSUserDefaults standardUserDefaults] arrayForKey:RECENT_CONTACTS_KEY];
     @try {
-        for (NSDictionary *contactData in contacts) {
-            RecentContact *recentContact = [RecentContact new];
-            recentContact.contactID = contactData[@"contactID"];
-            recentContact.contactTime = contactData[@"contactTime"];
+        for (NSData *contactData in contacts) {
+            RecentContact *recentContact = [NSKeyedUnarchiver unarchiveObjectWithData:contactData];
             PhoneContact *contact = [self contactForId:recentContact.contactID];
             if (contact) {
                 [self addRecentContactAndUpdateOrder:contact andTime:recentContact.contactTime];
@@ -274,6 +272,9 @@ static ContactManager *sharedInstance;
     }
     @catch (NSException *exception) {
         NSLog(@"Error in load recent contacts: %@", exception);
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults removeObjectForKey:RECENT_CONTACTS_KEY];
+        [defaults synchronize];
     }
 }
 

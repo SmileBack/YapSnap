@@ -24,6 +24,7 @@
 
 // Helpers for displaying these possibly-nil propertier
 @property (nonatomic, readonly) NSString *displayEmail;
+@property (nonatomic, readonly) NSString *displayNameNotFromContacts;
 @property (nonatomic, strong) NSString *displayName;
 @property (nonatomic, readonly) NSString *displayFirstName;
 @property (nonatomic, readonly) NSString *displayLastName;
