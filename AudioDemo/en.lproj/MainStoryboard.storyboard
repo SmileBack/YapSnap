@@ -1026,7 +1026,7 @@
                                     <action selector="didTapContinueButton" destination="8Uc-K7-X1A" eventType="touchUpInside" id="nIk-Hi-EFO"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDN-b9-ZdN">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDN-b9-ZdN" customClass="SHSPhoneTextField">
                                 <rect key="frame" x="55" y="204" width="210" height="46"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
@@ -1051,7 +1051,7 @@
                     <connections>
                         <outlet property="continueButton" destination="fs3-EU-Uhl" id="Ag2-9m-66H"/>
                         <outlet property="loadingSpinner" destination="3kK-sL-Jnl" id="XsC-LX-7mT"/>
-                        <outlet property="textField" destination="TDN-b9-ZdN" id="6uR-6Z-cQf"/>
+                        <outlet property="textField" destination="TDN-b9-ZdN" id="lLo-Fr-iWr"/>
                         <outlet property="titleLabel" destination="VUk-kK-sDF" id="HCz-iX-Ps6"/>
                         <segue destination="JSl-Ix-TF3" kind="push" identifier="EnterCodeViewControllerSegue" id="9jG-yd-bum"/>
                     </connections>

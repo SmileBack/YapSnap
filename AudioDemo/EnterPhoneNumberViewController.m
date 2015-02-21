@@ -9,12 +9,15 @@
 #import "EnterPhoneNumberViewController.h"
 #import "API.h"
 #import "PhoneNumberChecker.h"
-#import "STPhoneFormatter.h"
+//#import "STPhoneFormatter.h"
+#import <SHSPhoneComponent/SHSPhoneTextField.h>
+#import <SHSPhoneComponent/SHSPhoneNumberFormatter.h>
 
 @interface EnterPhoneNumberViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+//@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (strong, nonatomic) IBOutlet SHSPhoneTextField *textField;
 @property (nonatomic, strong) PhoneNumberChecker *phoneNumberChecker;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -48,6 +51,7 @@
     
     self.textField.delegate = self;
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
+    [self.textField.formatter setDefaultOutputPattern:@"(###) ###-####"];
     
     double delay = 0.6;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -122,17 +126,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 }
-
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-//{
-//    BOOL phoneNumberHasChanged = [[STPhoneFormatter phoneFormatter] phoneNumberMustChangeInRange:range replacementString:string];
-//    
-//    if (phoneNumberHasChanged) {
-//        textField.text = [[STPhoneFormatter phoneFormatter] formattedPhoneNumber];
-//    }
-//    
-//    return NO;
-//}
 
 #pragma mark - UIAlertViewDelegate
 
