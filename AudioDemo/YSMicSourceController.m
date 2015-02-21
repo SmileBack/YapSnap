@@ -90,22 +90,21 @@
     [self.recorder prepareToRecord];
 }
 
+- (void) playSound
+{
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"pew-pew-lei" ofType:@"caf"];
+
+    NSURL *soundUrl = [NSURL fileURLWithPath:soundPath];
+
+    AudioServicesCreateSystemSoundID ((__bridge CFURLRef)soundUrl, &_soundID);
+    AudioServicesPlaySystemSound(self.soundID);
+}
+
 #pragma mark - Public API Methods
 - (BOOL) startAudioCapture
 {
-//    NSLog(@"soundID:%u", (unsigned int)self.soundID); // 0 - this looks good
+    [self playSound];
 
-//    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"pew-pew-lei" ofType:@"caf"];
-//    NSLog(@"mainBundle:%@", [NSBundle mainBundle]);
-//    NSLog(@"soundPath:%@", soundPath); // null - WHY?????
-    
-//    NSURL *soundUrl = [NSURL fileURLWithPath:soundPath];
-//    NSLog(@"soundURL:%@", soundUrl); // doesn't even reach this point
-    
-//    AudioServicesCreateSystemSoundID ((__bridge CFURLRef)soundUrl, &_soundID);
-//    AudioServicesPlaySystemSound(self.soundID); // doesn't even reach this point
-    
-    
     // Stop the audio player before recording
     if (self.player.playing) {
         [self.player stop];

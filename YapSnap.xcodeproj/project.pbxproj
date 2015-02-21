@@ -104,6 +104,7 @@
 		FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */; };
 		FCAA32901A8C2FD900FDCC78 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA328F1A8C2FD900FDCC78 /* UserCell.m */; };
 		FCAFD5A31A8AE6410030B923 /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAFD5A21A8AE6410030B923 /* UIViewController+Alerts.m */; };
+		FCB13C3B1A98FF9400DE5A61 /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = 787C84DC1A76CAAD005D80D5 /* pew-pew-lei.caf */; };
 		FCBB96FF1A7D4C97003D5F24 /* YSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB96FE1A7D4C97003D5F24 /* YSUser.m */; };
 		FCBB97031A7D636A003D5F24 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB97021A7D636A003D5F24 /* SettingsViewController.m */; };
 		FCBB97061A7D6CDF003D5F24 /* EditFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB97051A7D6CDF003D5F24 /* EditFieldViewController.m */; };
@@ -733,6 +734,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCB13C3B1A98FF9400DE5A61 /* pew-pew-lei.caf in Resources */,
 				786D91131A6EEEDE00177E25 /* BlueArrowWhiteFilling.png in Resources */,
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
 				786D91171A6EF16000177E25 /* RedRoundedSquare.png in Resources */,
