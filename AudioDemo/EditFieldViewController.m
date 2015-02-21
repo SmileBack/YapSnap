@@ -39,6 +39,18 @@
     });
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"About to disappear!");
+    UIViewController *vc = [self.navigationController.viewControllers lastObject];
+    if ([vc isKindOfClass:[SettingsViewController class]]) {
+        SettingsViewController *settingsVC = (SettingsViewController *)vc;
+        [settingsVC saveField:self.editingField withText:self.textField.text];
+    }
+
+    [super viewWillDisappear:animated];
+}
+
 #pragma mark - Buttons
 - (IBAction)cancelPressed:(UIBarButtonItem *)sender
 {
@@ -49,24 +61,6 @@
 {
     // TODO CHECK IF EMPTY AND SHOW ALERT VIEW
     // TODO SHOW A HUD WHILE SAVING
-    
-    SuccessOrErrorCallback callback = ^(BOOL success, NSError *error) {
-        if (success) {
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            NSLog(@"Error: %@", error);
-            // TODO do something
-        }
-    };
-
-    if ([FIRST_NAME_SECTION isEqualToString:self.editingField]) {
-        [[API sharedAPI] updateFirstName:self.textField.text withCallBack:callback];
-    } else if ([LAST_NAME_SECTION isEqualToString:self.editingField]) {
-        [[API sharedAPI] updateLastName:self.textField.text withCallBack:callback];
-    } else if ([EMAIL_SECTION isEqualToString:self.editingField]) {
-        [[API sharedAPI] updateEmail:self.textField.text withCallBack:callback];
-    }
-
 }
 
 

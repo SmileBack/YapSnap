@@ -123,6 +123,32 @@
     }
 }
 
+#pragma mark - Field Saving
+- (void) saveField:(NSString *)field withText:(NSString *)text
+{
+    __weak SettingsViewController *weakSelf = self;
+    SuccessOrErrorCallback callback = ^(BOOL success, NSError *error) {
+        if (success) {
+            NSInteger row = [weakSelf.sections indexOfObject:field];
+            NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
+        } else {
+            NSLog(@"Error: %@", error);
+            // TODO do something
+        }
+    };
+    
+    // TODO VALIDATE THE INPUT
+    
+    if ([FIRST_NAME_SECTION isEqualToString:field]) {
+        [[API sharedAPI] updateFirstName:text withCallBack:callback];
+    } else if ([LAST_NAME_SECTION isEqualToString:field]) {
+        [[API sharedAPI] updateLastName:text withCallBack:callback];
+    } else if ([EMAIL_SECTION isEqualToString:field]) {
+        [[API sharedAPI] updateEmail:text withCallBack:callback];
+    }
+}
+
 #pragma mark - Navigation
 - (IBAction)didPressDone:(UIBarButtonItem *)sender
 {

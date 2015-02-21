@@ -18,4 +18,6 @@
 
 @interface SettingsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
+- (void) saveField:(NSString *)field withText:(NSString *)text;
+
 @end
