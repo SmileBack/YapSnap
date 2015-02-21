@@ -46,7 +46,7 @@ static ContactManager *sharedInstance;
  */
 - (NSString *) usNumberFromPhoneNumber:(NSString *)phoneNumber
 {
-    NSString *scrubbedPhone = [self stringPhoneNumber:phoneNumber];
+    NSString *scrubbedPhone = [ContactManager stringPhoneNumber:phoneNumber];
 
     if ([scrubbedPhone hasPrefix:@"1"]) {
         return scrubbedPhone;
@@ -59,7 +59,7 @@ static ContactManager *sharedInstance;
 - (PhoneContact *) contactForPhoneNumber:(NSString *)phoneNumber
 {
     NSString *usNumber = [self usNumberFromPhoneNumber:phoneNumber];
-    NSString *scrubbedNumber = [self stringPhoneNumber:phoneNumber];
+    NSString *scrubbedNumber = [ContactManager stringPhoneNumber:phoneNumber];
     
     for (PhoneContact *contact in [self getAllContacts]) {
         NSString *contactUsNumber = [self usNumberFromPhoneNumber:contact.phoneNumber];
@@ -126,7 +126,7 @@ static ContactManager *sharedInstance;
                 
                 CFStringRef phoneRef = ABMultiValueCopyValueAtIndex(phones, i);
                 NSString *phone = [NSString stringWithString:(__bridge NSString *)(phoneRef)];
-                phone = [self stringPhoneNumber:phone];
+                phone = [ContactManager stringPhoneNumber:phone];
                 
                 PhoneContact *contact = [PhoneContact phoneContactWithName:fullName phoneLabel:label andPhoneNumber:phone];
                 contact.contactID = [NSNumber numberWithInt:recordID];
@@ -168,7 +168,7 @@ static ContactManager *sharedInstance;
     return [label stringByReplacingOccurrencesOfString:@">!$_" withString:@""];
 }
 
-- (NSString *) stringPhoneNumber:(NSString *) originalString
++ (NSString *) stringPhoneNumber:(NSString *) originalString
 {
     NSMutableString *strippedString = [NSMutableString
                                        stringWithCapacity:originalString.length];

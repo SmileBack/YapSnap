@@ -18,6 +18,7 @@
 - (NSArray *) getAllContacts;
 
 + (ContactManager *) sharedContactManager;
++ (NSString *) stringPhoneNumber:(NSString *) originalString;
 
 - (BOOL) isAuthorizedForContacts;
 
