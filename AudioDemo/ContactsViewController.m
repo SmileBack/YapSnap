@@ -23,6 +23,9 @@
 
 // Map of section letter to contacts:  A : [cont1, cont2]
 @property (nonatomic, strong) NSMutableDictionary *contactDict;
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *keyboardVerticalSpace;
+
 @end
 
 static NSString *CellIdentifier = @"Cell";
@@ -64,6 +67,8 @@ static NSString *CellIdentifier = @"Cell";
     } else {
         NSLog(@"Internet is reachable");
     }
+    
+    [self registerForKeyboardNotifications];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -71,6 +76,18 @@ static NSString *CellIdentifier = @"Cell";
     [super viewDidAppear:animated];
     
     self.continueButton.userInteractionEnabled = YES;
+}
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
 }
 
 -(BOOL) internetIsNotReachable
@@ -112,7 +129,6 @@ static NSString *CellIdentifier = @"Cell";
             
             [weakSelf prepareContactDict];
             dispatch_async(dispatch_get_main_queue(), ^{
-                //[hud hide:YES];
                 [weakSelf.tableView reloadData];
             });
         });
@@ -255,12 +271,25 @@ static NSString *CellIdentifier = @"Cell";
 {
     if (self.selectedContacts.count > 0) {
         self.bottomView.hidden = NO;
-        [self.tableView setFrame:CGRectMake(0, self.searchDisplayController.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.bottomView.frame.size.height - self.searchDisplayController.searchBar.frame.size.height)];
+        [self.view bringSubviewToFront:self.bottomView];
     } else {
         self.bottomView.hidden = YES;
-        [self.tableView setFrame:CGRectMake(0, self.searchDisplayController.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchDisplayController.searchBar.frame.size.height)];
     }
         
+}
+
+#pragma mark - Keyboard
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+
+    self.keyboardVerticalSpace.constant = kbSize.height;
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    self.keyboardVerticalSpace.constant = 0;
 }
 
 - (IBAction) didTapContinueButton

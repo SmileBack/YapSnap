@@ -413,7 +413,7 @@
                                     <outlet property="delegate" destination="iTO-dn-ews" id="Zzo-B4-V6S"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hGC-QS-5qY">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGC-QS-5qY">
                                 <rect key="frame" x="0.0" y="434" width="320" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6j-MM-95B">
@@ -434,15 +434,24 @@
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.090196078431372548" green="0.36862745098039218" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Qm4-KE-MAn"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6ax-OF-ZYp" firstAttribute="top" secondItem="hGC-QS-5qY" secondAttribute="bottom" id="AXf-Lr-Mzm"/>
+                            <constraint firstItem="hGC-QS-5qY" firstAttribute="leading" secondItem="R9f-jX-Qam" secondAttribute="leading" id="hZl-Pa-qXr"/>
+                            <constraint firstAttribute="trailing" secondItem="hGC-QS-5qY" secondAttribute="trailing" id="ucW-Eq-507"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3ZO-Oc-KGl"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="bottomView" destination="hGC-QS-5qY" id="B8D-gO-UTv"/>
                         <outlet property="continueButton" destination="K6j-MM-95B" id="8DH-Ii-Vuv"/>
+                        <outlet property="keyboardVerticalSpace" destination="AXf-Lr-Mzm" id="kGT-Mx-yLP"/>
                         <outlet property="loadingSpinner" destination="KEf-2h-zqy" id="cwm-4P-dPj"/>
                         <outlet property="searchDisplayController" destination="rX9-eN-FWa" id="wiS-if-c5s"/>
                         <outlet property="tableView" destination="W8t-1a-vba" id="ZzW-5c-uyZ"/>
@@ -1193,8 +1202,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gZs-IQ-BYb"/>
         <segue reference="wu3-lb-fb7"/>
-        <segue reference="czb-n6-hbf"/>
+        <segue reference="gZs-IQ-BYb"/>
+        <segue reference="syO-tE-hvG"/>
     </inferredMetricsTieBreakers>
 </document>
