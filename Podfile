@@ -9,7 +9,7 @@ target "YapSnap" do
   pod 'iCarousel', '~> 1.8.1'
   pod 'SDWebImage', '~> 3.7.1'
   pod 'StreamingKit', '~> 0.1.25'
+  pod 'AWSiOSSDKv2', '~> 2.0.15'
   pod 'STPhoneFormatter', '~> 1.1.1'
-  pod 'AWSiOSSDKv2'
 end
 
