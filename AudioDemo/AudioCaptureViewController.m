@@ -154,7 +154,7 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self.recordButtonSpinner stopAnimating];
+                        [weakSelf.recordButtonSpinner stopAnimating];
                         
                         //Uncomment the following lines after you handle cases where recording gets "interrupted"
                         //self.yapsPageButton.userInteractionEnabled = NO;
@@ -164,7 +164,7 @@ static const float TIMER_INTERVAL = .01;
                         if (note.object == weakSelf.audioSource) {
                             NSLog(@"Loading spinner stopped animating");
                             timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
-                                                                     target:self
+                                                                     target:weakSelf
                                                                    selector:@selector(updateProgress)
                                                                    userInfo:nil
                                                                     repeats:YES];
@@ -179,8 +179,8 @@ static const float TIMER_INTERVAL = .01;
                                                                        message:@"Something didn't work - please try again."
                                                                       delegate:nil
                                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                        [self.progressView setProgress:0];
-                        self.elapsedTime = 0;
+                        [weakSelf.progressView setProgress:0];
+                        weakSelf.elapsedTime = 0;
                         [timer invalidate];
                         [alert show];
                     }];
@@ -194,7 +194,7 @@ static const float TIMER_INTERVAL = .01;
                     }];
     
     [center addObserverForName:NOTIFICATION_LOGOUT object:nil queue:nil usingBlock:^ (NSNotification *note) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
     }];
 }
 
