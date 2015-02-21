@@ -393,7 +393,12 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
-    NSDictionary *params = [self paramsWithDict:properties];
+    NSMutableDictionary *props = [NSMutableDictionary dictionaryWithDictionary:properties];
+    props[@"app_version"] = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    props[@"os_version"] = [[UIDevice currentDevice] systemVersion];
+    props[@"os"] = @"iOS";
+
+    NSDictionary *params = [self paramsWithDict:props];
 
     NSString *endpoint = @"users/self";
     [manager PUT:[self urlForEndpoint:endpoint]
