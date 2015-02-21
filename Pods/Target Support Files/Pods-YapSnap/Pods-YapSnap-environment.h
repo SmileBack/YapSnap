@@ -192,12 +192,6 @@
 #define COCOAPODS_VERSION_MINOR_SHSPhoneComponent 15
 #define COCOAPODS_VERSION_PATCH_SHSPhoneComponent 0
 
-// STPhoneFormatter
-#define COCOAPODS_POD_AVAILABLE_STPhoneFormatter
-#define COCOAPODS_VERSION_MAJOR_STPhoneFormatter 1
-#define COCOAPODS_VERSION_MINOR_STPhoneFormatter 1
-#define COCOAPODS_VERSION_PATCH_STPhoneFormatter 1
-
 // StreamingKit
 #define COCOAPODS_POD_AVAILABLE_StreamingKit
 #define COCOAPODS_VERSION_MAJOR_StreamingKit 0
