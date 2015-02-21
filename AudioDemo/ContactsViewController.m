@@ -7,7 +7,6 @@
 //
 
 #import "ContactsViewController.h"
-#import "MBProgressHUD.h"
 #import "ContactManager.h"
 #import "UIViewController+Alerts.h"
 
@@ -107,9 +106,7 @@ static NSString *CellIdentifier = @"Cell";
     __weak ContactsViewController *weakSelf = self;
     
     if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
-        //MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        //hud.labelText = @"Loading contacts...";
-        
+       
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             weakSelf.contacts = [[ContactManager sharedContactManager] getAllContacts];
             

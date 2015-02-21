@@ -9,7 +9,6 @@
 #import "UIViewController+Communication.h"
 #import "AppDelegate.h"
 #import <objc/runtime.h>
-#import "MBProgressHUD.h"
 
 @implementation UIViewController (Communication)
 

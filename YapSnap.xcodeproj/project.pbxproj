@@ -26,7 +26,6 @@
 		37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF0DD919E8F9D60077B74F /* Microphone_White.png */; };
 		37BF0DDF19E8FCF70077B74F /* YapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF0DDE19E8FCF70077B74F /* YapsViewController.m */; };
 		37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF0DEC19E9164C0077B74F /* RedCircleIcon@2x.png */; };
-		37C3746B19BC4A8E001A1D02 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C3746A19BC4A8E001A1D02 /* MBProgressHUD.m */; };
 		37D20C2C19E4A19D008530BF /* RecordButtonRedWhiteBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D20C2B19E4A19D008530BF /* RecordButtonRedWhiteBorder.png */; };
 		37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D20C2D19E4A2B3008530BF /* CancelImageWhite.png */; };
 		37D413BD19D21A1F00021548 /* BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D413B619D21A1E00021548 /* BButton.m */; };
@@ -144,8 +143,6 @@
 		37BF0DDD19E8FCF70077B74F /* YapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YapsViewController.h; sourceTree = "<group>"; };
 		37BF0DDE19E8FCF70077B74F /* YapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YapsViewController.m; sourceTree = "<group>"; };
 		37BF0DEC19E9164C0077B74F /* RedCircleIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RedCircleIcon@2x.png"; sourceTree = "<group>"; };
-		37C3746919BC4A8E001A1D02 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		37C3746A19BC4A8E001A1D02 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		37D20C2B19E4A19D008530BF /* RecordButtonRedWhiteBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonRedWhiteBorder.png; sourceTree = "<group>"; };
 		37D20C2D19E4A2B3008530BF /* CancelImageWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImageWhite.png; sourceTree = "<group>"; };
 		37D413B319D2180600021548 /* FuturaStd-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FuturaStd-Medium.ttf"; sourceTree = "<group>"; };
@@ -369,15 +366,6 @@
 			name = "Yaps Page";
 			sourceTree = "<group>";
 		};
-		37C3746C19BC4A97001A1D02 /* HUD */ = {
-			isa = PBXGroup;
-			children = (
-				37C3746919BC4A8E001A1D02 /* MBProgressHUD.h */,
-				37C3746A19BC4A8E001A1D02 /* MBProgressHUD.m */,
-			);
-			name = HUD;
-			sourceTree = "<group>";
-		};
 		37D413B219D217FF00021548 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,7 +491,6 @@
 				FC609BC01A3CC22F00182F08 /* Model */,
 				F44B0C5116DA404700E6CD88 /* AppDelegate.h */,
 				F44B0C5216DA404700E6CD88 /* AppDelegate.m */,
-				37C3746C19BC4A97001A1D02 /* HUD */,
 				37D413C519D2235C00021548 /* Images.xcassets */,
 				F44B0C4916DA404700E6CD88 /* Supporting Files */,
 			);
@@ -892,7 +879,6 @@
 				FC342F381A5099D200518765 /* OpenInSpotifyAlertView.m in Sources */,
 				F44B0C5F16DA404700E6CD88 /* AudioCaptureViewController.m in Sources */,
 				FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */,
-				37C3746B19BC4A8E001A1D02 /* MBProgressHUD.m in Sources */,
 				FC52C1AD1A785D2800D85FA8 /* YSPushManager.m in Sources */,
 				37BF0DDF19E8FCF70077B74F /* YapsViewController.m in Sources */,
 				FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */,
