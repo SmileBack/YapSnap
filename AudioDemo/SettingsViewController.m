@@ -30,6 +30,14 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    __weak SettingsViewController *weakSelf = self;
+    [[NSNotificationCenter defaultCenter] addObserverForName:NOTIFICATION_LOGOUT
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
+                                                  }];
 }
 
 - (void) viewWillAppear:(BOOL)animated
