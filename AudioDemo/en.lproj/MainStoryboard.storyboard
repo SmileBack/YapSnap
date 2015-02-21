@@ -360,13 +360,7 @@
                             <constraint firstItem="6DQ-z1-9tf" firstAttribute="top" secondItem="hBL-8E-dV6" secondAttribute="bottom" constant="431" id="d38-cK-VtV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="LGc-b7-6qc">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="nCC-Me-ePb">
-                            <connections>
-                                <action selector="savePressed:" destination="5bA-8y-jd8" id="8M0-xn-VhG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="LGc-b7-6qc"/>
                     <connections>
                         <outlet property="textField" destination="hBL-8E-dV6" id="fPE-5m-Ugz"/>
                     </connections>
