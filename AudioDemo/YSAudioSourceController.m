@@ -18,9 +18,14 @@
     [super viewDidLoad];
 }
 
+/**
+ *  Returns YES if the capture started.
+ */
 - (BOOL) startAudioCapture
 {
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
+
+    return NO;
 }
 
 - (void) stopAudioCapture:(float)elapsedTime
@@ -31,6 +36,8 @@
 - (YapBuilder *) getYapBuilder
 {
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
+
+    return nil;
 }
 
 - (void) resetUI{};
