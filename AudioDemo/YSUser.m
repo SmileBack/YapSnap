@@ -94,17 +94,26 @@ static YSUser *currentUser;
         return _displayName;
     }
     
+    _displayName = self.displayNameNotFromContacts;
+    
+    return _displayName;
+}
+
+- (NSString *) displayNameNotFromContacts
+{
+    NSString *name;
+
     NSString *first = self.displayFirstName;
     NSString *last = self.displayLastName;
     
     if ([@"" isEqualToString:first]) {
-        _displayName = last;
+        name = last;
     } else if ([@"" isEqualToString:last]) {
-        _displayName = first;
+        name = first;
     } else {
-        _displayName = [NSString stringWithFormat:@"%@ %@", first, last];
+        name = [NSString stringWithFormat:@"%@ %@", first, last];
     }
-    return _displayName;
+    return name;
 }
 
 - (NSString *) displayFirstName

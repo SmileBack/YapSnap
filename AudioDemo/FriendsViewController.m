@@ -94,7 +94,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_COLLAPSED forIndexPath:indexPath];
     }
     
-    cell.nameLabel.text = user.displayName;
+    cell.nameLabel.text = indexPath.section == 0 ? user.displayNameNotFromContacts : user.displayName;
     [cell.nameLabel sizeToFit];
     
     cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score.intValue];
