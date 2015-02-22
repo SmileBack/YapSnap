@@ -176,8 +176,12 @@ static NSString *CellIdentifier = @"Cell";
         
         // UNOPENED
         if (!yap.wasOpened) {
-            cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
-            cellIcon.image = [UIImage imageNamed:@"BlueArrow2.png"];
+            if (yap.isPending) {
+                cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Pending" , [self.dateFormatter stringFromDate:yap.createdAt]];
+            } else {
+                cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
+                cellIcon.image = [UIImage imageNamed:@"BlueArrow2.png"];
+            }
         
         // OPENED
         } else if (yap.wasOpened) {
@@ -243,31 +247,34 @@ static NSString *CellIdentifier = @"Cell";
         if (yap.receivedByCurrentUser) {
             if (yap.wasOpened) {
                 YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-                cell.createdTimeLabel.text = @"Double Tap to Reply";
                 cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
+
+                cell.createdTimeLabel.text = @"Double Tap to Reply";
+
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 });
             } else if (!yap.wasOpened) {
                 [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
             }
+            
         } else if (yap.sentByCurrentUser) {
+            YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
+            
             if (yap.wasOpened) {
-                YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@ opened your yap", yap.displayReceiverName];
-                cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                });
             } else if (!yap.wasOpened) {
-                YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-                cell.createdTimeLabel.text = @"Your yap has been delivered";
-                cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                });
-            // Once pending status is added: "Dan will see your yap once he/she joins"
+                if (yap.isPending) {
+                    cell.createdTimeLabel.text = [NSString stringWithFormat:@"Yap will be delivered when %@ joins",  yap.displayReceiverName];
+                } else {
+                    cell.createdTimeLabel.text = @"Your yap has been delivered";
+                }
             }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            });
         }
     }
 }

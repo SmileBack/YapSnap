@@ -88,6 +88,11 @@
     return [@"opened" isEqualToString:self.status];
 }
 
+- (BOOL) isPending
+{
+    return [@"pending" isEqualToString:self.status];
+}
+
 - (BOOL) sentByCurrentUser
 {
     return [self.senderID isEqualToNumber:[YSUser currentUser].userID];

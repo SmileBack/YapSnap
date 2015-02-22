@@ -32,6 +32,7 @@
 
     self.tableView.rowHeight = 50;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor colorWithRed:205.0f/255.0f green:220.0f/255.0f blue:235.0f/255.0f alpha:0.95]];
     
     self.navigationItem.title = @"Friends";
 
@@ -106,7 +107,7 @@
     cell.nameLabel.text = indexPath.section == 0 ? user.displayNameNotFromContacts : user.displayName;
     [cell.nameLabel sizeToFit];
     
-    cell.scoreLabel.text = [NSString stringWithFormat:@"-%d-", user.score.intValue];
+    cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score.intValue];
     [cell.scoreLabel sizeToFit];
     
     return cell;
@@ -190,7 +191,7 @@
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return section == 0 ? @"You" : @"Friends";
+    return section == 0 ? @"You" : [NSString stringWithFormat:@"Friends (%lu)", (unsigned long)self.friends.count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
