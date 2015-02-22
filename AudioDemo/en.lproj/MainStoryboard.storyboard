@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -98,7 +98,7 @@
                                     <constraint firstAttribute="width" constant="30" id="bJG-qI-eOv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" backgroundImage="SquareOutlineRed.png">
+                                <state key="normal" backgroundImage="YapsButtonRed.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -488,23 +488,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPR-Eu-HNk">
-                                                    <rect key="frame" x="8" y="8" width="45.5" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="16" y="8" width="48" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-8O-5rY">
-                                                    <rect key="frame" x="283" y="8" width="29" height="21"/>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-8O-5rY">
+                                                    <rect key="frame" x="278" y="8" width="29" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="w9x-8O-5rY" firstAttribute="trailing" secondItem="Jlw-my-iup" secondAttribute="trailingMargin" id="62W-eE-bkb"/>
+                                                <constraint firstItem="w9x-8O-5rY" firstAttribute="trailing" secondItem="Jlw-my-iup" secondAttribute="trailingMargin" constant="-5" id="62W-eE-bkb"/>
                                                 <constraint firstItem="KPR-Eu-HNk" firstAttribute="top" secondItem="Jlw-my-iup" secondAttribute="topMargin" id="eTn-3r-Z0P"/>
                                                 <constraint firstItem="w9x-8O-5rY" firstAttribute="top" secondItem="Jlw-my-iup" secondAttribute="topMargin" id="lfw-cg-Rvy"/>
-                                                <constraint firstItem="KPR-Eu-HNk" firstAttribute="leading" secondItem="Jlw-my-iup" secondAttribute="leadingMargin" id="qqi-NA-kvO"/>
+                                                <constraint firstItem="KPR-Eu-HNk" firstAttribute="leading" secondItem="Jlw-my-iup" secondAttribute="leadingMargin" constant="8" id="qqi-NA-kvO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -519,50 +519,50 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Large Cell" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8e-t2-7lm" userLabel="Name">
-                                                    <rect key="frame" x="8" y="8" width="77.5" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="16" y="8" width="81" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRR-Pr-o2A">
-                                                    <rect key="frame" x="30" y="32" width="176" height="21"/>
+                                                    <rect key="frame" x="42" y="33" width="176" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend 3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZY6-9W-qIu">
-                                                    <rect key="frame" x="30" y="74" width="176" height="21"/>
+                                                    <rect key="frame" x="42" y="75" width="176" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4VE-9w-Vfb">
-                                                    <rect key="frame" x="30" y="53" width="176" height="21"/>
+                                                    <rect key="frame" x="42" y="54" width="176" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwQ-he-lDm">
-                                                    <rect key="frame" x="283" y="8" width="29" height="20.5"/>
+                                                    <rect key="frame" x="278" y="8" width="29" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hns-Qz-Akp" userLabel="Image 1">
-                                                    <rect key="frame" x="8" y="33" width="20" height="20"/>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="YellowStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="hns-Qz-Akp" userLabel="Image 1">
+                                                    <rect key="frame" x="16" y="33" width="20" height="20"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4nE-gj-7Sm" userLabel="Image 2">
-                                                    <rect key="frame" x="8" y="54" width="20" height="20"/>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="YellowStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="4nE-gj-7Sm" userLabel="Image 2">
+                                                    <rect key="frame" x="16" y="54" width="20" height="20"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ea-7L-q0v" userLabel="Image 3">
-                                                    <rect key="frame" x="8" y="75" width="20" height="20"/>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="YellowStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="2ea-7L-q0v" userLabel="Image 3">
+                                                    <rect key="frame" x="16" y="75" width="20" height="20"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="MwQ-he-lDm" firstAttribute="top" secondItem="VtK-kq-5Zi" secondAttribute="topMargin" id="2H0-yr-2Kf"/>
-                                                <constraint firstItem="MwQ-he-lDm" firstAttribute="trailing" secondItem="VtK-kq-5Zi" secondAttribute="trailingMargin" id="Kqi-3I-9jW"/>
+                                                <constraint firstItem="MwQ-he-lDm" firstAttribute="trailing" secondItem="VtK-kq-5Zi" secondAttribute="trailingMargin" constant="-5" id="Kqi-3I-9jW"/>
                                                 <constraint firstItem="z8e-t2-7lm" firstAttribute="top" secondItem="VtK-kq-5Zi" secondAttribute="topMargin" id="hVz-1O-obK"/>
-                                                <constraint firstItem="z8e-t2-7lm" firstAttribute="leading" secondItem="VtK-kq-5Zi" secondAttribute="leadingMargin" id="zdB-aL-5z0"/>
+                                                <constraint firstItem="z8e-t2-7lm" firstAttribute="leading" secondItem="VtK-kq-5Zi" secondAttribute="leadingMargin" constant="8" id="zdB-aL-5z0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -582,6 +582,24 @@
                                     <outlet property="delegate" destination="IdD-6v-OZr" id="c0b-90-dYp"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H5l-NO-JDy">
+                                <rect key="frame" x="0.0" y="374" width="320" height="130"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yuO-zt-d2M">
+                                        <rect key="frame" x="140" y="80" width="40" height="40"/>
+                                        <state key="normal" title="Button" image="CancelImageWhiteCircle.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To add a friend, just send that person a yap. If they open it, they'll become your friend." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITT-tX-hG0">
+                                        <rect key="frame" x="15" y="9" width="290" height="59"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.21830097380445901" blue="0.44227100015642706" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1188,7 +1206,8 @@
         <image name="RedCircleSmall.png" width="67" height="67"/>
         <image name="SettingsIconWhite6.png" width="44" height="44"/>
         <image name="SpotifyModeButton.png" width="316" height="89"/>
-        <image name="SquareOutlineRed.png" width="128" height="128"/>
+        <image name="YapsButtonRed.png" width="60" height="60"/>
+        <image name="YellowStar.png" width="40" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -1196,8 +1215,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wu3-lb-fb7"/>
+        <segue reference="Enn-ka-dSJ"/>
+        <segue reference="AEp-MY-7pq"/>
         <segue reference="gZs-IQ-BYb"/>
-        <segue reference="syO-tE-hvG"/>
     </inferredMetricsTieBreakers>
 </document>

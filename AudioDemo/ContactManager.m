@@ -275,6 +275,7 @@ static ContactManager *sharedInstance;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults removeObjectForKey:RECENT_CONTACTS_KEY];
         [defaults synchronize];
+        //TODO: Add Mixpanel track
     }
 }
 

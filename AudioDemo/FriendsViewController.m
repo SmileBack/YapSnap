@@ -31,8 +31,9 @@
     [super viewDidLoad];
 
     self.tableView.rowHeight = 50;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    self.navigationItem.title = @"Your Friends";
+    self.navigationItem.title = @"Friends";
 
     __weak FriendsViewController *weakSelf = self;
     [[API sharedAPI] friends:^(NSArray *friends, NSError *error) {
@@ -105,7 +106,7 @@
     cell.nameLabel.text = indexPath.section == 0 ? user.displayNameNotFromContacts : user.displayName;
     [cell.nameLabel sizeToFit];
     
-    cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score.intValue];
+    cell.scoreLabel.text = [NSString stringWithFormat:@"-%d-", user.score.intValue];
     [cell.scoreLabel sizeToFit];
     
     return cell;
@@ -190,6 +191,11 @@
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return section == 0 ? @"You" : @"Friends";
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40.0f;
 }
 
 - (NSMutableDictionary *) topFriendMap
