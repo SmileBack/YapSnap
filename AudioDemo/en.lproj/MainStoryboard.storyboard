@@ -892,9 +892,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sz6-r0-iUG">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sz6-r0-iUG">
                                 <rect key="frame" x="0.0" y="500" width="320" height="68"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="oZ2-v9-yIi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -904,9 +907,12 @@
                                     <action selector="didTapSignUpButton" destination="ikG-0Y-sVh" eventType="touchUpInside" id="GJF-e8-xQT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAn-72-FyX">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAn-72-FyX">
                                 <rect key="frame" x="0.0" y="431" width="320" height="68"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="Zmo-ww-F5b"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Log In">
                                     <color key="titleColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -916,8 +922,11 @@
                                     <action selector="didTapLogInButton" destination="ikG-0Y-sVh" eventType="touchUpInside" id="7sw-hd-CFe"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YapTap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIg-LB-ROP">
-                                <rect key="frame" x="0.0" y="121" width="320" height="91"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YapTap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIg-LB-ROP">
+                                <rect key="frame" x="0.0" y="121" width="320" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="nz1-mu-VNC"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="60"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -927,6 +936,17 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="OIg-LB-ROP" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="AJe-SU-ZI6"/>
+                            <constraint firstItem="Sz6-r0-iUG" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="BIC-Zz-0Hq"/>
+                            <constraint firstItem="BAn-72-FyX" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="F7a-Ix-hDh"/>
+                            <constraint firstAttribute="trailing" secondItem="Sz6-r0-iUG" secondAttribute="trailing" id="b0h-4M-Q3C"/>
+                            <constraint firstItem="OIg-LB-ROP" firstAttribute="top" secondItem="a23-SI-tr9" secondAttribute="bottom" constant="57" id="ec0-nP-Mip"/>
+                            <constraint firstItem="ahr-YS-Ciy" firstAttribute="top" secondItem="Sz6-r0-iUG" secondAttribute="bottom" id="mP2-Dh-6aa"/>
+                            <constraint firstItem="Sz6-r0-iUG" firstAttribute="top" secondItem="BAn-72-FyX" secondAttribute="bottom" constant="1" id="naX-2m-vAf"/>
+                            <constraint firstAttribute="trailing" secondItem="BAn-72-FyX" secondAttribute="trailing" id="qzi-lZ-oby"/>
+                            <constraint firstAttribute="trailing" secondItem="OIg-LB-ROP" secondAttribute="trailing" id="rrh-Vy-RFW"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cYn-UL-OuG"/>
                     <connections>
