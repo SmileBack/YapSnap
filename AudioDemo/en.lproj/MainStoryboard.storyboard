@@ -68,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eqw-WM-wJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1308" y="-664"/>
+            <point key="canvasLocation" x="1638" y="-1202"/>
         </scene>
         <!--Audio Capture View Controller-->
         <scene sceneID="5">
@@ -463,7 +463,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1308" y="-92"/>
+            <point key="canvasLocation" x="1638" y="-630"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="oVZ-24-JgD">
@@ -592,7 +592,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dqY-2D-Jm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2130" y="153"/>
+            <point key="canvasLocation" x="2312" y="-171"/>
         </scene>
         <!--Add Text View Controller-->
         <scene sceneID="xd9-E1-nLy">
@@ -688,7 +688,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3i7-3r-yTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="792" y="-92"/>
+            <point key="canvasLocation" x="1122" y="-630"/>
         </scene>
         <!--Yaps View Controller-->
         <scene sceneID="XHH-iK-vw0">
@@ -788,7 +788,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-WI-Tyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1308" y="677"/>
+            <point key="canvasLocation" x="1388" y="243"/>
         </scene>
         <!--PlaybackVC-->
         <scene sceneID="Z9q-A6-PA1">
@@ -878,7 +878,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XYH-W9-ahW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1928" y="1129"/>
+            <point key="canvasLocation" x="2312" y="707"/>
         </scene>
         <!--Landing Page View Controller-->
         <scene sceneID="2Ef-Fx-7Lp">
@@ -1171,7 +1171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYb-Fr-0gL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="787" y="-664"/>
+            <point key="canvasLocation" x="1117" y="-1202"/>
         </scene>
     </scenes>
     <resources>
@@ -1196,8 +1196,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wu3-lb-fb7"/>
         <segue reference="gZs-IQ-BYb"/>
-        <segue reference="syO-tE-hvG"/>
+        <segue reference="Enn-ka-dSJ"/>
+        <segue reference="czb-n6-hbf"/>
     </inferredMetricsTieBreakers>
 </document>
