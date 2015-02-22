@@ -6,15 +6,19 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>31DE6A2B-ADCD-4C61-80A2-8C0EB3FB9BD9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>YapSnap</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A7EC910BD8BA49416F00C663F4513327437A4D70</key>
 		<string>https://github.com/SmileBack/YapSnap.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>YapSnap.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A7EC910BD8BA49416F00C663F4513327437A4D70</key>
-		<string>yapsnap/</string>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/SmileBack/YapSnap.git</string>
@@ -30,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>A7EC910BD8BA49416F00C663F4513327437A4D70</string>
 			<key>IDESourceControlWCCName</key>
-			<string>yapsnap</string>
+			<string>YapSnap</string>
 		</dict>
 	</array>
 </dict>
