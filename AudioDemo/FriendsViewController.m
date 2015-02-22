@@ -32,7 +32,7 @@
 
     self.tableView.rowHeight = 50;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor colorWithRed:205.0f/255.0f green:220.0f/255.0f blue:235.0f/255.0f alpha:0.95]];
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:0.99]];
     
     self.navigationItem.title = @"Friends";
 
