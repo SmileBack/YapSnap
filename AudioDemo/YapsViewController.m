@@ -245,7 +245,7 @@ static NSString *CellIdentifier = @"Cell";
     } else {        
         YSYap *yap = self.yaps[indexPath.row];
         if (yap.receivedByCurrentUser) {
-            /*if (yap.wasOpened) {
+            if (yap.wasOpened) {
                 YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
                 cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
 
@@ -254,9 +254,9 @@ static NSString *CellIdentifier = @"Cell";
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 });
-            } else if (!yap.wasOpened) { */
+            } else if (!yap.wasOpened) {
                 [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
-          //  }
+            }
             
         } else if (yap.sentByCurrentUser) {
             YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];

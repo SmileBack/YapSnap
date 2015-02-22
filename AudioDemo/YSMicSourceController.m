@@ -110,18 +110,14 @@
         [self.player stop];
     }
 
-    double delay = 0.3;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // Start recording
-        [self.recorder record];
+    [self.recorder record];
 
-        AVAudioSession *session = [AVAudioSession sharedInstance];
-        [session setActive:YES error:nil];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
-        
-        self.microphone.image = [UIImage imageNamed:@"Microphone_Gray2.png"];
-    });
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setActive:YES error:nil];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
+    
+    self.microphone.image = [UIImage imageNamed:@"Microphone_Gray2.png"];
     
     return YES;
 }
