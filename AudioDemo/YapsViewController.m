@@ -176,11 +176,11 @@ static NSString *CellIdentifier = @"Cell";
         
         // UNOPENED
         if (!yap.wasOpened) {
+            cellIcon.image = [UIImage imageNamed:@"BlueArrow2.png"];
             if (yap.isPending) {
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Pending" , [self.dateFormatter stringFromDate:yap.createdAt]];
             } else {
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
-                cellIcon.image = [UIImage imageNamed:@"BlueArrow2.png"];
             }
         
         // OPENED
@@ -245,7 +245,7 @@ static NSString *CellIdentifier = @"Cell";
     } else {        
         YSYap *yap = self.yaps[indexPath.row];
         if (yap.receivedByCurrentUser) {
-            if (yap.wasOpened) {
+            /*if (yap.wasOpened) {
                 YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
                 cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
 
@@ -254,9 +254,9 @@ static NSString *CellIdentifier = @"Cell";
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 });
-            } else if (!yap.wasOpened) {
+            } else if (!yap.wasOpened) { */
                 [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
-            }
+          //  }
             
         } else if (yap.sentByCurrentUser) {
             YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
@@ -266,7 +266,7 @@ static NSString *CellIdentifier = @"Cell";
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@ opened your yap", yap.displayReceiverName];
             } else if (!yap.wasOpened) {
                 if (yap.isPending) {
-                    cell.createdTimeLabel.text = [NSString stringWithFormat:@"Yap will be delivered when %@ joins",  yap.displayReceiverName];
+                    cell.createdTimeLabel.text = [NSString stringWithFormat:@"Yap will be delivered once %@ joins",  yap.displayReceiverName];
                 } else {
                     cell.createdTimeLabel.text = @"Your yap has been delivered";
                 }

@@ -583,16 +583,16 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H5l-NO-JDy">
-                                <rect key="frame" x="0.0" y="374" width="320" height="130"/>
+                                <rect key="frame" x="0.0" y="386" width="320" height="118"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yuO-zt-d2M">
-                                        <rect key="frame" x="140" y="80" width="40" height="40"/>
+                                        <rect key="frame" x="140" y="68" width="40" height="40"/>
                                         <state key="normal" title="Button" image="CancelImageWhiteCircle.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To add a friend, just send that person a yap. If they open it, they'll become your friend." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITT-tX-hG0">
-                                        <rect key="frame" x="15" y="9" width="290" height="59"/>
+                                        <rect key="frame" x="15" y="5" width="290" height="59"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>

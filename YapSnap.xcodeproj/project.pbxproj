@@ -50,6 +50,7 @@
 		784E35E81A633B3B0029AA01 /* RecordModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35E71A633B3B0029AA01 /* RecordModeButton.png */; };
 		784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */; };
 		784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35EF1A65A0ED0029AA01 /* PencilIcon.png */; };
+		7863B5DD1A99A25F00531CED /* sound1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7863B5DC1A99A25F00531CED /* sound1.wav */; };
 		786D910F1A6EEA5000177E25 /* BlueArrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D910E1A6EEA5000177E25 /* BlueArrow2.png */; };
 		786D91131A6EEEDE00177E25 /* BlueArrowWhiteFilling.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91121A6EEEDE00177E25 /* BlueArrowWhiteFilling.png */; };
 		786D91151A6EF0C800177E25 /* GrayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91141A6EF0C800177E25 /* GrayArrow.png */; };
@@ -179,6 +180,7 @@
 		784E35E71A633B3B0029AA01 /* RecordModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordModeButton.png; sourceTree = "<group>"; };
 		784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum@2x.png"; sourceTree = "<group>"; };
 		784E35EF1A65A0ED0029AA01 /* PencilIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PencilIcon.png; sourceTree = "<group>"; };
+		7863B5DC1A99A25F00531CED /* sound1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound1.wav; sourceTree = "<group>"; };
 		786D910E1A6EEA5000177E25 /* BlueArrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueArrow2.png; sourceTree = "<group>"; };
 		786D91121A6EEEDE00177E25 /* BlueArrowWhiteFilling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueArrowWhiteFilling.png; sourceTree = "<group>"; };
 		786D91141A6EF0C800177E25 /* GrayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrayArrow.png; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				787C84DC1A76CAAD005D80D5 /* pew-pew-lei.caf */,
+				7863B5DC1A99A25F00531CED /* sound1.wav */,
 				37D413B219D217FF00021548 /* Fonts */,
 				784C67E01A6253CE0084894D /* MusicIcon@2x.png */,
 				786D911A1A6EF6AF00177E25 /* listen_on_spotify-black.png */,
@@ -771,6 +774,7 @@
 				780005AA1A70EE69005E6CD4 /* listen_on_spotify-black-long3.png in Resources */,
 				784C67E41A625D110084894D /* ProgressViewBackgroundRed.png in Resources */,
 				7885B2281A8DE53100B230A0 /* WhiteBackArrow5@2x.png in Resources */,
+				7863B5DD1A99A25F00531CED /* sound1.wav in Resources */,
 				784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */,
 				787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */,
 				F44B0C5C16DA404700E6CD88 /* MainStoryboard.storyboard in Resources */,
