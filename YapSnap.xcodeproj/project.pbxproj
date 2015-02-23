@@ -102,6 +102,7 @@
 		FC52C1B41A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1B31A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m */; };
 		FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC609BC21A3CC24500182F08 /* SpotifyAPI.m */; };
 		FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */; };
+		FC865CC11A9A7B2B003AFAFA /* UIViewController+ScreenSize.m in Sources */ = {isa = PBXBuildFile; fileRef = FC865CC01A9A7B2B003AFAFA /* UIViewController+ScreenSize.m */; };
 		FCAA32901A8C2FD900FDCC78 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA328F1A8C2FD900FDCC78 /* UserCell.m */; };
 		FCAFD5A31A8AE6410030B923 /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAFD5A21A8AE6410030B923 /* UIViewController+Alerts.m */; };
 		FCB13C3B1A98FF9400DE5A61 /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = 787C84DC1A76CAAD005D80D5 /* pew-pew-lei.caf */; };
@@ -255,6 +256,8 @@
 		FC609BC21A3CC24500182F08 /* SpotifyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPI.m; sourceTree = "<group>"; };
 		FC80F3CF1A3CC6BD00F7ABD0 /* YSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTrack.h; sourceTree = "<group>"; };
 		FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSTrack.m; sourceTree = "<group>"; };
+		FC865CBF1A9A7B2B003AFAFA /* UIViewController+ScreenSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ScreenSize.h"; sourceTree = "<group>"; };
+		FC865CC01A9A7B2B003AFAFA /* UIViewController+ScreenSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ScreenSize.m"; sourceTree = "<group>"; };
 		FCAA328E1A8C2FD900FDCC78 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		FCAA328F1A8C2FD900FDCC78 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		FCAFD5A11A8AE6410030B923 /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
@@ -651,6 +654,8 @@
 			children = (
 				FCAFD5A11A8AE6410030B923 /* UIViewController+Alerts.h */,
 				FCAFD5A21A8AE6410030B923 /* UIViewController+Alerts.m */,
+				FC865CBF1A9A7B2B003AFAFA /* UIViewController+ScreenSize.h */,
+				FC865CC01A9A7B2B003AFAFA /* UIViewController+ScreenSize.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -865,6 +870,7 @@
 				FC1E89B81A4B852C007A8CDA /* SpotifyTrackView.m in Sources */,
 				FCEF99401A6D7BF2000FDE4C /* YapCell.m in Sources */,
 				FC029EA21A96BC190013B866 /* YSContact.m in Sources */,
+				FC865CC11A9A7B2B003AFAFA /* UIViewController+ScreenSize.m in Sources */,
 				FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */,
 				374383E019CE29880009C323 /* EnterPhoneNumberViewController.m in Sources */,
 				F44B0C5316DA404700E6CD88 /* AppDelegate.m in Sources */,
