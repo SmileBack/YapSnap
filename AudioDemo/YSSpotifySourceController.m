@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *musicIcon;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic, strong) NSString *alertViewString;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 @end
 
@@ -114,6 +115,11 @@
         [self search:self.searchBox.text];
         [self.view endEditing:YES];
         
+        self.songs = nil;
+        [self.carousel reloadData];
+        self.musicIcon.hidden = YES;
+        [self.loadingIndicator startAnimating];
+        
         //Remove extra space at end of string
         self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
@@ -146,7 +152,7 @@
                 self.musicIcon.hidden = NO;
             } else {
                 NSLog(@"Returned Songs Successfully");
-                self.musicIcon.hidden = YES;
+                [self.loadingIndicator stopAnimating];
             }
         } else if (error) {
             if ([self internetIsNotReachable]) {
