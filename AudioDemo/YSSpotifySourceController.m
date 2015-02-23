@@ -155,6 +155,7 @@
                 [self.loadingIndicator stopAnimating];
             }
         } else if (error) {
+            self.musicIcon.hidden = NO;
             if ([self internetIsNotReachable]) {
                 [self showNoInternetAlert];
             } else {
@@ -384,8 +385,6 @@
         [alert show];
         return NO;
     } else {
-        self.musicIcon.hidden = YES;
-        
         //Disable User Interactions
         [self.carousel setUserInteractionEnabled:NO];
         self.searchBox.enabled = NO;
