@@ -23,6 +23,10 @@
 @property (nonatomic, strong) NSArray *friends;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) NSMutableDictionary *topFriendMap; //Friend ID :: Top friends array
+@property (strong, nonatomic) IBOutlet UIView *friendsExplanationView;
+
+- (IBAction)tappedCancelFeedbackExplanationButton;
+
 @end
 
 @implementation FriendsViewController
@@ -55,6 +59,18 @@
             [weakSelf.tableView reloadData];
         }
     }];
+    
+    if (!self.didTapCancelFeedbackExplanationButton) {
+        self.friendsExplanationView.hidden = NO;
+    }
+    
+    [UIView animateWithDuration:1
+                          delay:.2
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.friendsExplanationView.frame = CGRectMake(0, 0, 320, 118);
+                     }
+                     completion:nil];
 }
 
 
@@ -205,6 +221,29 @@
         _topFriendMap = [NSMutableDictionary new];
     }
     return _topFriendMap;
+}
+
+- (void) tappedCancelFeedbackExplanationButton
+{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FRIENDS_EXPLANATION_TAPPED_CANCEL_BUTTON_KEY];
+    [UIView animateWithDuration:1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.friendsExplanationView.frame = CGRectMake(0, screenHeight, 320, 118);
+                     }
+                     completion:^(BOOL finished) {
+                         self.friendsExplanationView.hidden = YES;
+                     }];
+}
+
+- (BOOL) didTapCancelFeedbackExplanationButton
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:FRIENDS_EXPLANATION_TAPPED_CANCEL_BUTTON_KEY];
+    
 }
 
 @end

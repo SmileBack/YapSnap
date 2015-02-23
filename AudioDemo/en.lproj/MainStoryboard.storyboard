@@ -586,7 +586,7 @@
                                     <outlet property="delegate" destination="IdD-6v-OZr" id="c0b-90-dYp"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H5l-NO-JDy">
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H5l-NO-JDy">
                                 <rect key="frame" x="0.0" y="386" width="320" height="118"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yuO-zt-d2M">
@@ -594,6 +594,9 @@
                                         <state key="normal" title="Button" image="CancelImageWhiteCircle.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="tappedCancelFeedbackExplanationButton" destination="IdD-6v-OZr" eventType="touchUpInside" id="nep-dK-Dmu"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To add a friend, just send that person a yap. If they open it, they'll become your friend." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITT-tX-hG0">
                                         <rect key="frame" x="15" y="5" width="290" height="59"/>
@@ -609,6 +612,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="PbR-9m-qzC"/>
                     <connections>
+                        <outlet property="friendsExplanationView" destination="H5l-NO-JDy" id="MTH-MG-3Sh"/>
                         <outlet property="tableView" destination="jGg-FF-Oxq" id="XAx-Qp-6mJ"/>
                     </connections>
                 </viewController>
