@@ -18,6 +18,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #import "ContactManager.h"
+#import "YSPushManager.h"
 
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -25,8 +26,9 @@
 @property (nonatomic, strong) PlaybackVC *playbackVC;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
-
 @property (nonatomic, strong) YSYap *yapToBlock; //Saved when the AlertView is shown
+@property (strong, nonatomic) IBOutlet UIView *pushEnabledView;
+
 @end
 
 static NSString *CellIdentifier = @"Cell";
@@ -66,6 +68,10 @@ static NSString *CellIdentifier = @"Cell";
     [self setupNotifications];
 
     [self setupTableViewGestureRecognizers];
+    
+    if (![YSPushManager sharedPushManager].pushEnabled) {
+        self.pushEnabledView.hidden = NO;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated

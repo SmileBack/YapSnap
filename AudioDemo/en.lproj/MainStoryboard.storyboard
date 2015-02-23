@@ -788,6 +788,18 @@
                                     <outlet property="delegate" destination="Vua-bX-Wl1" id="lDD-PV-Xv9"/>
                                 </connections>
                             </tableView>
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zrU-oT-SXF">
+                                <rect key="frame" x="0.0" y="447" width="320" height="57"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Push notifications for YapTap are disabled in your phone's settings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQC-FA-zIG">
+                                        <rect key="frame" x="30" y="9" width="260" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.21830097379999999" blue="0.44227100019999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -806,6 +818,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="pushEnabledView" destination="zrU-oT-SXF" id="HaD-zy-P5U"/>
                         <outlet property="tableView" destination="hWh-h3-qO7" id="klJ-nF-XsM"/>
                         <segue destination="Dgp-JD-d1e" kind="modal" identifier="Playback Segue" animates="NO" id="LuI-mK-8FP"/>
                         <segue destination="IdD-6v-OZr" kind="push" identifier="Friends Segue" id="X3Y-yy-QzJ"/>
