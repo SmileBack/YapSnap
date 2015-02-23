@@ -9,6 +9,7 @@
 #import "API.h"
 #import "PhoneContact.h"
 #import "AmazonAPI.h"
+#import "YSPushManager.h"
 
 @interface API()
 
@@ -397,7 +398,8 @@ static API *sharedAPI;
     props[@"app_version"] = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     props[@"os_version"] = [[UIDevice currentDevice] systemVersion];
     props[@"os"] = @"iOS";
-
+    //props[@"push_enabled"] = [YSPushManager sharedPushManager].pushEnabled; TODO: make this work
+    
     NSDictionary *params = [self paramsWithDict:props];
 
     NSString *endpoint = @"users/self";
