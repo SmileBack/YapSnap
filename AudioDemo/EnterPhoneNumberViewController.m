@@ -22,6 +22,11 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topTextConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topPhoneConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonConstraint;
+
+
 - (IBAction)didTapContinueButton;
 
 @end
@@ -64,6 +69,13 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     self.titleLabel.text = self.titleLabelString;
+    
+    if (self.isiPhone4Size) {
+        CGFloat scale = .5f;
+        self.topTextConstraint.constant = 0;
+        self.topPhoneConstraint.constant *= scale;
+        self.buttonConstraint.constant *= scale;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

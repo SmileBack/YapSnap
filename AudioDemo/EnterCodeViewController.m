@@ -17,18 +17,13 @@
 
 - (IBAction)didTapContinueButton;
 
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topTextConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topPhoneConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonConstraint;
+
 @end
 
 @implementation EnterCodeViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -58,6 +53,13 @@
     
     [self makeNavBarTransparent];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+
+    if (self.isiPhone4Size) {
+        CGFloat scale = .5f;
+        self.topTextConstraint.constant = 0;
+        self.topPhoneConstraint.constant *= scale;
+        self.buttonConstraint.constant *= scale;
+    }
 }
 
 - (void)makeNavBarTransparent
