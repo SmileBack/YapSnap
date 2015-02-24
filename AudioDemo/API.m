@@ -9,6 +9,7 @@
 #import "API.h"
 #import "PhoneContact.h"
 #import "AmazonAPI.h"
+#import "YSPushManager.h"
 
 @interface API()
 
@@ -39,7 +40,8 @@ static API *sharedAPI;
 
 - (NSString *) serverUrl
 {
-    return @"http://yapsnap.herokuapp.com"; // production
+    //return @"http://yaptap-staging.herokuapp.com"; // production
+    return @"http://yaptap.herokuapp.com"; // production
     //return @"http://192.168.1.177:5000"; // local dev server
 }
 
@@ -397,7 +399,8 @@ static API *sharedAPI;
     props[@"app_version"] = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     props[@"os_version"] = [[UIDevice currentDevice] systemVersion];
     props[@"os"] = @"iOS";
-
+    props[@"push_enabled"] = [NSNumber numberWithBool:[YSPushManager sharedPushManager].pushEnabled];
+    
     NSDictionary *params = [self paramsWithDict:props];
 
     NSString *endpoint = @"users/self";

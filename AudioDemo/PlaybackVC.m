@@ -116,6 +116,11 @@
                                                      repeats:YES];
         [self.recordButtonSpinner stopAnimating];
         
+        // We muted yap recordings in ViewDidLoad because we want to cut out the first 0.25 seconds of the yap in order to cut out the notification tone
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+        });
+        
         CGFloat progressViewRemainderWidth = (10 - [self.yap.duration floatValue])*32;
         self.progressViewRemainder = [[UIView alloc] init];
         self.progressViewRemainder.frame = CGRectMake(320 - progressViewRemainderWidth, 64, progressViewRemainderWidth, 40);

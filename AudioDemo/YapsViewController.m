@@ -18,6 +18,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #import "ContactManager.h"
+#import "YSPushManager.h"
 
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -25,8 +26,9 @@
 @property (nonatomic, strong) PlaybackVC *playbackVC;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
-
 @property (nonatomic, strong) YSYap *yapToBlock; //Saved when the AlertView is shown
+@property (strong, nonatomic) IBOutlet UIView *pushEnabledView;
+
 @end
 
 static NSString *CellIdentifier = @"Cell";
@@ -66,6 +68,10 @@ static NSString *CellIdentifier = @"Cell";
     [self setupNotifications];
 
     [self setupTableViewGestureRecognizers];
+    
+    if (![YSPushManager sharedPushManager].pushEnabled) {
+        self.pushEnabledView.hidden = NO;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -106,7 +112,7 @@ static NSString *CellIdentifier = @"Cell";
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"popToBaseAudioCaptureController");
-                        [weakSelf popToBaseAudioCaptureController];
+                        [self popToBaseAudioCaptureController:NO];
                     }];
     
     [center addObserverForName:NOTIFICATION_YAP_OPENED
@@ -176,8 +182,12 @@ static NSString *CellIdentifier = @"Cell";
         
         // UNOPENED
         if (!yap.wasOpened) {
-            cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
             cellIcon.image = [UIImage imageNamed:@"BlueArrow2.png"];
+            if (yap.isPending) {
+                cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Pending" , [self.dateFormatter stringFromDate:yap.createdAt]];
+            } else {
+                cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
+            }
         
         // OPENED
         } else if (yap.wasOpened) {
@@ -243,31 +253,34 @@ static NSString *CellIdentifier = @"Cell";
         if (yap.receivedByCurrentUser) {
             if (yap.wasOpened) {
                 YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-                cell.createdTimeLabel.text = @"Double Tap to Reply";
                 cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
+
+                cell.createdTimeLabel.text = @"Double Tap to Reply";
+
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 });
             } else if (!yap.wasOpened) {
                 [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
             }
+            
         } else if (yap.sentByCurrentUser) {
+            YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
+            
             if (yap.wasOpened) {
-                YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@ opened your yap", yap.displayReceiverName];
-                cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                });
             } else if (!yap.wasOpened) {
-                YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-                cell.createdTimeLabel.text = @"Your yap has been delivered";
-                cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                });
-            // Once pending status is added: "Dan will see your yap once he/she joins"
+                if (yap.isPending) {
+                    cell.createdTimeLabel.text = [NSString stringWithFormat:@"Yap will be delivered once %@ joins",  yap.displayReceiverName];
+                } else {
+                    cell.createdTimeLabel.text = @"Your yap has been delivered";
+                }
             }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            });
         }
     }
 }
@@ -376,24 +389,30 @@ static NSString *CellIdentifier = @"Cell";
     [alert show];
 }
 
-- (void) popToBaseAudioCaptureController
+- (void) popToBaseAudioCaptureController:(BOOL)animated
 {
     NSArray *vcs = self.navigationController.viewControllers;
     for (UIViewController *vc in vcs) {
         if ([vc isKindOfClass:[AudioCaptureViewController class]]) {
-            BOOL animated = [vcs indexOfObject:self] - 1 == [vcs indexOfObject:vc];
             if (!animated) {
+                [self.navigationController popToViewController:vc animated:NO];
                 AudioCaptureViewController *audioVC = (AudioCaptureViewController *)vc;
                 [audioVC resetUI];
+            } else {
+                BOOL animate = [vcs indexOfObject:self] - 1 == [vcs indexOfObject:vc];
+                if (!animate) {
+                    AudioCaptureViewController *audioVC = (AudioCaptureViewController *)vc;
+                    [audioVC resetUI];
+                }
+                [self.navigationController popToViewController:vc animated:animate];
+                break;
             }
-            [self.navigationController popToViewController:vc animated:animated];
-            break;
         }
     }
 }
 
 - (void)didTapGoToAudioCaptureButton {
-    [self popToBaseAudioCaptureController];
+    [self popToBaseAudioCaptureController:YES];
 }
 
 - (void) removeBlockedYap

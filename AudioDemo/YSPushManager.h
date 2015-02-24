@@ -21,6 +21,7 @@
 - (void) registerForNotifications;
 - (void) registeredWithDeviceToken:(NSData *)token;
 - (void) registrationFailedWithError:(NSError *) error;
+- (void) refresh;
 
 - (void) receivedNotification:(NSDictionary *)notification;
 @end

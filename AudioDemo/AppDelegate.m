@@ -92,6 +92,7 @@
     NSLog(@"Did Become Active");
     
     if ([YSUser currentUser] && [YSUser currentUser].userID) {
+        [[YSPushManager sharedPushManager] refresh];
         [[YSPushManager sharedPushManager] registerForNotifications];
     }
 }

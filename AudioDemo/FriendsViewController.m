@@ -23,6 +23,10 @@
 @property (nonatomic, strong) NSArray *friends;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) NSMutableDictionary *topFriendMap; //Friend ID :: Top friends array
+@property (strong, nonatomic) IBOutlet UIView *friendsExplanationView;
+
+- (IBAction)tappedCancelFeedbackExplanationButton;
+
 @end
 
 @implementation FriendsViewController
@@ -31,8 +35,10 @@
     [super viewDidLoad];
 
     self.tableView.rowHeight = 50;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:0.99]];
     
-    self.navigationItem.title = @"Your Friends";
+    self.navigationItem.title = @"Friends";
 
     __weak FriendsViewController *weakSelf = self;
     [[API sharedAPI] friends:^(NSArray *friends, NSError *error) {
@@ -53,6 +59,18 @@
             [weakSelf.tableView reloadData];
         }
     }];
+    
+    if (!self.didTapCancelFeedbackExplanationButton) {
+        self.friendsExplanationView.hidden = NO;
+    }
+    
+    [UIView animateWithDuration:1
+                          delay:.2
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.friendsExplanationView.frame = CGRectMake(0, 0, 320, 118);
+                     }
+                     completion:nil];
 }
 
 
@@ -189,7 +207,12 @@
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return section == 0 ? @"You" : @"Friends";
+    return section == 0 ? @"You" : [NSString stringWithFormat:@"Friends (%lu)", (unsigned long)self.friends.count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40.0f;
 }
 
 - (NSMutableDictionary *) topFriendMap
@@ -198,6 +221,29 @@
         _topFriendMap = [NSMutableDictionary new];
     }
     return _topFriendMap;
+}
+
+- (void) tappedCancelFeedbackExplanationButton
+{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FRIENDS_EXPLANATION_TAPPED_CANCEL_BUTTON_KEY];
+    [UIView animateWithDuration:1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.friendsExplanationView.frame = CGRectMake(0, screenHeight, 320, 118);
+                     }
+                     completion:^(BOOL finished) {
+                         self.friendsExplanationView.hidden = YES;
+                     }];
+}
+
+- (BOOL) didTapCancelFeedbackExplanationButton
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:FRIENDS_EXPLANATION_TAPPED_CANCEL_BUTTON_KEY];
+    
 }
 
 @end

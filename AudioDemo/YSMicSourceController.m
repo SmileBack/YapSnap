@@ -90,9 +90,9 @@
     [self.recorder prepareToRecord];
 }
 
-- (void) playSound
+- (void) playMicNotificationSound
 {
-    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"pew-pew-lei" ofType:@"caf"];
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"sound1" ofType:@"wav"];
 
     NSURL *soundUrl = [NSURL fileURLWithPath:soundPath];
 
@@ -103,23 +103,22 @@
 #pragma mark - Public API Methods
 - (BOOL) startAudioCapture
 {
-    [self playSound];
+    [self playMicNotificationSound];
 
     // Stop the audio player before recording
     if (self.player.playing) {
         [self.player stop];
     }
 
-    // Start recording
     [self.recorder record];
 
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setActive:YES error:nil];
-
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
     
     self.microphone.image = [UIImage imageNamed:@"Microphone_Gray2.png"];
-
+    
     return YES;
 }
 

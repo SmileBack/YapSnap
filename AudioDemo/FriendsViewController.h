@@ -10,4 +10,6 @@
 
 @interface FriendsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
+#define FRIENDS_EXPLANATION_TAPPED_CANCEL_BUTTON_KEY @"yaptap.FriendsExplanationCancelled"
+
 @end
