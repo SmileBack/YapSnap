@@ -310,6 +310,8 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37D413C419D2229A00021548 /* YapSnap App Icon 114.png */,
+				37D413C319D221C800021548 /* YapSnap App Icon.png */,
 				787C84DC1A76CAAD005D80D5 /* pew-pew-lei.caf */,
 				7863B5DC1A99A25F00531CED /* sound1.wav */,
 				37D413B219D217FF00021548 /* Fonts */,
@@ -401,7 +403,8 @@
 				37D413BB19D21A1F00021548 /* UIColor+BButton.h */,
 				37D413BC19D21A1F00021548 /* UIColor+BButton.m */,
 			);
-			path = BButton;
+			name = BButton;
+			path = ../BButton;
 			sourceTree = "<group>";
 		};
 		37D413B919D21A1E00021548 /* resources */ = {
@@ -460,13 +463,7 @@
 		F44B0C3616DA404700E6CD88 = {
 			isa = PBXGroup;
 			children = (
-				787A6D941A4DD8A2001551C6 /* Crashlytics.framework */,
-				37D413C419D2229A00021548 /* YapSnap App Icon 114.png */,
-				37D413C319D221C800021548 /* YapSnap App Icon.png */,
-				F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */,
-				F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */,
 				F44B0C4816DA404700E6CD88 /* YapSnap */,
-				37D413B419D21A1E00021548 /* BButton */,
 				37695E5D19BB7A0B00C22E13 /* Resources */,
 				F44B0C4116DA404700E6CD88 /* Frameworks */,
 				F44B0C4016DA404700E6CD88 /* Products */,
@@ -485,6 +482,8 @@
 		F44B0C4116DA404700E6CD88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				787A6D941A4DD8A2001551C6 /* Crashlytics.framework */,
+				F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */,
 				7828A8DB1A846C0C00BAA609 /* MessageUI.framework */,
 				787C84DA1A76C77D005D80D5 /* AudioToolbox.framework */,
 				37E122E51A4011560073684D /* QuartzCore.framework */,
@@ -508,6 +507,7 @@
 				F44B0C5116DA404700E6CD88 /* AppDelegate.h */,
 				F44B0C5216DA404700E6CD88 /* AppDelegate.m */,
 				37D413C519D2235C00021548 /* Images.xcassets */,
+				F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */,
 				F44B0C4916DA404700E6CD88 /* Supporting Files */,
 			);
 			name = YapSnap;
@@ -579,6 +579,7 @@
 		FC0C1D4D1A46065B00B148AB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				37D413B419D21A1E00021548 /* BButton */,
 				37695E6C19BBC78F00C22E13 /* JEProgressView.h */,
 				37695E6D19BBC78F00C22E13 /* JEProgressView.m */,
 				787C84DD1A7732E4005D80D5 /* PhoneNumberChecker.h */,
@@ -927,7 +928,6 @@
 				F44B0C5B16DA404700E6CD88 /* en */,
 			);
 			name = MainStoryboard.storyboard;
-			path = AudioDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
