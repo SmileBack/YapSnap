@@ -40,6 +40,7 @@ static API *sharedAPI;
 
 - (NSString *) serverUrl
 {
+    //return @"http://yaptap-staging.herokuapp.com"; // production
     return @"http://yaptap.herokuapp.com"; // production
     //return @"http://192.168.1.177:5000"; // local dev server
 }
