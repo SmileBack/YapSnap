@@ -44,11 +44,56 @@
     NSLog(@"About to disappear!");
     UIViewController *vc = [self.navigationController.viewControllers lastObject];
     if ([vc isKindOfClass:[SettingsViewController class]]) {
-        SettingsViewController *settingsVC = (SettingsViewController *)vc;
-        [settingsVC saveField:self.editingField withText:self.textField.text];
+        if ([EMAIL_SECTION isEqualToString:self.editingField]) {
+                if (![self NSStringIsValidEmail:self.textField.text]) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email didn't save"
+                                                                message:@"You didn't enter a valid email."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            } else {
+                SettingsViewController *settingsVC = (SettingsViewController *)vc;
+                [settingsVC saveField:self.editingField withText:self.textField.text];
+            }
+        } else if ([FIRST_NAME_SECTION isEqualToString:self.editingField]) {
+            if ([self.textField.text length] < 2) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name didn't save"
+                                                                message:@"You didn't enter a valid name."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            } else {
+                SettingsViewController *settingsVC = (SettingsViewController *)vc;
+                [settingsVC saveField:self.editingField withText:self.textField.text];
+            }
+        } else if ([LAST_NAME_SECTION isEqualToString:self.editingField]) {
+            if ([self.textField.text length] < 1) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name didn't save"
+                                                                message:@"You didn't enter a valid name."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            } else {
+                SettingsViewController *settingsVC = (SettingsViewController *)vc;
+                [settingsVC saveField:self.editingField withText:self.textField.text];
+            }
+        }
     }
 
     [super viewWillDisappear:animated];
+}
+
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = NO; // Discussion on the logic behind this code: blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
+    NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
+    NSString *laxString = @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
 }
 
 #pragma mark - Buttons
