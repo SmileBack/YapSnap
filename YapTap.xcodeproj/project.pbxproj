@@ -1021,7 +1021,7 @@
 				GCC_PREFIX_HEADER = "AudioDemo/YapTap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapTap-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "85ab4adc-3015-43b8-9986-83b9dd7cecea";
+				PROVISIONING_PROFILE = "818ef46f-3897-4b50-ab45-f78ab9f8ea3a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1044,7 +1044,7 @@
 				GCC_PREFIX_HEADER = "AudioDemo/YapTap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapTap-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "85ab4adc-3015-43b8-9986-83b9dd7cecea";
+				PROVISIONING_PROFILE = "1bcd33b5-1704-4491-a6d0-246954b51e48";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
