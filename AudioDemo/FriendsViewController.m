@@ -228,7 +228,7 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = screenRect.size.height;
     
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FRIENDS_EXPLANATION_TAPPED_CANCEL_BUTTON_KEY];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_CANCEL_BUTTON_ON_FRIENDS_EXPLANATION_VIEW_KEY];
     [UIView animateWithDuration:1
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -242,7 +242,7 @@
 
 - (BOOL) didTapCancelFeedbackExplanationButton
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:FRIENDS_EXPLANATION_TAPPED_CANCEL_BUTTON_KEY];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_CANCEL_BUTTON_ON_FRIENDS_EXPLANATION_VIEW_KEY];
     
 }
 

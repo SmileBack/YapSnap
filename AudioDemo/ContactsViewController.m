@@ -26,6 +26,8 @@
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *keyboardVerticalSpace;
 
+#define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
+
 @end
 
 static NSString *CellIdentifier = @"Cell";
@@ -313,6 +315,20 @@ static NSString *CellIdentifier = @"Cell";
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.selectedContacts];
                             [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
+                            
+                            double delay = 1.0;
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                if ([self.yapBuilder.messageType isEqual: @"SpotifyMessage"] && !self.didViewSpotifyAlert) {
+                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Heads Up"
+                                                                                    message:@"When you send a song snippet on YapTap, the recipient can listen to the full song on Spotify!"
+                                                                                   delegate:nil
+                                                                          cancelButtonTitle:@"OK"
+                                                                          otherButtonTitles:nil];
+                                    [alert show];
+                                    [self viewedSpotifyAlert];
+                                }
+                            });
+                            
                         } else {
                             // uh oh spaghettios
                             // TODO: tell the user something went wrong
@@ -338,6 +354,18 @@ static NSString *CellIdentifier = @"Cell";
     NSPredicate *firstNamePredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[cd] %@", searchText];
     NSPredicate *fullPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[firstNamePredicate]];
     self.filteredContacts = [self.contacts filteredArrayUsingPredicate:fullPredicate];
+}
+
+#pragma mark - Spotify Alert Methods
+
+- (void) viewedSpotifyAlert
+{
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_SPOTIFY_ALERT_KEY];
+}
+
+- (BOOL) didViewSpotifyAlert
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SPOTIFY_ALERT_KEY];
 }
 
 @end
