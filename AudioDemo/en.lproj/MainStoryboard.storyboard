@@ -586,7 +586,7 @@
                                     <outlet property="delegate" destination="IdD-6v-OZr" id="c0b-90-dYp"/>
                                 </connections>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H5l-NO-JDy">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5l-NO-JDy">
                                 <rect key="frame" x="0.0" y="386" width="320" height="118"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yuO-zt-d2M">
@@ -606,9 +606,17 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.21830097380445901" blue="0.44227100015642706" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="118" id="6VC-rJ-R6E"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="H5l-NO-JDy" secondAttribute="bottom" id="K2o-44-0n6"/>
+                            <constraint firstAttribute="trailing" secondItem="H5l-NO-JDy" secondAttribute="trailing" id="NaZ-Ig-VK0"/>
+                            <constraint firstItem="H5l-NO-JDy" firstAttribute="leading" secondItem="F6W-sY-6UP" secondAttribute="leading" id="Yvg-gW-pXr"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PbR-9m-qzC"/>
                     <connections>
@@ -788,7 +796,7 @@
                                     <outlet property="delegate" destination="Vua-bX-Wl1" id="lDD-PV-Xv9"/>
                                 </connections>
                             </tableView>
-                            <view hidden="YES" alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zrU-oT-SXF">
+                            <view hidden="YES" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrU-oT-SXF">
                                 <rect key="frame" x="0.0" y="447" width="320" height="57"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Push notifications for YapTap are disabled in your phone's settings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQC-FA-zIG">
@@ -799,9 +807,17 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.21830097379999999" blue="0.44227100019999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="AyZ-cb-dEs"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zrU-oT-SXF" firstAttribute="leading" secondItem="c1Z-FI-M5X" secondAttribute="leading" id="db0-5n-KLr"/>
+                            <constraint firstAttribute="trailing" secondItem="zrU-oT-SXF" secondAttribute="trailing" id="fyT-MR-jXX"/>
+                            <constraint firstAttribute="bottom" secondItem="zrU-oT-SXF" secondAttribute="bottom" id="h5x-bR-9J2"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vaK-d3-AtD">
                         <barButtonItem key="leftBarButtonItem" image="MicrophoneWhiteSmall2.png" id="B8h-I6-JOI">
@@ -1346,8 +1362,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wu3-lb-fb7"/>
-        <segue reference="gZs-IQ-BYb"/>
+        <segue reference="Enn-ka-dSJ"/>
         <segue reference="AEp-MY-7pq"/>
+        <segue reference="gZs-IQ-BYb"/>
     </inferredMetricsTieBreakers>
 </document>
