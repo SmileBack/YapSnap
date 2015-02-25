@@ -218,14 +218,14 @@
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA961E944F5B46EDE7E7229C /* Pods-YapSnap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.release.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.release.xcconfig"; sourceTree = "<group>"; };
-		F44B0C3F16DA404700E6CD88 /* YapSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YapSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F44B0C3F16DA404700E6CD88 /* YapTap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YapTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44B0C4216DA404700E6CD88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F44B0C4416DA404700E6CD88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F44B0C4616DA404700E6CD88 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		F44B0C4A16DA404700E6CD88 /* YapSnap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YapSnap-Info.plist"; sourceTree = "<group>"; };
+		F44B0C4A16DA404700E6CD88 /* YapTap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YapTap-Info.plist"; sourceTree = "<group>"; };
 		F44B0C4C16DA404700E6CD88 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F44B0C4E16DA404700E6CD88 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F44B0C5016DA404700E6CD88 /* YapSnap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YapSnap-Prefix.pch"; sourceTree = "<group>"; };
+		F44B0C5016DA404700E6CD88 /* YapTap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YapTap-Prefix.pch"; sourceTree = "<group>"; };
 		F44B0C5116DA404700E6CD88 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F44B0C5216DA404700E6CD88 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F44B0C5416DA404700E6CD88 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -483,7 +483,7 @@
 		F44B0C4016DA404700E6CD88 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F44B0C3F16DA404700E6CD88 /* YapSnap.app */,
+				F44B0C3F16DA404700E6CD88 /* YapTap.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -527,10 +527,10 @@
 		F44B0C4916DA404700E6CD88 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F44B0C4A16DA404700E6CD88 /* YapSnap-Info.plist */,
+				F44B0C4A16DA404700E6CD88 /* YapTap-Info.plist */,
 				F44B0C4B16DA404700E6CD88 /* InfoPlist.strings */,
 				F44B0C4E16DA404700E6CD88 /* main.m */,
-				F44B0C5016DA404700E6CD88 /* YapSnap-Prefix.pch */,
+				F44B0C5016DA404700E6CD88 /* YapTap-Prefix.pch */,
 				F44B0C5416DA404700E6CD88 /* Default.png */,
 				F44B0C5616DA404700E6CD88 /* Default@2x.png */,
 				F44B0C5816DA404700E6CD88 /* Default-568h@2x.png */,
@@ -708,9 +708,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F44B0C3E16DA404700E6CD88 /* YapSnap */ = {
+		F44B0C3E16DA404700E6CD88 /* YapTap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F44B0C6216DA404700E6CD88 /* Build configuration list for PBXNativeTarget "YapSnap" */;
+			buildConfigurationList = F44B0C6216DA404700E6CD88 /* Build configuration list for PBXNativeTarget "YapTap" */;
 			buildPhases = (
 				663B3BBE6A738F892933904C /* Check Pods Manifest.lock */,
 				F44B0C3B16DA404700E6CD88 /* Sources */,
@@ -723,9 +723,9 @@
 			);
 			dependencies = (
 			);
-			name = YapSnap;
+			name = YapTap;
 			productName = AudioDemo;
-			productReference = F44B0C3F16DA404700E6CD88 /* YapSnap.app */;
+			productReference = F44B0C3F16DA404700E6CD88 /* YapTap.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -742,7 +742,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F44B0C3A16DA404700E6CD88 /* Build configuration list for PBXProject "YapSnap" */;
+			buildConfigurationList = F44B0C3A16DA404700E6CD88 /* Build configuration list for PBXProject "YapTap" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -754,7 +754,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F44B0C3E16DA404700E6CD88 /* YapSnap */,
+				F44B0C3E16DA404700E6CD88 /* YapTap */,
 			);
 		};
 /* End PBXProject section */
@@ -972,7 +972,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -996,7 +996,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1009,6 +1009,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				BUNDLE_DISPLAY_NAME_PREFIX = "Dev-";
+				BUNDLE_ID_SUFFIX = .dev;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1016,8 +1018,8 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AudioDemo/YapSnap-Prefix.pch";
-				INFOPLIST_FILE = "AudioDemo/YapSnap-Info.plist";
+				GCC_PREFIX_HEADER = "AudioDemo/YapTap-Prefix.pch";
+				INFOPLIST_FILE = "AudioDemo/YapTap-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "85ab4adc-3015-43b8-9986-83b9dd7cecea";
 				WRAPPER_EXTENSION = app;
@@ -1030,6 +1032,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				BUNDLE_DISPLAY_NAME_PREFIX = "";
+				BUNDLE_ID_SUFFIX = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1037,8 +1041,8 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AudioDemo/YapSnap-Prefix.pch";
-				INFOPLIST_FILE = "AudioDemo/YapSnap-Info.plist";
+				GCC_PREFIX_HEADER = "AudioDemo/YapTap-Prefix.pch";
+				INFOPLIST_FILE = "AudioDemo/YapTap-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "85ab4adc-3015-43b8-9986-83b9dd7cecea";
 				WRAPPER_EXTENSION = app;
@@ -1048,7 +1052,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F44B0C3A16DA404700E6CD88 /* Build configuration list for PBXProject "YapSnap" */ = {
+		F44B0C3A16DA404700E6CD88 /* Build configuration list for PBXProject "YapTap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F44B0C6016DA404700E6CD88 /* Debug */,
@@ -1057,7 +1061,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F44B0C6216DA404700E6CD88 /* Build configuration list for PBXNativeTarget "YapSnap" */ = {
+		F44B0C6216DA404700E6CD88 /* Build configuration list for PBXNativeTarget "YapTap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F44B0C6316DA404700E6CD88 /* Debug */,
