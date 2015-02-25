@@ -108,7 +108,7 @@
         if (user) {
             // TODO save user state??? - do in API
             
-            if (user.isUserInfoComplete) {
+            if (!user.isUserInfoComplete) {
                 [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
             } else {
                 [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
