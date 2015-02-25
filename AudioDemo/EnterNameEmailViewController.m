@@ -17,21 +17,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topConstraint;
 
 - (IBAction)didTapContinueButton;
 
 @end
 
 @implementation EnterNameEmailViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -46,6 +38,10 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.firstNameTextField becomeFirstResponder];
     });
+    
+    if (self.isiPhone4Size) {
+        self.topConstraint.constant = 0;
+    }
 }
 
 - (void)setupTextFields {
