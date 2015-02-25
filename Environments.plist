@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Debug</key>
+	<dict>
+		<key>apiURL</key>
+		<string>http://yaptap-staging.herokuapp.com/api/v1/</string>
+		<key>CrashyliticsApiKey</key>
+		<string></string>
+	</dict>
+	<key>Release</key>
+	<dict>
+		<key>apiURL</key>
+		<string>http://yaptap.herokuapp.com/api/v1/</string>
+		<key>CrashyliticsApiKey</key>
+		<string></string>
+	</dict>
+</dict>
+</plist>

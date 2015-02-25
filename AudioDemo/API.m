@@ -10,10 +10,12 @@
 #import "PhoneContact.h"
 #import "AmazonAPI.h"
 #import "YSPushManager.h"
+#import "Environment.h"
 
 @interface API()
 
 @property (nonatomic, strong) NSString *sessionToken;
+@property (nonatomic, strong) NSString *apiUrl;
 @end
 
 @implementation API
@@ -38,17 +40,18 @@ static API *sharedAPI;
     return _sessionToken;
 }
 
-- (NSString *) serverUrl
+- (NSString *) apiUrl
 {
-    //return @"http://yaptap-staging.herokuapp.com"; // production
-    return @"http://yaptap.herokuapp.com"; // production
-    //return @"http://192.168.1.177:5000"; // local dev server
+    if (!_apiUrl) {
+        _apiUrl = [Environment sharedInstance].apiURL;
+    }
+    return _apiUrl;
 }
 
 #pragma mark - Generic Methods
 - (NSString *) urlForEndpoint:(NSString *)endpoint
 {
-    return [NSString stringWithFormat:@"%@/api/v1/%@", self.serverUrl, endpoint];
+    return [NSString stringWithFormat:@"%@%@", self.apiUrl, endpoint];
 }
 
 - (NSMutableDictionary *)paramsWithDict:(NSDictionary *)dict
