@@ -240,6 +240,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="dxv-8x-Abq"/>
+                        <outlet property="bottomConstraint" destination="yN0-fu-IF4" id="yTl-AA-hhl"/>
                         <outlet property="explanation" destination="g9f-Ex-CHR" id="kUM-mN-i57"/>
                         <outlet property="micModeButton" destination="dI5-ha-IW9" id="X8L-1K-fmn"/>
                         <outlet property="playButton" destination="noi-Et-bvO" id="LoS-fw-ZU6"/>
