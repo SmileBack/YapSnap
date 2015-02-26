@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 
 @property (nonatomic) float elapsedTime;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
 @end
 
@@ -137,6 +138,11 @@ static const float TIMER_INTERVAL = .01;
     self.navigationController.navigationBar.translucent = NO;
 
     [self reloadUnopenedYapsCount];
+
+    
+    if (IS_BEFORE_IOS_8) {
+        self.bottomConstraint.constant = 9;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
