@@ -48,12 +48,21 @@
 - (void)setupTextFields {
     self.firstNameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     self.firstNameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.firstNameTextField.layer.borderColor=[[UIColor lightGrayColor]CGColor];
+    self.firstNameTextField.layer.borderWidth = 1;
+    self.firstNameTextField.layer.masksToBounds = true;
     
     self.lastNameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     self.lastNameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.lastNameTextField.layer.borderColor=[[UIColor lightGrayColor]CGColor];
+    self.lastNameTextField.layer.borderWidth = 1;
+    self.lastNameTextField.layer.masksToBounds = true;
     
     self.emailTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     self.emailTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.emailTextField.layer.borderColor=[[UIColor lightGrayColor]CGColor];
+    self.emailTextField.layer.borderWidth = 1;
+    self.emailTextField.layer.masksToBounds = true;
     
     self.firstNameTextField.delegate = self;
     self.lastNameTextField.delegate = self;
