@@ -8,6 +8,7 @@
 
 #import "EnterCodeViewController.h"
 #import "API.h"
+#import "UIViewController+Alerts.h"
 
 @interface EnterCodeViewController ()
 
@@ -87,50 +88,40 @@
         
         [alert show];
         
-        // Enable the continue button again
-        self.continueButton.userInteractionEnabled = YES;
-        
         return;
     }
     
-    // This is to prevent user from clicking this multiple times before segue occurs (results in multiple segues)
-    self.continueButton.userInteractionEnabled = NO;
-    
-    // Start loading spinner
-    [self.loadingSpinner startAnimating];
-    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
+    [self disableContinueButton];
 
-    NSLog(@"Loading spinner started animating");
-
-    NSString *code = self.textField.text;
-
-    [[API sharedAPI] confirmSessionWithCode:code withCallback:^(YSUser *user, NSError *error) {
-        [self.loadingSpinner stopAnimating];
-        [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
-        self.continueButton.userInteractionEnabled = YES;
-        
-        if (user) {
-            // TODO save user state??? - do in API
+    if ([self internetIsNotReachable]) {
+        [self showNoInternetAlert];
+        [self enableContinueButton];
+    } else {
+        NSString *code = self.textField.text;
+        [[API sharedAPI] confirmSessionWithCode:code withCallback:^(YSUser *user, NSError *error) {
+            [self enableContinueButton];
             
-            if (!user.isUserInfoComplete) {
-                [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
+            if (user) {
+                // TODO save user state??? - do in API
+                
+                if (!user.isUserInfoComplete) {
+                    [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
+                } else {
+                    [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
+                }
             } else {
-                [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
+                // TODO: different UIAlert depending on error (no internet, wrong code, etc.)
+                // NSLog([NSString stringWithFormat:@"error: %@", error]);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again"
+                                                                message:@"That was the wrong code. Try again."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                
+                [alert show];
             }
-        } else {
-            // TODO: different UIAlert depending on error (no internet, wrong code, etc.)
-            // NSLog([NSString stringWithFormat:@"error: %@", error]);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again"
-                                                            message:@"That was the wrong code. Try again."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-            
-            // Enable the continue button again
-        }
-    }];
+        }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -141,6 +132,25 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
+}
+
+-(BOOL) internetIsNotReachable
+{
+    return ![AFNetworkReachabilityManager sharedManager].reachable;
+}
+
+-(void) disableContinueButton
+{
+    self.continueButton.userInteractionEnabled = NO;
+    [self.loadingSpinner startAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
+}
+
+-(void) enableContinueButton
+{
+    [self.loadingSpinner stopAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
+    self.continueButton.userInteractionEnabled = YES;
 }
 
 @end

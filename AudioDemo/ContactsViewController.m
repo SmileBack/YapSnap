@@ -296,13 +296,11 @@ static NSString *CellIdentifier = @"Cell";
 
 - (IBAction) didTapContinueButton
 {
-    self.continueButton.userInteractionEnabled = NO;
-    [self.loadingSpinner startAnimating];
-    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
+    [self disableContinueButton];
     
     if ([self internetIsNotReachable]) {
         [self showNoInternetAlert];
-        self.continueButton.userInteractionEnabled = YES;
+        [self enableContinueButton];
     } else {
         __weak ContactsViewController *weakSelf = self;
         
@@ -310,10 +308,7 @@ static NSString *CellIdentifier = @"Cell";
         
         [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
-                        self.continueButton.userInteractionEnabled = YES;
-                        [self.loadingSpinner stopAnimating];
-                        [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
-
+                        [self enableContinueButton];
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.selectedContacts];
                             [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
@@ -337,6 +332,20 @@ static NSString *CellIdentifier = @"Cell";
                         }
                     }];
     }
+}
+
+-(void) disableContinueButton
+{
+    self.continueButton.userInteractionEnabled = NO;
+    [self.loadingSpinner startAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
+}
+
+-(void) enableContinueButton
+{
+    [self.loadingSpinner stopAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
+    self.continueButton.userInteractionEnabled = YES;
 }
 
 #pragma mark - UISearchDisplayDelegate

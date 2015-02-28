@@ -91,21 +91,16 @@
 
 - (void) sendYap
 {
-    self.continueButton.userInteractionEnabled = NO;
-    [self.loadingSpinner startAnimating];
-    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
+    [self disableContinueButton];
     
     if ([self internetIsNotReachable]) {
-        [self showNoInternetAlert];
-        self.continueButton.userInteractionEnabled = YES;
+        [self enableContinueButton];
     } else {
         __weak AddTextViewController *weakSelf = self;
         
         [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
-                        [self.loadingSpinner stopAnimating];
-                        [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
-
+                        [self enableContinueButton];
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
                             [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
@@ -126,7 +121,6 @@
                             // uh oh spaghettios
                             // TODO: tell the user something went wrong
                             NSLog(@"Error: %@", error);
-                            self.continueButton.userInteractionEnabled = YES;
                         }
                     }];
         NSLog(@"Sent yaps call");
@@ -153,6 +147,20 @@
     [self.textView becomeFirstResponder];
     self.textView.hidden = NO;
     self.addTextToYapButton.hidden = YES;
+}
+
+-(void) disableContinueButton
+{
+    self.continueButton.userInteractionEnabled = NO;
+    [self.loadingSpinner startAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
+}
+
+-(void) enableContinueButton
+{
+    [self.loadingSpinner stopAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
+    self.continueButton.userInteractionEnabled = YES;
 }
 
 - (BOOL) textView: (UITextView*) textView shouldChangeTextInRange: (NSRange) range replacementText: (NSString*) text

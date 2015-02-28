@@ -9,6 +9,7 @@
 #import "EnterNameEmailViewController.h"
 #import "API.h"
 #import "YSPushManager.h"
+#import "UIViewController+Alerts.h"
 
 @interface EnterNameEmailViewController ()
 
@@ -88,27 +89,28 @@
                                               otherButtonTitles:nil];
         [alert show];
     } else {
-        self.continueButton.userInteractionEnabled = NO;
-        [self.loadingSpinner startAnimating];
-        [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
+        [self disableContinueButton];
         
-        [[API sharedAPI] updateFirstName:self.firstNameTextField.text
-                                lastName:self.lastNameTextField.text
-                                   email:self.emailTextField.text
-                            withCallBack:^(BOOL success, NSError *error) {
-                                [self.loadingSpinner stopAnimating];
-                                [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
-                                self.continueButton.userInteractionEnabled = YES;
-                                
-                                if (success) {
-                                    [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
-                                    [[YSPushManager sharedPushManager] registerForNotifications];
-                                } else {
-                                    NSLog(@"Error! %@", error);
-                                    [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Error updating your info" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-                                    // TODO DAN update the text
-                                }
-                            }];
+        if ([self internetIsNotReachable]) {
+            [self showNoInternetAlert];
+            [self enableContinueButton];
+        } else {
+            [[API sharedAPI] updateFirstName:self.firstNameTextField.text
+                                    lastName:self.lastNameTextField.text
+                                       email:self.emailTextField.text
+                                withCallBack:^(BOOL success, NSError *error) {
+                                    [self enableContinueButton];
+                                    
+                                    if (success) {
+                                        [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
+                                        [[YSPushManager sharedPushManager] registerForNotifications];
+                                    } else {
+                                        NSLog(@"Error! %@", error);
+                                        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Error updating your info" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                                        // TODO DAN update the text
+                                    }
+                                }];
+        }
     }
 }
 
@@ -132,6 +134,25 @@
     }
     
     return YES;
+}
+
+-(BOOL) internetIsNotReachable
+{
+    return ![AFNetworkReachabilityManager sharedManager].reachable;
+}
+
+-(void) disableContinueButton
+{
+    self.continueButton.userInteractionEnabled = NO;
+    [self.loadingSpinner startAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
+}
+
+-(void) enableContinueButton
+{
+    [self.loadingSpinner stopAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
+    self.continueButton.userInteractionEnabled = YES;
 }
 
 @end

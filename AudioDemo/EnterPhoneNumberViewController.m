@@ -9,9 +9,9 @@
 #import "EnterPhoneNumberViewController.h"
 #import "API.h"
 #import "PhoneNumberChecker.h"
-//#import "STPhoneFormatter.h"
 #import <SHSPhoneComponent/SHSPhoneTextField.h>
 #import <SHSPhoneComponent/SHSPhoneNumberFormatter.h>
+#import "UIViewController+Alerts.h"
 
 @interface EnterPhoneNumberViewController ()
 
@@ -144,29 +144,46 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        // This is to prevent user from clicking this multiple times before segue occurs (results in multiple segues)
-        self.continueButton.userInteractionEnabled = NO;
+        [self disableContinueButton];
         
-        [self.loadingSpinner startAnimating];
-        [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
-
-        NSString *phoneNumber = self.textField.text;
-        [[API sharedAPI] openSession:phoneNumber withCallback:^(BOOL success, NSError *error) {
-            [self.loadingSpinner stopAnimating];
-            [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
-            self.continueButton.userInteractionEnabled = YES;
-            
-            if (success) {
-                [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
-            } else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                message:error.localizedDescription
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"otherButtonTitles:nil];
-                [alert show];                
-            }
-        }];
+        if ([self internetIsNotReachable]) {
+            [self showNoInternetAlert];
+            [self enableContinueButton];
+        } else {
+            NSString *phoneNumber = self.textField.text;
+            [[API sharedAPI] openSession:phoneNumber withCallback:^(BOOL success, NSError *error) {
+                [self enableContinueButton];
+                if (success) {
+                    [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
+                } else {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                    message:error.localizedDescription
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"otherButtonTitles:nil];
+                    [alert show];
+                }
+            }];
+        }
     }
+}
+
+-(BOOL) internetIsNotReachable
+{
+    return ![AFNetworkReachabilityManager sharedManager].reachable;
+}
+
+-(void) disableContinueButton
+{
+    self.continueButton.userInteractionEnabled = NO;
+    [self.loadingSpinner startAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
+}
+
+-(void) enableContinueButton
+{
+    [self.loadingSpinner stopAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
+    self.continueButton.userInteractionEnabled = YES;
 }
 
 @end
