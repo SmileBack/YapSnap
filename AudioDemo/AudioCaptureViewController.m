@@ -90,6 +90,7 @@ static const float TIMER_INTERVAL = .01;
 - (IBAction)leftButtonPressed:(id)sender
 {
     if ([self isInReplyMode]) {
+        [self micModeButtonPressed:nil]; //This line is a hacky fix to an issue where spotify songs remain on screen after pop
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         [self performSegueWithIdentifier:@"Settings Segue" sender:nil];
