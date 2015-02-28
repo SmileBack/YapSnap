@@ -98,13 +98,17 @@
     
     // Start loading spinner
     [self.loadingSpinner startAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
+
     NSLog(@"Loading spinner started animating");
 
     NSString *code = self.textField.text;
 
     [[API sharedAPI] confirmSessionWithCode:code withCallback:^(YSUser *user, NSError *error) {
         [self.loadingSpinner stopAnimating];
+        [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
         self.continueButton.userInteractionEnabled = YES;
+        
         if (user) {
             // TODO save user state??? - do in API
             

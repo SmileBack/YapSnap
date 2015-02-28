@@ -77,6 +77,8 @@
 		78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CBF2F51A9960AD00F30DCA /* YellowStar.png */; };
 		78CBF2F81A99697A00F30DCA /* InfoIconWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CBF2F71A99697A00F30DCA /* InfoIconWhite@2x.png */; };
 		78CBF3001A996E8800F30DCA /* InfoIcon5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CBF2FF1A996E8800F30DCA /* InfoIcon5@2x.png */; };
+		78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DA1F7D1AA18D4900693015 /* WhiteCircle.png */; };
+		78DA1F801AA1961200693015 /* AlbumImagePlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */; };
 		C1A8A28BEEE98012F2950D09 /* libPods-YapSnap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C8F94496586F87E59A61FD /* libPods-YapSnap.a */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
 		F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4416DA404700E6CD88 /* Foundation.framework */; };
@@ -215,6 +217,8 @@
 		78CBF2F51A9960AD00F30DCA /* YellowStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YellowStar.png; sourceTree = "<group>"; };
 		78CBF2F71A99697A00F30DCA /* InfoIconWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfoIconWhite@2x.png"; sourceTree = "<group>"; };
 		78CBF2FF1A996E8800F30DCA /* InfoIcon5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfoIcon5@2x.png"; sourceTree = "<group>"; };
+		78DA1F7D1AA18D4900693015 /* WhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCircle.png; sourceTree = "<group>"; };
+		78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumImagePlaceholder.png; sourceTree = "<group>"; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA961E944F5B46EDE7E7229C /* Pods-YapSnap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.release.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.release.xcconfig"; sourceTree = "<group>"; };
@@ -364,8 +368,10 @@
 				781996261A7B45CE0004C2DB /* RedCircleButton.png */,
 				7885B22D1A8DEC9900B230A0 /* SquareOutlineRed.png */,
 				78CBF2F51A9960AD00F30DCA /* YellowStar.png */,
+				78DA1F7D1AA18D4900693015 /* WhiteCircle.png */,
 				78CBF2F71A99697A00F30DCA /* InfoIconWhite@2x.png */,
 				78CBF2FF1A996E8800F30DCA /* InfoIcon5@2x.png */,
+				78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -738,7 +744,7 @@
 				ORGANIZATIONNAME = Appcoda;
 				TargetAttributes = {
 					F44B0C3E16DA404700E6CD88 = {
-						DevelopmentTeam = 4R48R23C3S;
+						DevelopmentTeam = S7LF8DWGYS;
 					};
 				};
 			};
@@ -817,6 +823,8 @@
 				786D91151A6EF0C800177E25 /* GrayArrow.png in Resources */,
 				7885B22E1A8DEC9900B230A0 /* SquareOutlineRed.png in Resources */,
 				780005A81A70EA66005E6CD4 /* listen_on_spotify-black-long.png in Resources */,
+				78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */,
+				78DA1F801AA1961200693015 /* AlbumImagePlaceholder.png in Resources */,
 				784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */,
 				78A569B21A74A6AC00818A17 /* Microphone_Yellow2.png in Resources */,
 			);
@@ -1021,7 +1029,7 @@
 				GCC_PREFIX_HEADER = "AudioDemo/YapTap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapTap-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "818ef46f-3897-4b50-ab45-f78ab9f8ea3a";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1044,7 +1052,7 @@
 				GCC_PREFIX_HEADER = "AudioDemo/YapTap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapTap-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1bcd33b5-1704-4491-a6d0-246954b51e48";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

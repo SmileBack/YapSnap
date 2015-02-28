@@ -115,11 +115,6 @@
         [self search:self.searchBox.text];
         [self.view endEditing:YES];
         
-        self.songs = nil;
-        [self.carousel reloadData];
-        self.musicIcon.hidden = YES;
-        [self.loadingIndicator startAnimating];
-        
         //Remove extra space at end of string
         self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
@@ -134,6 +129,11 @@
 
 - (void) search:(NSString *)search
 {
+    self.songs = nil;
+    [self.carousel reloadData];
+    self.musicIcon.hidden = YES;
+    [self.loadingIndicator startAnimating];
+    
     __weak YSSpotifySourceController *weakSelf = self;
     [[SpotifyAPI sharedApi] searchSongs:search withCallback:^(NSArray *songs, NSError *error) {
         if (songs) {
@@ -141,6 +141,9 @@
             weakSelf.carousel.currentItemIndex = 0;
             [weakSelf.carousel reloadData];
             if (songs.count == 0) {
+                [self.loadingIndicator stopAnimating];
+                self.musicIcon.hidden = NO;
+
                 NSLog(@"No Songs Returned For Search Query");
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
                                                                 message:@"We didn't find any songs for you. Try searching for something else."
@@ -155,7 +158,9 @@
                 [self.loadingIndicator stopAnimating];
             }
         } else if (error) {
+            [self.loadingIndicator stopAnimating];
             self.musicIcon.hidden = NO;
+            
             if ([self internetIsNotReachable]) {
                 [self showNoInternetAlert];
             } else {
@@ -216,7 +221,7 @@
     if (track.imageURL) {
         [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.imageURL]];
     } else {
-        trackView.imageView.image = [UIImage imageNamed:@"Microphone_White2.png"];
+        trackView.imageView.image = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
     }
 
     // Needed so the Spotify button can work

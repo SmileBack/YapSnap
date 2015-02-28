@@ -88,17 +88,16 @@
                                               otherButtonTitles:nil];
         [alert show];
     } else {
-        // This is to prevent user from clicking this multiple times before segue occurs (results in multiple segues)
         self.continueButton.userInteractionEnabled = NO;
-        
-        // Start loading spinner
         [self.loadingSpinner startAnimating];
+        [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
         
         [[API sharedAPI] updateFirstName:self.firstNameTextField.text
                                 lastName:self.lastNameTextField.text
                                    email:self.emailTextField.text
                             withCallBack:^(BOOL success, NSError *error) {
                                 [self.loadingSpinner stopAnimating];
+                                [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
                                 self.continueButton.userInteractionEnabled = YES;
                                 
                                 if (success) {

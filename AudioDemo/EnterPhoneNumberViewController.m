@@ -148,11 +148,14 @@
         self.continueButton.userInteractionEnabled = NO;
         
         [self.loadingSpinner startAnimating];
+        [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
 
         NSString *phoneNumber = self.textField.text;
         [[API sharedAPI] openSession:phoneNumber withCallback:^(BOOL success, NSError *error) {
             [self.loadingSpinner stopAnimating];
+            [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
             self.continueButton.userInteractionEnabled = YES;
+            
             if (success) {
                 [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
             } else {

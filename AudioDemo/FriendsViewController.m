@@ -66,7 +66,7 @@
     
     [UIView animateWithDuration:1
                           delay:.2
-                        options:UIViewAnimationOptionCurveEaseOut
+                        options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          self.friendsExplanationView.frame = CGRectMake(0, 0, 320, 118);
                      }
@@ -231,7 +231,7 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_CANCEL_BUTTON_ON_FRIENDS_EXPLANATION_VIEW_KEY];
     [UIView animateWithDuration:1
                           delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
+                        options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          self.friendsExplanationView.frame = CGRectMake(0, screenHeight, 320, 118);
                      }

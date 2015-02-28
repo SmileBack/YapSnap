@@ -298,6 +298,7 @@ static NSString *CellIdentifier = @"Cell";
 {
     self.continueButton.userInteractionEnabled = NO;
     [self.loadingSpinner startAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
     
     if ([self internetIsNotReachable]) {
         [self showNoInternetAlert];
@@ -311,6 +312,7 @@ static NSString *CellIdentifier = @"Cell";
                     withCallback:^(BOOL success, NSError *error) {
                         self.continueButton.userInteractionEnabled = YES;
                         [self.loadingSpinner stopAnimating];
+                        [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
 
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.selectedContacts];

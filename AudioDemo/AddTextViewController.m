@@ -93,6 +93,7 @@
 {
     self.continueButton.userInteractionEnabled = NO;
     [self.loadingSpinner startAnimating];
+    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
     
     if ([self internetIsNotReachable]) {
         [self showNoInternetAlert];
@@ -103,6 +104,7 @@
         [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
                         [self.loadingSpinner stopAnimating];
+                        [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
 
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
