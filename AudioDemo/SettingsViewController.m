@@ -183,15 +183,15 @@
         MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
         mailer.mailComposeDelegate = self;
         [mailer setSubject:@"My Feedback"];
-        NSArray *toRecipients = [NSArray arrayWithObjects:@"team@yapsnapapp.com", nil];
+        NSArray *toRecipients = [NSArray arrayWithObjects:@"team@yaptapapp.com", nil];
         [mailer setToRecipients:toRecipients];
         NSString *emailBody = @"";
         [mailer setMessageBody:emailBody isHTML:NO];
         [self presentViewController:mailer animated:YES completion:completion];
         [mailer becomeFirstResponder];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"team@yapsnapapp.com"
-                                                        message:@"You don't have your e-mail setup. Please contact us at team@smilebackapp.com."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email didn't send"
+                                                        message:@"You don't have your e-mail setup. Please contact us at team@yaptapapp.com."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles: nil];
