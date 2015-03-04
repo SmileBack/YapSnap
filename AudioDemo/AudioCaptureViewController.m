@@ -89,6 +89,11 @@ static const float TIMER_INTERVAL = .01;
 
 - (IBAction)leftButtonPressed:(id)sender
 {
+    // In case recording is in progress when button is pressed
+    [timer invalidate];
+    self.progressView.progress = 0.0;
+    [self.audioSource stopAudioCapture:self.elapsedTime];
+    
     if ([self isInReplyMode]) {
         [self micModeButtonPressed:nil]; //This line is a hacky fix to an issue where spotify songs remain on screen after pop
         [self.navigationController popViewControllerAnimated:YES];
@@ -167,11 +172,6 @@ static const float TIMER_INTERVAL = .01;
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [weakSelf.recordButtonSpinner stopAnimating];
-                        
-                        //Uncomment the following lines after you handle cases where recording gets "interrupted"
-                        //self.yapsPageButton.userInteractionEnabled = NO;
-                        //self.spotifyModeButton.userInteractionEnabled = NO;
-                        //self.micModeButton.userInteractionEnabled = NO;
                         
                         if (note.object == weakSelf.audioSource) {
                             NSLog(@"Loading spinner stopped animating");
@@ -262,10 +262,6 @@ static const float TIMER_INTERVAL = .01;
 {
     [timer invalidate];
     
-    self.spotifyModeButton.userInteractionEnabled = YES;
-    self.micModeButton.userInteractionEnabled = YES;
-    self.yapsPageButton.userInteractionEnabled = YES;
-    
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
         self.progressView.progress = 0.0;
         self.explanation.hidden = NO;
@@ -292,6 +288,11 @@ static const float TIMER_INTERVAL = .01;
 
 - (IBAction) didTapYapsPageButton
 {
+    // In case recording is in progress when button is pressed
+    [timer invalidate];
+    self.progressView.progress = 0.0;
+    [self.audioSource stopAudioCapture:self.elapsedTime];
+    
     if ([self internetIsNotReachable]){
         [self showNoInternetAlert];
     } else {
