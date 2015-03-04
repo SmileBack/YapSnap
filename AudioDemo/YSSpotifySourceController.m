@@ -361,6 +361,12 @@
     if (state == STKAudioPlayerStateDisposed) {
         NSLog(@"state == STKAudioPlayerStateDisposed");
     }
+    
+    if (state == STKAudioPlayerStateBuffering && previousState == STKAudioPlayerStatePlaying) {
+        NSLog(@"state changed from playing to buffering");
+        [audioPlayer stop];
+        [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION object:nil];
+    }
 }
 
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishPlayingQueueItemId:(NSObject*)queueItemId withReason:(STKAudioPlayerStopReason)stopReason andProgress:(double)progress andDuration:(double)duration
@@ -371,7 +377,7 @@
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer unexpectedError:(STKAudioPlayerErrorCode)errorCode
 {
     [audioPlayer stop];
-    [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_ERROR_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION object:nil];
 }
 
 #pragma mark - Implement public audio methods

@@ -183,12 +183,26 @@ static const float TIMER_INTERVAL = .01;
                         }
                     }];
     
-    [center addObserverForName:AUDIO_CAPTURE_ERROR_NOTIFICATION
+    [center addObserverForName:AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"Something went wrong"
                                                                        message:@"Something didn't work - please try again."
+                                                                      delegate:nil
+                                                             cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [weakSelf.progressView setProgress:0];
+                        weakSelf.elapsedTime = 0;
+                        [timer invalidate];
+                        [alert show];
+                    }];
+    
+    [center addObserverForName:AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"Lost connection"
+                                                                       message:@"Lost connection."
                                                                       delegate:nil
                                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
                         [weakSelf.progressView setProgress:0];
