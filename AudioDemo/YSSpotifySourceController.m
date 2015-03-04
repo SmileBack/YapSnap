@@ -364,6 +364,7 @@
     
     if (state == STKAudioPlayerStateBuffering && previousState == STKAudioPlayerStatePlaying) {
         NSLog(@"state changed from playing to buffering");
+        [self enableUserInteraction];
         [audioPlayer stop];
         [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION object:nil];
     }
@@ -376,6 +377,7 @@
 
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer unexpectedError:(STKAudioPlayerErrorCode)errorCode
 {
+    [self enableUserInteraction];
     [audioPlayer stop];
     [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION object:nil];
 }
