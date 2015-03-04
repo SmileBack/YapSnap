@@ -215,6 +215,15 @@ static const float TIMER_INTERVAL = .01;
                     usingBlock:^(NSNotification *note) {
                         [weakSelf reloadUnopenedYapsCount];
                     }];
+
+    [center addObserverForName:UIApplicationWillResignActiveNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [timer invalidate];
+                        self.progressView.progress = 0.0;
+                        [self.audioSource stopAudioCapture:self.elapsedTime];
+                    }];
 }
 
 - (void) updateProgress {
