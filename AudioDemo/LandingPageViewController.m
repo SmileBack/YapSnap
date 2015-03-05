@@ -17,6 +17,18 @@
 {
     [super viewDidLoad];
     
+    // Do any additional setup after loading the view.
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:nil
+                                                                            action:nil];
+    
+    self.logInButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
+    [self.logInButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
+    
+    self.signUpButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
+    [self.signUpButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
+    
     YSUser *user = [YSUser currentUser];
     
     // if we're already authenticated, go right to the recording page
@@ -29,18 +41,6 @@
             AudioCaptureViewController* rvvc = [self.storyboard instantiateViewControllerWithIdentifier:@"EnterNameEmailViewController"];
             [self.navigationController pushViewController:rvvc animated:NO];
         }
-    } else {
-        // Do any additional setup after loading the view.
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                                 style:UIBarButtonItemStylePlain
-                                                                                target:nil
-                                                                                action:nil];
-
-        self.logInButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
-        [self.logInButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
-        
-        self.signUpButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
-        [self.signUpButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
     }
 }
 

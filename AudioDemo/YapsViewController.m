@@ -205,11 +205,11 @@ static NSString *CellIdentifier = @"Cell";
         [cell addSubview:cellIcon];
         
         // UNOPENED
-        if ([yap.status isEqual: @"unopened"]) {
+        if (!yap.wasOpened) {
             cellIcon.image = [UIImage imageNamed:@"RedRoundedSquare.png"];
             
         // OPENED
-        } else if ([yap.status  isEqual: @"opened"]) {
+        } else {
             cellIcon.image = [UIImage imageNamed:@"RedRoundedSquareWhiteFilling.png"];
             
             // SPOTIFY
