@@ -29,6 +29,11 @@
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:nil
+                                                                            action:nil];
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     __weak SettingsViewController *weakSelf = self;

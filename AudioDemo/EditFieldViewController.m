@@ -19,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor whiteColor]; //[UIColor colorWithRed:240.0f/255.0f green:245.0f/255.0f blue:250.0f/255.0f alpha:1.0];
 
     YSUser *user = [YSUser currentUser];
     NSString *text;
@@ -37,6 +39,12 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.textField becomeFirstResponder];
     });
+    
+    self.navigationItem.title = [NSString stringWithFormat:@"%@", self.editingField];
+    
+    self.textField.layer.masksToBounds=YES;
+    self.textField.layer.borderColor=[[UIColor grayColor]CGColor];
+    self.textField.layer.borderWidth= 1.0f;
 }
 
 - (void) viewWillDisappear:(BOOL)animated
