@@ -202,7 +202,12 @@ static ContactManager *sharedInstance;
 }
 
 #pragma mark - Recent Contact Stuff
-- (void) addRecentContactAndUpdateOrder:(PhoneContact *)contact andTime:(NSDate *)time
+//- (void) addRecentContactAndUpdateOrder:(PhoneContact *)contact andTime:(NSDate *)time
+//{
+//    [self addRecentContactAndUpdateOrder:contact andTime:time andSave:NO];
+//}
+
+- (void) addRecentContactAndUpdateOrder:(PhoneContact *)contact andTime:(NSDate *)time andSave:(BOOL)shouldSave
 {
     if (!self.recentContacts)
         self.recentContacts = [NSMutableArray new];
@@ -233,8 +238,7 @@ static ContactManager *sharedInstance;
         return [name1 compare:name2];
     }];
 
-    // todo save
-    [self performSelectorInBackground:@selector(saveRecentContacts) withObject:nil];
+    [self saveRecentContacts];
 }
 
 - (void) sentYapTo:(NSArray *)contacts
@@ -242,7 +246,7 @@ static ContactManager *sharedInstance;
     for (YSContact *contact in contacts) {
         if ([contact isKindOfClass:[PhoneContact class]]) {
             PhoneContact *phoneContact = (PhoneContact *)       contact;
-            [self addRecentContactAndUpdateOrder:phoneContact andTime:[NSDate date]];
+            [self addRecentContactAndUpdateOrder:phoneContact andTime:[NSDate date] andSave:YES];
         }
     }
 }
@@ -261,22 +265,13 @@ static ContactManager *sharedInstance;
 - (void) loadRecentContacts
 {
     NSArray *contacts = [[NSUserDefaults standardUserDefaults] arrayForKey:RECENT_CONTACTS_KEY];
-//    @try {
-        for (NSData *contactData in contacts) {
-            RecentContact *recentContact = [NSKeyedUnarchiver unarchiveObjectWithData:contactData];
-            PhoneContact *contact = [self contactForId:recentContact.contactID];
-            if (contact) {
-                [self addRecentContactAndUpdateOrder:contact andTime:recentContact.contactTime];
-            }
+    for (NSData *contactData in contacts) {
+        RecentContact *recentContact = [NSKeyedUnarchiver unarchiveObjectWithData:contactData];
+        PhoneContact *contact = [self contactForId:recentContact.contactID];
+        if (contact) {
+            [self addRecentContactAndUpdateOrder:contact andTime:recentContact.contactTime andSave:(contact == contacts.lastObject)];
         }
-//    }
-//    @catch (NSException *exception) {
-//        NSLog(@"Error in load recent contacts: %@", exception);
-//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//        [defaults removeObjectForKey:RECENT_CONTACTS_KEY];
-//        [defaults synchronize];
-//        //TODO: Add Mixpanel track
-//    }
+    }
 }
 
 - (void) syncRecentContacts
