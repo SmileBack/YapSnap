@@ -71,6 +71,14 @@
     [alert show];
 }
 
+- (void) setPlayer:(STKAudioPlayer *)player
+{
+    if (_player) {
+        [_player stop];
+    }
+    _player = player;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
