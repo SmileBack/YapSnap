@@ -888,7 +888,7 @@
                                 <action selector="didTapGoToAudioCaptureButton" destination="Vua-bX-Wl1" id="bhX-gA-Rs0"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="SettingsIconWhite6.png" style="plain" id="UOa-uX-nLV">
+                        <barButtonItem key="rightBarButtonItem" image="SettingsIconWhite8.png" style="plain" id="UOa-uX-nLV">
                             <connections>
                                 <action selector="didPressFriendsButton:" destination="Vua-bX-Wl1" id="Vrm-gg-7Wd"/>
                                 <segue destination="b8F-go-ayB" kind="push" id="9cu-HE-Ner"/>
@@ -1398,7 +1398,7 @@
         <image name="RecordButtonRedWhiteBorder.png" width="200" height="200"/>
         <image name="RecordModeButton.png" width="316" height="89"/>
         <image name="RedCircleSmall.png" width="67" height="67"/>
-        <image name="SettingsIconWhite6.png" width="44" height="44"/>
+        <image name="SettingsIconWhite8.png" width="33" height="37"/>
         <image name="SpotifyModeButton.png" width="316" height="89"/>
         <image name="YapsButtonRed.png" width="60" height="60"/>
         <image name="YellowStar.png" width="40" height="40"/>
