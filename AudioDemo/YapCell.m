@@ -24,8 +24,9 @@
 {
     [super prepareForReuse];
     
-    [self.goToSpotifyView removeFromSuperview];
-    self.goToSpotifyView = nil;
+    for (UIGestureRecognizer *gest in self.goToSpotifyView.gestureRecognizers) {
+        [self.goToSpotifyView removeGestureRecognizer:gest];
+    }
 }
 
 @end

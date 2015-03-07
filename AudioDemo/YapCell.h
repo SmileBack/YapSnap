@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *createdTimeLabel;
-@property (nonatomic, strong) UIView *goToSpotifyView;
-
+@property (nonatomic, strong) IBOutlet UIView *goToSpotifyView;
+@property (strong, nonatomic) IBOutlet UIImageView *albumImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *icon;
 @end

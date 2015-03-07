@@ -29,6 +29,10 @@
 @property (nonatomic, strong) YSYap *yapToBlock; //Saved when the AlertView is shown
 @property (strong, nonatomic) IBOutlet UIView *pushEnabledView;
 
+@property (strong, nonatomic) UIImage *blueArrowFull;
+@property (strong, nonatomic) UIImage *blueArrowEmpty;
+@property (strong, nonatomic) UIImage *redSquareFull;
+@property (strong, nonatomic) UIImage *redSquareEmpty;
 @end
 
 static NSString *CellIdentifier = @"Cell";
@@ -166,76 +170,55 @@ static NSString *CellIdentifier = @"Cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     YSYap* yap = self.yaps[indexPath.row];
-
-    NSString *cellType = yap.sentByCurrentUser ? @"Sent Cell" : @"Received Cell";
     
-    YapCell *cell = [tableView dequeueReusableCellWithIdentifier:cellType];
+    YapCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     cell.createdTimeLabel.font = [UIFont systemFontOfSize:11];
     
+    
+    // SPOTIFY
+    if ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened) {
+        cell.goToSpotifyView.alpha = 1;
+        //Add gesture recognizer
+        YSSpotifyTapGestureRecognizer *singleFingerTap =
+        [[YSSpotifyTapGestureRecognizer alloc] initWithTarget:self
+                                                       action:@selector(handleSpotifyTap:)];
+        singleFingerTap.yap = yap;
+        [cell.goToSpotifyView addGestureRecognizer:singleFingerTap];
+        
+        [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
+        [cell.albumImageView.layer setBorderColor: [[UIColor darkGrayColor] CGColor]];
+        [cell.albumImageView.layer setBorderWidth: 0.5];
+    } else {
+        cell.goToSpotifyView.alpha = 0;
+    }
+
+    
     // DID SEND YAP
     if (yap.sentByCurrentUser) {
-        cell.nameLabel.text = yap.displayReceiverName;
-        UIImageView *cellIcon = [[UIImageView alloc] init];
-        cellIcon.frame = CGRectMake(12, 31, 24, 27);
-        [cell addSubview:cellIcon];
+        cell.nameLabel.text = yap.displayReceiverName; //TODO FIX NAME
         
-        // UNOPENED
-        if (!yap.wasOpened) {
-            cellIcon.image = [UIImage imageNamed:@"BlueArrow2.png"];
+        if (yap.wasOpened) {
+            cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Opened" , [self.dateFormatter stringFromDate:yap.createdAt]];
+            cell.icon.image = self.blueArrowEmpty;
+        } else if (!yap.wasOpened) {
+            cell.icon.image = self.blueArrowFull;
             if (yap.isPending) {
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Pending" , [self.dateFormatter stringFromDate:yap.createdAt]];
             } else {
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
             }
-        
-        // OPENED
-        } else if (yap.wasOpened) {
-            cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Opened" , [self.dateFormatter stringFromDate:yap.createdAt]];
-            cellIcon.image = [UIImage imageNamed:@"BlueArrowWhiteFilling.png"];
         }
         
     // DID RECEIVE YAP
     } else if (yap.receivedByCurrentUser) {
-        cell.nameLabel.text = yap.displaySenderName;
+        cell.nameLabel.text = yap.displaySenderName; //TODO FIX NAME
         cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@" , [self.dateFormatter stringFromDate:yap.createdAt]];
-        
-        UIImageView *cellIcon = [[UIImageView alloc] init];
-        cellIcon.frame = CGRectMake(11, 29, 24, 24);
-        [cell addSubview:cellIcon];
-        
-        // UNOPENED
-        if (!yap.wasOpened) {
-            cellIcon.image = [UIImage imageNamed:@"RedRoundedSquare.png"];
-            
-        // OPENED
+
+        if (yap.wasOpened) {
+            cell.icon.image = self.redSquareEmpty;
         } else {
-            cellIcon.image = [UIImage imageNamed:@"RedRoundedSquareWhiteFilling.png"];
-            
-            // SPOTIFY
-            if ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY]) {
-                cell.goToSpotifyView = [[UIView alloc] initWithFrame:CGRectMake(238, 8, 74, 74)];
-                [cell addSubview:cell.goToSpotifyView];
-                
-                //Add gesture recognizer
-                YSSpotifyTapGestureRecognizer *singleFingerTap =
-                [[YSSpotifyTapGestureRecognizer alloc] initWithTarget:self
-                                                        action:@selector(handleSpotifyTap:)];
-                singleFingerTap.yap = yap;
-                [cell.goToSpotifyView addGestureRecognizer:singleFingerTap];
-                
-                UIImageView *albumImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 74, 74)];
-                [albumImage sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
-                [albumImage.layer setBorderColor: [[UIColor darkGrayColor] CGColor]];
-                [albumImage.layer setBorderWidth: 0.5];
-                [cell.goToSpotifyView addSubview:albumImage];
-                
-                UIImageView *listenOnSpotifyImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"listen_on_spotify-black2.png"]];
-                listenOnSpotifyImage.frame = CGRectMake(0, 52, 74, 22);
-                [cell.goToSpotifyView addSubview:listenOnSpotifyImage];
-            } else {
-                
-            }
+            cell.icon.image = self.redSquareFull;
         }
     }
     
@@ -429,6 +412,39 @@ static NSString *CellIdentifier = @"Cell";
                             }
                         }];
     }
+}
+
+#pragma mark - Image Getters
+- (UIImage *) blueArrowEmpty
+{
+    if (!_blueArrowEmpty) {
+        _blueArrowEmpty = [UIImage imageNamed:@"BlueArrowWhiteFilling.png"];
+    }
+    return _blueArrowEmpty;
+}
+
+- (UIImage *) blueArrowFull
+{
+    if (!_blueArrowFull) {
+        _blueArrowFull = [UIImage imageNamed:@"BlueArrow2.png"];
+    }
+    return _blueArrowFull;
+}
+
+- (UIImage *) redSquareEmpty
+{
+    if (!_redSquareEmpty) {
+        _redSquareEmpty = [UIImage imageNamed:@"RedRoundedSquareWhiteFilling.png"];
+    }
+    return _redSquareEmpty;
+}
+
+- (UIImage *) redSquareFull
+{
+    if (!_redSquareFull) {
+        _redSquareFull = [UIImage imageNamed:@"RedRoundedSquare.png"];
+    }
+    return _redSquareFull;
 }
 
 @end
