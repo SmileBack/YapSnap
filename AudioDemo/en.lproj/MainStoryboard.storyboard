@@ -623,7 +623,14 @@
                             <constraint firstItem="H5l-NO-JDy" firstAttribute="leading" secondItem="F6W-sY-6UP" secondAttribute="leading" id="Yvg-gW-pXr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="PbR-9m-qzC"/>
+                    <navigationItem key="navigationItem" id="PbR-9m-qzC">
+                        <barButtonItem key="rightBarButtonItem" image="PlusButtonWhite.png" id="TUh-dG-0yw">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="tappedAddFriendsButton" destination="IdD-6v-OZr" id="pKP-Ln-jNx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="friendsExplanationView" destination="H5l-NO-JDy" id="MTH-MG-3Sh"/>
                         <outlet property="tableView" destination="jGg-FF-Oxq" id="XAx-Qp-6mJ"/>
@@ -1356,6 +1363,7 @@
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PencilIcon.png" width="75" height="75"/>
+        <image name="PlusButtonWhite.png" width="26" height="26"/>
         <image name="ProgressViewNotches5.png" width="320" height="40"/>
         <image name="RecordButtonRedWhiteBorder.png" width="200" height="200"/>
         <image name="RecordModeButton.png" width="316" height="89"/>
@@ -1371,8 +1379,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1l7-bL-RcX"/>
-        <segue reference="gZs-IQ-BYb"/>
+        <segue reference="Enn-ka-dSJ"/>
         <segue reference="syO-tE-hvG"/>
+        <segue reference="gZs-IQ-BYb"/>
     </inferredMetricsTieBreakers>
 </document>
