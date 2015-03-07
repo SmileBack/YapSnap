@@ -174,7 +174,6 @@ static const float TIMER_INTERVAL = .01;
                         [weakSelf.recordButtonSpinner stopAnimating];
                         
                         if (note.object == weakSelf.audioSource) {
-                            NSLog(@"Loading spinner stopped animating");
                             timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
                                                                      target:weakSelf
                                                                    selector:@selector(updateProgress)
@@ -216,7 +215,6 @@ static const float TIMER_INTERVAL = .01;
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self.recordButtonSpinner stopAnimating];
-                        NSLog(@"Loading spinner stopped animating");
                     }];
     
     [center addObserverForName:NOTIFICATION_LOGOUT object:nil queue:nil usingBlock:^ (NSNotification *note) {
@@ -258,7 +256,7 @@ static const float TIMER_INTERVAL = .01;
 }
 
 - (IBAction)recordTapped:(id)sender
-{    
+{
     self.elapsedTime = 0;
     [self.progressView setProgress:0];
 
@@ -267,7 +265,6 @@ static const float TIMER_INTERVAL = .01;
     if ([self.audioSource startAudioCapture]) {
         if (self.audioSource.class == [YSSpotifySourceController class]) {
             [self.recordButtonSpinner startAnimating];
-            NSLog(@"Loading spinner started animating");
         }
     }
 }
