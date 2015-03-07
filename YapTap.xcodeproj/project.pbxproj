@@ -478,7 +478,7 @@
 		F44B0C3616DA404700E6CD88 = {
 			isa = PBXGroup;
 			children = (
-				F44B0C4816DA404700E6CD88 /* YapSnap */,
+				F44B0C4816DA404700E6CD88 /* YapTap */,
 				37695E5D19BB7A0B00C22E13 /* Resources */,
 				F44B0C4116DA404700E6CD88 /* Frameworks */,
 				F44B0C4016DA404700E6CD88 /* Products */,
@@ -513,7 +513,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F44B0C4816DA404700E6CD88 /* YapSnap */ = {
+		F44B0C4816DA404700E6CD88 /* YapTap */ = {
 			isa = PBXGroup;
 			children = (
 				FC0C1D4D1A46065B00B148AB /* Libraries */,
@@ -526,7 +526,7 @@
 				F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */,
 				F44B0C4916DA404700E6CD88 /* Supporting Files */,
 			);
-			name = YapSnap;
+			name = YapTap;
 			path = AudioDemo;
 			sourceTree = "<group>";
 		};

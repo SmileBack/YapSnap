@@ -36,7 +36,6 @@
             AudioCaptureViewController* rvvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AudioCaptureViewController"];
             [self.navigationController pushViewController:rvvc animated:NO];
         } else {
-            //TO DO: Uncomment the following and take user straight to step 3 of registration
             AudioCaptureViewController* rvvc = [self.storyboard instantiateViewControllerWithIdentifier:@"EnterNameEmailViewController"];
             [self.navigationController pushViewController:rvvc animated:NO];
         }

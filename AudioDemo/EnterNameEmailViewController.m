@@ -76,6 +76,8 @@
 
 - (IBAction) didTapContinueButton
 {
+    self.emailTextField.text = [self.emailTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
     if ([self.firstNameTextField.text length] < 2) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your name"
                                                         message:@"Please enter your name."
