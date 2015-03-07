@@ -33,6 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [SpotifyAPI sharedApi]; //Activate to get access token
+    
     [self setupSearchBox];
     
     if ([self internetIsNotReachable]) {
