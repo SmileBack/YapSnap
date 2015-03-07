@@ -90,11 +90,7 @@ static YSPushManager *_sharedPushManager;
 - (void) receivedNotification:(NSDictionary *)notification
 {
     // TODO do something with notification
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Received Yap"
-                                                    message:@"You've received a new yap"
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+    [[YTNotifications sharedNotifications] showNotificationText:@"You've received a new yap"];
 }
 
 #pragma mark - Helpers
