@@ -26,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UIView *friendsExplanationView;
 
 - (IBAction)tappedCancelFeedbackExplanationButton;
+- (IBAction)tappedAddFriendsButton;
 
 @end
 
@@ -244,6 +245,16 @@
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_CANCEL_BUTTON_ON_FRIENDS_EXPLANATION_VIEW_KEY];
     
+}
+
+- (void) tappedAddFriendsButton
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add a Friend"
+                                                    message:@"To add a friend, send anyone from your contacts a yap. Once they open it, they'll become your friend!"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Send Yap", nil];
+    [alert show];
 }
 
 @end
