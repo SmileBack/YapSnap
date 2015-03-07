@@ -329,6 +329,29 @@ static API *sharedAPI;
          }];
 }
 
+- (void) getMeWithCallback:(UserCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:[self urlForEndpoint:@"me"]
+      parameters:[self paramsWithDict:@{}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             if (![responseObject isKindOfClass:[NSDictionary class]]) {
+                 callback(nil, [NSError errorWithDomain:@"REsponse error" code:1 userInfo:nil]);
+                 return;
+             }
+             NSDictionary *response = responseObject;
+             YSUser *me = [YSUser userFromDictionary:response];
+             [YSUser setCurrentUser:me];
+             callback(me, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [self processFailedOperation:operation];
+             callback(nil, error);
+             NSLog(@"Error Getting Yaps Unopened Count %@", error);
+         }];
+}
+
 # pragma mark - Block User
 
 - (void) blockUserId:(NSNumber *)userId withCallback:(SuccessOrErrorCallback)callback
