@@ -261,7 +261,7 @@ static ContactManager *sharedInstance;
 - (void) loadRecentContacts
 {
     NSArray *contacts = [[NSUserDefaults standardUserDefaults] arrayForKey:RECENT_CONTACTS_KEY];
-    @try {
+//    @try {
         for (NSData *contactData in contacts) {
             RecentContact *recentContact = [NSKeyedUnarchiver unarchiveObjectWithData:contactData];
             PhoneContact *contact = [self contactForId:recentContact.contactID];
@@ -269,14 +269,14 @@ static ContactManager *sharedInstance;
                 [self addRecentContactAndUpdateOrder:contact andTime:recentContact.contactTime];
             }
         }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Error in load recent contacts: %@", exception);
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults removeObjectForKey:RECENT_CONTACTS_KEY];
-        [defaults synchronize];
-        //TODO: Add Mixpanel track
-    }
+//    }
+//    @catch (NSException *exception) {
+//        NSLog(@"Error in load recent contacts: %@", exception);
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults removeObjectForKey:RECENT_CONTACTS_KEY];
+//        [defaults synchronize];
+//        //TODO: Add Mixpanel track
+//    }
 }
 
 - (void) syncRecentContacts
