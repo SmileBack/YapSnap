@@ -64,6 +64,10 @@
         self.friendsExplanationView.hidden = NO;
     }
     
+    // TEXT COLOR OF UINAVBAR
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
     [UIView animateWithDuration:1
                           delay:.2
                         options:UIViewAnimationOptionCurveEaseInOut
