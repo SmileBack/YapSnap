@@ -71,7 +71,8 @@ static SpotifyAPI *sharedInstance;
     NSDictionary *params = @{@"q": searchString,
                              @"type": @"track",
                              @"limit": @50};
-
+    
+    __weak SpotifyAPI *weakSelf = self;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [self setAuthorizationOnManager:manager];
     [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -82,7 +83,14 @@ static SpotifyAPI *sharedInstance;
         callback(songs, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        callback(nil, error);
+        if (operation.response.statusCode == 401) {
+            weakSelf.tokenType = nil;
+            weakSelf.token = nil;
+            [weakSelf searchSongs:searchString withCallback:callback];
+            [weakSelf getAccessToken];
+         } else {
+             callback(nil, error);
+         }
     }];
 }
 
