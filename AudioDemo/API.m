@@ -280,8 +280,6 @@ static API *sharedAPI;
               NSArray *yapDicts = responseObject; //Assuming it is an array
               NSArray *yaps = [YSYap yapsWithArray:yapDicts];
               callback(yaps, nil);
-              
-              NSLog(@"yaps: %@", yapDicts);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              [self processFailedOperation:operation];

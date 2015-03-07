@@ -23,7 +23,6 @@
 
 + (YSTrack *) trackFromDictionary:(NSDictionary *)trackDictionary
 {
-    NSLog(@"Creating track with diatioanry: %@", trackDictionary);
     YSTrack *track = [YSTrack new];
     
     track.name = trackDictionary[@"name"];
