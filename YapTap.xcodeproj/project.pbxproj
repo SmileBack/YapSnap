@@ -10,6 +10,21 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
+		<key>2EC984014C0190B93A4FFD0C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-YapTap.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-YapTap/Pods-YapTap.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>371C2C8819BCF73800FDA390</key>
 		<dict>
 			<key>isa</key>
@@ -1959,13 +1974,6 @@ fi
 			<key>showEnvVarsInLog</key>
 			<string>0</string>
 		</dict>
-		<key>C1A8A28BEEE98012F2950D09</key>
-		<dict>
-			<key>fileRef</key>
-			<string>98C8F94496586F87E59A61FD</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>CA961E944F5B46EDE7E7229C</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1987,11 +1995,28 @@ fi
 			<array>
 				<string>7DBB580EF15910507DC95A1F</string>
 				<string>CA961E944F5B46EDE7E7229C</string>
+				<string>E5BE18B0D5C576F8F5235937</string>
+				<string>2EC984014C0190B93A4FFD0C</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
 			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E5BE18B0D5C576F8F5235937</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-YapTap.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-YapTap/Pods-YapTap.debug.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2145,7 +2170,6 @@ fi
 				<string>F44B0C4316DA404700E6CD88</string>
 				<string>F44B0C4516DA404700E6CD88</string>
 				<string>F44B0C4716DA404700E6CD88</string>
-				<string>C1A8A28BEEE98012F2950D09</string>
 				<string>A57E2BDB2471131379654871</string>
 			</array>
 			<key>isa</key>
@@ -2744,7 +2768,7 @@ fi
 		<key>F44B0C6316DA404700E6CD88</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>7DBB580EF15910507DC95A1F</string>
+			<string>E5BE18B0D5C576F8F5235937</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
@@ -2785,7 +2809,7 @@ fi
 		<key>F44B0C6416DA404700E6CD88</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>CA961E944F5B46EDE7E7229C</string>
+			<string>2EC984014C0190B93A4FFD0C</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
