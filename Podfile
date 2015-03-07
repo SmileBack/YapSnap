@@ -11,5 +11,6 @@ target "YapTap" do
   pod 'StreamingKit', '~> 0.1.25'
   pod 'AWSiOSSDKv2', '~> 2.0.15'
   pod 'SHSPhoneComponent', '~> 2.15'
+  pod 'CRToast', '~> 0.0.7'
 end
 

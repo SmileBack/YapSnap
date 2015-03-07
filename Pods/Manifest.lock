@@ -161,6 +161,7 @@ PODS:
     - UICKeyChainStore (~> 1.0)
     - XMLDictionary (~> 1.4.0)
   - Bolts (1.1.3)
+  - CRToast (0.0.7)
   - FMDB (2.4):
     - FMDB/standard (= 2.4)
   - FMDB/common (2.4)
@@ -184,6 +185,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
   - AWSiOSSDKv2 (~> 2.0.15)
+  - CRToast (~> 0.0.7)
   - iCarousel (~> 1.8.1)
   - SDWebImage (~> 3.7.1)
   - SHSPhoneComponent (~> 2.15)
@@ -193,6 +195,7 @@ SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   AWSiOSSDKv2: 53c8f9aa2c61099e035755dd739aa91c2ab2765c
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
+  CRToast: f9f2c4b29776d68ba24c4d621cba59a83fea921b
   FMDB: 0b2fa25e5264ef177973c0cb8c02c711107979aa
   GZIP: f27c434ffee5e9a9b34f4e9c19e91350fa8bbde1
   iCarousel: 5acab560f10dc13da2440c89f35a0ad278b5147d
