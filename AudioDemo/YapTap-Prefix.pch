@@ -14,6 +14,8 @@
 
     #import "UIViewController+ScreenSize.h"
 
+    #import "YTNotifications.h"
+
 #define THEME_BLUE_COLOR [UIColor colorWithRed:91.0/255.0 green:237.0/255.0 blue:225.0/255.0 alpha:1.0f]
 #define THEME_RED_COLOR [UIColor colorWithRed:245.0f/255.0f green:75.0f/255.0f blue:75.0f/255.0f alpha:1]
 

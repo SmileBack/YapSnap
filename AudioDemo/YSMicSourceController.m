@@ -39,13 +39,8 @@
 
 - (void)tappedMicrophoneImage {
     NSLog(@"Tapped Microphone Image");
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Press Red Button"
-                                                    message:@"Hold the button below to record and send your voice."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    
-    [alert show];
+
+    [[YTNotifications sharedNotifications] showNotificationText:@"Press Red Button"];
 }
 
 - (void)didReceiveMemoryWarning {
