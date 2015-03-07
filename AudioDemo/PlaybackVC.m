@@ -32,7 +32,7 @@
 
     [self.progressView setTrackImage:[UIImage imageNamed:@"ProgressViewBackgroundWhite.png"]];
     [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewBackgroundRed.png"]];
-
+    
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
     NSLog(@"URL: %@", self.yap.playbackURL);
