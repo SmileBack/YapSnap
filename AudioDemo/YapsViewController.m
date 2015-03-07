@@ -271,9 +271,7 @@ static NSString *CellIdentifier = @"Cell";
     NSLog(@"Double tap on: %@", indexPath);
     
     YSYap *yap = self.yaps[indexPath.row];
-    if (yap.receivedByCurrentUser) {
-        [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
-    }
+    [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

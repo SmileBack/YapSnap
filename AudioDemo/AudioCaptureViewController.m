@@ -78,8 +78,8 @@ static const float TIMER_INTERVAL = .01;
 {
     if ([self isInReplyMode]) {
         self.yapsPageButton.hidden = YES;
-//        UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
-        [self.topLeftButton setTitle:@"Friends" forState:UIControlStateNormal];
+        UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
+        [self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
         self.topLeftButton.alpha = 1;
         NSLog(@"In reply mode");
     } else {

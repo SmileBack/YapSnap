@@ -67,7 +67,7 @@
 		787C84DB1A76C77D005D80D5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787C84DA1A76C77D005D80D5 /* AudioToolbox.framework */; };
 		787C84DF1A7732E4005D80D5 /* PhoneNumberChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 787C84DE1A7732E4005D80D5 /* PhoneNumberChecker.m */; };
 		7885B2261A8DE49F00B230A0 /* SettingsIconWhite6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B2251A8DE49F00B230A0 /* SettingsIconWhite6@2x.png */; };
-		7885B2281A8DE53100B230A0 /* WhiteBackArrow5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B2271A8DE53100B230A0 /* WhiteBackArrow5@2x.png */; };
+		7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */; };
 		7885B22E1A8DEC9900B230A0 /* SquareOutlineRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B22D1A8DEC9900B230A0 /* SquareOutlineRed.png */; };
 		78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */; };
 		78A569A31A73227200818A17 /* YSColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A569A21A73227200818A17 /* YSColorPicker.m */; };
@@ -211,7 +211,7 @@
 		787C84DD1A7732E4005D80D5 /* PhoneNumberChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumberChecker.h; sourceTree = "<group>"; };
 		787C84DE1A7732E4005D80D5 /* PhoneNumberChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumberChecker.m; sourceTree = "<group>"; };
 		7885B2251A8DE49F00B230A0 /* SettingsIconWhite6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIconWhite6@2x.png"; sourceTree = "<group>"; };
-		7885B2271A8DE53100B230A0 /* WhiteBackArrow5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteBackArrow5@2x.png"; sourceTree = "<group>"; };
+		7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBackArrow5.png; sourceTree = "<group>"; };
 		7885B22D1A8DEC9900B230A0 /* SquareOutlineRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquareOutlineRed.png; sourceTree = "<group>"; };
 		78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
 		78A569A11A73200900818A17 /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
@@ -376,7 +376,7 @@
 				784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */,
 				784E35EF1A65A0ED0029AA01 /* PencilIcon.png */,
 				7885B2251A8DE49F00B230A0 /* SettingsIconWhite6@2x.png */,
-				7885B2271A8DE53100B230A0 /* WhiteBackArrow5@2x.png */,
+				7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */,
 				781996241A7B45070004C2DB /* RedCircleSmallNoBorder.png */,
 				781996261A7B45CE0004C2DB /* RedCircleButton.png */,
 				7885B22D1A8DEC9900B230A0 /* SquareOutlineRed.png */,
@@ -818,7 +818,7 @@
 				3753AF8B19E9A68200B6391D /* YapsButtonRed.png in Resources */,
 				780005AA1A70EE69005E6CD4 /* listen_on_spotify-black-long3.png in Resources */,
 				784C67E41A625D110084894D /* ProgressViewBackgroundRed.png in Resources */,
-				7885B2281A8DE53100B230A0 /* WhiteBackArrow5@2x.png in Resources */,
+				7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */,
 				7863B5DD1A99A25F00531CED /* sound1.wav in Resources */,
 				784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */,
 				787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */,
