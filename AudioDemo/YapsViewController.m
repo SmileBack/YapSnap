@@ -242,10 +242,8 @@ static NSString *CellIdentifier = @"Cell";
     return cell;
 }
 
-- (void) cellTappedOnceAtIndexPath:(NSIndexPath *)indexPath
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"didSelectRow");
-    
     if ([self internetIsNotReachable]){ // Only apply reachability code to situation where user can listen to the yap
         [self showNoInternetAlert];
     } else {        
@@ -352,12 +350,6 @@ static NSString *CellIdentifier = @"Cell";
     doubleTap.numberOfTapsRequired = 2;
     doubleTap.numberOfTouchesRequired = 1;
     [self.tableView addGestureRecognizer:doubleTap];
-    
-    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-    singleTap.numberOfTapsRequired = 1;
-    singleTap.numberOfTouchesRequired = 1;
-    [singleTap requireGestureRecognizerToFail:doubleTap];
-    [self.tableView addGestureRecognizer:singleTap];
 }
 
 - (void) handleDoubleTap:(UIGestureRecognizer *)tap
@@ -370,15 +362,6 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
-- (void) handleSingleTap:(UIGestureRecognizer *)tap
-{
-    if (UIGestureRecognizerStateEnded == tap.state)
-    {
-        CGPoint p = [tap locationInView:tap.view];
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
-        [self cellTappedOnceAtIndexPath:indexPath];
-    }
-}
 
 //The event handling method
 - (void)handleSpotifyTap:(YSSpotifyTapGestureRecognizer *)recognizer {
