@@ -121,6 +121,7 @@
 		FCBB97031A7D636A003D5F24 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB97021A7D636A003D5F24 /* SettingsViewController.m */; };
 		FCBB97061A7D6CDF003D5F24 /* EditFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB97051A7D6CDF003D5F24 /* EditFieldViewController.m */; };
 		FCE234491AAB749E00C1EDB0 /* YTNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE234481AAB749E00C1EDB0 /* YTNotifications.m */; };
+		FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE2347C1AAB917100C1EDB0 /* LaunchScreen.xib */; };
 		FCEF99361A6D6B22000FDE4C /* AddTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */; };
 		FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */; };
 		FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF993C1A6D6F06000FDE4C /* NoAnimationPushSegue.m */; };
@@ -297,6 +298,7 @@
 		FCBB97051A7D6CDF003D5F24 /* EditFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFieldViewController.m; sourceTree = "<group>"; };
 		FCE234471AAB749E00C1EDB0 /* YTNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTNotifications.h; sourceTree = "<group>"; };
 		FCE234481AAB749E00C1EDB0 /* YTNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTNotifications.m; sourceTree = "<group>"; };
+		FCE2347C1AAB917100C1EDB0 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		FCEF99341A6D6B22000FDE4C /* AddTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTextViewController.h; sourceTree = "<group>"; };
 		FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTextViewController.m; sourceTree = "<group>"; };
 		FCEF99371A6D6B9A000FDE4C /* YapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YapBuilder.h; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FCE2347C1AAB917100C1EDB0 /* LaunchScreen.xib */,
 				FC0642D61A9D65E200E3D60F /* Environments.plist */,
 				37D413C419D2229A00021548 /* YapSnap App Icon 114.png */,
 				37D413C319D221C800021548 /* YapSnap App Icon.png */,
@@ -827,6 +830,7 @@
 				786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */,
 				37D20C2C19E4A19D008530BF /* RecordButtonRedWhiteBorder.png in Resources */,
 				37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */,
+				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
 				78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */,
 				37D413C219D21FC300021548 /* RedCircleSmall.png in Resources */,
 				78CBF2F81A99697A00F30DCA /* InfoIconWhite@2x.png in Resources */,
@@ -1036,7 +1040,6 @@
 			baseConfigurationReference = E5BE18B0D5C576F8F5235937 /* Pods-YapTap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_DISPLAY_NAME_PREFIX = "Dev-";
 				BUNDLE_ID_SUFFIX = .dev;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1059,7 +1062,6 @@
 			baseConfigurationReference = 2EC984014C0190B93A4FFD0C /* Pods-YapTap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_DISPLAY_NAME_PREFIX = "";
 				BUNDLE_ID_SUFFIX = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
