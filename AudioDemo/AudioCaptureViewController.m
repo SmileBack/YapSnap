@@ -78,8 +78,8 @@ static const float TIMER_INTERVAL = .01;
 {
     if ([self isInReplyMode]) {
         self.yapsPageButton.hidden = YES;
-        UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
-        [self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
+//        UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
+        [self.topLeftButton setTitle:@"Friends" forState:UIControlStateNormal];
         self.topLeftButton.alpha = 1;
         NSLog(@"In reply mode");
     } else {
@@ -98,7 +98,7 @@ static const float TIMER_INTERVAL = .01;
         [self micModeButtonPressed:nil]; //This line is a hacky fix to an issue where spotify songs remain on screen after pop
         [self.navigationController popViewControllerAnimated:YES];
     } else {
-        [self performSegueWithIdentifier:@"Settings Segue" sender:nil];
+        [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
     }
 }
 

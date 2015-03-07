@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -86,10 +86,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjE-ev-SsG" userLabel="Top Left Button">
+                            <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjE-ev-SsG" userLabel="Friends Button">
                                 <rect key="frame" x="0.0" y="20" width="44" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" image="SettingsIconWhite6.png">
+                                <state key="normal" title="Friends">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -256,7 +256,7 @@
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="AEp-MY-7pq"/>
                         <segue destination="j1Z-Ou-SMe" kind="custom" identifier="Prepare Yap For Text Segue" customClass="NoAnimationPushSegue" id="nBD-Sc-cVG"/>
-                        <segue destination="99I-02-yZb" kind="modal" identifier="Settings Segue" id="POl-Pz-fbY"/>
+                        <segue destination="99I-02-yZb" kind="modal" identifier="Friends Segue" id="POl-Pz-fbY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -273,7 +273,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="b8F-go-ayB" kind="relationship" relationship="rootViewController" id="B5s-y6-GFi"/>
+                        <segue destination="IdD-6v-OZr" kind="relationship" relationship="rootViewController" id="f3G-bm-6Hh"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbk-tQ-1er" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,7 +289,7 @@
                         <viewControllerLayoutGuide type="bottom" id="A6g-AH-ZMj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="c1P-cc-dab">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Wxt-ug-3oL">
@@ -326,13 +326,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="iO1-Fw-nq1">
-                        <barButtonItem key="leftBarButtonItem" title="Done" id="mgs-lE-w7V">
-                            <connections>
-                                <action selector="didPressDone:" destination="b8F-go-ayB" id="jpm-YP-OXZ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Settings" id="iO1-Fw-nq1"/>
                     <connections>
                         <outlet property="tableView" destination="Wxt-ug-3oL" id="WIB-sl-elb"/>
                         <segue destination="5bA-8y-jd8" kind="push" identifier="Edit Field Segue" id="dvm-as-tq8"/>
@@ -340,7 +334,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YFn-d3-EKv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="718" y="1559"/>
+            <point key="canvasLocation" x="2312" y="-163"/>
         </scene>
         <!--Edit Field View Controller-->
         <scene sceneID="QDP-Jk-KQl">
@@ -351,10 +345,10 @@
                         <viewControllerLayoutGuide type="bottom" id="6DQ-z1-9tf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zdM-Wx-iIj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hBL-8E-dV6">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hBL-8E-dV6">
                                 <rect key="frame" x="30" y="92" width="260" height="46"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -376,7 +370,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNC-jM-UAt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1298" y="1559"/>
+            <point key="canvasLocation" x="2892" y="-163"/>
         </scene>
         <!--Contacts View Controller-->
         <scene sceneID="233-fw-KYK">
@@ -483,7 +477,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dGM-cC-PZ3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="F6W-sY-6UP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jGg-FF-Oxq">
@@ -592,7 +586,7 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5l-NO-JDy">
-                                <rect key="frame" x="0.0" y="386" width="320" height="118"/>
+                                <rect key="frame" x="0.0" y="450" width="320" height="118"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yuO-zt-d2M">
                                         <rect key="frame" x="140" y="68" width="40" height="40"/>
@@ -624,10 +618,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PbR-9m-qzC">
-                        <barButtonItem key="rightBarButtonItem" image="PlusButtonWhite.png" id="TUh-dG-0yw">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="stop" id="6NP-k8-18s">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="tappedAddFriendsButton" destination="IdD-6v-OZr" id="pKP-Ln-jNx"/>
+                                <action selector="tappedCancelButton:" destination="IdD-6v-OZr" id="VRr-LG-ey9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="yHX-qT-6J5">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="addFriendButtonPressed:" destination="IdD-6v-OZr" id="JH2-u2-K4W"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -638,7 +638,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dqY-2D-Jm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2312" y="-171"/>
+            <point key="canvasLocation" x="778" y="1559"/>
         </scene>
         <!--Add Text View Controller-->
         <scene sceneID="xd9-E1-nLy">
@@ -860,9 +860,10 @@
                                 <action selector="didTapGoToAudioCaptureButton" destination="Vua-bX-Wl1" id="bhX-gA-Rs0"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Friends" id="UOa-uX-nLV">
+                        <barButtonItem key="rightBarButtonItem" image="SettingsIconWhite6.png" style="plain" id="UOa-uX-nLV">
                             <connections>
                                 <action selector="didPressFriendsButton:" destination="Vua-bX-Wl1" id="Vrm-gg-7Wd"/>
+                                <segue destination="b8F-go-ayB" kind="push" id="9cu-HE-Ner"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -871,7 +872,6 @@
                         <outlet property="pushEnabledView" destination="zrU-oT-SXF" id="HaD-zy-P5U"/>
                         <outlet property="tableView" destination="hWh-h3-qO7" id="klJ-nF-XsM"/>
                         <segue destination="Dgp-JD-d1e" kind="modal" identifier="Playback Segue" animates="NO" id="LuI-mK-8FP"/>
-                        <segue destination="IdD-6v-OZr" kind="push" identifier="Friends Segue" id="X3Y-yy-QzJ"/>
                         <segue destination="2" kind="custom" identifier="Reply Segue" customClass="NoAnimationPushSegue" id="Enn-ka-dSJ"/>
                     </connections>
                 </viewController>
@@ -1363,7 +1363,6 @@
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PencilIcon.png" width="75" height="75"/>
-        <image name="PlusButtonWhite.png" width="26" height="26"/>
         <image name="ProgressViewNotches5.png" width="320" height="40"/>
         <image name="RecordButtonRedWhiteBorder.png" width="200" height="200"/>
         <image name="RecordModeButton.png" width="316" height="89"/>

@@ -26,7 +26,6 @@
 @property (strong, nonatomic) IBOutlet UIView *friendsExplanationView;
 
 - (IBAction)tappedCancelFeedbackExplanationButton;
-- (IBAction)tappedAddFriendsButton;
 
 @end
 
@@ -72,6 +71,8 @@
                          self.friendsExplanationView.frame = CGRectMake(0, 0, 320, 118);
                      }
                      completion:nil];
+    
+    self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
 }
 
 
@@ -246,15 +247,27 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_CANCEL_BUTTON_ON_FRIENDS_EXPLANATION_VIEW_KEY];
     
 }
-
-- (void) tappedAddFriendsButton
+- (IBAction)addFriendButtonPressed:(UIBarButtonItem *)sender
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add a Friend"
                                                     message:@"To add a friend, send anyone from your contacts a yap. Once they open it, they'll become your friend!"
-                                                   delegate:nil
+                                                   delegate:self
                                           cancelButtonTitle:@"Cancel"
                                           otherButtonTitles:@"Send Yap", nil];
     [alert show];
+}
+
+- (IBAction)tappedCancelButton:(UIBarButtonItem *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

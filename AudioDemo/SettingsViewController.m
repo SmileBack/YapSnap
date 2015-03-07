@@ -163,11 +163,6 @@
 }
 
 #pragma mark - Navigation
-- (IBAction)didPressDone:(UIBarButtonItem *)sender
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([@"Edit Field Segue" isEqualToString:segue.identifier]) {
         EditFieldViewController *vc = segue.destinationViewController;
