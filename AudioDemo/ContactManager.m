@@ -265,11 +265,12 @@ static ContactManager *sharedInstance;
 - (void) loadRecentContacts
 {
     NSArray *contacts = [[NSUserDefaults standardUserDefaults] arrayForKey:RECENT_CONTACTS_KEY];
-    for (NSData *contactData in contacts) {
-        RecentContact *recentContact = [NSKeyedUnarchiver unarchiveObjectWithData:contactData];
-        PhoneContact *contact = [self contactForId:recentContact.contactID];
+    for (NSDictionary *recentContact in contacts) {
+        PhoneContact *contact = [self contactForId:recentContact[RECENT_CONTACTS_CONTACT_ID]];
         if (contact) {
-            [self addRecentContactAndUpdateOrder:contact andTime:recentContact.contactTime andSave:(contact == contacts.lastObject)];
+            [self addRecentContactAndUpdateOrder:contact
+                                         andTime:recentContact[RECENT_CONTACTS_CONTACT_TIME]
+                                         andSave:(contact == contacts.lastObject)];
         }
     }
 }
