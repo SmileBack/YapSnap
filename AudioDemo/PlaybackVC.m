@@ -9,6 +9,7 @@
 #import "PlaybackVC.h"
 #import "API.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <AVFoundation/AVAudioSession.h>
 
 @interface PlaybackVC ()
 @property (strong, nonatomic) IBOutlet JEProgressView *progressView;
@@ -35,6 +36,7 @@
     
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
     NSLog(@"URL: %@", self.yap.playbackURL);
     [self.player play:self.yap.playbackURL];
     
