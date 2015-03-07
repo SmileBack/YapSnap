@@ -4,6 +4,8 @@
 <dict>
 	<key>Debug</key>
 	<dict>
+		<key>SpotifyToken</key>
+		<string>OGY3ZTdjMzE1MmI0NGI0NDgyYjFlZjYzNjk1NWVkYjQ6NDk4ZDNkYzRjNDFiNDdhZGI3ZGFjZWQxMjQwYzdjMjI=</string>
 		<key>apiURL</key>
 		<string>http://yaptap-staging.herokuapp.com/api/v1/</string>
 		<key>CrashyliticsApiKey</key>
@@ -11,6 +13,8 @@
 	</dict>
 	<key>Release</key>
 	<dict>
+		<key>SpotifyToken</key>
+		<string>OGY3ZTdjMzE1MmI0NGI0NDgyYjFlZjYzNjk1NWVkYjQ6NDk4ZDNkYzRjNDFiNDdhZGI3ZGFjZWQxMjQwYzdjMjI=</string>
 		<key>apiURL</key>
 		<string>http://yaptap.herokuapp.com/api/v1/</string>
 		<key>CrashyliticsApiKey</key>

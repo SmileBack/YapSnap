@@ -15,6 +15,7 @@ FOUNDATION_EXPORT NSString *const ENV_RELEASE;
 
 @property (nonatomic, strong) NSString *apiURL;
 @property (nonatomic, strong) NSString *crashyliticsApiKey;
+@property (nonatomic, strong) NSString *spotifyToken;
 
 + (Environment *)sharedInstance;
 

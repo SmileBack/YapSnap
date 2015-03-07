@@ -29,6 +29,7 @@ static Environment *sharedInstance = nil;
     NSLog(@"Environment configuration initialized.\nEnvironment: %@\nAPI URL: %@", _configuration, self.apiURL);
 
     self.crashyliticsApiKey = environment[@"CrashyliticsApiKey"];
+    self.spotifyToken = environment[@"SpotifyToken"];
 }
 
 #pragma mark - Lifecycle Methods
