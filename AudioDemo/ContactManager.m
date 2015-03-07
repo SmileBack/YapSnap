@@ -202,11 +202,6 @@ static ContactManager *sharedInstance;
 }
 
 #pragma mark - Recent Contact Stuff
-//- (void) addRecentContactAndUpdateOrder:(PhoneContact *)contact andTime:(NSDate *)time
-//{
-//    [self addRecentContactAndUpdateOrder:contact andTime:time andSave:NO];
-//}
-
 - (void) addRecentContactAndUpdateOrder:(PhoneContact *)contact andTime:(NSDate *)time andSave:(BOOL)shouldSave
 {
     if (!self.recentContacts)
@@ -238,7 +233,8 @@ static ContactManager *sharedInstance;
         return [name1 compare:name2];
     }];
 
-    [self saveRecentContacts];
+    if (shouldSave)
+        [self saveRecentContacts];
 }
 
 - (void) sentYapTo:(NSArray *)contacts
@@ -255,7 +251,9 @@ static ContactManager *sharedInstance;
 {
     NSMutableArray *toSave = [NSMutableArray arrayWithCapacity:self.recentContacts.count];
     for (RecentContact *contact in self.recentContacts) {
-        [toSave addObject:[NSKeyedArchiver archivedDataWithRootObject:contact]];
+        NSDictionary *dictToSave = @{RECENT_CONTACTS_CONTACT_ID: contact.contactID,
+                                     RECENT_CONTACTS_CONTACT_TIME: contact.contactTime};
+        [toSave addObject:dictToSave];
     }
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:toSave forKey:RECENT_CONTACTS_KEY];
