@@ -12,6 +12,7 @@
 #import "SpotifyAPI.h"
 #import "SpotifyTrackView.h"
 #import "OpenInSpotifyAlertView.h"
+#import <AVFoundation/AVAudioSession.h>
 
 #define NO_SONGS_TO_PLAY_ALERT @"NoSongs"
 
@@ -406,6 +407,7 @@
         YSTrack *song = self.songs[self.carousel.currentItemIndex];
         self.player = [STKAudioPlayer new];
         self.player.delegate = self;
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
         if ([song.previewURL isEqual: [NSNull null]]) {
             NSLog(@"URL is Null");
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Song Not Available"
