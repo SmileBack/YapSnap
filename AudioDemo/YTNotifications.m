@@ -21,11 +21,11 @@ static YTNotifications *_sharedNotifications;
         _sharedNotifications = [YTNotifications new];
 
         NSDictionary *options = @{
-                                  kCRToastFontKey: [UIFont systemFontOfSize:20],
-                                  kCRToastBackgroundColorKey: [UIColor blueColor],
+                                  kCRToastFontKey: [UIFont fontWithName:@"Futura-Medium" size:20],
+                                  kCRToastBackgroundColorKey: THEME_RED_COLOR,
                                   kCRToastNotificationPresentationTypeKey: @(CRToastPresentationTypeCover),
                                   kCRToastNotificationTypeKey: @(CRToastTypeNavigationBar),
-                                  kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
+                                  kCRToastAnimationInTypeKey : @(CRToastAnimationTypeLinear),
                                   kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeLinear),
                                   kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionTop),
                                   kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionTop)

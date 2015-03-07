@@ -289,13 +289,7 @@
     else
     {
         NSLog(@"Search box not in focus");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Press Red Button"
-                                                        message:@"Hold the button below to listen to and send this song."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        
-        [alert show];
+        [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
     }
 }
 

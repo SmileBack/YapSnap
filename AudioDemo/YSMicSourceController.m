@@ -40,7 +40,7 @@
 - (void)tappedMicrophoneImage {
     NSLog(@"Tapped Microphone Image");
 
-    [[YTNotifications sharedNotifications] showNotificationText:@"Press Red Button"];
+    [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
 }
 
 - (void)didReceiveMemoryWarning {

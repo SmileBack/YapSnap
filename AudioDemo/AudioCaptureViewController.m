@@ -186,28 +186,20 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"Something went wrong"
-                                                                       message:@"Something didn't work - please try again."
-                                                                      delegate:nil
-                                                             cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [[YTNotifications sharedNotifications] showNotificationText:@"Something Went Wrong"];
                         [weakSelf.progressView setProgress:0];
                         weakSelf.elapsedTime = 0;
                         [timer invalidate];
-                        [alert show];
                     }];
     
     [center addObserverForName:AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"Lost connection"
-                                                                       message:@"Lost connection."
-                                                                      delegate:nil
-                                                             cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [[YTNotifications sharedNotifications] showNotificationText:@"Lost Connection"];
                         [weakSelf.progressView setProgress:0];
                         weakSelf.elapsedTime = 0;
                         [timer invalidate];
-                        [alert show];
                     }];
     
     [center addObserverForName:STOP_LOADING_SPINNER_NOTIFICATION
@@ -275,7 +267,9 @@ static const float TIMER_INTERVAL = .01;
     
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
         self.progressView.progress = 0.0;
-        self.explanation.hidden = NO;
+        [[YTNotifications sharedNotifications] showNotificationText:@"Hold Down to Record"];
+        
+        self.explanation.hidden = YES;
         //Make explanation label disappear
         double delay = 2.0;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
