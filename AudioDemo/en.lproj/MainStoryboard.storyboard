@@ -688,8 +688,8 @@
                             <imageView alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProgressViewNotches5.png" translatesAutoresizingMaskIntoConstraints="NO" id="8fd-95-ofI" userLabel="Notches">
                                 <rect key="frame" x="0.0" y="64" width="320" height="40"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SEND YAP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-0v-8cp">
-                                <rect key="frame" x="20" y="32" width="280" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEND YAP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-0v-8cp">
+                                <rect key="frame" x="116.5" y="32" width="87.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -781,6 +781,7 @@
                             <constraint firstItem="gWj-LF-pEZ" firstAttribute="top" secondItem="KDf-Vb-ilr" secondAttribute="bottom" constant="-25" id="Wfr-Ly-i2Q"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="9XV-zO-GXP" secondAttribute="bottom" constant="18" id="X0t-yl-0Ze"/>
                             <constraint firstItem="8fd-95-ofI" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" id="cNy-Ee-BZs"/>
+                            <constraint firstItem="P4e-0v-8cp" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="12" id="eUk-u1-McX"/>
                             <constraint firstAttribute="trailing" secondItem="38e-bV-c4v" secondAttribute="trailing" id="ehn-ld-EZn"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="EyU-Er-gqZ" secondAttribute="bottom" constant="10" id="fBu-C8-GXW"/>
                             <constraint firstAttribute="trailing" secondItem="38e-bV-c4v" secondAttribute="trailing" id="gSj-Ly-sN8"/>
@@ -789,6 +790,7 @@
                             <constraint firstItem="38e-bV-c4v" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" id="k1h-V5-4BS"/>
                             <constraint firstAttribute="trailing" secondItem="KDf-Vb-ilr" secondAttribute="trailing" constant="16" id="m4m-nI-HLf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9XV-zO-GXP" secondAttribute="trailing" constant="-1" id="mW8-Gp-gvc"/>
+                            <constraint firstAttribute="centerX" secondItem="P4e-0v-8cp" secondAttribute="centerX" id="now-c8-Q57"/>
                             <constraint firstItem="8fd-95-ofI" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="44" id="qvv-x5-rzS"/>
                             <constraint firstItem="38e-bV-c4v" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" id="rLk-P0-06E"/>
                             <constraint firstAttribute="centerY" secondItem="gWj-LF-pEZ" secondAttribute="centerY" id="tZe-q4-Vfa"/>
@@ -1500,7 +1502,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="gZs-IQ-BYb"/>
-        <segue reference="syO-tE-hvG"/>
+        <segue reference="czb-n6-hbf"/>
         <segue reference="Enn-ka-dSJ"/>
     </inferredMetricsTieBreakers>
 </document>
