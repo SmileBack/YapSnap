@@ -22,7 +22,7 @@
 #define THEME_BACKGROUND_COLOR [UIColor colorWithRed:23.0f/255.0f green:94.0f/255.0f blue:160.0f/255.0f alpha:1]
 
 #define IS_BEFORE_IOS_8  ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] == NSOrderedAscending)
-
+#define IS_IPHONE_4_SIZE [UIScreen mainScreen].bounds.size.height == 480.0f
 #endif
 
 

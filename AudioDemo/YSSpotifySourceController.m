@@ -213,18 +213,20 @@
     if (view && [view isKindOfClass:[SpotifyTrackView class]]) {
         trackView = (SpotifyTrackView *) view;
     } else {
-        CGRect frame = CGRectMake(0, 0, 200, 200);
+        CGFloat height = IS_IPHONE_4_SIZE ? 140 : 200;
+
+        CGRect frame = CGRectMake(0, 0, height, height);
         trackView = [[SpotifyTrackView alloc] initWithFrame:frame];
 
         trackView.imageView = [[UIImageView alloc] initWithFrame:frame];
         [trackView addSubview:trackView.imageView];
 
         trackView.label = [[UILabel alloc]initWithFrame:
-                          CGRectMake(0, 200, 200, 25)];
+                          CGRectMake(0, height, height, 25)];
         [trackView addSubview:trackView.label];
         
         trackView.spotifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.spotifyButton.frame = CGRectMake(160, 5, 35, 35);
+        trackView.spotifyButton.frame = CGRectMake(height-40, 5, 35, 35);
         [trackView.spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
         [trackView addSubview:trackView.spotifyButton];
     }
@@ -244,7 +246,8 @@
     trackView.label.backgroundColor = [UIColor clearColor];
     trackView.label.text = track.name;
     trackView.label.textAlignment = NSTextAlignmentCenter;
-    trackView.label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+    CGFloat size = IS_IPHONE_4_SIZE ? 14 : 18;
+    trackView.label.font = [UIFont fontWithName:@"Futura-Medium" size:size];
     
     [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
 
