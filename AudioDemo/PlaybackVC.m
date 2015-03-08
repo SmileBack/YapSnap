@@ -123,9 +123,10 @@
 
         });
         
-        CGFloat progressViewRemainderWidth = (10 - [self.yap.duration floatValue])*32;
+        CGFloat width = self.view.frame.size.width;
+        CGFloat progressViewRemainderWidth = (10 - [self.yap.duration floatValue])*width/10;
         self.progressViewRemainder = [[UIView alloc] init];
-        self.progressViewRemainder.frame = CGRectMake(320 - progressViewRemainderWidth, 64, progressViewRemainderWidth, 40);
+        self.progressViewRemainder.frame = CGRectMake(width - progressViewRemainderWidth, 64, progressViewRemainderWidth, 40);
         self.progressViewRemainder.backgroundColor = [UIColor lightGrayColor];
         self.progressViewRemainder.alpha = 0;
         [self.view addSubview:self.progressViewRemainder];
