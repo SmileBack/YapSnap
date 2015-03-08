@@ -54,7 +54,7 @@
     self.view.backgroundColor = [UIColor colorWithRed:[self.yap.rgbColorComponents[0] floatValue]/255 green:[self.yap.rgbColorComponents[1] floatValue]/255 blue:[self.yap.rgbColorComponents[2] floatValue]/255 alpha:1];
 
     // If there's no photo URL, don't attempt to show photo
-    if (![self.yap.yapPhotoURL isEqual: [NSNull null]]) {
+    if (self.yap.yapPhotoURL && ![self.yap.yapPhotoURL isEqual: [NSNull null]]) {
         [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yap.yapPhotoURL]];
     }
 }
