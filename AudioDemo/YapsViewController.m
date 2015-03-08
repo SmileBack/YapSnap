@@ -196,7 +196,7 @@ static NSString *CellIdentifier = @"Cell";
     
     // DID SEND YAP
     if (yap.sentByCurrentUser) {
-        cell.nameLabel.text = yap.displayReceiverName; //TODO FIX NAME
+        cell.nameLabel.text = yap.displayReceiverName;
         
         if (yap.wasOpened) {
             cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Opened" , [self.dateFormatter stringFromDate:yap.createdAt]];
@@ -212,7 +212,7 @@ static NSString *CellIdentifier = @"Cell";
         
     // DID RECEIVE YAP
     } else if (yap.receivedByCurrentUser) {
-        cell.nameLabel.text = yap.displaySenderName; //TODO FIX NAME
+        cell.nameLabel.text = yap.displaySenderName;
         cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@" , [self.dateFormatter stringFromDate:yap.createdAt]];
 
         if (yap.wasOpened) {

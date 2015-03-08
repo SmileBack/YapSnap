@@ -42,8 +42,8 @@
 + (YSYap *) yapWithDictionary:(NSDictionary *)dict;
 + (NSArray *) yapsWithArray:(NSArray *)array;
 
-@property (nonatomic, readonly) NSString *displayReceiverName;
-@property (nonatomic, readonly) NSString *displaySenderName;
+@property (nonatomic, strong) NSString *displayReceiverName;
+@property (nonatomic, strong) NSString *displaySenderName;
 
 - (BOOL) wasOpened;
 - (BOOL) isPending;

@@ -46,6 +46,11 @@
     yap.receiverID = dict[@"receiver_id"];
     yap.receiverName = dict[@"receiver_name"];
     yap.receiverPhone = dict[@"receiver_phone"];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *name = yap.displayReceiverName;
+        name = yap.displaySenderName;
+    });
 
     return yap;
 }
@@ -61,26 +66,36 @@
 
 - (NSString *) displayReceiverName
 {
-    if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
-        NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.receiverPhone];
-        if (displayName) {
-            return displayName;
+    if (!_displayReceiverName) {
+        if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
+            NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.receiverPhone];
+            if (displayName) {
+                _displayReceiverName = displayName;
+            }
+        }
+        if (!_displayReceiverName) {
+            _displayReceiverName = self.receiverName;
         }
     }
-    
-    return self.receiverName;
+    return _displayReceiverName;
 }
 
 - (NSString *) displaySenderName
 {
-    if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
-        NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.senderPhone];
-        if (displayName) {
-            return displayName;
+    if (!_displaySenderName) {
+        if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
+            NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.senderPhone];
+            if (displayName) {
+                _displaySenderName = displayName;
+            }
+        }
+        
+        if (!_displaySenderName) {
+            _displaySenderName = self.senderName;
         }
     }
     
-    return self.senderName;
+    return _displaySenderName;
 }
 
 - (BOOL) wasOpened
