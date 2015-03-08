@@ -297,7 +297,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Wxt-ug-3oL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Wxt-ug-3oL">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -330,6 +330,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Wxt-ug-3oL" firstAttribute="leading" secondItem="c1P-cc-dab" secondAttribute="leading" id="AY3-Js-NZq"/>
+                            <constraint firstItem="Wxt-ug-3oL" firstAttribute="top" secondItem="Dpj-AT-GHm" secondAttribute="bottom" id="XRp-f4-JOg"/>
+                            <constraint firstItem="A6g-AH-ZMj" firstAttribute="top" secondItem="Wxt-ug-3oL" secondAttribute="bottom" constant="-64" id="dYL-Ox-9DD"/>
+                            <constraint firstAttribute="trailing" secondItem="Wxt-ug-3oL" secondAttribute="trailing" id="hRd-mx-Yrs"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="iO1-Fw-nq1"/>
                     <connections>
