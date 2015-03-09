@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -602,10 +602,10 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5l-NO-JDy">
-                                <rect key="frame" x="0.0" y="450" width="320" height="118"/>
+                                <rect key="frame" x="0.0" y="423" width="320" height="145"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yuO-zt-d2M">
-                                        <rect key="frame" x="140" y="68" width="40" height="40"/>
+                                        <rect key="frame" x="140" y="94" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="gPU-ZL-oxy"/>
                                             <constraint firstAttribute="width" constant="40" id="luS-ps-fRt"/>
@@ -617,8 +617,8 @@
                                             <action selector="tappedCancelFeedbackExplanationButton" destination="IdD-6v-OZr" eventType="touchUpInside" id="nep-dK-Dmu"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To add a friend, just send that person a yap. If they open it, they'll become your friend." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITT-tX-hG0">
-                                        <rect key="frame" x="15" y="5" width="290" height="59"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To add a friend, send a yap to anyone from your contacts. Once they open it, they'll become your friend!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITT-tX-hG0">
+                                        <rect key="frame" x="15" y="16" width="290" height="59"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="290" id="cGl-ro-ZVA"/>
                                             <constraint firstAttribute="height" constant="59" id="ygI-vN-fVD"/>
@@ -630,11 +630,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.21830097380445901" blue="0.44227100015642706" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="118" id="6VC-rJ-R6E"/>
+                                    <constraint firstAttribute="height" constant="145" id="6VC-rJ-R6E"/>
                                     <constraint firstAttribute="centerX" secondItem="yuO-zt-d2M" secondAttribute="centerX" id="Jlx-dk-lii"/>
                                     <constraint firstAttribute="centerX" secondItem="ITT-tX-hG0" secondAttribute="centerX" id="aEg-Mx-L5Z"/>
-                                    <constraint firstItem="ITT-tX-hG0" firstAttribute="top" secondItem="H5l-NO-JDy" secondAttribute="top" constant="5" id="iZG-qp-oTb"/>
-                                    <constraint firstAttribute="bottom" secondItem="yuO-zt-d2M" secondAttribute="bottom" constant="10" id="szf-36-2GM"/>
+                                    <constraint firstItem="ITT-tX-hG0" firstAttribute="top" secondItem="H5l-NO-JDy" secondAttribute="top" constant="16" id="iZG-qp-oTb"/>
+                                    <constraint firstAttribute="bottom" secondItem="yuO-zt-d2M" secondAttribute="bottom" constant="11" id="szf-36-2GM"/>
                                 </constraints>
                             </view>
                         </subviews>

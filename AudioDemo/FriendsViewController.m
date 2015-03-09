@@ -254,7 +254,7 @@
 - (IBAction)addFriendButtonPressed:(UIBarButtonItem *)sender
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add a Friend"
-                                                    message:@"To add a friend, send anyone from your contacts a yap. Once they open it, they'll become your friend!"
+                                                    message:@"To add a friend, send a yap to anyone from your contacts. Once they open it, they'll become your friend!"
                                                    delegate:self
                                           cancelButtonTitle:@"Cancel"
                                           otherButtonTitles:@"Send Yap", nil];
