@@ -67,6 +67,21 @@ static const float TIMER_INTERVAL = .01;
     }
     
     [self setupNavBarStuff];
+    
+    NSLog(@"Did user view welcome notification? %hhd", self.didViewWelcomeNotification);
+    
+    if (!self.didViewWelcomeNotification) {
+        double delay = 2;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showWelcomeText:@"Welcome, Send Your First Yap!"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_WELCOME_NOTIFICATION_KEY];
+        });
+    }
+}
+
+- (BOOL) didViewWelcomeNotification
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_WELCOME_NOTIFICATION_KEY];
 }
 
 - (BOOL) isInReplyMode

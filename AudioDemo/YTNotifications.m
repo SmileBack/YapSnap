@@ -46,7 +46,19 @@ static YTNotifications *_sharedNotifications;
 {
     NSDictionary *options = @{
                               kCRToastTextKey: text,
-                              kCRToastBackgroundColorKey: [UIColor blueColor]
+                              kCRToastBackgroundColorKey: [UIColor yellowColor]
+                              };
+    
+    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
+}
+
+- (void) showWelcomeText:(NSString *)text
+{
+    NSDictionary *options = @{
+                              kCRToastTextKey: text,
+                              kCRToastFontKey: [UIFont fontWithName:@"Futura-Medium" size:18],
+                              kCRToastTimeIntervalKey: @3,
+                              kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
                               };
     
     [CRToastManager showNotificationWithOptions:options completionBlock:nil];

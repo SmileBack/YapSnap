@@ -14,6 +14,8 @@
 
 @interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
+#define VIEWED_WELCOME_NOTIFICATION_KEY @"yaptap.ViewedWelcomeNotification"
+
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 @property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;

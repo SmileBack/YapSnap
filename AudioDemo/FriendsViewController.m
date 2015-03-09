@@ -251,6 +251,7 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_CANCEL_BUTTON_ON_FRIENDS_EXPLANATION_VIEW_KEY];
     
 }
+
 - (IBAction)addFriendButtonPressed:(UIBarButtonItem *)sender
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add a Friend"
