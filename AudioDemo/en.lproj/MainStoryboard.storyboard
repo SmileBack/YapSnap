@@ -1135,21 +1135,30 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="nz1-mu-VNC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="60"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="65"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RedCircleSmall.png" translatesAutoresizingMaskIntoConstraints="NO" id="NaU-7V-dGh">
-                                <rect key="frame" x="141" y="47" width="38" height="38"/>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Song And Voice Snippets To Friends" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dp-kR-bOT">
+                                <rect key="frame" x="47" y="229" width="226" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="tKm-qX-q6a"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="4dp-kR-bOT" firstAttribute="top" secondItem="OIg-LB-ROP" secondAttribute="bottom" constant="18" id="0y3-Kr-mBD"/>
                             <constraint firstItem="OIg-LB-ROP" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="AJe-SU-ZI6"/>
                             <constraint firstItem="Sz6-r0-iUG" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="BIC-Zz-0Hq"/>
                             <constraint firstItem="BAn-72-FyX" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="F7a-Ix-hDh"/>
+                            <constraint firstItem="4dp-kR-bOT" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leadingMargin" constant="31" id="NcC-Ub-zN9"/>
                             <constraint firstAttribute="trailing" secondItem="Sz6-r0-iUG" secondAttribute="trailing" id="b0h-4M-Q3C"/>
                             <constraint firstItem="OIg-LB-ROP" firstAttribute="top" secondItem="a23-SI-tr9" secondAttribute="bottom" constant="57" id="ec0-nP-Mip"/>
+                            <constraint firstItem="4dp-kR-bOT" firstAttribute="centerX" secondItem="OIg-LB-ROP" secondAttribute="centerX" id="g1r-Tq-A71"/>
                             <constraint firstItem="ahr-YS-Ciy" firstAttribute="top" secondItem="Sz6-r0-iUG" secondAttribute="bottom" id="mP2-Dh-6aa"/>
                             <constraint firstItem="Sz6-r0-iUG" firstAttribute="top" secondItem="BAn-72-FyX" secondAttribute="bottom" constant="1" id="naX-2m-vAf"/>
                             <constraint firstAttribute="trailing" secondItem="BAn-72-FyX" secondAttribute="trailing" id="qzi-lZ-oby"/>
@@ -1497,7 +1506,6 @@
         <image name="ProgressViewNotches5.png" width="320" height="40"/>
         <image name="RecordButtonRedWhiteBorder.png" width="200" height="200"/>
         <image name="RecordModeButton.png" width="316" height="89"/>
-        <image name="RedCircleSmall.png" width="67" height="67"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
         <image name="SpotifyModeButton.png" width="316" height="89"/>
         <image name="YapsButtonRed.png" width="60" height="60"/>
