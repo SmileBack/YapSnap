@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 @property (nonatomic, strong) NSArray *allLetters;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
+@property (strong, nonatomic) IBOutlet UILabel *bottomViewLabel;
 
 // Map of section letter to contacts:  A : [cont1, cont2]
 @property (nonatomic, strong) NSMutableDictionary *contactDict;
@@ -218,7 +219,7 @@ static NSString *CellIdentifier = @"Cell";
     
     cell.nameLabel.font = [self.selectedContacts containsObject:contact] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
     
-        return cell;
+    return cell;
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -267,6 +268,8 @@ static NSString *CellIdentifier = @"Cell";
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
     [self showOrHideBottomView];
+    
+    [self updateBottomViewText];
 }
 
 - (void) showOrHideBottomView
@@ -277,8 +280,14 @@ static NSString *CellIdentifier = @"Cell";
     } else {
         self.bottomView.hidden = YES;
     }
-        
 }
+
+- (void) updateBottomViewText
+{
+    self.bottomViewLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.selectedContacts.count];
+}
+
+
 
 #pragma mark - Keyboard
 - (void)keyboardWasShown:(NSNotification*)aNotification

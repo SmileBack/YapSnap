@@ -434,6 +434,12 @@
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="KEf-2h-zqy">
                                         <rect key="frame" x="265" y="17" width="37" height="37"/>
                                     </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNq-aM-kzD">
+                                        <rect key="frame" x="19" y="21" width="29" height="29"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.090196078431372548" green="0.36862745098039218" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -463,6 +469,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="bottomView" destination="hGC-QS-5qY" id="B8D-gO-UTv"/>
+                        <outlet property="bottomViewLabel" destination="qNq-aM-kzD" id="pmd-6l-xzY"/>
                         <outlet property="continueButton" destination="K6j-MM-95B" id="8DH-Ii-Vuv"/>
                         <outlet property="keyboardVerticalSpace" destination="AXf-Lr-Mzm" id="kGT-Mx-yLP"/>
                         <outlet property="loadingSpinner" destination="KEf-2h-zqy" id="cwm-4P-dPj"/>
@@ -1503,8 +1510,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gZs-IQ-BYb"/>
-        <segue reference="czb-n6-hbf"/>
         <segue reference="Enn-ka-dSJ"/>
+        <segue reference="syO-tE-hvG"/>
+        <segue reference="gZs-IQ-BYb"/>
     </inferredMetricsTieBreakers>
 </document>
