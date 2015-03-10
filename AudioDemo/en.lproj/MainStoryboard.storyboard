@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -162,12 +162,12 @@
                                     <action selector="playTapped:" destination="2" eventType="touchUpInside" id="bYQ-hA-hT6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dje-2i-9YC" userLabel="Spotify Mode Button">
+                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dje-2i-9YC" userLabel="Spotify Mode Button">
                                 <rect key="frame" x="0.0" y="528" width="158" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="jhI-5e-STM"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="SpotifyModeButton.png">
+                                <state key="normal" image="MusicButton.png">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -180,7 +180,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="atw-38-As1"/>
                                 </constraints>
-                                <state key="normal" image="RecordModeButton.png">
+                                <state key="normal" image="VoiceButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -192,12 +192,12 @@
                                 <color key="color" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtk-3T-WBS">
-                                <rect key="frame" x="105" y="449" width="110" height="110"/>
+                                <rect key="frame" x="105" y="452" width="110" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="Dmh-1t-u2O"/>
                                     <constraint firstAttribute="width" constant="110" id="rMS-z9-Mld"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="RecordButtonRedWhiteBorder.png">
+                                <state key="normal" image="RecordButtonBlueBorder">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -243,7 +243,7 @@
                             <constraint firstItem="4kI-Nm-pE3" firstAttribute="leading" secondItem="bsh-56-MCX" secondAttribute="leading" id="rVg-jh-GyC"/>
                             <constraint firstItem="g9f-Ex-CHR" firstAttribute="trailing" secondItem="bsh-56-MCX" secondAttribute="trailing" id="stg-vY-jVB"/>
                             <constraint firstItem="bsh-56-MCX" firstAttribute="leading" secondItem="g9f-Ex-CHR" secondAttribute="leading" id="xhE-ye-no8"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Xtk-3T-WBS" secondAttribute="bottom" constant="9" id="yN0-fu-IF4"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Xtk-3T-WBS" secondAttribute="bottom" constant="6" id="yN0-fu-IF4"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -698,7 +698,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="40"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEND YAP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-0v-8cp">
-                                <rect key="frame" x="116.5" y="32" width="87.5" height="23.5"/>
+                                <rect key="frame" x="117" y="32" width="88" height="24"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1015,7 +1015,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YapTap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCt-ck-W3X">
-                                <rect key="frame" x="129.5" y="32" width="61" height="21"/>
+                                <rect key="frame" x="130" y="32" width="61" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="gPl-oX-0s6"/>
                                 </constraints>
@@ -1501,13 +1501,13 @@
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="MicrophoneWhiteSmall2.png" width="17" height="30"/>
         <image name="Microphone_White2.png" width="256" height="256"/>
+        <image name="MusicButton.png" width="316" height="80"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PencilIcon.png" width="75" height="75"/>
         <image name="ProgressViewNotches5.png" width="320" height="40"/>
-        <image name="RecordButtonRedWhiteBorder.png" width="200" height="200"/>
-        <image name="RecordModeButton.png" width="316" height="89"/>
+        <image name="RecordButtonBlueBorder" width="120" height="120"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
-        <image name="SpotifyModeButton.png" width="316" height="89"/>
+        <image name="VoiceButton.png" width="316" height="80"/>
         <image name="YapsButtonRed.png" width="60" height="60"/>
         <image name="YellowStar.png" width="40" height="40"/>
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>
@@ -1519,7 +1519,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="syO-tE-hvG"/>
+        <segue reference="AEp-MY-7pq"/>
         <segue reference="gZs-IQ-BYb"/>
     </inferredMetricsTieBreakers>
 </document>
