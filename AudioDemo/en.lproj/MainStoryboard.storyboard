@@ -31,11 +31,11 @@
                                     <outlet property="delegate" destination="jNN-gb-fip" id="oMQ-PT-KYX"/>
                                 </connections>
                             </view>
-                            <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MusicIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="RkK-X4-YKu">
-                                <rect key="frame" x="0.0" y="70" width="320" height="130"/>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MusicIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="RkK-X4-YKu">
+                                <rect key="frame" x="0.0" y="85" width="320" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="R2t-5y-toV"/>
-                                    <constraint firstAttribute="height" constant="130" id="ZRK-aW-F6c"/>
+                                    <constraint firstAttribute="height" constant="80" id="ZRK-aW-F6c"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type an artist, song, or album" textAlignment="center" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="6hl-m2-tvk">
@@ -56,7 +56,7 @@
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="40" id="9Cq-I9-19w"/>
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" id="9zR-GB-wuh"/>
                             <constraint firstAttribute="trailing" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="26" id="BpS-sr-djQ"/>
-                            <constraint firstItem="RkK-X4-YKu" firstAttribute="top" secondItem="6hl-m2-tvk" secondAttribute="bottom" id="Dyf-JY-piN"/>
+                            <constraint firstItem="RkK-X4-YKu" firstAttribute="top" secondItem="6hl-m2-tvk" secondAttribute="bottom" constant="15" id="Dyf-JY-piN"/>
                             <constraint firstAttribute="bottom" secondItem="ZNs-R1-CJc" secondAttribute="bottom" constant="20" id="Fcg-Ri-wcV"/>
                             <constraint firstAttribute="centerX" secondItem="RkK-X4-YKu" secondAttribute="centerX" id="Vrl-SB-4xi"/>
                             <constraint firstAttribute="trailing" secondItem="ZNs-R1-CJc" secondAttribute="trailing" id="f6a-b0-12B"/>
@@ -124,10 +124,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf8-UJ-WxH" userLabel="Source Container">
-                                <rect key="frame" x="0.0" y="121" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="121" width="320" height="302"/>
                             </containerView>
                             <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dje-2i-9YC" userLabel="Spotify Mode Button" customClass="OffsetImageButton">
-                                <rect key="frame" x="0.0" y="529.5" width="155" height="38.5"/>
+                                <rect key="frame" x="0.0" y="523" width="157" height="45"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.95686274510000002" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -138,7 +138,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI5-ha-IW9" userLabel="Mic Mode Button" customClass="OffsetImageButton">
-                                <rect key="frame" x="165" y="529.5" width="155" height="38.5"/>
+                                <rect key="frame" x="163" y="523" width="157" height="45"/>
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.95686274509803915" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -148,7 +148,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtk-3T-WBS">
-                                <rect key="frame" x="105" y="452" width="110" height="110"/>
+                                <rect key="frame" x="96" y="434" width="128" height="128"/>
                                 <state key="normal" backgroundImage="RecordButtonBlueBorder">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -168,15 +168,15 @@
                             <constraint firstItem="Dwb-eQ-GX5" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="4" id="1H4-GY-B2q"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="1gf-LG-sLm"/>
                             <constraint firstItem="Dwb-eQ-GX5" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" constant="9" id="1jW-yf-ygK"/>
-                            <constraint firstItem="dI5-ha-IW9" firstAttribute="width" secondItem="3" secondAttribute="width" multiplier="0.5" constant="-5" id="3R6-Ur-Qvj"/>
+                            <constraint firstItem="dI5-ha-IW9" firstAttribute="width" secondItem="3" secondAttribute="width" multiplier="0.5" constant="-3" id="3R6-Ur-Qvj"/>
                             <constraint firstItem="T7q-Ko-Que" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" constant="6" id="63R-i6-jw2"/>
                             <constraint firstAttribute="bottom" secondItem="dI5-ha-IW9" secondAttribute="bottom" id="6pC-3x-KX0"/>
                             <constraint firstItem="dje-2i-9YC" firstAttribute="height" secondItem="dI5-ha-IW9" secondAttribute="height" id="87t-61-7V4"/>
-                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="width" secondItem="3" secondAttribute="width" multiplier="0.343" id="ABo-Ds-mDZ"/>
+                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="width" secondItem="3" secondAttribute="width" multiplier="0.4" id="ABo-Ds-mDZ"/>
                             <constraint firstItem="dI5-ha-IW9" firstAttribute="height" secondItem="Xtk-3T-WBS" secondAttribute="height" multiplier="0.35" id="B5t-oP-JDE"/>
                             <constraint firstAttribute="centerX" secondItem="Xtk-3T-WBS" secondAttribute="centerX" id="B6s-aK-z81"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="top" secondItem="1fX-iU-owr" secondAttribute="bottom" constant="17" id="BCa-iP-xVM"/>
-                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="height" secondItem="3" secondAttribute="width" multiplier="0.343" id="BSR-23-ZOo"/>
+                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="height" secondItem="3" secondAttribute="width" multiplier="0.4" id="BSR-23-ZOo"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="top" secondItem="Tf8-UJ-WxH" secondAttribute="bottom" constant="11" id="ERA-DM-T7m"/>
                             <constraint firstItem="dje-2i-9YC" firstAttribute="width" secondItem="dI5-ha-IW9" secondAttribute="width" id="EYU-6r-O8c"/>
                             <constraint firstAttribute="centerX" secondItem="Dwb-eQ-GX5" secondAttribute="centerX" id="G7R-LP-YV5"/>
@@ -1389,9 +1389,9 @@ Type it here.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Microphone_White2.png" translatesAutoresizingMaskIntoConstraints="NO" id="v0o-hk-bRQ">
-                                <rect key="frame" x="40" y="58" width="239" height="120"/>
+                                <rect key="frame" x="40" y="78" width="239" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="PXN-fp-aZa"/>
+                                    <constraint firstAttribute="height" constant="100" id="PXN-fp-aZa"/>
                                     <constraint firstAttribute="width" constant="239" id="X2v-1h-Bpp"/>
                                 </constraints>
                             </imageView>
@@ -1399,7 +1399,7 @@ Type it here.</string>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="v0o-hk-bRQ" secondAttribute="centerX" id="duN-UP-9L5"/>
-                            <constraint firstItem="v0o-hk-bRQ" firstAttribute="top" secondItem="e15-6z-nCE" secondAttribute="bottom" constant="38" id="rmR-aL-oss"/>
+                            <constraint firstItem="v0o-hk-bRQ" firstAttribute="top" secondItem="e15-6z-nCE" secondAttribute="bottom" constant="58" id="rmR-aL-oss"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
