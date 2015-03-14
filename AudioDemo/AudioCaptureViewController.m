@@ -43,6 +43,9 @@ static const float TIMER_INTERVAL = .01;
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil
                                                                             action:nil];
+    self.micModeButton.reverseImageOffset = YES;
+    self.spotifyModeButton.image = [UIImage imageNamed:@"MusicIconBlue2"];
+    self.micModeButton.image = [UIImage imageNamed:@"MicrophoneBlue2"];
     
     self.recordProgressView.progress = 0;
 

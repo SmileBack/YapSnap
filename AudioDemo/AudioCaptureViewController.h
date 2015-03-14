@@ -11,6 +11,7 @@
 #import "YSAudioSourceController.h"
 #import "PhoneContact.h"
 #import "YSRecordProgressView.h"
+#import "OffsetImageButton.h"
 
 @interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
@@ -21,8 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;
 @property (weak, nonatomic) IBOutlet UIButton *topLeftButton;
 @property (weak, nonatomic) IBOutlet UIView *explanation;
-@property (strong, nonatomic) IBOutlet UIButton *spotifyModeButton;
-@property (strong, nonatomic) IBOutlet UIButton *micModeButton;
+@property (strong, nonatomic) IBOutlet OffsetImageButton *spotifyModeButton;
+@property (strong, nonatomic) IBOutlet OffsetImageButton *micModeButton;
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
 @property (weak, nonatomic) IBOutlet YSRecordProgressView *recordProgressView;
 
