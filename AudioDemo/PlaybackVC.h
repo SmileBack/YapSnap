@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <StreamingKit/STKAudioPlayer.h>
-#import "JEProgressView.h"
 #import "YSYap.h"
 #import <MediaPlayer/MediaPlayer.h>
 

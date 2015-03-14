@@ -9,14 +9,14 @@
 #import "AddTextViewController.h"
 #import "ContactsViewController.h"
 #import "YSAudioSourceController.h"
-#import "JEProgressView.h"
 #import "PhoneContact.h"
 #import "UIViewController+Alerts.h"
 #import "ContactManager.h"
+#import "YSRecordProgressView.h"
 
 @interface AddTextViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
-@property (weak, nonatomic) IBOutlet JEProgressView *progressView;
+@property (weak, nonatomic) IBOutlet YSRecordProgressView *progressView;
 @property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
 @property (weak, nonatomic) IBOutlet YSColorPicker *colorPicker;
 @property (strong, nonatomic) UIView *progressViewRemainder;
@@ -44,8 +44,6 @@
                                                                             action:nil];
     
     self.progressView.progress = self.yapBuilder.duration/10;
-    [self.progressView setTrackImage:[UIImage imageNamed:@"ProgressViewBackgroundWhite.png"]];
-    [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewBackgroundRed.png"]];
     
     self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textView.delegate = self;

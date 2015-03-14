@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "JEProgressView.h"
 #import "YSAudioSourceController.h"
 #import "PhoneContact.h"
+#import "YSRecordProgressView.h"
 
 @interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
@@ -20,11 +20,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 @property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;
 @property (weak, nonatomic) IBOutlet UIButton *topLeftButton;
-@property (weak, nonatomic) IBOutlet JEProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIView *explanation;
 @property (strong, nonatomic) IBOutlet UIButton *spotifyModeButton;
 @property (strong, nonatomic) IBOutlet UIButton *micModeButton;
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
+@property (weak, nonatomic) IBOutlet YSRecordProgressView *recordProgressView;
 
 // This is set if the recording is initiated as a reply to a contact
 @property (nonatomic) YSContact *contactReplyingTo;

@@ -12,7 +12,7 @@
 #import <AVFoundation/AVAudioSession.h>
 
 @interface PlaybackVC ()
-@property (strong, nonatomic) IBOutlet JEProgressView *progressView;
+@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic) CGFloat elapsedTime;
@@ -30,9 +30,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self.progressView setTrackImage:[UIImage imageNamed:@"ProgressViewBackgroundWhite.png"]];
-    [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewBackgroundRed.png"]];
     
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
@@ -126,10 +123,16 @@
         CGFloat width = self.view.frame.size.width;
         CGFloat progressViewRemainderWidth = (10 - [self.yap.duration floatValue])*width/10;
         self.progressViewRemainder = [[UIView alloc] init];
-        self.progressViewRemainder.frame = CGRectMake(width - progressViewRemainderWidth, 64, progressViewRemainderWidth, 40);
+        [self.view addSubview:self.progressViewRemainder];
+        [self.progressViewRemainder setTranslatesAutoresizingMaskIntoConstraints:NO];
+        
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:-progressViewRemainderWidth]];
         self.progressViewRemainder.backgroundColor = [UIColor lightGrayColor];
         self.progressViewRemainder.alpha = 0;
-        [self.view addSubview:self.progressViewRemainder];
+        
         [UIView animateWithDuration:0.4
                               delay:0
                             options:UIViewAnimationOptionCurveEaseOut

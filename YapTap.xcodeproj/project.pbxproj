@@ -15,7 +15,6 @@
 		3753AF8919E9A4D000B6391D /* Microphone_White2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF8819E9A4D000B6391D /* Microphone_White2.png */; };
 		3753AF8B19E9A68200B6391D /* YapsButtonRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF8A19E9A68200B6391D /* YapsButtonRed.png */; };
 		3753AF9319E9CAEC00B6391D /* Replay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3753AF9219E9CAEC00B6391D /* Replay@2x.png */; };
-		37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37695E6D19BBC78F00C22E13 /* JEProgressView.m */; };
 		378191D419E59B4A006EF98F /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 378191D319E59B4A006EF98F /* API.m */; };
 		378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 378FD61119BDF45C007F3224 /* CheckWhite.png */; };
 		3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3793FDF319BCEF5700FBBBCE /* ContactsViewController.m */; };
@@ -45,9 +44,8 @@
 		781996251A7B45070004C2DB /* RedCircleSmallNoBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 781996241A7B45070004C2DB /* RedCircleSmallNoBorder.png */; };
 		781996271A7B45CE0004C2DB /* RedCircleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 781996261A7B45CE0004C2DB /* RedCircleButton.png */; };
 		7828A8DC1A846C0C00BAA609 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7828A8DB1A846C0C00BAA609 /* MessageUI.framework */; };
+		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E01A6253CE0084894D /* MusicIcon@2x.png */; };
-		784C67E41A625D110084894D /* ProgressViewBackgroundRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E21A625D110084894D /* ProgressViewBackgroundRed.png */; };
-		784C67E51A625D110084894D /* ProgressViewBackgroundWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E31A625D110084894D /* ProgressViewBackgroundWhite.png */; };
 		784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67F01A626F7B0084894D /* ProgressViewNotches5.png */; };
 		784E35E61A6339EE0029AA01 /* SpotifyModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */; };
 		784E35E81A633B3B0029AA01 /* RecordModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35E71A633B3B0029AA01 /* RecordModeButton.png */; };
@@ -144,8 +142,6 @@
 		3753AF8819E9A4D000B6391D /* Microphone_White2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_White2.png; sourceTree = "<group>"; };
 		3753AF8A19E9A68200B6391D /* YapsButtonRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsButtonRed.png; sourceTree = "<group>"; };
 		3753AF9219E9CAEC00B6391D /* Replay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Replay@2x.png"; sourceTree = "<group>"; };
-		37695E6C19BBC78F00C22E13 /* JEProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JEProgressView.h; sourceTree = "<group>"; };
-		37695E6D19BBC78F00C22E13 /* JEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JEProgressView.m; sourceTree = "<group>"; };
 		378191D219E59B4A006EF98F /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		378191D319E59B4A006EF98F /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		378FD61119BDF45C007F3224 /* CheckWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckWhite.png; sourceTree = "<group>"; };
@@ -190,9 +186,9 @@
 		781996241A7B45070004C2DB /* RedCircleSmallNoBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedCircleSmallNoBorder.png; sourceTree = "<group>"; };
 		781996261A7B45CE0004C2DB /* RedCircleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedCircleButton.png; sourceTree = "<group>"; };
 		7828A8DB1A846C0C00BAA609 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSRecordProgressView.h; sourceTree = "<group>"; };
+		784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecordProgressView.m; sourceTree = "<group>"; };
 		784C67E01A6253CE0084894D /* MusicIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIcon@2x.png"; sourceTree = "<group>"; };
-		784C67E21A625D110084894D /* ProgressViewBackgroundRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundRed.png; sourceTree = "<group>"; };
-		784C67E31A625D110084894D /* ProgressViewBackgroundWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewBackgroundWhite.png; sourceTree = "<group>"; };
 		784C67F01A626F7B0084894D /* ProgressViewNotches5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewNotches5.png; sourceTree = "<group>"; };
 		784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyModeButton.png; sourceTree = "<group>"; };
 		784E35E71A633B3B0029AA01 /* RecordModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordModeButton.png; sourceTree = "<group>"; };
@@ -340,62 +336,60 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FCE2347C1AAB917100C1EDB0 /* LaunchScreen.xib */,
-				FC4C8E3D1AAE85290096F5D4 /* RecordButtonBlueBorder.png */,
-				FC4C8E3E1AAE85290096F5D4 /* VoiceButton.png */,
-				FC4C8E3F1AAE85290096F5D4 /* MusicButton.png */,
-				FC0642D61A9D65E200E3D60F /* Environments.plist */,
-				37D413C419D2229A00021548 /* YapSnap App Icon 114.png */,
-				37D413C319D221C800021548 /* YapSnap App Icon.png */,
-				787C84DC1A76CAAD005D80D5 /* pew-pew-lei.caf */,
-				7863B5DC1A99A25F00531CED /* sound1.wav */,
-				37D413B219D217FF00021548 /* Fonts */,
-				784C67E01A6253CE0084894D /* MusicIcon@2x.png */,
-				786D911A1A6EF6AF00177E25 /* listen_on_spotify-black.png */,
-				78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */,
-				780005A71A70EA66005E6CD4 /* listen_on_spotify-black-long.png */,
-				780005A91A70EE69005E6CD4 /* listen_on_spotify-black-long3.png */,
-				786D91161A6EF16000177E25 /* RedRoundedSquare.png */,
-				786D91181A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png */,
+				78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */,
+				37D413CB19D230D000021548 /* ArrowWhite.png */,
 				786D910E1A6EEA5000177E25 /* BlueArrow2.png */,
 				786D91121A6EEEDE00177E25 /* BlueArrowWhiteFilling.png */,
-				786D91141A6EF0C800177E25 /* GrayArrow.png */,
-				787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */,
-				787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */,
-				3753AF9219E9CAEC00B6391D /* Replay@2x.png */,
-				37D413C119D21FC300021548 /* RedCircleSmall.png */,
-				37D413CB19D230D000021548 /* ArrowWhite.png */,
-				378FD61119BDF45C007F3224 /* CheckWhite.png */,
-				3753AF8819E9A4D000B6391D /* Microphone_White2.png */,
-				786D91221A6EFBCE00177E25 /* MicrophoneWhiteSmall2@2x.png */,
-				78A569AF1A74A37000818A17 /* Microphone_Yellow.png */,
-				78A569B11A74A6AC00818A17 /* Microphone_Yellow2.png */,
-				78A569B51A74A8B900818A17 /* Microphone_Gray2.png */,
-				784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */,
-				784E35E71A633B3B0029AA01 /* RecordModeButton.png */,
-				37D20C2B19E4A19D008530BF /* RecordButtonRedWhiteBorder.png */,
-				37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */,
-				3753AF8A19E9A68200B6391D /* YapsButtonRed.png */,
 				37D20C2D19E4A2B3008530BF /* CancelImageWhite.png */,
 				786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */,
-				784C67E21A625D110084894D /* ProgressViewBackgroundRed.png */,
-				784C67E31A625D110084894D /* ProgressViewBackgroundWhite.png */,
-				784C67F01A626F7B0084894D /* ProgressViewNotches5.png */,
-				78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */,
+				378FD61119BDF45C007F3224 /* CheckWhite.png */,
 				784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */,
-				784E35EF1A65A0ED0029AA01 /* PencilIcon.png */,
-				7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */,
-				7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */,
-				781996241A7B45070004C2DB /* RedCircleSmallNoBorder.png */,
-				781996261A7B45CE0004C2DB /* RedCircleButton.png */,
-				7885B22D1A8DEC9900B230A0 /* SquareOutlineRed.png */,
-				78CBF2F51A9960AD00F30DCA /* YellowStar.png */,
-				78DA1F7D1AA18D4900693015 /* WhiteCircle.png */,
-				78CBF2F71A99697A00F30DCA /* InfoIconWhite@2x.png */,
-				78CBF2FF1A996E8800F30DCA /* InfoIcon5@2x.png */,
-				78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */,
-				7803A05B1AAB648A006C43AE /* PlusButtonWhite@2x.png */,
+				78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */,
+				FC0642D61A9D65E200E3D60F /* Environments.plist */,
+				37D413B219D217FF00021548 /* Fonts */,
 				780211611AAB8EE000A71889 /* FriendsIcon@2x.png */,
+				786D91141A6EF0C800177E25 /* GrayArrow.png */,
+				78CBF2FF1A996E8800F30DCA /* InfoIcon5@2x.png */,
+				78CBF2F71A99697A00F30DCA /* InfoIconWhite@2x.png */,
+				FCE2347C1AAB917100C1EDB0 /* LaunchScreen.xib */,
+				780005A71A70EA66005E6CD4 /* listen_on_spotify-black-long.png */,
+				780005A91A70EE69005E6CD4 /* listen_on_spotify-black-long3.png */,
+				786D911A1A6EF6AF00177E25 /* listen_on_spotify-black.png */,
+				78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */,
+				78A569B51A74A8B900818A17 /* Microphone_Gray2.png */,
+				3753AF8819E9A4D000B6391D /* Microphone_White2.png */,
+				78A569AF1A74A37000818A17 /* Microphone_Yellow.png */,
+				78A569B11A74A6AC00818A17 /* Microphone_Yellow2.png */,
+				786D91221A6EFBCE00177E25 /* MicrophoneWhiteSmall2@2x.png */,
+				FC4C8E3F1AAE85290096F5D4 /* MusicButton.png */,
+				784C67E01A6253CE0084894D /* MusicIcon@2x.png */,
+				787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */,
+				787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */,
+				784E35EF1A65A0ED0029AA01 /* PencilIcon.png */,
+				787C84DC1A76CAAD005D80D5 /* pew-pew-lei.caf */,
+				7803A05B1AAB648A006C43AE /* PlusButtonWhite@2x.png */,
+				784C67F01A626F7B0084894D /* ProgressViewNotches5.png */,
+				FC4C8E3D1AAE85290096F5D4 /* RecordButtonBlueBorder.png */,
+				37D20C2B19E4A19D008530BF /* RecordButtonRedWhiteBorder.png */,
+				784E35E71A633B3B0029AA01 /* RecordModeButton.png */,
+				781996261A7B45CE0004C2DB /* RedCircleButton.png */,
+				37D413C119D21FC300021548 /* RedCircleSmall.png */,
+				781996241A7B45070004C2DB /* RedCircleSmallNoBorder.png */,
+				786D91161A6EF16000177E25 /* RedRoundedSquare.png */,
+				786D91181A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png */,
+				3753AF9219E9CAEC00B6391D /* Replay@2x.png */,
+				7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */,
+				7863B5DC1A99A25F00531CED /* sound1.wav */,
+				37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */,
+				784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */,
+				7885B22D1A8DEC9900B230A0 /* SquareOutlineRed.png */,
+				FC4C8E3E1AAE85290096F5D4 /* VoiceButton.png */,
+				7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */,
+				78DA1F7D1AA18D4900693015 /* WhiteCircle.png */,
+				3753AF8A19E9A68200B6391D /* YapsButtonRed.png */,
+				37D413C419D2229A00021548 /* YapSnap App Icon 114.png */,
+				37D413C319D221C800021548 /* YapSnap App Icon.png */,
+				78CBF2F51A9960AD00F30DCA /* YellowStar.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -623,8 +617,6 @@
 			isa = PBXGroup;
 			children = (
 				37D413B419D21A1E00021548 /* BButton */,
-				37695E6C19BBC78F00C22E13 /* JEProgressView.h */,
-				37695E6D19BBC78F00C22E13 /* JEProgressView.m */,
 				787C84DD1A7732E4005D80D5 /* PhoneNumberChecker.h */,
 				787C84DE1A7732E4005D80D5 /* PhoneNumberChecker.m */,
 			);
@@ -694,6 +686,8 @@
 				FC1E89B71A4B852C007A8CDA /* SpotifyTrackView.m */,
 				78A569A41A73227700818A17 /* YSColorPicker.h */,
 				78A569A21A73227200818A17 /* YSColorPicker.m */,
+				784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */,
+				784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -825,10 +819,8 @@
 				37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */,
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
-				784C67E51A625D110084894D /* ProgressViewBackgroundWhite.png in Resources */,
 				3753AF8B19E9A68200B6391D /* YapsButtonRed.png in Resources */,
 				780005AA1A70EE69005E6CD4 /* listen_on_spotify-black-long3.png in Resources */,
-				784C67E41A625D110084894D /* ProgressViewBackgroundRed.png in Resources */,
 				7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */,
 				7863B5DD1A99A25F00531CED /* sound1.wav in Resources */,
 				784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */,
@@ -956,7 +948,7 @@
 				FCBB97031A7D636A003D5F24 /* SettingsViewController.m in Sources */,
 				FC0C1D4C1A45F98500B148AB /* YSMicSourceController.m in Sources */,
 				FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */,
-				37695E6E19BBC78F00C22E13 /* JEProgressView.m in Sources */,
+				784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */,
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
 				37D413BD19D21A1F00021548 /* BButton.m in Sources */,
 				FC342F381A5099D200518765 /* OpenInSpotifyAlertView.m in Sources */,

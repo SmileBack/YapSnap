@@ -8,7 +8,6 @@
 
 #import "YSAudioSourceController.h"
 #import <iCarousel/iCarousel.h>
-#import "JEProgressView.h"
 #import <StreamingKit/STKAudioPlayer.h>
 
 @interface YSSpotifySourceController : YSAudioSourceController<iCarouselDataSource, iCarouselDelegate, UITextFieldDelegate, STKAudioPlayerDelegate>

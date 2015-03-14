@@ -44,9 +44,7 @@ static const float TIMER_INTERVAL = .01;
                                                                             target:nil
                                                                             action:nil];
     
-    self.progressView.progress = 0;
-    [self.progressView setTrackImage:[UIImage imageNamed:@"ProgressViewBackgroundWhite.png"]];
-    [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewBackgroundRed.png"]];
+    self.recordProgressView.progress = 0;
 
     YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
     [self addChildViewController:micSource];
@@ -104,7 +102,7 @@ static const float TIMER_INTERVAL = .01;
 {
     // In case recording is in progress when button is pressed
     [timer invalidate];
-    self.progressView.progress = 0.0;
+    self.recordProgressView.progress = 0.0;
     [self.audioSource stopAudioCapture:self.elapsedTime];
     
     if ([self isInReplyMode]) {
@@ -200,7 +198,7 @@ static const float TIMER_INTERVAL = .01;
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [[YTNotifications sharedNotifications] showNotificationText:@"Something Went Wrong"];
-                        [weakSelf.progressView setProgress:0];
+                        [weakSelf.recordProgressView setProgress:0];
                         weakSelf.elapsedTime = 0;
                         [timer invalidate];
                     }];
@@ -210,7 +208,7 @@ static const float TIMER_INTERVAL = .01;
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [[YTNotifications sharedNotifications] showNotificationText:@"Lost Connection"];
-                        [weakSelf.progressView setProgress:0];
+                        [weakSelf.recordProgressView setProgress:0];
                         weakSelf.elapsedTime = 0;
                         [timer invalidate];
                     }];
@@ -238,7 +236,7 @@ static const float TIMER_INTERVAL = .01;
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [timer invalidate];
-                        self.progressView.progress = 0.0;
+                        self.recordProgressView.progress = 0.0;
                         [self.audioSource stopAudioCapture:self.elapsedTime];
                     }];
 }
@@ -246,7 +244,7 @@ static const float TIMER_INTERVAL = .01;
 - (void) updateProgress {
     self.elapsedTime += TIMER_INTERVAL;
     
-    [self.progressView setProgress:(self.elapsedTime / MAX_CAPTURE_TIME)];
+    [self.recordProgressView setProgress:(self.elapsedTime / MAX_CAPTURE_TIME)];
     
     if (self.elapsedTime >= MAX_CAPTURE_TIME) {
         [timer invalidate];
@@ -263,7 +261,7 @@ static const float TIMER_INTERVAL = .01;
 - (IBAction)recordTapped:(id)sender
 {
     self.elapsedTime = 0;
-    [self.progressView setProgress:0];
+    [self.recordProgressView setProgress:0];
 
     self.explanation.hidden = YES;
 
@@ -279,7 +277,7 @@ static const float TIMER_INTERVAL = .01;
     [timer invalidate];
     
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
-        self.progressView.progress = 0.0;
+        self.recordProgressView.progress = 0.0;
         [[YTNotifications sharedNotifications] showNotificationText:@"Hold Down to Record"];
         
         self.explanation.hidden = YES;
@@ -308,7 +306,7 @@ static const float TIMER_INTERVAL = .01;
 {
     // In case recording is in progress when button is pressed
     [timer invalidate];
-    self.progressView.progress = 0.0;
+    self.recordProgressView.progress = 0.0;
     [self.audioSource stopAudioCapture:self.elapsedTime];
     
     if ([self internetIsNotReachable]){
@@ -342,7 +340,7 @@ static const float TIMER_INTERVAL = .01;
             yapBuilder.contacts = @[self.contactReplyingTo];
         }
         
-        self.progressView.progress = 0.0;
+        self.recordProgressView.progress = 0.0;
         self.elapsedTime = 0;
     }
 }
