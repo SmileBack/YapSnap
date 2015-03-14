@@ -121,7 +121,7 @@
         });
         
         CGFloat width = self.view.frame.size.width;
-        CGFloat progressViewRemainderWidth = (10 - [self.yap.duration floatValue])*width/10;
+        CGFloat progressViewRemainderWidth = (10 - [self.yap.duration floatValue]) *width/10;
         self.progressViewRemainder = [[UIView alloc] init];
         [self.view addSubview:self.progressViewRemainder];
         [self.progressViewRemainder setTranslatesAutoresizingMaskIntoConstraints:NO];
