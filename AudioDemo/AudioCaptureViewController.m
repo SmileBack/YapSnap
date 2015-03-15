@@ -19,6 +19,7 @@
     NSTimer *timer;
 }
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *recordButtonSpinner;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *unopenedYapsCountSpinner;
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 
 @property (nonatomic) float elapsedTime;
@@ -76,6 +77,8 @@ static const float TIMER_INTERVAL = .01;
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_WELCOME_NOTIFICATION_KEY];
         });
     }
+    
+    [self.unopenedYapsCountSpinner startAnimating];
 }
 
 - (BOOL) didViewWelcomeNotification
@@ -133,6 +136,7 @@ static const float TIMER_INTERVAL = .01;
 - (void) reloadUnopenedYapsCount
 {
     [[API sharedAPI] unopenedYapsCountWithCallback:^(NSNumber *count, NSError *error) {
+        [self.unopenedYapsCountSpinner stopAnimating];
         if (error) {
             [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
         } else if (count.description.intValue == 0) {

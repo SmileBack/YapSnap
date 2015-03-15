@@ -163,6 +163,9 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4ph-zB-TDP">
+                                <rect key="frame" x="289" y="31" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -204,6 +207,7 @@
                         <outlet property="recordProgressView" destination="1fX-iU-owr" id="7zx-v4-F5E"/>
                         <outlet property="spotifyModeButton" destination="dje-2i-9YC" id="xRf-Q6-xxF"/>
                         <outlet property="topLeftButton" destination="yjE-ev-SsG" id="D5w-gs-u5p"/>
+                        <outlet property="unopenedYapsCountSpinner" destination="4ph-zB-TDP" id="IeK-yW-51s"/>
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="AEp-MY-7pq"/>
                         <segue destination="j1Z-Ou-SMe" kind="custom" identifier="Prepare Yap For Text Segue" customClass="NoAnimationPushSegue" id="nBD-Sc-cVG"/>
@@ -1447,6 +1451,6 @@ Type it here.</string>
     <inferredMetricsTieBreakers>
         <segue reference="gZs-IQ-BYb"/>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="czb-n6-hbf"/>
+        <segue reference="AEp-MY-7pq"/>
     </inferredMetricsTieBreakers>
 </document>
