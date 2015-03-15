@@ -47,6 +47,9 @@ static NSString *CellIdentifier = @"Cell";
 {
     [super viewDidLoad];
     
+    //Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    //[mixpanel track:@"Viewed Yaps Page"];
+    
     self.dateFormatter = [[NSDateFormatter alloc] init];
     self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
     self.dateFormatter.timeStyle = NSDateFormatterShortStyle;
@@ -275,6 +278,9 @@ static NSString *CellIdentifier = @"Cell";
 - (void) cellTappedTwiceAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Double tap on: %@", indexPath);
+    
+    //Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    //[mixpanel track:@"Double Tapped Row"];
     
     YSYap *yap = self.yaps[indexPath.row];
     [self performSegueWithIdentifier:@"Reply Segue" sender:yap];

@@ -12,5 +12,6 @@ target "YapTap" do
   pod 'AWSiOSSDKv2', '~> 2.0.15'
   pod 'SHSPhoneComponent', '~> 2.15'
   pod 'CRToast', '~> 0.0.7'
+  pod 'Mixpanel'
 end
 

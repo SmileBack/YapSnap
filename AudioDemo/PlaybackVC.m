@@ -70,6 +70,8 @@
 
 - (IBAction)didTapStopButton:(id)sender {
     [self stop];
+    //Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    //[mixpanel track:@"Tapped Cancel PlayBack"];
 }
 
 - (void) stop

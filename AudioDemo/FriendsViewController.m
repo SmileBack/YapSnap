@@ -33,6 +33,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    //[mixpanel track:@"Viewed Friends Page"];
 
     self.tableView.rowHeight = 50;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -173,6 +176,8 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
+        //Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        //[mixpanel track:@"Tapped Self"];
         return;
     }
     YSUser *expandingUser = self.friends[indexPath.row];
@@ -198,6 +203,8 @@
     [tableView endUpdates];
 
     if (expandingUser) {
+        //Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        //[mixpanel track:@"Tapped Friend"];
         NSArray *topFriends = self.topFriendMap[expandingUser.userID];
         if (topFriends && [topFriends isKindOfClass:[NSArray class]]) {
             [self showTopFriendsForIndexPath:indexPath andFriends:topFriends];
@@ -254,6 +261,9 @@
 
 - (IBAction)addFriendButtonPressed:(UIBarButtonItem *)sender
 {
+    //Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    //[mixpanel track:@"Tapped Add Friend"];
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add a Friend"
                                                     message:@"To add a friend, send a yap to anyone from your contacts. Once they open it, they'll become your friend!"
                                                    delegate:self
@@ -271,6 +281,8 @@
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
+        //Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        //[mixpanel track:@"Tapped Send Yap in UIAlert"];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }

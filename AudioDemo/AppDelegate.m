@@ -13,6 +13,8 @@
 #import "ContactManager.h"
 #import "YSPushManager.h"
 #import "API.h"
+#import "Mixpanel.h"
+#import "Environment.h"
 
 @implementation AppDelegate
 
@@ -27,6 +29,8 @@
     [ContactManager sharedContactManager];
    
     [self checkLaunchOptions:launchOptions];
+    
+    [Mixpanel sharedInstanceWithToken:[Environment sharedInstance].mixpanelToken];
     
     return YES;
 }
@@ -104,6 +108,9 @@
         [[YSPushManager sharedPushManager] refresh];
         [[YSPushManager sharedPushManager] registerForNotifications];
     }
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Opened App"];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

@@ -30,6 +30,7 @@ static Environment *sharedInstance = nil;
 
     self.crashyliticsApiKey = environment[@"CrashyliticsApiKey"];
     self.spotifyToken = environment[@"SpotifyToken"];
+    self.mixpanelToken = environment[@"MixpanelToken"];
 }
 
 #pragma mark - Lifecycle Methods
