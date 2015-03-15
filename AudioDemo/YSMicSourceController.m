@@ -112,7 +112,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
     
-    self.microphone.image = [UIImage imageNamed:@"Microphone_Gray2.png"];
+    self.microphone.image = [UIImage imageNamed:@"Microphone_Yellow.png"];
     
     return YES;
 }
