@@ -28,11 +28,15 @@
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
 @property (nonatomic, strong) YSYap *yapToBlock; //Saved when the AlertView is shown
 @property (strong, nonatomic) IBOutlet UIView *pushEnabledView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 @property (strong, nonatomic) UIImage *blueArrowFull;
 @property (strong, nonatomic) UIImage *blueArrowEmpty;
 @property (strong, nonatomic) UIImage *redSquareFull;
 @property (strong, nonatomic) UIImage *redSquareEmpty;
+
+- (IBAction)didTapSettingsButton;
+
 @end
 
 static NSString *CellIdentifier = @"Cell";
@@ -82,6 +86,8 @@ static NSString *CellIdentifier = @"Cell";
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    
+    self.settingsButton.enabled = YES;
 }
 
 - (void) refresh:(UIRefreshControl *)refreshControl {
@@ -443,6 +449,12 @@ static NSString *CellIdentifier = @"Cell";
         _redSquareFull = [UIImage imageNamed:@"RedRoundedSquare.png"];
     }
     return _redSquareFull;
+}
+
+- (IBAction)didTapSettingsButton
+{
+    self.settingsButton.enabled = NO;
+    [self performSegueWithIdentifier:@"Settings Segue" sender:nil];
 }
 
 @end

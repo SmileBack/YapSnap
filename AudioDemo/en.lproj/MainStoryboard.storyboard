@@ -895,17 +895,18 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="SettingsIconWhite8.png" style="plain" id="UOa-uX-nLV">
                             <connections>
-                                <action selector="didPressFriendsButton:" destination="Vua-bX-Wl1" id="Vrm-gg-7Wd"/>
-                                <segue destination="b8F-go-ayB" kind="push" id="9cu-HE-Ner"/>
+                                <action selector="didTapSettingsButton" destination="Vua-bX-Wl1" id="kBv-An-pgb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="pushEnabledView" destination="zrU-oT-SXF" id="HaD-zy-P5U"/>
+                        <outlet property="settingsButton" destination="UOa-uX-nLV" id="x3Y-eP-4z0"/>
                         <outlet property="tableView" destination="hWh-h3-qO7" id="klJ-nF-XsM"/>
                         <segue destination="Dgp-JD-d1e" kind="modal" identifier="Playback Segue" animates="NO" id="LuI-mK-8FP"/>
                         <segue destination="2" kind="custom" identifier="Reply Segue" customClass="NoAnimationPushSegue" id="Enn-ka-dSJ"/>
+                        <segue destination="b8F-go-ayB" kind="push" identifier="Settings Segue" id="hyA-PG-u3D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-WI-Tyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1445,7 +1446,7 @@ Type it here.</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="gZs-IQ-BYb"/>
-        <segue reference="wu3-lb-fb7"/>
+        <segue reference="Enn-ka-dSJ"/>
         <segue reference="czb-n6-hbf"/>
     </inferredMetricsTieBreakers>
 </document>
