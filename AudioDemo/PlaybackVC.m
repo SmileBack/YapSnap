@@ -10,14 +10,14 @@
 #import "API.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <AVFoundation/AVAudioSession.h>
+#import "YSRecordProgressView.h"
 
 @interface PlaybackVC ()
-@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
+@property (strong, nonatomic) IBOutlet YSRecordProgressView *progressView;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic) CGFloat elapsedTime;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *recordButtonSpinner;
 @property (strong, nonatomic) UIView *progressViewRemainder;
 @property (strong, nonatomic) IBOutlet UIImageView *progressViewNotchesView;
 @property (strong, nonatomic) IBOutlet UIImageView *yapPhoto;
@@ -37,7 +37,7 @@
     NSLog(@"URL: %@", self.yap.playbackURL);
     [self.player play:self.yap.playbackURL];
     
-    [self.recordButtonSpinner startAnimating];
+    [self.progressView.activityIndicator startAnimating];
     
     // Snapchat allows for 48 characters horizontally; 31 vertically 
     self.textView.text = self.yap.text;  //TODO REPLACE THIS
@@ -115,7 +115,7 @@
                                                     selector:@selector(timerFired)
                                                     userInfo:nil
                                                      repeats:YES];
-        [self.recordButtonSpinner stopAnimating];
+        [self.progressView.activityIndicator stopAnimating];
         
         // We muted yap recordings in ViewDidLoad because we want to cut out the first 0.25 seconds of the yap in order to cut out the notification tone
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -123,7 +123,7 @@
         });
         
         CGFloat width = self.view.frame.size.width;
-        CGFloat progressViewRemainderWidth = (10 - [self.yap.duration floatValue]) *width/10;
+        CGFloat progressViewRemainderWidth = (10 - [self.yap.duration floatValue]) * width/10;
         self.progressViewRemainder = [[UIView alloc] init];
         [self.view addSubview:self.progressViewRemainder];
         [self.progressViewRemainder setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -131,7 +131,7 @@
         [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
         [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
         [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:-progressViewRemainderWidth]];
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:progressViewRemainderWidth]];
         self.progressViewRemainder.backgroundColor = [UIColor lightGrayColor];
         self.progressViewRemainder.alpha = 0;
         

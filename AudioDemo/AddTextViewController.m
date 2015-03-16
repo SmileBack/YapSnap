@@ -13,6 +13,7 @@
 #import "UIViewController+Alerts.h"
 #import "ContactManager.h"
 #import "YSRecordProgressView.h"
+#import "NextButton.h"
 
 @interface AddTextViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
@@ -22,7 +23,7 @@
 @property (strong, nonatomic) UIView *progressViewRemainder;
 @property (strong, nonatomic) IBOutlet UIImageView *flashbackImageView;
 @property (strong, nonatomic) IBOutlet UILabel *contactLabel;
-@property (strong, nonatomic) IBOutlet UIButton *continueButton;
+@property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 
 - (IBAction)didTapAddTextButton;
@@ -64,6 +65,13 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    dispatch_after(0.6, dispatch_get_main_queue(), ^{
+        [self.continueButton pulsate];
+    });
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

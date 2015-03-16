@@ -18,7 +18,6 @@
 @interface AudioCaptureViewController () {
     NSTimer *timer;
 }
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *recordButtonSpinner;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *unopenedYapsCountSpinner;
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 
@@ -189,7 +188,7 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [weakSelf.recordButtonSpinner stopAnimating];
+                        [weakSelf.recordProgressView.activityIndicator stopAnimating];
                         
                         if (note.object == weakSelf.audioSource) {
                             timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
@@ -224,7 +223,7 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self.recordButtonSpinner stopAnimating];
+                        [self.recordProgressView.activityIndicator stopAnimating];
                     }];
     
     [center addObserverForName:NOTIFICATION_LOGOUT object:nil queue:nil usingBlock:^ (NSNotification *note) {
@@ -274,7 +273,7 @@ static const float TIMER_INTERVAL = .01;
 
     if ([self.audioSource startAudioCapture]) {
         if (self.audioSource.class == [YSSpotifySourceController class]) {
-            [self.recordButtonSpinner startAnimating];
+            [self.recordProgressView.activityIndicator startAnimating];
         }
     }
 }

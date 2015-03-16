@@ -54,6 +54,7 @@
 		784048001AB4FE5E00FE6D93 /* Microphone_Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 784047FF1AB4FE5E00FE6D93 /* Microphone_Red.png */; };
 		784048021AB4FF2C00FE6D93 /* Microphone_Red_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 784048011AB4FF2C00FE6D93 /* Microphone_Red_2.png */; };
 		784048081AB5FF1200FE6D93 /* RecordButtonBlueBorder9.png in Resources */ = {isa = PBXBuildFile; fileRef = 784048071AB5FF1200FE6D93 /* RecordButtonBlueBorder9.png */; };
+		7840480B1AB7334A00FE6D93 /* NextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840480A1AB7334A00FE6D93 /* NextButton.m */; };
 		784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E01A6253CE0084894D /* MusicIcon@2x.png */; };
 		784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67F01A626F7B0084894D /* ProgressViewNotches5.png */; };
 		784E35E61A6339EE0029AA01 /* SpotifyModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */; };
@@ -204,6 +205,8 @@
 		784047FF1AB4FE5E00FE6D93 /* Microphone_Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_Red.png; sourceTree = "<group>"; };
 		784048011AB4FF2C00FE6D93 /* Microphone_Red_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_Red_2.png; sourceTree = "<group>"; };
 		784048071AB5FF1200FE6D93 /* RecordButtonBlueBorder9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder9.png; sourceTree = "<group>"; };
+		784048091AB7334A00FE6D93 /* NextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextButton.h; sourceTree = "<group>"; };
+		7840480A1AB7334A00FE6D93 /* NextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextButton.m; sourceTree = "<group>"; };
 		784C67E01A6253CE0084894D /* MusicIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIcon@2x.png"; sourceTree = "<group>"; };
 		784C67F01A626F7B0084894D /* ProgressViewNotches5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewNotches5.png; sourceTree = "<group>"; };
 		784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyModeButton.png; sourceTree = "<group>"; };
@@ -709,6 +712,8 @@
 				78A569A21A73227200818A17 /* YSColorPicker.m */,
 				784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */,
 				784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */,
+				784048091AB7334A00FE6D93 /* NextButton.h */,
+				7840480A1AB7334A00FE6D93 /* NextButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -941,6 +946,7 @@
 			files = (
 				FC1E89BB1A4B8E94007A8CDA /* YSYap.m in Sources */,
 				FC0595821A6D87A700FCCED2 /* ContactManager.m in Sources */,
+				7840480B1AB7334A00FE6D93 /* NextButton.m in Sources */,
 				78A569A31A73227200818A17 /* YSColorPicker.m in Sources */,
 				FC3ECAE91A830496002678F6 /* FriendsViewController.m in Sources */,
 				37D413BE19D21A1F00021548 /* NSString+FontAwesome.m in Sources */,
