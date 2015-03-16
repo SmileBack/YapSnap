@@ -47,7 +47,6 @@
 		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */; };
 		784047F51AB4F40800FE6D93 /* RecordButtonBlueBorder5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784047F41AB4F40800FE6D93 /* RecordButtonBlueBorder5.png */; };
-		784047F91AB4F76000FE6D93 /* LoginPageImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 784047F81AB4F76000FE6D93 /* LoginPageImage.png */; };
 		784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
 		784047FC1AB4FB7200FE6D93 /* MusicIconBlue3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784047FB1AB4FB7200FE6D93 /* MusicIconBlue3@2x.png */; };
 		784047FE1AB4FBF600FE6D93 /* MicrophoneBlue3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784047FD1AB4FBF600FE6D93 /* MicrophoneBlue3@2x.png */; };
@@ -55,7 +54,6 @@
 		784048021AB4FF2C00FE6D93 /* Microphone_Red_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 784048011AB4FF2C00FE6D93 /* Microphone_Red_2.png */; };
 		784048081AB5FF1200FE6D93 /* RecordButtonBlueBorder9.png in Resources */ = {isa = PBXBuildFile; fileRef = 784048071AB5FF1200FE6D93 /* RecordButtonBlueBorder9.png */; };
 		7840480B1AB7334A00FE6D93 /* NextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840480A1AB7334A00FE6D93 /* NextButton.m */; };
-		7840480F1AB76BB600FE6D93 /* LoginPageImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7840480E1AB76BB600FE6D93 /* LoginPageImage@3x.png */; };
 		784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E01A6253CE0084894D /* MusicIcon@2x.png */; };
 		784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67F01A626F7B0084894D /* ProgressViewNotches5.png */; };
 		784E35E61A6339EE0029AA01 /* SpotifyModeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */; };
@@ -198,7 +196,6 @@
 		784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetImageButton.h; sourceTree = "<group>"; };
 		784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffsetImageButton.m; sourceTree = "<group>"; };
 		784047F41AB4F40800FE6D93 /* RecordButtonBlueBorder5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder5.png; sourceTree = "<group>"; };
-		784047F81AB4F76000FE6D93 /* LoginPageImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginPageImage.png; sourceTree = "<group>"; };
 		784047FB1AB4FB7200FE6D93 /* MusicIconBlue3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconBlue3@2x.png"; sourceTree = "<group>"; };
 		784047FD1AB4FBF600FE6D93 /* MicrophoneBlue3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MicrophoneBlue3@2x.png"; sourceTree = "<group>"; };
 		784047FF1AB4FE5E00FE6D93 /* Microphone_Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_Red.png; sourceTree = "<group>"; };
@@ -206,7 +203,6 @@
 		784048071AB5FF1200FE6D93 /* RecordButtonBlueBorder9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder9.png; sourceTree = "<group>"; };
 		784048091AB7334A00FE6D93 /* NextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextButton.h; sourceTree = "<group>"; };
 		7840480A1AB7334A00FE6D93 /* NextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextButton.m; sourceTree = "<group>"; };
-		7840480E1AB76BB600FE6D93 /* LoginPageImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginPageImage@3x.png"; sourceTree = "<group>"; };
 		784C67E01A6253CE0084894D /* MusicIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIcon@2x.png"; sourceTree = "<group>"; };
 		784C67F01A626F7B0084894D /* ProgressViewNotches5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewNotches5.png; sourceTree = "<group>"; };
 		784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyModeButton.png; sourceTree = "<group>"; };
@@ -409,8 +405,6 @@
 				37D413C419D2229A00021548 /* YapSnap App Icon 114.png */,
 				37D413C319D221C800021548 /* YapSnap App Icon.png */,
 				78CBF2F51A9960AD00F30DCA /* YellowStar.png */,
-				784047F81AB4F76000FE6D93 /* LoginPageImage.png */,
-				7840480E1AB76BB600FE6D93 /* LoginPageImage@3x.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -874,13 +868,11 @@
 				FC4C8E421AAE85290096F5D4 /* MusicButton.png in Resources */,
 				786D91231A6EFBCE00177E25 /* MicrophoneWhiteSmall2@2x.png in Resources */,
 				786D91151A6EF0C800177E25 /* GrayArrow.png in Resources */,
-				784047F91AB4F76000FE6D93 /* LoginPageImage.png in Resources */,
 				7885B22E1A8DEC9900B230A0 /* SquareOutlineRed.png in Resources */,
 				780005A81A70EA66005E6CD4 /* listen_on_spotify-black-long.png in Resources */,
 				78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */,
 				784048081AB5FF1200FE6D93 /* RecordButtonBlueBorder9.png in Resources */,
 				780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */,
-				7840480F1AB76BB600FE6D93 /* LoginPageImage@3x.png in Resources */,
 				78DA1F801AA1961200693015 /* AlbumImagePlaceholder.png in Resources */,
 				784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */,
 				784048001AB4FE5E00FE6D93 /* Microphone_Red.png in Resources */,
