@@ -43,14 +43,14 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             </textField>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="iKi-hk-1A5">
-                                <rect key="frame" x="142" y="125" width="37" height="37"/>
+                                <rect key="frame" x="142" y="135" width="37" height="37"/>
                                 <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" constant="26" id="0rA-ZM-LMs"/>
-                            <constraint firstItem="iKi-hk-1A5" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="105" id="7E1-ft-JPZ"/>
+                            <constraint firstItem="iKi-hk-1A5" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="115" id="7E1-ft-JPZ"/>
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="50" id="9Cq-I9-19w"/>
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" id="9zR-GB-wuh"/>
                             <constraint firstAttribute="trailing" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="26" id="BpS-sr-djQ"/>
@@ -389,7 +389,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.090196078431372548" green="0.36862745098039218" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="K6j-MM-95B" secondAttribute="centerY" constant="-1" id="HLP-8a-MiU"/>
                                     <constraint firstAttribute="height" constant="70" id="Qm4-KE-MAn"/>
@@ -945,6 +945,7 @@
                             <view autoresizesSubviews="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Kj-1X-Ut8" customClass="MPVolumeView">
                                 <rect key="frame" x="25" y="446" width="270" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="270" id="44J-Bc-dab"/>
                                     <constraint firstAttribute="height" constant="35" id="Fwf-ky-ND6"/>
@@ -1448,8 +1449,8 @@ Type it here.</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="czb-n6-hbf"/>
         <segue reference="Enn-ka-dSJ"/>
+        <segue reference="syO-tE-hvG"/>
         <segue reference="gZs-IQ-BYb"/>
     </inferredMetricsTieBreakers>
 </document>
