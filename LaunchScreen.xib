@@ -12,16 +12,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Microphone_White2.png" translatesAutoresizingMaskIntoConstraints="NO" id="vJe-sO-EAf">
-                    <rect key="frame" x="165" y="165" width="150" height="150"/>
+                    <rect key="frame" x="190" y="177" width="100" height="100"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="150" id="fgI-Yn-4ne"/>
-                        <constraint firstAttribute="width" constant="150" id="qFp-RB-DIJ"/>
+                        <constraint firstAttribute="height" constant="100" id="fgI-Yn-4ne"/>
+                        <constraint firstAttribute="width" constant="100" id="qFp-RB-DIJ"/>
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="vJe-sO-EAf" secondAttribute="centerY" id="KP7-xu-0qN"/>
+                <constraint firstAttribute="centerY" secondItem="vJe-sO-EAf" secondAttribute="centerY" constant="13" id="KP7-xu-0qN"/>
                 <constraint firstAttribute="centerX" secondItem="vJe-sO-EAf" secondAttribute="centerX" id="kln-I3-DcY"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

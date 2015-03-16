@@ -30,7 +30,7 @@
                                 </connections>
                             </view>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MusicIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="RkK-X4-YKu">
-                                <rect key="frame" x="110" y="110" width="100" height="80"/>
+                                <rect key="frame" x="110" y="110" width="100" height="96"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type an artist, song, or album" textAlignment="center" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="6hl-m2-tvk">
                                 <rect key="frame" x="26" y="35" width="268" height="40"/>
@@ -60,7 +60,7 @@
                             <constraint firstAttribute="trailing" secondItem="ZNs-R1-CJc" secondAttribute="trailing" id="f6a-b0-12B"/>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="15" id="mMM-JG-YVP"/>
                             <constraint firstAttribute="centerX" secondItem="iKi-hk-1A5" secondAttribute="centerX" id="mm6-BP-Za3"/>
-                            <constraint firstItem="RkK-X4-YKu" firstAttribute="height" secondItem="B8N-jO-1bl" secondAttribute="height" multiplier="0.25" id="xwb-Fa-PKq"/>
+                            <constraint firstItem="RkK-X4-YKu" firstAttribute="height" secondItem="B8N-jO-1bl" secondAttribute="height" multiplier="0.3" id="xwb-Fa-PKq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8VQ-xh-4vV"/>
@@ -1053,7 +1053,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YapTap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIg-LB-ROP">
-                                <rect key="frame" x="0.0" y="121" width="320" height="90"/>
+                                <rect key="frame" x="0.0" y="109" width="320" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="nz1-mu-VNC"/>
                                 </constraints>
@@ -1061,14 +1061,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="LoginPageImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Wj-u3-ig0">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="LoginPageImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Wj-u3-ig0">
                                 <rect key="frame" x="0.0" y="281" width="320" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="QUf-SV-cGU"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dp-kR-bOT">
-                                <rect key="frame" x="47" y="229" width="226" height="64"/>
+                                <rect key="frame" x="47" y="209" width="226" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="tKm-qX-q6a"/>
                                 </constraints>
@@ -1081,7 +1081,7 @@ Snippets To Friends</string>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="4dp-kR-bOT" firstAttribute="top" secondItem="OIg-LB-ROP" secondAttribute="bottom" constant="18" id="0y3-Kr-mBD"/>
+                            <constraint firstItem="4dp-kR-bOT" firstAttribute="top" secondItem="OIg-LB-ROP" secondAttribute="bottom" constant="10" id="0y3-Kr-mBD"/>
                             <constraint firstItem="OIg-LB-ROP" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="AJe-SU-ZI6"/>
                             <constraint firstItem="Sz6-r0-iUG" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="BIC-Zz-0Hq"/>
                             <constraint firstItem="4Wj-u3-ig0" firstAttribute="trailing" secondItem="BAn-72-FyX" secondAttribute="trailing" id="Ef2-GH-TEj"/>
@@ -1090,7 +1090,7 @@ Snippets To Friends</string>
                             <constraint firstItem="4dp-kR-bOT" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leadingMargin" constant="31" id="NcC-Ub-zN9"/>
                             <constraint firstItem="BAn-72-FyX" firstAttribute="top" secondItem="4Wj-u3-ig0" secondAttribute="bottom" id="QnD-tL-kFh"/>
                             <constraint firstAttribute="trailing" secondItem="Sz6-r0-iUG" secondAttribute="trailing" id="b0h-4M-Q3C"/>
-                            <constraint firstItem="OIg-LB-ROP" firstAttribute="top" secondItem="a23-SI-tr9" secondAttribute="bottom" constant="57" id="ec0-nP-Mip"/>
+                            <constraint firstItem="OIg-LB-ROP" firstAttribute="top" secondItem="a23-SI-tr9" secondAttribute="bottom" constant="45" id="ec0-nP-Mip"/>
                             <constraint firstItem="4dp-kR-bOT" firstAttribute="centerX" secondItem="OIg-LB-ROP" secondAttribute="centerX" id="g1r-Tq-A71"/>
                             <constraint firstItem="ahr-YS-Ciy" firstAttribute="top" secondItem="Sz6-r0-iUG" secondAttribute="bottom" id="mP2-Dh-6aa"/>
                             <constraint firstItem="Sz6-r0-iUG" firstAttribute="top" secondItem="BAn-72-FyX" secondAttribute="bottom" constant="1" id="naX-2m-vAf"/>
@@ -1405,12 +1405,12 @@ Type it here.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Microphone_White2.png" translatesAutoresizingMaskIntoConstraints="NO" id="v0o-hk-bRQ">
-                                <rect key="frame" x="31.5" y="95" width="256" height="100"/>
+                                <rect key="frame" x="31.5" y="95" width="256" height="112"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="v0o-hk-bRQ" firstAttribute="height" secondItem="3lk-k2-w1W" secondAttribute="height" multiplier="0.3125" id="IKM-by-u5z"/>
+                            <constraint firstItem="v0o-hk-bRQ" firstAttribute="height" secondItem="3lk-k2-w1W" secondAttribute="height" multiplier="0.35" id="IKM-by-u5z"/>
                             <constraint firstAttribute="centerX" secondItem="v0o-hk-bRQ" secondAttribute="centerX" id="duN-UP-9L5"/>
                             <constraint firstItem="v0o-hk-bRQ" firstAttribute="top" secondItem="e15-6z-nCE" secondAttribute="bottom" constant="75" id="rmR-aL-oss"/>
                         </constraints>
