@@ -59,19 +59,17 @@
     } else {
         self.contactLabel.text = @"";
     }
+    
+    double delay = 0.3;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.continueButton pulsate];
+    });
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    dispatch_after(0.6, dispatch_get_main_queue(), ^{
-        [self.continueButton pulsate];
-    });
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

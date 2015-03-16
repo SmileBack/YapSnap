@@ -32,25 +32,25 @@
         [self setNeedsLayout];
     };
     
-    CGFloat expandedDimension = originalDimension * 1.3;
+    CGFloat expandedDimension = originalDimension * 1.2;
     changeSize(expandedDimension);
     CGFloat const duration = 0.3;
     
-    [UIView animateWithDuration:duration animations:^{
+    [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         [self layoutIfNeeded];
     } completion:^(BOOL finished) {
         changeSize(originalDimension);
-        [UIView animateWithDuration:duration animations:^{
+        [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
             [self layoutIfNeeded];
         } completion:^(BOOL finished) {
             changeSize(expandedDimension);
-            [UIView animateWithDuration:duration animations:^{
+            [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                 [self layoutIfNeeded];
             } completion:^(BOOL finished) {
                 changeSize(originalDimension);
-                [UIView animateWithDuration:duration animations:^{
+                [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                     [self layoutIfNeeded];
-                }];
+                } completion:nil];
             }];
         }];
     }];
