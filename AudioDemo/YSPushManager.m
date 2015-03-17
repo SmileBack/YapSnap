@@ -89,8 +89,11 @@ static YSPushManager *_sharedPushManager;
 
 - (void) receivedNotification:(NSDictionary *)notification
 {
-    // TODO do something with notification
-    [[YTNotifications sharedNotifications] showNotificationText:@"You've received a new yap"];
+    if ([notification[@"type"]  isEqual: @"new_yap"]) {
+        [[YTNotifications sharedNotifications] showNotificationText:@"You've received a new yap"];
+    } else if ([notification[@"type"]  isEqual: @"new_friend"]) {
+        [[YTNotifications sharedNotifications] showNotificationText:@"You just made a new friend"];
+    }
 }
 
 #pragma mark - Helpers
