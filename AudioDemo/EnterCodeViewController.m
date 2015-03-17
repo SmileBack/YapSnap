@@ -38,6 +38,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Viewed Enter Code Page"];
+    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil

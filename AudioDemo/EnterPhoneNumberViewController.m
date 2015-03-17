@@ -47,6 +47,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Viewed Phone Number Page"];
+    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Retry"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil

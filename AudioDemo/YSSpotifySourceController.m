@@ -32,6 +32,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Viewed Spotify Page"];
 
     [SpotifyAPI sharedApi]; //Activate to get access token
     

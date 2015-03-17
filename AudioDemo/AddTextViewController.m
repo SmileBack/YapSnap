@@ -37,6 +37,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Viewed Add Text Page"];
+    
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
@@ -143,6 +146,9 @@
     } else {
         [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
     }
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Continue On Add Text Page"];
 }
 - (IBAction)didTapBackButton:(id)sender
 {
@@ -153,6 +159,9 @@
     [self.textView becomeFirstResponder];
     self.textView.hidden = NO;
     self.addTextToYapButton.hidden = YES;
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Add Text Button"];
 }
 
 -(void) disableContinueButton

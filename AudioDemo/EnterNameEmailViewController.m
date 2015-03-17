@@ -31,6 +31,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Viewed Name Email Page"];
+    
     [self setupTextFields];
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;

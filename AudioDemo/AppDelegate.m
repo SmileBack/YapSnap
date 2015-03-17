@@ -32,6 +32,8 @@
     
     [Mixpanel sharedInstanceWithToken:[Environment sharedInstance].mixpanelToken];
     
+    [self bindMixpanelToUser];
+    
     return YES;
 }
 
@@ -139,5 +141,21 @@
     [[YSPushManager sharedPushManager] receivedNotification:userInfo];
 }
 
+- (void)bindMixpanelToUser
+{
+    if ([YSUser currentUser] && [YSUser currentUser].userID) {
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel identify:[YSUser currentUser].userID.stringValue];
+        [mixpanel.people set:@{
+                                @"ID": [YSUser currentUser].userID == nil ? [NSNull null] : [YSUser currentUser].userID,
+                                @"$first_name": [YSUser currentUser].firstName == nil ? [NSNull null] : [YSUser currentUser].firstName,
+                                @"Last Name": [YSUser currentUser].lastName == nil ? [NSNull null] : [YSUser currentUser].lastName,
+                                @"Registered At": [YSUser currentUser].createdAt == nil ? [NSNull null] : [YSUser currentUser].createdAt,
+                                @"$email": [YSUser currentUser].email == nil ? [NSNull null] : [YSUser currentUser].email,
+                                @"Phone": [YSUser currentUser].phone == nil ? [NSNull null] : [YSUser currentUser].phone,
+                                @"Score": [YSUser currentUser].score == nil ? [NSNull null] : [YSUser currentUser].score,
+                                }];
+        }
+}
 
 @end

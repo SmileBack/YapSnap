@@ -63,8 +63,8 @@
             } else {
                 SettingsViewController *settingsVC = (SettingsViewController *)vc;
                 [settingsVC saveField:self.editingField withText:self.textField.text];
-                //Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                //[mixpanel track:@"Edited Email"];
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"Edited Email"];
             }
         } else if ([FIRST_NAME_SECTION isEqualToString:self.editingField]) {
             if ([self.textField.text length] < 2) {
@@ -77,8 +77,8 @@
             } else {
                 SettingsViewController *settingsVC = (SettingsViewController *)vc;
                 [settingsVC saveField:self.editingField withText:self.textField.text];
-                //Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                //[mixpanel track:@"Edited First Name"];
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"Edited First Name"];
             }
         } else if ([LAST_NAME_SECTION isEqualToString:self.editingField]) {
             if ([self.textField.text length] < 1) {
@@ -91,8 +91,8 @@
             } else {
                 SettingsViewController *settingsVC = (SettingsViewController *)vc;
                 [settingsVC saveField:self.editingField withText:self.textField.text];
-                //Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                //[mixpanel track:@"Edited Last Name"];
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"Edited Last Name"];
             }
         }
     }

@@ -38,18 +38,22 @@
     
     [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         [self layoutIfNeeded];
+        
     } completion:^(BOOL finished) {
         changeSize(originalDimension);
         [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
             [self layoutIfNeeded];
+            
         } completion:^(BOOL finished) {
             changeSize(expandedDimension);
             [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                 [self layoutIfNeeded];
+                
             } completion:^(BOOL finished) {
                 changeSize(originalDimension);
                 [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                     [self layoutIfNeeded];
+                    
                 } completion:nil];
             }];
         }];

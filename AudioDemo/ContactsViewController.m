@@ -40,6 +40,9 @@ static NSString *CellIdentifier = @"Cell";
 {
     [super viewDidLoad];
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Viewed Select Contacts Page"];
+    
     self.bottomView.hidden = YES;
     self.navigationItem.title = @"Send To...";
     [self.tableView setSeparatorColor:[UIColor lightGrayColor]];

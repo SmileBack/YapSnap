@@ -22,8 +22,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    //Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    //[mixpanel track:@"Viewed Settings Page"];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Viewed Settings Page"];
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
     
@@ -123,8 +123,8 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-        //Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        //[mixpanel track:@"Tapped Phone Number"];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Phone Number"];
     } else if ([FEEDBACK_SECTION isEqualToString:section]) {
         [self showFeedbackEmailViewControllerWithCompletion:^{
         }];
@@ -136,8 +136,8 @@
 {
     if (buttonIndex == 1) {
         [[API sharedAPI] logout:^(BOOL success, NSError *error) {
-            //Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            //[mixpanel track:@"Logged Out"];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Logged Out"];
             [self dismissViewControllerAnimated:YES completion:nil];
         }];
     }

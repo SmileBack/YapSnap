@@ -31,6 +31,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Viewed Playback Page"];
+    
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
@@ -70,8 +73,8 @@
 
 - (IBAction)didTapStopButton:(id)sender {
     [self stop];
-    //Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    //[mixpanel track:@"Tapped Cancel PlayBack"];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Cancel PlayBack"];
 }
 
 - (void) stop
