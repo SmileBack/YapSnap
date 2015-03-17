@@ -211,9 +211,9 @@ static NSString *CellIdentifier = @"Cell";
     cell.typeLabel.text = contact.label;
     
     cell.selectionView.layer.cornerRadius = 8.0f;
-    cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? [UIColor colorWithRed:245.0f/255.0f green:75.0f/255.0f blue:75.0f/255.0f alpha:1].CGColor : [UIColor lightGrayColor].CGColor;
+    cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
     cell.selectionView.layer.borderWidth = 1.0f;
-    cell.selectionView.backgroundColor = [self.selectedContacts containsObject:contact] ? [UIColor colorWithRed:245.0f/255.0f green:75.0f/255.0f blue:75.0f/255.0f alpha:1] : [UIColor clearColor];
+    cell.selectionView.backgroundColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR : [UIColor clearColor];
     
     cell.backgroundColor = [UIColor whiteColor];
     

@@ -86,6 +86,8 @@
 		78CBF3001A996E8800F30DCA /* InfoIcon5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CBF2FF1A996E8800F30DCA /* InfoIcon5@2x.png */; };
 		78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DA1F7D1AA18D4900693015 /* WhiteCircle.png */; };
 		78DA1F801AA1961200693015 /* AlbumImagePlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */; };
+		78F4AF7E1AB7D7980093EC0B /* YapsButtonRed2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F4AF7D1AB7D7980093EC0B /* YapsButtonRed2.png */; };
+		78F4AF821AB7D9840093EC0B /* SquareOutlineRed2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F4AF811AB7D9840093EC0B /* SquareOutlineRed2.png */; };
 		A57E2BDB2471131379654871 /* libPods-YapTap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ED5961C23D704BCAF364D2 /* libPods-YapTap.a */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
 		F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4416DA404700E6CD88 /* Foundation.framework */; };
@@ -239,6 +241,8 @@
 		78CBF2FF1A996E8800F30DCA /* InfoIcon5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfoIcon5@2x.png"; sourceTree = "<group>"; };
 		78DA1F7D1AA18D4900693015 /* WhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCircle.png; sourceTree = "<group>"; };
 		78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumImagePlaceholder.png; sourceTree = "<group>"; };
+		78F4AF7D1AB7D7980093EC0B /* YapsButtonRed2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsButtonRed2.png; sourceTree = "<group>"; };
+		78F4AF811AB7D9840093EC0B /* SquareOutlineRed2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquareOutlineRed2.png; sourceTree = "<group>"; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA961E944F5B46EDE7E7229C /* Pods-YapSnap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.release.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.release.xcconfig"; sourceTree = "<group>"; };
@@ -398,6 +402,7 @@
 				37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */,
 				784E35E51A6339EE0029AA01 /* SpotifyModeButton.png */,
 				7885B22D1A8DEC9900B230A0 /* SquareOutlineRed.png */,
+				78F4AF811AB7D9840093EC0B /* SquareOutlineRed2.png */,
 				FC4C8E3E1AAE85290096F5D4 /* VoiceButton.png */,
 				7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */,
 				78DA1F7D1AA18D4900693015 /* WhiteCircle.png */,
@@ -405,6 +410,7 @@
 				37D413C419D2229A00021548 /* YapSnap App Icon 114.png */,
 				37D413C319D221C800021548 /* YapSnap App Icon.png */,
 				78CBF2F51A9960AD00F30DCA /* YellowStar.png */,
+				78F4AF7D1AB7D7980093EC0B /* YapsButtonRed2.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -820,6 +826,7 @@
 				787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */,
 				3753AF8919E9A4D000B6391D /* Microphone_White2.png in Resources */,
 				37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */,
+				78F4AF7E1AB7D7980093EC0B /* YapsButtonRed2.png in Resources */,
 				78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */,
 				F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */,
 				784047F51AB4F40800FE6D93 /* RecordButtonBlueBorder5.png in Resources */,
@@ -835,6 +842,7 @@
 				786D91191A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
 				786D910F1A6EEA5000177E25 /* BlueArrow2.png in Resources */,
+				78F4AF821AB7D9840093EC0B /* SquareOutlineRed2.png in Resources */,
 				37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */,
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
