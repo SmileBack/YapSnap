@@ -31,7 +31,7 @@
     
     UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ProgressViewNotches5.png"]];
     imageView.alpha = 0.2;
-    self.progressTintColor = [UIColor colorWithRed:254.0/255 green:26.0/255 blue:64.0/255 alpha:1.0];
+    self.progressTintColor = THEME_RED_COLOR; //[UIColor colorWithRed:254.0/255 green:26.0/255 blue:64.0/255 alpha:1.0];
     self.trackTintColor = UIColor.whiteColor;
     
     for (UIView* view in @[imageView, self.activityIndicator])
