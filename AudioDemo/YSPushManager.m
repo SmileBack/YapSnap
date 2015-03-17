@@ -91,6 +91,7 @@ static YSPushManager *_sharedPushManager;
 {
     if ([notification[@"type"]  isEqual: @"new_yap"]) {
         [[YTNotifications sharedNotifications] showNotificationText:@"You've received a new yap"];
+        //TODO: if on yaps page, refresh page
     } else if ([notification[@"type"]  isEqual: @"new_friend"]) {
         [[YTNotifications sharedNotifications] showNotificationText:@"You just made a new friend"];
     }
