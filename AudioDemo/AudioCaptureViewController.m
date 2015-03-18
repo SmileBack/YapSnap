@@ -206,7 +206,7 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [[YTNotifications sharedNotifications] showNotificationText:@"Something Went Wrong"];
+                        [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong!"];
                         [weakSelf.recordProgressView setProgress:0];
                         weakSelf.elapsedTime = 0;
                         [timer invalidate];
@@ -216,7 +216,7 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [[YTNotifications sharedNotifications] showNotificationText:@"Lost Connection"];
+                        [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Connection Was Lost!"];
                         [weakSelf.recordProgressView setProgress:0];
                         weakSelf.elapsedTime = 0;
                         [timer invalidate];

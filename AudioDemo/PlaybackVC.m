@@ -82,7 +82,7 @@
     NSLog(@"Stopping");
     [self.timer invalidate];
     [self.player stop];
-    self.player.volume = 0;
+    //self.player.volume = 0;
 }
 
 #pragma mark - Progress Stuff
@@ -154,15 +154,24 @@
                 [mixpanel track:@"API Error - yapOpened"];
             }
         }];
-    } else if (state == STKAudioPlayerStateStopped) {
+    }
+    
+    if (state == STKAudioPlayerStateStopped) {
         NSLog(@"Stopped!");
         [self.timer invalidate];
         self.timer = nil;
-        [[NSNotificationCenter defaultCenter] postNotificationName:PLAYBACK_STOPPED_NOTIFICATION object:nil]; //May not be needed
+        [self.progressView.activityIndicator stopAnimating]; // This line may not be necessary
+        [[NSNotificationCenter defaultCenter] postNotificationName:PLAYBACK_STOPPED_NOTIFICATION object:nil]; //Not currently used
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self dismissViewControllerAnimated:NO completion:nil];
         });
+    }
+    
+    if (state == STKAudioPlayerStateBuffering && previousState == STKAudioPlayerStatePlaying) {
+        NSLog(@"state changed from playing to buffering");
+        [audioPlayer stop];
+        [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Connection Was Lost!"];
     }
 }
 
