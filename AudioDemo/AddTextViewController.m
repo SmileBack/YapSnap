@@ -130,6 +130,7 @@
                             // uh oh spaghettios
                             // TODO: tell the user something went wrong
                             NSLog(@"Error: %@", error);
+                            [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Yap Didn't Send!"];
                         }
                     }];
         NSLog(@"Sent yaps call");

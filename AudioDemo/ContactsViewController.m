@@ -341,6 +341,9 @@ static NSString *CellIdentifier = @"Cell";
                         } else {
                             // uh oh spaghettios
                             // TODO: tell the user something went wrong
+                            [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Yap Didn't Send!"];
+                            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                            [mixpanel track:@"API Error - sendYap"];
                         }
                     }];
     }

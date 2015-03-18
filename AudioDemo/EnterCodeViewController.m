@@ -114,14 +114,15 @@
                 }
             } else {
                 // TODO: different UIAlert depending on error (no internet, wrong code, etc.)
-                // NSLog([NSString stringWithFormat:@"error: %@", error]);
+                //NSLog([NSString stringWithFormat:@"error: %@", error]);
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again"
-                                                                message:@"That was the wrong code. Try again."
+                                                                message:@"That was the wrong code. Please try again."
                                                                delegate:nil
                                                       cancelButtonTitle:@"OK"
                                                       otherButtonTitles:nil];
-                
                 [alert show];
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"API Error - confirmSessionWithCode"];
             }
         }];
     }

@@ -77,7 +77,10 @@ static YSPushManager *_sharedPushManager;
     
     [[API sharedAPI] updateUserPushToken:pushToken
                             withCallBack:^(BOOL success, NSError *error) {
-                                //TODO handle callback
+                                if (error) {
+                                    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                    [mixpanel track:@"API Error - updatePushToken"];
+                                }
                             }];
 }
 

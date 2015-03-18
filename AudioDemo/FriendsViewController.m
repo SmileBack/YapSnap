@@ -46,7 +46,13 @@
     __weak FriendsViewController *weakSelf = self;
     [[API sharedAPI] friends:^(NSArray *friends, NSError *error) {
         if (error) {
-            // TODO handle error
+            double delay = 0.5;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Loading Friends!"];
+                
+            });
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"API Error - friends"];
         } else {
             if (friends.count > 2) {
                 self.myTopFriends = [friends subarrayWithRange:NSMakeRange(0, 3)];
@@ -211,8 +217,14 @@
         } else {
             FriendsViewController *weakSelf = self;
             [[API sharedAPI] topFriendsForUser:expandingUser withCallback:^(NSArray *friends, NSError *error) {
-                weakSelf.topFriendMap[expandingUser.userID] = friends;
-                [weakSelf showTopFriendsForIndexPath:indexPath andFriends:friends];
+                if (error) {
+                    [[YTNotifications sharedNotifications] showNotificationText:@"Error Loading Top Friends!"];
+                    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                    [mixpanel track:@"API Error - topFriends"];
+                } else {
+                    weakSelf.topFriendMap[expandingUser.userID] = friends;
+                    [weakSelf showTopFriendsForIndexPath:indexPath andFriends:friends];
+                }
             }];
         }
     }

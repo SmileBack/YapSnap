@@ -149,7 +149,10 @@
         [self.view bringSubviewToFront:self.progressViewNotchesView];
         
         [[API sharedAPI] yapOpened:self.yap withCallback:^(BOOL success, NSError *error) {
-            //TODO do something?
+            if (error) {
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"API Error - yapOpened"];
+            }
         }];
     } else if (state == STKAudioPlayerStateStopped) {
         NSLog(@"Stopped!");

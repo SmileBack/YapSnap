@@ -80,6 +80,8 @@
     [[API sharedAPI] unopenedYapsCountWithCallback:^(NSNumber *count, NSError *error) {
         if (error) {
             NSLog(@"Error getting unopened yaps count for badge");
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"API Error - unopenedYapsCount"];
         } else {
             NSLog(@"Unopened Yaps Count: %d", count.description.intValue);
             [UIApplication sharedApplication].applicationIconBadgeNumber = count.description.intValue;

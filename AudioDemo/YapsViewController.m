@@ -106,6 +106,9 @@ static NSString *CellIdentifier = @"Cell";
             [weakSelf.tableView reloadData];
         } else {
             NSLog(@"Error! %@", error);
+            [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Loading Yaps!"];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"API Error - getYaps"];
         }
     }];
 }
@@ -419,6 +422,9 @@ static NSString *CellIdentifier = @"Cell";
                                 [weakSelf removeBlockedYap];
                             } else {
                                 NSLog(@"Error blocking! %@", error);
+                                [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Blocking User!"];
+                                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                [mixpanel track:@"API Error - blockUser"];
                             }
                         }];
     }
