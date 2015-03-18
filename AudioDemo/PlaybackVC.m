@@ -31,6 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupNotifications];
+    
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Playback Page"];
     
@@ -85,6 +87,23 @@
     //self.player.volume = 0;
 }
 
+- (void) setupNotifications
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:UIApplicationWillResignActiveNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self stop];
+                        [[API sharedAPI] updateYapStatus:self.yap toStatus:@"unopened" withCallback:^(BOOL success, NSError *error) {
+                            if (error) {
+                                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                [mixpanel track:@"API Error - updateYapStatus"];
+                            }
+                        }];
+                    }];
+}
+
 #pragma mark - Progress Stuff
 - (void) timerFired
 {
@@ -120,11 +139,6 @@
                                                      repeats:YES];
         [self.progressView.activityIndicator stopAnimating];
         
-        // We muted yap recordings in ViewDidLoad because we want to cut out the first 0.25 seconds of the yap in order to cut out the notification tone
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-
-        });
-        
         CGFloat width = self.view.frame.size.width;
         CGFloat progressViewRemainderWidth = (10 - [self.yap.duration floatValue]) * width/10;
         self.progressViewRemainder = [[UIView alloc] init];
@@ -148,7 +162,7 @@
         
         [self.view bringSubviewToFront:self.progressViewNotchesView];
         
-        [[API sharedAPI] yapOpened:self.yap withCallback:^(BOOL success, NSError *error) {
+        [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error) {
             if (error) {
                 Mixpanel *mixpanel = [Mixpanel sharedInstance];
                 [mixpanel track:@"API Error - yapOpened"];
@@ -171,6 +185,12 @@
     if (state == STKAudioPlayerStateBuffering && previousState == STKAudioPlayerStatePlaying) {
         NSLog(@"state changed from playing to buffering");
         [audioPlayer stop];
+        [[API sharedAPI] updateYapStatus:self.yap toStatus:@"unopened" withCallback:^(BOOL success, NSError *error) {
+            if (error) {
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"API Error - updateYapStatus"];
+            }
+        }];
         [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Connection Was Lost!"];
     }
 }

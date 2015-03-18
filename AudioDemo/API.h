@@ -31,7 +31,7 @@ typedef void (^FriendsCallback)(NSArray *friends, NSError *error);
 - (void) openSession:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(UserCallback)callback;
 - (void) getYapsWithCallback:(YapsCallback)callback;
-- (void) yapOpened:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback;
+- (void) updateYapStatus:(YSYap *)yap toStatus:(NSString *)status withCallback:(SuccessOrErrorCallback)callback;
 - (void) unopenedYapsCountWithCallback:(YapCountCallback)callback;
 - (void) logout:(SuccessOrErrorCallback)callback;
 - (void) friends:(FriendsCallback)callback;

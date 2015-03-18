@@ -287,13 +287,13 @@ static API *sharedAPI;
           }];
 }
 
-- (void) yapOpened:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback
+- (void) updateYapStatus:(YSYap *)yap toStatus:(NSString *)status withCallback:(SuccessOrErrorCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager PUT:[self urlForEndpoint:[NSString stringWithFormat:@"audio_messages/%@", yap.yapID]]
       parameters:[self paramsWithDict:@{@"id": yap.yapID,
-                                        @"status" : @"opened"}]
+                                        @"status" : status}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              if (![responseObject isKindOfClass:[NSDictionary class]]) {
                  callback(NO, nil);
