@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define NEW_YAP_NOTIICATION @"com.yaptap.NewYapNotification"
+#define NEW_FRIEND_NOTIICATION @"com.yaptap.NewFriendNotification"
+
 @interface YSPushManager : NSObject
 
 @property (nonatomic) BOOL pushEnabled;

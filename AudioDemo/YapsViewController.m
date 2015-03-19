@@ -147,6 +147,13 @@ static NSString *CellIdentifier = @"Cell";
                             }
                         }
                     }];
+
+    [center addObserverForName:NEW_YAP_NOTIICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [weakSelf loadYaps];
+    }];
 }
 
 -(BOOL) internetIsNotReachable
