@@ -129,6 +129,7 @@
 		FCBB96FF1A7D4C97003D5F24 /* YSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB96FE1A7D4C97003D5F24 /* YSUser.m */; };
 		FCBB97031A7D636A003D5F24 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB97021A7D636A003D5F24 /* SettingsViewController.m */; };
 		FCBB97061A7D6CDF003D5F24 /* EditFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBB97051A7D6CDF003D5F24 /* EditFieldViewController.m */; };
+		FCD2577A1ABA60AE00981E5D /* UIViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD257791ABA60AE00981E5D /* UIViewController+Navigation.m */; };
 		FCE234491AAB749E00C1EDB0 /* YTNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE234481AAB749E00C1EDB0 /* YTNotifications.m */; };
 		FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE2347C1AAB917100C1EDB0 /* LaunchScreen.xib */; };
 		FCEF99361A6D6B22000FDE4C /* AddTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */; };
@@ -316,6 +317,8 @@
 		FCBB97021A7D636A003D5F24 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FCBB97041A7D6CDF003D5F24 /* EditFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFieldViewController.h; sourceTree = "<group>"; };
 		FCBB97051A7D6CDF003D5F24 /* EditFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFieldViewController.m; sourceTree = "<group>"; };
+		FCD257781ABA60AE00981E5D /* UIViewController+Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Navigation.h"; sourceTree = "<group>"; };
+		FCD257791ABA60AE00981E5D /* UIViewController+Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Navigation.m"; sourceTree = "<group>"; };
 		FCE234471AAB749E00C1EDB0 /* YTNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTNotifications.h; sourceTree = "<group>"; };
 		FCE234481AAB749E00C1EDB0 /* YTNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTNotifications.m; sourceTree = "<group>"; };
 		FCE2347C1AAB917100C1EDB0 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -738,6 +741,8 @@
 				FCAFD5A21A8AE6410030B923 /* UIViewController+Alerts.m */,
 				FC865CBF1A9A7B2B003AFAFA /* UIViewController+ScreenSize.h */,
 				FC865CC01A9A7B2B003AFAFA /* UIViewController+ScreenSize.m */,
+				FCD257781ABA60AE00981E5D /* UIViewController+Navigation.h */,
+				FCD257791ABA60AE00981E5D /* UIViewController+Navigation.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -947,6 +952,7 @@
 				FC1E89BB1A4B8E94007A8CDA /* YSYap.m in Sources */,
 				FC0595821A6D87A700FCCED2 /* ContactManager.m in Sources */,
 				7840480B1AB7334A00FE6D93 /* NextButton.m in Sources */,
+				FCD2577A1ABA60AE00981E5D /* UIViewController+Navigation.m in Sources */,
 				78A569A31A73227200818A17 /* YSColorPicker.m in Sources */,
 				FC3ECAE91A830496002678F6 /* FriendsViewController.m in Sources */,
 				37D413BE19D21A1F00021548 /* NSString+FontAwesome.m in Sources */,
