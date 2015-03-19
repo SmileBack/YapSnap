@@ -26,5 +26,5 @@
 - (void) registrationFailedWithError:(NSError *) error;
 - (void) refresh;
 
-- (void) receivedNotification:(NSDictionary *)notification;
+- (void) receivedNotification:(NSDictionary *)notification inAppState:(UIApplicationState) state;
 @end

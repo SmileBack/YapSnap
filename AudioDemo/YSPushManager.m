@@ -90,14 +90,33 @@ static YSPushManager *_sharedPushManager;
     //TODO handle error
 }
 
-- (void) receivedNotification:(NSDictionary *)notification
+#pragma mark - Receiving Notifications
+- (void) receivedANewYapInBackground:(BOOL)inBackground
 {
-    if ([notification[@"type"]  isEqual: @"new_yap"]) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:NEW_YAP_NOTIICATION object:[NSNumber numberWithBool:inBackground]];
+
+    if (!inBackground) {
         [[YTNotifications sharedNotifications] showNotificationText:@"You've received a new yap"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NEW_YAP_NOTIICATION object:nil];
-    } else if ([notification[@"type"]  isEqual: @"new_friend"]) {
+    }
+}
+
+- (void) receivedANewFriendInBackground:(BOOL)inBackground
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NEW_FRIEND_NOTIICATION object:[NSNumber numberWithBool:inBackground]];
+
+    if (!inBackground) {
         [[YTNotifications sharedNotifications] showNotificationText:@"You just made a new friend"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NEW_FRIEND_NOTIICATION object:nil];
+    }
+}
+
+- (void) receivedNotification:(NSDictionary *)notification inAppState:(UIApplicationState)state
+{
+    BOOL backgroundNotification = state == UIApplicationStateInactive;
+    
+    if ([notification[@"type"]  isEqual: @"new_yap"]) {
+        [self receivedANewYapInBackground:backgroundNotification];
+    } else if ([notification[@"type"]  isEqual: @"new_friend"]) {
+        [self receivedANewFriendInBackground:backgroundNotification];
     }
 }
 
