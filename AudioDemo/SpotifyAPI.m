@@ -47,10 +47,15 @@ static SpotifyAPI *sharedInstance;
                   NSDictionary *response = responseObject;
                   weakSelf.tokenType = response[@"token_type"];
                   weakSelf.token = response[@"access_token"];
+                  
+                  Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                  [mixpanel track:@"Spotify Success - token"];
               }
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               NSLog(@"Error: %@", error);
+              Mixpanel *mixpanel = [Mixpanel sharedInstance];
+              [mixpanel track:@"Spotify Error - token"];
           }];
 }
 
@@ -61,6 +66,8 @@ static SpotifyAPI *sharedInstance;
         [manager.requestSerializer setValue:value forHTTPHeaderField:@"Authorization"];
     } else {
         NSLog(@"NO TOKEN!!");
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Spotify - token doesn't exist for user"];
     }
 }
 
@@ -84,12 +91,17 @@ static SpotifyAPI *sharedInstance;
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (operation.response.statusCode == 401) {
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Spotify Error - search (401)"];
+            
             weakSelf.tokenType = nil;
             weakSelf.token = nil;
             [weakSelf searchSongs:searchString withCallback:callback];
             [weakSelf getAccessToken];
          } else {
              callback(nil, error);
+             Mixpanel *mixpanel = [Mixpanel sharedInstance];
+             [mixpanel track:@"Spotify Error - search (other)"];
          }
     }];
 }
