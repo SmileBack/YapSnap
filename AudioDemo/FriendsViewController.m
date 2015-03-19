@@ -69,6 +69,8 @@
         }
     }];
     
+    [self getSelfAndUpdateScore];
+    
     if (!self.didTapCancelFeedbackExplanationButton) {
         self.friendsExplanationView.hidden = NO;
     }
@@ -86,6 +88,18 @@
                      completion:nil];
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
+}
+
+- (void) getSelfAndUpdateScore
+{
+    __weak FriendsViewController *weakSelf = self;
+
+    [[API sharedAPI] getMeWithCallback:^(YSUser *user, NSError *error) {
+        if (user) {
+            // TODO maybe do a check if the number changed?
+            [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }];
 }
 
 
