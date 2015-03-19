@@ -10,6 +10,8 @@
 #import "AudioCaptureViewController.h"
 #import "YSUser.h"
 #import "EnterPhoneNumberViewController.h"
+#import "UIViewController+Navigation.h"
+#import "YSPushManager.h"
 
 @implementation LandingPageViewController
 
@@ -43,6 +45,8 @@
             [self.navigationController pushViewController:rvvc animated:NO];
         }
     }
+    
+    [self setupNotifications];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,6 +63,33 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+}
+
+- (void) receivedPushNotification:(NSNotification *)notification
+{
+    BOOL inBackground = ((NSNumber *)notification.object).boolValue;
+
+    if (inBackground && [self popToBaseAudioCaptureController:NO]) {
+        for (UIViewController *vc in self.navigationController.viewControllers) {
+            if ([vc isKindOfClass:[AudioCaptureViewController class]]) {
+                AudioCaptureViewController *audioVC = (AudioCaptureViewController *)vc;
+                [audioVC resetUI];
+                if ([NEW_YAP_NOTIICATION isEqualToString:notification.name]) {
+                    [audioVC goToYapsPage];
+                } else if ([NEW_FRIEND_NOTIICATION isEqualToString:notification.name]) {
+                    [audioVC goToFriendsPage];
+                }
+            }
+        }
+    }
+}
+
+- (void) setupNotifications
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+
+    [center addObserver:self selector:@selector(receivedPushNotification:) name:NEW_YAP_NOTIICATION object:nil];
+    [center addObserver:self selector:@selector(receivedPushNotification:) name:NEW_FRIEND_NOTIICATION object:nil];
 }
 
 - (IBAction) didTapSignUpButton

@@ -115,7 +115,7 @@ static const float TIMER_INTERVAL = .01;
         [self micModeButtonPressed:nil]; //This line is a hacky fix to an issue where spotify songs remain on screen after pop
         [self.navigationController popViewControllerAnimated:YES];
     } else {
-        [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
+        [self goToFriendsPage];
     }
 }
 
@@ -250,6 +250,16 @@ static const float TIMER_INTERVAL = .01;
                     }];
 }
 
+- (void) goToYapsPage
+{
+    [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:self];
+}
+
+- (void) goToFriendsPage
+{
+    [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
+}
+
 - (void) updateProgress {
     self.elapsedTime += TIMER_INTERVAL;
     
@@ -321,7 +331,7 @@ static const float TIMER_INTERVAL = .01;
     if ([self internetIsNotReachable]){
         [self showNoInternetAlert];
     } else {
-        [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:self];
+        [self goToYapsPage];
     }
 }
 

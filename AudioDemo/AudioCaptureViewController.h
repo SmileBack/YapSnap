@@ -41,4 +41,7 @@
 
 - (void) resetUI;
 
+- (void) goToYapsPage;
+- (void) goToFriendsPage;
+
 @end

@@ -140,7 +140,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    [[YSPushManager sharedPushManager] receivedNotification:userInfo];
+    [[YSPushManager sharedPushManager] receivedNotification:userInfo inAppState:application.applicationState];
 }
 
 - (void)bindMixpanelToUser
