@@ -44,6 +44,8 @@ static NSString *CellIdentifier = @"Cell";
 
 @implementation YapsViewController
 
+static NSArray *yapsCache; // In-memory array to hold the yaps.
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -70,6 +72,7 @@ static NSString *CellIdentifier = @"Cell";
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
+    [self displayYapsFromCache];
     [self loadYaps];
 
     // Pull down to refresh
@@ -98,10 +101,21 @@ static NSString *CellIdentifier = @"Cell";
     [self loadYaps];
 }
 
+- (void) displayYapsFromCache
+{
+    if (yapsCache && yapsCache.count > 0) {
+        self.yaps = [yapsCache copy];
+        [self.tableView reloadData];
+    }
+}
+
 - (void) loadYaps {
     __weak YapsViewController *weakSelf = self;
+    NSLog(@"YAPS: about to make yaps call");
     [[API sharedAPI] getYapsWithCallback:^(NSArray *yaps, NSError *error) {
+        NSLog(@"YAPS: in callback");
         if (yaps) {
+            yapsCache = yaps;
             [weakSelf.refreshControl endRefreshing];
             weakSelf.yaps = yaps;
             [weakSelf.tableView reloadData];
@@ -111,6 +125,7 @@ static NSString *CellIdentifier = @"Cell";
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"API Error - getYaps"];
         }
+        NSLog(@"YAPS: callback done");
     }];
 }
 
@@ -180,6 +195,8 @@ static NSString *CellIdentifier = @"Cell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"YAPS: cellForRowAtIndexPath %d", indexPath.row);
+    NSDate *start = [NSDate date];
     YSYap* yap = self.yaps[indexPath.row];
     
     YapCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
@@ -204,9 +221,10 @@ static NSString *CellIdentifier = @"Cell";
         cell.goToSpotifyView.alpha = 0;
     }
 
-    
     // DID SEND YAP
+    NSLog(@"  Start: %.000f", [start timeIntervalSinceNow]);
     if (yap.sentByCurrentUser) {
+        NSLog(@"  Start sent by current user: %.000f", [start timeIntervalSinceNow]);
         cell.nameLabel.text = yap.displayReceiverName;
         
         if (yap.wasOpened) {
@@ -220,9 +238,10 @@ static NSString *CellIdentifier = @"Cell";
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
             }
         }
-        
+    
     // DID RECEIVE YAP
     } else if (yap.receivedByCurrentUser) {
+        NSLog(@"  Start received by current user: %.000f", [start timeIntervalSinceNow]);
         cell.nameLabel.text = yap.displaySenderName;
         cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@" , [self.dateFormatter stringFromDate:yap.createdAt]];
 
@@ -232,6 +251,8 @@ static NSString *CellIdentifier = @"Cell";
             cell.icon.image = self.redSquareFull;
         }
     }
+    
+    NSLog(@"  Total: %.000f", [start timeIntervalSinceNow]);
     
     return cell;
 }
