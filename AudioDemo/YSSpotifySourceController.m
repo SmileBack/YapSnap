@@ -67,15 +67,6 @@
     return ![AFNetworkReachabilityManager sharedManager].reachable;
 }
 
-- (void) showNoInternetAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection"
-                                                    message:@"Please connect to the internet and try again."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
-
 - (void) setPlayer:(STKAudioPlayer *)player
 {
     if (_player) {
@@ -159,13 +150,7 @@
                 self.musicIcon.hidden = NO;
 
                 NSLog(@"No Songs Returned For Search Query");
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
-                                                                message:@"We didn't find any songs for you. Try searching for something else."
-                                                               delegate:self
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                
-                [alert show];
+                [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
                 self.musicIcon.hidden = NO;
             } else {
                 NSLog(@"Returned Songs Successfully");
@@ -176,16 +161,11 @@
             self.musicIcon.hidden = NO;
             
             if ([self internetIsNotReachable]) {
-                [self showNoInternetAlert];
+                [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
             } else {
                 NSLog(@"Error Returning Songs %@", error);
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
-                                                                message:@"There was an error. Please try again in a bit."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                
-                [alert show];
+
+                [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong! Try Again."];
                 
                 Mixpanel *mixpanel = [Mixpanel sharedInstance];
                 [mixpanel track:@"Spotify Error - search (other)"];
@@ -400,7 +380,7 @@
 - (BOOL) startAudioCapture
 {
     if ([self internetIsNotReachable]){
-        [self showNoInternetAlert];
+        [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
         return NO;
     } else if (self.songs.count == 0) {
         NSLog(@"Can't Play Because No Song");

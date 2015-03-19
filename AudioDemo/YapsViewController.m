@@ -154,15 +154,6 @@ static NSString *CellIdentifier = @"Cell";
     return ![AFNetworkReachabilityManager sharedManager].reachable;
 }
 
-- (void) showNoInternetAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection"
-                                                    message:@"Please connect to the internet and try again."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
-
 #pragma UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -240,7 +231,7 @@ static NSString *CellIdentifier = @"Cell";
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self internetIsNotReachable]){ // Only apply reachability code to situation where user can listen to the yap
-        [self showNoInternetAlert];
+        [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
     } else {        
         YSYap *yap = self.yaps[indexPath.row];
         if (yap.receivedByCurrentUser) {
