@@ -297,11 +297,22 @@ static NSString *CellIdentifier = @"Cell";
     } else if ([@"Reply Segue" isEqualToString:segue.identifier]) {
         AudioCaptureViewController *audioVC = segue.destinationViewController;
         YSYap *yap = sender;
-        PhoneContact *contact = [[ContactManager sharedContactManager] contactForPhoneNumber:yap.senderPhone];
+
+        NSString *targetPhone; // The phone number we're replying to
+        NSString *targetName; // The name we're replying to
+        if (yap.sentByCurrentUser) {
+            targetPhone = yap.receiverPhone;
+            targetName = yap.receiverName;
+        } else {
+            targetPhone = yap.senderPhone;
+            targetName = yap.senderName;
+        }
+        
+        PhoneContact *contact = [[ContactManager sharedContactManager] contactForPhoneNumber:targetPhone];
         if (contact) {
             audioVC.contactReplyingTo = contact;
         } else {
-            YSContact *contact = [YSContact contactWithName:yap.senderName andPhoneNumber:yap.senderPhone];
+            YSContact *contact = [YSContact contactWithName:targetName andPhoneNumber:targetPhone];
             audioVC.contactReplyingTo = contact;
         }
     }
