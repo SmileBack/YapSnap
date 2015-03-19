@@ -100,8 +100,6 @@ static SpotifyAPI *sharedInstance;
             [weakSelf getAccessToken];
          } else {
              callback(nil, error);
-             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-             [mixpanel track:@"Spotify Error - search (other)"];
          }
     }];
 }

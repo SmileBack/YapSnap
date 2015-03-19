@@ -186,6 +186,9 @@
                                                       otherButtonTitles:nil];
                 
                 [alert show];
+                
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"Spotify Error - search (other)"];
             }
         }
     }];
