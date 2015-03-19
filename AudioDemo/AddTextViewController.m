@@ -65,7 +65,7 @@
     
     double delay = 0.5;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.continueButton pulsate];
+        [self.continueButton startToPulsate];
     });
     
     [self.textView setTintColor:[UIColor whiteColor]];

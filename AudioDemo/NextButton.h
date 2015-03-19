@@ -10,6 +10,6 @@
 
 @interface NextButton : UIButton
 
-- (void)pulsate;
+- (void)startToPulsate;
 
 @end
