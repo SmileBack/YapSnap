@@ -195,6 +195,8 @@ static API *sharedAPI;
         __weak API *weakSelf = self;
         [[AmazonAPI sharedAPI] uploadPhoto:yapBuilder.image withCallback:^(NSString *url, NSString *etag, NSError *error) {
             if (error) {
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"AWS Error - uploadPhoto"];
                 callback(NO, error);
             } else {
                 yapBuilder.imageAwsUrl = url;
@@ -225,6 +227,9 @@ static API *sharedAPI;
     
     [[AmazonAPI sharedAPI] uploadYap:outputFileURL withCallback:^(NSString *url, NSString *etag, NSError *error) {
         if (error) {
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"AWS Error - uploadYap"];
+            
             NSLog(@"Error uploading to amazon! %@", error);
             callback(NO, error);
         }
