@@ -127,6 +127,9 @@ static API *sharedAPI;
               callback(YES, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              Mixpanel *mixpanel = [Mixpanel sharedInstance];
+              [mixpanel track:@"API Error - openSession"];
+              
               [self processFailedOperation:operation];
               NSLog(@"Error! %@", error);
               callback(NO, error);
@@ -155,6 +158,9 @@ static API *sharedAPI;
               callback(user, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              Mixpanel *mixpanel = [Mixpanel sharedInstance];
+              [mixpanel track:@"API Error - confirmSessionWithCode"];
+              
               [self processFailedOperation:operation];
               callback(nil, error);
           }];
@@ -238,6 +244,9 @@ static API *sharedAPI;
                   callback(YES, nil);
               }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                  [mixpanel track:@"API Error - sendVoiceYap"];
+                  
                   NSLog(@"Error: %@", error);
                   callback(NO, error);
               }];
@@ -265,6 +274,9 @@ static API *sharedAPI;
     [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         callback(YES, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"API Error - sendSongYap"];
+        
         callback(NO, error);
         NSLog(@"Error: %@", error);
     }];
@@ -283,6 +295,9 @@ static API *sharedAPI;
               callback(yaps, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              Mixpanel *mixpanel = [Mixpanel sharedInstance];
+              [mixpanel track:@"API Error - getYaps"];
+              
              [self processFailedOperation:operation];
               callback(NO, error);
           }];
@@ -306,6 +321,9 @@ static API *sharedAPI;
              callback(YES, nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             Mixpanel *mixpanel = [Mixpanel sharedInstance];
+             [mixpanel track:@"API Error - updateYapStatus"];
+             
              [self processFailedOperation:operation];
              callback(NO, error);
          }];
@@ -322,6 +340,9 @@ static API *sharedAPI;
              callback(response[@"count"], nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             Mixpanel *mixpanel = [Mixpanel sharedInstance];
+             [mixpanel track:@"API Error - unopenedYapsCount"];
+             
              [self processFailedOperation:operation];
              callback(NO, error);
              NSLog(@"Error Getting Yaps Unopened Count %@", error);
@@ -345,9 +366,12 @@ static API *sharedAPI;
              callback(me, nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             Mixpanel *mixpanel = [Mixpanel sharedInstance];
+             [mixpanel track:@"API Error - getMe"];
+             
              [self processFailedOperation:operation];
              callback(nil, error);
-             NSLog(@"Error Getting Yaps Unopened Count %@", error);
+             NSLog(@"Error Getting Me %@", error);
          }];
 }
 
@@ -364,6 +388,9 @@ static API *sharedAPI;
               callback(YES, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              Mixpanel *mixpanel = [Mixpanel sharedInstance];
+              [mixpanel track:@"API Error - blockUser"];
+              
               [self processFailedOperation:operation];
               callback(NO, error);
           }];
@@ -386,6 +413,9 @@ static API *sharedAPI;
              callback(friends, nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             Mixpanel *mixpanel = [Mixpanel sharedInstance];
+             [mixpanel track:@"API Error - friends"];
+             
              NSLog(@"Friends Error: %@", error);
              callback(nil, error);
          }];
@@ -410,6 +440,9 @@ static API *sharedAPI;
              callback(friends, nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             Mixpanel *mixpanel = [Mixpanel sharedInstance];
+             [mixpanel track:@"API Error - topFriends"];
+             
              NSLog(@"Top Friends Error: %@", error);
              callback(nil, error);
          }];
@@ -442,7 +475,10 @@ static API *sharedAPI;
               }
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             [self processFailedOperation:operation];
+              Mixpanel *mixpanel = [Mixpanel sharedInstance];
+              [mixpanel track:@"API Error - updateUserData"];
+              
+              [self processFailedOperation:operation];
               callback(NO, error);
           }];
 }

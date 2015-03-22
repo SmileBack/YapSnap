@@ -51,8 +51,6 @@
                 [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Loading Friends!"];
                 
             });
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"API Error - friends"];
         } else {
             if (friends.count > 2) {
                 self.myTopFriends = [friends subarrayWithRange:NSMakeRange(0, 3)];
@@ -236,8 +234,6 @@
             [[API sharedAPI] topFriendsForUser:expandingUser withCallback:^(NSArray *friends, NSError *error) {
                 if (error) {
                     [[YTNotifications sharedNotifications] showNotificationText:@"Error Loading Top Friends!"];
-                    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                    [mixpanel track:@"API Error - topFriends"];
                 } else {
                     weakSelf.topFriendMap[expandingUser.userID] = friends;
                     [weakSelf showTopFriendsForIndexPath:indexPath andFriends:friends];

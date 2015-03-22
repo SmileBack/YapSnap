@@ -139,8 +139,6 @@ static const float TIMER_INTERVAL = .01;
         [self.unopenedYapsCountSpinner stopAnimating];
         if (error) {
             [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"API Error - unopenedYapsCount"];
         } else if (count.description.intValue == 0) {
             NSLog(@"0 Yaps");
             UIImage *buttonImage = [UIImage imageNamed:@"SquareOutlineRed2.png"];

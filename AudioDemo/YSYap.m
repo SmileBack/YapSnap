@@ -66,6 +66,7 @@
 
 - (NSString *) displayReceiverName
 {
+    /*
     if (!_displayReceiverName) {
         if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
             NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.receiverPhone];
@@ -77,11 +78,15 @@
             _displayReceiverName = self.receiverName;
         }
     }
+     
     return _displayReceiverName;
+     */
+    return @"Receiver Name";
 }
 
 - (NSString *) displaySenderName
 {
+    /*
     if (!_displaySenderName) {
         if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
             NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.senderPhone];
@@ -96,6 +101,8 @@
     }
     
     return _displaySenderName;
+     */
+    return @"Sender Name";
 }
 
 - (BOOL) wasOpened

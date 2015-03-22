@@ -122,8 +122,6 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
         } else {
             NSLog(@"Error! %@", error);
             [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Loading Yaps!"];
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"API Error - getYaps"];
         }
         NSLog(@"YAPS: callback done");
     }];
@@ -432,8 +430,6 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
                             } else {
                                 NSLog(@"Error blocking! %@", error);
                                 [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Blocking User!"];
-                                Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                                [mixpanel track:@"API Error - blockUser"];
                             }
                         }];
     }

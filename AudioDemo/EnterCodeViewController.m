@@ -121,8 +121,6 @@
                                                       cancelButtonTitle:@"OK"
                                                       otherButtonTitles:nil];
                 [alert show];
-                Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                [mixpanel track:@"API Error - confirmSessionWithCode"];
             }
         }];
     }

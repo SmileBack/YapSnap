@@ -97,8 +97,7 @@
                         [self stop];
                         [[API sharedAPI] updateYapStatus:self.yap toStatus:@"unopened" withCallback:^(BOOL success, NSError *error) {
                             if (error) {
-                                Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                                [mixpanel track:@"API Error - updateYapStatus"];
+
                             }
                         }];
                     }];
@@ -164,8 +163,7 @@
         
         [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error) {
             if (error) {
-                Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                [mixpanel track:@"API Error - yapOpened"];
+
             }
         }];
     }
@@ -187,8 +185,7 @@
         [audioPlayer stop];
         [[API sharedAPI] updateYapStatus:self.yap toStatus:@"unopened" withCallback:^(BOOL success, NSError *error) {
             if (error) {
-                Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                [mixpanel track:@"API Error - updateYapStatus"];
+
             }
         }];
         [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Connection Was Lost!"];
