@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong)  IBOutlet UIButton *logInButton;
 @property (nonatomic, strong)  IBOutlet UIButton *signUpButton;
+@property (nonatomic, strong)  IBOutlet UIImageView *imageView;
 
 - (IBAction)didTapSignUpButton;
 - (IBAction)didTapLogInButton;

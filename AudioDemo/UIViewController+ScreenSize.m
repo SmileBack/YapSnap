@@ -15,4 +15,9 @@
     return self.view.frame.size.height == 480;
 }
 
+- (BOOL) isiPhone5Size
+{
+    return self.view.frame.size.height == 568;
+}
+
 @end

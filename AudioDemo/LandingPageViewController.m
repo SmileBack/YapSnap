@@ -43,6 +43,10 @@
             [self.navigationController pushViewController:rvvc animated:NO];
         }
     }
+    
+    if (self.isiPhone4Size || self.isiPhone5Size) {
+        self.imageView.image = [UIImage imageNamed:@"LoginPageImageSmalleriPhones.png"];
+    }
 }
 
 - (void)didReceiveMemoryWarning

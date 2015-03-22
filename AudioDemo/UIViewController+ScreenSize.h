@@ -11,5 +11,6 @@
 @interface UIViewController (ScreenSize)
 
 @property (nonatomic, readonly) BOOL isiPhone4Size;
+@property (nonatomic, readonly) BOOL isiPhone5Size;
 
 @end
