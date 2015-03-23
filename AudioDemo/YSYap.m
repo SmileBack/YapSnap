@@ -81,7 +81,21 @@
      
     return _displayReceiverName;
      */
-    return @"Receiver Name";
+    
+    if (!_displayReceiverName) {
+        if ([self.receiverName isKindOfClass:[NSNull class]] || [self.receiverName isEqualToString:@""] || [self.receiverName isEqual:[NSNull null]]) {
+            if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
+                NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.receiverPhone];
+                if (displayName) {
+                    _displayReceiverName = displayName;
+                }
+            }
+        } else {
+            _displayReceiverName = self.receiverName;
+        }
+    }
+    
+    return _displayReceiverName;
 }
 
 - (NSString *) displaySenderName
@@ -102,7 +116,21 @@
     
     return _displaySenderName;
      */
-    return @"Sender Name";
+    
+    if (!_displaySenderName) {
+        if ([self.senderName isKindOfClass:[NSNull class]] || [self.senderName isEqualToString:@""] || [self.senderName isEqual:[NSNull null]]) {
+            if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
+                NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.senderPhone];
+                if (displayName) {
+                    _displaySenderName = displayName;
+                }
+            }
+        } else {
+            _displaySenderName = self.senderName;
+        }
+    }
+    
+    return _displaySenderName;
 }
 
 - (BOOL) wasOpened

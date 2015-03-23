@@ -113,7 +113,6 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
     __weak YapsViewController *weakSelf = self;
     NSLog(@"YAPS: about to make yaps call");
     [[API sharedAPI] getYapsWithCallback:^(NSArray *yaps, NSError *error) {
-        NSLog(@"YAPS: in callback");
         if (yaps) {
             yapsCache = yaps;
             [weakSelf.refreshControl endRefreshing];
@@ -123,7 +122,6 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
             NSLog(@"Error! %@", error);
             [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Loading Yaps!"];
         }
-        NSLog(@"YAPS: callback done");
     }];
 }
 
@@ -193,8 +191,6 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"YAPS: cellForRowAtIndexPath %d", indexPath.row);
-    NSDate *start = [NSDate date];
     YSYap* yap = self.yaps[indexPath.row];
     
     YapCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
@@ -220,9 +216,7 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
     }
 
     // DID SEND YAP
-    NSLog(@"  Start: %.000f", [start timeIntervalSinceNow]);
     if (yap.sentByCurrentUser) {
-        NSLog(@"  Start sent by current user: %.000f", [start timeIntervalSinceNow]);
         cell.nameLabel.text = yap.displayReceiverName;
         
         if (yap.wasOpened) {
@@ -239,7 +233,6 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
     
     // DID RECEIVE YAP
     } else if (yap.receivedByCurrentUser) {
-        NSLog(@"  Start received by current user: %.000f", [start timeIntervalSinceNow]);
         cell.nameLabel.text = yap.displaySenderName;
         cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@" , [self.dateFormatter stringFromDate:yap.createdAt]];
 
@@ -249,8 +242,6 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
             cell.icon.image = self.redSquareFull;
         }
     }
-    
-    NSLog(@"  Total: %.000f", [start timeIntervalSinceNow]);
     
     return cell;
 }
