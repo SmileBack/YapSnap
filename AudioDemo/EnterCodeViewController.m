@@ -121,6 +121,7 @@
                                                       cancelButtonTitle:@"OK"
                                                       otherButtonTitles:nil];
                 [alert show];
+                [self enableContinueButton]; // Adding this line a second time just in case
             }
         }];
     }

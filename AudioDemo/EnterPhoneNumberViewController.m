@@ -160,6 +160,7 @@
                     [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
                 } else {
                     [[[UIAlertView alloc] initWithTitle:@"Try Again" message:@"There was an error saving your info. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                    [self enableContinueButton]; // Adding this line a second time just in case
                 }
             }];
         }

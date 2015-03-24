@@ -94,13 +94,14 @@ static const float TIMER_INTERVAL = .01;
 {
     if ([self isInReplyMode]) {
         self.yapsPageButton.hidden = YES;
-        self.unopenedYapsCountSpinner.hidden = YES;
+        self.unopenedYapsCountSpinner.alpha = 0;
         UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
         [self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
         self.topLeftButton.alpha = 1;
         NSLog(@"In reply mode");
     } else {
         NSLog(@"Not in reply mode");
+        self.unopenedYapsCountSpinner.alpha = 1;
     }
 }
 

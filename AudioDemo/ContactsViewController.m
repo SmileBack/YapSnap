@@ -344,6 +344,7 @@ static NSString *CellIdentifier = @"Cell";
                             double delay = 0.5;
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                 [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Yap Didn't Send!"];
+                                [self enableContinueButton]; // Adding this line a second time just in case - doesn't always get triggered above for some reason
                             });
                         }
                     }];
