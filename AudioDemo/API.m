@@ -358,7 +358,7 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:[self urlForEndpoint:@"me"]
+    [manager GET:[self urlForEndpoint:@"users/self"]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              if (![responseObject isKindOfClass:[NSDictionary class]]) {

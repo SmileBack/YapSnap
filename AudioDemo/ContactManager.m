@@ -15,7 +15,8 @@
 static ContactManager *sharedInstance;
 
 @interface ContactManager()
-@property (nonatomic, strong) NSMutableDictionary *contacts;
+@property (nonatomic, strong) NSMutableDictionary *contactIdToContacts;
+@property (nonatomic, strong) NSMutableDictionary *phoneToContacts;
 @end
 
 @implementation ContactManager
@@ -61,16 +62,12 @@ static ContactManager *sharedInstance;
     NSString *usNumber = [self usNumberFromPhoneNumber:phoneNumber];
     NSString *scrubbedNumber = [ContactManager stringPhoneNumber:phoneNumber];
     
-    for (PhoneContact *contact in [self getAllContacts]) {
-        NSString *contactUsNumber = [self usNumberFromPhoneNumber:contact.phoneNumber];
-        if ([contactUsNumber isEqualToString:usNumber] ||
-            [contact.phoneNumber isEqualToString:usNumber] ||
-            [contactUsNumber isEqualToString:scrubbedNumber] ||
-            [contact.phoneNumber isEqualToString:scrubbedNumber]) {
-            return contact;
-        }
+    PhoneContact* contact = self.phoneToContacts[usNumber];
+    if (!contact) {
+        contact = self.phoneToContacts[scrubbedNumber];
     }
-    return nil;
+
+    return contact;
 }
 
 - (NSString *)nameForPhoneNumber:(NSString *)phoneNumber
@@ -82,7 +79,7 @@ static ContactManager *sharedInstance;
 {
     [self loadAllContacts];
     NSMutableArray *contacts = [NSMutableArray new];
-    for (PhoneContact *contact in self.contacts.allValues) {
+    for (PhoneContact *contact in self.contactIdToContacts.allValues) {
         if (contact.name && contact.name.length > 0) {
             [contacts addObject:contact];
         }
@@ -97,7 +94,7 @@ static ContactManager *sharedInstance;
 
 - (PhoneContact *) contactForContactID:(NSNumber *)contactID
 {
-    return self.contacts[contactID];
+    return self.contactIdToContacts[contactID];
 }
 
 - (void) loadAllContacts
@@ -106,7 +103,8 @@ static ContactManager *sharedInstance;
     CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeople( addressBook );
     CFIndex nPeople = ABAddressBookGetPersonCount( addressBook );
     
-    NSMutableDictionary *contacts = [NSMutableDictionary new];
+    NSMutableDictionary *idToContacts = [NSMutableDictionary dictionaryWithCapacity:nPeople];
+    NSMutableDictionary *phoneNumberContacts = [NSMutableDictionary dictionaryWithCapacity:nPeople];
     
     for ( int i = 0; i < nPeople; i++ )
     {
@@ -130,7 +128,8 @@ static ContactManager *sharedInstance;
                 
                 PhoneContact *contact = [PhoneContact phoneContactWithName:fullName phoneLabel:label andPhoneNumber:phone];
                 contact.contactID = [NSNumber numberWithInt:recordID];
-                contacts[contact.contactID] = contact;
+                idToContacts[contact.contactID] = contact;
+                phoneNumberContacts[[self usNumberFromPhoneNumber:contact.phoneNumber]] = contact;
                 
                 CFRelease(phoneRef);
                 CFRelease(labelRef);
@@ -138,7 +137,8 @@ static ContactManager *sharedInstance;
         }
     }
 
-    self.contacts = contacts;
+    self.phoneToContacts = phoneNumberContacts;
+    self.contactIdToContacts = idToContacts;
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CONTACTS_LOADED object:nil];
 }
 
@@ -193,7 +193,7 @@ static ContactManager *sharedInstance;
 - (PhoneContact *) contactForId:(NSNumber *)contactID
 {
     @try {
-        id contact = self.contacts[contactID];
+        id contact = self.contactIdToContacts[contactID];
         return ([contact isKindOfClass:[PhoneContact class]]) ? contact : nil;
     }
     @catch (NSException *exception) {

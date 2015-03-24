@@ -135,6 +135,10 @@
     if (!self.recorder.recording){
         self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recorder.url error:nil];
         [self.player setDelegate:self];
+        
+        self.player.enableRate = YES;
+        self.player.rate = 2.0f;
+        
         [self.player play];
     }
 }

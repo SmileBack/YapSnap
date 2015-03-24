@@ -147,7 +147,7 @@ static const float TIMER_INTERVAL = .01;
             // Remove number from button
             [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
         } else {
-            UIImage *buttonImage = [UIImage imageNamed:@"YapsButtonRed3.png"];
+            UIImage *buttonImage = [UIImage imageNamed:@"YapsButtonRed5.png"];
             [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
             // Add number to button
             [self.yapsPageButton setTitle:count.description forState:UIControlStateNormal];
@@ -183,7 +183,7 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        // [self.playButton setEnabled:YES]; This isn't in the UI currently
+                        [self.playButton setEnabled:YES]; //This isn't in the UI currently
                     }];
     
     [center addObserverForName:AUDIO_CAPTURE_DID_START_NOTIFICATION

@@ -127,8 +127,8 @@
         [cell clearLabels];
         YSUser *myFriend = self.myTopFriends.count > 0 ? self.myTopFriends[0] : nil;
         cell.friendOneImage.hidden = myFriend == nil;
-        //cell.friendOneLabel.text = myFriend.displayName;
-        cell.friendOneLabel.text = myFriend.displayNameNotFromContacts;
+        cell.friendOneLabel.text = myFriend.displayName;
+        //cell.friendOneLabel.text = myFriend.displayNameNotFromContacts;
         if (indexPath.section == 0 && self.myTopFriends.count == 0) {
             cell.friendOneLabel.text = @"No top friends";
         }

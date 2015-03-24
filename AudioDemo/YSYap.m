@@ -46,11 +46,6 @@
     yap.receiverID = dict[@"receiver_id"];
     yap.receiverName = dict[@"receiver_name"];
     yap.receiverPhone = dict[@"receiver_phone"];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *name = yap.displayReceiverName;
-        name = yap.displaySenderName;
-    });
 
     return yap;
 }
@@ -66,7 +61,6 @@
 
 - (NSString *) displayReceiverName
 {
-    /*
     if (!_displayReceiverName) {
         if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
             NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.receiverPhone];
@@ -80,27 +74,11 @@
     }
      
     return _displayReceiverName;
-     */
-    
-    if (!_displayReceiverName) {
-        if ([self.receiverName isKindOfClass:[NSNull class]] || [self.receiverName isEqualToString:@""] || [self.receiverName isEqual:[NSNull null]]) {
-            if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
-                NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.receiverPhone];
-                if (displayName) {
-                    _displayReceiverName = displayName;
-                }
-            }
-        } else {
-            _displayReceiverName = self.receiverName;
-        }
-    }
-    
-    return _displayReceiverName;
 }
 
 - (NSString *) displaySenderName
 {
-    /*
+    
     if (!_displaySenderName) {
         if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
             NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.senderPhone];
@@ -115,8 +93,8 @@
     }
     
     return _displaySenderName;
-     */
     
+    /*
     if (!_displaySenderName) {
         if ([self.senderName isKindOfClass:[NSNull class]] || [self.senderName isEqualToString:@""] || [self.senderName isEqual:[NSNull null]]) {
             if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
@@ -131,6 +109,7 @@
     }
     
     return _displaySenderName;
+     */
 }
 
 - (BOOL) wasOpened
