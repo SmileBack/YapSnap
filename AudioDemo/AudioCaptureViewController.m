@@ -79,6 +79,11 @@ static const float TIMER_INTERVAL = .01;
     }
     
     [self.unopenedYapsCountSpinner startAnimating];
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadingSpinnerTapped)];
+    singleTap.numberOfTapsRequired = 1;
+    self.unopenedYapsCountSpinner.userInteractionEnabled = YES;
+    [self.unopenedYapsCountSpinner addGestureRecognizer:singleTap];
 }
 
 - (BOOL) didViewWelcomeNotification
@@ -263,6 +268,11 @@ static const float TIMER_INTERVAL = .01;
             [self.audioSource stopAudioCapture:self.elapsedTime];
         });
     }
+}
+
+-(void)loadingSpinnerTapped
+{
+    [self didTapYapsPageButton];
 }
 
 - (IBAction)recordTapped:(id)sender
