@@ -160,7 +160,7 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
                         }
                     }];
 
-    [center addObserverForName:NEW_YAP_NOTIICATION
+    [center addObserverForName:NEW_YAP_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {

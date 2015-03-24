@@ -92,18 +92,16 @@ static YSPushManager *_sharedPushManager;
 #pragma mark - Receiving Notifications
 - (void) receivedANewYapInBackground:(BOOL)inBackground
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NEW_YAP_NOTIICATION object:[NSNumber numberWithBool:inBackground]];
-
     if (!inBackground) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NEW_YAP_NOTIFICATION object:[NSNumber numberWithBool:inBackground]];
         [[YTNotifications sharedNotifications] showNotificationText:@"You've received a new yap"];
     }
 }
 
 - (void) receivedANewFriendInBackground:(BOOL)inBackground
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NEW_FRIEND_NOTIICATION object:[NSNumber numberWithBool:inBackground]];
-
     if (!inBackground) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NEW_FRIEND_NOTIFICATION object:[NSNumber numberWithBool:inBackground]];
         [[YTNotifications sharedNotifications] showNotificationText:@"You just made a new friend"];
     }
 }
