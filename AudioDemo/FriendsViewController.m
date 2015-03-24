@@ -240,7 +240,11 @@
             FriendsViewController *weakSelf = self;
             [[API sharedAPI] topFriendsForUser:expandingUser withCallback:^(NSArray *friends, NSError *error) {
                 if (error) {
-                    [[YTNotifications sharedNotifications] showNotificationText:@"Error Loading Top Friends!"];
+                    double delay = 0.5;
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [[YTNotifications sharedNotifications] showNotificationText:@"Error Loading Top Friends!"];
+                        
+                    });
                 } else {
                     weakSelf.topFriendMap[expandingUser.userID] = friends;
                     [weakSelf showTopFriendsForIndexPath:indexPath andFriends:friends];

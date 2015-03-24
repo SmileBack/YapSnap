@@ -62,12 +62,6 @@ static const float TIMER_INTERVAL = .01;
 
     [self setupNotifications];
     
-    if ([self internetIsNotReachable]) {
-        NSLog(@"Internet is not reachable");
-    } else {
-        NSLog(@"Internet is reachable");
-    }
-    
     [self setupNavBarStuff];
     
     if (!self.didViewWelcomeNotification) {
@@ -100,6 +94,7 @@ static const float TIMER_INTERVAL = .01;
 {
     if ([self isInReplyMode]) {
         self.yapsPageButton.hidden = YES;
+        self.unopenedYapsCountSpinner.hidden = YES;
         UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
         [self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
         self.topLeftButton.alpha = 1;

@@ -164,9 +164,7 @@
                 [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
             } else {
                 NSLog(@"Error Returning Songs %@", error);
-
                 [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong! Try Again."];
-                
                 Mixpanel *mixpanel = [Mixpanel sharedInstance];
                 [mixpanel track:@"Spotify Error - search (other)"];
             }

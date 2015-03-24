@@ -103,6 +103,7 @@
     [self disableContinueButton];
     
     if ([self internetIsNotReachable]) {
+        [self showNoInternetAlert];
         [self enableContinueButton];
     } else {
         __weak AddTextViewController *weakSelf = self;
@@ -127,10 +128,11 @@
                                 }
                             });
                         } else {
-                            // uh oh spaghettios
-                            // TODO: tell the user something went wrong
-                            NSLog(@"Error: %@", error);
+                            double delay = 0.5;
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Yap Didn't Send!"];
+                            NSLog(@"Error: %@", error);
+                            });
                         }
                     }];
         NSLog(@"Sent yaps call");
@@ -169,12 +171,14 @@
 {
     self.continueButton.userInteractionEnabled = NO;
     [self.loadingSpinner startAnimating];
+    NSLog(@"LOADING INDICATOR STARTED SPINNING");
     [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
 }
 
 -(void) enableContinueButton
 {
     [self.loadingSpinner stopAnimating];
+    NSLog(@"LOADING INDICATOR STOPPED SPINNING");
     [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
     self.continueButton.userInteractionEnabled = YES;
 }

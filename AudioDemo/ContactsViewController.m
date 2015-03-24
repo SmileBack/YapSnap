@@ -341,7 +341,10 @@ static NSString *CellIdentifier = @"Cell";
                         } else {
                             // uh oh spaghettios
                             // TODO: tell the user something went wrong
-                            [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Yap Didn't Send!"];
+                            double delay = 0.5;
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Yap Didn't Send!"];
+                            });
                         }
                     }];
     }

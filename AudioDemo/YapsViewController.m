@@ -120,7 +120,10 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
             [weakSelf.tableView reloadData];
         } else {
             NSLog(@"Error! %@", error);
-            [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Loading Yaps!"];
+            double delay = 0.5;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Loading Yaps!"];
+            });
         }
     }];
 }
@@ -248,42 +251,42 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self internetIsNotReachable]){ // Only apply reachability code to situation where user can listen to the yap
-        [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
-    } else {        
-        YSYap *yap = self.yaps[indexPath.row];
-        if (yap.receivedByCurrentUser) {
-            if (yap.wasOpened) {
-                YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-                cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
-
-                cell.createdTimeLabel.text = @"Double Tap to Reply";
-
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                });
-            } else if (!yap.wasOpened) {
-                [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
-            }
-            
-        } else if (yap.sentByCurrentUser) {
+    YSYap *yap = self.yaps[indexPath.row];
+    if (yap.receivedByCurrentUser) {
+        if (yap.wasOpened) {
             YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
-            
-            if (yap.wasOpened) {
-                cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@ opened your yap", yap.displayReceiverName];
-            } else if (!yap.wasOpened) {
-                if (yap.isPending) {
-                    cell.createdTimeLabel.text = [NSString stringWithFormat:@"Yap will be delivered once %@ joins",  yap.displayReceiverName];
-                } else {
-                    cell.createdTimeLabel.text = @"Your yap has been delivered";
-                }
-            }
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+            cell.createdTimeLabel.text = @"Double Tap to Reply";
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             });
+        } else if (!yap.wasOpened) {
+            if ([self internetIsNotReachable]){
+                [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+            } else {
+                [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
+            }
         }
+        
+    } else if (yap.sentByCurrentUser) {
+        YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
+        
+        if (yap.wasOpened) {
+            cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@ opened your yap", yap.displayReceiverName];
+        } else if (!yap.wasOpened) {
+            if (yap.isPending) {
+                cell.createdTimeLabel.text = [NSString stringWithFormat:@"Yap will be delivered once %@ joins",  yap.displayReceiverName];
+            } else {
+                cell.createdTimeLabel.text = @"Your yap has been delivered";
+            }
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        });
     }
 }
 
@@ -420,7 +423,10 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
                                 [weakSelf removeBlockedYap];
                             } else {
                                 NSLog(@"Error blocking! %@", error);
-                                [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Blocking User!"];
+                                double delay = 0.5;
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                    [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Blocking User!"];
+                                });
                             }
                         }];
     }

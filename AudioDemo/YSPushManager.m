@@ -94,7 +94,10 @@ static YSPushManager *_sharedPushManager;
 {
     if (!inBackground) {
         [[NSNotificationCenter defaultCenter] postNotificationName:NEW_YAP_NOTIFICATION object:[NSNumber numberWithBool:inBackground]];
-        [[YTNotifications sharedNotifications] showNotificationText:@"You've received a new yap"];
+        double delay = 0.5;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"You've received a new yap"];
+        });
     }
 }
 
@@ -102,7 +105,10 @@ static YSPushManager *_sharedPushManager;
 {
     if (!inBackground) {
         [[NSNotificationCenter defaultCenter] postNotificationName:NEW_FRIEND_NOTIFICATION object:[NSNumber numberWithBool:inBackground]];
-        [[YTNotifications sharedNotifications] showNotificationText:@"You just made a new friend"];
+        double delay = 0.5;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"You just made a new friend"];
+        });
     }
 }
 
