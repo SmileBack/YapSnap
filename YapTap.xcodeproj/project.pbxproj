@@ -79,6 +79,8 @@
 		78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */; };
 		78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569B51A74A8B900818A17 /* Microphone_Gray2.png */; };
 		78A8239A1ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A823991ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png */; };
+		78A8239E1AC1A4BF00135369 /* YapsButtonRed3.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A8239D1AC1A4BF00135369 /* YapsButtonRed3.png */; };
+		78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A8239F1AC1A74900135369 /* PencilIcon2.png */; };
 		78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */; };
 		78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CBF2F51A9960AD00F30DCA /* YellowStar.png */; };
 		78CBF2F81A99697A00F30DCA /* InfoIconWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CBF2F71A99697A00F30DCA /* InfoIconWhite@2x.png */; };
@@ -235,6 +237,8 @@
 		78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum2@2x.png"; sourceTree = "<group>"; };
 		78A569B51A74A8B900818A17 /* Microphone_Gray2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_Gray2.png; sourceTree = "<group>"; };
 		78A823991ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginPageImageSmalleriPhones@2x.png"; sourceTree = "<group>"; };
+		78A8239D1AC1A4BF00135369 /* YapsButtonRed3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsButtonRed3.png; sourceTree = "<group>"; };
+		78A8239F1AC1A74900135369 /* PencilIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PencilIcon2.png; sourceTree = "<group>"; };
 		78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black2.png"; sourceTree = "<group>"; };
 		78CBF2F51A9960AD00F30DCA /* YellowStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YellowStar.png; sourceTree = "<group>"; };
 		78CBF2F71A99697A00F30DCA /* InfoIconWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfoIconWhite@2x.png"; sourceTree = "<group>"; };
@@ -387,6 +391,7 @@
 				787A6D8F1A4BFEE7001551C6 /* MusicIconLarge@2x.png */,
 				787A6D901A4BFEE7001551C6 /* MusicIconSmall@2x.png */,
 				784E35EF1A65A0ED0029AA01 /* PencilIcon.png */,
+				78A8239F1AC1A74900135369 /* PencilIcon2.png */,
 				787C84DC1A76CAAD005D80D5 /* pew-pew-lei.caf */,
 				7803A05B1AAB648A006C43AE /* PlusButtonWhite@2x.png */,
 				784C67F01A626F7B0084894D /* ProgressViewNotches5.png */,
@@ -413,6 +418,7 @@
 				37D413C319D221C800021548 /* YapSnap App Icon.png */,
 				78CBF2F51A9960AD00F30DCA /* YellowStar.png */,
 				78F4AF7D1AB7D7980093EC0B /* YapsButtonRed2.png */,
+				78A8239D1AC1A4BF00135369 /* YapsButtonRed3.png */,
 				78A823991ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png */,
 			);
 			name = Resources;
@@ -843,6 +849,7 @@
 				7803A05C1AAB648A006C43AE /* PlusButtonWhite@2x.png in Resources */,
 				78CBF3001A996E8800F30DCA /* InfoIcon5@2x.png in Resources */,
 				786D91191A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png in Resources */,
+				78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
 				786D910F1A6EEA5000177E25 /* BlueArrow2.png in Resources */,
 				78F4AF821AB7D9840093EC0B /* SquareOutlineRed2.png in Resources */,
@@ -871,6 +878,7 @@
 				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */,
 				784047FE1AB4FBF600FE6D93 /* MicrophoneBlue3@2x.png in Resources */,
 				FC0642D71A9D65E200E3D60F /* Environments.plist in Resources */,
+				78A8239E1AC1A4BF00135369 /* YapsButtonRed3.png in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
 				78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */,
