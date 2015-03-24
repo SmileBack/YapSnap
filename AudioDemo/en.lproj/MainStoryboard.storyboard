@@ -161,7 +161,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4ph-zB-TDP">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4ph-zB-TDP">
                                 <rect key="frame" x="289" y="31" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
@@ -183,6 +183,8 @@
                             <constraint firstItem="dje-2i-9YC" firstAttribute="width" secondItem="dI5-ha-IW9" secondAttribute="width" id="EYU-6r-O8c"/>
                             <constraint firstAttribute="centerX" secondItem="Dwb-eQ-GX5" secondAttribute="centerX" id="G7R-LP-YV5"/>
                             <constraint firstAttribute="trailing" secondItem="T7q-Ko-Que" secondAttribute="trailing" constant="6" id="M2d-1a-E2j"/>
+                            <constraint firstItem="4ph-zB-TDP" firstAttribute="centerX" secondItem="T7q-Ko-Que" secondAttribute="centerX" id="Ml7-7n-YNi"/>
+                            <constraint firstItem="4ph-zB-TDP" firstAttribute="centerY" secondItem="T7q-Ko-Que" secondAttribute="centerY" id="RGg-EW-Mvi"/>
                             <constraint firstAttribute="trailing" secondItem="dI5-ha-IW9" secondAttribute="trailing" id="VfU-K3-972"/>
                             <constraint firstAttribute="bottom" secondItem="dje-2i-9YC" secondAttribute="bottom" id="ahe-hk-Ft9"/>
                             <constraint firstItem="1fX-iU-owr" firstAttribute="leading" secondItem="Tf8-UJ-WxH" secondAttribute="leading" id="cmh-CB-p1A"/>
