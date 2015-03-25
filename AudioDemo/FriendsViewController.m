@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) NSMutableDictionary *topFriendMap; //Friend ID :: Top friends array
 @property (strong, nonatomic) IBOutlet UIView *friendsExplanationView;
+@property (strong, nonatomic) UIActivityIndicatorView *loadingSpinner;
 
 - (IBAction)tappedCancelFeedbackExplanationButton;
 
@@ -148,6 +149,9 @@
     } else if ([indexPath isEqual:self.selectedIndexPath]) {
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_EXPANDED forIndexPath:indexPath];
         [cell clearLabels];
+        self.loadingSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [cell addSubview:self.loadingSpinner];
+        self.loadingSpinner.center = CGPointMake(160, 50);
         // Labels will be set in showTopFriendsForIndexPath
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_COLLAPSED forIndexPath:indexPath];
@@ -237,14 +241,12 @@
         if (topFriends && [topFriends isKindOfClass:[NSArray class]]) {
             [self showTopFriendsForIndexPath:indexPath andFriends:topFriends];
         } else {
+            [self.loadingSpinner startAnimating];
             FriendsViewController *weakSelf = self;
             [[API sharedAPI] topFriendsForUser:expandingUser withCallback:^(NSArray *friends, NSError *error) {
+                [self.loadingSpinner stopAnimating];
                 if (error) {
-                    double delay = 0.5;
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [[YTNotifications sharedNotifications] showNotificationText:@"Error Loading Top Friends!"];
-                        
-                    });
+
                 } else {
                     weakSelf.topFriendMap[expandingUser.userID] = friends;
                     [weakSelf showTopFriendsForIndexPath:indexPath andFriends:friends];
