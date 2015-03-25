@@ -129,7 +129,6 @@
         YSUser *myFriend = self.myTopFriends.count > 0 ? self.myTopFriends[0] : nil;
         cell.friendOneImage.hidden = myFriend == nil;
         cell.friendOneLabel.text = myFriend.displayName;
-        //cell.friendOneLabel.text = myFriend.displayNameNotFromContacts;
         if (indexPath.section == 0 && self.myTopFriends.count == 0) {
             cell.friendOneLabel.text = @"No top friends";
         }
@@ -137,14 +136,12 @@
 
         myFriend = self.myTopFriends.count > 1 ? self.myTopFriends[1] : nil;
         cell.friendTwoImage.hidden = myFriend == nil;
-        //cell.friendTwoLabel.text = myFriend.displayName;
-        cell.friendTwoLabel.text = myFriend.displayNameNotFromContacts;
+        cell.friendTwoLabel.text = myFriend.displayName;
         [cell.friendTwoLabel sizeToFit];
 
         myFriend = self.myTopFriends.count > 2 ? self.myTopFriends[2] : nil;
         cell.friendThreeImage.hidden = myFriend == nil;
-        //cell.friendThreeLabel.text = myFriend.displayName;
-        cell.friendThreeLabel.text = myFriend.displayNameNotFromContacts;
+        cell.friendThreeLabel.text = myFriend.displayName;
         [cell.friendThreeLabel sizeToFit];
     } else if ([indexPath isEqual:self.selectedIndexPath]) {
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_EXPANDED forIndexPath:indexPath];
@@ -157,8 +154,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_COLLAPSED forIndexPath:indexPath];
     }
     
-    //cell.nameLabel.text = indexPath.section == 0 ? user.displayNameNotFromContacts : user.displayName;
-    cell.nameLabel.text = user.displayNameNotFromContacts;
+    cell.nameLabel.text = indexPath.section == 0 ? user.displayNameNotFromContacts : user.displayName;
     [cell.nameLabel sizeToFit];
     
     cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score.intValue];
@@ -186,22 +182,19 @@
         [cell.friendOneLabel sizeToFit];
     } else {
         YSUser *userOne = friends[0];
-        //cell.friendOneLabel.text = userOne.displayName;
-        cell.friendOneLabel.text = userOne.displayNameNotFromContacts;
+        cell.friendOneLabel.text = userOne.displayName;
         cell.friendOneImage.hidden = NO;
         [cell.friendOneLabel sizeToFit];
     }
     
     YSUser *userTwo = friends.count > 1 ? friends[1] : nil;
     cell.friendTwoImage.hidden = userTwo == nil;
-    //cell.friendTwoLabel.text = userTwo.displayName;
-    cell.friendTwoLabel.text = userTwo.displayNameNotFromContacts;
+    cell.friendTwoLabel.text = userTwo.displayName;
     [cell.friendTwoLabel sizeToFit];
     
     YSUser *userThree = friends.count > 2 ? friends[2] : nil;
     cell.friendThreeImage.hidden = userThree == nil;
-    //cell.friendThreeLabel.text = userThree.displayName;
-    cell.friendThreeLabel.text = userThree.displayNameNotFromContacts;
+    cell.friendThreeLabel.text = userThree.displayName;
     [cell.friendThreeLabel sizeToFit];
 }
 
