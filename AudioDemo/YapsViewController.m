@@ -128,11 +128,6 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
     }];
 }
 
-- (IBAction)didPressFriendsButton:(UIBarButtonItem *)sender
-{
-    [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
-}
-
 - (void) setupNotifications
 {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
