@@ -28,13 +28,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "YapTap_Icon2@2x.png",
+      "filename" : "YapTapIcon120.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "YapTap_Icon2@3x.png",
+      "filename" : "YapTapIcon180.png",
       "scale" : "3x"
     }
   ],
