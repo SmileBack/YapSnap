@@ -42,6 +42,16 @@ static YTNotifications *_sharedNotifications;
     [CRToastManager showNotificationWithMessage:text completionBlock:nil];
 }
 
+- (void) showVolumeText:(NSString *)text
+{
+    NSDictionary *options = @{
+                              kCRToastTextKey: text,
+                              kCRToastBackgroundColorKey: THEME_BACKGROUND_COLOR
+                              };
+    
+    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
+}
+
 - (void) showErrorText:(NSString *)text
 {
     NSDictionary *options = @{

@@ -262,8 +262,9 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
                 [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
             } else {
                 float volume = [[AVAudioSession sharedInstance] outputVolume];
-                NSLog(@"Volume: %f", volume);
                 if (volume == 0) {
+                    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                    [mixpanel track:@"Volume is zero"];
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Turn Up The Volume"
                                                                     message:@"You're about to listen to a yap. First turn up the volume!"
                                                                    delegate:nil

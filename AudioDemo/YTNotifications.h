@@ -15,6 +15,7 @@
 - (void) showNotificationText:(NSString *)text;
 - (void) showErrorText:(NSString *)text;
 - (void) showWelcomeText:(NSString *)text;
+- (void) showVolumeText:(NSString *)text;
 
 
 @end

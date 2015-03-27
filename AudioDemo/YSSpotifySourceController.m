@@ -414,6 +414,10 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
             });
         } else {
+            float volume = [[AVAudioSession sharedInstance] outputVolume];
+            if (volume == 0) {
+                [[YTNotifications sharedNotifications] showVolumeText:@"Turn Up The Volume!"];
+            }
             [self.player play:song.previewURL];
         }
         return YES;
