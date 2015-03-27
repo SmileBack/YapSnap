@@ -261,7 +261,18 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
             if ([self internetIsNotReachable]){
                 [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
             } else {
-                [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
+                float volume = [[AVAudioSession sharedInstance] outputVolume];
+                NSLog(@"Volume: %f", volume);
+                if (volume == 0) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Turn Up The Volume"
+                                                                    message:@"You're about to listen to a yap. First turn up the volume!"
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                } else {
+                    [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
+                }
             }
         }
         
@@ -375,7 +386,6 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
         [self cellTappedTwiceAtIndexPath:indexPath];
     }
 }
-
 
 //The event handling method
 - (void)handleSpotifyTap:(YSSpotifyTapGestureRecognizer *)recognizer {

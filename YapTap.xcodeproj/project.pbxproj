@@ -498,8 +498,6 @@
 			children = (
 				F44B0C5D16DA404700E6CD88 /* AudioCaptureViewController.h */,
 				F44B0C5E16DA404700E6CD88 /* AudioCaptureViewController.m */,
-				FC1E89BC1A4B9518007A8CDA /* PlaybackVC.h */,
-				FC1E89BD1A4B9518007A8CDA /* PlaybackVC.m */,
 				FC0C1D431A45F3DC00B148AB /* Audio Source */,
 			);
 			name = "Audio Capture";
@@ -622,6 +620,8 @@
 				784E35EA1A659BD00029AA01 /* Audio Capture */,
 				37695E7D19BBEE8500C22E13 /* Select Contacts Page */,
 				37BF0DE019E8FD1F0077B74F /* Yaps Page */,
+				FC1E89BC1A4B9518007A8CDA /* PlaybackVC.h */,
+				FC1E89BD1A4B9518007A8CDA /* PlaybackVC.m */,
 				FCEF99341A6D6B22000FDE4C /* AddTextViewController.h */,
 				FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */,
 			);

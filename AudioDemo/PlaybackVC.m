@@ -19,7 +19,6 @@
 @property (nonatomic) CGFloat elapsedTime;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) UIView *progressViewRemainder;
-@property (strong, nonatomic) IBOutlet UIImageView *progressViewNotchesView;
 @property (strong, nonatomic) IBOutlet UIImageView *yapPhoto;
 
 @end
@@ -158,9 +157,7 @@
                              self.progressViewRemainder.alpha = 1;
                          }
                          completion:nil];
-        
-        [self.view bringSubviewToFront:self.progressViewNotchesView];
-        
+                
         [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error) {
             if (error) {
 
