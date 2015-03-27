@@ -34,6 +34,8 @@
     
     [self bindMixpanelToUser];
     
+    [self bindCrashlyticsToUser];
+    
     return YES;
 }
 
@@ -156,6 +158,16 @@
                                 @"Score": [YSUser currentUser].score == nil ? [NSNull null] : [YSUser currentUser].score,
                                 }];
         }
+}
+
+- (void)bindCrashlyticsToUser
+{
+    if ([YSUser currentUser] && [YSUser currentUser].userID) {
+        NSString *userID = [NSString stringWithFormat:@"%@", [YSUser currentUser].userID];
+        
+        [Crashlytics setUserIdentifier:userID];
+        [Crashlytics setUserName:[YSUser currentUser].firstName];
+    }
 }
 
 @end
