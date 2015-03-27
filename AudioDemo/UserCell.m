@@ -60,6 +60,10 @@
     self.friendOneLabel.text = nil;
     self.friendTwoLabel.text = nil;
     self.friendThreeLabel.text = nil;
+    
+    self.friendOneImage.hidden = YES;
+    self.friendTwoImage.hidden = YES;
+    self.friendThreeImage.hidden = YES;
 }
 
 @end
