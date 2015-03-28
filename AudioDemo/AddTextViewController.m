@@ -27,8 +27,15 @@
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 @property (strong, nonatomic) STKAudioPlayer* player;
+@property (nonatomic,strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
+@property (strong, nonatomic) IBOutlet UIButton *changePitchButton1;
+@property (strong, nonatomic) IBOutlet UIButton *changePitchButton2;
+@property (strong, nonatomic) IBOutlet UIButton *changePitchButton3;
+@property (strong, nonatomic) IBOutlet UIButton *changePitchButton4;
 
 - (IBAction)didTapAddTextButton;
+- (IBAction)didTapChangePitchButton1;
+
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
 
@@ -41,13 +48,12 @@
         
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Add Text Page"];
-    self.pitchSlider.maximumValue = 1.0;
-    self.pitchSlider.minimumValue = -1.0;
-    self.pitchSlider.value = 0.0;
-    [self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpInside];
-    [self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpOutside];
-    
-    self.player = [STKAudioPlayer new];
+    //self.pitchSlider.maximumValue = 1.0;
+    //self.pitchSlider.minimumValue = -1.0;
+    //self.pitchSlider.value = 0.0;
+    //[self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpInside];
+    //[self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpOutside];
+    //self.player = [STKAudioPlayer new];
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
@@ -79,9 +85,34 @@
     });
     
     [self.textView setTintColor:[UIColor whiteColor]];
+    
+    self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGestures:)];
+    self.longPressGestureRecognizer.minimumPressDuration = 1.0f;
+    self.longPressGestureRecognizer.allowableMovement = 100.0f;
+    
+    [self.changePitchButton1 addGestureRecognizer:self.longPressGestureRecognizer];
+    
+    self.player = [STKAudioPlayer new];
+    
+    if ([self.yapBuilder.messageType  isEqual: @"VoiceMessage"]) {
+        self.changePitchButton1.hidden = NO;
+    }
 }
 
-- (void)didChangePitch
+- (void)handleLongPressGestures:(UILongPressGestureRecognizer *)sender
+{
+    if ([sender isEqual:self.longPressGestureRecognizer]) {
+        if (sender.state == UIGestureRecognizerStateBegan)
+        {
+            NSLog(@"Long Press");
+            self.changePitchButton2.hidden = NO;
+            self.changePitchButton3.hidden = NO;
+            self.changePitchButton4.hidden = NO;
+        }
+    }
+}
+
+- (void) didChangePitch
 {
     NSArray *pathComponents = [NSArray arrayWithObjects:
                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
@@ -91,6 +122,31 @@
     NSLog(@"%f", self.pitchSlider.value);
     self.player.pitchShift = self.pitchSlider.value;
     [self.player playURL:outputFileURL];
+}
+
+- (void) didTapChangePitchButton1
+{
+    if (self.player.pitchShift != 1.0) {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
+        [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
+        
+        NSArray *pathComponents = [NSArray arrayWithObjects:
+                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                                   @"MyAudioMemo.m4a",
+                                   nil];
+        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+        NSLog(@"%f", self.pitchSlider.value);
+        self.player.pitchShift = 1.0; //self.pitchSlider.value;
+        [self.player playURL:outputFileURL];
+    } else {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
+        [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = THEME_RED_COLOR;
+
+        [self.player stop];
+        self.player.pitchShift = 0.0;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated

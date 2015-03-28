@@ -39,6 +39,10 @@
 		780005AA1A70EE69005E6CD4 /* listen_on_spotify-black-long3.png in Resources */ = {isa = PBXBuildFile; fileRef = 780005A91A70EE69005E6CD4 /* listen_on_spotify-black-long3.png */; };
 		780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 780211611AAB8EE000A71889 /* FriendsIcon@2x.png */; };
 		7803A05C1AAB648A006C43AE /* PlusButtonWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7803A05B1AAB648A006C43AE /* PlusButtonWhite@2x.png */; };
+		7809FFA51AC7555600F78757 /* Balloon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7809FFA41AC7555600F78757 /* Balloon2@2x.png */; };
+		7809FFA71AC7568C00F78757 /* BalloonYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7809FFA61AC7568C00F78757 /* BalloonYellow.png */; };
+		7809FFA91AC758DA00F78757 /* Balloon3Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7809FFA81AC758DA00F78757 /* Balloon3Yellow.png */; };
+		7809FFAB1AC758E800F78757 /* Balloon3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7809FFAA1AC758E800F78757 /* Balloon3.png */; };
 		7819916F1AABBA6E00309E38 /* SettingsIconWhite8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */; };
 		781996251A7B45070004C2DB /* RedCircleSmallNoBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 781996241A7B45070004C2DB /* RedCircleSmallNoBorder.png */; };
 		781996271A7B45CE0004C2DB /* RedCircleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 781996261A7B45CE0004C2DB /* RedCircleButton.png */; };
@@ -191,6 +195,10 @@
 		780005A91A70EE69005E6CD4 /* listen_on_spotify-black-long3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black-long3.png"; sourceTree = "<group>"; };
 		780211611AAB8EE000A71889 /* FriendsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FriendsIcon@2x.png"; sourceTree = "<group>"; };
 		7803A05B1AAB648A006C43AE /* PlusButtonWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlusButtonWhite@2x.png"; sourceTree = "<group>"; };
+		7809FFA41AC7555600F78757 /* Balloon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Balloon2@2x.png"; sourceTree = "<group>"; };
+		7809FFA61AC7568C00F78757 /* BalloonYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BalloonYellow.png; sourceTree = "<group>"; };
+		7809FFA81AC758DA00F78757 /* Balloon3Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon3Yellow.png; sourceTree = "<group>"; };
+		7809FFAA1AC758E800F78757 /* Balloon3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon3.png; sourceTree = "<group>"; };
 		7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIconWhite8@2x.png"; sourceTree = "<group>"; };
 		781996241A7B45070004C2DB /* RedCircleSmallNoBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedCircleSmallNoBorder.png; sourceTree = "<group>"; };
 		781996261A7B45CE0004C2DB /* RedCircleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedCircleButton.png; sourceTree = "<group>"; };
@@ -420,6 +428,10 @@
 				78F4AF7D1AB7D7980093EC0B /* YapsButtonRed2.png */,
 				78A823A31AC1E88300135369 /* YapsButtonRed5.png */,
 				78A823991ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png */,
+				7809FFA41AC7555600F78757 /* Balloon2@2x.png */,
+				7809FFA61AC7568C00F78757 /* BalloonYellow.png */,
+				7809FFA81AC758DA00F78757 /* Balloon3Yellow.png */,
+				7809FFAA1AC758E800F78757 /* Balloon3.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -835,6 +847,7 @@
 				786D91171A6EF16000177E25 /* RedRoundedSquare.png in Resources */,
 				784047FC1AB4FB7200FE6D93 /* MusicIconBlue3@2x.png in Resources */,
 				787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */,
+				7809FFA51AC7555600F78757 /* Balloon2@2x.png in Resources */,
 				3753AF8919E9A4D000B6391D /* Microphone_White2.png in Resources */,
 				37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */,
 				78A823A41AC1E88300135369 /* YapsButtonRed5.png in Resources */,
@@ -853,6 +866,7 @@
 				78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
 				786D910F1A6EEA5000177E25 /* BlueArrow2.png in Resources */,
+				7809FFAB1AC758E800F78757 /* Balloon3.png in Resources */,
 				78F4AF821AB7D9840093EC0B /* SquareOutlineRed2.png in Resources */,
 				37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */,
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
@@ -874,6 +888,7 @@
 				37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */,
 				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
 				78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */,
+				7809FFA91AC758DA00F78757 /* Balloon3Yellow.png in Resources */,
 				37D413C219D21FC300021548 /* RedCircleSmall.png in Resources */,
 				78CBF2F81A99697A00F30DCA /* InfoIconWhite@2x.png in Resources */,
 				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */,
@@ -897,6 +912,7 @@
 				78DA1F801AA1961200693015 /* AlbumImagePlaceholder.png in Resources */,
 				784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */,
 				784048001AB4FE5E00FE6D93 /* Microphone_Red.png in Resources */,
+				7809FFA71AC7568C00F78757 /* BalloonYellow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

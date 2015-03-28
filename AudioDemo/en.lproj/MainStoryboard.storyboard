@@ -709,7 +709,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDf-Vb-ilr" userLabel="Text Button">
-                                <rect key="frame" x="265" y="121" width="52" height="52"/>
+                                <rect key="frame" x="265" y="115" width="52" height="52"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="IHt-Jr-9ov"/>
@@ -739,7 +739,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KiZ-xJ-FAU">
+                            <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KiZ-xJ-FAU">
                                 <rect key="frame" x="60" y="269" width="200" height="31"/>
                                 <color key="tintColor" red="1" green="0.1482262979" blue="0.090855453729999994" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -747,6 +747,33 @@
                                     <constraint firstAttribute="width" constant="196" id="lIe-Mf-qyR"/>
                                 </constraints>
                             </slider>
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8u-j8-TJl">
+                                <rect key="frame" x="9" y="123" width="36" height="36"/>
+                                <state key="normal" backgroundImage="Balloon3.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapChangePitchButton1" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="jdF-o7-O7u"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1t-6Q-weW">
+                                <rect key="frame" x="63" y="123" width="36" height="36"/>
+                                <state key="normal" image="Balloon3.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mku-hD-YTT">
+                                <rect key="frame" x="118" y="123" width="36" height="36"/>
+                                <state key="normal" image="Balloon3.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4b-Jx-tmf">
+                                <rect key="frame" x="174" y="123" width="36" height="36"/>
+                                <state key="normal" image="Balloon3.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -772,7 +799,7 @@
                             <constraint firstAttribute="centerY" secondItem="gWj-LF-pEZ" secondAttribute="centerY" id="tZe-q4-Vfa"/>
                             <constraint firstItem="EyU-Er-gqZ" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="-8" id="tsJ-Fv-uDI"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="B2R-OB-er0" secondAttribute="bottom" constant="77" id="vNZ-Va-hqk"/>
-                            <constraint firstItem="KDf-Vb-ilr" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="17" id="whL-O6-Khy"/>
+                            <constraint firstItem="KDf-Vb-ilr" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="11" id="whL-O6-Khy"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" id="xUK-bi-lf5"/>
                             <constraint firstAttribute="centerY" secondItem="KiZ-xJ-FAU" secondAttribute="centerY" id="xst-Xa-wlP"/>
                         </constraints>
@@ -780,6 +807,10 @@
                     <navigationItem key="navigationItem" id="M5r-U7-dCX"/>
                     <connections>
                         <outlet property="addTextToYapButton" destination="KDf-Vb-ilr" id="jTv-Uo-Wb4"/>
+                        <outlet property="changePitchButton1" destination="C8u-j8-TJl" id="yCc-nS-K5z"/>
+                        <outlet property="changePitchButton2" destination="H1t-6Q-weW" id="duJ-Rf-yDM"/>
+                        <outlet property="changePitchButton3" destination="Mku-hD-YTT" id="Blg-zS-eLm"/>
+                        <outlet property="changePitchButton4" destination="p4b-Jx-tmf" id="mmu-mI-SNU"/>
                         <outlet property="colorPicker" destination="EFe-hN-LX9" id="MKP-hO-rrG"/>
                         <outlet property="contactLabel" destination="B2R-OB-er0" id="efQ-Ea-t9a"/>
                         <outlet property="continueButton" destination="9XV-zO-GXP" id="849-UU-MZ0"/>
@@ -1456,6 +1487,7 @@ Type it here.</string>
     </scenes>
     <resources>
         <image name="ArrowWhite.png" width="256" height="256"/>
+        <image name="Balloon3.png" width="512" height="512"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
@@ -1476,8 +1508,8 @@ Type it here.</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="czb-n6-hbf"/>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="AEp-MY-7pq"/>
         <segue reference="gZs-IQ-BYb"/>
     </inferredMetricsTieBreakers>
 </document>
