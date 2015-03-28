@@ -13,5 +13,6 @@
 @interface AddTextViewController : UIViewController<YSColorPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 
 @property (nonatomic, strong) YapBuilder *yapBuilder;
+@property (weak, nonatomic) IBOutlet UISlider *pitchSlider;
 
 @end

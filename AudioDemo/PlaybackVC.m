@@ -39,6 +39,7 @@
     self.player.delegate = self;
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
     NSLog(@"URL: %@", self.yap.playbackURL);
+    
     [self.player play:self.yap.playbackURL];
     
     [self.progressView.activityIndicator startAnimating];

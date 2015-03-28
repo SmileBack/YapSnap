@@ -14,6 +14,7 @@
 #import "ContactManager.h"
 #import "YSRecordProgressView.h"
 #import "NextButton.h"
+#import <STKAudioPlayer.h>
 
 @interface AddTextViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *contactLabel;
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
+@property (strong, nonatomic) STKAudioPlayer* player;
 
 - (IBAction)didTapAddTextButton;
 
@@ -39,6 +41,13 @@
         
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Add Text Page"];
+    self.pitchSlider.maximumValue = 1.0;
+    self.pitchSlider.minimumValue = -1.0;
+    self.pitchSlider.value = 0.0;
+    [self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpInside];
+    [self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpOutside];
+    
+    self.player = [STKAudioPlayer new];
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
@@ -48,6 +57,7 @@
                                                                             action:nil];
     
     self.progressView.progress = self.yapBuilder.duration/10;
+    
     
     self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textView.delegate = self;
@@ -69,6 +79,18 @@
     });
     
     [self.textView setTintColor:[UIColor whiteColor]];
+}
+
+- (void)didChangePitch
+{
+    NSArray *pathComponents = [NSArray arrayWithObjects:
+                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                               @"MyAudioMemo.m4a",
+                               nil];
+    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+    NSLog(@"%f", self.pitchSlider.value);
+    self.player.pitchShift = self.pitchSlider.value;
+    [self.player playURL:outputFileURL];
 }
 
 - (void) viewWillAppear:(BOOL)animated
