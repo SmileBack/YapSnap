@@ -92,7 +92,10 @@
     
     [self.changePitchButton1 addGestureRecognizer:self.longPressGestureRecognizer];
     
-    self.player = [STKAudioPlayer new];
+    double delay2 = 0.5;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.player = [STKAudioPlayer new];
+    });
     
     if ([self.yapBuilder.messageType  isEqual: @"VoiceMessage"]) {
         self.changePitchButton1.hidden = NO;
