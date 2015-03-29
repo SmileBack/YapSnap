@@ -59,10 +59,27 @@ static SpotifyAPI *sharedInstance;
           }];
 }
 
+- (NSDictionary *) getAuthorizationHeaders
+{
+    NSString *token = [self getAuthorizationValue];
+    if (token) {
+        return @{@"Authorization": token};
+    }
+    return nil;
+}
+
+- (NSString *) getAuthorizationValue
+{
+    if (!self.tokenType || !self.token) {
+        return nil;
+    }
+    return [NSString stringWithFormat:@"%@ %@", self.tokenType, self.token];
+}
+
 - (void) setAuthorizationOnManager:(AFHTTPRequestOperationManager *)manager
 {
     if (self.token && self.tokenType) {
-        NSString *value = [NSString stringWithFormat:@"%@ %@", self.tokenType, self.token];
+        NSString *value = [self getAuthorizationValue];
         [manager.requestSerializer setValue:value forHTTPHeaderField:@"Authorization"];
     } else {
         NSLog(@"NO TOKEN!!");

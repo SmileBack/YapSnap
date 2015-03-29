@@ -17,4 +17,6 @@ typedef void (^SpotifySongCallback)(NSArray* songs, NSError *error);
 
 - (void) searchSongs:(NSString *)searchString withCallback:(SpotifySongCallback)callback;
 
+- (NSDictionary *) getAuthorizationHeaders;
+
 @end

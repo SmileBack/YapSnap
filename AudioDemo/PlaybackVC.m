@@ -11,6 +11,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <AVFoundation/AVAudioSession.h>
 #import "YSRecordProgressView.h"
+#import "SpotifyAPI.h"
 
 @interface PlaybackVC ()
 @property (strong, nonatomic) IBOutlet YSRecordProgressView *progressView;
@@ -38,8 +39,13 @@
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
-    NSLog(@"URL: %@", self.yap.playbackURL);
-    [self.player play:self.yap.playbackURL];
+    NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
+    NSLog(@"Playing URL: %@ %@ auth token", self.yap.playbackURL, headers ? @"with" : @"without");
+    if (headers) {
+        [self.player play:self.yap.playbackURL withHeaders:headers];
+    } else {
+        [self.player play:self.yap.playbackURL];
+    }
     
     [self.progressView.activityIndicator startAnimating];
     

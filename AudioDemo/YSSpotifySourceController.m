@@ -418,7 +418,14 @@
             if (volume == 0) {
                 [[YTNotifications sharedNotifications] showVolumeText:@"Turn Up The Volume!"];
             }
-            [self.player play:song.previewURL];
+            NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
+            NSLog(@"Playing URL: %@ %@ auth token", song.previewURL, headers ? @"with" : @"without");
+            if (headers) {
+                [self.player play:song.previewURL withHeaders:headers];
+            } else {
+                [self.player play:song.previewURL];
+            }
+
         }
         return YES;
     }
