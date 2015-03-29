@@ -121,6 +121,7 @@
                      }
                      completion:nil];
     
+    NSLog(@"Tapped Button 1 -- Pitch: %f", self.player.pitchShift);
     if (self.player.pitchShift != 1.0) {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
         [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
@@ -146,9 +147,10 @@
 
 - (void) didTapPitchButton2
 {
-    if (self.player.pitchShift != 0.6) {
+    NSLog(@"Tapped Button 2 -- Pitch: %f", self.player.pitchShift);
+    if (self.player.pitchShift != 0.600000) {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
-        [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
+        [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
         self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
         
         NSArray *pathComponents = [NSArray arrayWithObjects:
@@ -171,9 +173,10 @@
 
 - (void) didTapPitchButton3
 {
+    NSLog(@"Tapped Button 3 -- Pitch: %f", self.player.pitchShift);
     if (self.player.pitchShift != -0.3) {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
-        [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
+        [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
         self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
         
         NSArray *pathComponents = [NSArray arrayWithObjects:
@@ -196,9 +199,10 @@
 
 - (void) didTapPitchButton4
 {
+    NSLog(@"Tapped Button 4 -- Pitch: %f", self.player.pitchShift);
     if (self.player.pitchShift != -0.6) {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
-        [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
+        [self.changePitchButton4 setImage:buttonImage forState:UIControlStateNormal];
         self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
         
         NSArray *pathComponents = [NSArray arrayWithObjects:
