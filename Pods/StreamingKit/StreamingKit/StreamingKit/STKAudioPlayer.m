@@ -51,7 +51,7 @@
 #define kOutputBus 0
 #define kInputBus 1
 
-#define STK_PITCHSHIFT_TRANSFORM 1000
+#define STK_PITCHSHIFT_TRANSFORM 1200
 
 #define STK_DBMIN (-60)
 #define STK_DBOFFSET (-74.0)

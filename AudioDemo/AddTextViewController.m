@@ -27,15 +27,16 @@
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 @property (strong, nonatomic) STKAudioPlayer* player;
-@property (nonatomic,strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton1;
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton2;
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton3;
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton4;
 
 - (IBAction)didTapAddTextButton;
-- (IBAction)didTapChangePitchButton1;
-
+- (IBAction)didTapPitchButton1;
+- (IBAction)didTapPitchButton2;
+- (IBAction)didTapPitchButton3;
+- (IBAction)didTapPitchButton4;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
 
@@ -86,12 +87,6 @@
     
     [self.textView setTintColor:[UIColor whiteColor]];
     
-    self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGestures:)];
-    self.longPressGestureRecognizer.minimumPressDuration = 1.0f;
-    self.longPressGestureRecognizer.allowableMovement = 100.0f;
-    
-    [self.changePitchButton1 addGestureRecognizer:self.longPressGestureRecognizer];
-    
     double delay2 = 0.5;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.player = [STKAudioPlayer new];
@@ -99,19 +94,6 @@
     
     if ([self.yapBuilder.messageType  isEqual: @"VoiceMessage"]) {
         self.changePitchButton1.hidden = NO;
-    }
-}
-
-- (void)handleLongPressGestures:(UILongPressGestureRecognizer *)sender
-{
-    if ([sender isEqual:self.longPressGestureRecognizer]) {
-        if (sender.state == UIGestureRecognizerStateBegan)
-        {
-            NSLog(@"Long Press");
-            self.changePitchButton2.hidden = NO;
-            self.changePitchButton3.hidden = NO;
-            self.changePitchButton4.hidden = NO;
-        }
     }
 }
 
@@ -127,8 +109,18 @@
     [self.player playURL:outputFileURL];
 }
 
-- (void) didTapChangePitchButton1
+- (void) didTapPitchButton1
 {
+    [UIView animateWithDuration:.8
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.changePitchButton2.alpha = 1;
+                         self.changePitchButton3.alpha = 1;
+                         self.changePitchButton4.alpha = 1;
+                     }
+                     completion:nil];
+    
     if (self.player.pitchShift != 1.0) {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
         [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
@@ -152,6 +144,81 @@
     }
 }
 
+- (void) didTapPitchButton2
+{
+    if (self.player.pitchShift != 0.6) {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
+        [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
+        
+        NSArray *pathComponents = [NSArray arrayWithObjects:
+                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                                   @"MyAudioMemo.m4a",
+                                   nil];
+        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+        NSLog(@"%f", self.pitchSlider.value);
+        self.player.pitchShift = 0.6; //self.pitchSlider.value;
+        [self.player playURL:outputFileURL];
+    } else {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
+        [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = THEME_RED_COLOR;
+        
+        [self.player stop];
+        self.player.pitchShift = 0.0;
+    }
+}
+
+- (void) didTapPitchButton3
+{
+    if (self.player.pitchShift != -0.3) {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
+        [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
+        
+        NSArray *pathComponents = [NSArray arrayWithObjects:
+                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                                   @"MyAudioMemo.m4a",
+                                   nil];
+        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+        NSLog(@"%f", self.pitchSlider.value);
+        self.player.pitchShift = -0.3; //self.pitchSlider.value;
+        [self.player playURL:outputFileURL];
+    } else {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
+        [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = THEME_RED_COLOR;
+        
+        [self.player stop];
+        self.player.pitchShift = 0.0;
+    }
+}
+
+- (void) didTapPitchButton4
+{
+    if (self.player.pitchShift != -0.6) {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
+        [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
+        
+        NSArray *pathComponents = [NSArray arrayWithObjects:
+                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                                   @"MyAudioMemo.m4a",
+                                   nil];
+        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+        NSLog(@"%f", self.pitchSlider.value);
+        self.player.pitchShift = -0.6; //self.pitchSlider.value;
+        [self.player playURL:outputFileURL];
+    } else {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
+        [self.changePitchButton4 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = THEME_RED_COLOR;
+        
+        [self.player stop];
+        self.player.pitchShift = 0.0;
+    }
+}
+
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -161,6 +228,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
+    [self.player stop];
 }
 
 - (void)didReceiveMemoryWarning {
