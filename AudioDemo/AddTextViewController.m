@@ -30,13 +30,13 @@
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton1;
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton2;
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton3;
-@property (strong, nonatomic) IBOutlet UIButton *changePitchButton4;
+//@property (strong, nonatomic) IBOutlet UIButton *changePitchButton4;
 
 - (IBAction)didTapAddTextButton;
 - (IBAction)didTapPitchButton1;
 - (IBAction)didTapPitchButton2;
 - (IBAction)didTapPitchButton3;
-- (IBAction)didTapPitchButton4;
+//- (IBAction)didTapPitchButton4;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
 
@@ -117,7 +117,7 @@
                      animations:^{
                          self.changePitchButton2.alpha = 1;
                          self.changePitchButton3.alpha = 1;
-                         self.changePitchButton4.alpha = 1;
+                         //self.changePitchButton4.alpha = 1;
                      }
                      completion:nil];
     
@@ -174,7 +174,7 @@
 - (void) didTapPitchButton3
 {
     NSLog(@"Tapped Button 3 -- Pitch: %f", self.player.pitchShift);
-    if (self.player.pitchShift != -0.3) {
+    if (self.player.pitchShift != -0.4) {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
         [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
         self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
@@ -185,7 +185,7 @@
                                    nil];
         NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
         NSLog(@"%f", self.pitchSlider.value);
-        self.player.pitchShift = -0.3; //self.pitchSlider.value;
+        self.player.pitchShift = -0.4; //self.pitchSlider.value;
         [self.player playURL:outputFileURL];
     } else {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
@@ -196,11 +196,11 @@
         self.player.pitchShift = 0.0;
     }
 }
-
+/*
 - (void) didTapPitchButton4
 {
     NSLog(@"Tapped Button 4 -- Pitch: %f", self.player.pitchShift);
-    if (self.player.pitchShift != -0.6) {
+    if (self.player.pitchShift != -0.5) {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
         [self.changePitchButton4 setImage:buttonImage forState:UIControlStateNormal];
         self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
@@ -211,7 +211,7 @@
                                    nil];
         NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
         NSLog(@"%f", self.pitchSlider.value);
-        self.player.pitchShift = -0.6; //self.pitchSlider.value;
+        self.player.pitchShift = -0.5; //self.pitchSlider.value;
         [self.player playURL:outputFileURL];
     } else {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
@@ -222,6 +222,7 @@
         self.player.pitchShift = 0.0;
     }
 }
+*/
 
 - (void) viewWillAppear:(BOOL)animated
 {
