@@ -154,7 +154,8 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
                                 NSMutableArray *yaps = [NSMutableArray arrayWithArray:weakSelf.yaps];
                                 [yaps replaceObjectAtIndex:i withObject:newYap];
                                 weakSelf.yaps = yaps;
-                                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                                yapsCache = yaps;
+                                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
                                 break;
                             }
                         }
