@@ -169,6 +169,8 @@ typedef void(^STKFrameFilter)(UInt32 channelsPerFrame, UInt32 bytesPerFrame, UIn
 /// URLs with unrecognised schemes will return nil.
 +(STKDataSource*) dataSourceFromURL:(NSURL*)url;
 
++(STKDataSource*) dataSourceFromURL:(NSURL*)url andHeaders:(NSDictionary *)headers;
+
 /// Initializes a new STKAudioPlayer with the default options
 -(id) init;
 
@@ -178,6 +180,10 @@ typedef void(^STKFrameFilter)(UInt32 channelsPerFrame, UInt32 bytesPerFrame, UIn
 /// Plays an item from the given URL string (all pending queued items are removed).
 /// The NSString is used as the queue item ID
 -(void) play:(NSString*)urlString;
+
+/// Plays an item from the given URL string (all pending queued items are removed).
+/// The NSString is used as the queue item ID
+-(void) play:(NSString*)urlString withHeaders:(NSDictionary *)headers;
 
 /// Plays an item from the given URL (all pending queued items are removed)
 -(void) play:(NSString*)urlString withQueueItemID:(NSObject*)queueItemId;

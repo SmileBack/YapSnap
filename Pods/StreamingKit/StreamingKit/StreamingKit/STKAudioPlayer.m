@@ -612,8 +612,12 @@ static void AudioFileStreamPacketsProc(void* clientData, UInt32 numberBytes, UIn
 	}
 #endif
 }
-
 +(STKDataSource*) dataSourceFromURL:(NSURL*)url
+{
+    return [STKAudioPlayer dataSourceFromURL:url andHeaders:nil];
+}
+
++(STKDataSource*) dataSourceFromURL:(NSURL*)url andHeaders:(NSDictionary *) headers
 {
     STKDataSource* retval = nil;
     
@@ -623,7 +627,11 @@ static void AudioFileStreamPacketsProc(void* clientData, UInt32 numberBytes, UIn
     }
     else if ([url.scheme caseInsensitiveCompare:@"http"] == NSOrderedSame || [url.scheme caseInsensitiveCompare:@"https"] == NSOrderedSame)
     {
-        retval = [[STKAutoRecoveringHTTPDataSource alloc] initWithHTTPDataSource:[[STKHTTPDataSource alloc] initWithURL:url]];
+        if (headers) {
+            retval = [[STKAutoRecoveringHTTPDataSource alloc] initWithHTTPDataSource:[[STKHTTPDataSource alloc] initWithURL:url]];
+        } else {
+            retval = [[STKAutoRecoveringHTTPDataSource alloc] initWithHTTPDataSource:[[STKHTTPDataSource alloc] initWithURL:url httpRequestHeaders:headers]];
+        }
     }
     
     return retval;
@@ -672,17 +680,34 @@ static void AudioFileStreamPacketsProc(void* clientData, UInt32 numberBytes, UIn
 
 -(void) play:(NSString*)urlString
 {
-	[self play:urlString withQueueItemID:urlString];
+    [self play:urlString withQueueItemID:urlString];
+}
+
+-(void) play:(NSString*)urlString withHeaders:(NSDictionary *)headers
+{
+    [self play:urlString withQueueItemID:urlString andHeaders:headers];
 }
 
 -(void) play:(NSString*)urlString withQueueItemID:(NSObject*)queueItemId
 {
     NSURL* url = [NSURL URLWithString:urlString];
     
-	[self setDataSource:[STKAudioPlayer dataSourceFromURL:url] withQueueItemId:queueItemId];
+    [self setDataSource:[STKAudioPlayer dataSourceFromURL:url] withQueueItemId:queueItemId];
+}
+
+-(void) play:(NSString*)urlString withQueueItemID:(NSObject*)queueItemId andHeaders:(NSDictionary *)headers
+{
+    NSURL* url = [NSURL URLWithString:urlString];
+    
+	[self setDataSource:[STKAudioPlayer dataSourceFromURL:url andHeaders:headers] withQueueItemId:queueItemId];
 }
 
 -(void) playURL:(NSURL*)url
+{
+    [self playURL:url withQueueItemID:url];
+}
+
+-(void) playURL:(NSURL*)url withHeaders:(NSDictionary *)headers
 {
 	[self playURL:url withQueueItemID:url];
 }
