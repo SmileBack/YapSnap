@@ -20,12 +20,12 @@
 #import "ContactManager.h"
 #import "YSPushManager.h"
 #import "UIViewController+Navigation.h"
+#import "YapsCache.h"
 
 #define PENDING_YAPS_SECTION 0
 
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *yaps;
 @property (nonatomic, strong) PlaybackVC *playbackVC;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
@@ -38,6 +38,7 @@
 @property (strong, nonatomic) UIImage *redSquareFull;
 @property (strong, nonatomic) UIImage *redSquareEmpty;
 
+@property (nonatomic, readonly) NSArray *yaps;
 - (IBAction)didTapSettingsButton;
 
 @end
@@ -45,8 +46,6 @@
 static NSString *CellIdentifier = @"Cell";
 
 @implementation YapsViewController
-
-static NSArray *yapsCache; // In-memory array to hold the yaps.
 
 - (void)viewDidLoad
 {
@@ -74,7 +73,6 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-    [self displayYapsFromCache];
     [self loadYaps];
 
     // Pull down to refresh
@@ -103,22 +101,17 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
     [self loadYaps];
 }
 
-- (void) displayYapsFromCache
+- (NSArray *)yaps
 {
-    if (yapsCache && yapsCache.count > 0) {
-        self.yaps = [yapsCache copy];
-        [self.tableView reloadData];
-    }
+    return [YapsCache sharedCache].yaps;
 }
 
 - (void) loadYaps {
     __weak YapsViewController *weakSelf = self;
     NSLog(@"YAPS: about to make yaps call");
-    [[API sharedAPI] getYapsWithCallback:^(NSArray *yaps, NSError *error) {
+    [[YapsCache sharedCache] loadYapsWithCallback:^(NSArray *yaps, NSError *error) {
         if (yaps) {
-            yapsCache = yaps;
             [weakSelf.refreshControl endRefreshing];
-            weakSelf.yaps = yaps;
             [weakSelf.tableView reloadData];
         } else {
             NSLog(@"Error! %@", error);
@@ -153,8 +146,7 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
                             if ([yap.yapID isEqualToNumber:newYap.yapID]) {
                                 NSMutableArray *yaps = [NSMutableArray arrayWithArray:weakSelf.yaps];
                                 [yaps replaceObjectAtIndex:i withObject:newYap];
-                                weakSelf.yaps = yaps;
-                                yapsCache = yaps;
+                                [YapsCache sharedCache].yaps = yaps;
                                 [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
                                 break;
                             }
@@ -437,7 +429,7 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
     [self.tableView beginUpdates];
     NSUInteger index = [mutableYaps indexOfObject:self.yapToBlock];
     [mutableYaps removeObjectAtIndex:index];
-    self.yaps = mutableYaps;
+    [YapsCache sharedCache].yaps = mutableYaps;
     [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView endUpdates];

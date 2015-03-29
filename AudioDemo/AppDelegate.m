@@ -15,6 +15,7 @@
 #import "API.h"
 #import "Mixpanel.h"
 #import "Environment.h"
+#import "YapsCache.h"
 
 @implementation AppDelegate
 
@@ -35,6 +36,8 @@
     [self bindMixpanelToUser];
     
     [self bindCrashlyticsToUser];
+    
+    [[YapsCache sharedCache] loadYapsWithCallback:nil];
     
     return YES;
 }
