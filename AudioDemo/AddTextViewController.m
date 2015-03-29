@@ -14,6 +14,7 @@
 #import "ContactManager.h"
 #import "YSRecordProgressView.h"
 #import "NextButton.h"
+#import "YapsViewController.h"
 
 @interface AddTextViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
@@ -90,6 +91,9 @@
     if ([@"Contacts Segue" isEqualToString:segue.identifier]) {
         ContactsViewController *vc = segue.destinationViewController;
         vc.yapBuilder = self.yapBuilder;
+    } else if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
+        YapsViewController *vc = segue.destinationViewController;
+        vc.pendingYaps = sender;
     }
 }
 
@@ -108,12 +112,12 @@
     } else {
         __weak AddTextViewController *weakSelf = self;
         
+        NSArray *pendingYaps =
         [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
                         [self enableContinueButton];
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
-                            [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
                             
                             double delay = 1.0;
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -137,9 +141,11 @@
                         }
                     }];
         NSLog(@"Sent yaps call");
+        [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
     }
-
 }
+
+
 
 - (IBAction)didTapNextButton:(UIButton *)sender {
     self.yapBuilder.text = self.textView.text;

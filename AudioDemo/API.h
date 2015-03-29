@@ -16,6 +16,8 @@
 #define NOTIFICATION_INVALID_SESSION @"com.yapsnap.InvalidSessionNotification"
 #define NOTIFICATION_LOGOUT @"com.yapsnap.LogoutNotification"
 #define NOTIFICATION_YAP_OPENED @"com.yapsnap.YapOpened"
+#define NOTIFICATION_YAP_SENT @"com.yaptap.YapSent"
+#define NOTIFICATION_YAP_SENDING_FAILED @"com.yaptap.YapSendingFailed"
 
 typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 typedef void (^YapsCallback)(NSArray *yaps, NSError *error);
@@ -27,7 +29,7 @@ typedef void (^FriendsCallback)(NSArray *friends, NSError *error);
 
 + (API *) sharedAPI;
 
-- (void) sendYapBuilder:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback;
+- (NSArray *) sendYapBuilder:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback;
 - (void) openSession:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(UserCallback)callback;
 - (void) getYapsWithCallback:(YapsCallback)callback;

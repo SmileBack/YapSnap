@@ -21,6 +21,8 @@
 #import "YSPushManager.h"
 #import "UIViewController+Navigation.h"
 
+#define PENDING_YAPS_SECTION 0
+
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *yaps;
@@ -164,6 +166,23 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
                     usingBlock:^(NSNotification *note) {
                         [weakSelf loadYaps];
     }];
+    
+    [center addObserverForName:NOTIFICATION_YAP_SENT
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        weakSelf.pendingYaps = nil;
+                        [weakSelf loadYaps];
+                    }];
+    
+    [center addObserverForName:NOTIFICATION_YAP_SENDING_FAILED
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Yap Didn't Send!"];
+                        weakSelf.pendingYaps = nil;
+                        [weakSelf.tableView reloadData];
+                    }];
 }
 
 -(BOOL) internetIsNotReachable
@@ -174,12 +193,12 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
 #pragma UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.yaps.count;
+    return section == PENDING_YAPS_SECTION ? self.pendingYaps.count : self.yaps.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -189,7 +208,7 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YSYap* yap = self.yaps[indexPath.row];
+    YSYap* yap = indexPath.section == PENDING_YAPS_SECTION ? self.pendingYaps[indexPath.row] : self.yaps[indexPath.row];
     
     YapCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
@@ -224,6 +243,8 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
             cell.icon.image = self.blueArrowFull;
             if (yap.isPending) {
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Pending" , [self.dateFormatter stringFromDate:yap.createdAt]];
+            } else if (yap.isSending) {
+                cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Sending" , [self.dateFormatter stringFromDate:yap.createdAt]];
             } else {
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
             }
@@ -239,6 +260,14 @@ static NSArray *yapsCache; // In-memory array to hold the yaps.
         } else {
             cell.icon.image = self.redSquareFull;
         }
+    }
+    
+    if (yap.isSending) {
+        cell.icon.hidden = YES;
+        [cell.spinner startAnimating];
+    } else {
+        cell.icon.hidden = NO;
+        [cell.spinner stopAnimating];
     }
     
     return cell;

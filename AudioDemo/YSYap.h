@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YapBuilder.h"
+
+#define YAP_STATUS_SENDING @"sending"
 
 @interface YSYap : NSObject
 
@@ -41,12 +44,14 @@
 
 + (YSYap *) yapWithDictionary:(NSDictionary *)dict;
 + (NSArray *) yapsWithArray:(NSArray *)array;
++ (NSArray *) pendingYapsWithYapBuilder:(YapBuilder *)yapBuilder;
 
 @property (nonatomic, strong) NSString *displayReceiverName;
 @property (nonatomic, strong) NSString *displaySenderName;
 
 - (BOOL) wasOpened;
 - (BOOL) isPending;
+- (BOOL) isSending;
 - (BOOL) sentByCurrentUser;
 - (BOOL) receivedByCurrentUser;
 @end

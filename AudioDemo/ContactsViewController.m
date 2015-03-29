@@ -9,6 +9,7 @@
 #import "ContactsViewController.h"
 #import "ContactManager.h"
 #import "UIViewController+Alerts.h"
+#import "YapsViewController.h"
 
 @interface ContactsViewController ()
 
@@ -318,12 +319,12 @@ static NSString *CellIdentifier = @"Cell";
         
         self.yapBuilder.contacts = self.selectedContacts;
         
+        NSArray *pendingYaps =
         [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
                         [self enableContinueButton];
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.selectedContacts];
-                            [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:self];
                             
                             double delay = 1.0;
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -341,13 +342,19 @@ static NSString *CellIdentifier = @"Cell";
                         } else {
                             // uh oh spaghettios
                             // TODO: tell the user something went wrong
-                            double delay = 0.5;
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Yap Didn't Send!"];
-                                [self enableContinueButton]; // Adding this line a second time just in case - doesn't always get triggered above for some reason
-                            });
                         }
                     }];
+
+        [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
+    }
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
+        NSArray *pendingYaps = sender;
+        YapsViewController *vc = segue.destinationViewController;
+        vc.pendingYaps = pendingYaps;
     }
 }
 

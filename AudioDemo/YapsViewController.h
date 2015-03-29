@@ -10,4 +10,6 @@
 
 @interface YapsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
+@property (nonatomic, strong) NSArray *pendingYaps;
+
 @end

@@ -188,7 +188,7 @@ static API *sharedAPI;
 
 #pragma mark - Yaps
 
-- (void) sendYapBuilder:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback
+- (NSArray *) sendYapBuilder:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback
 {
     // First, if there is a photo upload it to AWS.  The URL and Etag will be returned.
     if (yapBuilder.image) {
@@ -207,6 +207,8 @@ static API *sharedAPI;
     } else {
         [self sendYap:yapBuilder withCallback:callback];
     }
+
+    return [YSYap pendingYapsWithYapBuilder:yapBuilder];
 }
 
 - (void) sendYap:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback
@@ -231,25 +233,30 @@ static API *sharedAPI;
             [mixpanel track:@"AWS Error - uploadYap"];
             
             NSLog(@"Error uploading to amazon! %@", error);
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
             callback(NO, error);
         }
-        
         
         NSDictionary *params = [weakSelf paramsWithDict:@{@"type": MESSAGE_TYPE_VOICE,
                                                           @"aws_recording_url": url,
                                                           @"aws_recording_etag": etag}
                                           andYapBuilder:builder];
-
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:[weakSelf urlForEndpoint:@"audio_messages"]
            parameters:params
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
                   NSLog(@"yaps call finished: %@", responseObject);
+                  if ([responseObject isKindOfClass:[NSArray class]]) {
+                      NSArray *yapDicts = responseObject;
+                      NSArray *yaps = [YSYap yapsWithArray:yapDicts];
+                      [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENT object:yaps];
+                  }
                   callback(YES, nil);
               }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                   Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
                   [mixpanel track:@"API Error - sendVoiceYap"];
                   
                   NSLog(@"Error: %@", error);
@@ -277,8 +284,12 @@ static API *sharedAPI;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *yapDicts = responseObject;
+        NSArray *yaps = [YSYap yapsWithArray:yapDicts];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENT object:yaps];
         callback(YES, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"API Error - sendSongYap"];
         
@@ -294,7 +305,7 @@ static API *sharedAPI;
     [manager GET:[self urlForEndpoint:@"audio_messages"]
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSLog(@"YAPS: In callback from API %@", responseObject);
+//              NSLog(@"YAPS: In callback from API %@", responseObject);
               NSArray *yapDicts = responseObject; //Assuming it is an array
               NSArray *yaps = [YSYap yapsWithArray:yapDicts];
               callback(yaps, nil);

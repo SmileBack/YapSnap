@@ -112,6 +112,32 @@
      */
 }
 
++ (NSArray *) pendingYapsWithYapBuilder:(YapBuilder *)yapBuilder
+{
+    NSMutableArray *yaps = [NSMutableArray arrayWithCapacity:yapBuilder.contacts.count];
+    
+    for (YSContact *contact in yapBuilder.contacts) {
+        YSYap *yap = [YSYap new];
+        
+        YSUser *me = [YSUser currentUser];
+        yap.senderID = me.userID;
+        yap.senderName = me.displayName;
+        yap.senderPhone = me.phone;
+        
+        yap.receiverID = nil; //TODO the cell may depend on this
+        yap.receiverName = contact.name;
+        yap.receiverPhone = contact.phoneNumber;
+        
+        yap.createdAt = [NSDate date];
+        
+        yap.status = YAP_STATUS_SENDING;
+        
+        [yaps addObject:yap];
+    }
+    
+    return yaps;
+}
+
 - (BOOL) wasOpened
 {
     return [@"opened" isEqualToString:self.status];
@@ -120,6 +146,11 @@
 - (BOOL) isPending
 {
     return [@"pending" isEqualToString:self.status];
+}
+
+- (BOOL) isSending
+{
+    return [YAP_STATUS_SENDING isEqualToString:self.status];
 }
 
 - (BOOL) sentByCurrentUser
