@@ -15,6 +15,7 @@
 #import "YSRecordProgressView.h"
 #import "NextButton.h"
 #import "YapsViewController.h"
+#import <STKAudioPlayer.h>
 
 @interface AddTextViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
@@ -26,8 +27,17 @@
 @property (strong, nonatomic) IBOutlet UILabel *contactLabel;
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
+@property (strong, nonatomic) STKAudioPlayer* player;
+@property (strong, nonatomic) IBOutlet UIButton *changePitchButton1;
+@property (strong, nonatomic) IBOutlet UIButton *changePitchButton2;
+@property (strong, nonatomic) IBOutlet UIButton *changePitchButton3;
+//@property (strong, nonatomic) IBOutlet UIButton *changePitchButton4;
 
 - (IBAction)didTapAddTextButton;
+- (IBAction)didTapPitchButton1;
+- (IBAction)didTapPitchButton2;
+- (IBAction)didTapPitchButton3;
+//- (IBAction)didTapPitchButton4;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
 
@@ -40,6 +50,12 @@
         
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Add Text Page"];
+    //self.pitchSlider.maximumValue = 1.0;
+    //self.pitchSlider.minimumValue = -1.0;
+    //self.pitchSlider.value = 0.0;
+    //[self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpInside];
+    //[self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpOutside];
+    //self.player = [STKAudioPlayer new];
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
@@ -49,6 +65,7 @@
                                                                             action:nil];
     
     self.progressView.progress = self.yapBuilder.duration/10;
+    
     
     self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textView.delegate = self;
@@ -70,7 +87,143 @@
     });
     
     [self.textView setTintColor:[UIColor whiteColor]];
+    
+    double delay2 = 0.5;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.player = [STKAudioPlayer new];
+    });
+    
+    if ([self.yapBuilder.messageType  isEqual: @"VoiceMessage"]) {
+        self.changePitchButton1.hidden = NO;
+    }
 }
+
+- (void) didChangePitch
+{
+    NSArray *pathComponents = [NSArray arrayWithObjects:
+                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                               @"MyAudioMemo.m4a",
+                               nil];
+    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+    NSLog(@"%f", self.pitchSlider.value);
+    self.player.pitchShift = self.pitchSlider.value;
+    [self.player playURL:outputFileURL];
+}
+
+- (void) didTapPitchButton1
+{
+    [UIView animateWithDuration:.8
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.changePitchButton2.alpha = 1;
+                         self.changePitchButton3.alpha = 1;
+                         //self.changePitchButton4.alpha = 1;
+                     }
+                     completion:nil];
+    
+    NSLog(@"Tapped Button 1 -- Pitch: %f", self.player.pitchShift);
+    if (self.player.pitchShift != 1.0) {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
+        [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
+        
+        NSArray *pathComponents = [NSArray arrayWithObjects:
+                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                                   @"MyAudioMemo.m4a",
+                                   nil];
+        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+        NSLog(@"%f", self.pitchSlider.value);
+        self.player.pitchShift = 1.0; //self.pitchSlider.value;
+        [self.player playURL:outputFileURL];
+    } else {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
+        [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = THEME_RED_COLOR;
+
+        [self.player stop];
+        self.player.pitchShift = 0.0;
+    }
+}
+
+- (void) didTapPitchButton2
+{
+    NSLog(@"Tapped Button 2 -- Pitch: %f", self.player.pitchShift);
+    if (self.player.pitchShift != 0.600000) {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
+        [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
+        
+        NSArray *pathComponents = [NSArray arrayWithObjects:
+                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                                   @"MyAudioMemo.m4a",
+                                   nil];
+        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+        NSLog(@"%f", self.pitchSlider.value);
+        self.player.pitchShift = 0.6; //self.pitchSlider.value;
+        [self.player playURL:outputFileURL];
+    } else {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
+        [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = THEME_RED_COLOR;
+        
+        [self.player stop];
+        self.player.pitchShift = 0.0;
+    }
+}
+
+- (void) didTapPitchButton3
+{
+    NSLog(@"Tapped Button 3 -- Pitch: %f", self.player.pitchShift);
+    if (self.player.pitchShift != -0.4) {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
+        [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
+        
+        NSArray *pathComponents = [NSArray arrayWithObjects:
+                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                                   @"MyAudioMemo.m4a",
+                                   nil];
+        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+        NSLog(@"%f", self.pitchSlider.value);
+        self.player.pitchShift = -0.4; //self.pitchSlider.value;
+        [self.player playURL:outputFileURL];
+    } else {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
+        [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = THEME_RED_COLOR;
+        
+        [self.player stop];
+        self.player.pitchShift = 0.0;
+    }
+}
+/*
+- (void) didTapPitchButton4
+{
+    NSLog(@"Tapped Button 4 -- Pitch: %f", self.player.pitchShift);
+    if (self.player.pitchShift != -0.5) {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
+        [self.changePitchButton4 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
+        
+        NSArray *pathComponents = [NSArray arrayWithObjects:
+                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                                   @"MyAudioMemo.m4a",
+                                   nil];
+        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+        NSLog(@"%f", self.pitchSlider.value);
+        self.player.pitchShift = -0.5; //self.pitchSlider.value;
+        [self.player playURL:outputFileURL];
+    } else {
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
+        [self.changePitchButton4 setImage:buttonImage forState:UIControlStateNormal];
+        self.progressView.progressViewColor = THEME_RED_COLOR;
+        
+        [self.player stop];
+        self.player.pitchShift = 0.0;
+    }
+}
+*/
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -81,6 +234,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
+    [self.player stop];
 }
 
 - (void)didReceiveMemoryWarning {

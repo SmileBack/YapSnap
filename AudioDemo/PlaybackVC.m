@@ -39,6 +39,7 @@
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
+
     NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
     NSLog(@"Playing URL: %@ %@ auth token", self.yap.playbackURL, headers ? @"with" : @"without");
     if (headers) {
@@ -46,7 +47,7 @@
     } else {
         [self.player play:self.yap.playbackURL];
     }
-    
+
     [self.progressView.activityIndicator startAnimating];
     
     // Snapchat allows for 48 characters horizontally; 31 vertically 

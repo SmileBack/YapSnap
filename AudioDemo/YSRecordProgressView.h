@@ -11,5 +11,6 @@
 @interface YSRecordProgressView : UIProgressView
 
 @property UIActivityIndicatorView* activityIndicator;
+@property UIColor* progressViewColor;
 
 @end

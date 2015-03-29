@@ -656,7 +656,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEND YAP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-0v-8cp">
-                                <rect key="frame" x="116.5" y="32" width="87.5" height="23.5"/>
+                                <rect key="frame" x="116" y="32" width="87.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -709,7 +709,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDf-Vb-ilr" userLabel="Text Button">
-                                <rect key="frame" x="265" y="121" width="52" height="52"/>
+                                <rect key="frame" x="265" y="115" width="52" height="52"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="IHt-Jr-9ov"/>
@@ -739,11 +739,47 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KiZ-xJ-FAU">
+                                <rect key="frame" x="60" y="269" width="200" height="31"/>
+                                <color key="tintColor" red="1" green="0.1482262979" blue="0.090855453729999994" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="PRY-2L-kW5"/>
+                                    <constraint firstAttribute="width" constant="196" id="lIe-Mf-qyR"/>
+                                </constraints>
+                            </slider>
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8u-j8-TJl">
+                                <rect key="frame" x="9" y="122" width="36" height="36"/>
+                                <state key="normal" backgroundImage="Balloon3.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapPitchButton1" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="Abp-dK-OlP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1t-6Q-weW">
+                                <rect key="frame" x="63" y="122" width="36" height="36"/>
+                                <state key="normal" image="Balloon3.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapPitchButton2" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="waU-rP-YGD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mku-hD-YTT">
+                                <rect key="frame" x="118" y="122" width="36" height="36"/>
+                                <state key="normal" image="Balloon3.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapPitchButton3" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="2jD-lR-Xk1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="9XV-zO-GXP" firstAttribute="centerX" secondItem="tHQ-JT-aR5" secondAttribute="centerX" constant="-0.5" id="098-Fb-FyR"/>
                             <constraint firstAttribute="trailing" secondItem="gWj-LF-pEZ" secondAttribute="trailing" constant="10" id="2s9-gr-ybv"/>
+                            <constraint firstAttribute="centerX" secondItem="KiZ-xJ-FAU" secondAttribute="centerX" id="41D-jr-5hK"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="height" secondItem="54R-6y-Wab" secondAttribute="height" multiplier="0.0704" id="469-8N-Xfv"/>
                             <constraint firstAttribute="centerX" secondItem="B2R-OB-er0" secondAttribute="centerX" id="Bck-GS-k44"/>
                             <constraint firstItem="9XV-zO-GXP" firstAttribute="centerY" secondItem="tHQ-JT-aR5" secondAttribute="centerY" constant="-2.5" id="D1b-3z-nGq"/>
@@ -763,18 +799,23 @@
                             <constraint firstAttribute="centerY" secondItem="gWj-LF-pEZ" secondAttribute="centerY" id="tZe-q4-Vfa"/>
                             <constraint firstItem="EyU-Er-gqZ" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="-8" id="tsJ-Fv-uDI"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="B2R-OB-er0" secondAttribute="bottom" constant="77" id="vNZ-Va-hqk"/>
-                            <constraint firstItem="KDf-Vb-ilr" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="17" id="whL-O6-Khy"/>
+                            <constraint firstItem="KDf-Vb-ilr" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="11" id="whL-O6-Khy"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" id="xUK-bi-lf5"/>
+                            <constraint firstAttribute="centerY" secondItem="KiZ-xJ-FAU" secondAttribute="centerY" id="xst-Xa-wlP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M5r-U7-dCX"/>
                     <connections>
                         <outlet property="addTextToYapButton" destination="KDf-Vb-ilr" id="jTv-Uo-Wb4"/>
+                        <outlet property="changePitchButton1" destination="C8u-j8-TJl" id="yCc-nS-K5z"/>
+                        <outlet property="changePitchButton2" destination="H1t-6Q-weW" id="duJ-Rf-yDM"/>
+                        <outlet property="changePitchButton3" destination="Mku-hD-YTT" id="Blg-zS-eLm"/>
                         <outlet property="colorPicker" destination="EFe-hN-LX9" id="MKP-hO-rrG"/>
                         <outlet property="contactLabel" destination="B2R-OB-er0" id="efQ-Ea-t9a"/>
                         <outlet property="continueButton" destination="9XV-zO-GXP" id="849-UU-MZ0"/>
                         <outlet property="flashbackImageView" destination="gWj-LF-pEZ" id="F1Y-0q-0w5"/>
                         <outlet property="loadingSpinner" destination="tHQ-JT-aR5" id="U3K-ti-CIa"/>
+                        <outlet property="pitchSlider" destination="KiZ-xJ-FAU" id="XQJ-Uw-u9W"/>
                         <outlet property="progressView" destination="ygq-ac-kFT" id="yuV-x2-Xvc"/>
                         <outlet property="textView" destination="Yo4-ls-PqW" id="5he-52-51O"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="Contacts Segue" id="0bM-75-hD3"/>
@@ -1449,6 +1490,7 @@ Type it here.</string>
     </scenes>
     <resources>
         <image name="ArrowWhite.png" width="256" height="256"/>
+        <image name="Balloon3.png" width="512" height="512"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
@@ -1469,8 +1511,8 @@ Type it here.</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Enn-ka-dSJ"/>
         <segue reference="czb-n6-hbf"/>
+        <segue reference="Enn-ka-dSJ"/>
         <segue reference="gZs-IQ-BYb"/>
     </inferredMetricsTieBreakers>
 </document>
