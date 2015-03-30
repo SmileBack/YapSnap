@@ -66,7 +66,6 @@
     
     self.progressView.progress = self.yapBuilder.duration/10;
     
-    
     self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textView.delegate = self;
     self.colorPicker.delegate = self;
@@ -126,7 +125,8 @@
     if (self.player.pitchShift != 1.0) {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
         [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
+        self.progressView.progressTintColor = [UIColor yellowColor]; // TODO: make this work
+        self.progressView.progress = self.yapBuilder.duration/10;
         
         NSArray *pathComponents = [NSArray arrayWithObjects:
                                    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
@@ -139,7 +139,7 @@
     } else {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
         [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressViewColor = THEME_RED_COLOR;
+        self.progressView.progressTintColor = THEME_RED_COLOR;
 
         [self.player stop];
         self.player.pitchShift = 0.0;
@@ -152,7 +152,7 @@
     if (self.player.pitchShift != 0.600000) {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
         [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
+        self.progressView.progressTintColor = [UIColor yellowColor]; // TODO: make this work
         
         NSArray *pathComponents = [NSArray arrayWithObjects:
                                    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
@@ -165,7 +165,7 @@
     } else {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
         [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressViewColor = THEME_RED_COLOR;
+        self.progressView.progressTintColor = THEME_RED_COLOR;
         
         [self.player stop];
         self.player.pitchShift = 0.0;
@@ -178,7 +178,7 @@
     if (self.player.pitchShift != -0.4) {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
         [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
+        self.progressView.progressTintColor = [UIColor yellowColor]; // TODO: make this work
         
         NSArray *pathComponents = [NSArray arrayWithObjects:
                                    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
@@ -191,7 +191,7 @@
     } else {
         UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
         [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressViewColor = THEME_RED_COLOR;
+        self.progressView.progressTintColor = THEME_RED_COLOR;
         
         [self.player stop];
         self.player.pitchShift = 0.0;

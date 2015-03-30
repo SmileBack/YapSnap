@@ -155,6 +155,18 @@ static NSString *CellIdentifier = @"Cell";
                             }
                         }
                     }];
+    /*
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSIndexPath* adjustedPath = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
+        [self.tableView reloadRowsAtIndexPaths:@[adjustedPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    });
+     */
+    
+    /*
+     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+     });
+     */
 
     [center addObserverForName:NEW_YAP_NOTIFICATION
                         object:nil
@@ -278,10 +290,17 @@ static NSString *CellIdentifier = @"Cell";
             cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
 
             cell.createdTimeLabel.text = @"Double Tap to Reply";
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                NSIndexPath* adjustedPath = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
+                [self.tableView reloadRowsAtIndexPaths:@[adjustedPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            });
 
+            /*
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             });
+             */
         } else if (!yap.wasOpened) {
             if ([self internetIsNotReachable]){
                 [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
@@ -317,8 +336,15 @@ static NSString *CellIdentifier = @"Cell";
         }
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSIndexPath* adjustedPath = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
+            [self.tableView reloadRowsAtIndexPaths:@[adjustedPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        });
+        
+        /*
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         });
+         */
     }
 }
 
