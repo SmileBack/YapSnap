@@ -101,11 +101,13 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self stop];
+                        /*
                         [[API sharedAPI] updateYapStatus:self.yap toStatus:@"unopened" withCallback:^(BOOL success, NSError *error) {
                             if (error) {
 
                             }
                         }];
+                         */
                     }];
 }
 
