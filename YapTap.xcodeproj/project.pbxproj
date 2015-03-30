@@ -80,9 +80,9 @@
 		787EC5F61AC9EE8C000C5539 /* ProgressViewGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F41AC9EE8C000C5539 /* ProgressViewGreen@2x.png */; };
 		787EC5F71AC9EE8C000C5539 /* ProgressViewGreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F51AC9EE8C000C5539 /* ProgressViewGreen@3x.png */; };
 		787EC5F91ACA0477000C5539 /* Balloon10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F81ACA0477000C5539 /* Balloon10.png */; };
-		787EC5FC1ACA0657000C5539 /* BalloonGreen10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5FA1ACA0657000C5539 /* BalloonGreen10.png */; };
-		787EC5FD1ACA0657000C5539 /* BalloonLightBlue10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5FB1ACA0657000C5539 /* BalloonLightBlue10.png */; };
 		787EC5FF1ACA068F000C5539 /* BalloonYellow10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5FE1ACA068F000C5539 /* BalloonYellow10.png */; };
+		787EC6011ACA09A1000C5539 /* BalloonLightBlue10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6001ACA09A1000C5539 /* BalloonLightBlue10.png */; };
+		787EC6031ACA09B8000C5539 /* BalloonGreen10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6021ACA09B8000C5539 /* BalloonGreen10.png */; };
 		7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */; };
 		7885B22E1A8DEC9900B230A0 /* SquareOutlineRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B22D1A8DEC9900B230A0 /* SquareOutlineRed.png */; };
 		78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */; };
@@ -249,9 +249,9 @@
 		787EC5F41AC9EE8C000C5539 /* ProgressViewGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreen@2x.png"; sourceTree = "<group>"; };
 		787EC5F51AC9EE8C000C5539 /* ProgressViewGreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreen@3x.png"; sourceTree = "<group>"; };
 		787EC5F81ACA0477000C5539 /* Balloon10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon10.png; sourceTree = "<group>"; };
-		787EC5FA1ACA0657000C5539 /* BalloonGreen10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BalloonGreen10.png; path = "../../YapSnap Images/BalloonGreen10.png"; sourceTree = "<group>"; };
-		787EC5FB1ACA0657000C5539 /* BalloonLightBlue10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BalloonLightBlue10.png; path = "../../YapSnap Images/BalloonLightBlue10.png"; sourceTree = "<group>"; };
 		787EC5FE1ACA068F000C5539 /* BalloonYellow10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BalloonYellow10.png; sourceTree = "<group>"; };
+		787EC6001ACA09A1000C5539 /* BalloonLightBlue10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BalloonLightBlue10.png; sourceTree = "<group>"; };
+		787EC6021ACA09B8000C5539 /* BalloonGreen10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BalloonGreen10.png; sourceTree = "<group>"; };
 		7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBackArrow5.png; sourceTree = "<group>"; };
 		7885B22D1A8DEC9900B230A0 /* SquareOutlineRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquareOutlineRed.png; sourceTree = "<group>"; };
 		78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
@@ -447,9 +447,9 @@
 				78A823A31AC1E88300135369 /* YapsButtonRed5.png */,
 				78A823991ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png */,
 				787EC5F81ACA0477000C5539 /* Balloon10.png */,
-				787EC5FA1ACA0657000C5539 /* BalloonGreen10.png */,
-				787EC5FB1ACA0657000C5539 /* BalloonLightBlue10.png */,
 				787EC5FE1ACA068F000C5539 /* BalloonYellow10.png */,
+				787EC6021ACA09B8000C5539 /* BalloonGreen10.png */,
+				787EC6001ACA09A1000C5539 /* BalloonLightBlue10.png */,
 				787EC5EA1AC9EA3C000C5539 /* ProgressView Images */,
 			);
 			name = Resources;
@@ -910,12 +910,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCB13C3B1A98FF9400DE5A61 /* pew-pew-lei.caf in Resources */,
+				787EC6031ACA09B8000C5539 /* BalloonGreen10.png in Resources */,
 				786D91131A6EEEDE00177E25 /* BlueArrowWhiteFilling.png in Resources */,
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
 				786D91171A6EF16000177E25 /* RedRoundedSquare.png in Resources */,
 				784047FC1AB4FB7200FE6D93 /* MusicIconBlue3@2x.png in Resources */,
 				787A6D921A4BFEE7001551C6 /* MusicIconSmall@2x.png in Resources */,
-				787EC5FD1ACA0657000C5539 /* BalloonLightBlue10.png in Resources */,
 				3753AF8919E9A4D000B6391D /* Microphone_White2.png in Resources */,
 				37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */,
 				78A823A41AC1E88300135369 /* YapsButtonRed5.png in Resources */,
@@ -931,6 +931,7 @@
 				787EC5E71AC9D4D0000C5539 /* ProgressViewYellow@2x.png in Resources */,
 				7803A05C1AAB648A006C43AE /* PlusButtonWhite@2x.png in Resources */,
 				78CBF3001A996E8800F30DCA /* InfoIcon5@2x.png in Resources */,
+				787EC6011ACA09A1000C5539 /* BalloonLightBlue10.png in Resources */,
 				786D91191A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png in Resources */,
 				78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
@@ -948,7 +949,6 @@
 				787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */,
 				37D413CC19D230D000021548 /* ArrowWhite.png in Resources */,
 				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
-				787EC5FC1ACA0657000C5539 /* BalloonGreen10.png in Resources */,
 				7819916F1AABBA6E00309E38 /* SettingsIconWhite8@2x.png in Resources */,
 				37D413C619D2235C00021548 /* Images.xcassets in Resources */,
 				78D7812A1ABA249E00F483A8 /* RecordButtonBlueBorder10Pressed.png in Resources */,
