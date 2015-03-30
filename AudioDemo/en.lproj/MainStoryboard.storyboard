@@ -395,9 +395,6 @@
                                             <action selector="didTapContinueButton" destination="iTO-dn-ews" eventType="touchUpInside" id="2Rz-rB-yAR"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="KEf-2h-zqy">
-                                        <rect key="frame" x="265" y="17" width="37" height="37"/>
-                                    </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNq-aM-kzD">
                                         <rect key="frame" x="19" y="21" width="29" height="29"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
@@ -409,9 +406,7 @@
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="K6j-MM-95B" secondAttribute="centerY" constant="-1" id="HLP-8a-MiU"/>
                                     <constraint firstAttribute="height" constant="70" id="Qm4-KE-MAn"/>
-                                    <constraint firstItem="K6j-MM-95B" firstAttribute="centerX" secondItem="KEf-2h-zqy" secondAttribute="centerX" constant="-0.5" id="buV-cd-qc0"/>
                                     <constraint firstAttribute="trailing" secondItem="K6j-MM-95B" secondAttribute="trailing" constant="11" id="hxc-0p-Zoa"/>
-                                    <constraint firstItem="K6j-MM-95B" firstAttribute="centerY" secondItem="KEf-2h-zqy" secondAttribute="centerY" constant="0.5" id="mxb-h8-nSn"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -436,7 +431,6 @@
                         <outlet property="bottomViewLabel" destination="qNq-aM-kzD" id="pmd-6l-xzY"/>
                         <outlet property="continueButton" destination="K6j-MM-95B" id="8DH-Ii-Vuv"/>
                         <outlet property="keyboardVerticalSpace" destination="AXf-Lr-Mzm" id="kGT-Mx-yLP"/>
-                        <outlet property="loadingSpinner" destination="KEf-2h-zqy" id="cwm-4P-dPj"/>
                         <outlet property="searchDisplayController" destination="rX9-eN-FWa" id="wiS-if-c5s"/>
                         <outlet property="tableView" destination="W8t-1a-vba" id="ZzW-5c-uyZ"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsViewControllerSegue" id="syO-tE-hvG"/>
@@ -1504,7 +1498,7 @@ Type it here.</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="czb-n6-hbf"/>
+        <segue reference="syO-tE-hvG"/>
         <segue reference="gZs-IQ-BYb"/>
     </inferredMetricsTieBreakers>
 </document>
