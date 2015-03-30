@@ -72,7 +72,7 @@ static const float TIMER_INTERVAL = .01;
         });
     }
     
-    [self.unopenedYapsCountSpinner startAnimating];
+    //[self.unopenedYapsCountSpinner startAnimating];
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadingSpinnerTapped)];
     singleTap.numberOfTapsRequired = 1;
@@ -123,15 +123,6 @@ static const float TIMER_INTERVAL = .01;
 -(BOOL) internetIsNotReachable
 {
     return ![AFNetworkReachabilityManager sharedManager].reachable;
-}
-
-- (void) showNoInternetAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection"
-                                                    message:@"Please connect to the internet and try again."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
 }
 
 - (void) reloadUnopenedYapsCount
@@ -322,11 +313,7 @@ static const float TIMER_INTERVAL = .01;
     self.recordProgressView.progress = 0.0;
     [self.audioSource stopAudioCapture:self.elapsedTime];
     
-    if ([self internetIsNotReachable]){
-        [self showNoInternetAlert];
-    } else {
-        [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:self];
-    }
+    [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:self];
 }
 
 

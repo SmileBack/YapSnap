@@ -256,11 +256,11 @@ static NSString *CellIdentifier = @"Cell";
     }
     
     if (yap.isSending) {
-        cell.icon.hidden = YES;
-        [cell.spinner startAnimating];
+        //cell.icon.hidden = YES;
+        //[cell.spinner startAnimating];
     } else {
         cell.icon.hidden = NO;
-        [cell.spinner stopAnimating];
+        //[cell.spinner stopAnimating];
     }
     
     return cell;

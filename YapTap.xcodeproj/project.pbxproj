@@ -1125,7 +1125,7 @@
 				INFOPLIST_FILE = "AudioDemo/YapTap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "818ef46f-3897-4b50-ab45-f78ab9f8ea3a";
+				PROVISIONING_PROFILE = "8b1f551b-3e6a-46d7-8e30-f6b8f0e6c47d";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

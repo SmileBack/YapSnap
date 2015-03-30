@@ -8,6 +8,7 @@
 
 #import "YSPushManager.h"
 #import "API.h"
+#import "YapsCache.h"
 
 #define IS_IOS_8  ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] != NSOrderedAscending)
 
@@ -98,6 +99,8 @@ static YSPushManager *_sharedPushManager;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [[YTNotifications sharedNotifications] showNotificationText:@"You've received a new yap"];
         });
+    } else {
+        [[YapsCache sharedCache] loadYapsWithCallback:nil];
     }
 }
 
@@ -116,9 +119,9 @@ static YSPushManager *_sharedPushManager;
 {
     BOOL backgroundNotification = state == UIApplicationStateInactive;
     
-    if ([notification[@"type"]  isEqual: @"new_yap"]) {
+    if ([notification[@"type"] isEqual: @"new_yap"]) {
         [self receivedANewYapInBackground:backgroundNotification];
-    } else if ([notification[@"type"]  isEqual: @"new_friend"]) {
+    } else if ([notification[@"type"] isEqual: @"new_friend"]) {
         [self receivedANewFriendInBackground:backgroundNotification];
     }
 }

@@ -197,6 +197,9 @@ static API *sharedAPI;
             if (error) {
                 Mixpanel *mixpanel = [Mixpanel sharedInstance];
                 [mixpanel track:@"AWS Error - uploadPhoto"];
+                
+                NSLog(@"Error uploading photo to amazon! %@", error);
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
                 callback(NO, error);
             } else {
                 yapBuilder.imageAwsUrl = url;
@@ -232,7 +235,7 @@ static API *sharedAPI;
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"AWS Error - uploadYap"];
             
-            NSLog(@"Error uploading to amazon! %@", error);
+            NSLog(@"Error uploading voice file to amazon! %@", error);
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
             callback(NO, error);
         }
