@@ -11,5 +11,6 @@
 @interface YapsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *pendingYaps;
+@property (assign, nonatomic) BOOL comingFromContactsOrAddTextPage;
 
 @end

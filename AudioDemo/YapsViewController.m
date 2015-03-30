@@ -39,6 +39,7 @@
 @property (strong, nonatomic) UIImage *redSquareEmpty;
 
 @property (nonatomic, readonly) NSArray *yaps;
+
 - (IBAction)didTapSettingsButton;
 
 @end
@@ -73,7 +74,9 @@ static NSString *CellIdentifier = @"Cell";
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-    [self loadYaps];
+    if (!self.comingFromContactsOrAddTextPage) {
+        [self loadYaps];
+    }
 
     // Pull down to refresh
     self.refreshControl = [UIRefreshControl new];

@@ -248,6 +248,7 @@
     } else if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
         YapsViewController *vc = segue.destinationViewController;
         vc.pendingYaps = sender;
+        vc.comingFromContactsOrAddTextPage = YES;
     }
 }
 
