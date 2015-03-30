@@ -40,6 +40,7 @@
     self.imageView.alpha = 0.2;
 
     self.progressTintColor = THEME_RED_COLOR;
+    
     self.trackTintColor = UIColor.whiteColor;
     
     for (UIView* view in @[self.imageView, self.activityIndicator])

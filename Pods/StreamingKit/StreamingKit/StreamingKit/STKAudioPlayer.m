@@ -3211,7 +3211,7 @@ static OSStatus OutputRenderCallback(void* inRefCon, AudioUnitRenderActionFlags*
 
 - (void)setPitchShift:(Float32)value
 {
-    NSLog(@"%f", value);
+    //NSLog(@"%f", value);
     self->pitchShift = value;
     if (self->pitchNode)
     {

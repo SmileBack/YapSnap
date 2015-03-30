@@ -111,6 +111,8 @@
 
 - (void) didTapPitchButton1
 {
+    CGFloat pitchShiftValueButton1 = 1.0;
+    
     [UIView animateWithDuration:.8
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -121,23 +123,25 @@
                      }
                      completion:nil];
     
-    NSLog(@"Tapped Button 1 -- Pitch: %f", self.player.pitchShift);
-    if (self.player.pitchShift != 1.0) {
-        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
+    if (self.player.pitchShift != pitchShiftValueButton1) {
+        UIImage *buttonImage = [UIImage imageNamed:@"BalloonYellow10.png"];
         [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressTintColor = [UIColor yellowColor]; // TODO: make this work
-        self.progressView.progress = self.yapBuilder.duration/10;
+        UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
+        [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
+        [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
+        
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellow.png"]];
         
         NSArray *pathComponents = [NSArray arrayWithObjects:
                                    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
                                    @"MyAudioMemo.m4a",
                                    nil];
         NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-        NSLog(@"%f", self.pitchSlider.value);
-        self.player.pitchShift = 1.0; //self.pitchSlider.value;
+        self.player.pitchShift = pitchShiftValueButton1;
+
         [self.player playURL:outputFileURL];
     } else {
-        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon10.png"];
         [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
         self.progressView.progressTintColor = THEME_RED_COLOR;
 
@@ -148,22 +152,26 @@
 
 - (void) didTapPitchButton2
 {
-    NSLog(@"Tapped Button 2 -- Pitch: %f", self.player.pitchShift);
-    if (self.player.pitchShift != 0.600000) {
-        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
+    CGFloat pitchShiftValueButton2 = 0.6;
+    
+    if (self.player.pitchShift != pitchShiftValueButton2) {
+        UIImage *buttonImage = [UIImage imageNamed:@"BalloonGreen10.png"];
         [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressTintColor = [UIColor yellowColor]; // TODO: make this work
+        UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
+        [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
+        [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
+        
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreen.png"]];
         
         NSArray *pathComponents = [NSArray arrayWithObjects:
                                    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
                                    @"MyAudioMemo.m4a",
                                    nil];
         NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-        NSLog(@"%f", self.pitchSlider.value);
-        self.player.pitchShift = 0.6; //self.pitchSlider.value;
+        self.player.pitchShift = pitchShiftValueButton2;
         [self.player playURL:outputFileURL];
     } else {
-        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon10.png"];
         [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
         self.progressView.progressTintColor = THEME_RED_COLOR;
         
@@ -174,22 +182,26 @@
 
 - (void) didTapPitchButton3
 {
-    NSLog(@"Tapped Button 3 -- Pitch: %f", self.player.pitchShift);
-    if (self.player.pitchShift != -0.4) {
-        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
+    CGFloat pitchShiftValueButton3 = -0.4;
+    
+    if (self.player.pitchShift != pitchShiftValueButton3) {
+        UIImage *buttonImage = [UIImage imageNamed:@"BalloonLightBlue10.png"];
         [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressTintColor = [UIColor yellowColor]; // TODO: make this work
+        UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
+        [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
+        [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
+        
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlue.png"]];
         
         NSArray *pathComponents = [NSArray arrayWithObjects:
                                    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
                                    @"MyAudioMemo.m4a",
                                    nil];
         NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-        NSLog(@"%f", self.pitchSlider.value);
-        self.player.pitchShift = -0.4; //self.pitchSlider.value;
+        self.player.pitchShift = pitchShiftValueButton3;
         [self.player playURL:outputFileURL];
     } else {
-        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
+        UIImage *buttonImage = [UIImage imageNamed:@"Balloon10.png"];
         [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
         self.progressView.progressTintColor = THEME_RED_COLOR;
         
@@ -197,33 +209,6 @@
         self.player.pitchShift = 0.0;
     }
 }
-/*
-- (void) didTapPitchButton4
-{
-    NSLog(@"Tapped Button 4 -- Pitch: %f", self.player.pitchShift);
-    if (self.player.pitchShift != -0.5) {
-        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3Yellow.png"];
-        [self.changePitchButton4 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressViewColor = [UIColor yellowColor]; // TODO: make this work
-        
-        NSArray *pathComponents = [NSArray arrayWithObjects:
-                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                                   @"MyAudioMemo.m4a",
-                                   nil];
-        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-        NSLog(@"%f", self.pitchSlider.value);
-        self.player.pitchShift = -0.5; //self.pitchSlider.value;
-        [self.player playURL:outputFileURL];
-    } else {
-        UIImage *buttonImage = [UIImage imageNamed:@"Balloon3.png"];
-        [self.changePitchButton4 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressViewColor = THEME_RED_COLOR;
-        
-        [self.player stop];
-        self.player.pitchShift = 0.0;
-    }
-}
-*/
 
 - (void) viewWillAppear:(BOOL)animated
 {

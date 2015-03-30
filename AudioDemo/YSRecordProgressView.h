@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JEProgressView.h"
 
-@interface YSRecordProgressView : UIProgressView
+@interface YSRecordProgressView : JEProgressView
 
 @property UIActivityIndicatorView* activityIndicator;
 @end
