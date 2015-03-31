@@ -25,6 +25,7 @@
 
 #define IS_BEFORE_IOS_8  ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] == NSOrderedAscending)
 #define IS_IPHONE_4_SIZE [UIScreen mainScreen].bounds.size.height == 480.0f
+#define IS_IPHONE_5_SIZE [UIScreen mainScreen].bounds.size.height == 568.0f
 #endif
 
 

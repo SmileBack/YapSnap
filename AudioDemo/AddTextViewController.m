@@ -31,13 +31,13 @@
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton1;
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton2;
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton3;
-//@property (strong, nonatomic) IBOutlet UIButton *changePitchButton4;
+@property (strong, nonatomic) IBOutlet UIButton *resetPitchButton;
 
 - (IBAction)didTapAddTextButton;
 - (IBAction)didTapPitchButton1;
 - (IBAction)didTapPitchButton2;
 - (IBAction)didTapPitchButton3;
-//- (IBAction)didTapPitchButton4;
+- (IBAction)didTapResetPitchButton;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
 
@@ -96,7 +96,7 @@
         self.changePitchButton1.hidden = NO;
     }
 }
-
+/*
 - (void) didChangePitch
 {
     NSArray *pathComponents = [NSArray arrayWithObjects:
@@ -108,105 +108,117 @@
     self.player.pitchShift = self.pitchSlider.value;
     [self.player playURL:outputFileURL];
 }
+*/
 
 - (void) didTapPitchButton1
 {
-    CGFloat pitchShiftValueButton1 = 1.0;
-    
     [UIView animateWithDuration:.8
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          self.changePitchButton2.alpha = 1;
                          self.changePitchButton3.alpha = 1;
-                         //self.changePitchButton4.alpha = 1;
+                         self.resetPitchButton.alpha = 1;
                      }
                      completion:nil];
     
-    if (self.player.pitchShift != pitchShiftValueButton1) {
-        UIImage *buttonImage = [UIImage imageNamed:@"BalloonYellow10.png"];
-        [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
-        UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
-        [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
-        [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
-        
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellow.png"]];
-        
-        NSArray *pathComponents = [NSArray arrayWithObjects:
-                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                                   @"MyAudioMemo.m4a",
-                                   nil];
-        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-        self.player.pitchShift = pitchShiftValueButton1;
-
-        [self.player playURL:outputFileURL];
+    UIImage *buttonImage = [UIImage imageNamed:@"BalloonYellow10.png"];
+    [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
+    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
+    [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    
+    if (self.isiPhone5Size) {
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone5.png"]];
+    } else if (self.isiPhone4Size) {
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone4.png"]];
     } else {
-        UIImage *buttonImage = [UIImage imageNamed:@"Balloon10.png"];
-        [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressTintColor = THEME_RED_COLOR;
-
-        [self.player stop];
-        self.player.pitchShift = 0.0;
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellow.png"]];
     }
+
+    CGFloat pitchShiftValueButton1 = 1.0; // 1000
+    [self playAudioWithPitch:pitchShiftValueButton1];
 }
 
 - (void) didTapPitchButton2
 {
-    CGFloat pitchShiftValueButton2 = 0.6;
+    NSLog(@"self.player.pitchShift BEFORE = %f", self.player.pitchShift);
     
-    if (self.player.pitchShift != pitchShiftValueButton2) {
-        UIImage *buttonImage = [UIImage imageNamed:@"BalloonGreen10.png"];
-        [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
-        UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
-        [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
-        [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
-        
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreen.png"]];
-        
-        NSArray *pathComponents = [NSArray arrayWithObjects:
-                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                                   @"MyAudioMemo.m4a",
-                                   nil];
-        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-        self.player.pitchShift = pitchShiftValueButton2;
-        [self.player playURL:outputFileURL];
+    UIImage *buttonImage = [UIImage imageNamed:@"BalloonGreen10.png"];
+    [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
+    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
+    [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    
+    if (self.isiPhone5Size) {
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone5.png"]];
+    } else if (self.isiPhone4Size) {
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone4.png"]];
     } else {
-        UIImage *buttonImage = [UIImage imageNamed:@"Balloon10.png"];
-        [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressTintColor = THEME_RED_COLOR;
-        
-        [self.player stop];
-        self.player.pitchShift = 0.0;
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreen.png"]];
     }
+    
+    CGFloat pitchShiftValueButton2 = 0.5; // 500
+    [self playAudioWithPitch:pitchShiftValueButton2];
 }
 
 - (void) didTapPitchButton3
 {
-    CGFloat pitchShiftValueButton3 = -0.4;
+    UIImage *buttonImage = [UIImage imageNamed:@"BalloonLightBlue10.png"];
+    [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
+    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
+    [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
     
-    if (self.player.pitchShift != pitchShiftValueButton3) {
-        UIImage *buttonImage = [UIImage imageNamed:@"BalloonLightBlue10.png"];
-        [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
-        UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
-        [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
-        [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
-        
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlue.png"]];
-        
-        NSArray *pathComponents = [NSArray arrayWithObjects:
-                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                                   @"MyAudioMemo.m4a",
-                                   nil];
-        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-        self.player.pitchShift = pitchShiftValueButton3;
-        [self.player playURL:outputFileURL];
+    if (self.isiPhone5Size) {
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone5.png"]];
+    } else if (self.isiPhone4Size) {
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone4.png"]];
     } else {
-        UIImage *buttonImage = [UIImage imageNamed:@"Balloon10.png"];
-        [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
-        self.progressView.progressTintColor = THEME_RED_COLOR;
-        
-        [self.player stop];
-        self.player.pitchShift = 0.0;
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlue.png"]];
+    }
+    
+    CGFloat pitchShiftValueButton3 = -0.5; // -500
+    [self playAudioWithPitch:pitchShiftValueButton3];
+}
+
+- (void) playAudioWithPitch:(CGFloat)pitch {
+    NSArray *pathComponents = [NSArray arrayWithObjects:
+                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                               @"MyAudioMemo.m4a",
+                               nil];
+    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+    self.player.pitchShift = pitch;
+    [self.player playURL:outputFileURL];
+}
+
+- (void) didTapResetPitchButton {
+    [self resetProgressViewColor];
+    self.player.pitchShift = 0;
+    
+    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
+    [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    
+    [UIView animateWithDuration:.5
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.changePitchButton2.alpha = 0;
+                         self.changePitchButton3.alpha = 0;
+                         self.resetPitchButton.alpha = 0;
+                     }
+                     completion:nil];
+}
+
+- (void) resetProgressViewColor {
+    if (IS_IPHONE_5_SIZE) {
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewRediPhone5.png"]];
+    } else if (IS_IPHONE_4_SIZE) {
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewRediPhone4.png"]];
+    } else {
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewRed.png"]];
     }
 }
 

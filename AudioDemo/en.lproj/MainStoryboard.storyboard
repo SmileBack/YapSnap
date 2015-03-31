@@ -650,7 +650,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEND YAP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-0v-8cp">
-                                <rect key="frame" x="116.5" y="32" width="87.5" height="23.5"/>
+                                <rect key="frame" x="116" y="32" width="88" height="24"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -772,6 +772,15 @@
                                     <action selector="didTapPitchButton3" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="2jD-lR-Xk1"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5B-lL-ajz" userLabel="Reset Button">
+                                <rect key="frame" x="175" y="124" width="32" height="32"/>
+                                <state key="normal" image="ResetButton3.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapResetPitchButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="mwk-N3-A4F"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -781,6 +790,7 @@
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="height" secondItem="54R-6y-Wab" secondAttribute="height" multiplier="0.0704" id="469-8N-Xfv"/>
                             <constraint firstItem="H1t-6Q-weW" firstAttribute="leading" secondItem="C8u-j8-TJl" secondAttribute="trailing" constant="18" id="4SY-q6-pM9"/>
                             <constraint firstItem="C8u-j8-TJl" firstAttribute="bottom" secondItem="Mku-hD-YTT" secondAttribute="bottom" id="9h8-Sb-QDh"/>
+                            <constraint firstItem="K5B-lL-ajz" firstAttribute="leading" secondItem="Mku-hD-YTT" secondAttribute="trailing" constant="21" id="AAb-pF-2O6"/>
                             <constraint firstAttribute="centerX" secondItem="B2R-OB-er0" secondAttribute="centerX" id="Bck-GS-k44"/>
                             <constraint firstItem="Mku-hD-YTT" firstAttribute="leading" secondItem="H1t-6Q-weW" secondAttribute="trailing" constant="19" id="JgG-CQ-jb7"/>
                             <constraint firstItem="C8u-j8-TJl" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="-7" id="L5M-Fr-zX4"/>
@@ -802,6 +812,7 @@
                             <constraint firstAttribute="centerY" secondItem="gWj-LF-pEZ" secondAttribute="centerY" id="tZe-q4-Vfa"/>
                             <constraint firstItem="EyU-Er-gqZ" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="-8" id="tsJ-Fv-uDI"/>
                             <constraint firstItem="C8u-j8-TJl" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="20" id="v6e-Nv-xCe"/>
+                            <constraint firstItem="K5B-lL-ajz" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="20" id="vI7-eG-9GC"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="B2R-OB-er0" secondAttribute="bottom" constant="77" id="vNZ-Va-hqk"/>
                             <constraint firstItem="KDf-Vb-ilr" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="11" id="whL-O6-Khy"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" id="xUK-bi-lf5"/>
@@ -820,6 +831,7 @@
                         <outlet property="flashbackImageView" destination="gWj-LF-pEZ" id="F1Y-0q-0w5"/>
                         <outlet property="pitchSlider" destination="KiZ-xJ-FAU" id="XQJ-Uw-u9W"/>
                         <outlet property="progressView" destination="ygq-ac-kFT" id="yuV-x2-Xvc"/>
+                        <outlet property="resetPitchButton" destination="K5B-lL-ajz" id="xlg-v2-TSb"/>
                         <outlet property="textView" destination="Yo4-ls-PqW" id="5he-52-51O"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="Contacts Segue" id="0bM-75-hD3"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsViewControllerSegue" id="czb-n6-hbf"/>
@@ -1502,6 +1514,7 @@ Type it here.</string>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PencilIcon2.png" width="150" height="150"/>
         <image name="RecordButtonBlueBorder10.png" width="240" height="240"/>
+        <image name="ResetButton3.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
         <image name="YapsButtonRed5.png" width="160" height="84"/>
         <image name="YellowStar.png" width="40" height="40"/>

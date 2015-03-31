@@ -73,16 +73,29 @@
 		787C84DB1A76C77D005D80D5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787C84DA1A76C77D005D80D5 /* AudioToolbox.framework */; };
 		787C84DF1A7732E4005D80D5 /* PhoneNumberChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 787C84DE1A7732E4005D80D5 /* PhoneNumberChecker.m */; };
 		787EC5E31AC9D0AD000C5539 /* JEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 787EC5E21AC9D0AD000C5539 /* JEProgressView.m */; };
-		787EC5E71AC9D4D0000C5539 /* ProgressViewYellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5E61AC9D4D0000C5539 /* ProgressViewYellow@2x.png */; };
+		787EC5E71AC9D4D0000C5539 /* ProgressViewYellowiPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5E61AC9D4D0000C5539 /* ProgressViewYellowiPhone5@2x.png */; };
 		787EC5EF1AC9EB16000C5539 /* ProgressViewYellow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5EE1AC9EB16000C5539 /* ProgressViewYellow@3x.png */; };
 		787EC5F11AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F01AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png */; };
-		787EC5F31AC9EC6A000C5539 /* ProgressViewLightBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F21AC9EC6A000C5539 /* ProgressViewLightBlue@2x.png */; };
-		787EC5F61AC9EE8C000C5539 /* ProgressViewGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F41AC9EE8C000C5539 /* ProgressViewGreen@2x.png */; };
+		787EC5F31AC9EC6A000C5539 /* ProgressViewLightBlueiPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F21AC9EC6A000C5539 /* ProgressViewLightBlueiPhone5@2x.png */; };
+		787EC5F61AC9EE8C000C5539 /* ProgressViewGreeniPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F41AC9EE8C000C5539 /* ProgressViewGreeniPhone5@2x.png */; };
 		787EC5F71AC9EE8C000C5539 /* ProgressViewGreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F51AC9EE8C000C5539 /* ProgressViewGreen@3x.png */; };
 		787EC5F91ACA0477000C5539 /* Balloon10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F81ACA0477000C5539 /* Balloon10.png */; };
 		787EC5FF1ACA068F000C5539 /* BalloonYellow10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5FE1ACA068F000C5539 /* BalloonYellow10.png */; };
 		787EC6011ACA09A1000C5539 /* BalloonLightBlue10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6001ACA09A1000C5539 /* BalloonLightBlue10.png */; };
 		787EC6031ACA09B8000C5539 /* BalloonGreen10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6021ACA09B8000C5539 /* BalloonGreen10.png */; };
+		787EC6051ACA123C000C5539 /* ProgressViewGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6041ACA123C000C5539 /* ProgressViewGreen@2x.png */; };
+		787EC6071ACA12DB000C5539 /* ProgressViewLightBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6061ACA12DB000C5539 /* ProgressViewLightBlue@2x.png */; };
+		787EC6091ACA12E7000C5539 /* ProgressViewYellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6081ACA12E7000C5539 /* ProgressViewYellow@2x.png */; };
+		787EC60B1ACA1B00000C5539 /* ProgressViewLightBlueiPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC60A1ACA1B00000C5539 /* ProgressViewLightBlueiPhone4@2x.png */; };
+		787EC60D1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC60C1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png */; };
+		787EC60F1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC60E1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png */; };
+		787EC6151ACA245E000C5539 /* ProgressViewRed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6111ACA245E000C5539 /* ProgressViewRed@3x.png */; };
+		787EC6161ACA245E000C5539 /* ProgressViewRediPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6121ACA245E000C5539 /* ProgressViewRediPhone4@2x.png */; };
+		787EC6171ACA245E000C5539 /* ProgressViewRediPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6131ACA245E000C5539 /* ProgressViewRediPhone5@2x.png */; };
+		787EC6181ACA245E000C5539 /* ProgressViewRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6141ACA245E000C5539 /* ProgressViewRed@2x.png */; };
+		787EC61A1ACA2808000C5539 /* ResetButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6191ACA2808000C5539 /* ResetButton.png */; };
+		787EC61C1ACA2907000C5539 /* ResetButton2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC61B1ACA2907000C5539 /* ResetButton2@2x.png */; };
+		787EC61E1ACA2B17000C5539 /* ResetButton3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC61D1ACA2B17000C5539 /* ResetButton3@2x.png */; };
 		7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */; };
 		7885B22E1A8DEC9900B230A0 /* SquareOutlineRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B22D1A8DEC9900B230A0 /* SquareOutlineRed.png */; };
 		78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */; };
@@ -242,16 +255,29 @@
 		787C84DE1A7732E4005D80D5 /* PhoneNumberChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumberChecker.m; sourceTree = "<group>"; };
 		787EC5E11AC9D0AD000C5539 /* JEProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JEProgressView.h; sourceTree = "<group>"; };
 		787EC5E21AC9D0AD000C5539 /* JEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JEProgressView.m; sourceTree = "<group>"; };
-		787EC5E61AC9D4D0000C5539 /* ProgressViewYellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewYellow@2x.png"; sourceTree = "<group>"; };
+		787EC5E61AC9D4D0000C5539 /* ProgressViewYellowiPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewYellowiPhone5@2x.png"; sourceTree = "<group>"; };
 		787EC5EE1AC9EB16000C5539 /* ProgressViewYellow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewYellow@3x.png"; sourceTree = "<group>"; };
 		787EC5F01AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewLightBlue@3x.png"; sourceTree = "<group>"; };
-		787EC5F21AC9EC6A000C5539 /* ProgressViewLightBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewLightBlue@2x.png"; sourceTree = "<group>"; };
-		787EC5F41AC9EE8C000C5539 /* ProgressViewGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreen@2x.png"; sourceTree = "<group>"; };
+		787EC5F21AC9EC6A000C5539 /* ProgressViewLightBlueiPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewLightBlueiPhone5@2x.png"; sourceTree = "<group>"; };
+		787EC5F41AC9EE8C000C5539 /* ProgressViewGreeniPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreeniPhone5@2x.png"; sourceTree = "<group>"; };
 		787EC5F51AC9EE8C000C5539 /* ProgressViewGreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreen@3x.png"; sourceTree = "<group>"; };
 		787EC5F81ACA0477000C5539 /* Balloon10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon10.png; sourceTree = "<group>"; };
 		787EC5FE1ACA068F000C5539 /* BalloonYellow10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BalloonYellow10.png; sourceTree = "<group>"; };
 		787EC6001ACA09A1000C5539 /* BalloonLightBlue10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BalloonLightBlue10.png; sourceTree = "<group>"; };
 		787EC6021ACA09B8000C5539 /* BalloonGreen10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BalloonGreen10.png; sourceTree = "<group>"; };
+		787EC6041ACA123C000C5539 /* ProgressViewGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreen@2x.png"; sourceTree = "<group>"; };
+		787EC6061ACA12DB000C5539 /* ProgressViewLightBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewLightBlue@2x.png"; sourceTree = "<group>"; };
+		787EC6081ACA12E7000C5539 /* ProgressViewYellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewYellow@2x.png"; sourceTree = "<group>"; };
+		787EC60A1ACA1B00000C5539 /* ProgressViewLightBlueiPhone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewLightBlueiPhone4@2x.png"; sourceTree = "<group>"; };
+		787EC60C1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewYellowiPhone4@2x.png"; sourceTree = "<group>"; };
+		787EC60E1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreeniPhone4@2x.png"; sourceTree = "<group>"; };
+		787EC6111ACA245E000C5539 /* ProgressViewRed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewRed@3x.png"; sourceTree = "<group>"; };
+		787EC6121ACA245E000C5539 /* ProgressViewRediPhone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewRediPhone4@2x.png"; sourceTree = "<group>"; };
+		787EC6131ACA245E000C5539 /* ProgressViewRediPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewRediPhone5@2x.png"; sourceTree = "<group>"; };
+		787EC6141ACA245E000C5539 /* ProgressViewRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewRed@2x.png"; sourceTree = "<group>"; };
+		787EC6191ACA2808000C5539 /* ResetButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ResetButton.png; sourceTree = "<group>"; };
+		787EC61B1ACA2907000C5539 /* ResetButton2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton2@2x.png"; sourceTree = "<group>"; };
+		787EC61D1ACA2B17000C5539 /* ResetButton3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton3@2x.png"; sourceTree = "<group>"; };
 		7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBackArrow5.png; sourceTree = "<group>"; };
 		7885B22D1A8DEC9900B230A0 /* SquareOutlineRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquareOutlineRed.png; sourceTree = "<group>"; };
 		78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
@@ -430,6 +456,9 @@
 				781996241A7B45070004C2DB /* RedCircleSmallNoBorder.png */,
 				786D91161A6EF16000177E25 /* RedRoundedSquare.png */,
 				786D91181A6EF2CB00177E25 /* RedRoundedSquareWhiteFilling.png */,
+				787EC6191ACA2808000C5539 /* ResetButton.png */,
+				787EC61B1ACA2907000C5539 /* ResetButton2@2x.png */,
+				787EC61D1ACA2B17000C5539 /* ResetButton3@2x.png */,
 				7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */,
 				7863B5DC1A99A25F00531CED /* sound1.wav */,
 				37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */,
@@ -548,6 +577,7 @@
 		787EC5EA1AC9EA3C000C5539 /* ProgressView Images */ = {
 			isa = PBXGroup;
 			children = (
+				787EC6101ACA2449000C5539 /* Red */,
 				787EC5EC1AC9EA6C000C5539 /* Green */,
 				787EC5ED1AC9EA7E000C5539 /* Light Blue */,
 				787EC5EB1AC9EA5F000C5539 /* Yellow */,
@@ -558,8 +588,10 @@
 		787EC5EB1AC9EA5F000C5539 /* Yellow */ = {
 			isa = PBXGroup;
 			children = (
-				787EC5E61AC9D4D0000C5539 /* ProgressViewYellow@2x.png */,
+				787EC60C1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png */,
+				787EC5E61AC9D4D0000C5539 /* ProgressViewYellowiPhone5@2x.png */,
 				787EC5EE1AC9EB16000C5539 /* ProgressViewYellow@3x.png */,
+				787EC6081ACA12E7000C5539 /* ProgressViewYellow@2x.png */,
 			);
 			name = Yellow;
 			sourceTree = "<group>";
@@ -567,8 +599,10 @@
 		787EC5EC1AC9EA6C000C5539 /* Green */ = {
 			isa = PBXGroup;
 			children = (
-				787EC5F41AC9EE8C000C5539 /* ProgressViewGreen@2x.png */,
+				787EC60E1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png */,
+				787EC5F41AC9EE8C000C5539 /* ProgressViewGreeniPhone5@2x.png */,
 				787EC5F51AC9EE8C000C5539 /* ProgressViewGreen@3x.png */,
+				787EC6041ACA123C000C5539 /* ProgressViewGreen@2x.png */,
 			);
 			name = Green;
 			sourceTree = "<group>";
@@ -576,10 +610,23 @@
 		787EC5ED1AC9EA7E000C5539 /* Light Blue */ = {
 			isa = PBXGroup;
 			children = (
-				787EC5F21AC9EC6A000C5539 /* ProgressViewLightBlue@2x.png */,
+				787EC60A1ACA1B00000C5539 /* ProgressViewLightBlueiPhone4@2x.png */,
+				787EC5F21AC9EC6A000C5539 /* ProgressViewLightBlueiPhone5@2x.png */,
 				787EC5F01AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png */,
+				787EC6061ACA12DB000C5539 /* ProgressViewLightBlue@2x.png */,
 			);
 			name = "Light Blue";
+			sourceTree = "<group>";
+		};
+		787EC6101ACA2449000C5539 /* Red */ = {
+			isa = PBXGroup;
+			children = (
+				787EC6121ACA245E000C5539 /* ProgressViewRediPhone4@2x.png */,
+				787EC6131ACA245E000C5539 /* ProgressViewRediPhone5@2x.png */,
+				787EC6111ACA245E000C5539 /* ProgressViewRed@3x.png */,
+				787EC6141ACA245E000C5539 /* ProgressViewRed@2x.png */,
+			);
+			name = Red;
 			sourceTree = "<group>";
 		};
 		78A5699E1A731EE700818A17 /* Categories */ = {
@@ -920,6 +967,8 @@
 				37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */,
 				78A823A41AC1E88300135369 /* YapsButtonRed5.png in Resources */,
 				78F4AF7E1AB7D7980093EC0B /* YapsButtonRed2.png in Resources */,
+				787EC6171ACA245E000C5539 /* ProgressViewRediPhone5@2x.png in Resources */,
+				787EC6091ACA12E7000C5539 /* ProgressViewYellow@2x.png in Resources */,
 				78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */,
 				F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */,
 				784047F51AB4F40800FE6D93 /* RecordButtonBlueBorder5.png in Resources */,
@@ -928,7 +977,7 @@
 				F44B0C5516DA404700E6CD88 /* Default.png in Resources */,
 				784E35E61A6339EE0029AA01 /* SpotifyModeButton.png in Resources */,
 				FC4C8E411AAE85290096F5D4 /* VoiceButton.png in Resources */,
-				787EC5E71AC9D4D0000C5539 /* ProgressViewYellow@2x.png in Resources */,
+				787EC5E71AC9D4D0000C5539 /* ProgressViewYellowiPhone5@2x.png in Resources */,
 				7803A05C1AAB648A006C43AE /* PlusButtonWhite@2x.png in Resources */,
 				78CBF3001A996E8800F30DCA /* InfoIcon5@2x.png in Resources */,
 				787EC6011ACA09A1000C5539 /* BalloonLightBlue10.png in Resources */,
@@ -936,12 +985,16 @@
 				78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
 				786D910F1A6EEA5000177E25 /* BlueArrow2.png in Resources */,
+				787EC60D1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png in Resources */,
 				78F4AF821AB7D9840093EC0B /* SquareOutlineRed2.png in Resources */,
 				787EC5EF1AC9EB16000C5539 /* ProgressViewYellow@3x.png in Resources */,
+				787EC61A1ACA2808000C5539 /* ResetButton.png in Resources */,
 				37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */,
+				787EC60B1ACA1B00000C5539 /* ProgressViewLightBlueiPhone4@2x.png in Resources */,
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
 				3753AF8B19E9A68200B6391D /* YapsButtonRed.png in Resources */,
+				787EC6071ACA12DB000C5539 /* ProgressViewLightBlue@2x.png in Resources */,
 				780005AA1A70EE69005E6CD4 /* listen_on_spotify-black-long3.png in Resources */,
 				7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */,
 				7863B5DD1A99A25F00531CED /* sound1.wav in Resources */,
@@ -955,17 +1008,21 @@
 				78A8239A1ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png in Resources */,
 				786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */,
 				37D20C2C19E4A19D008530BF /* RecordButtonRedWhiteBorder.png in Resources */,
+				787EC6161ACA245E000C5539 /* ProgressViewRediPhone4@2x.png in Resources */,
 				37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */,
 				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
+				787EC6181ACA245E000C5539 /* ProgressViewRed@2x.png in Resources */,
 				787EC5FF1ACA068F000C5539 /* BalloonYellow10.png in Resources */,
 				78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */,
 				37D413C219D21FC300021548 /* RedCircleSmall.png in Resources */,
 				78CBF2F81A99697A00F30DCA /* InfoIconWhite@2x.png in Resources */,
 				787EC5F11AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png in Resources */,
 				787EC5F71AC9EE8C000C5539 /* ProgressViewGreen@3x.png in Resources */,
+				787EC61E1ACA2B17000C5539 /* ResetButton3@2x.png in Resources */,
 				787EC5F91ACA0477000C5539 /* Balloon10.png in Resources */,
 				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */,
 				784047FE1AB4FBF600FE6D93 /* MicrophoneBlue3@2x.png in Resources */,
+				787EC61C1ACA2907000C5539 /* ResetButton2@2x.png in Resources */,
 				FC0642D71A9D65E200E3D60F /* Environments.plist in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
@@ -973,10 +1030,12 @@
 				784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */,
 				781996271A7B45CE0004C2DB /* RedCircleButton.png in Resources */,
 				781996251A7B45070004C2DB /* RedCircleSmallNoBorder.png in Resources */,
+				787EC60F1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png in Resources */,
 				782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */,
 				784048021AB4FF2C00FE6D93 /* Microphone_Red_2.png in Resources */,
+				787EC6151ACA245E000C5539 /* ProgressViewRed@3x.png in Resources */,
 				FC4C8E421AAE85290096F5D4 /* MusicButton.png in Resources */,
-				787EC5F31AC9EC6A000C5539 /* ProgressViewLightBlue@2x.png in Resources */,
+				787EC5F31AC9EC6A000C5539 /* ProgressViewLightBlueiPhone5@2x.png in Resources */,
 				786D91231A6EFBCE00177E25 /* MicrophoneWhiteSmall2@2x.png in Resources */,
 				786D91151A6EF0C800177E25 /* GrayArrow.png in Resources */,
 				7885B22E1A8DEC9900B230A0 /* SquareOutlineRed.png in Resources */,
@@ -985,8 +1044,9 @@
 				780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */,
 				78DA1F801AA1961200693015 /* AlbumImagePlaceholder.png in Resources */,
 				784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */,
+				787EC6051ACA123C000C5539 /* ProgressViewGreen@2x.png in Resources */,
 				784048001AB4FE5E00FE6D93 /* Microphone_Red.png in Resources */,
-				787EC5F61AC9EE8C000C5539 /* ProgressViewGreen@2x.png in Resources */,
+				787EC5F61AC9EE8C000C5539 /* ProgressViewGreeniPhone5@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
