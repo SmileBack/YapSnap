@@ -200,7 +200,7 @@
     [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
     [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
     
-    [UIView animateWithDuration:.5
+    [UIView animateWithDuration:.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
