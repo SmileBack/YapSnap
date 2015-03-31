@@ -200,7 +200,11 @@
                              self.progressViewRemainder.alpha = 1;
                          }
                          completion:nil];
-                
+        
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Opened Yap"];
+        [mixpanel.people increment:@"Opened Yap #" by:[NSNumber numberWithInt:1]];
+        
         [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error) {
             if (error) {
 

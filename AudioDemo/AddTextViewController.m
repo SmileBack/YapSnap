@@ -145,6 +145,9 @@
     
     self.pitchShiftValue = 1.0; // +1000
     [self playAudioWithPitch:self.pitchShiftValue];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Pitch Button"];
 }
 
 - (void) didTapPitchButton2
