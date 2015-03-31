@@ -11,9 +11,14 @@
 #import "EditFieldViewController.h"
 #import "API.h"
 
+#define LOGOUT @"logout"
+#define CLEAR_YAPS @"clear_yaps"
+
 @interface SettingsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *sections;
+@property (nonatomic, strong) NSString *alertViewString;
+
 @end
 
 @implementation SettingsViewController
@@ -58,7 +63,7 @@
 - (NSArray *) sections
 {
     if (!_sections) {
-        _sections = @[FIRST_NAME_SECTION, LAST_NAME_SECTION, EMAIL_SECTION, PHONE_NUMBER_SECTION, FEEDBACK_SECTION, LOGOUT_SECTION];
+        _sections = @[FIRST_NAME_SECTION, LAST_NAME_SECTION, EMAIL_SECTION, PHONE_NUMBER_SECTION, CLEAR_YAPS_SECTION, FEEDBACK_SECTION, LOGOUT_SECTION];
     }
     return _sections;
 }
@@ -111,11 +116,13 @@
     if (indexPath.row <= 2) { // First, Last, or Email
         [self performSegueWithIdentifier:@"Edit Field Segue" sender:section];
     } else if ([LOGOUT_SECTION isEqualToString:section]) {
-        [[[UIAlertView alloc] initWithTitle:@"Logout"
-                                    message:@"Are you sure?"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Logout"
+                                    message:@"Are you sure you want to logout?"
                                    delegate:self
                           cancelButtonTitle:@"No"
-                          otherButtonTitles:@"Yes", nil] show];
+                          otherButtonTitles:@"Yes", nil];
+        self.alertViewString = LOGOUT;
+        [alert show];
     } else if ([PHONE_NUMBER_SECTION isEqualToString:section]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Phone Number"
                                                         message:@"You cannot edit your number. If you have a new number, create a new account with that number."
@@ -128,18 +135,35 @@
     } else if ([FEEDBACK_SECTION isEqualToString:section]) {
         [self showFeedbackEmailViewControllerWithCompletion:^{
         }];
+    } else if ([CLEAR_YAPS_SECTION isEqualToString:section]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Clear All Yaps"
+                                                        message:@"Are you sure you want to clear your yaps? This includes yaps you haven't yet opened!"
+                                                       delegate:self
+                                              cancelButtonTitle:@"No"
+                                              otherButtonTitles:@"Yes", nil];
+        self.alertViewString = CLEAR_YAPS;
+        [alert show];
     }
 }
 
 #pragma mark - UIAlertViewDelegate
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
-        [[API sharedAPI] logout:^(BOOL success, NSError *error) {
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Logged Out"];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }];
+    if ([LOGOUT isEqualToString:self.alertViewString]) {
+        if (buttonIndex == 1) {
+            [[API sharedAPI] logout:^(BOOL success, NSError *error) {
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"Logged Out"];
+            }];
+            [self dismissViewControllerAnimated:YES completion:nil]; // Once logout API call is implemented on the back end, it's probably better to put this line of code in the success response of the call
+        }
+    } else if ([CLEAR_YAPS isEqualToString:self.alertViewString]) {
+        if (buttonIndex == 1) {
+            [[API sharedAPI] clearYaps:^(BOOL success, NSError *error) {
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"Cleared Yaps"];
+            }];
+        }
     }
 }
 

@@ -150,7 +150,7 @@ static NSString *CellIdentifier = @"Cell";
                                 NSMutableArray *yaps = [NSMutableArray arrayWithArray:weakSelf.yaps];
                                 [yaps replaceObjectAtIndex:i withObject:newYap];
                                 [YapsCache sharedCache].yaps = yaps;
-                                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                                //[weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
                                 break;
                             }
                         }
@@ -306,6 +306,8 @@ static NSString *CellIdentifier = @"Cell";
         } else if (!yap.wasOpened) {
             if (yap.isPending) {
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"Yap will be delivered once %@ joins",  yap.displayReceiverName];
+            } else if (yap.isSending) {
+                NSLog(@"Tapped cell with status of isSending");
             } else {
                 cell.createdTimeLabel.text = @"Your yap has been delivered";
             }

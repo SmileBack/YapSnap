@@ -188,6 +188,21 @@ static API *sharedAPI;
           }];
 }
 
+- (void) clearYaps:(SuccessOrErrorCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager PATCH:[self urlForEndpoint:@"users/self/clear_yaps"]
+       parameters:[self paramsWithDict:@{}]
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              callback(YES, nil);
+              NSLog(@"Cleared Yaps Successfully");
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              callback(NO, error);
+              NSLog(@"Error clearing yaps: %@", error);
+          }];
+}
+
 #pragma mark - Yaps
 
 - (NSArray *) sendYapBuilder:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback
@@ -318,7 +333,7 @@ static API *sharedAPI;
     [manager GET:[self urlForEndpoint:@"audio_messages"]
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//              NSLog(@"YAPS: In callback from API %@", responseObject);
+              NSLog(@"YAPS: In callback from API %@", responseObject);
               NSArray *yapDicts = responseObject; //Assuming it is an array
               NSArray *yaps = [YSYap yapsWithArray:yapDicts];
               callback(yaps, nil);
@@ -504,9 +519,6 @@ static API *sharedAPI;
               }
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              Mixpanel *mixpanel = [Mixpanel sharedInstance];
-              [mixpanel track:@"API Error - updateUserData"];
-              
               [self processFailedOperation:operation];
               callback(NO, error);
           }];

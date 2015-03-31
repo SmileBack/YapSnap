@@ -159,6 +159,8 @@
                 if (success) {
                     [self performSegueWithIdentifier:@"EnterCodeViewControllerSegue" sender:self];
                 } else {
+                    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                    [mixpanel track:@"API Error - openSession (phone number)"];
                     [[[UIAlertView alloc] initWithTitle:@"Try Again" message:@"There was an error saving your info. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
                     [self enableContinueButton]; // Adding this line a second time just in case
                 }

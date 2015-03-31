@@ -13,6 +13,7 @@
 #define LAST_NAME_SECTION @"Last Name"
 #define EMAIL_SECTION @"Email"
 #define PHONE_NUMBER_SECTION @"Phone"
+#define CLEAR_YAPS_SECTION @"Clear All Yaps"
 #define FEEDBACK_SECTION @"Send Us Feedback"
 #define LOGOUT_SECTION @"Logout"
 
