@@ -16,6 +16,7 @@
 #import "NextButton.h"
 #import "YapsViewController.h"
 #import <STKAudioPlayer.h>
+#import <AVFoundation/AVAudioSession.h>
 
 @interface AddTextViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
@@ -137,6 +138,11 @@
         [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellow.png"]];
     }
 
+    float volume = [[AVAudioSession sharedInstance] outputVolume];
+    if (volume == 0) {
+        [[YTNotifications sharedNotifications] showVolumeText:@"Turn Up The Volume!"];
+    }
+    
     self.pitchShiftValue = 1.0; // +1000
     [self playAudioWithPitch:self.pitchShiftValue];
 }
