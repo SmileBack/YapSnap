@@ -519,6 +519,9 @@ static API *sharedAPI;
               }
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              Mixpanel *mixpanel = [Mixpanel sharedInstance];
+              [mixpanel track:@"API Error - updateUserData"];
+              
               [self processFailedOperation:operation];
               callback(NO, error);
           }];
