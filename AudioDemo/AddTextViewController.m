@@ -32,6 +32,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton2;
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton3;
 @property (strong, nonatomic) IBOutlet UIButton *resetPitchButton;
+@property (nonatomic) CGFloat pitchShiftValue;
 
 - (IBAction)didTapAddTextButton;
 - (IBAction)didTapPitchButton1;
@@ -50,12 +51,6 @@
         
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Add Text Page"];
-    //self.pitchSlider.maximumValue = 1.0;
-    //self.pitchSlider.minimumValue = -1.0;
-    //self.pitchSlider.value = 0.0;
-    //[self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpInside];
-    //[self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpOutside];
-    //self.player = [STKAudioPlayer new];
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
@@ -95,6 +90,12 @@
     if ([self.yapBuilder.messageType  isEqual: @"VoiceMessage"]) {
         self.changePitchButton1.hidden = NO;
     }
+    
+    //self.pitchSlider.maximumValue = 1.0;
+    //self.pitchSlider.minimumValue = -1.0;
+    //self.pitchSlider.value = 0.0;
+    //[self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpInside];
+    //[self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpOutside];
 }
 /*
 - (void) didChangePitch
@@ -136,14 +137,12 @@
         [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellow.png"]];
     }
 
-    CGFloat pitchShiftValueButton1 = 1.0; // 1000
-    [self playAudioWithPitch:pitchShiftValueButton1];
+    self.pitchShiftValue = 1.0; // 1000
+    [self playAudioWithPitch:self.pitchShiftValue];
 }
 
 - (void) didTapPitchButton2
-{
-    NSLog(@"self.player.pitchShift BEFORE = %f", self.player.pitchShift);
-    
+{    
     UIImage *buttonImage = [UIImage imageNamed:@"BalloonGreen10.png"];
     [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
     UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
@@ -158,8 +157,8 @@
         [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreen.png"]];
     }
     
-    CGFloat pitchShiftValueButton2 = 0.5; // 500
-    [self playAudioWithPitch:pitchShiftValueButton2];
+    self.pitchShiftValue = 0.5; // 500
+    [self playAudioWithPitch:self.pitchShiftValue];
 }
 
 - (void) didTapPitchButton3
@@ -178,8 +177,8 @@
         [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlue.png"]];
     }
     
-    CGFloat pitchShiftValueButton3 = -0.5; // -500
-    [self playAudioWithPitch:pitchShiftValueButton3];
+    self.pitchShiftValue = -0.5; // -500
+    [self playAudioWithPitch:self.pitchShiftValue];
 }
 
 - (void) playAudioWithPitch:(CGFloat)pitch {
@@ -299,9 +298,12 @@
 
 
 
-- (IBAction)didTapNextButton:(UIButton *)sender {
+- (IBAction)didTapNextButton:(UIButton *)sender
+{
     self.yapBuilder.text = self.textView.text;
     self.yapBuilder.color = self.view.backgroundColor;
+    // To get pitch value in 'cent' units, multiply self.pitchShiftValue by STK_PITCHSHIFT_TRANSFORM
+    self.yapBuilder.pitchValueInCentUnits = [NSNumber numberWithFloat:(1000*self.pitchShiftValue)];
     
     if (self.yapBuilder.contacts.count > 0) {
         [self sendYap];

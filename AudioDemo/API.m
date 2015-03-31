@@ -69,8 +69,11 @@ static API *sharedAPI;
 - (NSDictionary *) paramsWithDict:(NSDictionary *)dict andYapBuilder:(YapBuilder *)yapBuilder
 {
     NSMutableDictionary *params = [self paramsWithDict:dict];
-    
     params[@"text"] = yapBuilder.text;
+    //params[@"pitch_value"] = yapBuilder.pitchValueInCentUnits; TODO: ADD THIS BACK
+    
+    NSLog(@"yapBuilder.pitchValueInCentUnits = %@", yapBuilder.pitchValueInCentUnits); // REMOVE
+    NSLog(@"params[@pitch_value] = %@", params[@"pitch_value"]); // REMOVE
     
     NSString* recipients = [[yapBuilder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
     params[@"recipients"] = recipients;

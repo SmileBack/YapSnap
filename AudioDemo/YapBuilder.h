@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSArray *contacts;
 @property (nonatomic, strong) UIColor *color;
+@property (nonatomic, strong) NSNumber *pitchValueInCentUnits;
+
 
 #pragma mark - Photo Stuff
 @property (nonatomic, strong) NSURL *image;
