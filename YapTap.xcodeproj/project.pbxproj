@@ -44,6 +44,7 @@
 		781996271A7B45CE0004C2DB /* RedCircleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 781996261A7B45CE0004C2DB /* RedCircleButton.png */; };
 		7828A8DC1A846C0C00BAA609 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7828A8DB1A846C0C00BAA609 /* MessageUI.framework */; };
 		782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */ = {isa = PBXBuildFile; fileRef = 782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */; };
+		782D133D1ACA5A8D007C8499 /* YapsButtonRedEmptyCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 782D133C1ACA5A8D007C8499 /* YapsButtonRedEmptyCenter.png */; };
 		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */; };
 		784047F51AB4F40800FE6D93 /* RecordButtonBlueBorder5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784047F41AB4F40800FE6D93 /* RecordButtonBlueBorder5.png */; };
@@ -221,6 +222,7 @@
 		781996261A7B45CE0004C2DB /* RedCircleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedCircleButton.png; sourceTree = "<group>"; };
 		7828A8DB1A846C0C00BAA609 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder10.png; sourceTree = "<group>"; };
+		782D133C1ACA5A8D007C8499 /* YapsButtonRedEmptyCenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsButtonRedEmptyCenter.png; sourceTree = "<group>"; };
 		784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSRecordProgressView.h; sourceTree = "<group>"; };
 		784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecordProgressView.m; sourceTree = "<group>"; };
 		784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetImageButton.h; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 				78CBF2F51A9960AD00F30DCA /* YellowStar.png */,
 				78F4AF7D1AB7D7980093EC0B /* YapsButtonRed2.png */,
 				78A823A31AC1E88300135369 /* YapsButtonRed5.png */,
+				782D133C1ACA5A8D007C8499 /* YapsButtonRedEmptyCenter.png */,
 				78A823991ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png */,
 				787EC5F81ACA0477000C5539 /* Balloon10.png */,
 				787EC5FE1ACA068F000C5539 /* BalloonYellow10.png */,
@@ -1018,6 +1021,7 @@
 				78CBF2F81A99697A00F30DCA /* InfoIconWhite@2x.png in Resources */,
 				787EC5F11AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png in Resources */,
 				787EC5F71AC9EE8C000C5539 /* ProgressViewGreen@3x.png in Resources */,
+				782D133D1ACA5A8D007C8499 /* YapsButtonRedEmptyCenter.png in Resources */,
 				787EC61E1ACA2B17000C5539 /* ResetButton3@2x.png in Resources */,
 				787EC5F91ACA0477000C5539 /* Balloon10.png in Resources */,
 				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */,

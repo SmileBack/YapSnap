@@ -133,7 +133,7 @@ static const float TIMER_INTERVAL = .01;
             [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
         } else if (count.description.intValue == 0) {
             NSLog(@"0 Yaps");
-            UIImage *buttonImage = [UIImage imageNamed:@"SquareOutlineRed2.png"];
+            UIImage *buttonImage = [UIImage imageNamed:@"YapsButtonRedEmptyCenter.png"];
             [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
             // Remove number from button
             [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
