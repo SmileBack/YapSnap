@@ -650,7 +650,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEND YAP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-0v-8cp">
-                                <rect key="frame" x="116" y="32" width="88" height="24"/>
+                                <rect key="frame" x="116" y="32" width="87.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -688,12 +688,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Yo4-ls-PqW">
-                                <rect key="frame" x="5" y="123" width="310" height="200"/>
+                                <rect key="frame" x="5" y="146" width="310" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="jK3-ik-ZDS"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="45"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="42"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-LF-pEZ" userLabel="Flashback Image">
@@ -799,7 +799,7 @@
                             <constraint firstItem="Yo4-ls-PqW" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" constant="5" id="UnD-gZ-hhJ"/>
                             <constraint firstItem="9XV-zO-GXP" firstAttribute="centerY" secondItem="T1S-dg-Qvf" secondAttribute="top" constant="-43" id="X0t-yl-0Ze"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="top" secondItem="54R-6y-Wab" secondAttribute="topMargin" constant="64" id="Xvf-wH-6CH"/>
-                            <constraint firstItem="Yo4-ls-PqW" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="19" id="YWI-cm-XFl"/>
+                            <constraint firstItem="Yo4-ls-PqW" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="42" id="YWI-cm-XFl"/>
                             <constraint firstItem="Mku-hD-YTT" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" constant="118" id="a6f-os-i6e"/>
                             <constraint firstItem="C8u-j8-TJl" firstAttribute="top" secondItem="H1t-6Q-weW" secondAttribute="top" id="cr4-Gj-gc6"/>
                             <constraint firstItem="P4e-0v-8cp" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="12" id="eUk-u1-McX"/>
@@ -1527,7 +1527,7 @@ Type it here.</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="AEp-MY-7pq"/>
+        <segue reference="czb-n6-hbf"/>
         <segue reference="gZs-IQ-BYb"/>
     </inferredMetricsTieBreakers>
 </document>
