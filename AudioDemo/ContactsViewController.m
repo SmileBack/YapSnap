@@ -81,7 +81,6 @@ static NSString *CellIdentifier = @"Cell";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
     self.continueButton.userInteractionEnabled = YES;
 }
 
@@ -309,11 +308,11 @@ static NSString *CellIdentifier = @"Cell";
 
 - (IBAction) didTapContinueButton
 {
-    [self disableContinueButton];
-    
+    self.continueButton.userInteractionEnabled = NO;
+
     if ([self internetIsNotReachable]) {
+        self.continueButton.userInteractionEnabled = YES;
         [self showNoInternetAlert];
-        [self enableContinueButton];
     } else {
         __weak ContactsViewController *weakSelf = self;
         
@@ -322,7 +321,6 @@ static NSString *CellIdentifier = @"Cell";
         NSArray *pendingYaps =
         [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
-                        [self enableContinueButton];
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.selectedContacts];
                             
@@ -346,6 +344,7 @@ static NSString *CellIdentifier = @"Cell";
                     }];
 
         [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
+        self.continueButton.userInteractionEnabled = YES;
     }
 }
 
@@ -357,20 +356,6 @@ static NSString *CellIdentifier = @"Cell";
         vc.pendingYaps = pendingYaps;
         vc.comingFromContactsOrAddTextPage = YES;
     }
-}
-
--(void) disableContinueButton
-{
-    self.continueButton.userInteractionEnabled = NO;
-    [self.loadingSpinner startAnimating];
-    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
-}
-
--(void) enableContinueButton
-{
-    [self.loadingSpinner stopAnimating];
-    [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
-    self.continueButton.userInteractionEnabled = YES;
 }
 
 #pragma mark - UISearchDisplayDelegate

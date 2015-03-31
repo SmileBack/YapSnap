@@ -226,6 +226,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.continueButton.userInteractionEnabled = YES; //This is here just in case
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
@@ -257,18 +258,15 @@
 
 - (void) sendYap
 {
-    [self disableContinueButton];
-    
     if ([self internetIsNotReachable]) {
+        self.continueButton.userInteractionEnabled = YES;
         [self showNoInternetAlert];
-        [self enableContinueButton];
     } else {
         __weak AddTextViewController *weakSelf = self;
         
         NSArray *pendingYaps =
         [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
-                        [self enableContinueButton];
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
                             
@@ -289,12 +287,12 @@
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                 NSLog(@"Error: %@", error);
                                 [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Yap Didn't Send!"];
-                                [self enableContinueButton]; // Adding this line a second time just in case - doesn't always get triggered above for some reason
                             });
                         }
                     }];
         NSLog(@"Sent yaps call");
         [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
+        self.continueButton.userInteractionEnabled = YES;
     }
 }
 
@@ -302,6 +300,7 @@
 
 - (IBAction)didTapNextButton:(UIButton *)sender
 {
+    self.continueButton.userInteractionEnabled = NO;
     self.yapBuilder.text = self.textView.text;
     self.yapBuilder.color = self.view.backgroundColor;
     // To get pitch value in 'cent' units, multiply self.pitchShiftValue by STK_PITCHSHIFT_TRANSFORM
@@ -311,6 +310,7 @@
         [self sendYap];
     } else {
         [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
+        self.continueButton.userInteractionEnabled = YES;
     }
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -328,22 +328,6 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Add Text Button"];
-}
-
--(void) disableContinueButton
-{
-    self.continueButton.userInteractionEnabled = NO;
-    [self.continueButton setImage:[UIImage imageNamed:@"WhiteCircle.png"] forState:UIControlStateNormal];
-    [self.loadingSpinner startAnimating];
-    NSLog(@"LOADING INDICATOR STARTED SPINNING");
-}
-
--(void) enableContinueButton
-{
-    self.continueButton.userInteractionEnabled = YES;
-    [self.loadingSpinner stopAnimating];
-    NSLog(@"LOADING INDICATOR STOPPED SPINNING");
-    [self.continueButton setImage:[UIImage imageNamed:@"ArrowWhite.png"] forState:UIControlStateNormal];
 }
 
 - (BOOL) textView: (UITextView*) textView shouldChangeTextInRange: (NSRange) range replacementText: (NSString*) text
