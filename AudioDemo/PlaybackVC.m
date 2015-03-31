@@ -65,6 +65,33 @@
     if (self.yap.yapPhotoURL && ![self.yap.yapPhotoURL isEqual: [NSNull null]]) {
         [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yap.yapPhotoURL]];
     }
+    
+    // Pitch possibilities: 1000, 500, 0, -400
+    if (self.yap.pitchValueInCentUnits.intValue > 750) {
+        if (self.isiPhone5Size) {
+            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone5.png"]];
+        } else if (self.isiPhone4Size) {
+            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone4.png"]];
+        } else {
+            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellow.png"]];
+        }
+    } else if (self.yap.pitchValueInCentUnits.intValue < 750 && self.yap.pitchValueInCentUnits.intValue > 250) {
+        if (self.isiPhone5Size) {
+            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone5.png"]];
+        } else if (self.isiPhone4Size) {
+            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone4.png"]];
+        } else {
+            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreen.png"]];
+        }
+    } else if (self.yap.pitchValueInCentUnits.intValue < -250) {
+        if (self.isiPhone5Size) {
+            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone5.png"]];
+        } else if (self.isiPhone4Size) {
+            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone4.png"]];
+        } else {
+            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlue.png"]];
+        }
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {

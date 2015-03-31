@@ -24,6 +24,7 @@
     yap.duration = dict[@"duration"];
     yap.text = dict[@"text"];
     yap.rgbColorComponents = dict[@"color_rgb"];
+    yap.pitchValueInCentUnits = dict[@"pitch_value"];
 
     yap.artist = dict[@"spotify_artist_name"];
     
@@ -93,23 +94,6 @@
     }
     
     return _displaySenderName;
-    
-    /*
-    if (!_displaySenderName) {
-        if ([self.senderName isKindOfClass:[NSNull class]] || [self.senderName isEqualToString:@""] || [self.senderName isEqual:[NSNull null]]) {
-            if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
-                NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.senderPhone];
-                if (displayName) {
-                    _displaySenderName = displayName;
-                }
-            }
-        } else {
-            _displaySenderName = self.senderName;
-        }
-    }
-    
-    return _displaySenderName;
-     */
 }
 
 + (NSArray *) pendingYapsWithYapBuilder:(YapBuilder *)yapBuilder

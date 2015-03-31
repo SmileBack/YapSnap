@@ -70,10 +70,9 @@ static API *sharedAPI;
 {
     NSMutableDictionary *params = [self paramsWithDict:dict];
     params[@"text"] = yapBuilder.text;
-    //params[@"pitch_value"] = yapBuilder.pitchValueInCentUnits; TODO: ADD THIS BACK
+    //params[@"pitch_value"] = yapBuilder.pitchValueInCentUnits;
     
-    NSLog(@"yapBuilder.pitchValueInCentUnits = %@", yapBuilder.pitchValueInCentUnits); // REMOVE
-    NSLog(@"params[@pitch_value] = %@", params[@"pitch_value"]); // REMOVE
+    NSLog(@"Pitch Value (in cent units) = %@", yapBuilder.pitchValueInCentUnits);
     
     NSString* recipients = [[yapBuilder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
     params[@"recipients"] = recipients;

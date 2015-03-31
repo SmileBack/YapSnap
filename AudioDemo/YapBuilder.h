@@ -22,7 +22,6 @@
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) NSNumber *pitchValueInCentUnits;
 
-
 #pragma mark - Photo Stuff
 @property (nonatomic, strong) NSURL *image;
 @property (nonatomic, strong) NSString *imageAwsUrl;

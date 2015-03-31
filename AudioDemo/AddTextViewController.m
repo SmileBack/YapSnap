@@ -137,7 +137,7 @@
         [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellow.png"]];
     }
 
-    self.pitchShiftValue = 1.0;
+    self.pitchShiftValue = 1.0; // +1000
     [self playAudioWithPitch:self.pitchShiftValue];
 }
 
@@ -157,7 +157,7 @@
         [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreen.png"]];
     }
     
-    self.pitchShiftValue = 0.5;
+    self.pitchShiftValue = 0.5; // +500
     [self playAudioWithPitch:self.pitchShiftValue];
 }
 
@@ -177,7 +177,7 @@
         [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlue.png"]];
     }
     
-    self.pitchShiftValue = -0.4;
+    self.pitchShiftValue = -0.4; // -400
     [self playAudioWithPitch:self.pitchShiftValue];
 }
 
