@@ -117,6 +117,10 @@
     
     self.microphone.image = [UIImage imageNamed:@"Microphone_Gray2.png"];
     
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Recorded Voice"];
+    [mixpanel.people increment:@"Recorded Voice #" by:[NSNumber numberWithInt:1]];
+    
     return YES;
 }
 

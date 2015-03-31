@@ -299,6 +299,9 @@ static const float TIMER_INTERVAL = .01;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.audioSource stopAudioCapture:self.elapsedTime];
     });
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Untapped Record Button"];
 }
 
 

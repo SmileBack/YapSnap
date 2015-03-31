@@ -134,6 +134,10 @@
 
 - (void) search:(NSString *)search
 {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Searched Songs"];
+    [mixpanel.people increment:@"Searched Songs #" by:[NSNumber numberWithInt:1]];
+    
     self.songs = nil;
     [self.carousel reloadData];
     self.musicIcon.hidden = YES;
@@ -165,7 +169,6 @@
             } else {
                 NSLog(@"Error Returning Songs %@", error);
                 [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong! Try Again."];
-                Mixpanel *mixpanel = [Mixpanel sharedInstance];
                 [mixpanel track:@"Spotify Error - search (other)"];
             }
         }
@@ -425,7 +428,9 @@
             } else {
                 [self.player play:song.previewURL];
             }
-
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Played a Song"];
+            [mixpanel.people increment:@"Played a Song #" by:[NSNumber numberWithInt:1]];
         }
         return YES;
     }

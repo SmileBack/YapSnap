@@ -59,6 +59,9 @@
 
 - (void) openInSpotify
 {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Opened Song in Spotify"];
+    
     NSString *url = [NSString stringWithFormat:@"spotify://track/%@", self.spotifyID];
     BOOL success = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     if (!success) {

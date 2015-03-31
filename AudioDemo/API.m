@@ -252,6 +252,10 @@ static API *sharedAPI;
            parameters:params
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
                   NSLog(@"yaps call finished: %@", responseObject);
+                  Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                  [mixpanel track:@"Sent Yap - Voice"];
+                  [mixpanel.people increment:@"Sent Yap - Voice #" by:[NSNumber numberWithInt:1]];
+                  
                   if ([responseObject isKindOfClass:[NSArray class]]) {
                       NSArray *yapDicts = responseObject;
                       NSArray *yaps = [YSYap yapsWithArray:yapDicts];
@@ -289,6 +293,10 @@ static API *sharedAPI;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Sent Yap - Song"];
+        [mixpanel.people increment:@"Sent Yap - Song #" by:[NSNumber numberWithInt:1]];
+        
         NSArray *yapDicts = responseObject;
         NSArray *yaps = [YSYap yapsWithArray:yapDicts];
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENT object:yaps];

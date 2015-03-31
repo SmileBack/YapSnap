@@ -118,6 +118,7 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Opened App"];
+    [mixpanel.people increment:@"Opened App #" by:[NSNumber numberWithInt:1]];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
