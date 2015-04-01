@@ -38,6 +38,13 @@
     
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
+    
+    if ([self.yap.type isEqual:@"VoiceMessage"]) {
+        // To get pitch value in pitchShift unit, divide self.yap.pitchValueInCentUnits by STK_PITCHSHIFT_TRANSFORM
+        self.player.pitchShift = self.yap.pitchValueInCentUnits.floatValue/1000;
+        NSLog(@"Pitch Shift: %f", self.player.pitchShift);
+    }
+
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
 
     NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];

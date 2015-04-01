@@ -467,6 +467,12 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
+- (IBAction)didTapSettingsButton
+{
+    self.settingsButton.enabled = NO;
+    [self performSegueWithIdentifier:@"Settings Segue" sender:nil];
+}
+
 #pragma mark - Image Getters
 - (UIImage *) blueArrowEmpty
 {
@@ -487,7 +493,7 @@ static NSString *CellIdentifier = @"Cell";
 - (UIImage *) redSquareEmpty
 {
     if (!_redSquareEmpty) {
-        _redSquareEmpty = [UIImage imageNamed:@"RedRoundedSquareWhiteFilling.png"];
+        _redSquareEmpty = [UIImage imageNamed:@"YapIconOpenedReceived.png"];
     }
     return _redSquareEmpty;
 }
@@ -495,15 +501,9 @@ static NSString *CellIdentifier = @"Cell";
 - (UIImage *) redSquareFull
 {
     if (!_redSquareFull) {
-        _redSquareFull = [UIImage imageNamed:@"RedRoundedSquare.png"];
+        _redSquareFull = [UIImage imageNamed:@"YapIconUnopenedReceived.png"];
     }
     return _redSquareFull;
-}
-
-- (IBAction)didTapSettingsButton
-{
-    self.settingsButton.enabled = NO;
-    [self performSegueWithIdentifier:@"Settings Segue" sender:nil];
 }
 
 @end
