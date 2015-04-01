@@ -127,7 +127,7 @@
         else {
             NSLog(@"Microphone permission denied");
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mic Permission Disabled"
-                                                            message:@"You disabled mic permission when you registered. To send a voice yap, go to your phone's Settings, click Privacy, and then Microphone."
+                                                            message:@"You disabled mic permission. To send a voice yap, go to your phone's Settings, click Privacy, and enable Microphone."
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles: nil];

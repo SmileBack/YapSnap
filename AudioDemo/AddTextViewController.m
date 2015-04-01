@@ -139,7 +139,7 @@
     }
 
     float volume = [[AVAudioSession sharedInstance] outputVolume];
-    if (volume == 0) {
+    if (volume <= 0.25) {
         [[YTNotifications sharedNotifications] showVolumeText:@"Turn Up The Volume!"];
     }
     

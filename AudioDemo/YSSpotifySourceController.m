@@ -418,7 +418,8 @@
             });
         } else {
             float volume = [[AVAudioSession sharedInstance] outputVolume];
-            if (volume == 0) {
+            NSLog(@"Volume: %f", volume);
+            if (volume <= 0.125) {
                 [[YTNotifications sharedNotifications] showVolumeText:@"Turn Up The Volume!"];
             }
             NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
