@@ -10,6 +10,7 @@
 #import "YSUser.h"
 #import "EditFieldViewController.h"
 #import "API.h"
+#import "YapsCache.h"
 
 #define LOGOUT @"logout"
 #define CLEAR_YAPS @"clear_yaps"
@@ -160,8 +161,21 @@
     } else if ([CLEAR_YAPS isEqualToString:self.alertViewString]) {
         if (buttonIndex == 1) {
             [[API sharedAPI] clearYaps:^(BOOL success, NSError *error) {
-                Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                [mixpanel track:@"Cleared Yaps"];
+                if (success) {
+                    NSLog(@"Cleared yaps successfully");
+                    [[YapsCache sharedCache] loadYapsWithCallback:nil];
+                    
+                    double delay = .5;
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [[YTNotifications sharedNotifications] showNotificationText:@"Yaps Have Been Cleared!"];
+                    });
+
+                    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                    [mixpanel track:@"Cleared Yaps"];
+                } else {
+                    NSLog(@"Error clearing yaps: %@", error);
+                }
+                
             }];
         }
     }

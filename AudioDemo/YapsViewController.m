@@ -369,6 +369,8 @@ static NSString *CellIdentifier = @"Cell";
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.yaps.count <= indexPath.row) { return NO; }
+    
     YSYap *yap = self.yaps[indexPath.row];
     
     if (yap.receivedByCurrentUser) {
@@ -380,6 +382,8 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.yaps.count <= indexPath.row) { return; }
+
     YSYap *yap = self.yaps[indexPath.row];
         
     if (yap.receivedByCurrentUser) {
