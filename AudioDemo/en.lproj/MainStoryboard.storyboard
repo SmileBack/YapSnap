@@ -865,14 +865,14 @@
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S8N-yP-ZE0" id="A8d-hh-0Fb">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDh-aC-ePB">
+                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDh-aC-ePB">
                                                     <rect key="frame" x="57" y="26" width="180" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="created" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-IT-vWn">
+                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="created" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-IT-vWn">
                                                     <rect key="frame" x="57" y="46" width="255" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -915,16 +915,26 @@
                                                         <constraint firstAttribute="height" constant="27" id="nbl-Y6-QjQ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hRV-v1-F3T">
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hRV-v1-F3T">
                                                     <rect key="frame" x="15" y="35" width="20" height="20"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="RDh-aC-ePB" secondAttribute="bottom" constant="34.5" id="3mT-aw-7E8"/>
+                                                <constraint firstItem="OzR-IT-vWn" firstAttribute="top" secondItem="A8d-hh-0Fb" secondAttribute="topMargin" constant="38" id="5bH-xD-at9"/>
+                                                <constraint firstItem="OzR-IT-vWn" firstAttribute="trailing" secondItem="6Ih-GO-vgw" secondAttribute="trailing" id="C41-Qs-ZBt"/>
+                                                <constraint firstItem="6Ih-GO-vgw" firstAttribute="leading" secondItem="RDh-aC-ePB" secondAttribute="trailing" constant="1" id="FPx-ZB-bBx"/>
                                                 <constraint firstItem="AyM-nu-slZ" firstAttribute="leading" secondItem="A8d-hh-0Fb" secondAttribute="leading" constant="12" id="Kx5-RC-Gnb"/>
                                                 <constraint firstAttribute="centerY" secondItem="AyM-nu-slZ" secondAttribute="centerY" id="ONr-Py-WC2"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="OzR-IT-vWn" secondAttribute="bottom" constant="14.5" id="Pq6-f9-4LK"/>
                                                 <constraint firstAttribute="trailing" secondItem="6Ih-GO-vgw" secondAttribute="trailing" constant="8" id="Ttl-TV-1aX"/>
+                                                <constraint firstItem="RDh-aC-ePB" firstAttribute="top" secondItem="A8d-hh-0Fb" secondAttribute="topMargin" constant="18" id="UA3-3m-H4g"/>
+                                                <constraint firstItem="RDh-aC-ePB" firstAttribute="leading" secondItem="AyM-nu-slZ" secondAttribute="trailing" constant="18" id="X71-J1-YE4"/>
+                                                <constraint firstItem="hRV-v1-F3T" firstAttribute="centerX" secondItem="AyM-nu-slZ" secondAttribute="centerX" id="ceE-s3-7Uj"/>
+                                                <constraint firstItem="hRV-v1-F3T" firstAttribute="centerY" secondItem="6Ih-GO-vgw" secondAttribute="centerY" id="nSF-Tl-Ods"/>
                                                 <constraint firstAttribute="centerY" secondItem="6Ih-GO-vgw" secondAttribute="centerY" id="wkW-dT-q5D"/>
+                                                <constraint firstItem="OzR-IT-vWn" firstAttribute="leading" secondItem="RDh-aC-ePB" secondAttribute="leading" id="znY-I1-p0E"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -946,8 +956,10 @@
                             <view hidden="YES" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrU-oT-SXF">
                                 <rect key="frame" x="0.0" y="447" width="320" height="57"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Push notifications for YapTap are disabled in your phone's settings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQC-FA-zIG">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQC-FA-zIG">
                                         <rect key="frame" x="30" y="9" width="260" height="40"/>
+                                        <string key="text">Push notifications for YapTap are disabled 
+in your phone's settings</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -956,6 +968,10 @@
                                 <color key="backgroundColor" red="1" green="0.1647058824" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="AyZ-cb-dEs"/>
+                                    <constraint firstItem="eQC-FA-zIG" firstAttribute="top" secondItem="zrU-oT-SXF" secondAttribute="top" constant="9" id="Cjw-bb-PZV"/>
+                                    <constraint firstItem="eQC-FA-zIG" firstAttribute="leading" secondItem="zrU-oT-SXF" secondAttribute="leading" constant="30" id="GJn-jE-A81"/>
+                                    <constraint firstItem="eQC-FA-zIG" firstAttribute="bottom" secondItem="zrU-oT-SXF" secondAttribute="bottomMargin" id="HR0-l5-P8z"/>
+                                    <constraint firstItem="eQC-FA-zIG" firstAttribute="centerX" secondItem="zrU-oT-SXF" secondAttribute="centerX" id="gSC-rc-gDR"/>
                                 </constraints>
                             </view>
                         </subviews>

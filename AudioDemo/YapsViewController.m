@@ -477,7 +477,7 @@ static NSString *CellIdentifier = @"Cell";
 - (UIImage *) blueArrowEmpty
 {
     if (!_blueArrowEmpty) {
-        _blueArrowEmpty = [UIImage imageNamed:@"BlueArrowWhiteFilling.png"];
+        _blueArrowEmpty = [UIImage imageNamed:@"YapIconOpenedSent3.png"];
     }
     return _blueArrowEmpty;
 }
@@ -485,7 +485,7 @@ static NSString *CellIdentifier = @"Cell";
 - (UIImage *) blueArrowFull
 {
     if (!_blueArrowFull) {
-        _blueArrowFull = [UIImage imageNamed:@"BlueArrow2.png"];
+        _blueArrowFull = [UIImage imageNamed:@"YapIconUnopenedSent.png"];
     }
     return _blueArrowFull;
 }
