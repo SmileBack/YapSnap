@@ -45,7 +45,7 @@ static const float TIMER_INTERVAL = .01;
                                                                             action:nil];
     self.micModeButton.reverseImageOffset = YES;
     self.spotifyModeButton.image = [UIImage imageNamed:@"MusicIconBlue3"];
-    self.micModeButton.image = [UIImage imageNamed:@"MicrophoneBlue3"];
+    self.micModeButton.image = [UIImage imageNamed:@"MicrophoneBlue40"];
     [self.recordButton setBackgroundImage:[UIImage imageNamed:@"RecordButtonBlueBorder10Pressed.png"] forState:UIControlStateHighlighted];
     
     self.recordProgressView.progress = 0;
@@ -133,15 +133,15 @@ static const float TIMER_INTERVAL = .01;
             [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
         } else if (count.description.intValue == 0) {
             NSLog(@"0 Yaps");
-            UIImage *buttonImage = [UIImage imageNamed:@"YapsButtonRedEmptyCenter.png"];
+            UIImage *buttonImage = [UIImage imageNamed:@"YapsButtonNoYaps.png"];
             [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
             // Remove number from button
             [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
         } else {
-            UIImage *buttonImage = [UIImage imageNamed:@"YapsButtonRed5.png"];
+            UIImage *buttonImage = [UIImage imageNamed:@"YapsButton.png"];
             [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
             // Add number to button
-            [self.yapsPageButton setTitle:count.description forState:UIControlStateNormal];
+            //[self.yapsPageButton setTitle:count.description forState:UIControlStateNormal];
         }
     }];
 }

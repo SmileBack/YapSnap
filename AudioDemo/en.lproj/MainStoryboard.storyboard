@@ -101,15 +101,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7q-Ko-Que" userLabel="Yaps Button">
-                                <rect key="frame" x="260" y="20" width="80" height="42"/>
+                                <rect key="frame" x="258" y="20" width="80" height="42"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="0TY-9z-AcA"/>
                                     <constraint firstAttribute="width" constant="80" id="bJG-qI-eOv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" backgroundImage="YapsButtonRed5.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="YapsButtonRed520.png">
+                                    <color key="titleColor" red="1" green="0.1647058824" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -163,9 +163,6 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4ph-zB-TDP">
-                                <rect key="frame" x="289" y="31" width="20" height="20"/>
-                            </activityIndicatorView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCz-SL-MJs">
                                 <rect key="frame" x="244" y="453" width="46" height="30"/>
                                 <state key="normal" title="Play">
@@ -194,12 +191,9 @@
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="top" secondItem="Tf8-UJ-WxH" secondAttribute="bottom" constant="11" id="ERA-DM-T7m"/>
                             <constraint firstItem="dje-2i-9YC" firstAttribute="width" secondItem="dI5-ha-IW9" secondAttribute="width" id="EYU-6r-O8c"/>
                             <constraint firstAttribute="centerX" secondItem="Dwb-eQ-GX5" secondAttribute="centerX" id="G7R-LP-YV5"/>
-                            <constraint firstAttribute="trailing" secondItem="T7q-Ko-Que" secondAttribute="trailing" constant="-20" id="M2d-1a-E2j"/>
-                            <constraint firstItem="4ph-zB-TDP" firstAttribute="centerX" secondItem="T7q-Ko-Que" secondAttribute="centerX" constant="-1" id="Ml7-7n-YNi"/>
-                            <constraint firstItem="4ph-zB-TDP" firstAttribute="centerY" secondItem="T7q-Ko-Que" secondAttribute="centerY" id="RGg-EW-Mvi"/>
+                            <constraint firstAttribute="trailing" secondItem="T7q-Ko-Que" secondAttribute="trailing" constant="-18" id="M2d-1a-E2j"/>
                             <constraint firstAttribute="trailing" secondItem="dI5-ha-IW9" secondAttribute="trailing" id="VfU-K3-972"/>
                             <constraint firstAttribute="bottom" secondItem="dje-2i-9YC" secondAttribute="bottom" id="ahe-hk-Ft9"/>
-                            <constraint firstItem="4ph-zB-TDP" firstAttribute="trailing" secondItem="T7q-Ko-Que" secondAttribute="trailing" constant="-31" id="cJN-DK-ujf"/>
                             <constraint firstItem="1fX-iU-owr" firstAttribute="leading" secondItem="Tf8-UJ-WxH" secondAttribute="leading" id="cmh-CB-p1A"/>
                             <constraint firstItem="1fX-iU-owr" firstAttribute="height" secondItem="3" secondAttribute="height" multiplier="0.0704" id="e55-cV-CWF"/>
                             <constraint firstAttribute="trailing" secondItem="Tf8-UJ-WxH" secondAttribute="trailing" id="fII-wK-0MU"/>
@@ -221,7 +215,6 @@
                         <outlet property="recordProgressView" destination="1fX-iU-owr" id="7zx-v4-F5E"/>
                         <outlet property="spotifyModeButton" destination="dje-2i-9YC" id="xRf-Q6-xxF"/>
                         <outlet property="topLeftButton" destination="yjE-ev-SsG" id="D5w-gs-u5p"/>
-                        <outlet property="unopenedYapsCountSpinner" destination="4ph-zB-TDP" id="IeK-yW-51s"/>
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="AEp-MY-7pq"/>
                         <segue destination="j1Z-Ou-SMe" kind="custom" identifier="Prepare Yap For Text Segue" customClass="NoAnimationPushSegue" id="nBD-Sc-cVG"/>
@@ -908,11 +901,11 @@
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AyM-nu-slZ" userLabel="Leading Image">
-                                                    <rect key="frame" x="12" y="31" width="27" height="27"/>
+                                                    <rect key="frame" x="12" y="28" width="27" height="33"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="27" id="6ut-BX-kZh"/>
-                                                        <constraint firstAttribute="height" constant="27" id="nbl-Y6-QjQ"/>
+                                                        <constraint firstAttribute="height" constant="33" id="nbl-Y6-QjQ"/>
                                                     </constraints>
                                                 </imageView>
                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hRV-v1-F3T">
@@ -987,7 +980,7 @@ in your phone's settings</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vaK-d3-AtD">
-                        <barButtonItem key="leftBarButtonItem" image="MicrophoneWhiteSmall2.png" id="B8h-I6-JOI">
+                        <barButtonItem key="leftBarButtonItem" image="MicrophoneWhite30.png" id="B8h-I6-JOI">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="didTapGoToAudioCaptureButton" destination="Vua-bX-Wl1" id="bhX-gA-Rs0"/>
@@ -1527,14 +1520,14 @@ Type it here.</string>
         <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
-        <image name="MicrophoneWhiteSmall2.png" width="17" height="30"/>
+        <image name="MicrophoneWhite30.png" width="32" height="32"/>
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PencilIcon2.png" width="150" height="150"/>
         <image name="RecordButtonBlueBorder10.png" width="240" height="240"/>
         <image name="ResetButton3.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
-        <image name="YapsButtonRed5.png" width="160" height="84"/>
+        <image name="YapsButtonRed520.png" width="160" height="84"/>
         <image name="YellowStar.png" width="40" height="40"/>
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>
     </resources>

@@ -493,7 +493,7 @@ static NSString *CellIdentifier = @"Cell";
 - (UIImage *) redSquareEmpty
 {
     if (!_redSquareEmpty) {
-        _redSquareEmpty = [UIImage imageNamed:@"YapIconOpenedReceived.png"];
+        _redSquareEmpty = [UIImage imageNamed:@"YapsIconReceivedOpened.png"];
     }
     return _redSquareEmpty;
 }
@@ -501,7 +501,7 @@ static NSString *CellIdentifier = @"Cell";
 - (UIImage *) redSquareFull
 {
     if (!_redSquareFull) {
-        _redSquareFull = [UIImage imageNamed:@"YapIconUnopenedReceived.png"];
+        _redSquareFull = [UIImage imageNamed:@"YapsIconReceivedUnopened2.png"];
     }
     return _redSquareFull;
 }
