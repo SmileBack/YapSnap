@@ -138,12 +138,12 @@ static const float TIMER_INTERVAL = .01;
             // Remove number from button
             [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
         } else {
-            UIImage *buttonImage = [UIImage imageNamed:@"YapsButton3.png"];
+            UIImage *buttonImage = [UIImage imageNamed:@"YapsButton100.png"];
             [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
             [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateHighlighted];
 
             // Add number to button
-            [self.yapsPageButton setTitle:@"3"/*count.description*/ forState:UIControlStateNormal];
+            [self.yapsPageButton setTitle:count.description forState:UIControlStateNormal];
         }
     }];
 }

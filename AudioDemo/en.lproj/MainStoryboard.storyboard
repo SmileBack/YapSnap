@@ -107,8 +107,8 @@
                                     <constraint firstAttribute="height" constant="42" id="0TY-9z-AcA"/>
                                     <constraint firstAttribute="width" constant="80" id="bJG-qI-eOv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
-                                <state key="normal" backgroundImage="YapsButton3.png">
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
+                                <state key="normal" backgroundImage="YapsButtonNoYaps.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1530,7 +1530,7 @@ Type it here.</string>
         <image name="RecordButtonBlueBorder10.png" width="240" height="240"/>
         <image name="ResetButton3.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
-        <image name="YapsButton3.png" width="160" height="84"/>
+        <image name="YapsButtonNoYaps.png" width="160" height="84"/>
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
