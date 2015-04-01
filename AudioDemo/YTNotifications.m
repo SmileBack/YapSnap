@@ -74,4 +74,16 @@ static YTNotifications *_sharedNotifications;
     [CRToastManager showNotificationWithOptions:options completionBlock:nil];
 }
 
+- (void) showModeText:(NSString *)text
+{
+    NSDictionary *options = @{
+                              kCRToastTextKey: text,
+                              kCRToastFontKey: [UIFont fontWithName:@"Futura-Medium" size:18],
+                              kCRToastTimeIntervalKey: @.8,
+                              kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
+                              };
+    
+    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
+}
+
 @end

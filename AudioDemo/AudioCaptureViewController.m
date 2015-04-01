@@ -365,6 +365,12 @@ static const float TIMER_INTERVAL = .01;
         self.spotifyModeButton.alpha = 1;
         [self flipController:self.audioSource to:spotifySource];
     }
+    
+    if (!self.didTapMusicModeButtonForFirstTime) {
+        [[YTNotifications sharedNotifications] showModeText:@"Music Mode"];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
 }
 
 - (IBAction)micModeButtonPressed:(UIButton *)sender
@@ -375,6 +381,12 @@ static const float TIMER_INTERVAL = .01;
         self.spotifyModeButton.alpha = .2;
         [self flipController:self.audioSource to:micSource];
     }
+    
+    if (!self.didTapMicModeButtonForFirstTime) {
+        [[YTNotifications sharedNotifications] showModeText:@"Mic Mode"];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
 }
 
 - (void) flipController:(UIViewController *)from to:(YSAudioSourceController *)to
@@ -396,6 +408,16 @@ static const float TIMER_INTERVAL = .01;
                                 [from removeFromParentViewController];
                                 weakSelf.audioSource = to;
                             }];
+}
+
+- (BOOL) didTapMicModeButtonForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
+}
+
+- (BOOL) didTapMusicModeButtonForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
 }
 
 
