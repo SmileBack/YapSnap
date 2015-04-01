@@ -124,9 +124,9 @@
                      }
                      completion:nil];
     
-    UIImage *buttonImage = [UIImage imageNamed:@"BalloonYellow10.png"];
+    UIImage *buttonImage = [UIImage imageNamed:@"BalloonYellow20.png"];
     [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
-    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
+    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
     [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
     [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
     
@@ -152,9 +152,9 @@
 
 - (void) didTapPitchButton2
 {    
-    UIImage *buttonImage = [UIImage imageNamed:@"BalloonGreen10.png"];
+    UIImage *buttonImage = [UIImage imageNamed:@"BalloonGreen20.png"];
     [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
-    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
+    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
     [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
     [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
     
@@ -172,9 +172,9 @@
 
 - (void) didTapPitchButton3
 {
-    UIImage *buttonImage = [UIImage imageNamed:@"BalloonLightBlue10.png"];
+    UIImage *buttonImage = [UIImage imageNamed:@"BalloonLightBlue20.png"];
     [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
-    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
+    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
     [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
     [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
     
@@ -204,7 +204,7 @@
     [self resetProgressViewColor];
     self.player.pitchShift = 0;
     
-    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon10.png"];
+    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
     [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
     [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
     [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
