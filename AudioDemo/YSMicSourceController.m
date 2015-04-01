@@ -101,25 +101,39 @@
 #pragma mark - Public API Methods
 - (BOOL) startAudioCapture
 {
-    [self playMicNotificationSound];
-
-    // Stop the audio player before recording
-    if (self.player.playing) {
-        [self.player stop];
-    }
-
-    [self.recorder record];
-
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    [session setActive:YES error:nil];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
-    
-    self.microphone.image = [UIImage imageNamed:@"Microphone_Gray2.png"];
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Recorded Voice"];
-    [mixpanel.people increment:@"Recorded Voice #" by:[NSNumber numberWithInt:1]];
+    [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+        if (granted) {
+            NSLog(@"Microphone permission granted");
+            [self playMicNotificationSound];
+            
+            // Stop the audio player before recording
+            if (self.player.playing) {
+                [self.player stop];
+            }
+            
+            [self.recorder record];
+            
+            AVAudioSession *session = [AVAudioSession sharedInstance];
+            [session setActive:YES error:nil];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
+            
+            self.microphone.image = [UIImage imageNamed:@"Microphone_Gray2.png"];
+            
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Recorded Voice"];
+            [mixpanel.people increment:@"Recorded Voice #" by:[NSNumber numberWithInt:1]];
+        }
+        else {
+            NSLog(@"Microphone permission denied");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mic Permission Disabled"
+                                                            message:@"You disabled mic permission when you registered. To send a voice yap, go to your phone's Settings, click Privacy, and then Microphone."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles: nil];
+            [alert show];
+        }
+    }];
     
     return YES;
 }
