@@ -107,9 +107,9 @@
                                     <constraint firstAttribute="height" constant="42" id="0TY-9z-AcA"/>
                                     <constraint firstAttribute="width" constant="80" id="bJG-qI-eOv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" backgroundImage="YapsButtonRed520.png">
-                                    <color key="titleColor" red="1" green="0.1647058824" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                <state key="normal" backgroundImage="YapsButton3.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -525,13 +525,13 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="YellowStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="hns-Qz-Akp" userLabel="Image 1">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinkStar1.png" translatesAutoresizingMaskIntoConstraints="NO" id="hns-Qz-Akp" userLabel="Image 1">
                                                     <rect key="frame" x="16" y="33" width="20" height="20"/>
                                                 </imageView>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="YellowStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="4nE-gj-7Sm" userLabel="Image 2">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinkStar2.png" translatesAutoresizingMaskIntoConstraints="NO" id="4nE-gj-7Sm" userLabel="Image 2">
                                                     <rect key="frame" x="16" y="54" width="20" height="20"/>
                                                 </imageView>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="YellowStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="2ea-7L-q0v" userLabel="Image 3">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinkStar3.png" translatesAutoresizingMaskIntoConstraints="NO" id="2ea-7L-q0v" userLabel="Image 3">
                                                     <rect key="frame" x="16" y="75" width="20" height="20"/>
                                                 </imageView>
                                             </subviews>
@@ -1524,11 +1524,13 @@ Type it here.</string>
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PencilIcon2.png" width="150" height="150"/>
+        <image name="PinkStar1.png" width="40" height="40"/>
+        <image name="PinkStar2.png" width="40" height="40"/>
+        <image name="PinkStar3.png" width="40" height="40"/>
         <image name="RecordButtonBlueBorder10.png" width="240" height="240"/>
         <image name="ResetButton3.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
-        <image name="YapsButtonRed520.png" width="160" height="84"/>
-        <image name="YellowStar.png" width="40" height="40"/>
+        <image name="YapsButton3.png" width="160" height="84"/>
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

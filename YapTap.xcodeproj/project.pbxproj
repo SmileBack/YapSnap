@@ -97,6 +97,12 @@
 		787EC61C1ACA2907000C5539 /* ResetButton2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC61B1ACA2907000C5539 /* ResetButton2@2x.png */; };
 		787EC61E1ACA2B17000C5539 /* ResetButton3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC61D1ACA2B17000C5539 /* ResetButton3@2x.png */; };
 		7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */; };
+		78A2E84F1ACC65B000B5A404 /* PinkStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E84E1ACC65B000B5A404 /* PinkStar.png */; };
+		78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8511ACC671600B5A404 /* PinkStar1.png */; };
+		78A2E8551ACC671600B5A404 /* PinkStar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8521ACC671600B5A404 /* PinkStar2.png */; };
+		78A2E8561ACC671600B5A404 /* PinkStar3.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8531ACC671600B5A404 /* PinkStar3.png */; };
+		78A2E8581ACC69D300B5A404 /* YapsButton2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8571ACC69D300B5A404 /* YapsButton2.png */; };
+		78A2E85A1ACC6A4100B5A404 /* YapsButton3.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8591ACC6A4100B5A404 /* YapsButton3.png */; };
 		78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */; };
 		78A569A31A73227200818A17 /* YSColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A569A21A73227200818A17 /* YSColorPicker.m */; };
 		78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */; };
@@ -267,6 +273,12 @@
 		787EC61B1ACA2907000C5539 /* ResetButton2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton2@2x.png"; sourceTree = "<group>"; };
 		787EC61D1ACA2B17000C5539 /* ResetButton3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton3@2x.png"; sourceTree = "<group>"; };
 		7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBackArrow5.png; sourceTree = "<group>"; };
+		78A2E84E1ACC65B000B5A404 /* PinkStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar.png; sourceTree = "<group>"; };
+		78A2E8511ACC671600B5A404 /* PinkStar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar1.png; sourceTree = "<group>"; };
+		78A2E8521ACC671600B5A404 /* PinkStar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar2.png; sourceTree = "<group>"; };
+		78A2E8531ACC671600B5A404 /* PinkStar3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar3.png; sourceTree = "<group>"; };
+		78A2E8571ACC69D300B5A404 /* YapsButton2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsButton2.png; sourceTree = "<group>"; };
+		78A2E8591ACC6A4100B5A404 /* YapsButton3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsButton3.png; sourceTree = "<group>"; };
 		78A5699F1A731FF300818A17 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
 		78A569A11A73200900818A17 /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
 		78A569A21A73227200818A17 /* YSColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSColorPicker.m; sourceTree = "<group>"; };
@@ -436,8 +448,8 @@
 				37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */,
 				7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */,
 				78DA1F7D1AA18D4900693015 /* WhiteCircle.png */,
-				78CBF2F51A9960AD00F30DCA /* YellowStar.png */,
 				78A823991ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png */,
+				78A2E8501ACC66FE00B5A404 /* Stars */,
 				782D136C1ACC3B97007C8499 /* YapsButton */,
 				782D13451ACB8350007C8499 /* Yap Page Icons */,
 				782D133E1ACB49D9007C8499 /* Balloons */,
@@ -527,6 +539,8 @@
 			children = (
 				782D13971ACC59E6007C8499 /* YapsButtonNoYaps.png */,
 				782D139D1ACC5D54007C8499 /* YapsButton.png */,
+				78A2E8571ACC69D300B5A404 /* YapsButton2.png */,
+				78A2E8591ACC6A4100B5A404 /* YapsButton3.png */,
 			);
 			name = YapsButton;
 			sourceTree = "<group>";
@@ -620,6 +634,18 @@
 				787EC6141ACA245E000C5539 /* ProgressViewRed@2x.png */,
 			);
 			name = Red;
+			sourceTree = "<group>";
+		};
+		78A2E8501ACC66FE00B5A404 /* Stars */ = {
+			isa = PBXGroup;
+			children = (
+				78CBF2F51A9960AD00F30DCA /* YellowStar.png */,
+				78A2E84E1ACC65B000B5A404 /* PinkStar.png */,
+				78A2E8511ACC671600B5A404 /* PinkStar1.png */,
+				78A2E8521ACC671600B5A404 /* PinkStar2.png */,
+				78A2E8531ACC671600B5A404 /* PinkStar3.png */,
+			);
+			name = Stars;
 			sourceTree = "<group>";
 		};
 		78A5699E1A731EE700818A17 /* Categories */ = {
@@ -950,6 +976,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				787EC6031ACA09B8000C5539 /* BalloonGreen10.png in Resources */,
+				78A2E8581ACC69D300B5A404 /* YapsButton2.png in Resources */,
 				782D13981ACC59E6007C8499 /* YapsButtonNoYaps.png in Resources */,
 				786D91131A6EEEDE00177E25 /* BlueArrowWhiteFilling.png in Resources */,
 				782D139E1ACC5D54007C8499 /* YapsButton.png in Resources */,
@@ -973,6 +1000,7 @@
 				F44B0C5516DA404700E6CD88 /* Default.png in Resources */,
 				787EC5E71AC9D4D0000C5539 /* ProgressViewYellowiPhone5@2x.png in Resources */,
 				7803A05C1AAB648A006C43AE /* PlusButtonWhite@2x.png in Resources */,
+				78A2E8551ACC671600B5A404 /* PinkStar2.png in Resources */,
 				787EC6011ACA09A1000C5539 /* BalloonLightBlue10.png in Resources */,
 				78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
@@ -992,6 +1020,7 @@
 				784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */,
 				787A6D911A4BFEE7001551C6 /* MusicIconLarge@2x.png in Resources */,
 				37D413CC19D230D000021548 /* ArrowWhite.png in Resources */,
+				78A2E84F1ACC65B000B5A404 /* PinkStar.png in Resources */,
 				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
 				7819916F1AABBA6E00309E38 /* SettingsIconWhite8@2x.png in Resources */,
 				37D413C619D2235C00021548 /* Images.xcassets in Resources */,
@@ -1001,6 +1030,7 @@
 				787EC6161ACA245E000C5539 /* ProgressViewRediPhone4@2x.png in Resources */,
 				37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */,
 				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
+				78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */,
 				787EC6181ACA245E000C5539 /* ProgressViewRed@2x.png in Resources */,
 				787EC5FF1ACA068F000C5539 /* BalloonYellow10.png in Resources */,
 				78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */,
@@ -1011,9 +1041,11 @@
 				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */,
 				784047FE1AB4FBF600FE6D93 /* MicrophoneBlue3@2x.png in Resources */,
 				787EC61C1ACA2907000C5539 /* ResetButton2@2x.png in Resources */,
+				78A2E8561ACC671600B5A404 /* PinkStar3.png in Resources */,
 				FC0642D71A9D65E200E3D60F /* Environments.plist in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
+				78A2E85A1ACC6A4100B5A404 /* YapsButton3.png in Resources */,
 				78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */,
 				784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */,
 				787EC60F1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png in Resources */,
