@@ -149,8 +149,9 @@ static NSString *CellIdentifier = @"Cell";
                             if ([yap.yapID isEqualToNumber:newYap.yapID]) {
                                 NSMutableArray *yaps = [NSMutableArray arrayWithArray:weakSelf.yaps];
                                 [yaps replaceObjectAtIndex:i withObject:newYap];
-                                [YapsCache sharedCache].yaps = yaps;
-                                //[weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                                [YapsCache sharedCache].yaps = yaps;                                
+                                [weakSelf.tableView reloadData];
+
                                 break;
                             }
                         }

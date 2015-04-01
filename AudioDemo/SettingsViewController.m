@@ -165,7 +165,7 @@
                     NSLog(@"Cleared yaps successfully");
                     [[YapsCache sharedCache] loadYapsWithCallback:nil];
                     
-                    double delay = .5;
+                    double delay = .2;
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [[YTNotifications sharedNotifications] showNotificationText:@"Yaps Have Been Cleared!"];
                     });
