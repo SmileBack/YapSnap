@@ -165,7 +165,7 @@
                     NSLog(@"Cleared yaps successfully");
                     [[YapsCache sharedCache] loadYapsWithCallback:nil];
                     
-                    double delay = .2;
+                    double delay = .1;
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [[YTNotifications sharedNotifications] showNotificationText:@"Yaps Have Been Cleared!"];
                     });
@@ -174,6 +174,10 @@
                     [mixpanel track:@"Cleared Yaps"];
                 } else {
                     NSLog(@"Error clearing yaps: %@", error);
+                    double delay = .2;
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Clearing Yaps!"];
+                    });
                 }
                 
             }];
@@ -193,6 +197,10 @@
         } else {
             NSLog(@"Error: %@", error);
             // TODO do something
+            double delay = .5;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Info Didn't Save!"];
+            });
         }
     };
     

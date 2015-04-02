@@ -79,7 +79,8 @@ static YSPushManager *_sharedPushManager;
     [[API sharedAPI] updateUserPushToken:pushToken
                             withCallBack:^(BOOL success, NSError *error) {
                                 if (error) {
-
+                                    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                    [mixpanel track:@"API Error - updateUserPushToken"];
                                 }
                             }];
 }
@@ -88,6 +89,8 @@ static YSPushManager *_sharedPushManager;
 {
     NSLog(@"Registration error: %@", error);
     //TODO handle error
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Error - registrationFailedWithError"];
 }
 
 #pragma mark - Receiving Notifications
