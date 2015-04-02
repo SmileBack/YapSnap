@@ -159,6 +159,7 @@ static const float TIMER_INTERVAL = .01;
     self.navigationController.navigationBar.translucent = NO;
 
     [self reloadUnopenedYapsCount];
+    NSLog(@"Audio Capture VC - unopened yaps: %@", self.unopenedYapsCount);
 
     
     if (IS_BEFORE_IOS_8) {
@@ -361,7 +362,7 @@ static const float TIMER_INTERVAL = .01;
         
         self.recordProgressView.progress = 0.0;
         self.elapsedTime = 0;
-    } else if ([@"Prepare Yap For Text Segue" isEqualToString:segue.identifier]) {
+    } else if ([@"YapsPageViewControllerSegue" isEqualToString:segue.identifier]) {
         YapsViewController *yapsVC = segue.destinationViewController;
         yapsVC.unopenedYapsCount = self.unopenedYapsCount;
     }

@@ -89,16 +89,20 @@ static NSString *CellIdentifier = @"Cell";
     
     if (![YSPushManager sharedPushManager].pushEnabled) {
         self.pushEnabledView.hidden = NO;
-        
+       
+        NSLog(@"Yaps VC - unopened count: %@", self.unopenedYapsCount);
+
         if (!self.didViewNotificationAlert) {
             if (self.unopenedYapsCount.intValue > 1) {
-                NSLog(@"Yap unopened count: %@", self.unopenedYapsCount);
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Turn on Notifications"
-                                                                message:@"To avoid missing out on yaps from friends, turn on notifications for YapTap in your phone's settings."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles: nil];
-                [alert show];
+                double delay = 0.5;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Turn on Notifications"
+                                                                    message:@"To avoid missing out on yaps from friends, turn on notifications for YapTap in your phone's settings."
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles: nil];
+                    [alert show];
+                });
             }
         }
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_PUSH_NOTIFICATION_POPUP];
