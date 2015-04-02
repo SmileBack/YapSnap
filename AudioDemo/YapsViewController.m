@@ -90,8 +90,6 @@ static NSString *CellIdentifier = @"Cell";
     if (![YSPushManager sharedPushManager].pushEnabled) {
         self.pushEnabledView.hidden = NO;
        
-        NSLog(@"Yaps VC - unopened count: %@", self.unopenedYapsCount);
-
         if (!self.didViewNotificationAlert) {
             if (self.unopenedYapsCount.intValue > 1) {
                 double delay = 0.5;

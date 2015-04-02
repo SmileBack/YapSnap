@@ -159,8 +159,6 @@ static const float TIMER_INTERVAL = .01;
     self.navigationController.navigationBar.translucent = NO;
 
     [self reloadUnopenedYapsCount];
-    NSLog(@"Audio Capture VC - unopened yaps: %@", self.unopenedYapsCount);
-
     
     if (IS_BEFORE_IOS_8) {
         self.bottomConstraint.constant = 9;

@@ -150,7 +150,7 @@
     [self playAudioWithPitch:self.pitchShiftValue];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Pitch Button"];
+    [mixpanel track:@"Tapped Balloon 1"];
 }
 
 - (void) didTapPitchButton2
@@ -171,6 +171,9 @@
     
     self.pitchShiftValue = 0.5; // +500
     [self playAudioWithPitch:self.pitchShiftValue];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Balloon 2"];
 }
 
 - (void) didTapPitchButton3
@@ -191,6 +194,9 @@
     
     self.pitchShiftValue = -0.4; // -400
     [self playAudioWithPitch:self.pitchShiftValue];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Balloon 3"];
 }
 
 - (void) playAudioWithPitch:(CGFloat)pitch {
@@ -223,6 +229,9 @@
                      completion:nil];
     
     [self.player stop];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Reset Button"];
 }
 
 - (void) resetProgressViewColor {
