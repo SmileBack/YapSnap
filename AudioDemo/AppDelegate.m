@@ -16,8 +16,22 @@
 #import "Mixpanel.h"
 #import "Environment.h"
 #import "YapsCache.h"
+#import "FeedbackMonitor.h"
+
+#define APP_OPENED_COUNTER @"yaptap.AppOpenedCounter"
+
+@interface AppDelegate()
+
+@property (nonatomic, strong) FeedbackMonitor *feedbackMonitor;
+
+@end
 
 @implementation AppDelegate
+
++ (AppDelegate *)sharedDelegate
+{
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -119,6 +133,11 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Opened App"];
     [mixpanel.people increment:@"Opened App #" by:[NSNumber numberWithInt:1]];
+    
+    [self increaseAppOpenedCount];
+    [self.feedbackMonitor appOpened];
+    
+    NSLog(@"App Opened Count: %ld", (long)self.appOpenedCount);
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -172,6 +191,30 @@
         [Crashlytics setUserIdentifier:userID];
         [Crashlytics setUserName:[YSUser currentUser].firstName];
     }
+}
+
+- (FeedbackMonitor *) feedbackMonitor
+{
+    if (!_feedbackMonitor) {
+        _feedbackMonitor = [FeedbackMonitor new];
+    }
+    
+    return _feedbackMonitor;
+}
+
+#pragma mark - App Opening Tracker
+- (void) increaseAppOpenedCount
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger appOpenedCounter = [defaults integerForKey:APP_OPENED_COUNTER];
+    appOpenedCounter++;
+    [defaults setInteger:appOpenedCounter forKey:APP_OPENED_COUNTER];
+    [defaults synchronize];
+}
+
+- (NSInteger) appOpenedCount
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:APP_OPENED_COUNTER];
 }
 
 @end

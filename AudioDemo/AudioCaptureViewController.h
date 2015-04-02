@@ -12,12 +12,14 @@
 #import "PhoneContact.h"
 #import "YSRecordProgressView.h"
 #import "OffsetImageButton.h"
+#import <MessageUI/MessageUI.h>
 
-@interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+@interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate, MFMailComposeViewControllerDelegate>
 
 #define VIEWED_WELCOME_NOTIFICATION_KEY @"yaptap.ViewedWelcomeNotification"
 #define TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.TappedMicModeButtonForFirstTimeKey"
 #define TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.TappedMusicModeButtonForFirstTimeKey"
+#define SHOW_FEEDBACK_PAGE @"yaptap.ShowFeedbackPage"
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;

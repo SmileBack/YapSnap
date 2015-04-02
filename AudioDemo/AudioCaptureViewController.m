@@ -250,6 +250,15 @@ static const float TIMER_INTERVAL = .01;
                         self.recordProgressView.progress = 0.0;
                         [self.audioSource stopAudioCapture:self.elapsedTime];
                     }];
+    
+    [center addObserverForName:SHOW_FEEDBACK_PAGE
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Show Feedback Page");
+                        [self showFeedbackEmailViewControllerWithCompletion:^{
+                        }];
+                    }];
 }
 
 - (void) updateProgress {
@@ -439,6 +448,35 @@ static const float TIMER_INTERVAL = .01;
 - (BOOL) didTapMusicModeButtonForFirstTime
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
+}
+
+#pragma mark - Mail Delegate
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Feedback
+- (void) showFeedbackEmailViewControllerWithCompletion:(void (^)(void))completion
+{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+        mailer.mailComposeDelegate = self;
+        [mailer setSubject:@"Feedback"];
+        NSArray *toRecipients = [NSArray arrayWithObjects:@"team@yaptapapp.com", nil];
+        [mailer setToRecipients:toRecipients];
+        NSString *emailBody = @"";
+        [mailer setMessageBody:emailBody isHTML:NO];
+        [self presentViewController:mailer animated:YES completion:completion];
+        [mailer becomeFirstResponder];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email didn't send"
+                                                        message:@"You don't have your e-mail setup. Please contact us at team@yaptapapp.com."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
 }
 
 

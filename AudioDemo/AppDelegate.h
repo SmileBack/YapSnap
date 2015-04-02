@@ -12,4 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
++ (AppDelegate *)sharedDelegate;
+
+- (NSInteger) appOpenedCount;
+
 @end
