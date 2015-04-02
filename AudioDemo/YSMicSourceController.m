@@ -42,8 +42,10 @@
 
 - (void)tappedMicrophoneImage {
     NSLog(@"Tapped Microphone Image");
-
-    [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
+    double delay = 0.1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
+    });
 }
 
 - (void)didReceiveMemoryWarning {

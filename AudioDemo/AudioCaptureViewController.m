@@ -201,7 +201,11 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong!"];
+                        
+                        double delay = .1;
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong!"];
+                        });
                         [weakSelf.recordProgressView setProgress:0];
                         weakSelf.elapsedTime = 0;
                         [timer invalidate];
@@ -211,7 +215,11 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Connection Was Lost!"];
+                        
+                        double delay = .1;
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Connection Was Lost!"];
+                        });
                         [weakSelf.recordProgressView setProgress:0];
                         weakSelf.elapsedTime = 0;
                         [timer invalidate];
@@ -287,12 +295,15 @@ static const float TIMER_INTERVAL = .01;
     
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
         self.recordProgressView.progress = 0.0;
-        [[YTNotifications sharedNotifications] showNotificationText:@"Hold Down to Record"];
+        double delay = .1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"Hold Down to Record"];
+        });
         
         self.explanation.hidden = YES;
         //Make explanation label disappear
-        double delay = 2.0;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        double delay2 = 2.0;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.explanation.hidden = YES;
         });
     } else {
@@ -372,7 +383,10 @@ static const float TIMER_INTERVAL = .01;
     }
     
     if (!self.didTapMusicModeButtonForFirstTime) {
-        [[YTNotifications sharedNotifications] showModeText:@"Music Mode"];
+        double delay = .1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showModeText:@"Music Mode"];
+        });
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
@@ -388,7 +402,10 @@ static const float TIMER_INTERVAL = .01;
     }
     
     if (!self.didTapMicModeButtonForFirstTime) {
-        [[YTNotifications sharedNotifications] showModeText:@"Mic Mode"];
+        double delay = .1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showModeText:@"Mic Mode"];
+        });
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];

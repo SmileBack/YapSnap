@@ -80,7 +80,7 @@ static YTNotifications *_sharedNotifications;
                               kCRToastTextKey: text,
                               kCRToastFontKey: [UIFont fontWithName:@"Futura-Medium" size:18],
                               kCRToastTimeIntervalKey: @.8,
-                              kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
+                              kCRToastAnimationInTimeIntervalKey: @.3,
                               };
     
     [CRToastManager showNotificationWithOptions:options completionBlock:nil];

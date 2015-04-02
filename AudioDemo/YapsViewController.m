@@ -188,7 +188,10 @@ static NSString *CellIdentifier = @"Cell";
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Yap Didn't Send!"];
+                        double delay = 0.1;
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Yap Didn't Send!"];
+                        });
                         weakSelf.pendingYaps = nil;
                         [weakSelf.tableView reloadData];
                     }];
@@ -306,7 +309,10 @@ static NSString *CellIdentifier = @"Cell";
              */
         } else if (!yap.wasOpened) {
             if ([self internetIsNotReachable]){
-                [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+                double delay = 0.1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+                });
             } else {
                 [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
             }

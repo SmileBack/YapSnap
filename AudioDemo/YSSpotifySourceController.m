@@ -154,7 +154,11 @@
                 self.musicIcon.hidden = NO;
 
                 NSLog(@"No Songs Returned For Search Query");
-                [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
+                
+                double delay = 0.1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
+                });
                 self.musicIcon.hidden = NO;
             } else {
                 NSLog(@"Returned Songs Successfully");
@@ -165,10 +169,16 @@
             self.musicIcon.hidden = NO;
             
             if ([self internetIsNotReachable]) {
-                [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+                double delay = 0.1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+                });
             } else {
                 NSLog(@"Error Returning Songs %@", error);
-                [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong! Try Again."];
+                double delay = 0.1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong! Try Again."];
+                });
                 [mixpanel track:@"Spotify Error - search (other)"];
             }
         }
@@ -279,7 +289,10 @@
     else
     {
         NSLog(@"Search box not in focus");
-        [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
+        double delay = 0.1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
+        });
     }
 }
 
@@ -381,7 +394,10 @@
 - (BOOL) startAudioCapture
 {
     if ([self internetIsNotReachable]){
-        [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+        double delay = 0.1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+        });
         return NO;
     } else if (self.songs.count == 0) {
         NSLog(@"Can't Play Because No Song");
@@ -420,7 +436,10 @@
             float volume = [[AVAudioSession sharedInstance] outputVolume];
             NSLog(@"Volume: %f", volume);
             if (volume <= 0.125) {
-                [[YTNotifications sharedNotifications] showVolumeText:@"Turn Up The Volume!"];
+                double delay = 0.1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showVolumeText:@"Turn Up The Volume!"];
+                });
             }
             NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
             NSLog(@"Playing URL: %@ %@ auth token", song.previewURL, headers ? @"with" : @"without");
