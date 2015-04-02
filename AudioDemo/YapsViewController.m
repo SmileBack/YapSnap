@@ -89,6 +89,19 @@ static NSString *CellIdentifier = @"Cell";
     
     if (![YSPushManager sharedPushManager].pushEnabled) {
         self.pushEnabledView.hidden = NO;
+        
+        if (!self.didViewNotificationAlert) {
+            if (self.unopenedYapsCount.intValue > 1) {
+                NSLog(@"Yap unopened count: %@", self.unopenedYapsCount);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Turn on Notifications"
+                                                                message:@"To avoid missing out on yaps from friends, turn on notifications for YapTap in your phone's settings."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles: nil];
+                [alert show];
+            }
+        }
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_PUSH_NOTIFICATION_POPUP];
     }
 }
 
@@ -212,7 +225,9 @@ static NSString *CellIdentifier = @"Cell";
     
     
     // SPOTIFY
-    if ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened) {
+    if ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened)
+        // || ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.sentByCurrentUser))
+    {
         cell.goToSpotifyView.alpha = 1;
         //Add gesture recognizer
         YSSpotifyTapGestureRecognizer *singleFingerTap =
@@ -508,6 +523,11 @@ static NSString *CellIdentifier = @"Cell";
         _redSquareFull = [UIImage imageNamed:@"YapsIconReceivedUnopened2.png"];
     }
     return _redSquareFull;
+}
+
+- (BOOL) didViewNotificationAlert
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_PUSH_NOTIFICATION_POPUP];
 }
 
 @end

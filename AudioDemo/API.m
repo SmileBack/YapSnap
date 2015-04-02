@@ -333,7 +333,7 @@ static API *sharedAPI;
     [manager GET:[self urlForEndpoint:@"audio_messages"]
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSLog(@"YAPS: In callback from API %@", responseObject);
+              //NSLog(@"YAPS: In callback from API %@", responseObject);
               NSArray *yapDicts = responseObject; //Assuming it is an array
               NSArray *yaps = [YSYap yapsWithArray:yapDicts];
               callback(yaps, nil);

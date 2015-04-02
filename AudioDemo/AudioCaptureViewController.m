@@ -23,6 +23,7 @@
 
 @property (nonatomic) float elapsedTime;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (nonatomic, strong) NSNumber *unopenedYapsCount;
 
 @end
 
@@ -145,6 +146,7 @@ static const float TIMER_INTERVAL = .01;
 
             // Add number to button
             [self.yapsPageButton setTitle:count.description forState:UIControlStateNormal];
+            self.unopenedYapsCount = count;
         }
     }];
 }
@@ -348,6 +350,9 @@ static const float TIMER_INTERVAL = .01;
         
         self.recordProgressView.progress = 0.0;
         self.elapsedTime = 0;
+    } else if ([@"Prepare Yap For Text Segue" isEqualToString:segue.identifier]) {
+        YapsViewController *yapsVC = segue.destinationViewController;
+        yapsVC.unopenedYapsCount = self.unopenedYapsCount;
     }
 }
 

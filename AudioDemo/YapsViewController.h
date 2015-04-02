@@ -10,7 +10,10 @@
 
 @interface YapsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
+#define VIEWED_PUSH_NOTIFICATION_POPUP @"yaptap.ViewedPushNotificationPopup"
+
 @property (nonatomic, strong) NSArray *pendingYaps;
 @property (assign, nonatomic) BOOL comingFromContactsOrAddTextPage;
+@property (nonatomic, strong) NSNumber *unopenedYapsCount;
 
 @end
