@@ -11,7 +11,7 @@
 @interface FeedbackMonitor : NSObject<UIAlertViewDelegate>
 
 #define FEEDBACK_POPUP_SHOWN_KEY @"yaptap.FeedbackPopupShown"
-#define COUNT_THRESHOLD 5
+#define COUNT_THRESHOLD 20
 #define SHOW_FEEDBACK_PAGE @"yaptap.ShowFeedbackPage"
 
 @property (nonatomic, readonly) BOOL feedbackPopupShown;
