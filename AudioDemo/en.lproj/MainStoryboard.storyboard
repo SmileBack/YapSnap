@@ -525,13 +525,13 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinkStar1.png" translatesAutoresizingMaskIntoConstraints="NO" id="hns-Qz-Akp" userLabel="Image 1">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinkStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="hns-Qz-Akp" userLabel="Image 1">
                                                     <rect key="frame" x="16" y="33" width="20" height="20"/>
                                                 </imageView>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinkStar2.png" translatesAutoresizingMaskIntoConstraints="NO" id="4nE-gj-7Sm" userLabel="Image 2">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinkStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="4nE-gj-7Sm" userLabel="Image 2">
                                                     <rect key="frame" x="16" y="54" width="20" height="20"/>
                                                 </imageView>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinkStar3.png" translatesAutoresizingMaskIntoConstraints="NO" id="2ea-7L-q0v" userLabel="Image 3">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinkStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="2ea-7L-q0v" userLabel="Image 3">
                                                     <rect key="frame" x="16" y="75" width="20" height="20"/>
                                                 </imageView>
                                             </subviews>
@@ -1524,9 +1524,7 @@ Type it here.</string>
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PencilIcon2.png" width="150" height="150"/>
-        <image name="PinkStar1.png" width="40" height="40"/>
-        <image name="PinkStar2.png" width="40" height="40"/>
-        <image name="PinkStar3.png" width="40" height="40"/>
+        <image name="PinkStar.png" width="40" height="40"/>
         <image name="RecordButtonBlueBorder10.png" width="240" height="240"/>
         <image name="ResetButton3.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>

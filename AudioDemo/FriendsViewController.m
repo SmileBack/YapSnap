@@ -271,13 +271,14 @@
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = screenRect.size.height;
+    CGFloat screenWidth = screenRect.size.width;
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_CANCEL_BUTTON_ON_FRIENDS_EXPLANATION_VIEW_KEY];
-    [UIView animateWithDuration:1
+    [UIView animateWithDuration:0.5
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.friendsExplanationView.frame = CGRectMake(0, screenHeight, 320, 118);
+                         self.friendsExplanationView.frame = CGRectMake(0, screenHeight, screenWidth, 118);
                      }
                      completion:^(BOOL finished) {
                          self.friendsExplanationView.hidden = YES;
