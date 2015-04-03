@@ -502,6 +502,7 @@ static API *sharedAPI;
     props[@"os_version"] = [[UIDevice currentDevice] systemVersion];
     props[@"os"] = @"iOS";
     props[@"push_enabled"] = [NSNumber numberWithBool:[YSPushManager sharedPushManager].pushEnabled];
+    NSLog(@"push enabled: %@", props[@"push_enabled"]);
     
     NSDictionary *params = [self paramsWithDict:props];
 

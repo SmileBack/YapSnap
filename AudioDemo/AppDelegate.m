@@ -128,8 +128,11 @@
     if ([YSUser currentUser] && [YSUser currentUser].userID) {
         [[YSPushManager sharedPushManager] refresh];
         [[YSPushManager sharedPushManager] registerForNotifications];
+        //The following line is specifically for push_enabled (btw updateUser is reduntantly called if push notifications are enabled because if push notifications are enabled it triggers didRegisterForRemoteNotificationsWithDeviceToken, which leads to updateUserPushToken to be called)
+        [[API sharedAPI] updateUserData:nil withCallback:^(BOOL success, NSError *error) {
+            NSLog(@"updated push enabled");
+        }];
     }
-    
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Opened App"];
     [mixpanel.people increment:@"Opened App #" by:[NSNumber numberWithInt:1]];
