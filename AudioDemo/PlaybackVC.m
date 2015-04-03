@@ -231,7 +231,7 @@
             if ([self.yap.text isEqual: @"Welcome to YapTap :)"] && self.yap.senderID.intValue == 1)
             {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"Now Send Someone a Yap!"];
+                    [[YTNotifications sharedNotifications] showNotificationText:@"Now Send Someone a Yap :)"];
                 });
             }
         });

@@ -35,7 +35,7 @@ static const float TIMER_INTERVAL = .01;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
