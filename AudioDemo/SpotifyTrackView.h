@@ -17,9 +17,9 @@
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UIButton *spotifyButton;
 
-@property (nonatomic, strong) UIButton *songVersion1;
-@property (nonatomic, strong) UIButton *songVersion2;
-@property (nonatomic, strong) UIButton *songVersion3;
+@property (nonatomic, strong) UIButton *songVersionOneButton;
+@property (nonatomic, strong) UIButton *songVersionTwoButton;
+@property (nonatomic, strong) UIButton *songVersionThreeButton;
 
 
 @end

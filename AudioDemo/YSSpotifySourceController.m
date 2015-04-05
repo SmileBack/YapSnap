@@ -237,20 +237,23 @@
         [trackView.spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
         [trackView addSubview:trackView.spotifyButton];
         
-        trackView.songVersion1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersion1.frame = CGRectMake(self.carouselHeight/2-18-10-35, self.carouselHeight-45, 35, 35);
-        [trackView.songVersion1 setImage:[UIImage imageNamed:@"SongVersionOneButtonSelected2@2x.png"] forState:UIControlStateNormal];
-        [trackView addSubview:trackView.songVersion1];
+        trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        trackView.songVersionOneButton.frame = CGRectMake(self.carouselHeight/2-18-10-35, self.carouselHeight-45, 35, 35);
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton addTarget:self action:@selector(tappedSongVersionOneButton:) forControlEvents:UIControlEventTouchUpInside];
+        [trackView addSubview:trackView.songVersionOneButton];
         
-        trackView.songVersion2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersion2.frame = CGRectMake(self.carouselHeight/2-18, self.carouselHeight-45, 35, 35);
-        [trackView.songVersion2 setImage:[UIImage imageNamed:@"SongVersionTwoButtonNotSelected@2x.png"] forState:UIControlStateNormal];
-        [trackView addSubview:trackView.songVersion2];
+        trackView.songVersionTwoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        trackView.songVersionTwoButton.frame = CGRectMake(self.carouselHeight/2-18, self.carouselHeight-45, 35, 35);
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchUpInside];
+        [trackView addSubview:trackView.songVersionTwoButton];
         
-        trackView.songVersion3 = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersion3.frame = CGRectMake(self.carouselHeight/2+17+10, self.carouselHeight-45, 35, 35);
-        [trackView.songVersion3 setImage:[UIImage imageNamed:@"SongVersionThreeButtonNotSelected@2x.png"] forState:UIControlStateNormal];
-        [trackView addSubview:trackView.songVersion3];
+        trackView.songVersionThreeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        trackView.songVersionThreeButton.frame = CGRectMake(self.carouselHeight/2+17+10, self.carouselHeight-45, 35, 35);
+        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionThreeButton addTarget:self action:@selector(tappedSongVersionThreeButton:) forControlEvents:UIControlEventTouchUpInside];
+        [trackView addSubview:trackView.songVersionThreeButton];
     }
 
     if (track.imageURL) {
@@ -274,6 +277,66 @@
     [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
 
     return trackView;
+}
+
+- (void) tappedSongVersionOneButton:(UIButton *)button {
+    NSLog(@"Tapped Song Version One Button");
+    UIView *parent = button.superview;
+    if ([parent isKindOfClass:[SpotifyTrackView class]]) {
+        SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected.png"] forState:UIControlStateNormal];
+        
+        YSTrack *selectedTrack = nil;
+        for (YSTrack *track in self.songs) {
+            if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+                selectedTrack = track;
+                break;
+            }
+        }
+        selectedTrack.secondsToFastForward = 0;
+    }
+}
+
+- (void) tappedSongVersionTwoButton:(UIButton *)button {
+    NSLog(@"Tapped Song Version Two Button");
+    UIView *parent = button.superview;
+    if ([parent isKindOfClass:[SpotifyTrackView class]]) {
+        SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected.png"] forState:UIControlStateNormal];
+        
+        YSTrack *selectedTrack = nil;
+        for (YSTrack *track in self.songs) {
+            if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+                selectedTrack = track;
+                break;
+            }
+        }
+        selectedTrack.secondsToFastForward = [NSNumber numberWithInt:10];
+    }
+}
+
+- (void) tappedSongVersionThreeButton:(UIButton *)button {
+    NSLog(@"Tapped Song Version Three Button");
+    UIView *parent = button.superview;
+    if ([parent isKindOfClass:[SpotifyTrackView class]]) {
+        SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
+        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
+        
+        YSTrack *selectedTrack = nil;
+        for (YSTrack *track in self.songs) {
+            if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+                selectedTrack = track;
+                break;
+            }
+        }
+        selectedTrack.secondsToFastForward = [NSNumber numberWithInt:20];
+    }
 }
 
 - (void) confirmOpenInSpotify:(UIButton *)button
@@ -305,7 +368,6 @@
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
-//    YSTrack *song = self.songs[index];
     if([self.searchBox isFirstResponder])
     {
         NSLog(@"Search box is in focus");
@@ -372,8 +434,13 @@
     if (state == STKAudioPlayerStatePlaying) {
         NSLog(@"state == STKAudioPlayerStatePlaying");
         [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
-            double time = 10;
-            [self.player seekToTime:time];
+        
+        YSTrack *track = self.songs[self.carousel.currentItemIndex];
+        NSLog(@"Seconds to fast forward: %d", track.secondsToFastForward.intValue);
+
+        if (track.secondsToFastForward > 0) {
+            [self.player seekToTime:track.secondsToFastForward.intValue];
+        }
     }
     
     if (state == STKAudioPlayerStateBuffering) {

@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString *artistName;
 @property (nonatomic, strong) NSString *imageURL;
 @property (nonatomic, strong) NSString *spotifyURL;
+@property (nonatomic, strong) NSNumber *secondsToFastForward;
 
 + (NSArray *) tracksFromDictionaryArray:(NSArray *)itemDictionaries;
 + (YSTrack *) trackFromDictionary:(NSDictionary *)trackDictionary;

@@ -303,7 +303,9 @@ static API *sharedAPI;
                                                   @"spotify_artist_name": song.artistName,
                                                   @"spotify_full_song_url": song.spotifyURL,
                                                   @"spotify_preview_url": song.previewURL,
-                                                  @"type": MESSAGE_TYPE_SPOTIFY}
+                                                  @"type": MESSAGE_TYPE_SPOTIFY,
+                                                  //@"seconds_to_fast_forward": song.secondsToFastForward TODO: UNCOMMENT THIS!
+                                                  }
                                   andYapBuilder:builder];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
