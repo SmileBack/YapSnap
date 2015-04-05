@@ -385,7 +385,7 @@ static const float TIMER_INTERVAL = .01;
 {
     if (![self isInSpotifyMode]) {
         YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
-        self.micModeButton.alpha = .2;
+        self.micModeButton.alpha = .3;
         self.spotifyModeButton.alpha = 1;
         [self flipController:self.audioSource to:spotifySource];
     }
@@ -405,7 +405,7 @@ static const float TIMER_INTERVAL = .01;
     if (![self isInRecordMode]) {
         YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
         self.micModeButton.alpha = 1;
-        self.spotifyModeButton.alpha = .2;
+        self.spotifyModeButton.alpha = .3;
         [self flipController:self.audioSource to:micSource];
     }
     

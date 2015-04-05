@@ -297,6 +297,12 @@
         }
         selectedTrack.secondsToFastForward = 0;
     }
+    
+    if (!self.didTapSongVersionOneForFirstTime) {
+        [[YTNotifications sharedNotifications] showSongVersionText:@"Snippet # 1"];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_ONE];
 }
 
 - (void) tappedSongVersionTwoButton:(UIButton *)button {
@@ -317,6 +323,12 @@
         }
         selectedTrack.secondsToFastForward = [NSNumber numberWithInt:10];
     }
+    
+    if (!self.didTapSongVersionTwoForFirstTime) {
+        [[YTNotifications sharedNotifications] showSongVersionText:@"Snippet # 2"];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_TWO];
 }
 
 - (void) tappedSongVersionThreeButton:(UIButton *)button {
@@ -337,6 +349,12 @@
         }
         selectedTrack.secondsToFastForward = [NSNumber numberWithInt:20];
     }
+    
+    if (!self.didTapSongVersionThreeForFirstTime) {
+        [[YTNotifications sharedNotifications] showSongVersionText:@"Snippet # 3"];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_THREE];
 }
 
 - (void) confirmOpenInSpotify:(UIButton *)button
@@ -559,6 +577,21 @@
             [self.searchBox becomeFirstResponder];
         });
     }
+}
+
+- (BOOL) didTapSongVersionOneForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SONG_VERSION_ONE];
+}
+
+- (BOOL) didTapSongVersionTwoForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SONG_VERSION_TWO];
+}
+
+- (BOOL) didTapSongVersionThreeForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SONG_VERSION_THREE];
 }
 
 @end

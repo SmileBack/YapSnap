@@ -127,7 +127,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf8-UJ-WxH" userLabel="Source Container">
                                 <rect key="frame" x="0.0" y="121" width="320" height="302"/>
                             </containerView>
-                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dje-2i-9YC" userLabel="Spotify Mode Button" customClass="OffsetImageButton">
+                            <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dje-2i-9YC" userLabel="Spotify Mode Button" customClass="OffsetImageButton">
                                 <rect key="frame" x="0.0" y="523" width="157" height="45"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.95686274510000002" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
