@@ -25,6 +25,7 @@
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic, strong) NSString *alertViewString;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+@property (nonatomic) float carouselHeight;
 
 @end
 
@@ -210,22 +211,46 @@
     if (view && [view isKindOfClass:[SpotifyTrackView class]]) {
         trackView = (SpotifyTrackView *) view;
     } else {
-        CGFloat height = IS_IPHONE_4_SIZE ? 140 : 200;
+        
+        if (IS_IPHONE_4_SIZE) {
+            self.carouselHeight = 140;
+        } else if (IS_IPHONE_5_SIZE) {
+            self.carouselHeight = 200;
+        } else if (IS_IPHONE_6_PLUS_SIZE) {
+            self.carouselHeight = 290;
+        } else {
+            self.carouselHeight = 240;
+        }
 
-        CGRect frame = CGRectMake(0, 0, height, height);
+        CGRect frame = CGRectMake(0, 0, self.carouselHeight, self.carouselHeight);
         trackView = [[SpotifyTrackView alloc] initWithFrame:frame];
 
         trackView.imageView = [[UIImageView alloc] initWithFrame:frame];
         [trackView addSubview:trackView.imageView];
 
         trackView.label = [[UILabel alloc]initWithFrame:
-                          CGRectMake(0, height, height, 25)];
+                          CGRectMake(0, self.carouselHeight, self.carouselHeight, 25)];
         [trackView addSubview:trackView.label];
         
         trackView.spotifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.spotifyButton.frame = CGRectMake(height-40, 5, 35, 35);
+        trackView.spotifyButton.frame = CGRectMake(self.carouselHeight-40, 5, 35, 35);
         [trackView.spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
         [trackView addSubview:trackView.spotifyButton];
+        
+        trackView.songVersion1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        trackView.songVersion1.frame = CGRectMake(self.carouselHeight/2-18-10-35, self.carouselHeight-45, 35, 35);
+        [trackView.songVersion1 setImage:[UIImage imageNamed:@"SongVersionOneButtonSelected2@2x.png"] forState:UIControlStateNormal];
+        [trackView addSubview:trackView.songVersion1];
+        
+        trackView.songVersion2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        trackView.songVersion2.frame = CGRectMake(self.carouselHeight/2-18, self.carouselHeight-45, 35, 35);
+        [trackView.songVersion2 setImage:[UIImage imageNamed:@"SongVersionTwoButtonNotSelected@2x.png"] forState:UIControlStateNormal];
+        [trackView addSubview:trackView.songVersion2];
+        
+        trackView.songVersion3 = [UIButton buttonWithType:UIButtonTypeCustom];
+        trackView.songVersion3.frame = CGRectMake(self.carouselHeight/2+17+10, self.carouselHeight-45, 35, 35);
+        [trackView.songVersion3 setImage:[UIImage imageNamed:@"SongVersionThreeButtonNotSelected@2x.png"] forState:UIControlStateNormal];
+        [trackView addSubview:trackView.songVersion3];
     }
 
     if (track.imageURL) {
@@ -347,6 +372,8 @@
     if (state == STKAudioPlayerStatePlaying) {
         NSLog(@"state == STKAudioPlayerStatePlaying");
         [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
+            double time = 10;
+            [self.player seekToTime:time];
     }
     
     if (state == STKAudioPlayerStateBuffering) {
