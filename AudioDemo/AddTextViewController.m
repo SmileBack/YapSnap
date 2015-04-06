@@ -82,7 +82,7 @@
         self.contactLabel.text = @"";
     }
     
-    double delay = 0.5;
+    double delay = 0.2;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.continueButton startToPulsate];
     });
