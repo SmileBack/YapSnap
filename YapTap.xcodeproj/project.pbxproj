@@ -115,6 +115,7 @@
 		78F1E40F1AD2E74D00C2743B /* CameraIcon10.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E40E1AD2E74D00C2743B /* CameraIcon10.png */; };
 		78F1E4111AD2E80A00C2743B /* CameraIcon20.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E4101AD2E80A00C2743B /* CameraIcon20.png */; };
 		78F1E4131AD2EA3300C2743B /* UploadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E4121AD2EA3300C2743B /* UploadIcon.png */; };
+		78F1E4171AD306B400C2743B /* ResetButtonLarger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E4161AD306B400C2743B /* ResetButtonLarger@2x.png */; };
 		A57E2BDB2471131379654871 /* libPods-YapTap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ED5961C23D704BCAF364D2 /* libPods-YapTap.a */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
 		F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4416DA404700E6CD88 /* Foundation.framework */; };
@@ -295,6 +296,7 @@
 		78F1E40E1AD2E74D00C2743B /* CameraIcon10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraIcon10.png; sourceTree = "<group>"; };
 		78F1E4101AD2E80A00C2743B /* CameraIcon20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraIcon20.png; sourceTree = "<group>"; };
 		78F1E4121AD2EA3300C2743B /* UploadIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UploadIcon.png; sourceTree = "<group>"; };
+		78F1E4161AD306B400C2743B /* ResetButtonLarger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButtonLarger@2x.png"; sourceTree = "<group>"; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA961E944F5B46EDE7E7229C /* Pods-YapSnap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.release.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.release.xcconfig"; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 			isa = PBXGroup;
 			children = (
 				787EC61D1ACA2B17000C5539 /* ResetButton3@2x.png */,
+				78F1E4161AD306B400C2743B /* ResetButtonLarger@2x.png */,
 				787EC5F81ACA0477000C5539 /* Balloon10.png */,
 				78A2E8651ACC822800B5A404 /* Balloon20.png */,
 				78A2E86B1ACC840B00B5A404 /* BalloonYellow20.png */,
@@ -1060,6 +1063,7 @@
 				78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */,
 				787EC5F11AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png in Resources */,
 				78F1E4091AD1E6EE00C2743B /* ThreeSelected.png in Resources */,
+				78F1E4171AD306B400C2743B /* ResetButtonLarger@2x.png in Resources */,
 				78F1E40D1AD2E28F00C2743B /* CameraIcon.png in Resources */,
 				787EC5F71AC9EE8C000C5539 /* ProgressViewGreen@3x.png in Resources */,
 				787EC61E1ACA2B17000C5539 /* ResetButton3@2x.png in Resources */,

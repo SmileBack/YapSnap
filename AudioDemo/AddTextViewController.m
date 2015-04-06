@@ -36,6 +36,7 @@
 @property (nonatomic) CGFloat pitchShiftValue;
 @property (strong, nonatomic) IBOutlet UIButton *cameraButton;
 @property (strong, nonatomic) IBOutlet UIButton *uploadButton;
+@property (strong, nonatomic) IBOutlet UIButton *resetPhotoButton;
 
 - (IBAction)didTapAddTextButton;
 - (IBAction)didTapPitchButton1;
@@ -44,6 +45,7 @@
 - (IBAction)didTapResetPitchButton;
 - (IBAction)didTapCameraButton;
 - (IBAction)didTapUploadButton;
+- (IBAction)didTapResetPhotoButton;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
 
@@ -96,25 +98,9 @@
         self.changePitchButton1.hidden = NO;
     }
     
-    //self.pitchSlider.maximumValue = 1.0;
-    //self.pitchSlider.minimumValue = -1.0;
-    //self.pitchSlider.value = 0.0;
-    //[self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpInside];
-    //[self.pitchSlider addTarget:self action:@selector(didChangePitch) forControlEvents:UIControlEventTouchUpOutside];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapImageView)];
+    [self.flashbackImageView addGestureRecognizer:tapGesture];
 }
-/*
-- (void) didChangePitch
-{
-    NSArray *pathComponents = [NSArray arrayWithObjects:
-                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                               @"MyAudioMemo.m4a",
-                               nil];
-    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-    NSLog(@"%f", self.pitchSlider.value);
-    self.player.pitchShift = self.pitchSlider.value;
-    [self.player playURL:outputFileURL];
-}
-*/
 
 - (void) didTapPitchButton1
 {
@@ -377,9 +363,7 @@
         self.textView.text = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         
         if (self.textView.text.length == 0) {
-            self.addTextToYapButton.hidden = NO;
-            self.cameraButton.hidden = NO;
-            self.uploadButton.hidden = NO;
+            [self unhideRightIcons];
             self.textView.hidden = YES;
         }
         
@@ -415,7 +399,19 @@
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     
     [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (IBAction)didTapResetPhotoButton {
+    NSLog(@"Tapped Cancel Photo Button");
     
+    self.flashbackImageView.image = nil;
+    self.yapBuilder.image = nil;
+    [self unhideRightIcons];
+    self.resetPhotoButton.hidden = YES;
+    self.flashbackImageView.hidden = YES;
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Cancel Photo Button"];
 }
 
 #pragma mark - Image Picker Controller delegate methods
@@ -426,6 +422,8 @@
     self.flashbackImageView.image = chosenImage;
     
     [self hideRightIcons];
+    self.flashbackImageView.hidden = NO;
+    self.resetPhotoButton.hidden = NO;
 
     // create a local image that we can use to upload to s3
     NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"image.png"];
@@ -459,6 +457,21 @@
     self.addTextToYapButton.hidden = YES;
     self.cameraButton.hidden = YES;
     self.uploadButton.hidden = YES;
+}
+
+- (void) unhideRightIcons {
+    self.addTextToYapButton.hidden = NO;
+    self.cameraButton.hidden = NO;
+    self.uploadButton.hidden = NO;
+}
+
+- (void) didTapImageView
+{
+    [self.resetPhotoButton setImage:[UIImage imageNamed:@"ResetButtonLarger.png"] forState:UIControlStateNormal];
+    double delay = .1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.resetPhotoButton setImage:[UIImage imageNamed:@"ResetButton3.png"] forState:UIControlStateNormal];
+    });
 }
 
 @end
