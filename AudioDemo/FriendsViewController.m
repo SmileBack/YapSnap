@@ -41,8 +41,6 @@
     self.tableView.rowHeight = 50;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:0.99]];
-    
-    self.navigationItem.title = @"Friends";
 
     __weak FriendsViewController *weakSelf = self;
     [[API sharedAPI] friends:^(NSArray *friends, NSError *error) {
@@ -53,6 +51,8 @@
                 
             });
         } else {
+            self.navigationItem.title = [NSString stringWithFormat:@"Friends (%lu)", (unsigned long)friends.count];
+            
             if (friends.count > 2) {
                 self.myTopFriends = [friends subarrayWithRange:NSMakeRange(0, 3)];
             } else if (friends.count > 0) {
