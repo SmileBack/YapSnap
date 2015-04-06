@@ -452,10 +452,8 @@
     if (state == STKAudioPlayerStatePlaying) {
         NSLog(@"state == STKAudioPlayerStatePlaying");
         [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
-        
         YSTrack *track = self.songs[self.carousel.currentItemIndex];
         NSLog(@"Seconds to fast forward: %d", track.secondsToFastForward.intValue);
-
         if (track.secondsToFastForward > 0) {
             [self.player seekToTime:track.secondsToFastForward.intValue];
         }

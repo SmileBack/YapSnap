@@ -643,7 +643,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEND YAP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-0v-8cp">
-                                <rect key="frame" x="117" y="32" width="88" height="24"/>
+                                <rect key="frame" x="116" y="32" width="87.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -702,11 +702,11 @@
                                     <constraint firstAttribute="height" constant="52" id="IHt-Jr-9ov"/>
                                     <constraint firstAttribute="width" constant="52" id="XTX-oM-g4j"/>
                                 </constraints>
-                                <state key="normal" image="PencilIcon2.png">
+                                <state key="normal" image="CameraIcon20.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapAddTextButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="IXL-xB-NU4"/>
+                                    <action selector="didTapCameraButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="s3p-In-rgN"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="B2R-OB-er0">
@@ -778,6 +778,24 @@
                                     <action selector="didTapResetPitchButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="mwk-N3-A4F"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUN-6m-GZB">
+                                <rect key="frame" x="265" y="163" width="52" height="52"/>
+                                <state key="normal" image="UploadIcon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapUploadButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="VSM-9f-Azc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSg-Vp-v2Z">
+                                <rect key="frame" x="265" y="211" width="52" height="52"/>
+                                <state key="normal" image="PencilIcon2.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapAddTextButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="FWB-6R-VKt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -816,7 +834,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="M5r-U7-dCX"/>
                     <connections>
-                        <outlet property="addTextToYapButton" destination="KDf-Vb-ilr" id="jTv-Uo-Wb4"/>
+                        <outlet property="addTextToYapButton" destination="jSg-Vp-v2Z" id="Qrv-FB-ihs"/>
+                        <outlet property="cameraButton" destination="KDf-Vb-ilr" id="uC4-rY-boA"/>
                         <outlet property="changePitchButton1" destination="C8u-j8-TJl" id="yCc-nS-K5z"/>
                         <outlet property="changePitchButton2" destination="H1t-6Q-weW" id="duJ-Rf-yDM"/>
                         <outlet property="changePitchButton3" destination="Mku-hD-YTT" id="Blg-zS-eLm"/>
@@ -828,6 +847,7 @@
                         <outlet property="progressView" destination="ygq-ac-kFT" id="yuV-x2-Xvc"/>
                         <outlet property="resetPitchButton" destination="K5B-lL-ajz" id="xlg-v2-TSb"/>
                         <outlet property="textView" destination="Yo4-ls-PqW" id="5he-52-51O"/>
+                        <outlet property="uploadButton" destination="BUN-6m-GZB" id="l4C-2y-ZUQ"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="Contacts Segue" id="0bM-75-hD3"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsViewControllerSegue" id="czb-n6-hbf"/>
                     </connections>
@@ -1516,6 +1536,7 @@ Type it here.</string>
     <resources>
         <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="Balloon20.png" width="162" height="162"/>
+        <image name="CameraIcon20.png" width="150" height="150"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
@@ -1528,6 +1549,7 @@ Type it here.</string>
         <image name="RecordButtonBlueBorder10.png" width="240" height="240"/>
         <image name="ResetButton3.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
+        <image name="UploadIcon.png" width="150" height="150"/>
         <image name="YapsButtonNoYaps.png" width="160" height="84"/>
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>
     </resources>
@@ -1537,8 +1559,8 @@ Type it here.</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gZs-IQ-BYb"/>
+        <segue reference="czb-n6-hbf"/>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="AEp-MY-7pq"/>
+        <segue reference="gZs-IQ-BYb"/>
     </inferredMetricsTieBreakers>
 </document>

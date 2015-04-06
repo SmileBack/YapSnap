@@ -34,12 +34,16 @@
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton3;
 @property (strong, nonatomic) IBOutlet UIButton *resetPitchButton;
 @property (nonatomic) CGFloat pitchShiftValue;
+@property (strong, nonatomic) IBOutlet UIButton *cameraButton;
+@property (strong, nonatomic) IBOutlet UIButton *uploadButton;
 
 - (IBAction)didTapAddTextButton;
 - (IBAction)didTapPitchButton1;
 - (IBAction)didTapPitchButton2;
 - (IBAction)didTapPitchButton3;
 - (IBAction)didTapResetPitchButton;
+- (IBAction)didTapCameraButton;
+- (IBAction)didTapUploadButton;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
 
@@ -345,10 +349,24 @@
 - (IBAction)didTapAddTextButton {
     [self.textView becomeFirstResponder];
     self.textView.hidden = NO;
-    self.addTextToYapButton.hidden = YES;
+    [self hideRightIcons];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Add Text Button"];
+}
+
+- (IBAction)didTapUploadButton {
+    [self selectPhoto];
+
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Upload Button"];
+}
+
+- (IBAction)didTapCameraButton {
+    [self takePhoto];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Camera Button"];
 }
 
 - (BOOL) textView: (UITextView*) textView shouldChangeTextInRange: (NSRange) range replacementText: (NSString*) text
@@ -360,19 +378,14 @@
         
         if (self.textView.text.length == 0) {
             self.addTextToYapButton.hidden = NO;
+            self.cameraButton.hidden = NO;
+            self.uploadButton.hidden = NO;
             self.textView.hidden = YES;
         }
         
         return NO;
     }
     return YES;
-}
-
-- (void)textViewDidChange:(NSNotification *)notification {
-   
-    if ([self.textView.text isEqualToString:@"Flashback"] || [self.textView.text isEqualToString:@"flashback"] || [self.textView.text isEqualToString:@"Flashback "] || [self.textView.text isEqualToString:@"flashback "]) {
-        [self selectPhoto];
-    }
 }
 
 #pragma mark - YSColorPickerDelegate
@@ -382,7 +395,7 @@
     self.view.backgroundColor = color;
 }
 
-#pragma mark - Select Photo
+#pragma mark - Select/Take Photo
 
 - (void) selectPhoto {
     
@@ -394,12 +407,25 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
+- (void) takePhoto {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+    
+}
+
 #pragma mark - Image Picker Controller delegate methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.flashbackImageView.image = chosenImage;
+    
+    [self hideRightIcons];
 
     // create a local image that we can use to upload to s3
     NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"image.png"];
@@ -415,9 +441,6 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    self.textView.text = @"";
-    self.textView.userInteractionEnabled = YES;
-    [self.textView becomeFirstResponder];
 }
 
 #pragma mark - Spotify Alert Methods
@@ -430,6 +453,12 @@
 - (BOOL) didViewSpotifyAlert
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SPOTIFY_ALERT_KEY];
+}
+
+- (void) hideRightIcons {
+    self.addTextToYapButton.hidden = YES;
+    self.cameraButton.hidden = YES;
+    self.uploadButton.hidden = YES;
 }
 
 @end

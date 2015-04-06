@@ -111,6 +111,10 @@
 		78F1E4091AD1E6EE00C2743B /* ThreeSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E4051AD1E6EE00C2743B /* ThreeSelected.png */; };
 		78F1E40A1AD1E6EE00C2743B /* TwoNotSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E4061AD1E6EE00C2743B /* TwoNotSelected.png */; };
 		78F1E40B1AD1E6EE00C2743B /* TwoSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E4071AD1E6EE00C2743B /* TwoSelected.png */; };
+		78F1E40D1AD2E28F00C2743B /* CameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E40C1AD2E28F00C2743B /* CameraIcon.png */; };
+		78F1E40F1AD2E74D00C2743B /* CameraIcon10.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E40E1AD2E74D00C2743B /* CameraIcon10.png */; };
+		78F1E4111AD2E80A00C2743B /* CameraIcon20.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E4101AD2E80A00C2743B /* CameraIcon20.png */; };
+		78F1E4131AD2EA3300C2743B /* UploadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E4121AD2EA3300C2743B /* UploadIcon.png */; };
 		A57E2BDB2471131379654871 /* libPods-YapTap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ED5961C23D704BCAF364D2 /* libPods-YapTap.a */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
 		F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4416DA404700E6CD88 /* Foundation.framework */; };
@@ -287,6 +291,10 @@
 		78F1E4051AD1E6EE00C2743B /* ThreeSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThreeSelected.png; sourceTree = "<group>"; };
 		78F1E4061AD1E6EE00C2743B /* TwoNotSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwoNotSelected.png; sourceTree = "<group>"; };
 		78F1E4071AD1E6EE00C2743B /* TwoSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwoSelected.png; sourceTree = "<group>"; };
+		78F1E40C1AD2E28F00C2743B /* CameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraIcon.png; sourceTree = "<group>"; };
+		78F1E40E1AD2E74D00C2743B /* CameraIcon10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraIcon10.png; sourceTree = "<group>"; };
+		78F1E4101AD2E80A00C2743B /* CameraIcon20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraIcon20.png; sourceTree = "<group>"; };
+		78F1E4121AD2EA3300C2743B /* UploadIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UploadIcon.png; sourceTree = "<group>"; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA961E944F5B46EDE7E7229C /* Pods-YapSnap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.release.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.release.xcconfig"; sourceTree = "<group>"; };
@@ -402,6 +410,7 @@
 				78319A731ACCF818000C3FD6 /* Spotify */,
 				78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */,
 				37D413CB19D230D000021548 /* ArrowWhite.png */,
+				78F1E40C1AD2E28F00C2743B /* CameraIcon.png */,
 				37D20C2D19E4A2B3008530BF /* CancelImageWhite.png */,
 				786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */,
 				378FD61119BDF45C007F3224 /* CheckWhite.png */,
@@ -417,6 +426,9 @@
 				7863B5DC1A99A25F00531CED /* sound1.wav */,
 				7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */,
 				78DA1F7D1AA18D4900693015 /* WhiteCircle.png */,
+				78F1E40E1AD2E74D00C2743B /* CameraIcon10.png */,
+				78F1E4101AD2E80A00C2743B /* CameraIcon20.png */,
+				78F1E4121AD2EA3300C2743B /* UploadIcon.png */,
 				78A823991ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png */,
 				78A2E8501ACC66FE00B5A404 /* Stars */,
 				782D13451ACB8350007C8499 /* Yap Page */,
@@ -1018,6 +1030,7 @@
 				787EC6011ACA09A1000C5539 /* BalloonLightBlue10.png in Resources */,
 				78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
+				78F1E40F1AD2E74D00C2743B /* CameraIcon10.png in Resources */,
 				787EC60D1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png in Resources */,
 				782D13A01ACC605D007C8499 /* YapsIconReceivedOpened.png in Resources */,
 				787EC5EF1AC9EB16000C5539 /* ProgressViewYellow@3x.png in Resources */,
@@ -1047,12 +1060,14 @@
 				78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */,
 				787EC5F11AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png in Resources */,
 				78F1E4091AD1E6EE00C2743B /* ThreeSelected.png in Resources */,
+				78F1E40D1AD2E28F00C2743B /* CameraIcon.png in Resources */,
 				787EC5F71AC9EE8C000C5539 /* ProgressViewGreen@3x.png in Resources */,
 				787EC61E1ACA2B17000C5539 /* ResetButton3@2x.png in Resources */,
 				787EC5F91ACA0477000C5539 /* Balloon10.png in Resources */,
 				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */,
 				78A2E8561ACC671600B5A404 /* PinkStar3.png in Resources */,
 				78A2E8661ACC822800B5A404 /* Balloon20.png in Resources */,
+				78F1E4111AD2E80A00C2743B /* CameraIcon20.png in Resources */,
 				FC0642D71A9D65E200E3D60F /* Environments.plist in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
@@ -1068,6 +1083,7 @@
 				787EC5F31AC9EC6A000C5539 /* ProgressViewLightBlueiPhone5@2x.png in Resources */,
 				78F1E4021AD1E56A00C2743B /* OneNotSelected.png in Resources */,
 				78A2E86A1ACC840000B5A404 /* BalloonLightBlue20.png in Resources */,
+				78F1E4131AD2EA3300C2743B /* UploadIcon.png in Resources */,
 				78A2E8641ACC7FB100B5A404 /* YapsButton100.png in Resources */,
 				782D13491ACB8B7A007C8499 /* YapIconOpenedSent3.png in Resources */,
 				78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */,
