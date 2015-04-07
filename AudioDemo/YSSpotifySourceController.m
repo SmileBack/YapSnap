@@ -238,19 +238,19 @@
         [trackView addSubview:trackView.spotifyButton];
         
         trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionOneButton.frame = CGRectMake(self.carouselHeight/2-18-10-35, self.carouselHeight-45, 35, 35);
+        trackView.songVersionOneButton.frame = CGRectMake(self.carouselHeight/2-15-10-30, self.carouselHeight-40, 30, 30);
         [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected.png"] forState:UIControlStateNormal];
         [trackView.songVersionOneButton addTarget:self action:@selector(tappedSongVersionOneButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionOneButton];
         
         trackView.songVersionTwoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionTwoButton.frame = CGRectMake(self.carouselHeight/2-18, self.carouselHeight-45, 35, 35);
+        trackView.songVersionTwoButton.frame = CGRectMake(self.carouselHeight/2-15, self.carouselHeight-40, 30, 30);
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
         [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionTwoButton];
         
         trackView.songVersionThreeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionThreeButton.frame = CGRectMake(self.carouselHeight/2+17+10, self.carouselHeight-45, 35, 35);
+        trackView.songVersionThreeButton.frame = CGRectMake(self.carouselHeight/2+15+10, self.carouselHeight-40, 30, 30);
         [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected.png"] forState:UIControlStateNormal];
         [trackView.songVersionThreeButton addTarget:self action:@selector(tappedSongVersionThreeButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionThreeButton];
