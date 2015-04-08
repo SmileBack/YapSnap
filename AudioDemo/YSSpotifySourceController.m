@@ -245,19 +245,19 @@
         
         trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.songVersionOneButton.frame = CGRectMake(0, 150, 65, 50);
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected300.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected500.png"] forState:UIControlStateNormal];
         [trackView.songVersionOneButton addTarget:self action:@selector(tappedSongVersionOneButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionOneButton];
         
         trackView.songVersionTwoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.songVersionTwoButton.frame = CGRectMake(65+2, 150, 66, 50);
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected300.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected500.png"] forState:UIControlStateNormal];
         [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionTwoButton];
         
         trackView.songVersionThreeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.songVersionThreeButton.frame = CGRectMake(65+2+66+2, 150, 65, 50);
-        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected300.png"] forState:UIControlStateNormal];
+        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected500.png"] forState:UIControlStateNormal];
         [trackView.songVersionThreeButton addTarget:self action:@selector(tappedSongVersionThreeButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionThreeButton];
     }
@@ -290,9 +290,9 @@
     UIView *parent = button.superview;
     if ([parent isKindOfClass:[SpotifyTrackView class]]) {
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected300.png"] forState:UIControlStateNormal];
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected300.png"] forState:UIControlStateNormal];
-        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected300.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected500.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected500.png"] forState:UIControlStateNormal];
+        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected500.png"] forState:UIControlStateNormal];
         
         YSTrack *selectedTrack = nil;
         for (YSTrack *track in self.songs) {
@@ -316,9 +316,9 @@
     UIView *parent = button.superview;
     if ([parent isKindOfClass:[SpotifyTrackView class]]) {
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelected300.png"] forState:UIControlStateNormal];
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected300.png"] forState:UIControlStateNormal];
-        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected300.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelected500.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected500.png"] forState:UIControlStateNormal];
+        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected500.png"] forState:UIControlStateNormal];
         
         YSTrack *selectedTrack = nil;
         for (YSTrack *track in self.songs) {
@@ -342,9 +342,9 @@
     UIView *parent = button.superview;
     if ([parent isKindOfClass:[SpotifyTrackView class]]) {
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeSelected300.png"] forState:UIControlStateNormal];
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected300.png"] forState:UIControlStateNormal];
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected300.png"] forState:UIControlStateNormal];
+        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeSelected500.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected500.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected500.png"] forState:UIControlStateNormal];
         
         YSTrack *selectedTrack = nil;
         for (YSTrack *track in self.songs) {
