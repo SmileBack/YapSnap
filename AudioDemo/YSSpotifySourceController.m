@@ -229,8 +229,14 @@
         [trackView addSubview:trackView.imageView];
 
         trackView.label = [[UILabel alloc]initWithFrame:
-                          CGRectMake(0, self.carouselHeight, self.carouselHeight, 25)];
+                          CGRectMake(0, self.carouselHeight+4, self.carouselHeight, 25)];
         [trackView addSubview:trackView.label];
+        
+        trackView.bottomBorder = [[UIView alloc]initWithFrame:
+                                  CGRectMake(0, self.carouselHeight-1, self.carouselHeight, 1)];
+        trackView.bottomBorder.backgroundColor = [UIColor whiteColor];
+        trackView.bottomBorder.alpha = 0.9;
+        [trackView addSubview:trackView.bottomBorder];
         
         trackView.spotifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.spotifyButton.frame = CGRectMake(self.carouselHeight-40, 5, 35, 35);
@@ -388,17 +394,19 @@
 {
     if([self.searchBox isFirstResponder])
     {
-        NSLog(@"Search box is in focus");
         [self.view endEditing:YES];
     }
     else
     {
-        NSLog(@"Search box not in focus");
-        double delay = 0.1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
-        });
+        if (!self.didTapAlbumCoverForFirstTime) {
+            double delay = 0.1;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
+            });
+        }
     }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_ALBUM_COVER];
 }
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
@@ -576,6 +584,11 @@
             [self.searchBox becomeFirstResponder];
         });
     }
+}
+
+- (BOOL) didTapAlbumCoverForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_ALBUM_COVER];
 }
 
 - (BOOL) didTapSongVersionOneForFirstTime

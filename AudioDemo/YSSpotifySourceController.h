@@ -12,6 +12,7 @@
 
 @interface YSSpotifySourceController : YSAudioSourceController<iCarouselDataSource, iCarouselDelegate, UITextFieldDelegate, STKAudioPlayerDelegate>
 
+#define TAPPED_ALBUM_COVER @"yaptap.TappedAlbumCoverKey"
 #define TAPPED_SONG_VERSION_ONE @"yaptap.TappedSongVersionOneKey"
 #define TAPPED_SONG_VERSION_TWO @"yaptap.TappedSongVersionTwoKey"
 #define TAPPED_SONG_VERSION_THREE @"yaptap.TappedSongVersionThreeKey"

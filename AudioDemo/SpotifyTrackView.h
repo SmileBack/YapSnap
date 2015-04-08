@@ -21,5 +21,7 @@
 @property (nonatomic, strong) UIButton *songVersionTwoButton;
 @property (nonatomic, strong) UIButton *songVersionThreeButton;
 
+@property (nonatomic, strong) UIView *bottomBorder;
+
 
 @end
