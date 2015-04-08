@@ -238,20 +238,20 @@
         [trackView addSubview:trackView.spotifyButton];
         
         trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionOneButton.frame = CGRectMake(self.carouselHeight/2-15-10-30, self.carouselHeight-40, 30, 30);
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected.png"] forState:UIControlStateNormal];
+        trackView.songVersionOneButton.frame = CGRectMake(0, 150, 65, 50);
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected300.png"] forState:UIControlStateNormal];
         [trackView.songVersionOneButton addTarget:self action:@selector(tappedSongVersionOneButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionOneButton];
         
         trackView.songVersionTwoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionTwoButton.frame = CGRectMake(self.carouselHeight/2-15, self.carouselHeight-40, 30, 30);
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
+        trackView.songVersionTwoButton.frame = CGRectMake(65+2, 150, 66, 50);
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected300.png"] forState:UIControlStateNormal];
         [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionTwoButton];
         
         trackView.songVersionThreeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionThreeButton.frame = CGRectMake(self.carouselHeight/2+15+10, self.carouselHeight-40, 30, 30);
-        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected.png"] forState:UIControlStateNormal];
+        trackView.songVersionThreeButton.frame = CGRectMake(65+2+66+2, 150, 65, 50);
+        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected300.png"] forState:UIControlStateNormal];
         [trackView.songVersionThreeButton addTarget:self action:@selector(tappedSongVersionThreeButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionThreeButton];
     }
@@ -284,9 +284,9 @@
     UIView *parent = button.superview;
     if ([parent isKindOfClass:[SpotifyTrackView class]]) {
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected.png"] forState:UIControlStateNormal];
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
-        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected300.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected300.png"] forState:UIControlStateNormal];
+        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected300.png"] forState:UIControlStateNormal];
         
         YSTrack *selectedTrack = nil;
         for (YSTrack *track in self.songs) {
@@ -299,7 +299,7 @@
     }
     
     if (!self.didTapSongVersionOneForFirstTime) {
-        [[YTNotifications sharedNotifications] showSongVersionText:@"Snippet # 1"];
+        [[YTNotifications sharedNotifications] showSongVersionText:@"Version # 1"];
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_ONE];
@@ -310,9 +310,9 @@
     UIView *parent = button.superview;
     if ([parent isKindOfClass:[SpotifyTrackView class]]) {
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelected.png"] forState:UIControlStateNormal];
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected.png"] forState:UIControlStateNormal];
-        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelected300.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected300.png"] forState:UIControlStateNormal];
+        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected300.png"] forState:UIControlStateNormal];
         
         YSTrack *selectedTrack = nil;
         for (YSTrack *track in self.songs) {
@@ -325,7 +325,7 @@
     }
     
     if (!self.didTapSongVersionTwoForFirstTime) {
-        [[YTNotifications sharedNotifications] showSongVersionText:@"Snippet # 2"];
+        [[YTNotifications sharedNotifications] showSongVersionText:@"Version # 2"];
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_TWO];
@@ -336,9 +336,9 @@
     UIView *parent = button.superview;
     if ([parent isKindOfClass:[SpotifyTrackView class]]) {
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeSelected.png"] forState:UIControlStateNormal];
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected.png"] forState:UIControlStateNormal];
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeSelected300.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected300.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected300.png"] forState:UIControlStateNormal];
         
         YSTrack *selectedTrack = nil;
         for (YSTrack *track in self.songs) {
@@ -351,7 +351,7 @@
     }
     
     if (!self.didTapSongVersionThreeForFirstTime) {
-        [[YTNotifications sharedNotifications] showSongVersionText:@"Snippet # 3"];
+        [[YTNotifications sharedNotifications] showSongVersionText:@"Version # 3"];
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_THREE];
@@ -542,6 +542,7 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
             });
+            return NO;
         } else {
             float volume = [[AVAudioSession sharedInstance] outputVolume];
             NSLog(@"Volume: %f", volume);
@@ -561,8 +562,8 @@
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Played a Song"];
             [mixpanel.people increment:@"Played a Song #" by:[NSNumber numberWithInt:1]];
+            return YES;
         }
-        return YES;
     }
 }
 
