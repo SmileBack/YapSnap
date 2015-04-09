@@ -44,6 +44,8 @@
     } else {
         track.imageURL = nil;
     }
+    
+    track.secondsToFastForward = trackDictionary[@"seconds_to_fast_forward"];
 
     return track;
 }

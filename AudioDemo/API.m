@@ -71,9 +71,6 @@ static API *sharedAPI;
 {
     NSMutableDictionary *params = [self paramsWithDict:dict];
     params[@"text"] = yapBuilder.text;
-    params[@"pitch_value"] = yapBuilder.pitchValueInCentUnits;
-    
-    NSLog(@"Pitch Value (in cent units) = %@", yapBuilder.pitchValueInCentUnits);
     
     NSString* recipients = [[yapBuilder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
     params[@"recipients"] = recipients;
@@ -258,9 +255,12 @@ static API *sharedAPI;
             callback(NO, error);
         }
         
+        NSLog(@"Pitch Value (in cent units) = %@", builder.pitchValueInCentUnits);
+        
         NSDictionary *params = [weakSelf paramsWithDict:@{@"type": MESSAGE_TYPE_VOICE,
                                                           @"aws_recording_url": url,
-                                                          @"aws_recording_etag": etag}
+                                                          @"aws_recording_etag": etag,
+                                                          @"pitch_value": builder.pitchValueInCentUnits}
                                           andYapBuilder:builder];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -305,7 +305,7 @@ static API *sharedAPI;
                                                   @"spotify_full_song_url": song.spotifyURL,
                                                   @"spotify_preview_url": song.previewURL,
                                                   @"type": MESSAGE_TYPE_SPOTIFY,
-                                                  //@"seconds_to_fast_forward": song.secondsToFastForward TODO: UNCOMMENT THIS!
+                                                  @"seconds_to_fast_forward": song.secondsToFastForward,
                                                   }
                                   andYapBuilder:builder];
     
@@ -336,7 +336,7 @@ static API *sharedAPI;
     [manager GET:[self urlForEndpoint:@"audio_messages"]
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              //NSLog(@"YAPS: In callback from API %@", responseObject);
+              NSLog(@"YAPS: In callback from API %@", responseObject);
               NSArray *yapDicts = responseObject; //Assuming it is an array
               NSArray *yaps = [YSYap yapsWithArray:yapDicts];
               

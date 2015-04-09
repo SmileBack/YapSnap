@@ -86,8 +86,7 @@
     
     builder.messageType = MESSAGE_TYPE_SPOTIFY;
     builder.track = self.songs[self.carousel.currentItemIndex];
-    
-    
+
     return builder;
 }
 
@@ -438,6 +437,9 @@
 }
 
 #pragma mark - STKAudioPlayerDelegate
+
+/// Raised when an item has finished buffering (may or may not be the currently playing item)
+/// This event may be raised multiple times for the same item if seek is invoked on the player
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer didStartPlayingQueueItemId:(NSObject*)queueItemId
 {
     NSLog(@"audioPlayer didStartPlayingQueueItemId");
@@ -446,6 +448,32 @@
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishBufferingSourceWithQueueItemId:(NSObject*)queueItemId
 {
     NSLog(@"audioPlayer didFinishBufferingSourceWithQueueItemId");
+}
+
+// We can get the reason why the player stopped!!!
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishPlayingQueueItemId:(NSObject*)queueItemId withReason:(STKAudioPlayerStopReason)stopReason andProgress:(double)progress andDuration:(double)duration
+{
+    NSLog(@"audioPlayer didFinishPlayingQueueItemId; Reason: %u; Progress: %f; Duration: %f", stopReason, progress, duration);
+}
+
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer unexpectedError:(STKAudioPlayerErrorCode)errorCode
+{
+    NSLog(@"audioPlayer unexpected error: %u", errorCode);
+
+    [self enableUserInteraction];
+    [audioPlayer stop];
+    [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION object:nil];
+}
+
+/// Optionally implemented to get logging information from the STKAudioPlayer (used internally for debugging)
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer logInfo:(NSString*)line
+{
+    NSLog(@"Log info: %@", line);
+}
+/// Raised when items queued items are cleared (usually because of a call to play, setDataSource or stop)
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didCancelQueuedItems:(NSArray*)queuedItems
+{
+    NSLog(@"Did cancel queued items: %@", queuedItems);
 }
 
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer stateChanged:(STKAudioPlayerState)state previousState:(STKAudioPlayerState)previousState
@@ -462,13 +490,21 @@
         NSLog(@"state == STKAudioPlayerStatePlaying");
         [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
         YSTrack *track = self.songs[self.carousel.currentItemIndex];
-        NSLog(@"Seconds to fast forward: %d", track.secondsToFastForward.intValue);
         if (track.secondsToFastForward > 0) {
             [self.player seekToTime:track.secondsToFastForward.intValue];
         }
     }
     
     if (state == STKAudioPlayerStateBuffering) {
+        /*
+        double delay = 5.0;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            YSTrack *track = self.songs[self.carousel.currentItemIndex];
+            if (track.secondsToFastForward > 0) {
+                [self.player seekToTime:track.secondsToFastForward.intValue];
+            }
+        });
+         */
         NSLog(@"state == STKAudioPlayerStateBuffering");
     }
     
@@ -479,6 +515,7 @@
     if (state == STKAudioPlayerStateStopped) {
         NSLog(@"state == STKAudioPlayerStateStopped");
         [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
+        // TODO: Set progress to 0 here
     }
     
     if (state == STKAudioPlayerStateError) {
@@ -495,18 +532,6 @@
         [audioPlayer stop];
         [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION object:nil];
     }
-}
-
--(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishPlayingQueueItemId:(NSObject*)queueItemId withReason:(STKAudioPlayerStopReason)stopReason andProgress:(double)progress andDuration:(double)duration
-{
-    NSLog(@"audioPlayer didFinishPlayingQueueItemId");
-}
-
--(void) audioPlayer:(STKAudioPlayer*)audioPlayer unexpectedError:(STKAudioPlayerErrorCode)errorCode
-{
-    [self enableUserInteraction];
-    [audioPlayer stop];
-    [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION object:nil];
 }
 
 #pragma mark - Implement public audio methods
@@ -554,7 +579,7 @@
             return NO;
         } else {
             float volume = [[AVAudioSession sharedInstance] outputVolume];
-            NSLog(@"Volume: %f", volume);
+            //NSLog(@"Volume: %f", volume);
             if (volume <= 0.125) {
                 double delay = 0.1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
