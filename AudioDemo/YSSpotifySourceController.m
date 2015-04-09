@@ -245,22 +245,23 @@
         
         trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.songVersionOneButton.frame = CGRectMake(0, self.carouselHeight-50, 65, 50);
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected500.png"] forState:UIControlStateNormal];
         [trackView.songVersionOneButton addTarget:self action:@selector(tappedSongVersionOneButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionOneButton];
         
         trackView.songVersionTwoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.songVersionTwoButton.frame = CGRectMake(65+2, self.carouselHeight-50, 66, 50);
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected500.png"] forState:UIControlStateNormal];
         [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionTwoButton];
         
         trackView.songVersionThreeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.songVersionThreeButton.frame = CGRectMake(65+2+66+2, self.carouselHeight-50, 65, 50);
-        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected500.png"] forState:UIControlStateNormal];
         [trackView.songVersionThreeButton addTarget:self action:@selector(tappedSongVersionThreeButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionThreeButton];
     }
+    
+    [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected500.png"] forState:UIControlStateNormal];
+    [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected500.png"] forState:UIControlStateNormal];
+    [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected500.png"] forState:UIControlStateNormal];
 
     if (track.imageURL) {
         [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.imageURL]];
