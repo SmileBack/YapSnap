@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSString *alertViewString;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property (nonatomic) float carouselHeight;
+@property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 
 @end
 
@@ -50,6 +51,14 @@
     UITapGestureRecognizer *tappedMusicIconImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMusicIconImage)];
     tappedMusicIconImage.numberOfTapsRequired = 1;
     [self.musicIcon addGestureRecognizer:tappedMusicIconImage];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    self.playerAlreadyStartedPlayingForThisSong = NO;
+    NSLog(@"Set playerAlreadyStartedPlayingForThisSong to FALSE");
 }
  
 - (void)tappedMusicIconImage {
@@ -87,6 +96,8 @@
     builder.messageType = MESSAGE_TYPE_SPOTIFY;
     builder.track = self.songs[self.carousel.currentItemIndex];
 
+    NSLog(@"Seconds to fast forward: %@", builder.track.secondsToFastForward);
+    
     return builder;
 }
 
@@ -258,9 +269,13 @@
         [trackView addSubview:trackView.songVersionThreeButton];
     }
     
+    // Set song version button selections
     [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected500.png"] forState:UIControlStateNormal];
     [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected500.png"] forState:UIControlStateNormal];
     [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected500.png"] forState:UIControlStateNormal];
+    
+    // Set seconds to fast forward to 0
+    track.secondsToFastForward = [NSNumber numberWithInt:0];
 
     if (track.imageURL) {
         [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.imageURL]];
@@ -301,7 +316,7 @@
                 break;
             }
         }
-        selectedTrack.secondsToFastForward = 0;
+        selectedTrack.secondsToFastForward = [NSNumber numberWithInt:0];
     }
     
     if (!self.didTapSongVersionOneForFirstTime) {
@@ -427,7 +442,7 @@
 - (void) stopAudioCapture:(float)elapsedTime
 {
     [self.player stop];
-    [self enableUserInteraction];
+    [self enableUserInteraction]; // This is most likely redundant, but putting it here anyway just in case
 }
 
 - (void) enableUserInteraction
@@ -488,10 +503,16 @@
     
     if (state == STKAudioPlayerStatePlaying) {
         NSLog(@"state == STKAudioPlayerStatePlaying");
-        [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
-        YSTrack *track = self.songs[self.carousel.currentItemIndex];
-        if (track.secondsToFastForward > 0) {
-            [self.player seekToTime:track.secondsToFastForward.intValue];
+        
+        if (!self.playerAlreadyStartedPlayingForThisSong) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
+            YSTrack *track = self.songs[self.carousel.currentItemIndex];
+            if (track.secondsToFastForward.intValue > 0) {
+                [self.player seekToTime:track.secondsToFastForward.intValue];
+            }
+            // set self.playerAlreadyStartedPlayingForThisSong to True!
+            self.playerAlreadyStartedPlayingForThisSong = YES;
+            NSLog(@"Set playerAlreadyStartedPlayingForThisSong to TRUE");
         }
     }
     
@@ -515,7 +536,11 @@
     if (state == STKAudioPlayerStateStopped) {
         NSLog(@"state == STKAudioPlayerStateStopped");
         [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
-        // TODO: Set progress to 0 here
+        [self enableUserInteraction];
+        
+        // set self.playerAlreadyStartedPlayingForThisSong to FALSE!
+        self.playerAlreadyStartedPlayingForThisSong = NO;
+        NSLog(@"Set playerAlreadyStartedPlayingForThisSong to FALSE");
     }
     
     if (state == STKAudioPlayerStateError) {
@@ -528,9 +553,8 @@
     
     if (state == STKAudioPlayerStateBuffering && previousState == STKAudioPlayerStatePlaying) {
         NSLog(@"state changed from playing to buffering");
-        [self enableUserInteraction];
-        [audioPlayer stop];
-        [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION object:nil];
+        //[audioPlayer stop];
+        //[[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION object:nil];
     }
 }
 

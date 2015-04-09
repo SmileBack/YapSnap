@@ -29,7 +29,7 @@
 
 @implementation AudioCaptureViewController
 
-static const float MAX_CAPTURE_TIME = 10.0;
+static const float MAX_CAPTURE_TIME = 12.0;
 static const float TIMER_INTERVAL = .01;
 
 - (void)viewDidLoad
