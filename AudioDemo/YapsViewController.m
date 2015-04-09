@@ -291,6 +291,10 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+        return;
+    }
+
     YSYap *yap = self.yaps[indexPath.row];
     if (yap.receivedByCurrentUser) {
         if (yap.wasOpened) {
@@ -440,7 +444,9 @@ static NSString *CellIdentifier = @"Cell";
     {
         CGPoint p = [tap locationInView:tap.view];
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
-        [self cellTappedTwiceAtIndexPath:indexPath];
+        if (indexPath.section > 0) {
+            [self cellTappedTwiceAtIndexPath:indexPath];
+        }
     }
 }
 
