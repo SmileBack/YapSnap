@@ -28,8 +28,13 @@ static YTNotifications *_sharedNotifications;
                                   kCRToastAnimationInTypeKey : @(CRToastAnimationTypeLinear),
                                   kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeLinear),
                                   kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionTop),
-                                  kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionTop)
+                                  kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionTop),
+                                  kCRToastInteractionRespondersKey: @[[CRToastInteractionResponder interactionResponderWithInteractionType:CRToastInteractionTypeAll
+                                                                                                                      automaticallyDismiss:YES
+                                                                                                                                     block:^(CRToastInteractionType interactionType){
+                                                                                                                                     }]]
                                   };
+
 
         [CRToastManager setDefaultOptions:options];
     }
