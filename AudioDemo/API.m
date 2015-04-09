@@ -11,6 +11,7 @@
 #import "AmazonAPI.h"
 #import "YSPushManager.h"
 #import "Environment.h"
+#import <SDWebImage/SDWebImagePrefetcher.h>
 
 @interface API()
 
@@ -338,6 +339,18 @@ static API *sharedAPI;
               //NSLog(@"YAPS: In callback from API %@", responseObject);
               NSArray *yapDicts = responseObject; //Assuming it is an array
               NSArray *yaps = [YSYap yapsWithArray:yapDicts];
+              
+              NSMutableArray *imagesToPrefetch = [NSMutableArray new];
+              for (YSYap *yap in yaps) {
+                  if (!yap.wasOpened && yap.receivedByCurrentUser && yap.yapPhotoURL && ![yap.yapPhotoURL isEqual:[NSNull null]]) {
+                      NSLog(@"Prefetching: %@", yap.yapPhotoURL);
+                      [imagesToPrefetch addObject:yap.yapPhotoURL];
+                  }
+              }
+              if (imagesToPrefetch.count > 0) {
+                  [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:imagesToPrefetch];
+              }
+              
               callback(yaps, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {

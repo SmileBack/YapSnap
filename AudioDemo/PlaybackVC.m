@@ -47,13 +47,7 @@
 
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
 
-    NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
-    NSLog(@"Playing URL: %@ %@ auth token", self.yap.playbackURL, headers ? @"with" : @"without");
-    if (headers) {
-        [self.player play:self.yap.playbackURL withHeaders:headers];
-    } else {
-        [self.player play:self.yap.playbackURL];
-    }
+    [self playYapAudioAfterHandlingImage];
 
     [self.progressView.activityIndicator startAnimating];
     
@@ -75,11 +69,6 @@
         });
     }
 
-    // If there's no photo URL, don't attempt to show photo
-    if (self.yap.yapPhotoURL && ![self.yap.yapPhotoURL isEqual: [NSNull null]]) {
-        [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yap.yapPhotoURL]];
-    }
-    
     // Pitch possibilities: 1000, 500, 0, -400
     if (self.yap.pitchValueInCentUnits.intValue > 750) {
         if (self.isiPhone5Size) {
@@ -105,6 +94,36 @@
         } else {
             [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlue.png"]];
         }
+    }
+}
+
+- (void) playYapAudioAfterHandlingImage
+{
+    __weak PlaybackVC *weakSelf = self;
+    if (self.yap.yapPhotoURL && ![self.yap.yapPhotoURL isEqual: [NSNull null]]) {
+            [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yap.yapPhotoURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (cacheType == SDImageCacheTypeDisk) {
+                    NSLog(@"Photo from disk");
+                } else if (cacheType == SDImageCacheTypeMemory) {
+                    NSLog(@"Photo from memory");
+                } else {
+                    NSLog(@"Photo from web");
+                }
+                [weakSelf playYapAudio];
+            }];
+    } else {
+        [self playYapAudio];
+    }
+}
+
+- (void) playYapAudio
+{
+    NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
+    NSLog(@"Playing URL: %@ %@ auth token", self.yap.playbackURL, headers ? @"with" : @"without");
+    if (headers) {
+        [self.player play:self.yap.playbackURL withHeaders:headers];
+    } else {
+        [self.player play:self.yap.playbackURL];
     }
 }
 
