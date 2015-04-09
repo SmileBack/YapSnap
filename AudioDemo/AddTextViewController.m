@@ -66,7 +66,7 @@
                                                                             target:nil
                                                                             action:nil];
     
-    self.progressView.progress = self.yapBuilder.duration/10;
+    self.progressView.progress = self.yapBuilder.duration/12;
     
     self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textView.delegate = self;

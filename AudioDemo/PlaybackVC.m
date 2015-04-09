@@ -177,7 +177,7 @@
     self.elapsedTime += TIME_INTERVAL;
 
     CGFloat trackLength = [self.yap.duration floatValue];
-    CGFloat progress = self.elapsedTime / 10;
+    CGFloat progress = self.elapsedTime / 12;
     [self.progressView setProgress:progress];
     
     if (self.elapsedTime >= trackLength) {
@@ -207,7 +207,7 @@
         [self.progressView.activityIndicator stopAnimating];
         
         CGFloat width = self.view.frame.size.width;
-        CGFloat progressViewRemainderWidth = (10 - [self.yap.duration floatValue]) * width/10;
+        CGFloat progressViewRemainderWidth = (12 - [self.yap.duration floatValue]) * width/12;
         self.progressViewRemainder = [[UIView alloc] init];
         [self.view addSubview:self.progressViewRemainder];
         [self.progressViewRemainder setTranslatesAutoresizingMaskIntoConstraints:NO];
