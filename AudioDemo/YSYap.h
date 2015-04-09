@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSString *text;
 @property (strong, nonatomic) NSArray *rgbColorComponents;
 @property (nonatomic, strong) NSNumber *pitchValueInCentUnits;
+@property (nonatomic, strong) NSNumber *secondsToFastForward;
 
 // Spotify stuff
 @property (strong, nonatomic) NSString *artist;

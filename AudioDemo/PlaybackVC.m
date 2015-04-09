@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) UIView *progressViewRemainder;
 @property (strong, nonatomic) IBOutlet UIImageView *yapPhoto;
+@property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 
 @end
 
@@ -137,6 +138,10 @@
                          self.volumeView.alpha = .8;
                      }
                      completion:nil];
+    
+    // set self.playerAlreadyStartedPlayingForThisSong to False!
+    self.playerAlreadyStartedPlayingForThisSong = NO;
+    NSLog(@"Set playerAlreadyStartedPlayingForThisSong to FALSE");
 }
 
 - (IBAction)didTapStopButton:(id)sender {
@@ -186,60 +191,65 @@
 }
 
 #pragma mark - STKAudioPlayerDelegate
--(void) audioPlayer:(STKAudioPlayer*)audioPlayer didStartPlayingQueueItemId:(NSObject*)queueItemId
-{
-}
-
--(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishBufferingSourceWithQueueItemId:(NSObject*)queueItemId
-{
-}
-
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer stateChanged:(STKAudioPlayerState)state previousState:(STKAudioPlayerState)previousState
 {
     if (state == STKAudioPlayerStatePlaying) {
-        NSLog(@"Playing!");
-        self.elapsedTime = 0.0f;
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL
-                                                      target:self
-                                                    selector:@selector(timerFired)
-                                                    userInfo:nil
-                                                     repeats:YES];
-        [self.progressView.activityIndicator stopAnimating];
+        NSLog(@"state == STKAudioPlayerStatePlaying");
         
-        CGFloat width = self.view.frame.size.width;
-        CGFloat progressViewRemainderWidth = (12 - [self.yap.duration floatValue]) * width/12;
-        self.progressViewRemainder = [[UIView alloc] init];
-        [self.view addSubview:self.progressViewRemainder];
-        [self.progressViewRemainder setTranslatesAutoresizingMaskIntoConstraints:NO];
-        
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:progressViewRemainderWidth]];
-        self.progressViewRemainder.backgroundColor = [UIColor lightGrayColor];
-        self.progressViewRemainder.alpha = 0;
-        
-        [UIView animateWithDuration:0.4
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             self.progressViewRemainder.alpha = 1;
-                         }
-                         completion:nil];
-        
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Opened Yap"];
-        [mixpanel.people increment:@"Opened Yap #" by:[NSNumber numberWithInt:1]];
-        
-        [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error) {
-            if (error) {
-
+        if (!self.playerAlreadyStartedPlayingForThisSong) {
+            NSLog(@"Seconds to Fast Forward: %d", self.yap.secondsToFastForward.intValue);
+            
+            if (self.yap.secondsToFastForward.intValue > 0) {
+                [audioPlayer seekToTime:self.yap.secondsToFastForward.intValue];
             }
-        }];
+            
+            self.elapsedTime = 0.0f;
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL
+                                                          target:self
+                                                        selector:@selector(timerFired)
+                                                        userInfo:nil
+                                                         repeats:YES];
+            [self.progressView.activityIndicator stopAnimating];
+            
+            CGFloat width = self.view.frame.size.width;
+            CGFloat progressViewRemainderWidth = (12 - [self.yap.duration floatValue]) * width/12;
+            self.progressViewRemainder = [[UIView alloc] init];
+            [self.view addSubview:self.progressViewRemainder];
+            [self.progressViewRemainder setTranslatesAutoresizingMaskIntoConstraints:NO];
+            
+            [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
+            [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
+            [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
+            [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:progressViewRemainderWidth]];
+            self.progressViewRemainder.backgroundColor = [UIColor lightGrayColor];
+            self.progressViewRemainder.alpha = 0;
+            
+            [UIView animateWithDuration:0.4
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{
+                                 self.progressViewRemainder.alpha = 1;
+                             }
+                             completion:nil];
+            
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Opened Yap"];
+            [mixpanel.people increment:@"Opened Yap #" by:[NSNumber numberWithInt:1]];
+            
+            [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error) {
+                if (error) {
+
+                }
+            }];
+            
+            // set self.playerAlreadyStartedPlayingForThisSong to True!
+            self.playerAlreadyStartedPlayingForThisSong = YES;
+            NSLog(@"Set playerAlreadyStartedPlayingForThisSong to TRUE");
+        }
     }
     
     if (state == STKAudioPlayerStateStopped) {
-        NSLog(@"Stopped!");
+        NSLog(@"state == STKAudioPlayerStateStopped");
         [self.timer invalidate];
         self.timer = nil;
         [self.progressView.activityIndicator stopAnimating]; // This line may not be necessary
@@ -254,34 +264,75 @@
                 });
             }
         });
+        
+        // set self.playerAlreadyStartedPlayingForThisSong to FALSE!
+        self.playerAlreadyStartedPlayingForThisSong = NO;
+        NSLog(@"Set playerAlreadyStartedPlayingForThisSong to FALSE");
     }
     
     if (state == STKAudioPlayerStateBuffering && previousState == STKAudioPlayerStatePlaying) {
         NSLog(@"state changed from playing to buffering");
-        [audioPlayer stop];
-        [[API sharedAPI] updateYapStatus:self.yap toStatus:@"unopened" withCallback:^(BOOL success, NSError *error) {
-            if (error) {
-
-            }
-        }];
-        
-        double delay = .1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Connection Was Lost!"];
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Connection Lost - Playback"];
-        });
+    }
+    
+    if (state == STKAudioPlayerStateReady) {
+        NSLog(@"state == STKAudioPlayerStateReady");
+    }
+    
+    if (state == STKAudioPlayerStateRunning) {
+        NSLog(@"state == STKAudioPlayerStateRunning");
+    }
+    
+    if (state == STKAudioPlayerStateBuffering) {
+        NSLog(@"state == STKAudioPlayerStateBuffering");
+    }
+    
+    if (state == STKAudioPlayerStatePaused) {
+        NSLog(@"state == STKAudioPlayerStatePaused");
+    }
+    
+    if (state == STKAudioPlayerStateError) {
+        NSLog(@"state == STKAudioPlayerStateError");
+    }
+    
+    if (state == STKAudioPlayerStateDisposed) {
+        NSLog(@"state == STKAudioPlayerStateDisposed");
     }
 }
 
+/// Raised when an item has finished buffering (may or may not be the currently playing item)
+/// This event may be raised multiple times for the same item if seek is invoked on the player
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didStartPlayingQueueItemId:(NSObject*)queueItemId
+{
+    NSLog(@"audioPlayer didStartPlayingQueueItemId");
+}
+
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishBufferingSourceWithQueueItemId:(NSObject*)queueItemId
+{
+    NSLog(@"audioPlayer didFinishBufferingSourceWithQueueItemId");
+}
+
+// We can get the reason why the player stopped!!!
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishPlayingQueueItemId:(NSObject*)queueItemId withReason:(STKAudioPlayerStopReason)stopReason andProgress:(double)progress andDuration:(double)duration
 {
-    NSLog(@"didFinishPlayingQueueItemId");
+    NSLog(@"audioPlayer didFinishPlayingQueueItemId; Reason: %u; Progress: %f; Duration: %f", stopReason, progress, duration);
 }
 
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer unexpectedError:(STKAudioPlayerErrorCode)errorCode
 {
+    NSLog(@"audioPlayer unexpected error: %u", errorCode);
     [audioPlayer stop];
+}
+
+/// Optionally implemented to get logging information from the STKAudioPlayer (used internally for debugging)
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer logInfo:(NSString*)line
+{
+    NSLog(@"Log info: %@", line);
+}
+
+/// Raised when items queued items are cleared (usually because of a call to play, setDataSource or stop)
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didCancelQueuedItems:(NSArray*)queuedItems
+{
+    NSLog(@"Did cancel queued items: %@", queuedItems);
 }
 
 @end

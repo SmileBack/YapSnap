@@ -262,17 +262,11 @@
         trackView.songVersionTwoButton.frame = CGRectMake(65+2, self.carouselHeight-50, 66, 50);
         [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionTwoButton];
-        
-        trackView.songVersionThreeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionThreeButton.frame = CGRectMake(65+2+66+2, self.carouselHeight-50, 65, 50);
-        [trackView.songVersionThreeButton addTarget:self action:@selector(tappedSongVersionThreeButton:) forControlEvents:UIControlEventTouchUpInside];
-        [trackView addSubview:trackView.songVersionThreeButton];
     }
     
     // Set song version button selections
     [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected500.png"] forState:UIControlStateNormal];
     [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected500.png"] forState:UIControlStateNormal];
-    [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected500.png"] forState:UIControlStateNormal];
     
     // Set seconds to fast forward to 0
     track.secondsToFastForward = [NSNumber numberWithInt:0];
@@ -307,7 +301,6 @@
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
         [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected500.png"] forState:UIControlStateNormal];
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected500.png"] forState:UIControlStateNormal];
-        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected500.png"] forState:UIControlStateNormal];
         
         YSTrack *selectedTrack = nil;
         for (YSTrack *track in self.songs) {
@@ -333,7 +326,6 @@
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelected500.png"] forState:UIControlStateNormal];
         [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected500.png"] forState:UIControlStateNormal];
-        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeNotSelected500.png"] forState:UIControlStateNormal];
         
         YSTrack *selectedTrack = nil;
         for (YSTrack *track in self.songs) {
@@ -350,32 +342,6 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_TWO];
-}
-
-- (void) tappedSongVersionThreeButton:(UIButton *)button {
-    NSLog(@"Tapped Song Version Three Button");
-    UIView *parent = button.superview;
-    if ([parent isKindOfClass:[SpotifyTrackView class]]) {
-        SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        [trackView.songVersionThreeButton setImage:[UIImage imageNamed:@"ThreeSelected500.png"] forState:UIControlStateNormal];
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected500.png"] forState:UIControlStateNormal];
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected500.png"] forState:UIControlStateNormal];
-        
-        YSTrack *selectedTrack = nil;
-        for (YSTrack *track in self.songs) {
-            if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
-                selectedTrack = track;
-                break;
-            }
-        }
-        selectedTrack.secondsToFastForward = [NSNumber numberWithInt:20];
-    }
-    
-    if (!self.didTapSongVersionThreeForFirstTime) {
-        [[YTNotifications sharedNotifications] showSongVersionText:@"Version # 3"];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_THREE];
 }
 
 - (void) confirmOpenInSpotify:(UIButton *)button
@@ -508,7 +474,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
             YSTrack *track = self.songs[self.carousel.currentItemIndex];
             if (track.secondsToFastForward.intValue > 0) {
-                [self.player seekToTime:track.secondsToFastForward.intValue];
+                [audioPlayer seekToTime:track.secondsToFastForward.intValue];
             }
             // set self.playerAlreadyStartedPlayingForThisSong to True!
             self.playerAlreadyStartedPlayingForThisSong = YES;
@@ -517,15 +483,6 @@
     }
     
     if (state == STKAudioPlayerStateBuffering) {
-        /*
-        double delay = 5.0;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            YSTrack *track = self.songs[self.carousel.currentItemIndex];
-            if (track.secondsToFastForward > 0) {
-                [self.player seekToTime:track.secondsToFastForward.intValue];
-            }
-        });
-         */
         NSLog(@"state == STKAudioPlayerStateBuffering");
     }
     
@@ -649,11 +606,6 @@
 - (BOOL) didTapSongVersionTwoForFirstTime
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SONG_VERSION_TWO];
-}
-
-- (BOOL) didTapSongVersionThreeForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SONG_VERSION_THREE];
 }
 
 @end

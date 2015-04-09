@@ -25,6 +25,7 @@
     yap.text = dict[@"text"];
     yap.rgbColorComponents = dict[@"color_rgb"];
     yap.pitchValueInCentUnits = dict[@"pitch_value"];
+    yap.secondsToFastForward = dict[@"seconds_to_fast_forward"];
 
     yap.artist = dict[@"spotify_artist_name"];
     
