@@ -61,7 +61,7 @@ static YTNotifications *_sharedNotifications;
 {
     NSDictionary *options = @{
                               kCRToastTextKey: text,
-                              kCRToastTimeIntervalKey: @3,
+                              kCRToastTimeIntervalKey: @2.5,
                               kCRToastBackgroundColorKey: THEME_BACKGROUND_COLOR
                               };
     
