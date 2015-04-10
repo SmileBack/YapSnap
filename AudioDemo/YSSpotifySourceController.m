@@ -78,8 +78,13 @@
 - (void)tappedMusicIconImage {
     NSLog(@"Tapped Music Icon Image");
     if (self.searchBox.isFirstResponder) {
-        NSLog(@"Search Box Is First Responder");
-        [self.view endEditing:YES];
+        self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if ([self.searchBox.text length] == 0) {
+            [self.view endEditing:YES];
+        } else {
+            [self search:self.searchBox.text];
+            [self.view endEditing:YES];
+        }
     } else {
         NSLog(@"Search Box Is Not First Responder");
         [self.searchBox becomeFirstResponder];
@@ -129,7 +134,10 @@
     self.searchBox.delegate = self;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    //Remove extra space at end of string
+    self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     if ([self.searchBox.text length] == 0) {
         NSLog(@"Searched Empty String");
@@ -144,9 +152,6 @@
     } else {
         [self search:self.searchBox.text];
         [self.view endEditing:YES];
-        
-        //Remove extra space at end of string
-        self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
         //Background text color
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
