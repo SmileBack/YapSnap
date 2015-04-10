@@ -237,13 +237,13 @@
     } else {
         
         if (IS_IPHONE_4_SIZE) {
-            self.carouselHeight = 140;
+            self.carouselHeight = 140; // 69; 138*100
         } else if (IS_IPHONE_5_SIZE) {
-            self.carouselHeight = 200;
+            self.carouselHeight = 200; // 99; 198*100
         } else if (IS_IPHONE_6_PLUS_SIZE) {
-            self.carouselHeight = 290;
+            self.carouselHeight = 290; // 144; (288*100) *1.5
         } else {
-            self.carouselHeight = 240;
+            self.carouselHeight = 240; // 119; (238*100) *1.172  279*117
         }
 
         CGRect frame = CGRectMake(0, 0, self.carouselHeight, self.carouselHeight);
@@ -268,19 +268,27 @@
         [trackView addSubview:trackView.spotifyButton];
         
         trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionOneButton.frame = CGRectMake(0, self.carouselHeight-50, 65, 50);
+        trackView.songVersionOneButton.frame = CGRectMake(0, self.carouselHeight-50, self.carouselHeight/2 - 1, 50);
         [trackView.songVersionOneButton addTarget:self action:@selector(tappedSongVersionOneButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionOneButton];
         
         trackView.songVersionTwoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionTwoButton.frame = CGRectMake(65+2, self.carouselHeight-50, 66, 50);
+        trackView.songVersionTwoButton.frame = CGRectMake(self.carouselHeight/2 + 1, self.carouselHeight-50, self.carouselHeight/2 - 1, 50);
         [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionTwoButton];
     }
     
     // Set song version button selections
-    [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected500.png"] forState:UIControlStateNormal];
-    [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected500.png"] forState:UIControlStateNormal];
+    if (IS_IPHONE_4_SIZE) {
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelectediPhone4.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelectediPhone4.png"] forState:UIControlStateNormal];
+    } else if (IS_IPHONE_6_SIZE) {
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelectediPhone6.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelectediPhone6.png"] forState:UIControlStateNormal];
+    } else {
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
+    }
     
     // Set seconds to fast forward to 0
     track.secondsToFastForward = [NSNumber numberWithInt:0];
@@ -308,13 +316,25 @@
     return trackView;
 }
 
+- (void) displaySongVersionOneButtonInterface {
+    
+}
+
 - (void) tappedSongVersionOneButton:(UIButton *)button {
     NSLog(@"Tapped Song Version One Button");
     UIView *parent = button.superview;
     if ([parent isKindOfClass:[SpotifyTrackView class]]) {
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected500.png"] forState:UIControlStateNormal];
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected500.png"] forState:UIControlStateNormal];
+        if (IS_IPHONE_4_SIZE) {
+            [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelectediPhone4.png"] forState:UIControlStateNormal];
+            [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelectediPhone4.png"] forState:UIControlStateNormal];
+        } else if (IS_IPHONE_6_SIZE) {
+            [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelectediPhone6.png"] forState:UIControlStateNormal];
+            [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelectediPhone6.png"] forState:UIControlStateNormal];
+        } else {
+            [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected.png"] forState:UIControlStateNormal];
+            [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
+        }
         
         YSTrack *selectedTrack = nil;
         for (YSTrack *track in self.songs) {
@@ -338,8 +358,16 @@
     UIView *parent = button.superview;
     if ([parent isKindOfClass:[SpotifyTrackView class]]) {
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelected500.png"] forState:UIControlStateNormal];
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected500.png"] forState:UIControlStateNormal];
+        if (IS_IPHONE_4_SIZE) {
+            [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelectediPhone4.png"] forState:UIControlStateNormal];
+            [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelectediPhone4.png"] forState:UIControlStateNormal];
+        } else if (IS_IPHONE_6_SIZE) {
+            [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelectediPhone6.png"] forState:UIControlStateNormal];
+            [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelectediPhone6.png"] forState:UIControlStateNormal];
+        } else {
+            [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected.png"] forState:UIControlStateNormal];
+            [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelected.png"] forState:UIControlStateNormal];
+        }
         
         YSTrack *selectedTrack = nil;
         for (YSTrack *track in self.songs) {
@@ -348,7 +376,7 @@
                 break;
             }
         }
-        selectedTrack.secondsToFastForward = [NSNumber numberWithInt:10];
+        selectedTrack.secondsToFastForward = [NSNumber numberWithInt:18];
     }
     
     if (!self.didTapSongVersionTwoForFirstTime) {
