@@ -855,6 +855,7 @@
                     <navigationItem key="navigationItem" id="M5r-U7-dCX"/>
                     <connections>
                         <outlet property="addTextToYapButton" destination="jSg-Vp-v2Z" id="Qrv-FB-ihs"/>
+                        <outlet property="bottomConstraint" destination="vNZ-Va-hqk" id="Y4o-LV-ULS"/>
                         <outlet property="cameraButton" destination="KDf-Vb-ilr" id="uC4-rY-boA"/>
                         <outlet property="changePitchButton1" destination="C8u-j8-TJl" id="yCc-nS-K5z"/>
                         <outlet property="changePitchButton2" destination="H1t-6Q-weW" id="duJ-Rf-yDM"/>
@@ -1579,8 +1580,8 @@ Type it here.</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Enn-ka-dSJ"/>
-        <segue reference="AEp-MY-7pq"/>
         <segue reference="gZs-IQ-BYb"/>
+        <segue reference="czb-n6-hbf"/>
+        <segue reference="Enn-ka-dSJ"/>
     </inferredMetricsTieBreakers>
 </document>

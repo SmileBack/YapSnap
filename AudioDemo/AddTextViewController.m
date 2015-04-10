@@ -37,6 +37,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *cameraButton;
 @property (strong, nonatomic) IBOutlet UIButton *uploadButton;
 @property (strong, nonatomic) IBOutlet UIButton *resetPhotoButton;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
 - (IBAction)didTapAddTextButton;
 - (IBAction)didTapPitchButton1;
@@ -101,6 +102,10 @@
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapImageView)];
     [self.flashbackImageView addGestureRecognizer:tapGesture];
+    
+    if (IS_IPHONE_4_SIZE) {
+        self.bottomConstraint.constant = 5;
+    }
 }
 
 - (void) didTapPitchButton1
