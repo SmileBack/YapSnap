@@ -251,21 +251,25 @@
 
         trackView.imageView = [[UIImageView alloc] initWithFrame:frame];
         [trackView addSubview:trackView.imageView];
-
-        trackView.label = [[UILabel alloc]initWithFrame:
-                          CGRectMake(0, self.carouselHeight+4, self.carouselHeight, 25)];
-        [trackView addSubview:trackView.label];
         
-        trackView.bottomBorder = [[UIView alloc]initWithFrame:
-                                  CGRectMake(0, self.carouselHeight-1, self.carouselHeight, 1)];
-        trackView.bottomBorder.backgroundColor = [UIColor whiteColor];
-        trackView.bottomBorder.alpha = 0.9;
-        [trackView addSubview:trackView.bottomBorder];
+        trackView.label = [[UILabel alloc]initWithFrame:
+                           CGRectMake(0, self.carouselHeight+4, self.carouselHeight, 25)];
+        [trackView addSubview:trackView.label];
+         
+        trackView.albumImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        trackView.albumImageButton.frame = CGRectMake(0, 0, self.carouselHeight, self.carouselHeight);
+        [trackView.albumImageButton setImage:nil forState:UIControlStateNormal];
+        [trackView addSubview:trackView.albumImageButton];
         
         trackView.spotifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.spotifyButton.frame = CGRectMake(self.carouselHeight-40, 5, 35, 35);
         [trackView.spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
         [trackView addSubview:trackView.spotifyButton];
+        
+        trackView.songVersionBackground = [[UIView alloc]initWithFrame:
+                                           CGRectMake(0, self.carouselHeight-18, self.carouselHeight, 18)];
+        trackView.songVersionBackground.backgroundColor = THEME_BACKGROUND_COLOR;
+        [trackView addSubview:trackView.songVersionBackground];
         
         trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.songVersionOneButton.frame = CGRectMake(0, self.carouselHeight-50, self.carouselHeight/2 - 1, 50);
@@ -290,6 +294,10 @@
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
     }
     
+    trackView.songVersionOneButton.hidden = YES;
+    trackView.songVersionTwoButton.hidden = YES;
+    trackView.songVersionBackground.hidden = YES;
+    
     // Set seconds to fast forward to 0
     track.secondsToFastForward = [NSNumber numberWithInt:0];
 
@@ -312,6 +320,7 @@
     trackView.label.font = [UIFont fontWithName:@"Futura-Medium" size:size];
     
     [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
+    [trackView.albumImageButton addTarget:self action:@selector(tappedAlbumImage:) forControlEvents:UIControlEventTouchUpInside];
 
     return trackView;
 }
@@ -414,6 +423,34 @@
     }
 }
 
+- (void) tappedAlbumImage:(UIButton *)button
+{
+    NSLog(@"Tapped Album Image");
+    NSLog(@"Search box not in focus");
+    UIView *parent = button.superview;
+    if ([parent isKindOfClass:[SpotifyTrackView class]]) {
+        SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
+        YSTrack *selectedTrack = nil;
+        for (YSTrack *track in self.songs) {
+            if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+                selectedTrack = track;
+                break;
+            }
+        }
+    
+        if (!selectedTrack.songVersionButtonsAreShowing) {
+            trackView.songVersionOneButton.hidden = NO;
+            trackView.songVersionTwoButton.hidden = NO;
+            trackView.songVersionBackground.hidden = NO;
+            selectedTrack.songVersionButtonsAreShowing = YES;
+        } else {
+            trackView.songVersionOneButton.hidden = YES;
+            trackView.songVersionTwoButton.hidden = YES;
+            trackView.songVersionBackground.hidden = YES;
+            selectedTrack.songVersionButtonsAreShowing = NO;
+        }
+    }
+}
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {

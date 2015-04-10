@@ -20,7 +20,8 @@
 @property (nonatomic, strong) UIButton *songVersionOneButton;
 @property (nonatomic, strong) UIButton *songVersionTwoButton;
 
-@property (nonatomic, strong) UIView *bottomBorder;
+@property (nonatomic, strong) UIButton *albumImageButton;
 
+@property (nonatomic, strong) UIView *songVersionBackground;
 
 @end
