@@ -316,10 +316,6 @@
     return trackView;
 }
 
-- (void) displaySongVersionOneButtonInterface {
-    
-}
-
 - (void) tappedSongVersionOneButton:(UIButton *)button {
     NSLog(@"Tapped Song Version One Button");
     UIView *parent = button.superview;
@@ -351,6 +347,9 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_ONE];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Song Version One"];
 }
 
 - (void) tappedSongVersionTwoButton:(UIButton *)button {
@@ -384,6 +383,9 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_TWO];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Song Version Two"];
 }
 
 - (void) confirmOpenInSpotify:(UIButton *)button
@@ -486,6 +488,9 @@
     [self enableUserInteraction];
     [audioPlayer stop];
     [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION object:nil];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Player Unexpected Error - Spotify"];
 }
 
 /// Optionally implemented to get logging information from the STKAudioPlayer (used internally for debugging)
@@ -529,6 +534,8 @@
         if (self.playerAlreadyStartedPlayingForThisSong) {
             NSLog(@"Buffering for second time!");
             [[YTNotifications sharedNotifications] showBufferingText:@"Buffering (keep holding)"];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Buffering notification - Spotify"];
         }
     }
     
@@ -548,6 +555,8 @@
     
     if (state == STKAudioPlayerStateError) {
         NSLog(@"state == STKAudioPlayerStateError");
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Player State Error - Spotify"];
     }
     
     if (state == STKAudioPlayerStateDisposed) {
@@ -611,6 +620,8 @@
                 double delay = 0.1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[YTNotifications sharedNotifications] showVolumeText:@"Turn Up The Volume!"];
+                    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                    [mixpanel track:@"Volume Notification - Spotify"];
                 });
             }
             NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];

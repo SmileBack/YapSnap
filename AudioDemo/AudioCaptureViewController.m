@@ -405,6 +405,9 @@ static const float TIMER_INTERVAL = .01;
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Music Mode Button"];
 }
 
 - (IBAction)micModeButtonPressed:(UIButton *)sender
@@ -424,6 +427,9 @@ static const float TIMER_INTERVAL = .01;
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Mic Mode Button"];
 }
 
 - (void) flipController:(UIViewController *)from to:(YSAudioSourceController *)to

@@ -67,6 +67,8 @@
     if (volume < 0.5) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [[YTNotifications sharedNotifications] showVolumeText:@"Turn Up The Volume!"];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Volume Notification - PlayBack"];
         });
     }
 
@@ -287,6 +289,8 @@
         if (self.playerAlreadyStartedPlayingForThisSong) {
             NSLog(@"Buffering for second time!");
             [[YTNotifications sharedNotifications] showBufferingText:@"Buffering..."];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Buffering notification - PlayBack"];
         }
     }
     
@@ -296,6 +300,8 @@
     
     if (state == STKAudioPlayerStateError) {
         NSLog(@"state == STKAudioPlayerStateError");
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Player State Error - PlayBack"];
     }
     
     if (state == STKAudioPlayerStateDisposed) {
@@ -325,6 +331,9 @@
 {
     NSLog(@"audioPlayer unexpected error: %u", errorCode);
     [audioPlayer stop];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Player Unexpected Error - PlayBack"];
 }
 
 /// Optionally implemented to get logging information from the STKAudioPlayer (used internally for debugging)

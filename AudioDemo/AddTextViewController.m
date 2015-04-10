@@ -380,7 +380,7 @@
 
 #pragma mark - YSColorPickerDelegate
 
-- (void)colorPicker:(YSColorPicker *)picker didSelectColor:(UIColor *)color
+- (void)colorPicker:(YSColorPicker *)picker didSelectColor:(UIColor *)color // Not currently in UI
 {
     self.view.backgroundColor = color;
 }
@@ -397,8 +397,8 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
-- (void) takePhoto {
-    
+- (void) takePhoto
+{
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
@@ -430,6 +430,9 @@
     [self hideRightIcons];
     self.flashbackImageView.hidden = NO;
     self.resetPhotoButton.hidden = NO;
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Selected a Photo"];
 
     // create a local image that we can use to upload to s3
     NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"image.png"];
@@ -445,6 +448,9 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Canceled Choosing Photo"];
 }
 
 #pragma mark - Spotify Alert Methods
