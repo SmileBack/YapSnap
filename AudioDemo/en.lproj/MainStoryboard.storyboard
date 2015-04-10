@@ -1021,12 +1021,6 @@ in your phone's settings!</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vaK-d3-AtD">
-                        <barButtonItem key="leftBarButtonItem" image="MicrophoneWhite30.png" id="B8h-I6-JOI">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="didTapGoToAudioCaptureButton" destination="Vua-bX-Wl1" id="bhX-gA-Rs0"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="SettingsIconWhite8.png" style="plain" id="UOa-uX-nLV">
                             <connections>
                                 <action selector="didTapSettingsButton" destination="Vua-bX-Wl1" id="kBv-An-pgb"/>
@@ -1562,7 +1556,6 @@ Type it here.</string>
         <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
-        <image name="MicrophoneWhite30.png" width="32" height="32"/>
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PencilIcon2.png" width="150" height="150"/>

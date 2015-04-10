@@ -72,12 +72,19 @@ static NSString *CellIdentifier = @"Cell";
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
+    if (self.comingFromContactsOrAddTextPage) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MicrophoneWhite30.png"]
+                                                                                 style:UIBarButtonItemStylePlain
+                                                                                target:self
+                                                                                action:@selector(didTapGoToAudioCaptureButton)];
+    }
+    
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     if (!self.comingFromContactsOrAddTextPage) {
         [self loadYaps];
     }
-
+    
     // Pull down to refresh
     self.refreshControl = [UIRefreshControl new];
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
