@@ -48,6 +48,8 @@
         NSLog(@"Internet is reachable");
     }
     
+    [self setupNotifications];
+    
     UITapGestureRecognizer *tappedMusicIconImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMusicIconImage)];
     tappedMusicIconImage.numberOfTapsRequired = 1;
     [self.musicIcon addGestureRecognizer:tappedMusicIconImage];
@@ -59,6 +61,18 @@
 
     self.playerAlreadyStartedPlayingForThisSong = NO;
     NSLog(@"Set playerAlreadyStartedPlayingForThisSong to FALSE");
+}
+
+- (void) setupNotifications
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:TAPPED_PROGRESS_VIEW_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Tapped Progress View");
+                        [self.searchBox becomeFirstResponder];
+                    }];
 }
  
 - (void)tappedMusicIconImage {

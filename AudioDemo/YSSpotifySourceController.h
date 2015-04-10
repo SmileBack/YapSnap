@@ -15,5 +15,6 @@
 #define TAPPED_ALBUM_COVER @"yaptap.TappedAlbumCoverKey"
 #define TAPPED_SONG_VERSION_ONE @"yaptap.TappedSongVersionOneKey"
 #define TAPPED_SONG_VERSION_TWO @"yaptap.TappedSongVersionTwoKey"
+#define TAPPED_PROGRESS_VIEW_NOTIFICATION @"yaptap.TappedProgressViewNotification"
 
 @end

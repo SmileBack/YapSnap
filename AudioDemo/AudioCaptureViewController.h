@@ -20,6 +20,7 @@
 #define TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.TappedMicModeButtonForFirstTimeKey"
 #define TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.TappedMusicModeButtonForFirstTimeKey"
 #define SHOW_FEEDBACK_PAGE @"yaptap.ShowFeedbackPage"
+#define TAPPED_PROGRESS_VIEW_NOTIFICATION @"yaptap.TappedProgressViewNotification"
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;

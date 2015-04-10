@@ -50,6 +50,8 @@ static const float TIMER_INTERVAL = .01;
     [self.recordButton setBackgroundImage:[UIImage imageNamed:@"RecordButtonBlueBorder10Pressed.png"] forState:UIControlStateHighlighted];
     
     self.recordProgressView.progress = 0;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapProgressView)];
+    [self.recordProgressView addGestureRecognizer:tapGesture];
 
     YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
     [self addChildViewController:micSource];
@@ -79,6 +81,11 @@ static const float TIMER_INTERVAL = .01;
     singleTap.numberOfTapsRequired = 1;
     self.unopenedYapsCountSpinner.userInteractionEnabled = YES;
     [self.unopenedYapsCountSpinner addGestureRecognizer:singleTap];
+}
+
+- (void) didTapProgressView
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:TAPPED_PROGRESS_VIEW_NOTIFICATION object:self];
 }
 
 - (BOOL) didViewWelcomeNotification
