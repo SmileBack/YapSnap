@@ -89,9 +89,10 @@
     
     [self.textView setTintColor:[UIColor whiteColor]];
     
-    double delay2 = 0.5;
+    double delay2 = 0.2;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.player = [STKAudioPlayer new];
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
     });
     
     if ([self.yapBuilder.messageType  isEqual: @"VoiceMessage"]) {
