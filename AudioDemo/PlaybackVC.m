@@ -289,6 +289,8 @@
         if (self.playerAlreadyStartedPlayingForThisSong) {
             NSLog(@"Buffering for second time!");
             [[YTNotifications sharedNotifications] showBufferingText:@"Buffering..."];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Buffering notification - PlayBack"];
             
             // In the following code we don't want to include songs where seeking occurs, since buffering will happen much more frequently
             if ([self.yap.type isEqual:@"VoiceMessage"] || ([self.yap.type isEqual:@"SpotifyMessage"] && (self.yap.secondsToFastForward.intValue < 10))) {
@@ -297,8 +299,6 @@
                         
                     }
                 }];
-                Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                [mixpanel track:@"Buffering notification - PlayBack"];
             }
         }
     }
