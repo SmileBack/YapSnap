@@ -18,6 +18,7 @@
 - (void) showVolumeText:(NSString *)text;
 - (void) showModeText:(NSString *)text;
 - (void) showSongVersionText:(NSString *)text;
+- (void) showBufferingText:(NSString *)text;
 
 
 @end

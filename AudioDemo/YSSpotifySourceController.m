@@ -376,7 +376,7 @@
                 break;
             }
         }
-        selectedTrack.secondsToFastForward = [NSNumber numberWithInt:18];
+        selectedTrack.secondsToFastForward = [NSNumber numberWithInt:17];
     }
     
     if (!self.didTapSongVersionTwoForFirstTime) {
@@ -528,7 +528,7 @@
         NSLog(@"state == STKAudioPlayerStateBuffering");
         if (self.playerAlreadyStartedPlayingForThisSong) {
             NSLog(@"Buffering for second time!");
-            [[YTNotifications sharedNotifications] showVolumeText:@"Buffering..."];
+            [[YTNotifications sharedNotifications] showBufferingText:@"Buffering..."];
         }
     }
     

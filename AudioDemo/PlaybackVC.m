@@ -286,7 +286,7 @@
         NSLog(@"state == STKAudioPlayerStateBuffering");
         if (self.playerAlreadyStartedPlayingForThisSong) {
             NSLog(@"Buffering for second time!");
-            [[YTNotifications sharedNotifications] showVolumeText:@"Buffering..."];
+            [[YTNotifications sharedNotifications] showBufferingText:@"Buffering..."];
         }
     }
     
