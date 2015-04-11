@@ -13,5 +13,6 @@ target "YapTap" do
   pod 'SHSPhoneComponent', '~> 2.15'
   pod 'CRToast', '~> 0.0.7'
   pod 'Mixpanel'
+  pod 'MJPopupViewController', '~> 0.4'
 end
 

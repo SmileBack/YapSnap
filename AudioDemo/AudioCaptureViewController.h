@@ -21,6 +21,7 @@
 #define SHOW_FEEDBACK_PAGE @"yaptap.ShowFeedbackPage"
 #define TAPPED_PROGRESS_VIEW_NOTIFICATION @"yaptap.TappedProgressViewNotification"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
+#define DID_SEE_WELCOME_POPUP_KEY @"yaptap.DidSeeWelcomePopupKey"
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;

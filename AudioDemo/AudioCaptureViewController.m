@@ -14,7 +14,8 @@
 #import "YapBuilder.h"
 #import "YapsViewController.h"
 #import "AppDelegate.h"
-
+#import "UIViewController+MJPopupViewController.h"
+#import "WelcomePopupViewController.h"
 
 @interface AudioCaptureViewController () {
     NSTimer *timer;
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) NSNumber *unopenedYapsCount;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
+@property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
 
 @end
 
@@ -76,7 +78,30 @@ static const float TIMER_INTERVAL = .01;
     
     [self setupNavBarStuff];
     
+    if (!self.didSeeWelcomePopup) {
+        [self showWelcomePopup];
+    }
+    
     //[self.playButton setEnabled:YES];
+}
+
+- (void) showWelcomePopup {
+    NSLog(@"tapped Welcome Popup");
+    double delay = 1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.welcomePopupVC = [[WelcomePopupViewController alloc] initWithNibName:@"WelcomePopupViewController" bundle:nil];
+        [self presentPopupViewController:self.welcomePopupVC animationType:MJPopupViewAnimationSlideTopTop];
+        
+        UITapGestureRecognizer *tappedWelcomePopup = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedWelcomePopup)];
+        [self.welcomePopupVC.view addGestureRecognizer:tappedWelcomePopup];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_WELCOME_POPUP_KEY];
+    });
+}
+
+- (void) tappedWelcomePopup {
+    NSLog(@"tapped Welcome Popup");
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideTopTop];
 }
 
 - (void) didTapProgressView
@@ -156,18 +181,6 @@ static const float TIMER_INTERVAL = .01;
     }];
 }
 
-- (void) updatePageTitle {
-    if (!self.didOpenYapForFirstTime) {
-        self.titleLabel.text = @"Welcome!";
-        self.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:20];
-        self.titleLabel.textColor = [UIColor whiteColor];
-    } else {
-        self.titleLabel.text = @"YapTap";
-        self.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
-        self.titleLabel.textColor = [UIColor blackColor];
-    }
-}
-
 - (void) updateYapsButtonAnimation {
     if (!self.didOpenYapForFirstTime) {
         if (self.pulsatingTimer){
@@ -201,7 +214,6 @@ static const float TIMER_INTERVAL = .01;
         self.bottomConstraint.constant = 9;
     }
     
-    [self updatePageTitle];
     [self updateYapsButtonAnimation];
 }
 
@@ -505,6 +517,11 @@ static const float TIMER_INTERVAL = .01;
 - (BOOL) didOpenYapForFirstTime
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
+}
+
+- (BOOL) didSeeWelcomePopup
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_POPUP_KEY];
 }
 
 #pragma mark - Mail Delegate

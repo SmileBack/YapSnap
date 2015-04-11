@@ -56,6 +56,10 @@
 		784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67F01A626F7B0084894D /* ProgressViewNotches5.png */; };
 		784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */; };
 		784E35F01A65A0ED0029AA01 /* PencilIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35EF1A65A0ED0029AA01 /* PencilIcon.png */; };
+		785393691AD9C07C00C6BEA7 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785393661AD9C07C00C6BEA7 /* MJPopupBackgroundView.m */; };
+		7853936A1AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785393681AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.m */; };
+		7853936E1AD9C17500C6BEA7 /* WelcomePopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853936C1AD9C17500C6BEA7 /* WelcomePopupViewController.m */; };
+		7853936F1AD9C17500C6BEA7 /* WelcomePopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7853936D1AD9C17500C6BEA7 /* WelcomePopupViewController.xib */; };
 		7863B5DD1A99A25F00531CED /* sound1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7863B5DC1A99A25F00531CED /* sound1.wav */; };
 		786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */; };
 		787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A6D941A4DD8A2001551C6 /* Crashlytics.framework */; };
@@ -244,6 +248,13 @@
 		784C67F01A626F7B0084894D /* ProgressViewNotches5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewNotches5.png; sourceTree = "<group>"; };
 		784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum@2x.png"; sourceTree = "<group>"; };
 		784E35EF1A65A0ED0029AA01 /* PencilIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PencilIcon.png; sourceTree = "<group>"; };
+		785393651AD9C07C00C6BEA7 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		785393661AD9C07C00C6BEA7 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		785393671AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		785393681AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		7853936B1AD9C17500C6BEA7 /* WelcomePopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomePopupViewController.h; sourceTree = "<group>"; };
+		7853936C1AD9C17500C6BEA7 /* WelcomePopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomePopupViewController.m; sourceTree = "<group>"; };
+		7853936D1AD9C17500C6BEA7 /* WelcomePopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomePopupViewController.xib; sourceTree = "<group>"; };
 		7863B5DC1A99A25F00531CED /* sound1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound1.wav; sourceTree = "<group>"; };
 		786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImageWhiteCircle.png; sourceTree = "<group>"; };
 		787A6D941A4DD8A2001551C6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -618,6 +629,63 @@
 			name = "Audio Capture";
 			sourceTree = "<group>";
 		};
+		785393621AD9C02600C6BEA7 /* Feedback Monitor */ = {
+			isa = PBXGroup;
+			children = (
+				78319A821ACD29AF000C3FD6 /* FeedbackMonitor.h */,
+				78319A801ACD29A9000C3FD6 /* FeedbackMonitor.m */,
+			);
+			name = "Feedback Monitor";
+			sourceTree = "<group>";
+		};
+		785393631AD9C03A00C6BEA7 /* Phone Number Checker */ = {
+			isa = PBXGroup;
+			children = (
+				787C84DD1A7732E4005D80D5 /* PhoneNumberChecker.h */,
+				787C84DE1A7732E4005D80D5 /* PhoneNumberChecker.m */,
+			);
+			name = "Phone Number Checker";
+			sourceTree = "<group>";
+		};
+		785393641AD9C04700C6BEA7 /* MJPopup */ = {
+			isa = PBXGroup;
+			children = (
+				785393651AD9C07C00C6BEA7 /* MJPopupBackgroundView.h */,
+				785393661AD9C07C00C6BEA7 /* MJPopupBackgroundView.m */,
+				785393671AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.h */,
+				785393681AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.m */,
+			);
+			name = MJPopup;
+			sourceTree = "<group>";
+		};
+		785393701AD9C17C00C6BEA7 /* Welcome Popup */ = {
+			isa = PBXGroup;
+			children = (
+				7853936B1AD9C17500C6BEA7 /* WelcomePopupViewController.h */,
+				7853936C1AD9C17500C6BEA7 /* WelcomePopupViewController.m */,
+				7853936D1AD9C17500C6BEA7 /* WelcomePopupViewController.xib */,
+			);
+			name = "Welcome Popup";
+			sourceTree = "<group>";
+		};
+		785393711AD9C47700C6BEA7 /* Playback */ = {
+			isa = PBXGroup;
+			children = (
+				FC1E89BC1A4B9518007A8CDA /* PlaybackVC.h */,
+				FC1E89BD1A4B9518007A8CDA /* PlaybackVC.m */,
+			);
+			name = Playback;
+			sourceTree = "<group>";
+		};
+		785393721AD9C48B00C6BEA7 /* Add text */ = {
+			isa = PBXGroup;
+			children = (
+				FCEF99341A6D6B22000FDE4C /* AddTextViewController.h */,
+				FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */,
+			);
+			name = "Add text";
+			sourceTree = "<group>";
+		};
 		787EC5E01AC9D09B000C5539 /* ProgressView */ = {
 			isa = PBXGroup;
 			children = (
@@ -859,6 +927,7 @@
 		FC0C1D3F1A45EE5E00B148AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				785393721AD9C48B00C6BEA7 /* Add text */,
 				FCAFD5A01A8AE6130030B923 /* Categories */,
 				FC3ECAE61A830482002678F6 /* Friends */,
 				FCBB97001A7D635B003D5F24 /* Settings */,
@@ -866,12 +935,10 @@
 				FCEF993A1A6D6EF0000FDE4C /* Segues */,
 				784E35E91A659B8C0029AA01 /* Registration Screens */,
 				784E35EA1A659BD00029AA01 /* Audio Capture */,
+				785393711AD9C47700C6BEA7 /* Playback */,
 				37695E7D19BBEE8500C22E13 /* Select Contacts Page */,
 				37BF0DE019E8FD1F0077B74F /* Yaps Page */,
-				FC1E89BC1A4B9518007A8CDA /* PlaybackVC.h */,
-				FC1E89BD1A4B9518007A8CDA /* PlaybackVC.m */,
-				FCEF99341A6D6B22000FDE4C /* AddTextViewController.h */,
-				FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */,
+				785393701AD9C17C00C6BEA7 /* Welcome Popup */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -894,11 +961,10 @@
 		FC0C1D4D1A46065B00B148AB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				78319A821ACD29AF000C3FD6 /* FeedbackMonitor.h */,
-				78319A801ACD29A9000C3FD6 /* FeedbackMonitor.m */,
+				785393641AD9C04700C6BEA7 /* MJPopup */,
+				785393631AD9C03A00C6BEA7 /* Phone Number Checker */,
+				785393621AD9C02600C6BEA7 /* Feedback Monitor */,
 				37D413B419D21A1E00021548 /* BButton */,
-				787C84DD1A7732E4005D80D5 /* PhoneNumberChecker.h */,
-				787C84DE1A7732E4005D80D5 /* PhoneNumberChecker.m */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1123,6 +1189,7 @@
 				7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */,
 				7863B5DD1A99A25F00531CED /* sound1.wav in Resources */,
 				784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */,
+				7853936F1AD9C17500C6BEA7 /* WelcomePopupViewController.xib in Resources */,
 				37D413CC19D230D000021548 /* ArrowWhite.png in Resources */,
 				78A2E84F1ACC65B000B5A404 /* PinkStar.png in Resources */,
 				788363A61AD79572001CBD1B /* OneNotSelectediPhone6@2x.png in Resources */,
@@ -1238,6 +1305,7 @@
 			files = (
 				FC1E89BB1A4B8E94007A8CDA /* YSYap.m in Sources */,
 				FC0595821A6D87A700FCCED2 /* ContactManager.m in Sources */,
+				7853936E1AD9C17500C6BEA7 /* WelcomePopupViewController.m in Sources */,
 				7840480B1AB7334A00FE6D93 /* NextButton.m in Sources */,
 				FCD2577A1ABA60AE00981E5D /* UIViewController+Navigation.m in Sources */,
 				78A569A31A73227200818A17 /* YSColorPicker.m in Sources */,
@@ -1281,10 +1349,12 @@
 				FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */,
 				784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */,
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
+				7853936A1AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.m in Sources */,
 				37D413BD19D21A1F00021548 /* BButton.m in Sources */,
 				FC342F381A5099D200518765 /* OpenInSpotifyAlertView.m in Sources */,
 				F44B0C5F16DA404700E6CD88 /* AudioCaptureViewController.m in Sources */,
 				FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */,
+				785393691AD9C07C00C6BEA7 /* MJPopupBackgroundView.m in Sources */,
 				FCD885AE1AC8A2A0007729CC /* YapsCache.m in Sources */,
 				FC52C1AD1A785D2800D85FA8 /* YSPushManager.m in Sources */,
 				37BF0DDF19E8FCF70077B74F /* YapsViewController.m in Sources */,

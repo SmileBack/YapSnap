@@ -106,7 +106,7 @@ static YTNotifications *_sharedNotifications;
     NSDictionary *options = @{
                               kCRToastTextKey: text,
                               kCRToastFontKey: [UIFont fontWithName:@"Futura-Medium" size:18],
-                              kCRToastTimeIntervalKey: @1,
+                              kCRToastTimeIntervalKey: @1.5,
                               kCRToastAnimationInTimeIntervalKey: @.3,
                               };
     
