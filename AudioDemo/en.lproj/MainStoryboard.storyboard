@@ -117,7 +117,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YapTap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwb-eQ-GX5">
-                                <rect key="frame" x="60" y="29" width="200" height="21"/>
+                                <rect key="frame" x="60" y="30" width="200" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ify-7P-fer"/>
                                 </constraints>
@@ -178,7 +178,7 @@
                         <constraints>
                             <constraint firstItem="Dwb-eQ-GX5" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="44" id="1H4-GY-B2q"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="1gf-LG-sLm"/>
-                            <constraint firstItem="Dwb-eQ-GX5" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" constant="9" id="1jW-yf-ygK"/>
+                            <constraint firstItem="Dwb-eQ-GX5" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" constant="10" id="1jW-yf-ygK"/>
                             <constraint firstItem="dI5-ha-IW9" firstAttribute="width" secondItem="3" secondAttribute="width" multiplier="0.5" constant="-3" id="3R6-Ur-Qvj"/>
                             <constraint firstItem="T7q-Ko-Que" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" id="63R-i6-jw2"/>
                             <constraint firstAttribute="bottom" secondItem="dI5-ha-IW9" secondAttribute="bottom" id="6pC-3x-KX0"/>
@@ -214,6 +214,7 @@
                         <outlet property="recordButton" destination="Xtk-3T-WBS" id="R1a-Wi-774"/>
                         <outlet property="recordProgressView" destination="1fX-iU-owr" id="7zx-v4-F5E"/>
                         <outlet property="spotifyModeButton" destination="dje-2i-9YC" id="xRf-Q6-xxF"/>
+                        <outlet property="titleLabel" destination="Dwb-eQ-GX5" id="VNy-3I-KSC"/>
                         <outlet property="topLeftButton" destination="yjE-ev-SsG" id="D5w-gs-u5p"/>
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="AEp-MY-7pq"/>
@@ -223,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="95" y="148"/>
+            <point key="canvasLocation" x="95" y="178"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g4r-i2-C16">
@@ -1573,8 +1574,8 @@ Type it here.</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gZs-IQ-BYb"/>
-        <segue reference="czb-n6-hbf"/>
         <segue reference="Enn-ka-dSJ"/>
+        <segue reference="AEp-MY-7pq"/>
+        <segue reference="gZs-IQ-BYb"/>
     </inferredMetricsTieBreakers>
 </document>

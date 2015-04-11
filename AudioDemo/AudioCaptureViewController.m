@@ -13,17 +13,18 @@
 #import "API.h"
 #import "YapBuilder.h"
 #import "YapsViewController.h"
+#import "AppDelegate.h"
 
 
 @interface AudioCaptureViewController () {
     NSTimer *timer;
 }
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *unopenedYapsCountSpinner;
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
-
 @property (nonatomic) float elapsedTime;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (nonatomic, strong) NSNumber *unopenedYapsCount;
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) NSTimer *pulsatingTimer;
 
 @end
 
@@ -66,21 +67,6 @@ static const float TIMER_INTERVAL = .01;
     [self setupNotifications];
     
     [self setupNavBarStuff];
-    
-    if (!self.didViewWelcomeNotification) {
-        double delay = 2;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showWelcomeText:@"Welcome, Send Your First Yap!"];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_WELCOME_NOTIFICATION_KEY];
-        });
-    }
-    
-    //[self.unopenedYapsCountSpinner startAnimating];
-    
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadingSpinnerTapped)];
-    singleTap.numberOfTapsRequired = 1;
-    self.unopenedYapsCountSpinner.userInteractionEnabled = YES;
-    [self.unopenedYapsCountSpinner addGestureRecognizer:singleTap];
 }
 
 - (void) didTapProgressView
@@ -88,9 +74,14 @@ static const float TIMER_INTERVAL = .01;
     [[NSNotificationCenter defaultCenter] postNotificationName:TAPPED_PROGRESS_VIEW_NOTIFICATION object:self];
 }
 
-- (BOOL) didViewWelcomeNotification
+- (void) pulsateYapsButton
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_WELCOME_NOTIFICATION_KEY];
+    CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    [animation setFromValue:[NSNumber numberWithFloat:1.3]];
+    [animation setToValue:[NSNumber numberWithFloat:1]];
+    [animation setDuration:.5];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.1 :1.3 :1 :1]];
+    [self.yapsPageButton.layer addAnimation:animation forKey:@"bounceAnimation"];
 }
 
 - (BOOL) isInReplyMode
@@ -102,14 +93,12 @@ static const float TIMER_INTERVAL = .01;
 {
     if ([self isInReplyMode]) {
         self.yapsPageButton.hidden = YES;
-        self.unopenedYapsCountSpinner.alpha = 0;
         UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
         [self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
         self.topLeftButton.alpha = 1;
         NSLog(@"In reply mode");
     } else {
         NSLog(@"Not in reply mode");
-        self.unopenedYapsCountSpinner.alpha = 1;
     }
 }
 
@@ -136,7 +125,6 @@ static const float TIMER_INTERVAL = .01;
 - (void) reloadUnopenedYapsCount
 {
     [[API sharedAPI] unopenedYapsCountWithCallback:^(NSNumber *count, NSError *error) {
-        [self.unopenedYapsCountSpinner stopAnimating];
         if (error) {
             [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
         } else if (count.description.intValue == 0) {
@@ -158,7 +146,39 @@ static const float TIMER_INTERVAL = .01;
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void) updatePageTitle {
+    if (!self.didOpenYapForFirstTime) {
+        self.titleLabel.text = @"Welcome!";
+        self.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:20];
+        self.titleLabel.textColor = [UIColor whiteColor];
+    } else {
+        self.titleLabel.text = @"YapTap";
+        self.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+        self.titleLabel.textColor = [UIColor blackColor];
+    }
+}
+
+- (void) updateYapsButtonAnimation {
+    if (!self.didOpenYapForFirstTime) {
+        if (self.pulsatingTimer){
+            [self.pulsatingTimer invalidate];
+        }
+        NSLog(@"Add pulsating animation");
+        self.pulsatingTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                      target:self
+                                                    selector:@selector(pulsateYapsButton)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    } else {
+        if (self.pulsatingTimer){
+            [self.pulsatingTimer invalidate];
+        }
+        [self.yapsPageButton.layer removeAnimationForKey:@"bounceAnimation"];
+        NSLog(@"Remove pulsating animation");
+    }
+}
+
+- (void) viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
     
@@ -170,6 +190,9 @@ static const float TIMER_INTERVAL = .01;
     if (IS_BEFORE_IOS_8) {
         self.bottomConstraint.constant = 9;
     }
+    
+    [self updatePageTitle];
+    [self updateYapsButtonAnimation];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -347,6 +370,8 @@ static const float TIMER_INTERVAL = .01;
     self.recordProgressView.progress = 0.0;
     [self.audioSource stopAudioCapture:self.elapsedTime];
     
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_YAPS_BUTTON_FOR_FIRST_TIME_KEY];
+    
     [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:self];
 }
 
@@ -461,6 +486,18 @@ static const float TIMER_INTERVAL = .01;
 - (BOOL) didTapMusicModeButtonForFirstTime
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
+}
+
+/*
+- (BOOL) didTapYapsButtonForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_YAPS_BUTTON_FOR_FIRST_TIME_KEY];
+}
+*/
+
+- (BOOL) didOpenYapForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
 }
 
 #pragma mark - Mail Delegate

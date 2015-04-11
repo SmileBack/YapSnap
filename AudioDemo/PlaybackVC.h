@@ -12,6 +12,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 #define PLAYBACK_STOPPED_NOTIFICATION @"com.yapsnap.PlaybackStoppedNotification"
+#define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
 
 @interface PlaybackVC : UIViewController<STKAudioPlayerDelegate> {
     MPVolumeView *_mpVolumeView;

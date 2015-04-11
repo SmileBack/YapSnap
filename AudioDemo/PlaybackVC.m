@@ -198,6 +198,8 @@
     if (state == STKAudioPlayerStatePlaying) {
         NSLog(@"state == STKAudioPlayerStatePlaying");
         
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
+        
         if (!self.playerAlreadyStartedPlayingForThisSong) {
             NSLog(@"Seconds to Fast Forward: %d", self.yap.secondsToFastForward.intValue);
             
