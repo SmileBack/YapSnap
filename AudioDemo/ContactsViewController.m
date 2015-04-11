@@ -77,10 +77,6 @@ static NSString *CellIdentifier = @"Cell";
     }
     
     [self registerForKeyboardNotifications];
-    
-    if (!self.didViewContactsAlert) {
-        [self showContactsAlert];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -107,8 +103,8 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 - (void) showContactsAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Select Contacts"
-                                                    message:@"You can send a yap to anyone, even if they don't have YapTap yet!"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send to Anyone"
+                                                    message:@"You can send your yap to anyone, even if they don't have YapTap yet!"
                                                    delegate:nil
                                           cancelButtonTitle:@"Continue"
                                           otherButtonTitles:nil];
@@ -158,6 +154,12 @@ static NSString *CellIdentifier = @"Cell";
         ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
             if (granted) {
                 [weakSelf loadContacts];
+                if (!self.didViewContactsAlert) {
+                    double delay = 1;
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self showContactsAlert];
+                    });
+                }
             } else {
                 // User denied access
                 // Display an alert telling user the contact could not be added
