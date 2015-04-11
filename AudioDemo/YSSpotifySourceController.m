@@ -85,11 +85,19 @@
         } else {
             [self search:self.searchBox.text];
             [self.view endEditing:YES];
+            [self setBackgroundColorForSearchBox];
         }
     } else {
         NSLog(@"Search Box Is Not First Responder");
         [self.searchBox becomeFirstResponder];
     }
+}
+
+- (void) setBackgroundColorForSearchBox {
+    //Background text color
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
+    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.15] range:NSMakeRange(0, self.searchBox.text.length)];
+    self.searchBox.attributedText = attributedString;
 }
 
 -(BOOL) internetIsNotReachable
@@ -148,11 +156,7 @@
     } else {
         [self search:self.searchBox.text];
         [self.view endEditing:YES];
-
-        //Background text color
-        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
-        [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.15] range:NSMakeRange(0, textField.text.length)];
-        textField.attributedText = attributedString;
+        [self setBackgroundColorForSearchBox];
     }
     
     return YES;
