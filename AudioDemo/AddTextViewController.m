@@ -313,8 +313,6 @@
     }
 }
 
-
-
 - (IBAction)didTapNextButton:(UIButton *)sender
 {
     self.continueButton.userInteractionEnabled = NO;

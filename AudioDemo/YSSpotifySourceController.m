@@ -13,6 +13,7 @@
 #import "SpotifyTrackView.h"
 #import "OpenInSpotifyAlertView.h"
 #import <AVFoundation/AVAudioSession.h>
+#import "AppDelegate.h"
 
 #define NO_SONGS_TO_PLAY_ALERT @"NoSongs"
 
@@ -123,11 +124,6 @@
 #pragma mark - Search box stuff
 - (void) setupSearchBox
 {
-    double delay = 1.0;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.searchBox becomeFirstResponder];
-    });
-    
     self.searchBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
     [self.searchBox setTintColor:[UIColor whiteColor]];
     self.searchBox.font = [UIFont fontWithName:@"Futura-Medium" size:30];
@@ -142,7 +138,7 @@
     if ([self.searchBox.text length] == 0) {
         NSLog(@"Searched Empty String");
         [self.view endEditing:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song Snippet"
                                                         message:@"To send a song snippet, type the name of an artist, song, or album above."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
@@ -455,6 +451,13 @@
             selectedTrack.songVersionButtonsAreShowing = NO;
         }
     }
+    if (!self.didTapAlbumCoverForFirstTime) {
+        double delay = 0.1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
+        });
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_ALBUM_COVER];
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
@@ -463,17 +466,6 @@
     {
         [self.view endEditing:YES];
     }
-    else
-    {
-        if (!self.didTapAlbumCoverForFirstTime) {
-            double delay = 0.1;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
-            });
-        }
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_ALBUM_COVER];
 }
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value

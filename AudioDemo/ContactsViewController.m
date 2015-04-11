@@ -29,6 +29,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *keyboardVerticalSpace;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
+#define VIEWED_CONTACTS_ALERT_KEY @"yaptap.ViewedContactsAlert"
 
 @end
 
@@ -76,6 +77,10 @@ static NSString *CellIdentifier = @"Cell";
     }
     
     [self registerForKeyboardNotifications];
+    
+    if (!self.didViewContactsAlert) {
+        [self showContactsAlert];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -99,6 +104,16 @@ static NSString *CellIdentifier = @"Cell";
 -(BOOL) internetIsNotReachable
 {
     return ![AFNetworkReachabilityManager sharedManager].reachable;
+}
+
+- (void) showContactsAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Select Contacts"
+                                                    message:@"You can send a yap to anyone, even if they don't have YapTap yet!"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Continue"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_CONTACTS_ALERT_KEY];
 }
 
 #pragma mark - Contacts
@@ -387,6 +402,11 @@ static NSString *CellIdentifier = @"Cell";
 - (BOOL) didViewSpotifyAlert
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SPOTIFY_ALERT_KEY];
+}
+
+- (BOOL) didViewContactsAlert
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_CONTACTS_ALERT_KEY];
 }
 
 @end

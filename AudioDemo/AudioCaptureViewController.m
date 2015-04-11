@@ -54,19 +54,29 @@ static const float TIMER_INTERVAL = .01;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapProgressView)];
     [self.recordProgressView addGestureRecognizer:tapGesture];
 
-    YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
-    [self addChildViewController:micSource];
-    micSource.view.frame = self.audioSourceContainer.bounds;
-    [self.audioSourceContainer addSubview:micSource.view];
-    self.audioSource = micSource;
+    if ([AppDelegate sharedDelegate].appOpenedCount <= 5) {
+        YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+        [self addChildViewController:spotifySource];
+        spotifySource.view.frame = self.audioSourceContainer.bounds;
+        [self.audioSourceContainer addSubview:spotifySource.view];
+        self.audioSource = spotifySource;
+        self.micModeButton.alpha = .3;
+        self.spotifyModeButton.alpha = 1;
+    } else {
+        YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
+        [self addChildViewController:micSource];
+        micSource.view.frame = self.audioSourceContainer.bounds;
+        [self.audioSourceContainer addSubview:micSource.view];
+        self.audioSource = micSource;
+        self.micModeButton.alpha = 1;
+        self.spotifyModeButton.alpha = .3;
+    }
     
-    // Disable Stop/Play button when application launches
-    //[stopButton setEnabled:NO];
-    [self.playButton setEnabled:YES];
-
     [self setupNotifications];
     
     [self setupNavBarStuff];
+    
+    //[self.playButton setEnabled:YES];
 }
 
 - (void) didTapProgressView
@@ -369,9 +379,7 @@ static const float TIMER_INTERVAL = .01;
     [timer invalidate];
     self.recordProgressView.progress = 0.0;
     [self.audioSource stopAudioCapture:self.elapsedTime];
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_YAPS_BUTTON_FOR_FIRST_TIME_KEY];
-    
+        
     [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:self];
 }
 
@@ -409,7 +417,11 @@ static const float TIMER_INTERVAL = .01;
 
 - (void) resetUI
 {
-    [self micModeButtonPressed:nil];
+    if ([AppDelegate sharedDelegate].appOpenedCount <= 5) {
+        [self spotifyModeButtonPressed:nil];
+    } else {
+        [self micModeButtonPressed:nil];
+    }
 }
 
 #pragma mark - Mode Changing
@@ -422,14 +434,15 @@ static const float TIMER_INTERVAL = .01;
         [self flipController:self.audioSource to:spotifySource];
     }
     
-    if (!self.didTapMusicModeButtonForFirstTime) {
-        double delay = .1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showModeText:@"Music Mode"];
-        });
+    if (sender) {
+        if (!self.didTapMusicModeButtonForFirstTime) {
+            double delay = .1;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[YTNotifications sharedNotifications] showModeText:@"Music Mode"];
+            });
+        }
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
     }
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Music Mode Button"];
@@ -444,14 +457,15 @@ static const float TIMER_INTERVAL = .01;
         [self flipController:self.audioSource to:micSource];
     }
     
-    if (!self.didTapMicModeButtonForFirstTime) {
-        double delay = .1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showModeText:@"Mic Mode"];
-        });
+    if (sender) {
+        if (!self.didTapMicModeButtonForFirstTime) {
+            double delay = .1;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[YTNotifications sharedNotifications] showModeText:@"Mic Mode"];
+            });
+        }
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
     }
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Mic Mode Button"];
@@ -487,13 +501,6 @@ static const float TIMER_INTERVAL = .01;
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
 }
-
-/*
-- (BOOL) didTapYapsButtonForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_YAPS_BUTTON_FOR_FIRST_TIME_KEY];
-}
-*/
 
 - (BOOL) didOpenYapForFirstTime
 {

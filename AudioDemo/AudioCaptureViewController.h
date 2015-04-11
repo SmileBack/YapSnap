@@ -20,7 +20,6 @@
 #define TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.TappedMusicModeButtonForFirstTimeKey"
 #define SHOW_FEEDBACK_PAGE @"yaptap.ShowFeedbackPage"
 #define TAPPED_PROGRESS_VIEW_NOTIFICATION @"yaptap.TappedProgressViewNotification"
-#define TAPPED_YAPS_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.TappedYapsButtonForFirstTimeKey"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
