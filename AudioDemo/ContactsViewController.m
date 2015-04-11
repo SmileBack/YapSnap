@@ -163,6 +163,16 @@ static NSString *CellIdentifier = @"Cell";
             } else {
                 // User denied access
                 // Display an alert telling user the contact could not be added
+                NSLog(@"Contacts permission denied");
+                double delay = 1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Heads Up"
+                                                                    message:@"You need to grant Contacts permission to send your yap. Go to your phone's Settings, click Privacy, and enable Contacts."
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                });
             }
         });
     }
