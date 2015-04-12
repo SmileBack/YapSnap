@@ -196,7 +196,6 @@
             [weakSelf.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
         } else {
             NSLog(@"Error: %@", error);
-            // TODO do something
             double delay = .5;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Info Didn't Save!"];

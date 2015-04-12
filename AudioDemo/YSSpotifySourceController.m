@@ -54,6 +54,11 @@
     UITapGestureRecognizer *tappedMusicIconImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMusicIconImage)];
     tappedMusicIconImage.numberOfTapsRequired = 1;
     [self.musicIcon addGestureRecognizer:tappedMusicIconImage];
+    
+    self.carousel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tappedCarousel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedCarousel)];
+    tappedCarousel.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tappedCarousel];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -78,6 +83,23 @@
  
 - (void)tappedMusicIconImage {
     NSLog(@"Tapped Music Icon Image");
+    if (self.searchBox.isFirstResponder) {
+        self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if ([self.searchBox.text length] == 0) {
+            [self.view endEditing:YES];
+        } else {
+            [self search:self.searchBox.text];
+            [self.view endEditing:YES];
+            [self setBackgroundColorForSearchBox];
+        }
+    } else {
+        NSLog(@"Search Box Is Not First Responder");
+        [self.searchBox becomeFirstResponder];
+    }
+}
+
+- (void)tappedCarousel {
+    NSLog(@"Tapped Carousel");
     if (self.searchBox.isFirstResponder) {
         self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if ([self.searchBox.text length] == 0) {
@@ -171,6 +193,8 @@
     self.songs = nil;
     [self.carousel reloadData];
     self.musicIcon.hidden = YES;
+    // UNHIDE CAROUSEL!
+    self.carousel.hidden = NO;
     [self.loadingIndicator startAnimating];
     
     __weak YSSpotifySourceController *weakSelf = self;
@@ -182,14 +206,14 @@
             if (songs.count == 0) {
                 [self.loadingIndicator stopAnimating];
                 self.musicIcon.hidden = NO;
-
+                self.carousel.hidden = YES;
+                
                 NSLog(@"No Songs Returned For Search Query");
                 
                 double delay = 0.1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
                 });
-                self.musicIcon.hidden = NO;
             } else {
                 NSLog(@"Returned Songs Successfully");
                 [self.loadingIndicator stopAnimating];
@@ -197,6 +221,7 @@
         } else if (error) {
             [self.loadingIndicator stopAnimating];
             self.musicIcon.hidden = NO;
+            self.carousel.hidden = YES;
             
             if ([self internetIsNotReachable]) {
                 double delay = 0.1;
@@ -334,7 +359,7 @@
     
     [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
     [trackView.albumImageButton addTarget:self action:@selector(tappedAlbumImage:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     return trackView;
 }
 

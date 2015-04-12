@@ -293,7 +293,7 @@ static API *sharedAPI;
 
 - (void) sendSongYap:(YapBuilder *)builder withCallback:(SuccessOrErrorCallback)callback
 {
-    NSString *url = [self urlForEndpoint:@"audio_messages"]; //TODO USE REAL ENDPOINT
+    NSString *url = [self urlForEndpoint:@"audio_messages"];
     
     YSTrack *song = builder.track;
     

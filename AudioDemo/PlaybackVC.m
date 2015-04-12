@@ -53,7 +53,7 @@
     [self.progressView.activityIndicator startAnimating];
     
     // Snapchat allows for 48 characters horizontally; 31 vertically 
-    self.textView.text = self.yap.text;  //TODO REPLACE THIS
+    self.textView.text = self.yap.text; 
     
     if ([self.textView.text length] == 0) {
         self.textView.hidden = YES;
