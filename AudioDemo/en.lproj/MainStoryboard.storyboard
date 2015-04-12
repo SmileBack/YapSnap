@@ -576,7 +576,7 @@
                                             <action selector="tappedCancelFeedbackExplanationButton" destination="IdD-6v-OZr" eventType="touchUpInside" id="nep-dK-Dmu"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To add a friend, send a yap to anyone from your contacts. Once they open it, they'll become your friend!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITT-tX-hG0">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To add a friend, send a yap to anyone from your contacts. They'll become your friend once they open your yap!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITT-tX-hG0">
                                         <rect key="frame" x="15" y="16" width="290" height="59"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="290" id="cGl-ro-ZVA"/>

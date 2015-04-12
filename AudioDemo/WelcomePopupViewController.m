@@ -18,7 +18,7 @@
     CGFloat borderWidth = 2.0f;
     
     if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
-        self.view.frame = CGRectMake(0,0,260,260);
+        self.view.frame = CGRectMake(0,0,270,260);
     } else if (IS_IPHONE_6_SIZE) {
         self.view.frame = CGRectMake(0,0,300,265);
     } else if (IS_IPHONE_6_PLUS_SIZE) {

@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSMutableDictionary *topFriendMap; //Friend ID :: Top friends array
 @property (strong, nonatomic) IBOutlet UIView *friendsExplanationView;
 @property (strong, nonatomic) UIActivityIndicatorView *loadingSpinner;
+@property (nonatomic, strong) NSString *friendOneLabelString;
 
 - (IBAction)tappedCancelFeedbackExplanationButton;
 
@@ -42,6 +43,10 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:0.99]];
 
+    self.navigationItem.title = @"Friends";
+    
+    self.friendOneLabelString = @"Loading...";
+    
     __weak FriendsViewController *weakSelf = self;
     [[API sharedAPI] friends:^(NSArray *friends, NSError *error) {
         if (error) {
@@ -64,6 +69,9 @@
                 YSUser *user2 = obj2;
                 return [user1.displayName compare:user2.displayName];
             }];
+            if (friends.count == 0) {
+                self.friendOneLabelString = @"No top friends";
+            }
             [weakSelf.tableView reloadData];
         }
     }];
@@ -130,7 +138,7 @@
         cell.friendOneImage.hidden = myFriend == nil;
         cell.friendOneLabel.text = myFriend.displayName;
         if (indexPath.section == 0 && self.myTopFriends.count == 0) {
-            cell.friendOneLabel.text = @"No top friends";
+            cell.friendOneLabel.text = self.friendOneLabelString;
         }
         [cell.friendOneLabel sizeToFit];
 
@@ -297,7 +305,7 @@
     [mixpanel track:@"Tapped Add Friend"];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add a Friend"
-                                                    message:@"To add a friend, send a yap to anyone from your contacts. Once they open it, they'll become your friend!"
+                                                    message:@"To add a friend, send a yap to anyone from your contacts. They'll become your friend once they open your yap!"
                                                    delegate:self
                                           cancelButtonTitle:@"Cancel"
                                           otherButtonTitles:@"Send Yap", nil];
