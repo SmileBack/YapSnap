@@ -55,10 +55,9 @@
     tappedMusicIconImage.numberOfTapsRequired = 1;
     [self.musicIcon addGestureRecognizer:tappedMusicIconImage];
     
-    self.carousel.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tappedCarousel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedCarousel)];
-    tappedCarousel.numberOfTapsRequired = 1;
-    [self.view addGestureRecognizer:tappedCarousel];
+    UITapGestureRecognizer *tappedSpotifyView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedSpotifyView)];
+    tappedSpotifyView.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tappedSpotifyView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -83,6 +82,8 @@
  
 - (void)tappedMusicIconImage {
     NSLog(@"Tapped Music Icon Image");
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Music Icon"];
     if (self.searchBox.isFirstResponder) {
         self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if ([self.searchBox.text length] == 0) {
@@ -98,8 +99,10 @@
     }
 }
 
-- (void)tappedCarousel {
-    NSLog(@"Tapped Carousel");
+- (void)tappedSpotifyView {
+    NSLog(@"Tapped Spotify View");
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Spotify View"];
     if (self.searchBox.isFirstResponder) {
         self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if ([self.searchBox.text length] == 0) {
