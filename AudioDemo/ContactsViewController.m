@@ -355,7 +355,7 @@ static NSString *CellIdentifier = @"Cell";
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                 if ([self.yapBuilder.messageType isEqual: @"SpotifyMessage"] && !self.didViewSpotifyAlert) {
                                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Heads Up"
-                                                                                    message:@"When you send a song snippet on YapTap, the recipient can listen to the full song on Spotify!"
+                                                                                    message:@"When you send a song snippet on YapTap, the recipient can listen to the full song on Spotify."
                                                                                    delegate:nil
                                                                           cancelButtonTitle:@"OK"
                                                                           otherButtonTitles:nil];
