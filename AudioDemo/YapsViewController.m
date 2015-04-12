@@ -98,7 +98,7 @@ static NSString *CellIdentifier = @"Cell";
         self.pushEnabledView.hidden = NO;
        
         if (!self.didViewNotificationAlert) {
-            if (self.unopenedYapsCount.intValue > 1) {
+            if (self.unopenedYapsCount.intValue > 0 && ([AppDelegate sharedDelegate].appOpenedCount > 2)) {
                 double delay = 0.5;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Turn on Notifications"
@@ -107,10 +107,10 @@ static NSString *CellIdentifier = @"Cell";
                                                           cancelButtonTitle:@"OK"
                                                           otherButtonTitles: nil];
                     [alert show];
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_PUSH_NOTIFICATION_POPUP];
                 });
             }
         }
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_PUSH_NOTIFICATION_POPUP];
     }
 }
 

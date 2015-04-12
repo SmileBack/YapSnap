@@ -619,7 +619,7 @@
         return NO;
     } else if (self.songs.count == 0) {
         NSLog(@"Can't Play Because No Song");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song Snippet"
                                                         message:@"To send a song snippet, type the name of an artist, song, or album above."
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
