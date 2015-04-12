@@ -138,6 +138,11 @@ static NSString *CellIdentifier = @"Cell";
         if (yaps) {
             [weakSelf.refreshControl endRefreshing];
             [weakSelf.tableView reloadData];
+            if (yaps.count == 0) {
+                self.navigationItem.title = @"Your Yaps (0)";
+            } else {
+                self.navigationItem.title = @"Your Yaps";
+            }
         } else {
             NSLog(@"Error! %@", error);
             double delay = 0.5;

@@ -431,34 +431,35 @@
 - (void) tappedAlbumImage:(UIButton *)button
 {
     NSLog(@"Tapped Album Image");
-    UIView *parent = button.superview;
-    if ([parent isKindOfClass:[SpotifyTrackView class]]) {
-        SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        YSTrack *selectedTrack = nil;
-        for (YSTrack *track in self.songs) {
-            if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
-                selectedTrack = track;
-                break;
-            }
-        }
-    
-        if (!selectedTrack.songVersionButtonsAreShowing) {
-            trackView.songVersionOneButton.hidden = NO;
-            trackView.songVersionTwoButton.hidden = NO;
-            trackView.songVersionBackground.hidden = NO;
-            selectedTrack.songVersionButtonsAreShowing = YES;
-        } else {
-            trackView.songVersionOneButton.hidden = YES;
-            trackView.songVersionTwoButton.hidden = YES;
-            trackView.songVersionBackground.hidden = YES;
-            selectedTrack.songVersionButtonsAreShowing = NO;
-        }
-    }
     
     if ([self.searchBox isFirstResponder])
     {
         [self.view endEditing:YES];
     } else {
+        UIView *parent = button.superview;
+        if ([parent isKindOfClass:[SpotifyTrackView class]]) {
+            SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
+            YSTrack *selectedTrack = nil;
+            for (YSTrack *track in self.songs) {
+                if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+                    selectedTrack = track;
+                    break;
+                }
+            }
+            
+            if (!selectedTrack.songVersionButtonsAreShowing) {
+                trackView.songVersionOneButton.hidden = NO;
+                trackView.songVersionTwoButton.hidden = NO;
+                trackView.songVersionBackground.hidden = NO;
+                selectedTrack.songVersionButtonsAreShowing = YES;
+            } else {
+                trackView.songVersionOneButton.hidden = YES;
+                trackView.songVersionTwoButton.hidden = YES;
+                trackView.songVersionBackground.hidden = YES;
+                selectedTrack.songVersionButtonsAreShowing = NO;
+            }
+        }
+        
         if (!self.didTapAlbumCoverForFirstTime) {
             double delay = 0.1;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

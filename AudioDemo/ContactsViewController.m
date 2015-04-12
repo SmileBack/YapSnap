@@ -103,7 +103,7 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 - (void) showContactsAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send to Anyone"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send Yap to Anyone"
                                                     message:@"You can send your yap to anyone, even if they don't have YapTap yet!"
                                                    delegate:nil
                                           cancelButtonTitle:@"Continue"
