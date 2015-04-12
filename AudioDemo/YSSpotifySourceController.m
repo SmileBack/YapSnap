@@ -146,7 +146,7 @@
     if ([self.searchBox.text length] == 0) {
         NSLog(@"Searched Empty String");
         [self.view endEditing:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song Snippet"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search for a Song"
                                                         message:@"To send a song snippet, type the name of an artist, song, or album above."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
@@ -431,7 +431,6 @@
 - (void) tappedAlbumImage:(UIButton *)button
 {
     NSLog(@"Tapped Album Image");
-    NSLog(@"Search box not in focus");
     UIView *parent = button.superview;
     if ([parent isKindOfClass:[SpotifyTrackView class]]) {
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
@@ -455,21 +454,24 @@
             selectedTrack.songVersionButtonsAreShowing = NO;
         }
     }
-    if (!self.didTapAlbumCoverForFirstTime) {
-        double delay = 0.1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
-        });
+    
+    if ([self.searchBox isFirstResponder])
+    {
+        [self.view endEditing:YES];
+    } else {
+        if (!self.didTapAlbumCoverForFirstTime) {
+            double delay = 0.1;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
+            });
+        }
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_ALBUM_COVER];
     }
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_ALBUM_COVER];
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
-    if([self.searchBox isFirstResponder])
-    {
-        [self.view endEditing:YES];
-    }
+    NSLog(@"Tapped carousel item"); //Carousel items are currently blocked by transparent album image button
 }
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
@@ -619,7 +621,7 @@
         return NO;
     } else if (self.songs.count == 0) {
         NSLog(@"Can't Play Because No Song");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song Snippet"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search for a Song"
                                                         message:@"To send a song snippet, type the name of an artist, song, or album above."
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
