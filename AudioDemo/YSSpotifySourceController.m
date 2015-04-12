@@ -271,8 +271,16 @@
         [trackView.spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
         [trackView addSubview:trackView.spotifyButton];
         
-        trackView.songVersionBackground = [[UIView alloc]initWithFrame:
-                                           CGRectMake(0, self.carouselHeight-18, self.carouselHeight, 18)];
+        if (IS_IPHONE_6_PLUS_SIZE) {
+            trackView.songVersionBackground = [[UIView alloc]initWithFrame:
+                                           CGRectMake(0, self.carouselHeight-26, self.carouselHeight, 26)];
+        } else if (IS_IPHONE_6_SIZE) {
+            trackView.songVersionBackground = [[UIView alloc]initWithFrame:
+                                                   CGRectMake(0, self.carouselHeight-22, self.carouselHeight, 22)];
+        } else {
+            trackView.songVersionBackground = [[UIView alloc]initWithFrame:
+                                               CGRectMake(0, self.carouselHeight-18, self.carouselHeight, 18)];
+        }
         trackView.songVersionBackground.backgroundColor = THEME_BACKGROUND_COLOR;
         [trackView addSubview:trackView.songVersionBackground];
         
