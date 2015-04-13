@@ -17,9 +17,6 @@
 {
     [super viewDidLoad];
     
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Viewed Landing Page"];
-    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil
@@ -42,6 +39,9 @@
             AudioCaptureViewController* rvvc = [self.storyboard instantiateViewControllerWithIdentifier:@"EnterNameEmailViewController"];
             [self.navigationController pushViewController:rvvc animated:NO];
         }
+    } else {
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Viewed Landing Page"];
     }
     
     if (self.isiPhone4Size || self.isiPhone5Size) {
