@@ -61,6 +61,7 @@
 		7853936E1AD9C17500C6BEA7 /* WelcomePopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853936C1AD9C17500C6BEA7 /* WelcomePopupViewController.m */; };
 		7853936F1AD9C17500C6BEA7 /* WelcomePopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7853936D1AD9C17500C6BEA7 /* WelcomePopupViewController.xib */; };
 		7863B5DD1A99A25F00531CED /* sound1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7863B5DC1A99A25F00531CED /* sound1.wav */; };
+		786BCB431ADC274600BA3FDD /* UploadIcon100.png in Resources */ = {isa = PBXBuildFile; fileRef = 786BCB421ADC274600BA3FDD /* UploadIcon100.png */; };
 		786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */; };
 		787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A6D941A4DD8A2001551C6 /* Crashlytics.framework */; };
 		787C84DB1A76C77D005D80D5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787C84DA1A76C77D005D80D5 /* AudioToolbox.framework */; };
@@ -256,6 +257,7 @@
 		7853936C1AD9C17500C6BEA7 /* WelcomePopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomePopupViewController.m; sourceTree = "<group>"; };
 		7853936D1AD9C17500C6BEA7 /* WelcomePopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomePopupViewController.xib; sourceTree = "<group>"; };
 		7863B5DC1A99A25F00531CED /* sound1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound1.wav; sourceTree = "<group>"; };
+		786BCB421ADC274600BA3FDD /* UploadIcon100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UploadIcon100.png; sourceTree = "<group>"; };
 		786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImageWhiteCircle.png; sourceTree = "<group>"; };
 		787A6D941A4DD8A2001551C6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		787C84DA1A76C77D005D80D5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -441,6 +443,7 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				786BCB411ADC25A300BA3FDD /* Add Text Page */,
 				78319A741ACCF878000C3FD6 /* Audio Capture Page */,
 				78319A731ACCF818000C3FD6 /* Spotify */,
 				78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */,
@@ -461,14 +464,10 @@
 				7863B5DC1A99A25F00531CED /* sound1.wav */,
 				7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */,
 				78DA1F7D1AA18D4900693015 /* WhiteCircle.png */,
-				78F1E40E1AD2E74D00C2743B /* CameraIcon10.png */,
-				78F1E4101AD2E80A00C2743B /* CameraIcon20.png */,
-				78F1E4121AD2EA3300C2743B /* UploadIcon.png */,
 				78A823991ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png */,
 				78CEC7C71AD88131009A78B4 /* WelcomeArrow.png */,
 				78A2E8501ACC66FE00B5A404 /* Stars */,
 				782D13451ACB8350007C8499 /* Yap Page */,
-				782D133E1ACB49D9007C8499 /* Balloons & Reset Button */,
 				787EC5EA1AC9EA3C000C5539 /* ProgressView Images */,
 			);
 			name = Resources;
@@ -684,6 +683,18 @@
 				FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */,
 			);
 			name = "Add text";
+			sourceTree = "<group>";
+		};
+		786BCB411ADC25A300BA3FDD /* Add Text Page */ = {
+			isa = PBXGroup;
+			children = (
+				782D133E1ACB49D9007C8499 /* Balloons & Reset Button */,
+				78F1E40E1AD2E74D00C2743B /* CameraIcon10.png */,
+				78F1E4101AD2E80A00C2743B /* CameraIcon20.png */,
+				78F1E4121AD2EA3300C2743B /* UploadIcon.png */,
+				786BCB421ADC274600BA3FDD /* UploadIcon100.png */,
+			);
+			name = "Add Text Page";
 			sourceTree = "<group>";
 		};
 		787EC5E01AC9D09B000C5539 /* ProgressView */ = {
@@ -1169,6 +1180,7 @@
 				788363921AD78BB6001CBD1B /* TwoNotSelectediPhone4@2x.png in Resources */,
 				F44B0C5516DA404700E6CD88 /* Default.png in Resources */,
 				788363931AD78BB6001CBD1B /* TwoSelectediPhone4@2x.png in Resources */,
+				786BCB431ADC274600BA3FDD /* UploadIcon100.png in Resources */,
 				787EC5E71AC9D4D0000C5539 /* ProgressViewYellowiPhone5@2x.png in Resources */,
 				7803A05C1AAB648A006C43AE /* PlusButtonWhite@2x.png in Resources */,
 				78A2E8551ACC671600B5A404 /* PinkStar2.png in Resources */,
