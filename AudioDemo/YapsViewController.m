@@ -242,8 +242,7 @@ static NSString *CellIdentifier = @"Cell";
     
     
     // SPOTIFY
-    if ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened)
-        // || ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.sentByCurrentUser))
+    if (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened) || ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.sentByCurrentUser))
     {
         cell.goToSpotifyView.alpha = 1;
         //Add gesture recognizer
