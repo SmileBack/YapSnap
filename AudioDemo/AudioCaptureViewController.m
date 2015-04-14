@@ -56,7 +56,7 @@ static const float TIMER_INTERVAL = .01;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapProgressView)];
     [self.recordProgressView addGestureRecognizer:tapGesture];
 
-    if ([AppDelegate sharedDelegate].appOpenedCount <= 5) {
+    if ([AppDelegate sharedDelegate].appOpenedCount <= 2) {
         YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
         [self addChildViewController:spotifySource];
         spotifySource.view.frame = self.audioSourceContainer.bounds;
@@ -429,7 +429,7 @@ static const float TIMER_INTERVAL = .01;
 
 - (void) resetUI
 {
-    if ([AppDelegate sharedDelegate].appOpenedCount <= 5) {
+    if ([AppDelegate sharedDelegate].appOpenedCount <= 2) {
         [self spotifyModeButtonPressed:nil];
     } else {
         [self micModeButtonPressed:nil];
