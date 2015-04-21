@@ -36,7 +36,8 @@
 @property (strong, nonatomic) UIImage *blueArrowFull;
 @property (strong, nonatomic) UIImage *blueArrowEmpty;
 @property (strong, nonatomic) UIImage *redSquareFull;
-@property (strong, nonatomic) UIImage *redSquareEmpty;
+@property (strong, nonatomic) UIImage *redSquareEmptyMic;
+@property (strong, nonatomic) UIImage *redSquareEmptyMusic;
 
 @property (nonatomic, readonly) NSArray *yaps;
 
@@ -285,7 +286,11 @@ static NSString *CellIdentifier = @"Cell";
         cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@" , [self.dateFormatter stringFromDate:yap.createdAt]];
         
         if (yap.wasOpened) {
-            cell.icon.image = self.redSquareEmpty;
+            if ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY]) {
+                cell.icon.image = self.redSquareEmptyMusic;
+            } else {
+                cell.icon.image = self.redSquareEmptyMic;
+            }
         } else {
             cell.icon.image = self.redSquareFull;
         }
@@ -542,18 +547,26 @@ static NSString *CellIdentifier = @"Cell";
     return _blueArrowFull;
 }
 
-- (UIImage *) redSquareEmpty
+- (UIImage *) redSquareEmptyMic
 {
-    if (!_redSquareEmpty) {
-        _redSquareEmpty = [UIImage imageNamed:@"YapsIconReceivedOpened.png"];
+    if (!_redSquareEmptyMic) {
+        _redSquareEmptyMic = [UIImage imageNamed:@"YapsIconReceivedOpenedMic2.png"];
     }
-    return _redSquareEmpty;
+    return _redSquareEmptyMic;
+}
+
+- (UIImage *) redSquareEmptyMusic
+{
+    if (!_redSquareEmptyMusic) {
+        _redSquareEmptyMusic = [UIImage imageNamed:@"YapsIconReceivedOpenedMusic.png"];
+    }
+    return _redSquareEmptyMusic;
 }
 
 - (UIImage *) redSquareFull
 {
     if (!_redSquareFull) {
-        _redSquareFull = [UIImage imageNamed:@"YapsIconReceivedUnopened2.png"];
+        _redSquareFull = [UIImage imageNamed:@"YapsIconReceivedUnopened4.png"];
     }
     return _redSquareFull;
 }
