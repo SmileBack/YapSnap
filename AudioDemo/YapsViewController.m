@@ -36,8 +36,8 @@
 @property (strong, nonatomic) UIImage *blueArrowFull;
 @property (strong, nonatomic) UIImage *blueArrowEmpty;
 @property (strong, nonatomic) UIImage *redSquareFull;
-@property (strong, nonatomic) UIImage *redSquareEmptyMic;
-@property (strong, nonatomic) UIImage *redSquareEmptyMusic;
+@property (strong, nonatomic) UIImage *redSquareEmptyOpenedOnce;
+@property (strong, nonatomic) UIImage *redSquareEmptyOpenedTwice;
 
 @property (nonatomic, readonly) NSArray *yaps;
 
@@ -286,10 +286,10 @@ static NSString *CellIdentifier = @"Cell";
         cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@" , [self.dateFormatter stringFromDate:yap.createdAt]];
         
         if (yap.wasOpened) {
-            if ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY]) {
-                cell.icon.image = self.redSquareEmptyMusic;
-            } else {
-                cell.icon.image = self.redSquareEmptyMic;
+            if (yap.wasOpenedOnce) {
+                cell.icon.image = self.redSquareEmptyOpenedOnce;
+            } else if (yap.wasOpenedTwice) {
+                cell.icon.image = self.redSquareEmptyOpenedTwice;
             }
         } else {
             cell.icon.image = self.redSquareFull;
@@ -340,7 +340,10 @@ static NSString *CellIdentifier = @"Cell";
             } else {
                 cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
             }
-            cell.createdTimeLabel.text = @"Double Tap to Reply.  Hold to Replay.";
+            
+            if (yap.wasOpened) {
+                cell.createdTimeLabel.text = @"Double Tap to Reply.  Hold to Replay.";
+            }
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 NSIndexPath* adjustedPath = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
@@ -592,20 +595,20 @@ static NSString *CellIdentifier = @"Cell";
     return _blueArrowFull;
 }
 
-- (UIImage *) redSquareEmptyMic
+- (UIImage *) redSquareEmptyOpenedOnce
 {
-    if (!_redSquareEmptyMic) {
-        _redSquareEmptyMic = [UIImage imageNamed:@"OpenGift400.png"];
+    if (!_redSquareEmptyOpenedOnce) {
+        _redSquareEmptyOpenedOnce = [UIImage imageNamed:@"OpenGift400.png"];
     }
-    return _redSquareEmptyMic;
+    return _redSquareEmptyOpenedOnce;
 }
 
-- (UIImage *) redSquareEmptyMusic
+- (UIImage *) redSquareEmptyOpenedTwice
 {
-    if (!_redSquareEmptyMusic) {
-        _redSquareEmptyMusic = [UIImage imageNamed:@"OpenGift400.png"];
+    if (!_redSquareEmptyOpenedTwice) {
+        _redSquareEmptyOpenedTwice = [UIImage imageNamed:@"YapsIconReceivedOpened.png"];
     }
-    return _redSquareEmptyMusic;
+    return _redSquareEmptyOpenedTwice;
 }
 
 - (UIImage *) redSquareFull

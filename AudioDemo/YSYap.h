@@ -52,6 +52,8 @@
 @property (nonatomic, strong) NSString *displaySenderName;
 
 - (BOOL) wasOpened;
+- (BOOL) wasOpenedOnce;
+- (BOOL) wasOpenedTwice;
 - (BOOL) isPending;
 - (BOOL) isSending;
 - (BOOL) sentByCurrentUser;

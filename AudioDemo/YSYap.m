@@ -125,7 +125,17 @@
 
 - (BOOL) wasOpened
 {
+    return ([@"opened" isEqualToString:self.status] || [@"opened2" isEqualToString:self.status]);
+}
+
+- (BOOL) wasOpenedOnce
+{
     return [@"opened" isEqualToString:self.status];
+}
+
+- (BOOL) wasOpenedTwice
+{
+    return [@"opened2" isEqualToString:self.status];
 }
 
 - (BOOL) isPending
