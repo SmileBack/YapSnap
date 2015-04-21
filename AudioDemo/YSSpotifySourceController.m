@@ -259,6 +259,7 @@
             [self.loadingIndicator stopAnimating];
             self.musicIcon.hidden = NO;
             self.carousel.hidden = YES;
+            self.smallMusicIcon.hidden = YES;
             
             if ([self internetIsNotReachable]) {
                 double delay = 0.1;
