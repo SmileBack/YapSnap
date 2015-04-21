@@ -147,6 +147,9 @@
 
 - (void) searchRandomArtist {
     NSArray *artists = [[NSArray alloc] initWithObjects:@"Taylor Swift", @"Maroon 5", @"Wiz Khalifa", @"Drake", @"Ed Sheeran",@"Sam Smith", @"All Time Low", @"Meghan Trainor", @"Ellie Goulding", @"Ariana Grande", @"Nicki Minaj",@"Kendrick Lamar", nil];
+    
+   // NSArray *artists2 =[[NSArray alloc] initWithObjects:@"Wiz Khalifa”, @“Mark Ronson”", @“Maroon 5”, nil];
+    
     NSString *randomlySelectedArtist = [artists objectAtIndex: arc4random() % [artists count]];
     
     NSLog(@"string: %@", randomlySelectedArtist);

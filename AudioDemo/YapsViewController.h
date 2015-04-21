@@ -11,6 +11,7 @@
 @interface YapsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 #define VIEWED_PUSH_NOTIFICATION_POPUP @"yaptap.ViewedPushNotificationPopup"
+#define VIEWED_FIRST_YAP_ALERT @"yaptap.ViewedFirstYapAlert"
 
 @property (nonatomic, strong) NSArray *pendingYaps;
 @property (assign, nonatomic) BOOL comingFromContactsOrAddTextPage;

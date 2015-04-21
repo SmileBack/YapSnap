@@ -77,6 +77,7 @@ static NSString *CellIdentifier = @"Cell";
                                                                                  style:UIBarButtonItemStylePlain
                                                                                 target:self
                                                                                 action:@selector(didTapGoToAudioCaptureButton)];
+        [self showFirstYapAlert];
     }
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
@@ -216,6 +217,25 @@ static NSString *CellIdentifier = @"Cell";
     return ![AFNetworkReachabilityManager sharedManager].reachable;
 }
 
+- (void) showFirstYapAlert {
+    if (self.pendingYaps.count > 0) {
+        YSYap* yap = self.pendingYaps[0];
+        double delay = 0.5;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            if (!self.didViewFirstYapAlert) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congrats"
+                                                                message:[NSString stringWithFormat:@"You just sent your first yap! %@ will be added to your friends list after opening it!", yap.displayReceiverName]
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles: nil];
+                [alert show];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_FIRST_YAP_ALERT];
+            }
+        });
+    }
+}
+
 #pragma UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -318,12 +338,6 @@ static NSString *CellIdentifier = @"Cell";
                 NSIndexPath* adjustedPath = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
                 [self.tableView reloadRowsAtIndexPaths:@[adjustedPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             });
-
-            /*
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            });
-             */
         } else if (!yap.wasOpened) {
             if ([self internetIsNotReachable]){
                 double delay = 0.1;
@@ -355,12 +369,6 @@ static NSString *CellIdentifier = @"Cell";
             NSIndexPath* adjustedPath = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
             [self.tableView reloadRowsAtIndexPaths:@[adjustedPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         });
-        
-        /*
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        });
-         */
     }
 }
 
@@ -553,6 +561,11 @@ static NSString *CellIdentifier = @"Cell";
 - (BOOL) didViewNotificationAlert
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_PUSH_NOTIFICATION_POPUP];
+}
+
+- (BOOL) didViewFirstYapAlert
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_FIRST_YAP_ALERT];
 }
 
 @end

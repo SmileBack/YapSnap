@@ -299,7 +299,7 @@
                     withCallback:^(BOOL success, NSError *error) {
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
-                            
+                            /*
                             double delay = 1.0;
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                 if ([self.yapBuilder.messageType isEqual: @"SpotifyMessage"] && !self.didViewSpotifyAlert) {
@@ -312,6 +312,7 @@
                                     [self viewedSpotifyAlert];
                                 }
                             });
+                             */
                         } else {
                             double delay = 0.5;
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
