@@ -1163,10 +1163,10 @@ in your phone's settings!</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAn-72-FyX">
-                                <rect key="frame" x="0.0" y="452" width="320" height="116"/>
+                                <rect key="frame" x="0.0" y="451" width="320" height="117"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="116" id="Zmo-ww-F5b"/>
+                                    <constraint firstAttribute="height" constant="117" id="cAC-5K-L0N"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Enter!">
@@ -1187,14 +1187,14 @@ in your phone's settings!</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="LoginPageImage" translatesAutoresizingMaskIntoConstraints="NO" id="4Wj-u3-ig0">
-                                <rect key="frame" x="0.0" y="301" width="320" height="150"/>
+                                <rect key="frame" x="0.0" y="276" width="320" height="175"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Song and Voice  Snippets" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dp-kR-bOT">
-                                <rect key="frame" x="47" y="209" width="226" height="64"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be Heard" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dp-kR-bOT">
+                                <rect key="frame" x="47" y="209" width="226" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="tKm-qX-q6a"/>
+                                    <constraint firstAttribute="height" constant="40" id="tKm-qX-q6a"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1202,18 +1202,17 @@ in your phone's settings!</string>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="4dp-kR-bOT" firstAttribute="top" secondItem="OIg-LB-ROP" secondAttribute="bottom" constant="10" id="0y3-Kr-mBD"/>
+                            <constraint firstItem="4Wj-u3-ig0" firstAttribute="leading" secondItem="BAn-72-FyX" secondAttribute="leading" id="1am-L4-mbV"/>
+                            <constraint firstItem="4Wj-u3-ig0" firstAttribute="trailing" secondItem="BAn-72-FyX" secondAttribute="trailing" id="4qM-zb-KVa"/>
+                            <constraint firstItem="BAn-72-FyX" firstAttribute="trailing" secondItem="OIg-LB-ROP" secondAttribute="trailing" id="5kk-4x-Lv9"/>
                             <constraint firstItem="OIg-LB-ROP" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="AJe-SU-ZI6"/>
-                            <constraint firstItem="4Wj-u3-ig0" firstAttribute="trailing" secondItem="BAn-72-FyX" secondAttribute="trailing" id="Ef2-GH-TEj"/>
-                            <constraint firstItem="BAn-72-FyX" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="F7a-Ix-hDh"/>
-                            <constraint firstItem="4Wj-u3-ig0" firstAttribute="leading" secondItem="BAn-72-FyX" secondAttribute="leading" id="H0W-Y6-2qB"/>
                             <constraint firstItem="4dp-kR-bOT" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leadingMargin" constant="31" id="NcC-Ub-zN9"/>
-                            <constraint firstItem="BAn-72-FyX" firstAttribute="top" secondItem="4Wj-u3-ig0" secondAttribute="bottom" constant="1" id="QnD-tL-kFh"/>
-                            <constraint firstItem="4Wj-u3-ig0" firstAttribute="top" secondItem="OIg-LB-ROP" secondAttribute="bottom" constant="102" id="XfU-KZ-7qe"/>
+                            <constraint firstItem="BAn-72-FyX" firstAttribute="top" secondItem="4Wj-u3-ig0" secondAttribute="bottom" id="QfS-fo-Twi"/>
+                            <constraint firstItem="BAn-72-FyX" firstAttribute="bottom" secondItem="ahr-YS-Ciy" secondAttribute="top" id="adl-nI-8Xy"/>
                             <constraint firstItem="OIg-LB-ROP" firstAttribute="top" secondItem="a23-SI-tr9" secondAttribute="bottom" constant="45" id="ec0-nP-Mip"/>
                             <constraint firstItem="4dp-kR-bOT" firstAttribute="centerX" secondItem="OIg-LB-ROP" secondAttribute="centerX" id="g1r-Tq-A71"/>
-                            <constraint firstAttribute="trailing" secondItem="BAn-72-FyX" secondAttribute="trailing" id="qzi-lZ-oby"/>
+                            <constraint firstItem="BAn-72-FyX" firstAttribute="leading" secondItem="OIg-LB-ROP" secondAttribute="leading" id="oKY-BU-MVs"/>
                             <constraint firstAttribute="trailing" secondItem="OIg-LB-ROP" secondAttribute="trailing" id="rrh-Vy-RFW"/>
-                            <constraint firstItem="ahr-YS-Ciy" firstAttribute="top" secondItem="BAn-72-FyX" secondAttribute="bottom" id="wxh-ZX-4No"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cYn-UL-OuG"/>
