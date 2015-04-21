@@ -343,7 +343,7 @@ static NSString *CellIdentifier = @"Cell";
             cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@ opened your yap", yap.displayReceiverName];
         } else if (!yap.wasOpened) {
             if (yap.isPending) {
-                cell.createdTimeLabel.text = [NSString stringWithFormat:@"Yap will be delivered once %@ joins",  yap.displayReceiverName];
+                cell.createdTimeLabel.text = [NSString stringWithFormat:@"Will be delivered once %@ joins",  yap.displayReceiverName];
             } else if (yap.isSending) {
                 NSLog(@"Tapped cell with status of isSending");
             } else {

@@ -106,8 +106,8 @@
     [self searchRandomArtist];
     if (!self.didTapLargeMusicButtonForFirstTime) {
         [[YTNotifications sharedNotifications] showNotificationText:@"Random Search!"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_LARGE_MUSIC_BUTTON];
     }
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_LARGE_MUSIC_BUTTON];
 }
 
 - (void)tappedSpotifyView {
@@ -141,8 +141,8 @@
     [self searchRandomArtist];
     if (!self.didTapSmallMusicButtonForFirstTime) {
         [[YTNotifications sharedNotifications] showNotificationText:@"Random Search!"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SMALL_MUSIC_BUTTON];
     }
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SMALL_MUSIC_BUTTON];
 }
 
 - (void) searchRandomArtist {

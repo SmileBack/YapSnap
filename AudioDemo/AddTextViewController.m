@@ -49,6 +49,7 @@
 - (IBAction)didTapResetPhotoButton;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
+#define VIEWED_BALLOON_ALERT_KEY @"yaptap.ViewedBalloonAlert"
 
 @end
 
@@ -105,6 +106,18 @@
     
     if (IS_IPHONE_4_SIZE) {
         self.bottomConstraint.constant = 5;
+    }
+    
+    if ([self.yapBuilder.messageType isEqual: @"VoiceMessage"]) {
+        if (!self.didViewBalloonAlert) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Voice Filters"
+                                                            message:@"Tap the balloon above to distort your voice with various filters!"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_BALLOON_ALERT_KEY];
+        }
     }
 }
 
@@ -374,6 +387,11 @@
         return NO;
     }
     return YES;
+}
+
+- (BOOL) didViewBalloonAlert
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_BALLOON_ALERT_KEY];
 }
 
 #pragma mark - YSColorPickerDelegate

@@ -923,7 +923,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="created" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-IT-vWn">
-                                                    <rect key="frame" x="57" y="46" width="255" height="21"/>
+                                                    <rect key="frame" x="57" y="46" width="185" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -973,7 +973,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="RDh-aC-ePB" secondAttribute="bottom" constant="34.5" id="3mT-aw-7E8"/>
                                                 <constraint firstItem="OzR-IT-vWn" firstAttribute="top" secondItem="A8d-hh-0Fb" secondAttribute="topMargin" constant="38" id="5bH-xD-at9"/>
-                                                <constraint firstItem="OzR-IT-vWn" firstAttribute="trailing" secondItem="6Ih-GO-vgw" secondAttribute="trailing" id="C41-Qs-ZBt"/>
+                                                <constraint firstItem="OzR-IT-vWn" firstAttribute="trailing" secondItem="6Ih-GO-vgw" secondAttribute="trailing" constant="-70" id="C41-Qs-ZBt"/>
                                                 <constraint firstItem="6Ih-GO-vgw" firstAttribute="leading" secondItem="RDh-aC-ePB" secondAttribute="trailing" constant="1" id="FPx-ZB-bBx"/>
                                                 <constraint firstItem="AyM-nu-slZ" firstAttribute="leading" secondItem="A8d-hh-0Fb" secondAttribute="leading" constant="12" id="Kx5-RC-Gnb"/>
                                                 <constraint firstAttribute="centerY" secondItem="AyM-nu-slZ" secondAttribute="centerY" id="ONr-Py-WC2"/>
