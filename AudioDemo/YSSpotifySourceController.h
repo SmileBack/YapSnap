@@ -18,6 +18,7 @@
 #define TAPPED_PROGRESS_VIEW_NOTIFICATION @"yaptap.TappedProgressViewNotification"
 #define TAPPED_LARGE_MUSIC_BUTTON @"yaptap.TappedLargeMusicButtonNotification"
 #define TAPPED_SMALL_MUSIC_BUTTON @"yaptap.TappedSmallMusicButtonNotification"
-
+#define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
+#define VIEWED_MUSIC_NOTE_NOTIFICATION @"yaptap.ViewedMusicNoteNotification"
 
 @end

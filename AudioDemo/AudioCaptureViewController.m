@@ -450,10 +450,10 @@ static const float TIMER_INTERVAL = .01;
         if (!self.didTapMusicModeButtonForFirstTime) {
             double delay = .1;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[YTNotifications sharedNotifications] showModeText:@"Music Mode"];
+                //[[YTNotifications sharedNotifications] showModeText:@"Music Mode"];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
             });
         }
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
     }
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -474,9 +474,9 @@ static const float TIMER_INTERVAL = .01;
             double delay = .1;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [[YTNotifications sharedNotifications] showModeText:@"Mic Mode"];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
             });
         }
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
     }
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];

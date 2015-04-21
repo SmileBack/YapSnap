@@ -415,8 +415,8 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 - (void) alreadyReplayedYapAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Already Replayed Yap"
-                                                    message:@"You can only replay a yap one time."
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Already Replayed"
+                                                    message:@"You can only replay a yap once."
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles: nil];

@@ -69,6 +69,11 @@
 
     self.playerAlreadyStartedPlayingForThisSong = NO;
     NSLog(@"Set playerAlreadyStartedPlayingForThisSong to FALSE");
+    
+    if (self.didOpenYapForFirstTime && !self.didViewMusicNoteNotification && !self.didTapLargeMusicButtonForFirstTime && !self.didTapSmallMusicButtonForFirstTime) {
+        [[YTNotifications sharedNotifications] showNotificationText:@"Tap Music Note ;)"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_MUSIC_NOTE_NOTIFICATION];
+    }
 }
 
 - (void) setupNotifications
@@ -105,7 +110,7 @@
     */
     [self searchRandomArtist];
     if (!self.didTapLargeMusicButtonForFirstTime) {
-        [[YTNotifications sharedNotifications] showNotificationText:@"Random Search!"];
+        [[YTNotifications sharedNotifications] showNotificationText:@"Random Pick!"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_LARGE_MUSIC_BUTTON];
     }
 }
@@ -140,7 +145,7 @@
 - (IBAction) didTapSmallMusicButton {
     [self searchRandomArtist];
     if (!self.didTapSmallMusicButtonForFirstTime) {
-        [[YTNotifications sharedNotifications] showNotificationText:@"Random Search!"];
+        [[YTNotifications sharedNotifications] showNotificationText:@"Random Pick!"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SMALL_MUSIC_BUTTON];
     }
 }
@@ -788,6 +793,16 @@
 - (BOOL) didTapSmallMusicButtonForFirstTime
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SMALL_MUSIC_BUTTON];
+}
+
+- (BOOL) didOpenYapForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
+}
+
+- (BOOL) didViewMusicNoteNotification
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_MUSIC_NOTE_NOTIFICATION];
 }
 
 @end
