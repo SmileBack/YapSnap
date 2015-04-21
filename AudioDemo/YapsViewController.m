@@ -225,8 +225,8 @@ static NSString *CellIdentifier = @"Cell";
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
             if (!self.didViewFirstYapAlert) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congrats"
-                                                                message:[NSString stringWithFormat:@"You sent your first yap! %@ will be added to your friends list after opening your yap!", yap.displayReceiverName]
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congrats!"
+                                                                message:[NSString stringWithFormat:@"You  just sent your first yap! %@ will be added to your friends list after opening it.", yap.displayReceiverName]
                                                                delegate:nil
                                                       cancelButtonTitle:@"OK"
                                                       otherButtonTitles: nil];
