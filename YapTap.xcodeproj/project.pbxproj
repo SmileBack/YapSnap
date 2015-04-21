@@ -57,6 +57,7 @@
 		78439F961AE61B23004CFB5F /* YapsIconReceivedOpenedMic2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439F951AE61B23004CFB5F /* YapsIconReceivedOpenedMic2.png */; };
 		78439FAE1AE6D705004CFB5F /* Record.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FAD1AE6D705004CFB5F /* Record.png */; };
 		78439FB01AE6EF46004CFB5F /* OpenGift700.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FAF1AE6EF46004CFB5F /* OpenGift700.png */; };
+		78439FB21AE70830004CFB5F /* LoginPageImageSmalleriPhonesMusicNotes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FB11AE70830004CFB5F /* LoginPageImageSmalleriPhonesMusicNotes@2x.png */; };
 		784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E01A6253CE0084894D /* MusicIcon@2x.png */; };
 		784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67F01A626F7B0084894D /* ProgressViewNotches5.png */; };
 		784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */; };
@@ -250,6 +251,7 @@
 		78439F951AE61B23004CFB5F /* YapsIconReceivedOpenedMic2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsIconReceivedOpenedMic2.png; sourceTree = "<group>"; };
 		78439FAD1AE6D705004CFB5F /* Record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Record.png; sourceTree = "<group>"; };
 		78439FAF1AE6EF46004CFB5F /* OpenGift700.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OpenGift700.png; sourceTree = "<group>"; };
+		78439FB11AE70830004CFB5F /* LoginPageImageSmalleriPhonesMusicNotes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginPageImageSmalleriPhonesMusicNotes@2x.png"; sourceTree = "<group>"; };
 		784C67E01A6253CE0084894D /* MusicIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIcon@2x.png"; sourceTree = "<group>"; };
 		784C67F01A626F7B0084894D /* ProgressViewNotches5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewNotches5.png; sourceTree = "<group>"; };
 		784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum@2x.png"; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 				7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */,
 				78DA1F7D1AA18D4900693015 /* WhiteCircle.png */,
 				78A823991ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png */,
+				78439FB11AE70830004CFB5F /* LoginPageImageSmalleriPhonesMusicNotes@2x.png */,
 				78A2E8501ACC66FE00B5A404 /* Stars */,
 				782D13451ACB8350007C8499 /* Yap Page */,
 				787EC5EA1AC9EA3C000C5539 /* ProgressView Images */,
@@ -1186,6 +1189,7 @@
 				787EC6011ACA09A1000C5539 /* BalloonLightBlue10.png in Resources */,
 				78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
+				78439FB21AE70830004CFB5F /* LoginPageImageSmalleriPhonesMusicNotes@2x.png in Resources */,
 				787EC60D1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png in Resources */,
 				782D13A01ACC605D007C8499 /* YapsIconReceivedOpened.png in Resources */,
 				788363791AD781AB001CBD1B /* TwoSelected@2x.png in Resources */,
