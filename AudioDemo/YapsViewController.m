@@ -342,7 +342,11 @@ static NSString *CellIdentifier = @"Cell";
             }
             
             if (yap.wasOpened) {
-                cell.createdTimeLabel.text = @"Double Tap to Reply.  Hold to Replay.";
+                if (yap.wasOpenedOnce) {
+                    cell.createdTimeLabel.text = @"Double Tap to Reply. Hold to Replay.";
+                } else if (yap.wasOpenedTwice) {
+                    cell.createdTimeLabel.text = @"Double Tap to Reply.";
+                }
             }
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -598,7 +602,7 @@ static NSString *CellIdentifier = @"Cell";
 - (UIImage *) redSquareEmptyOpenedOnce
 {
     if (!_redSquareEmptyOpenedOnce) {
-        _redSquareEmptyOpenedOnce = [UIImage imageNamed:@"OpenGift400.png"];
+        _redSquareEmptyOpenedOnce = [UIImage imageNamed:@"OpenGift700.png"];
     }
     return _redSquareEmptyOpenedOnce;
 }
