@@ -12,6 +12,7 @@
 #import <SHSPhoneComponent/SHSPhoneTextField.h>
 #import <SHSPhoneComponent/SHSPhoneNumberFormatter.h>
 #import "UIViewController+Alerts.h"
+#import "AppDelegate.h"
 
 @interface EnterPhoneNumberViewController ()
 
@@ -71,7 +72,9 @@
     [self makeNavBarTransparent];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-    self.titleLabel.text = self.titleLabelString;
+    if ([AppDelegate sharedDelegate].appOpenedCount > 2) {
+        self.titleLabel.text = @"Log in with your phone number.";;
+    }
     
     if (self.isiPhone4Size) {
         CGFloat scale = .5f;

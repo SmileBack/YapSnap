@@ -1162,29 +1162,14 @@ in your phone's settings!</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sz6-r0-iUG">
-                                <rect key="frame" x="0.0" y="500" width="320" height="68"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="oZ2-v9-yIi"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Sign Up">
-                                    <color key="titleColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapSignUpButton" destination="ikG-0Y-sVh" eventType="touchUpInside" id="GJF-e8-xQT"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAn-72-FyX">
-                                <rect key="frame" x="0.0" y="431" width="320" height="68"/>
+                                <rect key="frame" x="0.0" y="452" width="320" height="116"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="Zmo-ww-F5b"/>
+                                    <constraint firstAttribute="height" constant="116" id="Zmo-ww-F5b"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Log In">
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Enter!">
                                     <color key="titleColor" red="0.090196078430000007" green="0.36862745099999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1202,7 +1187,7 @@ in your phone's settings!</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="LoginPageImage" translatesAutoresizingMaskIntoConstraints="NO" id="4Wj-u3-ig0">
-                                <rect key="frame" x="0.0" y="256" width="320" height="175"/>
+                                <rect key="frame" x="0.0" y="301" width="320" height="150"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Song and Voice  Snippets" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dp-kR-bOT">
                                 <rect key="frame" x="47" y="209" width="226" height="64"/>
@@ -1218,27 +1203,23 @@ in your phone's settings!</string>
                         <constraints>
                             <constraint firstItem="4dp-kR-bOT" firstAttribute="top" secondItem="OIg-LB-ROP" secondAttribute="bottom" constant="10" id="0y3-Kr-mBD"/>
                             <constraint firstItem="OIg-LB-ROP" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="AJe-SU-ZI6"/>
-                            <constraint firstItem="Sz6-r0-iUG" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="BIC-Zz-0Hq"/>
                             <constraint firstItem="4Wj-u3-ig0" firstAttribute="trailing" secondItem="BAn-72-FyX" secondAttribute="trailing" id="Ef2-GH-TEj"/>
                             <constraint firstItem="BAn-72-FyX" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leading" id="F7a-Ix-hDh"/>
                             <constraint firstItem="4Wj-u3-ig0" firstAttribute="leading" secondItem="BAn-72-FyX" secondAttribute="leading" id="H0W-Y6-2qB"/>
                             <constraint firstItem="4dp-kR-bOT" firstAttribute="leading" secondItem="WRr-H6-Zq6" secondAttribute="leadingMargin" constant="31" id="NcC-Ub-zN9"/>
-                            <constraint firstItem="BAn-72-FyX" firstAttribute="top" secondItem="4Wj-u3-ig0" secondAttribute="bottom" id="QnD-tL-kFh"/>
-                            <constraint firstAttribute="trailing" secondItem="Sz6-r0-iUG" secondAttribute="trailing" id="b0h-4M-Q3C"/>
+                            <constraint firstItem="BAn-72-FyX" firstAttribute="top" secondItem="4Wj-u3-ig0" secondAttribute="bottom" constant="1" id="QnD-tL-kFh"/>
+                            <constraint firstItem="4Wj-u3-ig0" firstAttribute="top" secondItem="OIg-LB-ROP" secondAttribute="bottom" constant="102" id="XfU-KZ-7qe"/>
                             <constraint firstItem="OIg-LB-ROP" firstAttribute="top" secondItem="a23-SI-tr9" secondAttribute="bottom" constant="45" id="ec0-nP-Mip"/>
                             <constraint firstItem="4dp-kR-bOT" firstAttribute="centerX" secondItem="OIg-LB-ROP" secondAttribute="centerX" id="g1r-Tq-A71"/>
-                            <constraint firstItem="ahr-YS-Ciy" firstAttribute="top" secondItem="Sz6-r0-iUG" secondAttribute="bottom" id="mP2-Dh-6aa"/>
-                            <constraint firstItem="Sz6-r0-iUG" firstAttribute="top" secondItem="BAn-72-FyX" secondAttribute="bottom" constant="1" id="naX-2m-vAf"/>
                             <constraint firstAttribute="trailing" secondItem="BAn-72-FyX" secondAttribute="trailing" id="qzi-lZ-oby"/>
                             <constraint firstAttribute="trailing" secondItem="OIg-LB-ROP" secondAttribute="trailing" id="rrh-Vy-RFW"/>
+                            <constraint firstItem="ahr-YS-Ciy" firstAttribute="top" secondItem="BAn-72-FyX" secondAttribute="bottom" id="wxh-ZX-4No"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cYn-UL-OuG"/>
                     <connections>
                         <outlet property="imageView" destination="4Wj-u3-ig0" id="qCZ-93-mcg"/>
                         <outlet property="logInButton" destination="BAn-72-FyX" id="Pce-2f-K8b"/>
-                        <outlet property="signUpButton" destination="Sz6-r0-iUG" id="RVU-tu-U2H"/>
-                        <segue destination="8Uc-K7-X1A" kind="push" identifier="SignUpWithPhoneNumberViewControllerSegue" id="0g5-Nr-7GU"/>
                         <segue destination="8Uc-K7-X1A" kind="push" identifier="LogInWithPhoneNumberViewControllerSegue" id="gZs-IQ-BYb"/>
                     </connections>
                 </viewController>
@@ -1468,7 +1449,7 @@ know you're real.</string>
                                     <constraint firstAttribute="height" constant="67" id="eex-zA-EvS"/>
                                 </constraints>
                                 <string key="text">We sent you a code.
-Type it here.</string>
+Type it here to enter!</string>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1588,8 +1569,7 @@ Type it here.</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gZs-IQ-BYb"/>
-        <segue reference="Enn-ka-dSJ"/>
         <segue reference="czb-n6-hbf"/>
+        <segue reference="Enn-ka-dSJ"/>
     </inferredMetricsTieBreakers>
 </document>

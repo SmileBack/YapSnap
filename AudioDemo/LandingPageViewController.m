@@ -22,7 +22,7 @@
                                                                             target:nil
                                                                             action:nil];
     
-    self.logInButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
+    self.logInButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:30];
     [self.logInButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
     
     self.signUpButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
@@ -73,18 +73,6 @@
 - (IBAction) didTapLogInButton
 {
     [self performSegueWithIdentifier:@"LogInWithPhoneNumberViewControllerSegue" sender:self];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"SignUpWithPhoneNumberViewControllerSegue"]) {
-        EnterPhoneNumberViewController *enterPhoneNumberVC = segue.destinationViewController;
-        enterPhoneNumberVC.titleLabelString = @"Verify your number so we know you're real.";
-
-    } else if ([segue.identifier isEqualToString:@"LogInWithPhoneNumberViewControllerSegue"]) {
-        EnterPhoneNumberViewController *enterPhoneNumberVC = segue.destinationViewController;
-        enterPhoneNumberVC.titleLabelString = @"Log in with your phone number.";
-    }
 }
 
 @end
