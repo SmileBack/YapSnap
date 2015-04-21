@@ -335,9 +335,12 @@ static NSString *CellIdentifier = @"Cell";
     if (yap.receivedByCurrentUser) {
         if (yap.wasOpened) {
             YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-            cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
-
-            cell.createdTimeLabel.text = @"Double Tap to Reply";
+            if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
+                cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:10];
+            } else {
+                cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
+            }
+            cell.createdTimeLabel.text = @"Double Tap to Reply.  Hold to Replay.";
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 NSIndexPath* adjustedPath = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
@@ -388,7 +391,32 @@ static NSString *CellIdentifier = @"Cell";
     [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void) cellLongPressedAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Long Pressed on: %@", indexPath);
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Long Pressed Row"];
+    
+    YSYap *yap = self.yaps[indexPath.row];
+    
+    if ([yap.status isEqual: @"opened2"]) {
+        [self alreadyReplayedYapAlert];
+    } else {
+        [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
+    }
+}
+
+- (void) alreadyReplayedYapAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Already Replayed Yap"
+                                                    message:@"You can only replay a yap one time."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles: nil];
+    [alert show];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([@"Playback Segue" isEqualToString:segue.identifier]) {
         PlaybackVC *vc = segue.destinationViewController;
@@ -460,6 +488,10 @@ static NSString *CellIdentifier = @"Cell";
     doubleTap.numberOfTapsRequired = 2;
     doubleTap.numberOfTouchesRequired = 1;
     [self.tableView addGestureRecognizer:doubleTap];
+    
+    UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    longPress.minimumPressDuration = 1.0f;
+    [self.tableView addGestureRecognizer:longPress];
 }
 
 - (void) handleDoubleTap:(UIGestureRecognizer *)tap
@@ -470,6 +502,18 @@ static NSString *CellIdentifier = @"Cell";
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
         if (indexPath.section > 0) {
             [self cellTappedTwiceAtIndexPath:indexPath];
+        }
+    }
+}
+
+- (void) handleLongPress:(UIGestureRecognizer *)tap
+{
+    if (UIGestureRecognizerStateBegan == tap.state)
+    {
+        CGPoint p = [tap locationInView:tap.view];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+        if (indexPath.section > 0) {
+            [self cellLongPressedAtIndexPath:indexPath];
         }
     }
 }
