@@ -19,6 +19,6 @@
 - (void) showModeText:(NSString *)text;
 - (void) showSongVersionText:(NSString *)text;
 - (void) showBufferingText:(NSString *)text;
-
+- (void) showRandomSearchText:(NSString *)text;
 
 @end

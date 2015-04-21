@@ -28,6 +28,9 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property (nonatomic) float carouselHeight;
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
+@property (strong, nonatomic) IBOutlet UIButton *smallMusicIcon;
+
+- (IBAction)didTapSmallMusicButton;
 
 @end
 
@@ -84,10 +87,12 @@
     NSLog(@"Tapped Music Icon Image");
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Music Icon"];
+    /*
     if (self.searchBox.isFirstResponder) {
         self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if ([self.searchBox.text length] == 0) {
             [self.view endEditing:YES];
+            self.musicIcon.hidden = NO; // REMOVE
         } else {
             [self search:self.searchBox.text];
             [self.view endEditing:YES];
@@ -97,6 +102,12 @@
         NSLog(@"Search Box Is Not First Responder");
         [self.searchBox becomeFirstResponder];
     }
+    */
+    [self searchRandomArtist];
+    if (!self.didTapLargeMusicButtonForFirstTime) {
+        [[YTNotifications sharedNotifications] showNotificationText:@"Random Search!"];
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_LARGE_MUSIC_BUTTON];
 }
 
 - (void)tappedSpotifyView {
@@ -107,6 +118,7 @@
         self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if ([self.searchBox.text length] == 0) {
             [self.view endEditing:YES];
+            self.musicIcon.hidden = NO; // REMOVE
         } else {
             [self search:self.searchBox.text];
             [self.view endEditing:YES];
@@ -123,6 +135,25 @@
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
     [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.15] range:NSMakeRange(0, self.searchBox.text.length)];
     self.searchBox.attributedText = attributedString;
+}
+
+- (IBAction) didTapSmallMusicButton {
+    [self searchRandomArtist];
+    if (!self.didTapSmallMusicButtonForFirstTime) {
+        [[YTNotifications sharedNotifications] showNotificationText:@"Random Search!"];
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SMALL_MUSIC_BUTTON];
+}
+
+- (void) searchRandomArtist {
+    NSArray *artists = [[NSArray alloc] initWithObjects:@"Taylor Swift", @"Maroon 5", @"Wiz Khalifa", @"Drake", @"Ed Sheeran",@"Sam Smith", @"All Time Low", @"Meghan Trainor", @"Ellie Goulding", @"Ariana Grande", @"Nicki Minaj",@"Kendrick Lamar", nil];
+    NSString *randomlySelectedArtist = [artists objectAtIndex: arc4random() % [artists count]];
+    
+    NSLog(@"string: %@", randomlySelectedArtist);
+    
+    [self search:randomlySelectedArtist];
+    self.searchBox.text = randomlySelectedArtist;
+    [self setBackgroundColorForSearchBox];
 }
 
 -(BOOL) internetIsNotReachable
@@ -159,7 +190,7 @@
 {
     self.searchBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
     [self.searchBox setTintColor:[UIColor whiteColor]];
-    self.searchBox.font = [UIFont fontWithName:@"Futura-Medium" size:30];
+    self.searchBox.font = [UIFont fontWithName:@"Futura-Medium" size:28];
     self.searchBox.delegate = self;
 }
 
@@ -171,6 +202,7 @@
     if ([self.searchBox.text length] == 0) {
         NSLog(@"Searched Empty String");
         [self.view endEditing:YES];
+        self.musicIcon.hidden = NO; // REMOVE
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search for a Song"
                                                         message:@"To send a song snippet, type the name of an artist, song, or album above."
                                                        delegate:nil
@@ -179,8 +211,8 @@
         
         [alert show];
     } else {
-        [self search:self.searchBox.text];
         [self.view endEditing:YES];
+        [self search:self.searchBox.text];
         [self setBackgroundColorForSearchBox];
     }
     
@@ -220,6 +252,7 @@
             } else {
                 NSLog(@"Returned Songs Successfully");
                 [self.loadingIndicator stopAnimating];
+                self.smallMusicIcon.hidden = NO;
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];
@@ -246,6 +279,8 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     NSLog(@"Textfield did begin editing");
     self.carousel.scrollEnabled = NO;
+    self.musicIcon.hidden = YES; // REMOVE
+    self.smallMusicIcon.hidden = YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -471,6 +506,7 @@
     if ([self.searchBox isFirstResponder])
     {
         [self.view endEditing:YES];
+        self.smallMusicIcon.hidden = NO;
     } else {
         UIView *parent = button.superview;
         if ([parent isKindOfClass:[SpotifyTrackView class]]) {
@@ -740,6 +776,16 @@
 - (BOOL) didTapSongVersionTwoForFirstTime
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SONG_VERSION_TWO];
+}
+
+- (BOOL) didTapLargeMusicButtonForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_LARGE_MUSIC_BUTTON];
+}
+
+- (BOOL) didTapSmallMusicButtonForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SMALL_MUSIC_BUTTON];
 }
 
 @end

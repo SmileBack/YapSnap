@@ -51,6 +51,7 @@
 		784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
 		784047FC1AB4FB7200FE6D93 /* MusicIconBlue3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784047FB1AB4FB7200FE6D93 /* MusicIconBlue3@2x.png */; };
 		7840480B1AB7334A00FE6D93 /* NextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840480A1AB7334A00FE6D93 /* NextButton.m */; };
+		78439F881AE5C6A1004CFB5F /* SmallMusicIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439F871AE5C6A1004CFB5F /* SmallMusicIcon2.png */; };
 		784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E01A6253CE0084894D /* MusicIcon@2x.png */; };
 		784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67F01A626F7B0084894D /* ProgressViewNotches5.png */; };
 		784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */; };
@@ -238,6 +239,7 @@
 		784047FB1AB4FB7200FE6D93 /* MusicIconBlue3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIconBlue3@2x.png"; sourceTree = "<group>"; };
 		784048091AB7334A00FE6D93 /* NextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextButton.h; sourceTree = "<group>"; };
 		7840480A1AB7334A00FE6D93 /* NextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextButton.m; sourceTree = "<group>"; };
+		78439F871AE5C6A1004CFB5F /* SmallMusicIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SmallMusicIcon2.png; sourceTree = "<group>"; };
 		784C67E01A6253CE0084894D /* MusicIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIcon@2x.png"; sourceTree = "<group>"; };
 		784C67F01A626F7B0084894D /* ProgressViewNotches5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewNotches5.png; sourceTree = "<group>"; };
 		784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum@2x.png"; sourceTree = "<group>"; };
@@ -563,6 +565,7 @@
 		78319A741ACCF878000C3FD6 /* Audio Capture Page */ = {
 			isa = PBXGroup;
 			children = (
+				78439F871AE5C6A1004CFB5F /* SmallMusicIcon2.png */,
 				78319A771ACCFA14000C3FD6 /* Mic/Music Mode Buttons */,
 				782D136C1ACC3B97007C8499 /* YapsButton */,
 				780211611AAB8EE000A71889 /* FriendsIcon@2x.png */,
@@ -1176,6 +1179,7 @@
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
 				787EC6071ACA12DB000C5539 /* ProgressViewLightBlue@2x.png in Resources */,
+				78439F881AE5C6A1004CFB5F /* SmallMusicIcon2.png in Resources */,
 				788363901AD78BB6001CBD1B /* OneNotSelectediPhone4@2x.png in Resources */,
 				7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */,
 				7863B5DD1A99A25F00531CED /* sound1.wav in Resources */,

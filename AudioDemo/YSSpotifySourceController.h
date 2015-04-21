@@ -16,5 +16,8 @@
 #define TAPPED_SONG_VERSION_ONE @"yaptap.TappedSongVersionOneKey"
 #define TAPPED_SONG_VERSION_TWO @"yaptap.TappedSongVersionTwoKey"
 #define TAPPED_PROGRESS_VIEW_NOTIFICATION @"yaptap.TappedProgressViewNotification"
+#define TAPPED_LARGE_MUSIC_BUTTON @"yaptap.TappedLargeMusicButtonNotification"
+#define TAPPED_SMALL_MUSIC_BUTTON @"yaptap.TappedSmallMusicButtonNotification"
+
 
 @end
