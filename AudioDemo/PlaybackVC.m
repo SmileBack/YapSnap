@@ -343,6 +343,17 @@
     NSLog(@"audioPlayer unexpected error: %u", errorCode);
     [audioPlayer stop];
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[YTNotifications sharedNotifications] showNotificationText:@"Oops, There Was An Error"];
+    });
+    
+    // TODO: File won't play unfortunately (need to get to the bottom of this). Unclog this yap from user's unopened list
+    [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error) {
+        if (error) {
+            
+        }
+    }];
+    
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Player Unexpected Error - PlayBack"];
 }

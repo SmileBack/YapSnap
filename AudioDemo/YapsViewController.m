@@ -494,7 +494,8 @@ static NSString *CellIdentifier = @"Cell";
     NSUInteger index = [mutableYaps indexOfObject:self.yapToBlock];
     [mutableYaps removeObjectAtIndex:index];
     [YapsCache sharedCache].yaps = mutableYaps;
-    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]
+
+    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:1]]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView endUpdates];
 }
@@ -550,7 +551,7 @@ static NSString *CellIdentifier = @"Cell";
 - (UIImage *) redSquareEmptyMic
 {
     if (!_redSquareEmptyMic) {
-        _redSquareEmptyMic = [UIImage imageNamed:@"YapsIconReceivedOpenedMic2.png"];
+        _redSquareEmptyMic = [UIImage imageNamed:@"OpenGift400.png"];
     }
     return _redSquareEmptyMic;
 }
@@ -558,7 +559,7 @@ static NSString *CellIdentifier = @"Cell";
 - (UIImage *) redSquareEmptyMusic
 {
     if (!_redSquareEmptyMusic) {
-        _redSquareEmptyMusic = [UIImage imageNamed:@"YapsIconReceivedOpenedMusic.png"];
+        _redSquareEmptyMusic = [UIImage imageNamed:@"OpenGift400.png"];
     }
     return _redSquareEmptyMusic;
 }
@@ -566,7 +567,7 @@ static NSString *CellIdentifier = @"Cell";
 - (UIImage *) redSquareFull
 {
     if (!_redSquareFull) {
-        _redSquareFull = [UIImage imageNamed:@"YapsIconReceivedUnopened4.png"];
+        _redSquareFull = [UIImage imageNamed:@"YapsIconReceivedUnopened2.png"];
     }
     return _redSquareFull;
 }
