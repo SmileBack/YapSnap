@@ -367,13 +367,13 @@
     
     // Set song version button selections
     if (IS_IPHONE_4_SIZE) {
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelectediPhone4.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"SongVersionOneSelectediPhone4.png"] forState:UIControlStateNormal];
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelectediPhone4.png"] forState:UIControlStateNormal];
     } else if (IS_IPHONE_6_SIZE) {
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelectediPhone6.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"SongVersionOneSelectediPhone6.png"] forState:UIControlStateNormal];
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelectediPhone6.png"] forState:UIControlStateNormal];
     } else {
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected.png"] forState:UIControlStateNormal];
+        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"SongVersionOneSelected.png"] forState:UIControlStateNormal];
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
     }
     
@@ -414,13 +414,13 @@
     if ([parent isKindOfClass:[SpotifyTrackView class]]) {
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
         if (IS_IPHONE_4_SIZE) {
-            [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelectediPhone4.png"] forState:UIControlStateNormal];
+            [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"SongVersionOneSelectediPhone4.png"] forState:UIControlStateNormal];
             [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelectediPhone4.png"] forState:UIControlStateNormal];
         } else if (IS_IPHONE_6_SIZE) {
-            [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelectediPhone6.png"] forState:UIControlStateNormal];
+            [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"SongVersionOneSelectediPhone6.png"] forState:UIControlStateNormal];
             [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelectediPhone6.png"] forState:UIControlStateNormal];
         } else {
-            [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneSelected.png"] forState:UIControlStateNormal];
+            [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"SongVersionOneSelected.png"] forState:UIControlStateNormal];
             [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
         }
         
@@ -451,13 +451,13 @@
         SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
         if (IS_IPHONE_4_SIZE) {
             [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelectediPhone4.png"] forState:UIControlStateNormal];
-            [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelectediPhone4.png"] forState:UIControlStateNormal];
+            [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"SongVersionTwoSelectediPhone4.png"] forState:UIControlStateNormal];
         } else if (IS_IPHONE_6_SIZE) {
             [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelectediPhone6.png"] forState:UIControlStateNormal];
-            [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelectediPhone6.png"] forState:UIControlStateNormal];
+            [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"SongVersionTwoSelectediPhone6.png"] forState:UIControlStateNormal];
         } else {
             [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"OneNotSelected.png"] forState:UIControlStateNormal];
-            [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoSelected.png"] forState:UIControlStateNormal];
+            [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"SongVersionTwoSelected.png"] forState:UIControlStateNormal];
         }
         
         YSTrack *selectedTrack = nil;
