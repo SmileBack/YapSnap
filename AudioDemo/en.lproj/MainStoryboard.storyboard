@@ -1506,7 +1506,7 @@ Type it here to enter!</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQa-zj-YXn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1708" y="-1061"/>
+            <point key="canvasLocation" x="-1832" y="-1121"/>
         </scene>
         <!--Mic Source Controller-->
         <scene sceneID="WW9-bF-VOv">
@@ -1568,7 +1568,7 @@ Type it here to enter!</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="1l7-bL-RcX"/>
         <segue reference="czb-n6-hbf"/>
-        <segue reference="Enn-ka-dSJ"/>
     </inferredMetricsTieBreakers>
 </document>
