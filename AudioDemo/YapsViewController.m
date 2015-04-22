@@ -36,8 +36,7 @@
 @property (strong, nonatomic) UIImage *blueArrowFull;
 @property (strong, nonatomic) UIImage *blueArrowEmpty;
 @property (strong, nonatomic) UIImage *redSquareFull;
-@property (strong, nonatomic) UIImage *redSquareEmptyOpenedOnce;
-@property (strong, nonatomic) UIImage *redSquareEmptyOpenedTwice;
+@property (strong, nonatomic) UIImage *redSquareEmptyOpened;
 
 @property (nonatomic, readonly) NSArray *yaps;
 
@@ -286,11 +285,7 @@ static NSString *CellIdentifier = @"Cell";
         cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@" , [self.dateFormatter stringFromDate:yap.createdAt]];
         
         if (yap.wasOpened) {
-            if (yap.wasOpenedOnce) {
-                cell.icon.image = self.redSquareEmptyOpenedOnce;
-            } else if (yap.wasOpenedTwice) {
-                cell.icon.image = self.redSquareEmptyOpenedTwice;
-            }
+            cell.icon.image = self.redSquareEmptyOpened;
         } else {
             cell.icon.image = self.redSquareFull;
         }
@@ -345,7 +340,7 @@ static NSString *CellIdentifier = @"Cell";
                 if (yap.wasOpenedOnce) {
                     cell.createdTimeLabel.text = @"Double Tap to Reply. Hold to Replay.";
                 } else if (yap.wasOpenedTwice) {
-                    cell.createdTimeLabel.text = @"Double Tap to Reply.";
+                    cell.createdTimeLabel.text = @"Double Tap to Reply";
                 }
             }
             
@@ -599,20 +594,12 @@ static NSString *CellIdentifier = @"Cell";
     return _blueArrowFull;
 }
 
-- (UIImage *) redSquareEmptyOpenedOnce
+- (UIImage *) redSquareEmptyOpened
 {
-    if (!_redSquareEmptyOpenedOnce) {
-        _redSquareEmptyOpenedOnce = [UIImage imageNamed:@"OpenGift700.png"];
+    if (!_redSquareEmptyOpened) {
+        _redSquareEmptyOpened = [UIImage imageNamed:@"OpenGift700.png"];
     }
-    return _redSquareEmptyOpenedOnce;
-}
-
-- (UIImage *) redSquareEmptyOpenedTwice
-{
-    if (!_redSquareEmptyOpenedTwice) {
-        _redSquareEmptyOpenedTwice = [UIImage imageNamed:@"YapsIconReceivedOpened.png"];
-    }
-    return _redSquareEmptyOpenedTwice;
+    return _redSquareEmptyOpened;
 }
 
 - (UIImage *) redSquareFull
