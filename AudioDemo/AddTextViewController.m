@@ -121,7 +121,7 @@
         }
     } else {
         if (!self.didViewPhotoTextAlert) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Photo or Text"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add a Photo or Text"
                                                             message:@"You can add a photo or text\nto your yap!  (It's optional)"
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
