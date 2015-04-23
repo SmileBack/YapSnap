@@ -64,6 +64,8 @@
 		78439FC01AE77145004CFB5F /* SongVersionOneSelected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FBC1AE77145004CFB5F /* SongVersionOneSelected@3x.png */; };
 		78439FC11AE77145004CFB5F /* SongVersionOneSelectediPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FBD1AE77145004CFB5F /* SongVersionOneSelectediPhone4@2x.png */; };
 		78439FC21AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FBE1AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png */; };
+		78439FC61AE9A330004CFB5F /* PlusButtonWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FC51AE9A330004CFB5F /* PlusButtonWhite@2x.png */; };
+		78439FC81AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FC71AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png */; };
 		784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E01A6253CE0084894D /* MusicIcon@2x.png */; };
 		784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67F01A626F7B0084894D /* ProgressViewNotches5.png */; };
 		784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */; };
@@ -256,6 +258,8 @@
 		78439FBC1AE77145004CFB5F /* SongVersionOneSelected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SongVersionOneSelected@3x.png"; sourceTree = "<group>"; };
 		78439FBD1AE77145004CFB5F /* SongVersionOneSelectediPhone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SongVersionOneSelectediPhone4@2x.png"; sourceTree = "<group>"; };
 		78439FBE1AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SongVersionOneSelectediPhone6@2x.png"; sourceTree = "<group>"; };
+		78439FC51AE9A330004CFB5F /* PlusButtonWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlusButtonWhite@2x.png"; sourceTree = "<group>"; };
+		78439FC71AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlusButtonWhite2@2x.png"; sourceTree = "<group>"; };
 		784C67E01A6253CE0084894D /* MusicIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIcon@2x.png"; sourceTree = "<group>"; };
 		784C67F01A626F7B0084894D /* ProgressViewNotches5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewNotches5.png; sourceTree = "<group>"; };
 		784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum@2x.png"; sourceTree = "<group>"; };
@@ -441,6 +445,8 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				78439FC51AE9A330004CFB5F /* PlusButtonWhite@2x.png */,
+				78439FC71AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png */,
 				786BCB411ADC25A300BA3FDD /* Add Text Page */,
 				78319A741ACCF878000C3FD6 /* Audio Capture Page */,
 				78319A731ACCF818000C3FD6 /* Spotify Page */,
@@ -1181,6 +1187,7 @@
 				787EC6011ACA09A1000C5539 /* BalloonLightBlue10.png in Resources */,
 				78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
+				78439FC81AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png in Resources */,
 				78439FB21AE70830004CFB5F /* LoginPageImageSmalleriPhonesMusicNotes@2x.png in Resources */,
 				787EC60D1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png in Resources */,
 				782D13A01ACC605D007C8499 /* YapsIconReceivedOpened.png in Resources */,
@@ -1215,6 +1222,7 @@
 				787EC6181ACA245E000C5539 /* ProgressViewRed@2x.png in Resources */,
 				787EC5FF1ACA068F000C5539 /* BalloonYellow10.png in Resources */,
 				78A2E86C1ACC840B00B5A404 /* BalloonYellow20.png in Resources */,
+				78439FC61AE9A330004CFB5F /* PlusButtonWhite@2x.png in Resources */,
 				788363A21AD79488001CBD1B /* TwoNotSelectediPhone6@2x.png in Resources */,
 				78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */,
 				787EC5F11AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png in Resources */,

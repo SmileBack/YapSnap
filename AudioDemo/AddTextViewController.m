@@ -50,6 +50,7 @@
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
 #define VIEWED_BALLOON_ALERT_KEY @"yaptap.ViewedBalloonAlert"
+#define VIEWED_PHOTO_TEXT_ALERT_KEY @"yaptap.ViewedPhotoTextAlert"
 
 @end
 
@@ -117,6 +118,16 @@
                                                   otherButtonTitles:nil];
             [alert show];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_BALLOON_ALERT_KEY];
+        }
+    } else {
+        if (!self.didViewPhotoTextAlert) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Photo or Text"
+                                                            message:@"You can add a photo or text\nto your yap!  (It's optional)"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_PHOTO_TEXT_ALERT_KEY];
         }
     }
 }
@@ -393,6 +404,11 @@
 - (BOOL) didViewBalloonAlert
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_BALLOON_ALERT_KEY];
+}
+
+- (BOOL) didViewPhotoTextAlert
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_PHOTO_TEXT_ALERT_KEY];
 }
 
 #pragma mark - YSColorPickerDelegate

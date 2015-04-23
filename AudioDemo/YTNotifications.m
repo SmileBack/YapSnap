@@ -47,6 +47,15 @@ static YTNotifications *_sharedNotifications;
     [CRToastManager showNotificationWithMessage:text completionBlock:nil];
 }
 
+- (void) showMusicNoteText:(NSString *)text
+{
+    NSDictionary *options = @{
+                              kCRToastTextKey: text,
+                              kCRToastTimeIntervalKey: @2.5,
+                              };
+    
+    [CRToastManager showNotificationWithOptions:options completionBlock:nil];}
+
 - (void) showVolumeText:(NSString *)text
 {
     NSDictionary *options = @{

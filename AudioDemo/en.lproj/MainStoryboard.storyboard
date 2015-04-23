@@ -630,7 +630,7 @@
                                 <action selector="tappedCancelButton:" destination="IdD-6v-OZr" id="VRr-LG-ey9"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="yHX-qT-6J5">
+                        <barButtonItem key="rightBarButtonItem" image="PlusButtonWhite2.png" style="plain" id="yHX-qT-6J5">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addFriendButtonPressed:" destination="IdD-6v-OZr" id="JH2-u2-K4W"/>
@@ -1583,6 +1583,7 @@ Type it here!</string>
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PinkStar.png" width="40" height="40"/>
+        <image name="PlusButtonWhite2.png" width="20" height="20"/>
         <image name="RecordButtonBlueBorder10.png" width="240" height="240"/>
         <image name="ResetButton3.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
@@ -1598,6 +1599,6 @@ Type it here!</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="czb-n6-hbf"/>
+        <segue reference="AEp-MY-7pq"/>
     </inferredMetricsTieBreakers>
 </document>
