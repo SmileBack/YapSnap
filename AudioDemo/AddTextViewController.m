@@ -110,8 +110,8 @@
     
     if ([self.yapBuilder.messageType isEqual: @"VoiceMessage"]) {
         if (!self.didViewBalloonAlert) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Voice Filters"
-                                                            message:@"Tap the balloon above to distort your voice with various filters!"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Change Your Voice"
+                                                            message:@"Tap the balloon above to add\nhelium to your voice!"
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];

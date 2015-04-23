@@ -1252,30 +1252,30 @@ in your phone's settings!</string>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="First Name" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="p2C-z2-Tyv">
-                                <rect key="frame" x="40" y="198" width="240" height="40"/>
+                                <rect key="frame" x="45" y="198" width="230" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="ExS-f7-AnL"/>
+                                    <constraint firstAttribute="width" constant="230" id="ExS-f7-AnL"/>
                                     <constraint firstAttribute="height" constant="40" id="b14-Nv-x5i"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Last Name" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="irE-n9-5jj">
-                                <rect key="frame" x="40" y="237" width="240" height="40"/>
+                                <rect key="frame" x="45" y="237" width="230" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="FFj-Gl-fXQ"/>
+                                    <constraint firstAttribute="width" constant="230" id="FFj-Gl-fXQ"/>
                                     <constraint firstAttribute="height" constant="40" id="m5f-kc-YTD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email Address" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="MfG-PN-jQu">
-                                <rect key="frame" x="40" y="276" width="240" height="40"/>
+                                <rect key="frame" x="45" y="276" width="230" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="Jpp-et-5ZT"/>
+                                    <constraint firstAttribute="width" constant="230" id="Jpp-et-5ZT"/>
                                     <constraint firstAttribute="height" constant="40" id="KRM-ll-GPE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>

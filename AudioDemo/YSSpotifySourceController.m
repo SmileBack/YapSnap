@@ -71,8 +71,11 @@
     NSLog(@"Set playerAlreadyStartedPlayingForThisSong to FALSE");
     
     if (self.didOpenYapForFirstTime && !self.didViewMusicNoteNotification && !self.didTapLargeMusicButtonForFirstTime && !self.didTapSmallMusicButtonForFirstTime) {
-        [[YTNotifications sharedNotifications] showNotificationText:@"Tap Music Note ;)"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_MUSIC_NOTE_NOTIFICATION];
+        double delay = 0.5;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"Tap The Music Note ;)"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_MUSIC_NOTE_NOTIFICATION];
+        });
     }
 }
 
@@ -209,8 +212,8 @@
         NSLog(@"Searched Empty String");
         [self.view endEditing:YES];
         self.musicIcon.hidden = NO; // REMOVE
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search for a Song"
-                                                        message:@"To send a song snippet, type the name of an artist, song, or album above."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song Yap"
+                                                        message:@"Type the name of a song or atist above (or tap the music note for a random pick!)"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -701,8 +704,8 @@
         return NO;
     } else if (self.songs.count == 0) {
         NSLog(@"Can't Play Because No Song");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search for a Song"
-                                                        message:@"To send a song snippet, type the name of an artist, song, or album above."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song Yap"
+                                                        message:@"Type the name of a song or artist above (or tap the music note for a random pick!)"
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];

@@ -225,7 +225,7 @@ static NSString *CellIdentifier = @"Cell";
             
             if (!self.didViewFirstYapAlert) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congrats!"
-                                                                message:[NSString stringWithFormat:@"You  just sent your first yap! %@ will be added to your friends list after opening it.", yap.displayReceiverName]
+                                                                message:[NSString stringWithFormat:@"You just sent your first yap! %@ will be added to your friends list after opening it.", yap.displayReceiverName]
                                                                delegate:nil
                                                       cancelButtonTitle:@"OK"
                                                       otherButtonTitles: nil];
