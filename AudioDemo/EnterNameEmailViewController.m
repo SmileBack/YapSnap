@@ -10,6 +10,7 @@
 #import "API.h"
 #import "YSPushManager.h"
 #import "UIViewController+Alerts.h"
+#import "AppDelegate.h"
 
 @interface EnterNameEmailViewController ()
 
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *topConstraint;
+@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 
 - (IBAction)didTapContinueButton;
 
@@ -45,6 +47,15 @@
     
     if (self.isiPhone4Size) {
         self.topConstraint.constant = 0;
+        self.progressView.hidden = YES;
+    }
+    
+    if ([AppDelegate sharedDelegate].appOpenedCount <= 2) {
+        [self.progressView setProgress:0.66 animated:NO];
+        double delay2 = 0.5;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.progressView setProgress:1.0 animated:YES];
+        });
     }
 }
 

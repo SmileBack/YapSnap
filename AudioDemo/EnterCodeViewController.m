@@ -9,6 +9,7 @@
 #import "EnterCodeViewController.h"
 #import "API.h"
 #import "UIViewController+Alerts.h"
+#import "AppDelegate.h"
 
 @interface EnterCodeViewController ()
 
@@ -21,6 +22,8 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *topTextConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *topPhoneConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonConstraint;
+@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
+
 
 @end
 
@@ -57,12 +60,21 @@
     
     [self makeNavBarTransparent];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-
+    
     if (self.isiPhone4Size) {
         CGFloat scale = .5f;
         self.topTextConstraint.constant = 0;
         self.topPhoneConstraint.constant *= scale;
         self.buttonConstraint.constant *= scale;
+        self.progressView.hidden = YES;
+    }
+    
+    if ([AppDelegate sharedDelegate].appOpenedCount <= 2) {
+        [self.progressView setProgress:0.33 animated:NO];
+        double delay2 = 0.5;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.progressView setProgress:0.66 animated:YES];
+        });
     }
 }
 
