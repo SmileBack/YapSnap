@@ -111,6 +111,7 @@
     
     if ([self.yapBuilder.messageType isEqual: @"VoiceMessage"]) {
         if (!self.didViewBalloonAlert) {
+            /*
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Change Your Voice"
                                                             message:@"Tap the balloon above to add\nhelium to your voice!"
                                                            delegate:nil
@@ -118,6 +119,7 @@
                                                   otherButtonTitles:nil];
             [alert show];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_BALLOON_ALERT_KEY];
+             */
         }
     } else {
         if (!self.didViewPhotoTextAlert) {
