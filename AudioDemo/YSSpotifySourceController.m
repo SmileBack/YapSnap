@@ -438,7 +438,7 @@
     }
     
     if (!self.didTapSongVersionOneForFirstTime) {
-        [[YTNotifications sharedNotifications] showSongVersionText:@"Version # 1"];
+        [[YTNotifications sharedNotifications] showSongVersionText:@"Song Version # 1"];
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_ONE];
@@ -474,7 +474,7 @@
     }
     
     if (!self.didTapSongVersionTwoForFirstTime) {
-        [[YTNotifications sharedNotifications] showSongVersionText:@"Version # 2"];
+        [[YTNotifications sharedNotifications] showSongVersionText:@"Song Version # 2"];
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_TWO];
