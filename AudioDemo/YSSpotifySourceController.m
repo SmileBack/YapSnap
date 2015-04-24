@@ -289,7 +289,8 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     NSLog(@"Textfield did begin editing");
     self.carousel.scrollEnabled = NO;
-    self.musicIcon.hidden = YES; // REMOVE
+    self.carousel.hidden = YES;
+    self.musicIcon.hidden = YES;
     self.smallMusicIcon.hidden = YES;
 }
 
