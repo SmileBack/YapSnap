@@ -118,13 +118,17 @@
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_BALLOON_ALERT_KEY];
              */
+            double delay2 = 0.5;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[YTNotifications sharedNotifications] showSongVersionText:@"Tap the Balloon!"];
+            });
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_BALLOON_ALERT_KEY];
         }
     } else {
         if (!self.didViewPhotoTextAlert) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add a Photo or Text"
-                                                            message:@"You can add a photo or text\nto your yap!  (It's optional)"
+                                                            message:@"If you want, you can add a photo or text to your yap!"
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
