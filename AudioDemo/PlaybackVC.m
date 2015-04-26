@@ -157,6 +157,7 @@
     NSLog(@"Stopping");
     [self.timer invalidate];
     [self.player stop];
+    
     //self.player.volume = 0;
 }
 
@@ -198,8 +199,6 @@
     if (state == STKAudioPlayerStatePlaying) {
         NSLog(@"state == STKAudioPlayerStatePlaying");
         
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
-        
         if (!self.playerAlreadyStartedPlayingForThisSong) {
             NSLog(@"Seconds to Fast Forward: %d", self.yap.secondsToFastForward.intValue);
             
@@ -240,6 +239,8 @@
             [mixpanel track:@"Opened Yap"];
             [mixpanel.people increment:@"Opened Yap #" by:[NSNumber numberWithInt:1]];
             
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
+            
             [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error) {
                 if (error) {
 
@@ -261,11 +262,19 @@
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self dismissViewControllerAnimated:NO completion:nil];
+            
+            /*
             if ([self.yap.text isEqual: @"Welcome to YapTap :)"] && self.yap.senderID.intValue == 1)
             {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"Now Send Someone a Yap :)"];
+                    [[YTNotifications sharedNotifications] showNotificationText:@"Send Someone a Yap!"];
                 });
+            }
+             */
+            
+            if (!self.didSeeDoubleTapBanner && self.yap.senderID.intValue != 1) {
+                [[YTNotifications sharedNotifications] showNotificationText:@"Double Tap To Reply!"];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_DOUBLE_TAP_BANNER];
             }
         });
         
@@ -368,6 +377,11 @@
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer didCancelQueuedItems:(NSArray*)queuedItems
 {
     NSLog(@"Did cancel queued items: %@", queuedItems);
+}
+
+- (BOOL) didSeeDoubleTapBanner
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_DOUBLE_TAP_BANNER];
 }
 
 @end

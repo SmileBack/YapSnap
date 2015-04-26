@@ -127,6 +127,7 @@
         }
     } else {
         if (!self.didViewPhotoTextAlert) {
+            /*
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Photo and Text"
                                                             message:@"You can add a photo or text\nto your yap!"
                                                            delegate:nil
@@ -134,6 +135,7 @@
                                                   otherButtonTitles:nil];
             [alert show];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_PHOTO_TEXT_ALERT_KEY];
+             */
         }
     }
 }

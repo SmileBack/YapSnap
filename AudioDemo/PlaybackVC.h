@@ -13,6 +13,8 @@
 
 #define PLAYBACK_STOPPED_NOTIFICATION @"com.yapsnap.PlaybackStoppedNotification"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
+#define DID_SEE_DOUBLE_TAP_BANNER @"yaptap.DidSeeDoubleTapBannerKey"
+#define DID_SEE_WELCOME_YAP_BANNER @"yaptap.DidSeeWelcomeYapBannerKey"
 
 @interface PlaybackVC : UIViewController<STKAudioPlayerDelegate> {
     MPVolumeView *_mpVolumeView;

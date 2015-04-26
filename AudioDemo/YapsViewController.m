@@ -84,6 +84,7 @@ static NSString *CellIdentifier = @"Cell";
     
     if (!self.comingFromContactsOrAddTextPage) {
         [self loadYaps];
+        [self showWelcomeYapBanner];
     }
     
     // Pull down to refresh
@@ -223,7 +224,7 @@ static NSString *CellIdentifier = @"Cell";
         double delay = 0.5;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-            if (!self.didViewFirstYapAlert) {
+            if (!self.didViewFirstSentYapAlert) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congrats!"
                                                                 message:[NSString stringWithFormat:@"You just sent your first yap! %@ will be added to your friends list after opening it.", yap.displayReceiverName]
                                                                delegate:nil
@@ -232,6 +233,16 @@ static NSString *CellIdentifier = @"Cell";
                 [alert show];
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_FIRST_YAP_ALERT];
             }
+        });
+    }
+}
+
+- (void) showWelcomeYapBanner {
+    if (!self.didSeeWelcomeYapBanner) {
+        double delay = 0.5;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"Here's Your Yap!"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_WELCOME_YAP_BANNER];
         });
     }
 }
@@ -620,9 +631,16 @@ static NSString *CellIdentifier = @"Cell";
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_PUSH_NOTIFICATION_POPUP];
 }
 
-- (BOOL) didViewFirstYapAlert
+- (BOOL) didViewFirstSentYapAlert
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_FIRST_YAP_ALERT];
 }
+
+- (BOOL) didSeeWelcomeYapBanner
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_YAP_BANNER];
+}
+
+
 
 @end

@@ -73,7 +73,7 @@
     if (self.didOpenYapForFirstTime && !self.didViewMusicNoteNotification && !self.didTapLargeMusicButtonForFirstTime && !self.didTapSmallMusicButtonForFirstTime) {
         double delay = 0.3;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showMusicNoteText:@"Tap The Large Music Note ;)"];
+            [[YTNotifications sharedNotifications] showMusicNoteText:@"Tap The Large Music Note!"];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_MUSIC_NOTE_NOTIFICATION];
         });
     }
