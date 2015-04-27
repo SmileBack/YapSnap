@@ -117,7 +117,7 @@
         self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if ([self.searchBox.text length] == 0) {
             [self.view endEditing:YES];
-            self.musicIcon.hidden = NO; // REMOVE
+            [self showMusicIcon];
         } else {
             [self search:self.searchBox.text];
             [self.view endEditing:YES];
@@ -140,7 +140,7 @@
 
 - (IBAction) didTapResetButton {
     self.carousel.hidden = YES;
-    self.musicIcon.hidden = NO;
+    [self showMusicIcon];
     self.resetButton.hidden = YES;
     self.searchBox.text = @"";
     self.shuffleButton.alpha = 0;
@@ -205,7 +205,7 @@
     if ([self.searchBox.text length] == 0) {
         NSLog(@"Searched Empty String");
         [self.view endEditing:YES];
-        self.musicIcon.hidden = NO; // REMOVE
+        [self showMusicIcon];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song Yap"
                                                         message:@"Type the name of a song or atist above (or tap the music note instead)!"
                                                        delegate:nil
@@ -230,7 +230,7 @@
     
     self.songs = nil;
     [self.carousel reloadData];
-    self.musicIcon.hidden = YES;
+    [self hideMusicIcon];
     self.carousel.hidden = NO;
     [self.loadingIndicator startAnimating];
     
@@ -242,7 +242,7 @@
             [weakSelf.carousel reloadData];
             if (songs.count == 0) {
                 [self.loadingIndicator stopAnimating];
-                self.musicIcon.hidden = NO;
+                [self showMusicIcon];
                 self.carousel.hidden = YES;
                 
                 NSLog(@"No Songs Returned For Search Query");
@@ -259,7 +259,7 @@
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];
-            self.musicIcon.hidden = NO;
+            [self showMusicIcon];
             self.carousel.hidden = YES;
             
             if ([self internetIsNotReachable]) {
@@ -283,7 +283,7 @@
     NSLog(@"Textfield did begin editing");
     self.carousel.scrollEnabled = NO;
     self.carousel.hidden = YES;
-    self.musicIcon.hidden = YES;
+    [self hideMusicIcon];
     self.resetButton.hidden = YES;
     self.shuffleButton.alpha = 0;
     self.shuffleButton.hidden = YES;
@@ -855,6 +855,26 @@
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_SONG_GENRE_VIEW object:nil];
     }
+}
+
+- (void) hideMusicIcon {
+    [UIView animateWithDuration:.1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.musicIcon.alpha = 0;
+                     }
+                     completion:nil];
+}
+
+- (void) showMusicIcon {
+    [UIView animateWithDuration:.1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.musicIcon.alpha = 1;
+                     }
+                     completion:nil];
 }
 
 @end
