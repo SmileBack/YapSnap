@@ -137,6 +137,9 @@
         }
     } else {
         NSLog(@"Search Box Is Not First Responder");
+        if (self.carousel.hidden == YES) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_SONG_GENRE_VIEW_VISIBILITY object:nil];
+        }
         //[self.searchBox becomeFirstResponder]; TODO
     }
 }
