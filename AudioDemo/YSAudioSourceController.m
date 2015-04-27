@@ -45,6 +45,12 @@
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
 
+- (void) hideSearchBox:(BOOL)hide
+{
+    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
+}
+
+
 - (void) resetUI{};
 - (void) startPlayback{}
 - (void) stopPlayback{}

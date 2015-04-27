@@ -35,5 +35,7 @@
 - (YapBuilder *) getYapBuilder;
 
 - (void) tappedSongGenreButton:(NSString*)genre;
+- (void) hideSearchBox:(BOOL)hide;
+
 
 @end

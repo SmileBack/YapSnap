@@ -28,10 +28,10 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property (nonatomic) float carouselHeight;
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
-@property (strong, nonatomic) IBOutlet UIButton *smallMusicIcon;
-@property (strong, nonatomic) IBOutlet UIButton *smallSongGenreButton;
+@property (strong, nonatomic) IBOutlet UIButton *resetButton;
+@property (strong, nonatomic) IBOutlet UIButton *shuffleButton;
 
-- (IBAction)didTapSmallMusicButton;
+- (IBAction)didTapResetButton;
 - (IBAction)didTapSmallSongGenreButton;
 
 @end
@@ -89,7 +89,11 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Tapped Progress View");
-                        [self.searchBox becomeFirstResponder];
+                        if ([self songGenreViewIsVisible]) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_SONG_GENRE_VIEW object:nil];
+                        } else {
+                            [self.searchBox becomeFirstResponder];
+                        }
                     }];
 }
  
@@ -97,24 +101,8 @@
     NSLog(@"Tapped Music Icon Image");
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Music Icon"];
-    /*
-    if (self.searchBox.isFirstResponder) {
-        self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        if ([self.searchBox.text length] == 0) {
-            [self.view endEditing:YES];
-            self.musicIcon.hidden = NO; // REMOVE
-        } else {
-            [self search:self.searchBox.text];
-            [self.view endEditing:YES];
-            [self setBackgroundColorForSearchBox];
-        }
-    } else {
-        NSLog(@"Search Box Is Not First Responder");
-        [self.searchBox becomeFirstResponder];
-    }
-    */
-    [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_SONG_GENRE_VIEW_VISIBILITY object:nil];
-
+    [self updateSongGenreViewVisibility];
+    
     if (!self.didTapLargeMusicButtonForFirstTime) {
         [[YTNotifications sharedNotifications] showNotificationText:@"Random Pick!"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_LARGE_MUSIC_BUTTON];
@@ -138,9 +126,8 @@
     } else {
         NSLog(@"Search Box Is Not First Responder");
         if (self.carousel.hidden == YES) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_SONG_GENRE_VIEW_VISIBILITY object:nil];
+            [self updateSongGenreViewVisibility];
         }
-        //[self.searchBox becomeFirstResponder]; TODO
     }
 }
 
@@ -151,25 +138,13 @@
     self.searchBox.attributedText = attributedString;
 }
 
-- (IBAction) didTapSmallMusicButton {
-    /*
-    [self searchRandomArtist];
-    if (!self.didTapSmallMusicButtonForFirstTime) {
-        [[YTNotifications sharedNotifications] showNotificationText:@"Random Pick!"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SMALL_MUSIC_BUTTON];
-    }
-     */
+- (IBAction) didTapResetButton {
     self.carousel.hidden = YES;
     self.musicIcon.hidden = NO;
-    self.smallMusicIcon.hidden = YES;
+    self.resetButton.hidden = YES;
     self.searchBox.text = @"";
-    self.smallSongGenreButton.hidden = YES;
-    
-    double delay = .3;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //[[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_SONG_GENRE_VIEW_VISIBILITY object:nil];
-
-    });
+    self.shuffleButton.alpha = 0;
+    self.shuffleButton.hidden = YES;
 }
 
 - (void) searchRandomArtist {
@@ -232,7 +207,7 @@
         [self.view endEditing:YES];
         self.musicIcon.hidden = NO; // REMOVE
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song Yap"
-                                                        message:@"Type the name of a song or atist above (or tap the music note for a random pick!)"
+                                                        message:@"Type the name of a song or atist above (or tap the music note instead)!"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -256,7 +231,6 @@
     self.songs = nil;
     [self.carousel reloadData];
     self.musicIcon.hidden = YES;
-    // UNHIDE CAROUSEL!
     self.carousel.hidden = NO;
     [self.loadingIndicator startAnimating];
     
@@ -280,13 +254,13 @@
             } else {
                 NSLog(@"Returned Songs Successfully");
                 [self.loadingIndicator stopAnimating];
-                self.smallMusicIcon.hidden = NO;
+                self.resetButton.hidden = NO;
+                self.shuffleButton.hidden = NO;
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];
             self.musicIcon.hidden = NO;
             self.carousel.hidden = YES;
-            self.smallMusicIcon.hidden = YES;
             
             if ([self internetIsNotReachable]) {
                 double delay = 0.1;
@@ -310,8 +284,9 @@
     self.carousel.scrollEnabled = NO;
     self.carousel.hidden = YES;
     self.musicIcon.hidden = YES;
-    self.smallMusicIcon.hidden = YES;
-    self.smallSongGenreButton.hidden = YES;
+    self.resetButton.hidden = YES;
+    self.shuffleButton.alpha = 0;
+    self.shuffleButton.hidden = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_SONG_GENRE_VIEW object:nil];
 }
 
@@ -535,10 +510,9 @@
 {
     NSLog(@"Tapped Album Image");
     
-    if ([self.searchBox isFirstResponder])
+    if ([self.searchBox isFirstResponder]) // This case shouldn't be possible
     {
         [self.view endEditing:YES];
-        self.smallMusicIcon.hidden = NO;
     } else {
         UIView *parent = button.superview;
         if ([parent isKindOfClass:[SpotifyTrackView class]]) {
@@ -727,7 +701,7 @@
     } else if (self.songs.count == 0) {
         NSLog(@"Can't Play Because No Song");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song Yap"
-                                                        message:@"Type the name of a song or artist above (or tap the music note for a random pick!)"
+                                                        message:@"Type the name of a song or artist above (or tap the music note instead)!"
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -837,11 +811,50 @@
     if ([genre isEqual: @"Top100"]) {
         [self searchRandomArtist];
     }
-    self.smallSongGenreButton.hidden = NO;
+    self.shuffleButton.alpha = 1;
+    [self hideSearchBox:NO];
+}
+
+- (void) hideSearchBox:(BOOL)hide
+{
+    if (hide) {
+        [UIView animateWithDuration:.2
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.searchBox.alpha = 0;
+                         }
+                         completion:nil];
+    } else {
+        [UIView animateWithDuration:.2
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.searchBox.alpha = 1;
+                         }
+                         completion:nil];
+    }
 }
 
 - (IBAction) didTapSmallSongGenreButton {
     [self searchRandomArtist];
+}
+
+- (BOOL) songGenreViewIsVisible {
+    if (self.searchBox.alpha == 0) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (void) updateSongGenreViewVisibility {
+    if ([self songGenreViewIsVisible]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_SONG_GENRE_VIEW object:nil];
+        self.searchBox.text = @"";
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_SONG_GENRE_VIEW object:nil];
+    }
 }
 
 @end

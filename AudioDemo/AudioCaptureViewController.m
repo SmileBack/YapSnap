@@ -328,16 +328,13 @@ static const float TIMER_INTERVAL = .01;
                         }];
                     }];
     
-    [center addObserverForName:UPDATE_SONG_GENRE_VIEW_VISIBILITY
+    [center addObserverForName:SHOW_SONG_GENRE_VIEW
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Show Song Genre View");
-                        if (self.songGenreView.hidden == YES) {
-                            [self showSongGenreView];
-                        } else {
-                            [self hideSongGenreView];
-                        }
+                        [self showSongGenreView];
+                        [self.audioSource hideSearchBox:YES];
                     }];
     
     [center addObserverForName:HIDE_SONG_GENRE_VIEW
@@ -346,6 +343,7 @@ static const float TIMER_INTERVAL = .01;
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Show Song Genre View");
                         [self hideSongGenreView];
+                        [self.audioSource hideSearchBox:NO];
                     }];
 }
 
