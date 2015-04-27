@@ -20,5 +20,7 @@
 #define TAPPED_SMALL_MUSIC_BUTTON @"yaptap.TappedSmallMusicButtonNotification"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
 #define VIEWED_MUSIC_NOTE_NOTIFICATION @"yaptap.ViewedMusicNoteNotification"
+#define UPDATE_SONG_GENRE_VIEW_VISIBILITY @"yaptap.UpdateSongGenreViewVisibilityNotification"
+#define HIDE_SONG_GENRE_VIEW @"yaptap.HideSongGenreViewNotification"
 
 @end

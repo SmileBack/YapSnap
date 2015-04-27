@@ -29,8 +29,10 @@
 @property (nonatomic) float carouselHeight;
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 @property (strong, nonatomic) IBOutlet UIButton *smallMusicIcon;
+@property (strong, nonatomic) IBOutlet UIButton *smallSongGenreButton;
 
 - (IBAction)didTapSmallMusicButton;
+- (IBAction)didTapSmallSongGenreButton;
 
 @end
 
@@ -53,7 +55,7 @@
     }
     
     [self setupNotifications];
-    
+        
     UITapGestureRecognizer *tappedMusicIconImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMusicIconImage)];
     tappedMusicIconImage.numberOfTapsRequired = 1;
     [self.musicIcon addGestureRecognizer:tappedMusicIconImage];
@@ -111,7 +113,8 @@
         [self.searchBox becomeFirstResponder];
     }
     */
-    [self searchRandomArtist];
+    [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_SONG_GENRE_VIEW_VISIBILITY object:nil];
+
     if (!self.didTapLargeMusicButtonForFirstTime) {
         [[YTNotifications sharedNotifications] showNotificationText:@"Random Pick!"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_LARGE_MUSIC_BUTTON];
@@ -134,7 +137,7 @@
         }
     } else {
         NSLog(@"Search Box Is Not First Responder");
-        [self.searchBox becomeFirstResponder];
+        //[self.searchBox becomeFirstResponder]; TODO
     }
 }
 
@@ -146,11 +149,24 @@
 }
 
 - (IBAction) didTapSmallMusicButton {
+    /*
     [self searchRandomArtist];
     if (!self.didTapSmallMusicButtonForFirstTime) {
         [[YTNotifications sharedNotifications] showNotificationText:@"Random Pick!"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SMALL_MUSIC_BUTTON];
     }
+     */
+    self.carousel.hidden = YES;
+    self.musicIcon.hidden = NO;
+    self.smallMusicIcon.hidden = YES;
+    self.searchBox.text = @"";
+    self.smallSongGenreButton.hidden = YES;
+    
+    double delay = .3;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //[[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_SONG_GENRE_VIEW_VISIBILITY object:nil];
+
+    });
 }
 
 - (void) searchRandomArtist {
@@ -292,6 +308,8 @@
     self.carousel.hidden = YES;
     self.musicIcon.hidden = YES;
     self.smallMusicIcon.hidden = YES;
+    self.smallSongGenreButton.hidden = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_SONG_GENRE_VIEW object:nil];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -439,7 +457,7 @@
     }
     
     if (!self.didTapSongVersionOneForFirstTime) {
-        [[YTNotifications sharedNotifications] showSongVersionText:@"Song Version # 1"];
+        [[YTNotifications sharedNotifications] showSongVersionText:@"Song Clip # 1"];
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_ONE];
@@ -475,7 +493,7 @@
     }
     
     if (!self.didTapSongVersionTwoForFirstTime) {
-        [[YTNotifications sharedNotifications] showSongVersionText:@"Song Version # 2"];
+        [[YTNotifications sharedNotifications] showSongVersionText:@"Song Clip # 2"];
     }
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_TWO];
@@ -807,6 +825,20 @@
 - (BOOL) didViewMusicNoteNotification
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_MUSIC_NOTE_NOTIFICATION];
+}
+
+#pragma mark - Song Genre Stuff
+
+- (void) tappedSongGenreButton:(NSString *)genre
+{
+    if ([genre isEqual: @"Top100"]) {
+        [self searchRandomArtist];
+    }
+    self.smallSongGenreButton.hidden = NO;
+}
+
+- (IBAction) didTapSmallSongGenreButton {
+    [self searchRandomArtist];
 }
 
 @end

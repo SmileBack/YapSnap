@@ -27,6 +27,20 @@
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
 @property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
+@property (nonatomic, strong) IBOutlet UIView *songGenreView;
+@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonOne;
+@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonTwo;
+@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonThree;
+@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonFour;
+@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonFive;
+@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonSix;
+
+- (IBAction)didTapSongGenreButtonOne;
+- (IBAction)didTapSongGenreButtonTwo;
+- (IBAction)didTapSongGenreButtonThree;
+- (IBAction)didTapSongGenreButtonFour;
+- (IBAction)didTapSongGenreButtonFive;
+- (IBAction)didTapSongGenreButtonSix;
 
 @end
 
@@ -81,6 +95,8 @@ static const float TIMER_INTERVAL = .01;
     if (!self.didSeeWelcomePopup) {
         [self showWelcomePopup];
     }
+    
+    [self designSongGenreButtons];
     
     //[self.playButton setEnabled:YES];
 }
@@ -310,6 +326,26 @@ static const float TIMER_INTERVAL = .01;
                         NSLog(@"Show Feedback Page");
                         [self showFeedbackEmailViewControllerWithCompletion:^{
                         }];
+                    }];
+    
+    [center addObserverForName:UPDATE_SONG_GENRE_VIEW_VISIBILITY
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Show Song Genre View");
+                        if (self.songGenreView.hidden == YES) {
+                            [self showSongGenreView];
+                        } else {
+                            [self hideSongGenreView];
+                        }
+                    }];
+    
+    [center addObserverForName:HIDE_SONG_GENRE_VIEW
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Show Song Genre View");
+                        [self hideSongGenreView];
                     }];
 }
 
@@ -559,5 +595,93 @@ static const float TIMER_INTERVAL = .01;
     }
 }
 
+#pragma mark - Song Genre Buttons
+
+- (IBAction)didTapSongGenreButtonOne {
+    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self hideSongGenreView];
+}
+
+- (IBAction)didTapSongGenreButtonTwo {
+    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self hideSongGenreView];
+}
+
+- (IBAction)didTapSongGenreButtonThree {
+    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self hideSongGenreView];
+}
+
+- (IBAction)didTapSongGenreButtonFour {
+    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self hideSongGenreView];
+}
+
+- (IBAction)didTapSongGenreButtonFive {
+    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self hideSongGenreView];
+}
+
+- (IBAction)didTapSongGenreButtonSix {
+    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self hideSongGenreView];
+}
+
+- (void)hideSongGenreView {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    CGFloat screenWidth = screenRect.size.width;
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.songGenreView.frame = CGRectMake(0, screenHeight, screenWidth, 201);
+                     }
+                     completion:^(BOOL finished) {
+                         self.songGenreView.hidden = YES;
+                     }];
+}
+
+- (void)showSongGenreView {
+    self.songGenreView.hidden = NO;
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    CGFloat screenWidth = screenRect.size.width;
+    
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.songGenreView.frame = CGRectMake(0, screenHeight-211, screenWidth, 211);
+                     }
+                     completion:^(BOOL finished) {
+                     }];
+}
+
+- (void) designSongGenreButtons {
+    self.songGenreButtonOne.layer.cornerRadius = 42;
+    self.songGenreButtonOne.layer.borderWidth = 1;
+    self.songGenreButtonOne.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.songGenreButtonTwo.layer.cornerRadius = 42;
+    self.songGenreButtonTwo.layer.borderWidth = 1;
+    self.songGenreButtonTwo.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.songGenreButtonThree.layer.cornerRadius = 42;
+    self.songGenreButtonThree.layer.borderWidth = 1;
+    self.songGenreButtonThree.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.songGenreButtonFour.layer.cornerRadius = 42;
+    self.songGenreButtonFour.layer.borderWidth = 1;
+    self.songGenreButtonFour.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.songGenreButtonFive.layer.cornerRadius = 42;
+    self.songGenreButtonFive.layer.borderWidth = 1;
+    self.songGenreButtonFive.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.songGenreButtonSix.layer.cornerRadius = 42;
+    self.songGenreButtonSix.layer.borderWidth = 1;
+    self.songGenreButtonSix.layer.borderColor = [UIColor whiteColor].CGColor;
+}
 
 @end

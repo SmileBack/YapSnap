@@ -34,4 +34,6 @@
 // Mic source could return the audio file. for now will return nothing.
 - (YapBuilder *) getYapBuilder;
 
+- (void) tappedSongGenreButton:(NSString*)genre;
+
 @end
