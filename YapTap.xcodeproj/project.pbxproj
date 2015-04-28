@@ -132,6 +132,7 @@
 		78B0B7541AEE0AE1001C074B /* ShuffleIcon20.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B0B7531AEE0AE1001C074B /* ShuffleIcon20.png */; };
 		78B0B7561AEEAAF7001C074B /* ShuffleIcon30.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B0B7551AEEAAF7001C074B /* ShuffleIcon30.png */; };
 		78B0B7581AEEAC30001C074B /* ShuffleButton40.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B0B7571AEEAC30001C074B /* ShuffleButton40.png */; };
+		78B0B7621AEF3834001C074B /* Shuffle50.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B0B7611AEF3834001C074B /* Shuffle50.png */; };
 		78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CBF2F51A9960AD00F30DCA /* YellowStar.png */; };
 		78D7812A1ABA249E00F483A8 /* RecordButtonBlueBorder10Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D781291ABA249E00F483A8 /* RecordButtonBlueBorder10Pressed.png */; };
 		78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DA1F7D1AA18D4900693015 /* WhiteCircle.png */; };
@@ -338,6 +339,7 @@
 		78B0B7531AEE0AE1001C074B /* ShuffleIcon20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShuffleIcon20.png; sourceTree = "<group>"; };
 		78B0B7551AEEAAF7001C074B /* ShuffleIcon30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShuffleIcon30.png; sourceTree = "<group>"; };
 		78B0B7571AEEAC30001C074B /* ShuffleButton40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShuffleButton40.png; sourceTree = "<group>"; };
+		78B0B7611AEF3834001C074B /* Shuffle50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Shuffle50.png; sourceTree = "<group>"; };
 		78CBF2F51A9960AD00F30DCA /* YellowStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YellowStar.png; sourceTree = "<group>"; };
 		78D781291ABA249E00F483A8 /* RecordButtonBlueBorder10Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder10Pressed.png; sourceTree = "<group>"; };
 		78DA1F7D1AA18D4900693015 /* WhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCircle.png; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				78B0B7611AEF3834001C074B /* Shuffle50.png */,
 				78B0B74F1AEE0618001C074B /* ShuffleIcon.png */,
 				78B0B7511AEE0901001C074B /* ShuffleIcon10.png */,
 				78B0B7531AEE0AE1001C074B /* ShuffleIcon20.png */,
@@ -1203,6 +1206,7 @@
 				787EC6011ACA09A1000C5539 /* BalloonLightBlue10.png in Resources */,
 				78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
+				78B0B7621AEF3834001C074B /* Shuffle50.png in Resources */,
 				78439FC81AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png in Resources */,
 				78439FB21AE70830004CFB5F /* LoginPageImageSmalleriPhonesMusicNotes@2x.png in Resources */,
 				787EC60D1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png in Resources */,
