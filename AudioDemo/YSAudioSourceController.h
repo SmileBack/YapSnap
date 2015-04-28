@@ -36,6 +36,6 @@
 
 - (void) tappedSongGenreButton:(NSString*)genre;
 - (void) hideSearchBox:(BOOL)hide;
-
+- (void) hideResetAndShuffleButtons;
 
 @end

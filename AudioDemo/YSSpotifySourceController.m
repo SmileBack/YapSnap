@@ -141,10 +141,8 @@
 - (IBAction) didTapResetButton {
     self.carousel.hidden = YES;
     [self showMusicIcon];
-    self.resetButton.hidden = YES;
     self.searchBox.text = @"";
-    self.shuffleButton.alpha = 0;
-    self.shuffleButton.hidden = YES;
+    [self hideResetAndShuffleButtons];
 }
 
 - (void) searchRandomArtist {
@@ -284,10 +282,7 @@
     self.carousel.scrollEnabled = NO;
     self.carousel.hidden = YES;
     [self hideMusicIcon];
-    self.resetButton.hidden = YES;
-    self.shuffleButton.alpha = 0;
-    self.shuffleButton.hidden = YES;
-    [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_SONG_GENRE_VIEW object:nil];
+    [self hideResetAndShuffleButtons];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -875,6 +870,12 @@
                          self.musicIcon.alpha = 1;
                      }
                      completion:nil];
+}
+
+- (void) hideResetAndShuffleButtons {
+    self.shuffleButton.alpha = 0;
+    self.shuffleButton.hidden = YES;
+    self.resetButton.hidden = YES;
 }
 
 @end

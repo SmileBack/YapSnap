@@ -654,6 +654,8 @@ static const float TIMER_INTERVAL = .01;
                      }
                      completion:^(BOOL finished) {
                      }];
+    
+    [self.audioSource hideResetAndShuffleButtons];
 }
 
 - (void) designSongGenreButtons {

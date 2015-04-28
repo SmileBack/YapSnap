@@ -50,6 +50,10 @@
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
 
+- (void) hideResetAndShuffleButtons
+{
+    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
+}
 
 - (void) resetUI{};
 - (void) startPlayback{}
