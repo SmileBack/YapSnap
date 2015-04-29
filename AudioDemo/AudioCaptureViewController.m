@@ -395,7 +395,11 @@ static const float TIMER_INTERVAL = .01;
         self.recordProgressView.progress = 0.0;
         double delay = .1;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:@"Hold Down to Record"];
+            if (self.audioSource.class == [YSSpotifySourceController class]) {
+                [[YTNotifications sharedNotifications] showNotificationText:@"Hold Down to Play"];
+            } else {
+                [[YTNotifications sharedNotifications] showNotificationText:@"Hold Down to Record"];
+            }
         });
         
         self.explanation.hidden = YES;

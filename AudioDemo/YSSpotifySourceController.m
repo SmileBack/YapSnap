@@ -93,11 +93,11 @@
     self.playerAlreadyStartedPlayingForThisSong = NO;
     NSLog(@"Set playerAlreadyStartedPlayingForThisSong to FALSE");
     
-    if (self.didOpenYapForFirstTime && !self.didViewMusicNoteNotification && !self.didTapLargeMusicButtonForFirstTime && !self.didTapSmallMusicButtonForFirstTime) {
+    if (self.didOpenYapForFirstTime && !self.didViewSongGenreNotification && !self.didViewSongGenreViewForFirstTime) {
         double delay = 0.3;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showMusicNoteText:@"Tap The Large Music Note!"];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_MUSIC_NOTE_NOTIFICATION];
+            [[YTNotifications sharedNotifications] showMusicNoteText:@"Find a Song!"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_SONG_GENRE_NOTIFICATION];
         });
     }
 }
@@ -121,9 +121,12 @@
     
     [self updateSongGenreViewVisibility];
     
-    if (!self.didTapLargeMusicButtonForFirstTime) {
-        [[YTNotifications sharedNotifications] showNotificationText:@"Random Pick!"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_LARGE_MUSIC_BUTTON];
+    if (!self.didViewSongGenreViewForFirstTime) {
+        double delay = 0.3;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"Choose a Genre!"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_SONG_GENRE_VIEW];
+        });
     }
 }
 
@@ -558,7 +561,7 @@
         if (!self.didTapAlbumCoverForFirstTime) {
             double delay = 0.1;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
+                [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button to Play"];
             });
         }
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_ALBUM_COVER];
@@ -789,14 +792,9 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SONG_VERSION_TWO];
 }
 
-- (BOOL) didTapLargeMusicButtonForFirstTime
+- (BOOL) didViewSongGenreViewForFirstTime
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_LARGE_MUSIC_BUTTON];
-}
-
-- (BOOL) didTapSmallMusicButtonForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SMALL_MUSIC_BUTTON];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SONG_GENRE_VIEW];
 }
 
 - (BOOL) didOpenYapForFirstTime
@@ -804,9 +802,9 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
 }
 
-- (BOOL) didViewMusicNoteNotification
+- (BOOL) didViewSongGenreNotification
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_MUSIC_NOTE_NOTIFICATION];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SONG_GENRE_NOTIFICATION];
 }
 
 #pragma mark - Song Genre Stuff
@@ -815,6 +813,7 @@
 {
     if ([genre isEqual: @"Top100"]) {
         [self searchRandomArtist];
+        [[YTNotifications sharedNotifications] showRandomPickText:@"Random Pick!"];
     }
     
     if ([genre isEqual: @"Search"]) {
@@ -834,7 +833,6 @@
 }
 
 - (void) updateSongGenreViewVisibility {
-    NSLog(@"Song Genre View Visibility: %hhd", self.songGenreViewIsVisible);
     if (self.songGenreViewIsVisible) {
         [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_SONG_GENRE_VIEW object:nil];
         [self showMusicIcon];

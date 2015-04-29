@@ -16,10 +16,9 @@
 #define TAPPED_SONG_VERSION_ONE @"yaptap.TappedSongVersionOneKey"
 #define TAPPED_SONG_VERSION_TWO @"yaptap.TappedSongVersionTwoKey"
 #define TAPPED_PROGRESS_VIEW_NOTIFICATION @"yaptap.TappedProgressViewNotification"
-#define TAPPED_LARGE_MUSIC_BUTTON @"yaptap.TappedLargeMusicButtonNotification"
-#define TAPPED_SMALL_MUSIC_BUTTON @"yaptap.TappedSmallMusicButtonNotification"
+#define VIEWED_SONG_GENRE_VIEW @"yaptap.ViewedSongGenreViewNotification"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
-#define VIEWED_MUSIC_NOTE_NOTIFICATION @"yaptap.ViewedMusicNoteNotification"
+#define VIEWED_SONG_GENRE_NOTIFICATION @"yaptap.ViewedSongGenreNotification"
 #define SHOW_SONG_GENRE_VIEW @"yaptap.ShowSongGenreViewNotification"
 #define HIDE_SONG_GENRE_VIEW @"yaptap.HideSongGenreViewNotification"
 

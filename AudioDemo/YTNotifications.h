@@ -19,7 +19,7 @@
 - (void) showModeText:(NSString *)text;
 - (void) showSongVersionText:(NSString *)text;
 - (void) showBufferingText:(NSString *)text;
-- (void) showRandomSearchText:(NSString *)text;
+- (void) showRandomPickText:(NSString *)text;
 - (void) showMusicNoteText:(NSString *)text;
 
 @end
