@@ -364,7 +364,8 @@
 - (IBAction)didTapAddTextButton {
     [self.textView becomeFirstResponder];
     self.textView.hidden = NO;
-    [self hideRightIcons];
+    [self hidePhotoIcons];
+    self.addTextToYapButton.hidden = YES;
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Add Text Button"];
@@ -392,7 +393,8 @@
         self.textView.text = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         
         if (self.textView.text.length == 0) {
-            [self unhideRightIcons];
+            [self unhidePhotoIcons];
+            self.addTextToYapButton.hidden = NO;
             self.textView.hidden = YES;
         }
         
@@ -445,9 +447,10 @@
     
     self.flashbackImageView.image = nil;
     self.yapBuilder.image = nil;
-    [self unhideRightIcons];
+    [self unhidePhotoIcons];
     self.resetPhotoButton.hidden = YES;
     self.flashbackImageView.hidden = YES;
+    [self removeShadowFromTextView];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Cancel Photo Button"];
@@ -460,7 +463,7 @@
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.flashbackImageView.image = chosenImage;
     
-    [self hideRightIcons];
+    [self hidePhotoIcons];
     self.flashbackImageView.hidden = NO;
     self.resetPhotoButton.hidden = NO;
     
@@ -475,7 +478,9 @@
     self.yapBuilder.image = url;
 
     self.textView.text = @"";
-    self.textView.userInteractionEnabled = NO;
+    //self.textView.userInteractionEnabled = NO;
+    [self addShadowToTextView];
+    
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -498,14 +503,14 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SPOTIFY_ALERT_KEY];
 }
 
-- (void) hideRightIcons {
-    self.addTextToYapButton.hidden = YES;
+- (void) hidePhotoIcons {
+    //self.addTextToYapButton.hidden = YES;
     self.cameraButton.hidden = YES;
     self.uploadButton.hidden = YES;
 }
 
-- (void) unhideRightIcons {
-    self.addTextToYapButton.hidden = NO;
+- (void) unhidePhotoIcons {
+    //self.addTextToYapButton.hidden = NO;
     self.cameraButton.hidden = NO;
     self.uploadButton.hidden = NO;
 }
@@ -517,6 +522,22 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.resetPhotoButton setImage:[UIImage imageNamed:@"ResetButton3.png"] forState:UIControlStateNormal];
     });
+}
+
+- (void) addShadowToTextView
+{
+    self.textView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.textView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.textView.layer.shadowOpacity = 1.0f;
+    self.textView.layer.shadowRadius = 1.0f;
+}
+
+- (void) removeShadowFromTextView
+{
+    self.textView.layer.shadowColor = [[UIColor clearColor] CGColor];
+    self.textView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.textView.layer.shadowOpacity = 0;
+    self.textView.layer.shadowRadius = 0;
 }
 
 @end

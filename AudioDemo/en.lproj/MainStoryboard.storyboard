@@ -848,6 +848,12 @@
                                     <action selector="didTapBackButton:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="wda-sG-KAZ"/>
                                 </connections>
                             </button>
+                            <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-LF-pEZ" userLabel="Flashback Image">
+                                <rect key="frame" x="10" y="134" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gWj-LF-pEZ" secondAttribute="height" multiplier="1:1" id="Tos-Kb-190"/>
+                                </constraints>
+                            </imageView>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Yo4-ls-PqW">
                                 <rect key="frame" x="5" y="146" width="310" height="200"/>
                                 <constraints>
@@ -857,23 +863,18 @@
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="42"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
-                            <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-LF-pEZ" userLabel="Flashback Image">
-                                <rect key="frame" x="10" y="134" width="300" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="gWj-LF-pEZ" secondAttribute="height" multiplier="1:1" id="Tos-Kb-190"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDf-Vb-ilr" userLabel="Text Button">
                                 <rect key="frame" x="265" y="115" width="52" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="IHt-Jr-9ov"/>
                                     <constraint firstAttribute="width" constant="52" id="XTX-oM-g4j"/>
                                 </constraints>
-                                <state key="normal" image="CameraIcon20.png">
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="35"/>
+                                <state key="normal" title="T">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapCameraButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="s3p-In-rgN"/>
+                                    <action selector="didTapAddTextButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="Rsf-rw-hzP"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="B2R-OB-er0">
@@ -954,7 +955,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapUploadButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="VSM-9f-Azc"/>
+                                    <action selector="didTapUploadButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="zeZ-YL-eHe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSg-Vp-v2Z">
@@ -963,11 +964,11 @@
                                     <constraint firstAttribute="height" constant="52" id="5t7-7W-59n"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="35"/>
-                                <state key="normal" title="T">
+                                <state key="normal" backgroundImage="CameraIcon20.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapAddTextButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="FWB-6R-VKt"/>
+                                    <action selector="didTapCameraButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="BSi-U8-1eN"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vM0-Ja-t0y">
@@ -1027,9 +1028,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="M5r-U7-dCX"/>
                     <connections>
-                        <outlet property="addTextToYapButton" destination="jSg-Vp-v2Z" id="Qrv-FB-ihs"/>
+                        <outlet property="addTextToYapButton" destination="KDf-Vb-ilr" id="0U8-06-GuK"/>
                         <outlet property="bottomConstraint" destination="vNZ-Va-hqk" id="Y4o-LV-ULS"/>
-                        <outlet property="cameraButton" destination="KDf-Vb-ilr" id="uC4-rY-boA"/>
+                        <outlet property="cameraButton" destination="jSg-Vp-v2Z" id="Yzs-RG-aKA"/>
                         <outlet property="changePitchButton1" destination="C8u-j8-TJl" id="yCc-nS-K5z"/>
                         <outlet property="changePitchButton2" destination="H1t-6Q-weW" id="duJ-Rf-yDM"/>
                         <outlet property="changePitchButton3" destination="Mku-hD-YTT" id="Blg-zS-eLm"/>
@@ -1041,7 +1042,7 @@
                         <outlet property="resetPhotoButton" destination="vM0-Ja-t0y" id="E6d-Yn-j4X"/>
                         <outlet property="resetPitchButton" destination="K5B-lL-ajz" id="xlg-v2-TSb"/>
                         <outlet property="textView" destination="Yo4-ls-PqW" id="5he-52-51O"/>
-                        <outlet property="uploadButton" destination="BUN-6m-GZB" id="l4C-2y-ZUQ"/>
+                        <outlet property="uploadButton" destination="BUN-6m-GZB" id="TMw-eF-8M8"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="Contacts Segue" id="0bM-75-hD3"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsViewControllerSegue" id="czb-n6-hbf"/>
                     </connections>
@@ -1755,7 +1756,7 @@ Type it here!</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="AEp-MY-7pq"/>
         <segue reference="Enn-ka-dSJ"/>
+        <segue reference="czb-n6-hbf"/>
     </inferredMetricsTieBreakers>
 </document>
