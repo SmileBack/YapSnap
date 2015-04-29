@@ -34,7 +34,7 @@
 @property (nonatomic) BOOL songGenreViewIsVisible;
 
 - (IBAction)didTapResetButton;
-- (IBAction)didTapSmallSongGenreButton;
+- (IBAction)didTapShuffleButton;
 
 @end
 
@@ -807,28 +807,47 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SONG_GENRE_NOTIFICATION];
 }
 
+- (BOOL) didViewRandomPickAlertForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_RANDOM_PICK_ALERT];
+}
+
 #pragma mark - Song Genre Stuff
 
 - (void) tappedSongGenreButton:(NSString *)genre
 {
-    if ([genre isEqual: @"Top100"]) {
-        [self searchRandomArtist];
-        [[YTNotifications sharedNotifications] showRandomPickText:@"Random Pick!"];
-    }
-    
     if ([genre isEqual: @"Search"]) {
         [self showSearchBox];
         double delay = .3;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.searchBox becomeFirstResponder];
         });
+    } else {
+        self.shuffleButton.alpha = 1;
+        
+        if (!self.didViewRandomPickAlertForFirstTime) {
+            [self showRandomPickAlert];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_RANDOM_PICK_ALERT];
+        } else {
+            [[YTNotifications sharedNotifications] showRandomPickText:@"Random Artist"];
+        }
+        
+        if ([genre isEqual: @"Top100"]) {
+            [self searchRandomArtist];
+        }
     }
-    
-    self.shuffleButton.alpha = 1;
 }
 
+- (void) showRandomPickAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Random Artist"
+                                                    message:@"Here's a random artist! Tap the shuffle button to find other artists."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
 
-- (IBAction) didTapSmallSongGenreButton {
+- (IBAction) didTapShuffleButton {
     [self searchRandomArtist];
 }
 
@@ -869,7 +888,7 @@
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         self.titleLabel.alpha = 0.8;
+                         self.titleLabel.alpha = 0.9;
                      }
                      completion:nil];
 }

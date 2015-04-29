@@ -21,5 +21,6 @@
 #define VIEWED_SONG_GENRE_NOTIFICATION @"yaptap.ViewedSongGenreNotification"
 #define SHOW_SONG_GENRE_VIEW @"yaptap.ShowSongGenreViewNotification"
 #define HIDE_SONG_GENRE_VIEW @"yaptap.HideSongGenreViewNotification"
+#define VIEWED_RANDOM_PICK_ALERT @"yaptap.ViewedRandomPickAlert"
 
 @end
