@@ -45,7 +45,12 @@
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
 
-- (void) hideSearchBox:(BOOL)hide
+- (void) hideMusicIcon
+{
+    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
+}
+
+- (void) hideTitleLabel
 {
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }

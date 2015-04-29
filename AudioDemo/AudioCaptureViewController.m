@@ -34,6 +34,8 @@
 @property (nonatomic, strong) IBOutlet UIButton *songGenreButtonFour;
 @property (nonatomic, strong) IBOutlet UIButton *songGenreButtonFive;
 @property (nonatomic, strong) IBOutlet UIButton *songGenreButtonSix;
+@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonTop100;
+@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonSearch;
 
 - (IBAction)didTapSongGenreButtonOne;
 - (IBAction)didTapSongGenreButtonTwo;
@@ -334,7 +336,8 @@ static const float TIMER_INTERVAL = .01;
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Show Song Genre View");
                         [self showSongGenreView];
-                        [self.audioSource hideSearchBox:YES];
+                        [self.audioSource hideMusicIcon];
+                        [self.audioSource hideTitleLabel];
                     }];
     
     [center addObserverForName:HIDE_SONG_GENRE_VIEW
@@ -343,7 +346,6 @@ static const float TIMER_INTERVAL = .01;
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Show Song Genre View");
                         [self hideSongGenreView];
-                        [self.audioSource hideSearchBox:NO];
                     }];
 }
 
@@ -633,7 +635,7 @@ static const float TIMER_INTERVAL = .01;
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.songGenreView.frame = CGRectMake(0, screenHeight, screenWidth, 201);
+                         self.songGenreView.frame = CGRectMake(0, screenHeight, screenWidth, 300);
                      }
                      completion:^(BOOL finished) {
                          self.songGenreView.hidden = YES;
@@ -650,7 +652,7 @@ static const float TIMER_INTERVAL = .01;
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.songGenreView.frame = CGRectMake(0, screenHeight-211, screenWidth, 211);
+                         self.songGenreView.frame = CGRectMake(0, screenHeight-300, screenWidth, 300);
                      }
                      completion:^(BOOL finished) {
                      }];
@@ -682,6 +684,14 @@ static const float TIMER_INTERVAL = .01;
     self.songGenreButtonSix.layer.cornerRadius = 42;
     self.songGenreButtonSix.layer.borderWidth = 1;
     self.songGenreButtonSix.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.songGenreButtonSearch.layer.cornerRadius = 42;
+    self.songGenreButtonSearch.layer.borderWidth = 1;
+    self.songGenreButtonSearch.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.songGenreButtonTop100.layer.cornerRadius = 42;
+    self.songGenreButtonTop100.layer.borderWidth = 1;
+    self.songGenreButtonTop100.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 @end

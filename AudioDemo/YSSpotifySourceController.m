@@ -30,6 +30,8 @@
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 @property (strong, nonatomic) IBOutlet UIButton *resetButton;
 @property (strong, nonatomic) IBOutlet UIButton *shuffleButton;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (nonatomic) BOOL songGenreViewIsVisible;
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapSmallSongGenreButton;
@@ -89,8 +91,9 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Tapped Progress View");
-                        if ([self songGenreViewIsVisible]) {
+                        if (self.songGenreViewIsVisible) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_SONG_GENRE_VIEW object:nil];
+                            self.songGenreViewIsVisible = NO;
                         } else {
                             [self.searchBox becomeFirstResponder];
                         }
@@ -807,48 +810,23 @@
         [self searchRandomArtist];
     }
     self.shuffleButton.alpha = 1;
-    [self hideSearchBox:NO];
 }
 
-- (void) hideSearchBox:(BOOL)hide
-{
-    if (hide) {
-        [UIView animateWithDuration:.2
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             self.searchBox.alpha = 0;
-                         }
-                         completion:nil];
-    } else {
-        [UIView animateWithDuration:.2
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             self.searchBox.alpha = 1;
-                         }
-                         completion:nil];
-    }
-}
 
 - (IBAction) didTapSmallSongGenreButton {
     [self searchRandomArtist];
 }
 
-- (BOOL) songGenreViewIsVisible {
-    if (self.searchBox.alpha == 0) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
 - (void) updateSongGenreViewVisibility {
-    if ([self songGenreViewIsVisible]) {
+    NSLog(@"Song Genre View Visibility: %hhd", self.songGenreViewIsVisible);
+    if (self.songGenreViewIsVisible) {
         [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_SONG_GENRE_VIEW object:nil];
-        self.searchBox.text = @"";
+        self.songGenreViewIsVisible = NO;
+        [self showMusicIcon];
+        [self showTitleLabel];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_SONG_GENRE_VIEW object:nil];
+        self.songGenreViewIsVisible = YES;
     }
 }
 
@@ -863,11 +841,33 @@
 }
 
 - (void) showMusicIcon {
-    [UIView animateWithDuration:.1
+    [UIView animateWithDuration:.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          self.musicIcon.alpha = 1;
+                     }
+                     completion:nil];
+}
+
+- (void) showTitleLabel
+{
+    [UIView animateWithDuration:.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.titleLabel.alpha = 1;
+                     }
+                     completion:nil];
+}
+
+- (void) hideTitleLabel
+{
+    [UIView animateWithDuration:.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.titleLabel.alpha = 0;
                      }
                      completion:nil];
 }

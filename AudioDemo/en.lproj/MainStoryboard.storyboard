@@ -21,6 +21,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eu1-2A-sYz">
+                                <rect key="frame" x="91" y="63" width="150" height="150"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MusicIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="RkK-X4-YKu">
                                 <rect key="frame" x="110" y="110" width="100" height="96"/>
                             </imageView>
@@ -32,7 +39,7 @@
                                     <outlet property="delegate" destination="jNN-gb-fip" id="oMQ-PT-KYX"/>
                                 </connections>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type song or artist here" textAlignment="center" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="6hl-m2-tvk">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type song or artist here" textAlignment="center" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="6hl-m2-tvk">
                                 <rect key="frame" x="45" y="35" width="230" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="B78-vU-Hz8"/>
@@ -59,7 +66,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2WW-dD-1n6">
-                                <rect key="frame" x="282" y="41" width="28" height="28"/>
+                                <rect key="frame" x="282" y="38" width="28" height="31"/>
                                 <state key="normal" image="Shuffle50.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -68,6 +75,18 @@
                                     <action selector="didTapSmallSongGenreButton" destination="jNN-gb-fip" eventType="touchUpInside" id="QD7-1F-OvD"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hip Hop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fI5-25-QgU">
+                                <rect key="frame" x="275" y="6" width="42" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap To Find a Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZE-gM-pMg">
+                                <rect key="frame" x="52" y="27" width="217" height="31"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -77,14 +96,16 @@
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" id="9zR-GB-wuh"/>
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="top" secondItem="2WW-dD-1n6" secondAttribute="bottom" constant="1" id="BYe-WO-jis"/>
                             <constraint firstAttribute="trailing" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="45" id="BpS-sr-djQ"/>
-                            <constraint firstItem="2WW-dD-1n6" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="21" id="C3z-1V-qVS"/>
+                            <constraint firstItem="2WW-dD-1n6" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="18" id="C3z-1V-qVS"/>
                             <constraint firstItem="oUD-ix-h4T" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leadingMargin" constant="-16" id="Cvx-fN-AIb"/>
                             <constraint firstItem="RkK-X4-YKu" firstAttribute="top" secondItem="6hl-m2-tvk" secondAttribute="bottom" constant="35" id="Dyf-JY-piN"/>
+                            <constraint firstItem="fI5-25-QgU" firstAttribute="top" secondItem="B8N-jO-1bl" secondAttribute="topMargin" constant="6" id="F6Q-9h-EPv"/>
                             <constraint firstAttribute="bottom" secondItem="ZNs-R1-CJc" secondAttribute="bottom" constant="20" id="Fcg-Ri-wcV"/>
                             <constraint firstAttribute="centerX" secondItem="RkK-X4-YKu" secondAttribute="centerX" id="Vrl-SB-4xi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2WW-dD-1n6" secondAttribute="trailing" constant="-6" id="aBh-Gg-BmB"/>
                             <constraint firstAttribute="trailing" secondItem="ZNs-R1-CJc" secondAttribute="trailing" id="f6a-b0-12B"/>
                             <constraint firstItem="oUD-ix-h4T" firstAttribute="trailing" secondItem="ZNs-R1-CJc" secondAttribute="trailing" constant="-270" id="h0O-JB-HSE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fI5-25-QgU" secondAttribute="trailing" constant="-13" id="hGi-bd-w76"/>
                             <constraint firstItem="2WW-dD-1n6" firstAttribute="leading" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="7" id="ivy-5Z-BBf"/>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="15" id="mMM-JG-YVP"/>
                             <constraint firstAttribute="centerX" secondItem="iKi-hk-1A5" secondAttribute="centerX" id="mm6-BP-Za3"/>
@@ -102,6 +123,7 @@
                         <outlet property="resetButton" destination="oUD-ix-h4T" id="Gbn-6y-zbp"/>
                         <outlet property="searchBox" destination="6hl-m2-tvk" id="lF2-ss-GVa"/>
                         <outlet property="shuffleButton" destination="2WW-dD-1n6" id="151-YV-dTU"/>
+                        <outlet property="titleLabel" destination="qZE-gM-pMg" id="qfQ-22-txv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eqw-WM-wJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -205,13 +227,13 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BHT-hO-bCo" userLabel="Song Genre View">
-                                <rect key="frame" x="0.0" y="568" width="320" height="211"/>
+                                <rect key="frame" x="0.0" y="568" width="320" height="300"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpw-8x-ySj">
-                                        <rect key="frame" x="18" y="21" width="84" height="84"/>
+                                        <rect key="frame" x="18" y="111" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal" title="Top 100">
+                                        <state key="normal" title="Pop">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -220,10 +242,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2h-SQ-0Fm">
-                                        <rect key="frame" x="118" y="21" width="84" height="84"/>
+                                        <rect key="frame" x="118" y="111" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal" title="Pop">
+                                        <state key="normal" title="Hip Hop">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -231,11 +253,23 @@
                                             <action selector="didTapSongGenreButtonTwo" destination="2" eventType="touchUpInside" id="EbR-fi-Gvt"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzF-qu-wIy" userLabel="Search">
+                                        <rect key="frame" x="69" y="14" width="84" height="84"/>
+                                        <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapSongGenreButtonTwo" destination="2" eventType="touchUpInside" id="cSN-YC-iab"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chs-Tz-vGw">
-                                        <rect key="frame" x="219" y="21" width="84" height="84"/>
+                                        <rect key="frame" x="218" y="111" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal" title="Hip Hop">
+                                        <state key="normal" title="EDM">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -244,7 +278,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gww-a9-d2f">
-                                        <rect key="frame" x="18" y="118" width="84" height="84"/>
+                                        <rect key="frame" x="18" y="208" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <state key="normal" title="Country">
@@ -256,7 +290,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdq-Cp-K49">
-                                        <rect key="frame" x="118" y="118" width="84" height="84"/>
+                                        <rect key="frame" x="118" y="208" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <state key="normal" title="Rock">
@@ -268,7 +302,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPm-37-rej">
-                                        <rect key="frame" x="219" y="118" width="84" height="84"/>
+                                        <rect key="frame" x="218" y="208" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <state key="normal" title="TV">
@@ -280,11 +314,26 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTw-Kq-HHT">
-                                        <rect key="frame" x="22" y="5" width="278" height="1"/>
+                                        <rect key="frame" x="22" y="0.0" width="278" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MagnifyingGlass.png" translatesAutoresizingMaskIntoConstraints="NO" id="wdU-yL-U2q">
+                                        <rect key="frame" x="97" y="42" width="28" height="28"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWb-xI-2D8" userLabel="Search">
+                                        <rect key="frame" x="169" y="14" width="84" height="84"/>
+                                        <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                        <state key="normal" title="Top 100">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapSongGenreButtonTwo" destination="2" eventType="touchUpInside" id="ufB-kp-kUY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.95999999999999996" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -329,8 +378,10 @@
                         <outlet property="songGenreButtonFive" destination="fdq-Cp-K49" id="d08-ry-s97"/>
                         <outlet property="songGenreButtonFour" destination="Gww-a9-d2f" id="nwk-X2-xVI"/>
                         <outlet property="songGenreButtonOne" destination="vpw-8x-ySj" id="kA6-fC-Uaj"/>
+                        <outlet property="songGenreButtonSearch" destination="rzF-qu-wIy" id="FfM-M8-MeN"/>
                         <outlet property="songGenreButtonSix" destination="rPm-37-rej" id="qqZ-nC-VP6"/>
                         <outlet property="songGenreButtonThree" destination="chs-Tz-vGw" id="wER-t0-rPq"/>
+                        <outlet property="songGenreButtonTop100" destination="DWb-xI-2D8" id="0QH-WO-7Aa"/>
                         <outlet property="songGenreButtonTwo" destination="C2h-SQ-0Fm" id="Ysx-ah-XTc"/>
                         <outlet property="songGenreView" destination="BHT-hO-bCo" id="bXP-pQ-xpc"/>
                         <outlet property="spotifyModeButton" destination="dje-2i-9YC" id="xRf-Q6-xxF"/>
@@ -1685,6 +1736,7 @@ Type it here!</string>
         <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
+        <image name="MagnifyingGlass.png" width="100" height="100"/>
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PinkStar.png" width="40" height="40"/>
@@ -1703,7 +1755,7 @@ Type it here!</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="syO-tE-hvG"/>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="AEp-MY-7pq"/>
     </inferredMetricsTieBreakers>
 </document>
