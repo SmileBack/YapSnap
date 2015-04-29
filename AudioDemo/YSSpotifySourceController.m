@@ -228,7 +228,7 @@
         [self.view endEditing:YES];
         [self showMusicIcon];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search Above"
-                                                        message:@"Type the name of an artist or song above!"
+                                                        message:@"Type the name of an artist or song!"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
