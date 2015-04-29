@@ -513,9 +513,8 @@ static const float TIMER_INTERVAL = .01;
     
     if (sender) {
         if (!self.didTapMicModeButtonForFirstTime) {
-            double delay = 1;
+            double delay = .3;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                //[[YTNotifications sharedNotifications] showModeText:@"Mic Mode"];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
                                                                 message:@"Record your voice and then tap the white balloon!"
                                                                delegate:nil

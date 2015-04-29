@@ -111,17 +111,9 @@
     
     if ([self.yapBuilder.messageType isEqual: @"VoiceMessage"]) {
         if (!self.didViewBalloonAlert) {
-            /*
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Change Your Voice"
-                                                            message:@"Tap the balloon above to add\nhelium to your voice!"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-             */
             double delay2 = 0.5;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[YTNotifications sharedNotifications] showSongVersionText:@"Tap the Balloon!"];
+                [[YTNotifications sharedNotifications] showBalloonText:@"Tap the Balloon!"];
             });
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_BALLOON_ALERT_KEY];
         }

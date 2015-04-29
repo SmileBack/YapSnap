@@ -21,5 +21,6 @@
 - (void) showBufferingText:(NSString *)text;
 - (void) showRandomPickText:(NSString *)text;
 - (void) showMusicNoteText:(NSString *)text;
+- (void) showBalloonText:(NSString *)text;
 
 @end
