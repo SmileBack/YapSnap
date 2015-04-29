@@ -134,6 +134,8 @@
 		78B0B7581AEEAC30001C074B /* ShuffleButton40.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B0B7571AEEAC30001C074B /* ShuffleButton40.png */; };
 		78B0B7621AEF3834001C074B /* Shuffle50.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B0B7611AEF3834001C074B /* Shuffle50.png */; };
 		78B252261AF0238800353711 /* MagnifyingGlass.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B252251AF0238800353711 /* MagnifyingGlass.png */; };
+		78B2522F1AF0A2E400353711 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B2522C1AF0A2E400353711 /* FBShimmeringLayer.m */; };
+		78B252301AF0A2E400353711 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B2522E1AF0A2E400353711 /* FBShimmeringView.m */; };
 		78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CBF2F51A9960AD00F30DCA /* YellowStar.png */; };
 		78D7812A1ABA249E00F483A8 /* RecordButtonBlueBorder10Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 78D781291ABA249E00F483A8 /* RecordButtonBlueBorder10Pressed.png */; };
 		78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DA1F7D1AA18D4900693015 /* WhiteCircle.png */; };
@@ -342,6 +344,12 @@
 		78B0B7571AEEAC30001C074B /* ShuffleButton40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShuffleButton40.png; sourceTree = "<group>"; };
 		78B0B7611AEF3834001C074B /* Shuffle50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Shuffle50.png; sourceTree = "<group>"; };
 		78B252251AF0238800353711 /* MagnifyingGlass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnifyingGlass.png; sourceTree = "<group>"; };
+		78B252291AF0A2E400353711 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
+		78B2522A1AF0A2E400353711 /* FBShimmering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmering.h; sourceTree = "<group>"; };
+		78B2522B1AF0A2E400353711 /* FBShimmeringLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringLayer.h; sourceTree = "<group>"; };
+		78B2522C1AF0A2E400353711 /* FBShimmeringLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringLayer.m; sourceTree = "<group>"; };
+		78B2522D1AF0A2E400353711 /* FBShimmeringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringView.h; sourceTree = "<group>"; };
+		78B2522E1AF0A2E400353711 /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
 		78CBF2F51A9960AD00F30DCA /* YellowStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YellowStar.png; sourceTree = "<group>"; };
 		78D781291ABA249E00F483A8 /* RecordButtonBlueBorder10Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder10Pressed.png; sourceTree = "<group>"; };
 		78DA1F7D1AA18D4900693015 /* WhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCircle.png; sourceTree = "<group>"; };
@@ -841,6 +849,19 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		78B252311AF0AB4400353711 /* FBShimmering */ = {
+			isa = PBXGroup;
+			children = (
+				78B252291AF0A2E400353711 /* FBShimmering-Prefix.pch */,
+				78B2522A1AF0A2E400353711 /* FBShimmering.h */,
+				78B2522B1AF0A2E400353711 /* FBShimmeringLayer.h */,
+				78B2522C1AF0A2E400353711 /* FBShimmeringLayer.m */,
+				78B2522D1AF0A2E400353711 /* FBShimmeringView.h */,
+				78B2522E1AF0A2E400353711 /* FBShimmeringView.m */,
+			);
+			name = FBShimmering;
+			sourceTree = "<group>";
+		};
 		78C690181AD5DADD00FC3C76 /* Song Version Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -996,6 +1017,7 @@
 		FC0C1D4D1A46065B00B148AB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				78B252311AF0AB4400353711 /* FBShimmering */,
 				785393641AD9C04700C6BEA7 /* MJPopup */,
 				785393631AD9C03A00C6BEA7 /* Phone Number Checker */,
 				785393621AD9C02600C6BEA7 /* Feedback Monitor */,
@@ -1353,6 +1375,7 @@
 				7840480B1AB7334A00FE6D93 /* NextButton.m in Sources */,
 				FCD2577A1ABA60AE00981E5D /* UIViewController+Navigation.m in Sources */,
 				78A569A31A73227200818A17 /* YSColorPicker.m in Sources */,
+				78B2522F1AF0A2E400353711 /* FBShimmeringLayer.m in Sources */,
 				FC3ECAE91A830496002678F6 /* FriendsViewController.m in Sources */,
 				37D413BE19D21A1F00021548 /* NSString+FontAwesome.m in Sources */,
 				F44B0C4F16DA404700E6CD88 /* main.m in Sources */,
@@ -1394,6 +1417,7 @@
 				784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */,
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
 				7853936A1AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.m in Sources */,
+				78B252301AF0A2E400353711 /* FBShimmeringView.m in Sources */,
 				37D413BD19D21A1F00021548 /* BButton.m in Sources */,
 				FC342F381A5099D200518765 /* OpenInSpotifyAlertView.m in Sources */,
 				F44B0C5F16DA404700E6CD88 /* AudioCaptureViewController.m in Sources */,

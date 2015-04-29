@@ -14,6 +14,8 @@
 #import "OpenInSpotifyAlertView.h"
 #import <AVFoundation/AVAudioSession.h>
 #import "AppDelegate.h"
+#import "FBShimmering.h"
+#import "FBShimmeringView.h"
 
 #define NO_SONGS_TO_PLAY_ALERT @"NoSongs"
 
@@ -42,6 +44,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    /*
+    FBShimmeringView *shimmeringView = [[FBShimmeringView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:shimmeringView];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:shimmeringView.bounds];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.text = NSLocalizedString(@"Tap To Find a Song", nil);
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
+    shimmeringView.contentView = titleLabel;
+    
+    // Start shimmering.
+    shimmeringView.shimmering = YES;
+    shimmeringView.shimmeringBeginFadeDuration = 0.3;
+    shimmeringView.shimmeringOpacity = .8;
+    shimmeringView.shimmeringDirection = FBShimmerDirectionDown;
+    shimmeringView.shimmeringPauseDuration = 2;
+     */
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Spotify Page"];
@@ -93,7 +114,6 @@
                         NSLog(@"Tapped Progress View");
                         if (self.songGenreViewIsVisible) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_SONG_GENRE_VIEW object:nil];
-                            self.songGenreViewIsVisible = NO;
                         } else {
                             [self.searchBox becomeFirstResponder];
                         }
@@ -104,6 +124,7 @@
     NSLog(@"Tapped Music Icon Image");
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Music Icon"];
+    
     [self updateSongGenreViewVisibility];
     
     if (!self.didTapLargeMusicButtonForFirstTime) {
@@ -121,6 +142,8 @@
         if ([self.searchBox.text length] == 0) {
             [self.view endEditing:YES];
             [self showMusicIcon];
+            self.searchBox.alpha = 0;
+            [self showTitleLabel];
         } else {
             [self search:self.searchBox.text];
             [self.view endEditing:YES];
@@ -144,8 +167,9 @@
 - (IBAction) didTapResetButton {
     self.carousel.hidden = YES;
     [self showMusicIcon];
-    self.searchBox.text = @"";
     [self hideResetAndShuffleButtons];
+    self.searchBox.alpha = 0;
+    [self showTitleLabel];
 }
 
 - (void) searchRandomArtist {
@@ -156,6 +180,7 @@
     NSLog(@"string: %@", randomlySelectedArtist);
     
     [self search:randomlySelectedArtist];
+    [self showSearchBox];
     self.searchBox.text = randomlySelectedArtist;
     [self setBackgroundColorForSearchBox];
 }
@@ -809,6 +834,15 @@
     if ([genre isEqual: @"Top100"]) {
         [self searchRandomArtist];
     }
+    
+    if ([genre isEqual: @"Search"]) {
+        [self showSearchBox];
+        double delay = .3;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.searchBox becomeFirstResponder];
+        });
+    }
+    
     self.shuffleButton.alpha = 1;
 }
 
@@ -821,17 +855,16 @@
     NSLog(@"Song Genre View Visibility: %hhd", self.songGenreViewIsVisible);
     if (self.songGenreViewIsVisible) {
         [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_SONG_GENRE_VIEW object:nil];
-        self.songGenreViewIsVisible = NO;
         [self showMusicIcon];
         [self showTitleLabel];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_SONG_GENRE_VIEW object:nil];
-        self.songGenreViewIsVisible = YES;
+        [self hideSearchBox];
     }
 }
 
 - (void) hideMusicIcon {
-    [UIView animateWithDuration:.1
+    [UIView animateWithDuration:.2
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
@@ -856,7 +889,7 @@
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         self.titleLabel.alpha = 1;
+                         self.titleLabel.alpha = 0.8;
                      }
                      completion:nil];
 }
@@ -872,10 +905,43 @@
                      completion:nil];
 }
 
+- (void) hideSearchBox
+{
+    [UIView animateWithDuration:.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.searchBox.alpha = 0;
+                     }
+                     completion:^(BOOL finished) {
+                         self.searchBox.text = @"";
+                     }];
+}
+
+- (void) showSearchBox
+{
+    [UIView animateWithDuration:.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.searchBox.alpha = 1;
+                     }
+                     completion:nil];
+}
+
 - (void) hideResetAndShuffleButtons {
     self.shuffleButton.alpha = 0;
     self.shuffleButton.hidden = YES;
     self.resetButton.hidden = YES;
 }
+
+- (void) songGenreViewIsVisible:(BOOL)visible {
+    if (visible) {
+        self.songGenreViewIsVisible = YES;
+    } else {
+        self.songGenreViewIsVisible = NO;
+    }
+}
+
 
 @end

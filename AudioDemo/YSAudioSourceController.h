@@ -34,9 +34,11 @@
 // Mic source could return the audio file. for now will return nothing.
 - (YapBuilder *) getYapBuilder;
 
+// These are only relevant for Spotify!
 - (void) tappedSongGenreButton:(NSString*)genre;
 - (void) hideMusicIcon;
 - (void) hideTitleLabel;
 - (void) hideResetAndShuffleButtons;
+- (void) songGenreViewIsVisible:(BOOL)visible;
 
 @end

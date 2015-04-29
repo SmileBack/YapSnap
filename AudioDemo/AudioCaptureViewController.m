@@ -43,6 +43,8 @@
 - (IBAction)didTapSongGenreButtonFour;
 - (IBAction)didTapSongGenreButtonFive;
 - (IBAction)didTapSongGenreButtonSix;
+- (IBAction)didTapSongGenreButtonTop100;
+- (IBAction)didTapSongGenreButtonSearch;
 
 @end
 
@@ -627,6 +629,16 @@ static const float TIMER_INTERVAL = .01;
     [self hideSongGenreView];
 }
 
+- (IBAction)didTapSongGenreButtonTop100 {
+    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self hideSongGenreView];
+}
+
+- (IBAction)didTapSongGenreButtonSearch {
+    [self.audioSource tappedSongGenreButton:@"Search"];
+    [self hideSongGenreView];
+}
+
 - (void)hideSongGenreView {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = screenRect.size.height;
@@ -639,11 +651,13 @@ static const float TIMER_INTERVAL = .01;
                      }
                      completion:^(BOOL finished) {
                          self.songGenreView.hidden = YES;
+                         [self.audioSource songGenreViewIsVisible:NO];
                      }];
 }
 
 - (void)showSongGenreView {
     self.songGenreView.hidden = NO;
+
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = screenRect.size.height;
     CGFloat screenWidth = screenRect.size.width;
@@ -655,6 +669,7 @@ static const float TIMER_INTERVAL = .01;
                          self.songGenreView.frame = CGRectMake(0, screenHeight-300, screenWidth, 300);
                      }
                      completion:^(BOOL finished) {
+                         [self.audioSource songGenreViewIsVisible:YES];
                      }];
     
     [self.audioSource hideResetAndShuffleButtons];

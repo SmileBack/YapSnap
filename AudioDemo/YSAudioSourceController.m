@@ -40,6 +40,12 @@
     return nil;
 }
 
+- (void) resetUI{};
+- (void) startPlayback{}
+- (void) stopPlayback{}
+
+
+// Only relevant for Spotify
 - (void) tappedSongGenreButton:(NSString *)genre
 {
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
@@ -60,8 +66,9 @@
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
 
-- (void) resetUI{};
-- (void) startPlayback{}
-- (void) stopPlayback{}
+- (void) songGenreViewIsVisible:(BOOL)visible
+{
+    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
+}
 
 @end
