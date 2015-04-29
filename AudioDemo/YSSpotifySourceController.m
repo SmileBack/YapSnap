@@ -17,8 +17,6 @@
 #import "FBShimmering.h"
 #import "FBShimmeringView.h"
 
-#define NO_SONGS_TO_PLAY_ALERT @"NoSongs"
-
 @interface YSSpotifySourceController ()
 @property (nonatomic, strong) NSArray *songs;
 
@@ -112,11 +110,7 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Tapped Progress View");
-                        if (self.songGenreViewIsVisible) {
-                            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_SONG_GENRE_VIEW object:nil];
-                        } else {
-                            [self.searchBox becomeFirstResponder];
-                        }
+                        [self updateSongGenreViewVisibility];
                     }];
 }
  
@@ -166,6 +160,7 @@
 
 - (IBAction) didTapResetButton {
     self.carousel.hidden = YES;
+    self.songs = nil;
     [self showMusicIcon];
     [self hideResetAndShuffleButtons];
     self.searchBox.alpha = 0;
@@ -232,12 +227,11 @@
         NSLog(@"Searched Empty String");
         [self.view endEditing:YES];
         [self showMusicIcon];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song Yap"
-                                                        message:@"Type the name of a song or atist above (or tap the music note instead)!"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search Above"
+                                                        message:@"Type the name of an artist or song above!"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
-        
         [alert show];
     } else {
         [self.view endEditing:YES];
@@ -723,12 +717,11 @@
         return NO;
     } else if (self.songs.count == 0) {
         NSLog(@"Can't Play Because No Song");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send a Song Yap"
-                                                        message:@"Type the name of a song or artist above (or tap the music note instead)!"
-                                                       delegate:self
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tap Above"
+                                                        message:@"Tap above to find a song for your yap!"
+                                                       delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
-        self.alertViewString = NO_SONGS_TO_PLAY_ALERT;
         [alert show];
         return NO;
     } else {
@@ -778,17 +771,6 @@
             [mixpanel.people increment:@"Played a Song #" by:[NSNumber numberWithInt:1]];
             return YES;
         }
-    }
-}
-
-#pragma mark - UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if ([NO_SONGS_TO_PLAY_ALERT isEqualToString:self.alertViewString]) {
-        double delay = 0.4;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.searchBox becomeFirstResponder];
-        });
     }
 }
 
