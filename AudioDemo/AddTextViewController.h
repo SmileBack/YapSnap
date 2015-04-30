@@ -10,7 +10,7 @@
 #import "YapBuilder.h"
 #import "YSColorPicker.h"
 
-@interface AddTextViewController : UIViewController<YSColorPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UIGestureRecognizerDelegate>
+@interface AddTextViewController : UIViewController<YSColorPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) YapBuilder *yapBuilder;
 @property (weak, nonatomic) IBOutlet UISlider *pitchSlider;

@@ -355,25 +355,9 @@
     [mixpanel track:@"Tapped Add Text Button"];
 }
 
-/*
-- (IBAction)didTapUploadButton {
-    [self selectPhoto];
-
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Upload Button"];
-}
- */
-
 - (IBAction)didTapCameraButton {
-    /*
-    [self takePhoto];
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Camera Button"];
-     */
-    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:nil
+                                                             delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:@"Take a Photo", @"Upload a Photo", nil];
@@ -530,5 +514,24 @@
     self.textView.layer.shadowOpacity = 0;
     self.textView.layer.shadowRadius = 0;
 }
+
+#pragma mark - UIActionSheet method implementation
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"Tapped Action Sheet; Button Index: %ld", (long)buttonIndex);
+    // Take a photo
+    if (buttonIndex == 0) {
+        [self takePhoto];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Take Photo"];
+        
+    // Upload a photo
+    } else if (buttonIndex == 1) {
+        [self selectPhoto];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Upload Photo"];
+    }
+}
+
 
 @end
