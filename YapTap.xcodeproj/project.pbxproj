@@ -33,6 +33,8 @@
 		37D413CC19D230D000021548 /* ArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D413CB19D230D000021548 /* ArrowWhite.png */; };
 		37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */; };
 		780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 780211611AAB8EE000A71889 /* FriendsIcon@2x.png */; };
+		781904801AF1E2A300196DFF /* ResetButton30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */; };
+		781904821AF1E3CE00196DFF /* ResetButton40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 781904811AF1E3CE00196DFF /* ResetButton40@2x.png */; };
 		7819916F1AABBA6E00309E38 /* SettingsIconWhite8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */; };
 		7828A8DC1A846C0C00BAA609 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7828A8DB1A846C0C00BAA609 /* MessageUI.framework */; };
 		782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */ = {isa = PBXBuildFile; fileRef = 782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */; };
@@ -127,11 +129,6 @@
 		78A8239A1ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A823991ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png */; };
 		78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A8239F1AC1A74900135369 /* PencilIcon2.png */; };
 		78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */; };
-		78B0B7501AEE0618001C074B /* ShuffleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B0B74F1AEE0618001C074B /* ShuffleIcon.png */; };
-		78B0B7521AEE0901001C074B /* ShuffleIcon10.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B0B7511AEE0901001C074B /* ShuffleIcon10.png */; };
-		78B0B7541AEE0AE1001C074B /* ShuffleIcon20.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B0B7531AEE0AE1001C074B /* ShuffleIcon20.png */; };
-		78B0B7561AEEAAF7001C074B /* ShuffleIcon30.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B0B7551AEEAAF7001C074B /* ShuffleIcon30.png */; };
-		78B0B7581AEEAC30001C074B /* ShuffleButton40.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B0B7571AEEAC30001C074B /* ShuffleButton40.png */; };
 		78B0B7621AEF3834001C074B /* Shuffle50.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B0B7611AEF3834001C074B /* Shuffle50.png */; };
 		78B252261AF0238800353711 /* MagnifyingGlass.png in Resources */ = {isa = PBXBuildFile; fileRef = 78B252251AF0238800353711 /* MagnifyingGlass.png */; };
 		78B2522F1AF0A2E400353711 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B2522C1AF0A2E400353711 /* FBShimmeringLayer.m */; };
@@ -234,6 +231,8 @@
 		37E122E51A4011560073684D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		41ED5961C23D704BCAF364D2 /* libPods-YapTap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapTap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		780211611AAB8EE000A71889 /* FriendsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FriendsIcon@2x.png"; sourceTree = "<group>"; };
+		7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton30@2x.png"; sourceTree = "<group>"; };
+		781904811AF1E3CE00196DFF /* ResetButton40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton40@2x.png"; sourceTree = "<group>"; };
 		7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIconWhite8@2x.png"; sourceTree = "<group>"; };
 		7828A8DB1A846C0C00BAA609 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder10.png; sourceTree = "<group>"; };
@@ -338,11 +337,6 @@
 		78A823991ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginPageImageSmalleriPhones@2x.png"; sourceTree = "<group>"; };
 		78A8239F1AC1A74900135369 /* PencilIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PencilIcon2.png; sourceTree = "<group>"; };
 		78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen_on_spotify-black2.png"; sourceTree = "<group>"; };
-		78B0B74F1AEE0618001C074B /* ShuffleIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShuffleIcon.png; sourceTree = "<group>"; };
-		78B0B7511AEE0901001C074B /* ShuffleIcon10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShuffleIcon10.png; sourceTree = "<group>"; };
-		78B0B7531AEE0AE1001C074B /* ShuffleIcon20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShuffleIcon20.png; sourceTree = "<group>"; };
-		78B0B7551AEEAAF7001C074B /* ShuffleIcon30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShuffleIcon30.png; sourceTree = "<group>"; };
-		78B0B7571AEEAC30001C074B /* ShuffleButton40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShuffleButton40.png; sourceTree = "<group>"; };
 		78B0B7611AEF3834001C074B /* Shuffle50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Shuffle50.png; sourceTree = "<group>"; };
 		78B252251AF0238800353711 /* MagnifyingGlass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnifyingGlass.png; sourceTree = "<group>"; };
 		78B252291AF0A2E400353711 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
@@ -469,13 +463,10 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */,
+				781904811AF1E3CE00196DFF /* ResetButton40@2x.png */,
 				78B252251AF0238800353711 /* MagnifyingGlass.png */,
 				78B0B7611AEF3834001C074B /* Shuffle50.png */,
-				78B0B74F1AEE0618001C074B /* ShuffleIcon.png */,
-				78B0B7511AEE0901001C074B /* ShuffleIcon10.png */,
-				78B0B7531AEE0AE1001C074B /* ShuffleIcon20.png */,
-				78B0B7551AEEAAF7001C074B /* ShuffleIcon30.png */,
-				78B0B7571AEEAC30001C074B /* ShuffleButton40.png */,
 				78439FC51AE9A330004CFB5F /* PlusButtonWhite@2x.png */,
 				78439FC71AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png */,
 				786BCB411ADC25A300BA3FDD /* Add Text Page */,
@@ -1208,9 +1199,9 @@
 			files = (
 				787EC6031ACA09B8000C5539 /* BalloonGreen10.png in Resources */,
 				782D13981ACC59E6007C8499 /* YapsButtonNoYaps.png in Resources */,
-				78B0B7561AEEAAF7001C074B /* ShuffleIcon30.png in Resources */,
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
 				78319A7D1ACD0111000C3FD6 /* MicModeButtonIcon@2x.png in Resources */,
+				781904821AF1E3CE00196DFF /* ResetButton40@2x.png in Resources */,
 				782D13441ACB8349007C8499 /* YapIconUnopenedSent.png in Resources */,
 				78A2E8691ACC840000B5A404 /* BalloonGreen20.png in Resources */,
 				784047FC1AB4FB7200FE6D93 /* MusicIconBlue3@2x.png in Resources */,
@@ -1264,9 +1255,7 @@
 				788363891AD78604001CBD1B /* TwoNotSelected@3x.png in Resources */,
 				786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */,
 				787EC6161ACA245E000C5539 /* ProgressViewRediPhone4@2x.png in Resources */,
-				78B0B7521AEE0901001C074B /* ShuffleIcon10.png in Resources */,
 				37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */,
-				78B0B7501AEE0618001C074B /* ShuffleIcon.png in Resources */,
 				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
 				78439FC21AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png in Resources */,
 				78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */,
@@ -1283,6 +1272,7 @@
 				787EC61E1ACA2B17000C5539 /* ResetButton3@2x.png in Resources */,
 				78439FB81AE76EEB004CFB5F /* SongVersionTwoSelectediPhone4@2x.png in Resources */,
 				788363771AD781A0001CBD1B /* TwoNotSelected@2x.png in Resources */,
+				781904801AF1E2A300196DFF /* ResetButton30@2x.png in Resources */,
 				787EC5F91ACA0477000C5539 /* Balloon10.png in Resources */,
 				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */,
 				78439FB01AE6EF46004CFB5F /* OpenGift700.png in Resources */,
@@ -1302,7 +1292,6 @@
 				78439FAE1AE6D705004CFB5F /* Record.png in Resources */,
 				784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */,
 				787EC60F1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png in Resources */,
-				78B0B7541AEE0AE1001C074B /* ShuffleIcon20.png in Resources */,
 				782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */,
 				787EC6151ACA245E000C5539 /* ProgressViewRed@3x.png in Resources */,
 				782D13531ACB9431007C8499 /* MicrophoneWhite30@3x.png in Resources */,
@@ -1316,7 +1305,6 @@
 				78DA1F801AA1961200693015 /* AlbumImagePlaceholder.png in Resources */,
 				787EC6051ACA123C000C5539 /* ProgressViewGreen@2x.png in Resources */,
 				787EC5F61AC9EE8C000C5539 /* ProgressViewGreeniPhone5@2x.png in Resources */,
-				78B0B7581AEEAC30001C074B /* ShuffleButton40.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -56,8 +56,6 @@
                 
             });
         } else {
-            self.navigationItem.title = [NSString stringWithFormat:@"Friends (%lu)", (unsigned long)friends.count];
-            
             if (friends.count > 2) {
                 self.myTopFriends = [friends subarrayWithRange:NSMakeRange(0, 3)];
             } else if (friends.count > 0) {
@@ -113,27 +111,25 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //return 2;
-    return 1;
+    return 2;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    /*
     if (section == 0) {
         return 1;
     }
-     */
+
     return self.friends.count;
 }
 
 #pragma mark - UITableViewDelegate
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YSUser *user = /* indexPath.section == 0 ? [YSUser currentUser] :*/ self.friends[indexPath.row];
+    YSUser *user = indexPath.section == 0 ? [YSUser currentUser] : self.friends[indexPath.row];
 
     UserCell *cell;
-    /*
+    
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_EXPANDED forIndexPath:indexPath];
         [cell clearLabels];
@@ -154,7 +150,7 @@
         cell.friendThreeImage.hidden = myFriend == nil;
         cell.friendThreeLabel.text = myFriend.displayName;
         [cell.friendThreeLabel sizeToFit];
-    } else */ if ([indexPath isEqual:self.selectedIndexPath]) {
+    } else if ([indexPath isEqual:self.selectedIndexPath]) {
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_EXPANDED forIndexPath:indexPath];
         [cell clearLabels];
         self.loadingSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -165,7 +161,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_COLLAPSED forIndexPath:indexPath];
     }
     
-    cell.nameLabel.text = /*indexPath.section == 0 ? user.displayNameNotFromContacts : */user.displayName;
+    cell.nameLabel.text = indexPath.section == 0 ? user.displayNameNotFromContacts : user.displayName;
     [cell.nameLabel sizeToFit];
     
     cell.scoreLabel.text = [NSString stringWithFormat:@"%d", user.score.intValue];
@@ -176,11 +172,9 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
     if (indexPath.section == 0) {
         return HEIGHT_EXPANDED;
     }
-     */
     
     return [indexPath isEqual:self.selectedIndexPath] ? HEIGHT_EXPANDED : HEIGHT_COLLAPSED;
 }
@@ -213,13 +207,11 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
     if (indexPath.section == 0) {
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Tapped Self"];
         return;
     }
-     */
     YSUser *expandingUser = self.friends[indexPath.row];
     NSMutableArray *changedIndexPaths = [NSMutableArray array];
     [changedIndexPaths addObject:indexPath];
@@ -264,7 +256,6 @@
     }
 }
 
-/*
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     
@@ -275,9 +266,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20.0f;
+    return 40.0f;
 }
-*/
  
 - (NSMutableDictionary *) topFriendMap
 {

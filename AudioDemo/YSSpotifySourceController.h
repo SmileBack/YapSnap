@@ -22,5 +22,7 @@
 #define SHOW_SONG_GENRE_VIEW @"yaptap.ShowSongGenreViewNotification"
 #define HIDE_SONG_GENRE_VIEW @"yaptap.HideSongGenreViewNotification"
 #define VIEWED_RANDOM_PICK_ALERT @"yaptap.ViewedRandomPickAlert"
+#define TAPPED_RESET_BUTTON @"yaptap.TappedResetButton"
+#define TAPPED_SHUFFLE_BUTTON @"yaptap.TappedShuffleButton"
 
 @end

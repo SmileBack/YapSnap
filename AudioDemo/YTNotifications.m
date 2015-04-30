@@ -88,12 +88,22 @@ static YTNotifications *_sharedNotifications;
     [CRToastManager showNotificationWithOptions:options completionBlock:nil];
 }
 
+- (void) showShuffleText:(NSString *)text
+{
+    NSDictionary *options = @{
+                              kCRToastTextKey: text,
+                              kCRToastTimeIntervalKey: @1.5,
+                              kCRToastAnimationInTimeIntervalKey: @.3,
+                              };
+    
+    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
+}
+
 - (void) showRandomPickText:(NSString *)text
 {
     NSDictionary *options = @{
                               kCRToastTextKey: text,
                               kCRToastTimeIntervalKey: @1.5,
-                              kCRToastBackgroundColorKey: THEME_BACKGROUND_COLOR,
                               kCRToastAnimationInTimeIntervalKey: @.3,
                               };
     

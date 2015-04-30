@@ -168,6 +168,10 @@
     [self hideResetAndShuffleButtons];
     self.searchBox.alpha = 0;
     [self showTitleLabel];
+    if (!self.didTapResetButtonForFirstTime) {
+        [[YTNotifications sharedNotifications] showNotificationText:@"Reset"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_RESET_BUTTON];
+    }
 }
 
 - (void) searchRandomArtist {
@@ -812,6 +816,16 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_RANDOM_PICK_ALERT];
 }
 
+- (BOOL) didTapResetButtonForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_RESET_BUTTON];
+}
+
+- (BOOL) didTapShuffleButtonForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SHUFFLE_BUTTON];
+}
+
 #pragma mark - Song Genre Stuff
 
 - (void) tappedSongGenreButton:(NSString *)genre
@@ -848,6 +862,10 @@
 }
 
 - (IBAction) didTapShuffleButton {
+    if (!self.didTapShuffleButtonForFirstTime) {
+        [[YTNotifications sharedNotifications] showNotificationText:@"Shuffle"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SHUFFLE_BUTTON];
+    }
     [self searchRandomArtist];
 }
 

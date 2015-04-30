@@ -58,7 +58,7 @@
                                     <constraint firstAttribute="height" constant="75" id="3Pv-a8-Dg2"/>
                                     <constraint firstAttribute="width" constant="50" id="IHe-QD-wYT"/>
                                 </constraints>
-                                <state key="normal" image="ResetButton3.png">
+                                <state key="normal" image="ResetButton40.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -697,13 +697,13 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinkStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="hns-Qz-Akp" userLabel="Image 1">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="YellowStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="hns-Qz-Akp" userLabel="Image 1">
                                                     <rect key="frame" x="22" y="33" width="20" height="20"/>
                                                 </imageView>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinkStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="4nE-gj-7Sm" userLabel="Image 2">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="YellowStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="4nE-gj-7Sm" userLabel="Image 2">
                                                     <rect key="frame" x="22" y="54" width="20" height="20"/>
                                                 </imageView>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinkStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="2ea-7L-q0v" userLabel="Image 3">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="YellowStar.png" translatesAutoresizingMaskIntoConstraints="NO" id="2ea-7L-q0v" userLabel="Image 3">
                                                     <rect key="frame" x="22" y="75" width="20" height="20"/>
                                                 </imageView>
                                             </subviews>
@@ -1724,13 +1724,14 @@ Type it here!</string>
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PencilIcon2.png" width="150" height="150"/>
-        <image name="PinkStar.png" width="40" height="40"/>
         <image name="PlusButtonWhite2.png" width="20" height="20"/>
         <image name="RecordButtonBlueBorder10.png" width="240" height="240"/>
         <image name="ResetButton3.png" width="32" height="32"/>
+        <image name="ResetButton40.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
         <image name="Shuffle50.png" width="64" height="64"/>
         <image name="YapsButtonNoYaps4.png" width="160" height="84"/>
+        <image name="YellowStar.png" width="40" height="40"/>
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

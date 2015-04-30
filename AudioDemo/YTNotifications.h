@@ -22,5 +22,7 @@
 - (void) showRandomPickText:(NSString *)text;
 - (void) showMusicNoteText:(NSString *)text;
 - (void) showBalloonText:(NSString *)text;
+- (void) showShuffleText:(NSString *)text;
+
 
 @end
