@@ -27,7 +27,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *flashbackImageView;
 @property (strong, nonatomic) IBOutlet UILabel *contactLabel;
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 @property (strong, nonatomic) STKAudioPlayer* player;
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton1;
 @property (strong, nonatomic) IBOutlet UIButton *changePitchButton2;
@@ -98,6 +97,8 @@
     
     if ([self.yapBuilder.messageType  isEqual: @"VoiceMessage"]) {
         self.changePitchButton1.hidden = NO;
+        self.changePitchButton2.hidden = NO;
+        self.changePitchButton3.hidden = NO;
     }
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapImageView)];
@@ -132,15 +133,7 @@
 
 - (void) didTapPitchButton1
 {
-    [UIView animateWithDuration:.8
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.changePitchButton2.alpha = 1;
-                         self.changePitchButton3.alpha = 1;
-                         self.resetPitchButton.alpha = 1;
-                     }
-                     completion:nil];
+    self.resetPitchButton.hidden = NO;
     
     UIImage *buttonImage = [UIImage imageNamed:@"BalloonYellow20.png"];
     [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
@@ -172,7 +165,9 @@
 }
 
 - (void) didTapPitchButton2
-{    
+{
+    self.resetPitchButton.hidden = NO;
+    
     UIImage *buttonImage = [UIImage imageNamed:@"BalloonGreen20.png"];
     [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
     UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
@@ -196,6 +191,8 @@
 
 - (void) didTapPitchButton3
 {
+    self.resetPitchButton.hidden = NO;
+    
     UIImage *buttonImage = [UIImage imageNamed:@"BalloonLightBlue20.png"];
     [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
     UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
@@ -217,6 +214,10 @@
     [mixpanel track:@"Tapped Balloon 3"];
 }
 
+- (void) didTapResetPitchButton {
+    
+}
+
 - (void) playAudioWithPitch:(CGFloat)pitch {
     NSArray *pathComponents = [NSArray arrayWithObjects:
                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
@@ -225,31 +226,6 @@
     NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
     self.player.pitchShift = pitch;
     [self.player playURL:outputFileURL];
-}
-
-- (void) didTapResetPitchButton {
-    [self resetProgressViewColor];
-    self.player.pitchShift = 0;
-    
-    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
-    [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
-    [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
-    [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
-    
-    [UIView animateWithDuration:.3
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.changePitchButton2.alpha = 0;
-                         self.changePitchButton3.alpha = 0;
-                         self.resetPitchButton.alpha = 0;
-                     }
-                     completion:nil];
-    
-    [self.player stop];
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Reset Button"];
 }
 
 - (void) resetProgressViewColor {
