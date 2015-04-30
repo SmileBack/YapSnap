@@ -14,7 +14,7 @@
 #define AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION @"com.yapsnap.AudioCaptureErrorNotification"
 #define AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION @"com.yapsnap.AudioCaptureLostConnectionNotification"
 #define STOP_LOADING_SPINNER_NOTIFICATION @"com.yapsnap.StopLoadingSpinnerNotification"
-#define CAPTURE_THRESHOLD .2 //seconds
+#define CAPTURE_THRESHOLD 1 //seconds
 
 
 /*

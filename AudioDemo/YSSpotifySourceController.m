@@ -152,6 +152,14 @@
             [self updateSongGenreViewVisibility];
         }
     }
+    
+    if (!self.didViewSongGenreViewForFirstTime) {
+        double delay = 0.3;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"Choose a Genre!"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_SONG_GENRE_VIEW];
+        });
+    }
 }
 
 - (void) setBackgroundColorForSearchBox {

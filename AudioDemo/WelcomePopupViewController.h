@@ -10,4 +10,6 @@
 
 @interface WelcomePopupViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UIButton *dismissPopupButton;
+
 @end

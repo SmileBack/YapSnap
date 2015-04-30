@@ -26,6 +26,10 @@
     }
     self.view.layer.borderColor = [UIColor whiteColor].CGColor;
     self.view.layer.borderWidth = borderWidth;
+    
+    self.dismissPopupButton.layer.cornerRadius = 10;
+    self.dismissPopupButton.layer.borderWidth = 1;
+    self.dismissPopupButton.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 @end

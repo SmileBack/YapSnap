@@ -134,7 +134,7 @@ static void * const keypath = (void*)&keypath;
     dismissButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     dismissButton.backgroundColor = [UIColor clearColor];
     dismissButton.frame = sourceView.bounds;
-    [overlayView addSubview:dismissButton];
+    //[overlayView addSubview:dismissButton]; COMMENTED THIS OUT SO BG ISN'T CLICKABLE
     
     popupView.alpha = 0.0f;
     [overlayView addSubview:popupView];

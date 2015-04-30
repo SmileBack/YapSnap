@@ -73,6 +73,10 @@ static const float TIMER_INTERVAL = .01;
     self.recordProgressView.progress = 0;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapProgressView)];
     [self.recordProgressView addGestureRecognizer:tapGesture];
+    
+    //if (!self.didSeeWelcomePopup) { UNDO
+    [self showWelcomePopup];
+    //}
 
     if ([AppDelegate sharedDelegate].appOpenedCount <= 2) {
         YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
@@ -96,10 +100,6 @@ static const float TIMER_INTERVAL = .01;
     
     [self setupNavBarStuff];
     
-    if (!self.didSeeWelcomePopup) {
-        [self showWelcomePopup];
-    }
-    
     [self designSongGenreButtons];
     
     //[self.playButton setEnabled:YES];
@@ -122,6 +122,11 @@ static const float TIMER_INTERVAL = .01;
 - (void) tappedWelcomePopup {
     NSLog(@"tapped Welcome Popup");
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideTopTop];
+    double delay = .2;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self didTapYapsPageButton];
+    });
+
 }
 
 - (void) didTapProgressView
@@ -396,9 +401,9 @@ static const float TIMER_INTERVAL = .01;
         double delay = .1;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (self.audioSource.class == [YSSpotifySourceController class]) {
-                [[YTNotifications sharedNotifications] showNotificationText:@"Hold Down to Play"];
+                [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Play"];
             } else {
-                [[YTNotifications sharedNotifications] showNotificationText:@"Hold Down to Record"];
+                [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Record"];
             }
         });
         
