@@ -854,10 +854,26 @@
             [self showRandomPickAlert];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_RANDOM_PICK_ALERT];
         } else {
-            [[YTNotifications sharedNotifications] showRandomPickText:@"Selecting an Artist"];
+            if ([genre isEqual: @"Six"]) {
+                [[YTNotifications sharedNotifications] showRandomPickText:@"Selecting a Show / Movie"];
+            } else {
+                [[YTNotifications sharedNotifications] showRandomPickText:@"Selecting an Artist"];
+            }
         }
         
-        if ([genre isEqual: @"Top100"]) {
+        if ([genre isEqual: @"One"]) {
+            [self searchRandomArtist];
+        } else if ([genre isEqual: @"Two"]) {
+            [self searchRandomArtist];
+        } else if ([genre isEqual: @"Three"]) {
+            [self searchRandomArtist];
+        } else if ([genre isEqual: @"Four"]) {
+            [self searchRandomArtist];
+        } else if ([genre isEqual: @"Five"]) {
+            [self searchRandomArtist];
+        } else if ([genre isEqual: @"Six"]) {
+            [self searchRandomArtist];
+        } else if ([genre isEqual: @"Top100"]) {
             [self searchRandomArtist];
         }
     }

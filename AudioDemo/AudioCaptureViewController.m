@@ -608,32 +608,32 @@ static const float TIMER_INTERVAL = .01;
 #pragma mark - Song Genre Buttons
 
 - (IBAction)didTapSongGenreButtonOne {
-    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self.audioSource tappedSongGenreButton:@"One"];
     [self hideSongGenreView];
 }
 
 - (IBAction)didTapSongGenreButtonTwo {
-    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self.audioSource tappedSongGenreButton:@"Two"];
     [self hideSongGenreView];
 }
 
 - (IBAction)didTapSongGenreButtonThree {
-    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self.audioSource tappedSongGenreButton:@"Three"];
     [self hideSongGenreView];
 }
 
 - (IBAction)didTapSongGenreButtonFour {
-    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self.audioSource tappedSongGenreButton:@"Four"];
     [self hideSongGenreView];
 }
 
 - (IBAction)didTapSongGenreButtonFive {
-    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self.audioSource tappedSongGenreButton:@"Five"];
     [self hideSongGenreView];
 }
 
 - (IBAction)didTapSongGenreButtonSix {
-    [self.audioSource tappedSongGenreButton:@"Top100"];
+    [self.audioSource tappedSongGenreButton:@"Six"];
     [self hideSongGenreView];
 }
 
