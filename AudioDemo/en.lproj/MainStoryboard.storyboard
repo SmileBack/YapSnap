@@ -161,7 +161,7 @@
                                     <constraint firstAttribute="width" constant="80" id="bJG-qI-eOv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
-                                <state key="normal" backgroundImage="YapsButtonNoYaps4.png">
+                                <state key="normal" backgroundImage="YapsButtonNoYaps.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -944,7 +944,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapAddTextButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="Rsf-rw-hzP"/>
+                                    <action selector="didTapCameraButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="8RZ-Cx-FBM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUN-6m-GZB">
@@ -957,10 +957,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapCameraButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="pwh-v7-xPU"/>
+                                    <action selector="didTapAddTextButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="Xwb-fo-rrm"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7OR-jI-wMi">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7OR-jI-wMi">
                                 <rect key="frame" x="144" y="119" width="32" height="32"/>
                                 <state key="normal" image="ResetButton3.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1012,9 +1012,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="M5r-U7-dCX"/>
                     <connections>
-                        <outlet property="addTextToYapButton" destination="KDf-Vb-ilr" id="0U8-06-GuK"/>
+                        <outlet property="addTextToYapButton" destination="BUN-6m-GZB" id="ET7-et-9hw"/>
                         <outlet property="bottomConstraint" destination="vNZ-Va-hqk" id="Y4o-LV-ULS"/>
-                        <outlet property="cameraButton" destination="BUN-6m-GZB" id="cOy-Q0-XsL"/>
+                        <outlet property="cameraButton" destination="KDf-Vb-ilr" id="pDy-7e-C88"/>
                         <outlet property="changePitchButton1" destination="C8u-j8-TJl" id="yCc-nS-K5z"/>
                         <outlet property="changePitchButton2" destination="H1t-6Q-weW" id="duJ-Rf-yDM"/>
                         <outlet property="changePitchButton3" destination="Mku-hD-YTT" id="Blg-zS-eLm"/>
@@ -1729,7 +1729,7 @@ Type it here!</string>
         <image name="ResetButton40.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
         <image name="Shuffle50.png" width="64" height="64"/>
-        <image name="YapsButtonNoYaps4.png" width="160" height="84"/>
+        <image name="YapsButtonNoYaps.png" width="160" height="84"/>
         <image name="YellowStar.png" width="40" height="40"/>
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>
     </resources>
@@ -1739,7 +1739,7 @@ Type it here!</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="czb-n6-hbf"/>
+        <segue reference="AEp-MY-7pq"/>
         <segue reference="Enn-ka-dSJ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -846,10 +846,7 @@
             [self showRandomPickAlert];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_RANDOM_PICK_ALERT];
         } else {
-            double delay = .2;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[YTNotifications sharedNotifications] showRandomPickText:@"Random Artist"];
-            });
+            [[YTNotifications sharedNotifications] showRandomPickText:@"Selecting an Artist"];
         }
         
         if ([genre isEqual: @"Top100"]) {
@@ -860,7 +857,7 @@
 
 - (void) showRandomPickAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Random Artist"
-                                                    message:@"Here's a random artist! Tap the shuffle button to find other artists."
+                                                    message:@"Here's a randomly selected artist! Tap the shuffle button to explore other artists."
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -869,7 +866,7 @@
 
 - (IBAction) didTapShuffleButton {
     if (!self.didTapShuffleButtonForFirstTime) {
-        [[YTNotifications sharedNotifications] showNotificationText:@"Shuffle"];
+        [[YTNotifications sharedNotifications] showNotificationText:@"Shuffling Artists"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SHUFFLE_BUTTON];
     }
     [self searchRandomArtist];

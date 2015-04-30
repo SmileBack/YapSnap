@@ -133,7 +133,7 @@
 
 - (void) didTapPitchButton1
 {
-    self.resetPitchButton.hidden = NO;
+    [self unhideResetButton];
     
     UIImage *buttonImage = [UIImage imageNamed:@"BalloonYellow20.png"];
     [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
@@ -166,7 +166,7 @@
 
 - (void) didTapPitchButton2
 {
-    self.resetPitchButton.hidden = NO;
+    [self unhideResetButton];
     
     UIImage *buttonImage = [UIImage imageNamed:@"BalloonGreen20.png"];
     [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
@@ -191,7 +191,7 @@
 
 - (void) didTapPitchButton3
 {
-    self.resetPitchButton.hidden = NO;
+    [self unhideResetButton];
     
     UIImage *buttonImage = [UIImage imageNamed:@"BalloonLightBlue20.png"];
     [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
@@ -214,8 +214,39 @@
     [mixpanel track:@"Tapped Balloon 3"];
 }
 
+- (void) unhideResetButton {
+    [UIView animateWithDuration:.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.resetPitchButton.alpha = 1;
+                     }
+                     completion:nil];
+}
+
 - (void) didTapResetPitchButton {
+    [[YTNotifications sharedNotifications] showVolumeText:@"Voice Reset"];
     
+    [self resetProgressViewColor];
+    self.player.pitchShift = 0;
+    
+    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
+    [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    
+    [UIView animateWithDuration:.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.resetPitchButton.alpha = 0;
+                     }
+                     completion:nil];
+    
+    [self.player stop];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Reset Button"];
 }
 
 - (void) playAudioWithPitch:(CGFloat)pitch {
@@ -485,20 +516,22 @@
 }
 
 - (void) reduceAlphaOfButtons {
-    self.cameraButton.alpha = 0.5;
-    self.addTextToYapButton.alpha = 0.5;
-    self.changePitchButton1.alpha = 0.5;
-    //self.changePitchButton2.alpha = 0.5;
-    //self.changePitchButton3.alpha = 0.5;
+    self.cameraButton.alpha = 0.3;
+    self.addTextToYapButton.alpha = 0.3;
+    self.changePitchButton1.alpha = 0.3;
+    self.changePitchButton2.alpha = 0.3;
+    self.changePitchButton3.alpha = 0.3;
+    self.resetPitchButton.alpha = 0.3;
 }
 
 - (void) restoreAlphaOfButtons {
     self.cameraButton.alpha = 1;
     self.addTextToYapButton.alpha = 1;
     self.changePitchButton1.alpha = 1;
-    //self.changePitchButton2.alpha = 1;
-    //self.changePitchButton3.alpha = 1;
+    self.changePitchButton2.alpha = 1;
+    self.changePitchButton3.alpha = 1;
     self.resetPhotoButton.alpha = 1;
+    self.resetPitchButton.alpha = 1;
 }
 
 #pragma mark - UIActionSheet method implementation

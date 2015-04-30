@@ -184,7 +184,7 @@ static const float TIMER_INTERVAL = .01;
             [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
         } else if (count.description.intValue == 0) {
             NSLog(@"0 Yaps");
-            UIImage *buttonImage = [UIImage imageNamed:@"YapsButtonNoYaps4.png"];
+            UIImage *buttonImage = [UIImage imageNamed:@"YapsButtonNoYaps.png"];
             [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
             [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateHighlighted];
             // Remove number from button
