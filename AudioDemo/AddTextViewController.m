@@ -348,8 +348,7 @@
 - (IBAction)didTapAddTextButton {
     [self.textView becomeFirstResponder];
     self.textView.hidden = NO;
-    //[self hidePhotoButton];
-    //self.addTextToYapButton.hidden = YES;
+    [self reduceAlphaOfButtons];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Add Text Button"];
@@ -372,14 +371,19 @@
         self.textView.text = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         
         if (self.textView.text.length == 0) {
-            //[self unhidePhotoButton];
-            //self.addTextToYapButton.hidden = NO;
             self.textView.hidden = YES;
+            [self restoreAlphaOfButtons];
         }
         
         return NO;
     }
     return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    NSLog(@"Textfield did begin editing");
+    [self reduceAlphaOfButtons];
 }
 
 - (BOOL) didViewBalloonAlert
@@ -426,7 +430,6 @@
     
     self.flashbackImageView.image = nil;
     self.yapBuilder.image = nil;
-    //[self unhidePhotoButton];
     self.resetPhotoButton.hidden = YES;
     self.flashbackImageView.hidden = YES;
     [self removeShadowFromTextView];
@@ -442,7 +445,6 @@
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.flashbackImageView.image = chosenImage;
     
-    //[self hidePhotoButton];
     self.flashbackImageView.hidden = NO;
     self.resetPhotoButton.hidden = NO;
     
@@ -456,7 +458,6 @@
     NSURL *url = [[NSURL alloc] initFileURLWithPath:path];
     self.yapBuilder.image = url;
 
-    self.textView.text = @"";
     //self.textView.userInteractionEnabled = NO;
     [self addShadowToTextView];
     
@@ -482,14 +483,6 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SPOTIFY_ALERT_KEY];
 }
 
-- (void) hidePhotoButton {
-    self.cameraButton.hidden = YES;
-}
-
-- (void) unhidePhotoButton {
-    self.cameraButton.hidden = NO;
-}
-
 - (void) didTapImageView
 {
     [self.resetPhotoButton setImage:[UIImage imageNamed:@"ResetButtonLarger.png"] forState:UIControlStateNormal];
@@ -513,6 +506,23 @@
     self.textView.layer.shadowOffset = CGSizeMake(0, 0);
     self.textView.layer.shadowOpacity = 0;
     self.textView.layer.shadowRadius = 0;
+}
+
+- (void) reduceAlphaOfButtons {
+    self.cameraButton.alpha = 0.5;
+    self.addTextToYapButton.alpha = 0.5;
+    self.changePitchButton1.alpha = 0.5;
+    //self.changePitchButton2.alpha = 0.5;
+    //self.changePitchButton3.alpha = 0.5;
+}
+
+- (void) restoreAlphaOfButtons {
+    self.cameraButton.alpha = 1;
+    self.addTextToYapButton.alpha = 1;
+    self.changePitchButton1.alpha = 1;
+    //self.changePitchButton2.alpha = 1;
+    //self.changePitchButton3.alpha = 1;
+    self.resetPhotoButton.alpha = 1;
 }
 
 #pragma mark - UIActionSheet method implementation
