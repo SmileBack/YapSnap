@@ -239,9 +239,10 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void) showWelcomeYapBanner {
     if (!self.didSeeWelcomeYapBanner) {
-        double delay = 0.5;
+        double delay = .5;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:@"Here's Your Yap!"];
+            //[[YTNotifications sharedNotifications] showWelcomeText:@"Tap Your Yap!      ."];
+            [[YTNotifications sharedNotifications] showNotificationText:@"Tap Your Yap!"];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_WELCOME_YAP_BANNER];
         });
     }

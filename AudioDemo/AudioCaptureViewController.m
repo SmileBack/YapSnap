@@ -74,9 +74,9 @@ static const float TIMER_INTERVAL = .01;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapProgressView)];
     [self.recordProgressView addGestureRecognizer:tapGesture];
     
-    //if (!self.didSeeWelcomePopup) { UNDO
-    [self showWelcomePopup];
-    //}
+    if (!self.didSeeWelcomePopup) {
+        [self showWelcomePopup];
+    }
 
     if ([AppDelegate sharedDelegate].appOpenedCount <= 2) {
         YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];

@@ -135,9 +135,8 @@ static YTNotifications *_sharedNotifications;
 {
     NSDictionary *options = @{
                               kCRToastTextKey: text,
-                              kCRToastFontKey: [UIFont fontWithName:@"Futura-Medium" size:18],
-                              kCRToastTimeIntervalKey: @3,
-                              kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
+                              kCRToastTimeIntervalKey: @20,
+                              kCRToastImageKey : [UIImage imageNamed:@"ArrowImage.png"],
                               };
     
     [CRToastManager showNotificationWithOptions:options completionBlock:nil];

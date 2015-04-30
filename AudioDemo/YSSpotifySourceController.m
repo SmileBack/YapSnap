@@ -849,7 +849,7 @@
         });
     } else {
         self.shuffleButton.alpha = 1;
-        
+
         if (!self.didViewRandomPickAlertForFirstTime) {
             [self showRandomPickAlert];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_RANDOM_PICK_ALERT];
@@ -864,8 +864,8 @@
 }
 
 - (void) showRandomPickAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Random Artist"
-                                                    message:@"Here's a randomly selected artist! Tap the shuffle button to explore other artists."
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Here's a Random Artist"
+                                                    message:@"Tap the shuffle button to explore\nmore artists."
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
