@@ -215,13 +215,7 @@
 }
 
 - (void) unhideResetButton {
-    [UIView animateWithDuration:.3
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.resetPitchButton.alpha = 1;
-                     }
-                     completion:nil];
+    self.resetPitchButton.hidden = NO;
 }
 
 - (void) didTapResetPitchButton {
@@ -235,13 +229,8 @@
     [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
     [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
     
-    [UIView animateWithDuration:.3
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.resetPitchButton.alpha = 0;
-                     }
-                     completion:nil];
+    self.resetPitchButton.hidden = YES;
+
     
     [self.player stop];
     
