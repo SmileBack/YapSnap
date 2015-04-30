@@ -35,7 +35,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *resetPitchButton;
 @property (nonatomic) CGFloat pitchShiftValue;
 @property (strong, nonatomic) IBOutlet UIButton *cameraButton;
-@property (strong, nonatomic) IBOutlet UIButton *uploadButton;
 @property (strong, nonatomic) IBOutlet UIButton *resetPhotoButton;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
@@ -45,7 +44,6 @@
 - (IBAction)didTapPitchButton3;
 - (IBAction)didTapResetPitchButton;
 - (IBAction)didTapCameraButton;
-- (IBAction)didTapUploadButton;
 - (IBAction)didTapResetPhotoButton;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
@@ -310,20 +308,6 @@
                     withCallback:^(BOOL success, NSError *error) {
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
-                            /*
-                            double delay = 1.0;
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                if ([self.yapBuilder.messageType isEqual: @"SpotifyMessage"] && !self.didViewSpotifyAlert) {
-                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spotify"
-                                                                                    message:@"When you send a song snippet on YapTap, the recipient can listen to the full song on Spotify!"
-                                                                                   delegate:nil
-                                                                          cancelButtonTitle:@"OK"
-                                                                          otherButtonTitles:nil];
-                                    [alert show];
-                                    [self viewedSpotifyAlert];
-                                }
-                            });
-                             */
                         } else {
                             double delay = 0.5;
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -364,25 +348,36 @@
 - (IBAction)didTapAddTextButton {
     [self.textView becomeFirstResponder];
     self.textView.hidden = NO;
-    [self hidePhotoIcons];
-    self.addTextToYapButton.hidden = YES;
+    //[self hidePhotoButton];
+    //self.addTextToYapButton.hidden = YES;
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Add Text Button"];
 }
 
+/*
 - (IBAction)didTapUploadButton {
     [self selectPhoto];
 
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Upload Button"];
 }
+ */
 
 - (IBAction)didTapCameraButton {
+    /*
     [self takePhoto];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Camera Button"];
+     */
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Take a Photo", @"Upload a Photo", nil];
+    [actionSheet showInView:self.view];
 }
 
 - (BOOL) textView: (UITextView*) textView shouldChangeTextInRange: (NSRange) range replacementText: (NSString*) text
@@ -393,8 +388,8 @@
         self.textView.text = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         
         if (self.textView.text.length == 0) {
-            [self unhidePhotoIcons];
-            self.addTextToYapButton.hidden = NO;
+            //[self unhidePhotoButton];
+            //self.addTextToYapButton.hidden = NO;
             self.textView.hidden = YES;
         }
         
@@ -447,7 +442,7 @@
     
     self.flashbackImageView.image = nil;
     self.yapBuilder.image = nil;
-    [self unhidePhotoIcons];
+    //[self unhidePhotoButton];
     self.resetPhotoButton.hidden = YES;
     self.flashbackImageView.hidden = YES;
     [self removeShadowFromTextView];
@@ -463,7 +458,7 @@
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.flashbackImageView.image = chosenImage;
     
-    [self hidePhotoIcons];
+    //[self hidePhotoButton];
     self.flashbackImageView.hidden = NO;
     self.resetPhotoButton.hidden = NO;
     
@@ -503,16 +498,12 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SPOTIFY_ALERT_KEY];
 }
 
-- (void) hidePhotoIcons {
-    //self.addTextToYapButton.hidden = YES;
+- (void) hidePhotoButton {
     self.cameraButton.hidden = YES;
-    self.uploadButton.hidden = YES;
 }
 
-- (void) unhidePhotoIcons {
-    //self.addTextToYapButton.hidden = NO;
+- (void) unhidePhotoButton {
     self.cameraButton.hidden = NO;
-    self.uploadButton.hidden = NO;
 }
 
 - (void) didTapImageView
