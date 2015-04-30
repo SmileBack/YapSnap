@@ -35,6 +35,7 @@
 		780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 780211611AAB8EE000A71889 /* FriendsIcon@2x.png */; };
 		781904801AF1E2A300196DFF /* ResetButton30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */; };
 		781904821AF1E3CE00196DFF /* ResetButton40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 781904811AF1E3CE00196DFF /* ResetButton40@2x.png */; };
+		781904841AF1F27700196DFF /* YapsButtonNoYaps5.png in Resources */ = {isa = PBXBuildFile; fileRef = 781904831AF1F27600196DFF /* YapsButtonNoYaps5.png */; };
 		7819916F1AABBA6E00309E38 /* SettingsIconWhite8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */; };
 		7828A8DC1A846C0C00BAA609 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7828A8DB1A846C0C00BAA609 /* MessageUI.framework */; };
 		782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */ = {isa = PBXBuildFile; fileRef = 782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */; };
@@ -233,6 +234,7 @@
 		780211611AAB8EE000A71889 /* FriendsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FriendsIcon@2x.png"; sourceTree = "<group>"; };
 		7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton30@2x.png"; sourceTree = "<group>"; };
 		781904811AF1E3CE00196DFF /* ResetButton40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton40@2x.png"; sourceTree = "<group>"; };
+		781904831AF1F27600196DFF /* YapsButtonNoYaps5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsButtonNoYaps5.png; sourceTree = "<group>"; };
 		7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIconWhite8@2x.png"; sourceTree = "<group>"; };
 		7828A8DB1A846C0C00BAA609 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder10.png; sourceTree = "<group>"; };
@@ -463,6 +465,7 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				781904831AF1F27600196DFF /* YapsButtonNoYaps5.png */,
 				7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */,
 				781904811AF1E3CE00196DFF /* ResetButton40@2x.png */,
 				78B252251AF0238800353711 /* MagnifyingGlass.png */,
@@ -1293,6 +1296,7 @@
 				784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */,
 				787EC60F1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png in Resources */,
 				782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */,
+				781904841AF1F27700196DFF /* YapsButtonNoYaps5.png in Resources */,
 				787EC6151ACA245E000C5539 /* ProgressViewRed@3x.png in Resources */,
 				782D13531ACB9431007C8499 /* MicrophoneWhite30@3x.png in Resources */,
 				787EC5F31AC9EC6A000C5539 /* ProgressViewLightBlueiPhone5@2x.png in Resources */,

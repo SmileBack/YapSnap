@@ -338,8 +338,8 @@ static const float TIMER_INTERVAL = .01;
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Show Song Genre View");
                         [self showSongGenreView];
-                        [self.audioSource hideMusicIcon];
-                        [self.audioSource hideTitleLabel];
+                        [self.audioSource fadeMusicIcon];
+                        [self.audioSource fadeTitleLabel];
                     }];
     
     [center addObserverForName:HIDE_SONG_GENRE_VIEW

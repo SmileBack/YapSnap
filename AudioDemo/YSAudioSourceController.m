@@ -51,12 +51,12 @@
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
 
-- (void) hideMusicIcon
+- (void) fadeMusicIcon
 {
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
 
-- (void) hideTitleLabel
+- (void) fadeTitleLabel
 {
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }

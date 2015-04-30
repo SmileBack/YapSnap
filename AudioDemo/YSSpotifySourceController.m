@@ -257,7 +257,7 @@
     
     self.songs = nil;
     [self.carousel reloadData];
-    [self hideMusicIcon];
+    self.musicIcon.alpha = 0;
     self.carousel.hidden = NO;
     [self.loadingIndicator startAnimating];
     
@@ -310,7 +310,7 @@
     NSLog(@"Textfield did begin editing");
     self.carousel.scrollEnabled = NO;
     self.carousel.hidden = YES;
-    [self hideMusicIcon];
+    self.musicIcon.alpha = 0;
     [self hideResetAndShuffleButtons];
 }
 
@@ -830,6 +830,9 @@
 
 - (void) tappedSongGenreButton:(NSString *)genre
 {
+    self.musicIcon.alpha = 0;
+    self.titleLabel.alpha = 0;
+    
     if ([genre isEqual: @"Search"]) {
         [self showSearchBox];
         double delay = .3;
@@ -843,7 +846,10 @@
             [self showRandomPickAlert];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_RANDOM_PICK_ALERT];
         } else {
-            [[YTNotifications sharedNotifications] showRandomPickText:@"Random Artist"];
+            double delay = .2;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[YTNotifications sharedNotifications] showRandomPickText:@"Random Artist"];
+            });
         }
         
         if ([genre isEqual: @"Top100"]) {
@@ -880,12 +886,12 @@
     }
 }
 
-- (void) hideMusicIcon {
+- (void) fadeMusicIcon {
     [UIView animateWithDuration:.2
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         self.musicIcon.alpha = 0;
+                         self.musicIcon.alpha = 0.1;
                      }
                      completion:nil];
 }
@@ -911,13 +917,13 @@
                      completion:nil];
 }
 
-- (void) hideTitleLabel
+- (void) fadeTitleLabel
 {
     [UIView animateWithDuration:.2
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         self.titleLabel.alpha = 0;
+                         self.titleLabel.alpha = 0.1;
                      }
                      completion:nil];
 }
