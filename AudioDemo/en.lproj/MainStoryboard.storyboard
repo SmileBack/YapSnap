@@ -53,12 +53,12 @@
                                 <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUD-ix-h4T" userLabel="Music">
-                                <rect key="frame" x="0.0" y="-4" width="50" height="75"/>
+                                <rect key="frame" x="0.0" y="-3" width="50" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="3Pv-a8-Dg2"/>
                                     <constraint firstAttribute="width" constant="50" id="IHe-QD-wYT"/>
                                 </constraints>
-                                <state key="normal" image="ResetButton40.png">
+                                <state key="normal" image="ResetButton70.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -109,7 +109,7 @@
                             <constraint firstItem="2WW-dD-1n6" firstAttribute="leading" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="7" id="ivy-5Z-BBf"/>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="15" id="mMM-JG-YVP"/>
                             <constraint firstAttribute="centerX" secondItem="iKi-hk-1A5" secondAttribute="centerX" id="mm6-BP-Za3"/>
-                            <constraint firstItem="oUD-ix-h4T" firstAttribute="top" secondItem="B8N-jO-1bl" secondAttribute="topMargin" constant="-4" id="ngR-2Q-EaC"/>
+                            <constraint firstItem="oUD-ix-h4T" firstAttribute="top" secondItem="B8N-jO-1bl" secondAttribute="topMargin" constant="-3" id="ngR-2Q-EaC"/>
                             <constraint firstItem="RkK-X4-YKu" firstAttribute="height" secondItem="B8N-jO-1bl" secondAttribute="height" multiplier="0.3" id="xwb-Fa-PKq"/>
                         </constraints>
                     </view>
@@ -1726,7 +1726,7 @@ Type it here!</string>
         <image name="PlusButtonWhite2.png" width="20" height="20"/>
         <image name="RecordButtonBlueBorder10.png" width="240" height="240"/>
         <image name="ResetButton3.png" width="32" height="32"/>
-        <image name="ResetButton40.png" width="32" height="32"/>
+        <image name="ResetButton70.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
         <image name="Shuffle50.png" width="64" height="64"/>
         <image name="YapsButtonNoYaps.png" width="160" height="84"/>

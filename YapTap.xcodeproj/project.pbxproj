@@ -36,6 +36,8 @@
 		781904801AF1E2A300196DFF /* ResetButton30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */; };
 		781904821AF1E3CE00196DFF /* ResetButton40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 781904811AF1E3CE00196DFF /* ResetButton40@2x.png */; };
 		781904841AF1F27700196DFF /* YapsButtonNoYaps5.png in Resources */ = {isa = PBXBuildFile; fileRef = 781904831AF1F27600196DFF /* YapsButtonNoYaps5.png */; };
+		781904861AF287C100196DFF /* ResetButton60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 781904851AF287C100196DFF /* ResetButton60@2x.png */; };
+		781904881AF288C100196DFF /* ResetButton70@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 781904871AF288C100196DFF /* ResetButton70@2x.png */; };
 		7819916F1AABBA6E00309E38 /* SettingsIconWhite8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */; };
 		7828A8DC1A846C0C00BAA609 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7828A8DB1A846C0C00BAA609 /* MessageUI.framework */; };
 		782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */ = {isa = PBXBuildFile; fileRef = 782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */; };
@@ -235,6 +237,8 @@
 		7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton30@2x.png"; sourceTree = "<group>"; };
 		781904811AF1E3CE00196DFF /* ResetButton40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton40@2x.png"; sourceTree = "<group>"; };
 		781904831AF1F27600196DFF /* YapsButtonNoYaps5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsButtonNoYaps5.png; sourceTree = "<group>"; };
+		781904851AF287C100196DFF /* ResetButton60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton60@2x.png"; sourceTree = "<group>"; };
+		781904871AF288C100196DFF /* ResetButton70@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton70@2x.png"; sourceTree = "<group>"; };
 		7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIconWhite8@2x.png"; sourceTree = "<group>"; };
 		7828A8DB1A846C0C00BAA609 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder10.png; sourceTree = "<group>"; };
@@ -465,6 +469,8 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				781904851AF287C100196DFF /* ResetButton60@2x.png */,
+				781904871AF288C100196DFF /* ResetButton70@2x.png */,
 				781904831AF1F27600196DFF /* YapsButtonNoYaps5.png */,
 				7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */,
 				781904811AF1E3CE00196DFF /* ResetButton40@2x.png */,
@@ -1249,6 +1255,7 @@
 				37D413CC19D230D000021548 /* ArrowWhite.png in Resources */,
 				78A2E84F1ACC65B000B5A404 /* PinkStar.png in Resources */,
 				788363A61AD79572001CBD1B /* OneNotSelectediPhone6@2x.png in Resources */,
+				781904881AF288C100196DFF /* ResetButton70@2x.png in Resources */,
 				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
 				78439FBF1AE77145004CFB5F /* SongVersionOneSelected@2x.png in Resources */,
 				7819916F1AABBA6E00309E38 /* SettingsIconWhite8@2x.png in Resources */,
@@ -1262,6 +1269,7 @@
 				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
 				78439FC21AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png in Resources */,
 				78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */,
+				781904861AF287C100196DFF /* ResetButton60@2x.png in Resources */,
 				787EC6181ACA245E000C5539 /* ProgressViewRed@2x.png in Resources */,
 				787EC5FF1ACA068F000C5539 /* BalloonYellow10.png in Resources */,
 				78A2E86C1ACC840B00B5A404 /* BalloonYellow20.png in Resources */,
