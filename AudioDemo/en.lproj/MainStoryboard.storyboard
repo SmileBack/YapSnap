@@ -269,7 +269,7 @@
                                         <rect key="frame" x="218" y="111" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal" title="EDM">
+                                        <state key="normal" title="Rock">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -281,7 +281,7 @@
                                         <rect key="frame" x="18" y="208" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal" title="Country">
+                                        <state key="normal" title="EDM">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -293,7 +293,7 @@
                                         <rect key="frame" x="118" y="208" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal" title="Rock">
+                                        <state key="normal" title="Country">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>

@@ -13,16 +13,8 @@
 + (YTNotifications *) sharedNotifications;
 
 - (void) showNotificationText:(NSString *)text;
-- (void) showErrorText:(NSString *)text;
-- (void) showWelcomeText:(NSString *)text;
-- (void) showVolumeText:(NSString *)text;
-- (void) showModeText:(NSString *)text;
+- (void) showBlueNotificationText:(NSString *)text;
 - (void) showSongVersionText:(NSString *)text;
 - (void) showBufferingText:(NSString *)text;
-- (void) showRandomPickText:(NSString *)text;
-- (void) showMusicNoteText:(NSString *)text;
-- (void) showBalloonText:(NSString *)text;
-- (void) showShuffleText:(NSString *)text;
-
 
 @end

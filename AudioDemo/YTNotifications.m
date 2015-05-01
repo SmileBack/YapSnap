@@ -47,16 +47,7 @@ static YTNotifications *_sharedNotifications;
     [CRToastManager showNotificationWithMessage:text completionBlock:nil];
 }
 
-- (void) showMusicNoteText:(NSString *)text
-{
-    NSDictionary *options = @{
-                              kCRToastTextKey: text,
-                              kCRToastTimeIntervalKey: @2.5,
-                              };
-    
-    [CRToastManager showNotificationWithOptions:options completionBlock:nil];}
-
-- (void) showVolumeText:(NSString *)text
+- (void) showBlueNotificationText:(NSString *)text
 {
     NSDictionary *options = @{
                               kCRToastTextKey: text,
@@ -82,72 +73,6 @@ static YTNotifications *_sharedNotifications;
     NSDictionary *options = @{
                               kCRToastTextKey: text,
                               kCRToastTimeIntervalKey: @1.5,
-                              kCRToastAnimationInTimeIntervalKey: @.3,
-                              };
-    
-    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
-}
-
-- (void) showShuffleText:(NSString *)text
-{
-    NSDictionary *options = @{
-                              kCRToastTextKey: text,
-                              kCRToastTimeIntervalKey: @1.5,
-                              kCRToastAnimationInTimeIntervalKey: @.3,
-                              };
-    
-    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
-}
-
-- (void) showRandomPickText:(NSString *)text
-{
-    NSDictionary *options = @{
-                              kCRToastTextKey: text,
-                              kCRToastTimeIntervalKey: @1,
-                              kCRToastAnimationInTimeIntervalKey: @.3,
-                              };
-    
-    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
-}
-
-- (void) showBalloonText:(NSString *)text
-{
-    NSDictionary *options = @{
-                              kCRToastTextKey: text,
-                              kCRToastTimeIntervalKey: @1.5,
-                              kCRToastBackgroundColorKey: THEME_BACKGROUND_COLOR,
-                              };
-    
-    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
-}
-
-- (void) showErrorText:(NSString *)text
-{
-    NSDictionary *options = @{
-                              kCRToastTextKey: text,
-                              kCRToastBackgroundColorKey: [UIColor yellowColor]
-                              };
-    
-    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
-}
-
-- (void) showWelcomeText:(NSString *)text
-{
-    NSDictionary *options = @{
-                              kCRToastTextKey: text,
-                              kCRToastTimeIntervalKey: @20,
-                              kCRToastImageKey : [UIImage imageNamed:@"ArrowImage.png"],
-                              };
-    
-    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
-}
-
-- (void) showModeText:(NSString *)text
-{
-    NSDictionary *options = @{
-                              kCRToastTextKey: text,
-                              kCRToastFontKey: [UIFont fontWithName:@"Futura-Medium" size:18],
-                              kCRToastTimeIntervalKey: @2,
                               kCRToastAnimationInTimeIntervalKey: @.3,
                               };
     

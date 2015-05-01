@@ -66,7 +66,7 @@
     float volume = [[AVAudioSession sharedInstance] outputVolume];
     if (volume < 0.5) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showVolumeText:@"Turn Up The Volume!"];
+            [[YTNotifications sharedNotifications] showBlueNotificationText:@"Turn Up The Volume!"];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Volume Notification - PlayBack"];
         });

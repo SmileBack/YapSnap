@@ -497,7 +497,6 @@ static const float TIMER_INTERVAL = .01;
         if (!self.didTapMusicModeButtonForFirstTime) {
             double delay = .1;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                //[[YTNotifications sharedNotifications] showModeText:@"Music Mode"];
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
             });
         }

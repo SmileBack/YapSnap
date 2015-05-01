@@ -19,7 +19,6 @@
 
 @interface YSSpotifySourceController ()
 @property (nonatomic, strong) NSArray *songs;
-
 @property (strong, nonatomic) IBOutlet UITextField *searchBox;
 @property (strong, nonatomic) IBOutlet iCarousel *carousel;
 @property (weak, nonatomic) IBOutlet UIImageView *musicIcon;
@@ -32,6 +31,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *shuffleButton;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) BOOL songGenreViewIsVisible;
+@property (nonatomic, strong) NSArray *artists;
+@property (nonatomic, strong) NSString *selectedGenre;
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapShuffleButton;
@@ -42,25 +43,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    /*
-    FBShimmeringView *shimmeringView = [[FBShimmeringView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:shimmeringView];
-    
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:shimmeringView.bounds];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = NSLocalizedString(@"Tap To Find a Song", nil);
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
-    shimmeringView.contentView = titleLabel;
-    
-    // Start shimmering.
-    shimmeringView.shimmering = YES;
-    shimmeringView.shimmeringBeginFadeDuration = 0.3;
-    shimmeringView.shimmeringOpacity = .8;
-    shimmeringView.shimmeringDirection = FBShimmerDirectionDown;
-    shimmeringView.shimmeringPauseDuration = 2;
-     */
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Spotify Page"];
@@ -96,7 +78,7 @@
     if (self.didOpenYapForFirstTime && !self.didViewSongGenreNotification && !self.didViewSongGenreViewForFirstTime) {
         double delay = 0.3;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showMusicNoteText:@"Find a Song!"];
+            [[YTNotifications sharedNotifications] showNotificationText:@"Find a Song!"];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_SONG_GENRE_NOTIFICATION];
         });
     }
@@ -182,10 +164,24 @@
     }
 }
 
-- (void) searchRandomArtist {
-    NSArray *artists = [[NSArray alloc] initWithObjects:@"Maroon 5", @"Wiz Khalifa", @"Drake", @"Ed Sheeran", @"Sam Smith", @"All Time Low", @"Meghan Trainor", @"Ellie Goulding", @"Ariana Grande", @"Nicki Minaj",@"Kendrick Lamar", @"Rihanna", @"Mark Ronson", @"Wiz Khalifa", @"Nick Jonas", @"Bruno Mars",@"WALK THE MOON", @"Fall Out Boy", @"Imagine Dragons", @"Fetty Wap", @"Sam Hunt", @"Flo Rida", @"Jason Derulo", @"Beyonce", @"Florida Georgia Line", @"Katy Perry", @"Big Sean", @"Luke Bryan",@"Charlie Puth", @"Wale", @"Sia", @"Tove Lo", @"Kelly Clarkson", @"Hozier",@"One Direction", @"Chris Brown", @"Eminem", @"Zac Brown Band", @"Darius Rucker", @"Ludacris",@"Rae Sremmurd", @"J. Cole", @"Blake Shelton", @"Jason Aldean", @"Kanye West", @"Iggy Azalea",@"Eric Church", @"Natalie La Rose", @"Selena Gomez", @"Pitbull", @"Ne-Yo", @"Lee Brice",@"Vance Joy", @"George Ezra", @"Calvin Harris", @"Trey Songz", @"Andy Grammer", @"Lord Huron", @"Carrie Underwood", @"Mumford & Sons", @"Justin Bieber", @"David Guetta", @"Kidz Bop Kids", @"Fifth Harmony", @"Cole Swindell", @"Tyga", @"Little Big Town", @"OneRepublic", @"Miranda Lambert",@"Usher", @"Echosmith", @"Jeremih", @"Thomas Rhett", @"Zedd", @"Dierks Bentley", @"Justin Timberlake", @"Kid Ink", @"Brian Wilson", @"Madonna", @"Omarion", @"AC/DC", @"Kenny Chesney", @"Tim McGraw", @"Death Cab For Cutie", @"Romeo Santos", @"Kid Rock", @"Pharrell Williams", @"Twenty One Pilots", @"DJ Snake", @"John Legend", @"Three Days Grace", @"Adele", @"Michael Jackson", @"Shawn Mendes", @"Led Zeppelin", @"Matt And Kim", @"Matt And Kim", @"Billy Currington", @"Paul McCartney", @"U2", @"Coldplay", @"Avicci", nil];
+- (void) searchGenre:(NSString *)genre {
+    if ([genre  isEqual: @"Pop"]) {
+        self.artists = [[NSArray alloc] initWithObjects:@"Maroon 5", @"Wiz Khalifa", @"Drake", @"Ed Sheeran", @"Sam Smith", @"All Time Low", @"Meghan Trainor", @"Ellie Goulding", @"Ariana Grande", @"Nicki Minaj",@"Kendrick Lamar", @"Rihanna", @"Mark Ronson", @"Wiz Khalifa", @"Nick Jonas", @"Bruno Mars",@"WALK THE MOON", @"Fall Out Boy", @"Imagine Dragons", @"Fetty Wap", @"Sam Hunt", @"Flo Rida", @"Jason Derulo", @"Beyonce", @"Florida Georgia Line", @"Katy Perry", @"Big Sean", @"Luke Bryan",@"Charlie Puth", @"Wale", @"Sia", @"Tove Lo", @"Kelly Clarkson", @"Hozier",@"One Direction", @"Chris Brown", @"Eminem", @"Zac Brown Band", @"Darius Rucker", @"Ludacris",@"Rae Sremmurd", @"J. Cole", @"Blake Shelton", @"Jason Aldean", @"Kanye West", @"Iggy Azalea",@"Eric Church", @"Natalie La Rose", @"Selena Gomez", @"Pitbull", @"Ne-Yo", @"Lee Brice",@"Vance Joy", @"George Ezra", @"Calvin Harris", @"Trey Songz", @"Andy Grammer", @"Lord Huron", @"Carrie Underwood", @"Mumford & Sons", @"Justin Bieber", @"David Guetta", @"Kidz Bop Kids", @"Fifth Harmony", @"Cole Swindell", @"Tyga", @"Little Big Town", @"OneRepublic", @"Miranda Lambert",@"Usher", @"Echosmith", @"Jeremih", @"Thomas Rhett", @"Zedd", @"Dierks Bentley", @"Justin Timberlake", @"Kid Ink", @"Brian Wilson", @"Madonna", @"Omarion", @"AC/DC", @"Kenny Chesney", @"Tim McGraw", @"Death Cab For Cutie", @"Romeo Santos", @"Kid Rock", @"Pharrell Williams", @"Twenty One Pilots", @"DJ Snake", @"John Legend", @"Three Days Grace", @"Adele", @"Michael Jackson", @"Shawn Mendes", @"Led Zeppelin", @"Matt And Kim", @"Matt And Kim", @"Billy Currington", @"Paul McCartney", @"U2", @"Coldplay", @"Avicci", nil];
+    } else if ([genre  isEqual: @"Hip Hop"]) {
+        self.artists = [[NSArray alloc] initWithObjects:@"Hip Hop", nil];
+    } else if ([genre  isEqual: @"Rock"]) {
+        self.artists = [[NSArray alloc] initWithObjects:@"Rock", @"Wiz Khalifa", @"Drake", @"Ed Sheeran", @"Sam Smith", @"All Time Low", nil];
+    } else if ([genre  isEqual: @"EDM"]) {
+        self.artists = [[NSArray alloc] initWithObjects:@"EDM", nil];
+    } else if ([genre  isEqual: @"Country"]) {
+        self.artists = [[NSArray alloc] initWithObjects:@"Country", nil];
+    } else if ([genre  isEqual: @"TV/Film"]) {
+        self.artists = [[NSArray alloc] initWithObjects:@"TV/Film", nil];
+    } else if ([genre  isEqual: @"Top100"]) {
+        self.artists = [[NSArray alloc] initWithObjects:@"Top100", nil];
+    }
     
-    NSString *randomlySelectedArtist = [artists objectAtIndex: arc4random() % [artists count]];
+    NSString *randomlySelectedArtist = [self.artists objectAtIndex: arc4random() % [self.artists count]];
     
     NSLog(@"string: %@", randomlySelectedArtist);
     
@@ -769,7 +765,7 @@
             if (volume <= 0.125) {
                 double delay = 0.1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showVolumeText:@"Turn Up The Volume!"];
+                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Turn Up The Volume!"];
                     Mixpanel *mixpanel = [Mixpanel sharedInstance];
                     [mixpanel track:@"Volume Notification - Spotify"];
                 });
@@ -838,6 +834,8 @@
 
 - (void) tappedSongGenreButton:(NSString *)genre
 {
+    self.selectedGenre = genre;
+    
     self.musicIcon.alpha = 0;
     self.titleLabel.alpha = 0;
     
@@ -855,26 +853,26 @@
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_RANDOM_PICK_ALERT];
         } else {
             if ([genre isEqual: @"Six"]) {
-                [[YTNotifications sharedNotifications] showRandomPickText:@"Selecting a Show / Movie"];
+                [[YTNotifications sharedNotifications] showBlueNotificationText:@"Show/Film Selected"];
             } else {
-                [[YTNotifications sharedNotifications] showRandomPickText:@"Selecting an Artist"];
+                [[YTNotifications sharedNotifications] showBlueNotificationText:@"Artist Selected"];
             }
         }
         
         if ([genre isEqual: @"One"]) {
-            [self searchRandomArtist];
+            [self searchGenre:@"Pop"];
         } else if ([genre isEqual: @"Two"]) {
-            [self searchRandomArtist];
+            [self searchGenre:@"Hip Hop"];
         } else if ([genre isEqual: @"Three"]) {
-            [self searchRandomArtist];
+            [self searchGenre:@"Rock"];
         } else if ([genre isEqual: @"Four"]) {
-            [self searchRandomArtist];
+            [self searchGenre:@"EDM"];
         } else if ([genre isEqual: @"Five"]) {
-            [self searchRandomArtist];
+            [self searchGenre:@"Country"];
         } else if ([genre isEqual: @"Six"]) {
-            [self searchRandomArtist];
+            [self searchGenre:@"TV/Film"];
         } else if ([genre isEqual: @"Top100"]) {
-            [self searchRandomArtist];
+            [self searchGenre:@"Top100"];
         }
     }
 }
@@ -890,10 +888,10 @@
 
 - (IBAction) didTapShuffleButton {
     if (!self.didTapShuffleButtonForFirstTime) {
-        [[YTNotifications sharedNotifications] showNotificationText:@"Shuffling Artists"];
+        [[YTNotifications sharedNotifications] showNotificationText:@"Shuffled"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SHUFFLE_BUTTON];
     }
-    [self searchRandomArtist];
+    [self searchGenre:self.selectedGenre];
 }
 
 - (void) updateSongGenreViewVisibility {
