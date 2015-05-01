@@ -114,6 +114,10 @@ static NSString *CellIdentifier = @"Cell";
             }
         }
     }
+    
+    if (!self.didOpenYapForFirstTime) {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -231,7 +235,7 @@ static NSString *CellIdentifier = @"Cell";
                                                       cancelButtonTitle:@"OK"
                                                       otherButtonTitles: nil];
                 [alert show];
-                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_FIRST_YAP_ALERT];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_FIRST_SENT_YAP_ALERT];
             }
         });
     }
@@ -633,7 +637,7 @@ static NSString *CellIdentifier = @"Cell";
 
 - (BOOL) didViewFirstSentYapAlert
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_FIRST_YAP_ALERT];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_FIRST_SENT_YAP_ALERT];
 }
 
 - (BOOL) didSeeWelcomeYapBanner
@@ -641,6 +645,10 @@ static NSString *CellIdentifier = @"Cell";
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_YAP_BANNER];
 }
 
+- (BOOL) didOpenYapForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
+}
 
 
 @end

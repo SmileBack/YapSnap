@@ -16,5 +16,6 @@
 - (void) showBlueNotificationText:(NSString *)text;
 - (void) showSongVersionText:(NSString *)text;
 - (void) showBufferingText:(NSString *)text;
+- (void) showStatusBarText:(NSString *)text;
 
 @end

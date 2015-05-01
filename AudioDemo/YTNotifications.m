@@ -51,7 +51,7 @@ static YTNotifications *_sharedNotifications;
 {
     NSDictionary *options = @{
                               kCRToastTextKey: text,
-                              kCRToastBackgroundColorKey: THEME_BACKGROUND_COLOR
+                              kCRToastBackgroundColorKey: THEME_BACKGROUND_COLOR,
                               };
     
     [CRToastManager showNotificationWithOptions:options completionBlock:nil];
@@ -74,6 +74,18 @@ static YTNotifications *_sharedNotifications;
                               kCRToastTextKey: text,
                               kCRToastTimeIntervalKey: @1.5,
                               kCRToastAnimationInTimeIntervalKey: @.3,
+                              };
+    
+    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
+}
+
+- (void) showStatusBarText:(NSString *)text
+{
+    NSDictionary *options = @{
+                              kCRToastTextKey: text,
+                              kCRToastNotificationTypeKey: @(CRToastTypeStatusBar),
+                              kCRToastTimeIntervalKey: @8,
+                              kCRToastFontKey: [UIFont fontWithName:@"Futura-Medium" size:12],
                               };
     
     [CRToastManager showNotificationWithOptions:options completionBlock:nil];

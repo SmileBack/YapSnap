@@ -73,10 +73,7 @@ static const float TIMER_INTERVAL = .01;
                                                                             action:nil];
 
     [self.recordButton setBackgroundImage:[UIImage imageNamed:@"RecordButtonBlueBorder10Pressed.png"] forState:UIControlStateHighlighted];
-    
     self.recordProgressView.progress = 0;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapProgressView)];
-    [self.recordProgressView addGestureRecognizer:tapGesture];
     
     if (!self.didSeeWelcomePopup) {
         [self showWelcomePopup];
@@ -93,7 +90,7 @@ static const float TIMER_INTERVAL = .01;
     [self setupNavBarStuff];
     
     [self styleControlCenterButtons];
-    
+        
     //[self.playButton setEnabled:YES];
 }
 
