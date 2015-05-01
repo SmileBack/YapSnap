@@ -50,10 +50,4 @@
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
 
-- (void) songGenreViewIsVisible:(BOOL)visible
-{
-    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
-}
-
-
 @end

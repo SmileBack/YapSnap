@@ -15,4 +15,6 @@
 @property (nonatomic, strong) YapBuilder *yapBuilder;
 @property (weak, nonatomic) IBOutlet UISlider *pitchSlider;
 
+#define HIDE_CONTROL_CENTER_NOTIFICATION @"yaptap.HideControlCenterViewNotification"
+
 @end

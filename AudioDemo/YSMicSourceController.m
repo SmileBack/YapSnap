@@ -174,11 +174,7 @@
     [self.player prepareToPlay];
 }
 
-// TODO: REMOVE THE FOLLOWING METHODS!
-- (void) songGenreViewIsVisible:(BOOL)visible
-{
-}
-
+// TODO: REMOVE THE FOLLOWING METHOD:
 - (void) tappedControlCenterButton:(NSString *)genre
 {
 }

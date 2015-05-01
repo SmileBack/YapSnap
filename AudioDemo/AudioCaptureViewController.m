@@ -332,7 +332,7 @@ static const float TIMER_INTERVAL = .01;
                         [self showControlCenter];
                     }];
     
-    [center addObserverForName:HIDE_CONTROL_CENTER_VIEW_NOTIFICATION
+    [center addObserverForName:HIDE_CONTROL_CENTER_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
@@ -639,9 +639,7 @@ static const float TIMER_INTERVAL = .01;
                      animations:^{
                          self.controlCenterView.frame = CGRectMake(0, screenHeight, screenWidth, 300);
                      }
-                     completion:^(BOOL finished) {
-                         [self.audioSource songGenreViewIsVisible:NO];
-                     }];
+                     completion:nil];
     
 }
 
@@ -658,9 +656,7 @@ static const float TIMER_INTERVAL = .01;
                      animations:^{
                          self.controlCenterView.frame = CGRectMake(0, screenHeight-300, screenWidth, 300);
                      }
-                     completion:^(BOOL finished) {
-                         [self.audioSource songGenreViewIsVisible:YES];
-                     }];    
+                     completion:nil];
 }
 
 - (void) styleControlCenterButtons {

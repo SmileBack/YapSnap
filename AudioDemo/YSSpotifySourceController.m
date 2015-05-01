@@ -29,7 +29,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *resetButton;
 @property (strong, nonatomic) IBOutlet UIButton *shuffleButton;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (nonatomic) BOOL songGenreViewIsVisible;
 @property (nonatomic, strong) NSArray *artists;
 @property (nonatomic, strong) NSString *selectedGenre;
 
@@ -854,14 +853,6 @@
     self.shuffleButton.alpha = 0;
     self.shuffleButton.hidden = YES;
     self.resetButton.hidden = YES;
-}
-
-- (void) songGenreViewIsVisible:(BOOL)visible {
-    if (visible) {
-        self.songGenreViewIsVisible = YES;
-    } else {
-        self.songGenreViewIsVisible = NO;
-    }
 }
 
 - (void) resetSpotifyUI {

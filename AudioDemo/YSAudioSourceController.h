@@ -34,6 +34,5 @@
 
 // These are only relevant for Spotify!
 - (void) tappedControlCenterButton:(NSString*)genre;
-- (void) songGenreViewIsVisible:(BOOL)visible;
 
 @end
