@@ -51,24 +51,15 @@
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
 
-- (void) fadeMusicIcon
-{
-    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
-}
-
-- (void) fadeTitleLabel
-{
-    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
-}
-
-- (void) hideResetAndShuffleButtons
-{
-    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
-}
-
 - (void) songGenreViewIsVisible:(BOOL)visible
 {
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
+
+- (void) resetSpotifyUI
+{
+    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
+}
+
 
 @end

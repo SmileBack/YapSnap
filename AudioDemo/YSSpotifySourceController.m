@@ -21,7 +21,6 @@
 @property (nonatomic, strong) NSArray *songs;
 @property (strong, nonatomic) IBOutlet UITextField *searchBox;
 @property (strong, nonatomic) IBOutlet iCarousel *carousel;
-@property (weak, nonatomic) IBOutlet UIImageView *musicIcon;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic, strong) NSString *alertViewString;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
@@ -59,7 +58,6 @@
             
     UITapGestureRecognizer *tappedMusicIconImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMusicIconImage)];
     tappedMusicIconImage.numberOfTapsRequired = 1;
-    [self.musicIcon addGestureRecognizer:tappedMusicIconImage];
     
     UITapGestureRecognizer *tappedSpotifyView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedSpotifyView)];
     tappedSpotifyView.numberOfTapsRequired = 1;
@@ -72,32 +70,17 @@
 
     self.playerAlreadyStartedPlayingForThisSong = NO;
 }
- 
-- (void)tappedMusicIconImage {
-    NSLog(@"Tapped Music Icon Image");
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Music Icon"];
-}
 
 - (void)tappedSpotifyView {
-    NSLog(@"Tapped Spotify View");
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Spotify View"];
     if (self.searchBox.isFirstResponder) {
         self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if ([self.searchBox.text length] == 0) {
             [self.view endEditing:YES];
-            [self showMusicIcon];
             self.searchBox.alpha = 0;
-            [self showTitleLabel];
         } else {
             [self search:self.searchBox.text];
             [self.view endEditing:YES];
             [self setBackgroundColorForSearchBox];
-        }
-    } else {
-        NSLog(@"Search Box Is Not First Responder");
-        if (self.carousel.hidden == YES) {
         }
     }
 }
@@ -110,16 +93,16 @@
 }
 
 - (IBAction) didTapResetButton {
-    self.carousel.hidden = YES;
-    self.songs = nil;
-    [self showMusicIcon];
-    [self hideResetAndShuffleButtons];
-    self.searchBox.alpha = 0;
-    [self showTitleLabel];
+    [self resetSpotifyUI];
+    
     if (!self.didTapResetButtonForFirstTime) {
         [[YTNotifications sharedNotifications] showNotificationText:@"Reset"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_RESET_BUTTON];
     }
+    double delay = .3;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER_VIEW_NOTIFICATION object:nil];
+    });
 }
 
 - (void) searchGenre:(NSString *)genre {
@@ -195,7 +178,6 @@
     if ([self.searchBox.text length] == 0) {
         NSLog(@"Searched Empty String");
         [self.view endEditing:YES];
-        [self showMusicIcon];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search Above"
                                                         message:@"Type the name of an artist or song above!"
                                                        delegate:nil
@@ -219,8 +201,7 @@
     
     self.songs = nil;
     [self.carousel reloadData];
-    self.musicIcon.alpha = 0;
-    self.carousel.hidden = NO;
+    self.carousel.alpha = 1;
     [self.loadingIndicator startAnimating];
     
     __weak YSSpotifySourceController *weakSelf = self;
@@ -231,8 +212,7 @@
             [weakSelf.carousel reloadData];
             if (songs.count == 0) {
                 [self.loadingIndicator stopAnimating];
-                [self showMusicIcon];
-                self.carousel.hidden = YES;
+                self.carousel.alpha = 0;
                 
                 NSLog(@"No Songs Returned For Search Query");
                 
@@ -248,8 +228,7 @@
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];
-            [self showMusicIcon];
-            self.carousel.hidden = YES;
+            self.carousel.alpha = 0;
             
             if ([self internetIsNotReachable]) {
                 double delay = 0.1;
@@ -271,8 +250,7 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     NSLog(@"Textfield did begin editing");
     self.carousel.scrollEnabled = NO;
-    self.carousel.hidden = YES;
-    self.musicIcon.alpha = 0;
+    self.carousel.alpha = 0;
     [self hideResetAndShuffleButtons];
 }
 
@@ -784,9 +762,6 @@
 {
     self.selectedGenre = genre;
     
-    self.musicIcon.alpha = 0;
-    self.titleLabel.alpha = 0;
-    
     if ([genre isEqual: @"Search"]) {
         [self showSearchBox];
         double delay = .3;
@@ -842,48 +817,6 @@
     [self searchGenre:self.selectedGenre];
 }
 
-- (void) fadeMusicIcon {
-    [UIView animateWithDuration:.2
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.musicIcon.alpha = 0.1;
-                     }
-                     completion:nil];
-}
-
-- (void) showMusicIcon {
-    [UIView animateWithDuration:.3
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.musicIcon.alpha = 1;
-                     }
-                     completion:nil];
-}
-
-- (void) showTitleLabel
-{
-    [UIView animateWithDuration:.3
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.titleLabel.alpha = 0.9;
-                     }
-                     completion:nil];
-}
-
-- (void) fadeTitleLabel
-{
-    [UIView animateWithDuration:.2
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.titleLabel.alpha = 0.1;
-                     }
-                     completion:nil];
-}
-
 - (void) hideSearchBox
 {
     [UIView animateWithDuration:.2
@@ -922,5 +855,18 @@
     }
 }
 
+- (void) resetSpotifyUI {
+    self.songs = nil;
+    [self hideResetAndShuffleButtons];
+    
+    [UIView animateWithDuration:.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.searchBox.alpha = 0;
+                         self.carousel.alpha = 0;
+                     }
+                     completion:nil];
+}
 
 @end

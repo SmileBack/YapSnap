@@ -15,10 +15,11 @@
 #define TAPPED_ALBUM_COVER @"yaptap.TappedAlbumCoverKey"
 #define TAPPED_SONG_VERSION_ONE @"yaptap.TappedSongVersionOneKey"
 #define TAPPED_SONG_VERSION_TWO @"yaptap.TappedSongVersionTwoKey"
-#define TAPPED_PROGRESS_VIEW_NOTIFICATION @"yaptap.TappedProgressViewNotification"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
 #define VIEWED_RANDOM_PICK_ALERT @"yaptap.ViewedRandomPickAlert"
 #define TAPPED_RESET_BUTTON @"yaptap.TappedResetButton"
 #define TAPPED_SHUFFLE_BUTTON @"yaptap.TappedShuffleButton"
+#define SHOW_CONTROL_CENTER_VIEW_NOTIFICATION @"yaptap.ShowControlCenterViewNotification"
+#define HIDE_CONTROL_CENTER_VIEW_NOTIFICATION @"yaptap.HideControlCenterViewNotification"
 
 @end

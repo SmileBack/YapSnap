@@ -36,9 +36,7 @@
 
 // These are only relevant for Spotify!
 - (void) tappedControlCenterButton:(NSString*)genre;
-- (void) fadeMusicIcon;
-- (void) fadeTitleLabel;
-- (void) hideResetAndShuffleButtons;
 - (void) songGenreViewIsVisible:(BOOL)visible;
+- (void) resetSpotifyUI;
 
 @end

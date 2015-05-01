@@ -92,7 +92,7 @@ static const float TIMER_INTERVAL = .01;
     
     [self setupNavBarStuff];
     
-    [self designControlCenterButtons];
+    [self styleControlCenterButtons];
     
     //[self.playButton setEnabled:YES];
 }
@@ -119,11 +119,6 @@ static const float TIMER_INTERVAL = .01;
         [self didTapYapsPageButton];
     });
 
-}
-
-- (void) didTapProgressView
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:TAPPED_PROGRESS_VIEW_NOTIFICATION object:self];
 }
 
 - (void) pulsateYapsButton
@@ -329,17 +324,15 @@ static const float TIMER_INTERVAL = .01;
                         }];
                     }];
     
-    [center addObserverForName:SHOW_SONG_GENRE_VIEW
+    [center addObserverForName:SHOW_CONTROL_CENTER_VIEW_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Show Song Genre View");
                         [self showControlCenter];
-                        [self.audioSource fadeMusicIcon];
-                        [self.audioSource fadeTitleLabel];
                     }];
     
-    [center addObserverForName:HIDE_SONG_GENRE_VIEW
+    [center addObserverForName:HIDE_CONTROL_CENTER_VIEW_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
@@ -485,22 +478,6 @@ static const float TIMER_INTERVAL = .01;
         YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
         [self flipController:self.audioSource to:micSource];
     }
-    /*
-    if (sender) {
-        if (!self.didTapMicModeButtonForFirstTime) {
-            double delay = .3;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
-                                                                message:@"Record your voice and then tap the white balloon!"
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles: nil];
-                [alert show];
-                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
-            });
-        }
-    }
-     */
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Mic Mode Button"];
@@ -618,19 +595,44 @@ static const float TIMER_INTERVAL = .01;
 
 - (IBAction)didTapControlCenterButtonMic {
     [self switchToMicMode];
-    [self hideControlCenter];
+
+    double delay = .1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self hideControlCenter];
+    });
+    
+    /*
+    double delay = .3;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
+                                                        message:@"Record your voice and then tap the white balloon!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
+    });
+    */
 }
 
 - (IBAction)didTapOpenControlCenterButton {
+    [self switchToSpotifyMode];
     [self showControlCenter];
 }
 
 - (void)hideControlCenter {
-    self.openControlCenterButton.hidden = NO;
+    [UIView animateWithDuration:.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.openControlCenterButton.alpha = 1;
+                     }
+                     completion:nil];
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = screenRect.size.height;
     CGFloat screenWidth = screenRect.size.width;
+    
     [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
@@ -640,10 +642,11 @@ static const float TIMER_INTERVAL = .01;
                      completion:^(BOOL finished) {
                          [self.audioSource songGenreViewIsVisible:NO];
                      }];
+    
 }
 
 - (void)showControlCenter {
-    self.openControlCenterButton.hidden = YES;
+    self.openControlCenterButton.alpha = 0;
 
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = screenRect.size.height;
@@ -659,10 +662,10 @@ static const float TIMER_INTERVAL = .01;
                          [self.audioSource songGenreViewIsVisible:YES];
                      }];
     
-    [self.audioSource hideResetAndShuffleButtons];
+    [self.audioSource resetSpotifyUI];
 }
 
-- (void) designControlCenterButtons {
+- (void) styleControlCenterButtons {
     self.controlCenterButtonOne.layer.cornerRadius = 42;
     self.controlCenterButtonOne.layer.borderWidth = 1;
     self.controlCenterButtonOne.layer.borderColor = [UIColor whiteColor].CGColor;

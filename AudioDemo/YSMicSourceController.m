@@ -179,19 +179,7 @@
 {
 }
 
-- (void) hideResetAndShuffleButtons
-{
-}
-
 - (void) tappedControlCenterButton:(NSString *)genre
-{
-}
-
-- (void) fadeMusicIcon
-{
-}
-
-- (void) fadeTitleLabel
 {
 }
 
