@@ -46,7 +46,7 @@
 
 
 // Only relevant for Spotify
-- (void) tappedSongGenreButton:(NSString *)genre
+- (void) tappedControlCenterButton:(NSString *)genre
 {
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }

@@ -174,4 +174,26 @@
     [self.player prepareToPlay];
 }
 
+// TODO: REMOVE THE FOLLOWING METHODS!
+- (void) songGenreViewIsVisible:(BOOL)visible
+{
+}
+
+- (void) hideResetAndShuffleButtons
+{
+}
+
+- (void) tappedControlCenterButton:(NSString *)genre
+{
+}
+
+- (void) fadeMusicIcon
+{
+}
+
+- (void) fadeTitleLabel
+{
+}
+
+
 @end

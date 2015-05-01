@@ -56,9 +56,7 @@
     } else {
         NSLog(@"Internet is reachable");
     }
-    
-    [self setupNotifications];
-        
+            
     UITapGestureRecognizer *tappedMusicIconImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMusicIconImage)];
     tappedMusicIconImage.numberOfTapsRequired = 1;
     [self.musicIcon addGestureRecognizer:tappedMusicIconImage];
@@ -73,43 +71,12 @@
     [super viewDidAppear:animated];
 
     self.playerAlreadyStartedPlayingForThisSong = NO;
-    NSLog(@"Set playerAlreadyStartedPlayingForThisSong to FALSE");
-    
-    if (self.didOpenYapForFirstTime && !self.didViewSongGenreNotification && !self.didViewSongGenreViewForFirstTime) {
-        double delay = 0.3;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:@"Find a Song!"];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_SONG_GENRE_NOTIFICATION];
-        });
-    }
-}
-
-- (void) setupNotifications
-{
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserverForName:TAPPED_PROGRESS_VIEW_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        NSLog(@"Tapped Progress View");
-                        [self updateSongGenreViewVisibility];
-                    }];
 }
  
 - (void)tappedMusicIconImage {
     NSLog(@"Tapped Music Icon Image");
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Music Icon"];
-    
-    [self updateSongGenreViewVisibility];
-    
-    if (!self.didViewSongGenreViewForFirstTime) {
-        double delay = 0.3;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:@"Choose a Genre!"];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_SONG_GENRE_VIEW];
-        });
-    }
 }
 
 - (void)tappedSpotifyView {
@@ -131,16 +98,7 @@
     } else {
         NSLog(@"Search Box Is Not First Responder");
         if (self.carousel.hidden == YES) {
-            [self updateSongGenreViewVisibility];
         }
-    }
-    
-    if (!self.didViewSongGenreViewForFirstTime) {
-        double delay = 0.3;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:@"Choose a Genre!"];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_SONG_GENRE_VIEW];
-        });
     }
 }
 
@@ -800,19 +758,9 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SONG_VERSION_TWO];
 }
 
-- (BOOL) didViewSongGenreViewForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SONG_GENRE_VIEW];
-}
-
 - (BOOL) didOpenYapForFirstTime
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
-}
-
-- (BOOL) didViewSongGenreNotification
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SONG_GENRE_NOTIFICATION];
 }
 
 - (BOOL) didViewRandomPickAlertForFirstTime
@@ -832,7 +780,7 @@
 
 #pragma mark - Song Genre Stuff
 
-- (void) tappedSongGenreButton:(NSString *)genre
+- (void) tappedControlCenterButton:(NSString *)genre
 {
     self.selectedGenre = genre;
     
@@ -892,17 +840,6 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SHUFFLE_BUTTON];
     }
     [self searchGenre:self.selectedGenre];
-}
-
-- (void) updateSongGenreViewVisibility {
-    if (self.songGenreViewIsVisible) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_SONG_GENRE_VIEW object:nil];
-        [self showMusicIcon];
-        [self showTitleLabel];
-    } else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_SONG_GENRE_VIEW object:nil];
-        [self hideSearchBox];
-    }
 }
 
 - (void) fadeMusicIcon {

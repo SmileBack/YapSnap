@@ -17,14 +17,8 @@
         if ([vc isKindOfClass:[AudioCaptureViewController class]]) {
             if (!animated) {
                 [self.navigationController popToViewController:vc animated:NO];
-                AudioCaptureViewController *audioVC = (AudioCaptureViewController *)vc;
-                [audioVC resetUI];
             } else {
                 BOOL animate = [vcs indexOfObject:self] - 1 == [vcs indexOfObject:vc];
-                if (!animate) {
-                    AudioCaptureViewController *audioVC = (AudioCaptureViewController *)vc;
-                    [audioVC resetUI];
-                }
                 [self.navigationController popToViewController:vc animated:animate];
             }
             return YES;

@@ -31,7 +31,7 @@
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MusicIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="RkK-X4-YKu">
                                 <rect key="frame" x="110" y="110" width="100" height="96"/>
                             </imageView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNs-R1-CJc" customClass="iCarousel">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNs-R1-CJc" customClass="iCarousel">
                                 <rect key="frame" x="0.0" y="70" width="320" height="230"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -81,7 +81,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap To Find a Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZE-gM-pMg">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send a Yap!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZE-gM-pMg">
                                 <rect key="frame" x="52" y="27" width="217" height="31"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -180,27 +180,6 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf8-UJ-WxH" userLabel="Source Container">
                                 <rect key="frame" x="0.0" y="121" width="320" height="302"/>
                             </containerView>
-                            <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dje-2i-9YC" userLabel="Spotify Mode Button" customClass="OffsetImageButton">
-                                <rect key="frame" x="0.0" y="523" width="157" height="45"/>
-                                <color key="backgroundColor" red="0.93333333330000001" green="0.95686274510000002" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="spotifyModeButtonPressed:" destination="2" eventType="touchUpInside" id="UTY-6X-TIB"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dI5-ha-IW9" userLabel="Mic Mode Button" customClass="OffsetImageButton">
-                                <rect key="frame" x="163" y="523" width="157" height="45"/>
-                                <color key="backgroundColor" red="0.93333333333333335" green="0.95686274509803915" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="micModeButtonPressed:" destination="2" eventType="touchUpInside" id="Gfg-N0-l6F"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtk-3T-WBS">
                                 <rect key="frame" x="96" y="434" width="128" height="128"/>
                                 <state key="normal" backgroundImage="RecordButtonBlueBorder10.png">
@@ -226,8 +205,8 @@
                                     <action selector="playTapped:" destination="2" eventType="touchUpInside" id="VKC-1I-ZLd"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BHT-hO-bCo" userLabel="Song Genre View">
-                                <rect key="frame" x="0.0" y="568" width="320" height="300"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BHT-hO-bCo" userLabel="Control Center View">
+                                <rect key="frame" x="0.0" y="268" width="320" height="300"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpw-8x-ySj">
                                         <rect key="frame" x="18" y="111" width="84" height="84"/>
@@ -238,7 +217,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapSongGenreButtonOne" destination="2" eventType="touchUpInside" id="pgB-PN-J0j"/>
+                                            <action selector="didTapControlCenterButtonOne" destination="2" eventType="touchUpInside" id="Y57-72-aNY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2h-SQ-0Fm">
@@ -250,19 +229,19 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapSongGenreButtonTwo" destination="2" eventType="touchUpInside" id="EbR-fi-Gvt"/>
+                                            <action selector="didTapControlCenterButtonTwo" destination="2" eventType="touchUpInside" id="PzO-Ak-Mqn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzF-qu-wIy" userLabel="Search">
-                                        <rect key="frame" x="69" y="14" width="84" height="84"/>
-                                        <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="118" y="14" width="84" height="84"/>
+                                        <color key="backgroundColor" red="1" green="0.50797427079485802" blue="0.62387678905275301" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapSongGenreButtonSearch" destination="2" eventType="touchUpInside" id="4Vc-hR-p7f"/>
+                                            <action selector="didTapControlCenterButtonSearch" destination="2" eventType="touchUpInside" id="hBx-Mu-x3Y"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chs-Tz-vGw">
@@ -274,7 +253,20 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapSongGenreButtonThree" destination="2" eventType="touchUpInside" id="ShA-dv-sx2"/>
+                                            <action selector="didTapControlCenterButtonThree" destination="2" eventType="touchUpInside" id="gyv-4u-lUK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6Y-Jm-1fY">
+                                        <rect key="frame" x="218" y="14" width="84" height="84"/>
+                                        <color key="backgroundColor" red="0.052852660293101428" green="0.63516623459384958" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapControlCenterButtonMic" destination="2" eventType="touchUpInside" id="9MF-Pw-hZp"/>
+                                            <action selector="didTapControlCenterButtonThree" destination="2" eventType="touchUpInside" id="gbr-3R-rqZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gww-a9-d2f">
@@ -286,7 +278,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapSongGenreButtonFour" destination="2" eventType="touchUpInside" id="wef-bq-sNl"/>
+                                            <action selector="didTapControlCenterButtonFour" destination="2" eventType="touchUpInside" id="c1g-dv-z9W"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdq-Cp-K49">
@@ -298,7 +290,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapSongGenreButtonFive" destination="2" eventType="touchUpInside" id="G5U-7J-b0v"/>
+                                            <action selector="didTapControlCenterButtonFive" destination="2" eventType="touchUpInside" id="57D-nf-Cel"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPm-37-rej">
@@ -310,56 +302,61 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapSongGenreButtonSix" destination="2" eventType="touchUpInside" id="dRf-eE-x0Q"/>
+                                            <action selector="didTapControlCenterButtonSix" destination="2" eventType="touchUpInside" id="ahp-Dd-N9b"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTw-Kq-HHT">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTw-Kq-HHT" userLabel="Line">
                                         <rect key="frame" x="22" y="0.0" width="278" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MagnifyingGlass.png" translatesAutoresizingMaskIntoConstraints="NO" id="wdU-yL-U2q">
-                                        <rect key="frame" x="97" y="42" width="28" height="28"/>
+                                        <rect key="frame" x="146" y="42" width="28" height="28"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MicrophoneWhiteSmooth.png" translatesAutoresizingMaskIntoConstraints="NO" id="MuV-Q3-1un">
+                                        <rect key="frame" x="247" y="44" width="26" height="26"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWb-xI-2D8" userLabel="Search">
-                                        <rect key="frame" x="169" y="14" width="84" height="84"/>
-                                        <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="18" y="14" width="84" height="84"/>
+                                        <color key="backgroundColor" red="0.20049832342855453" green="0.87062026515151514" blue="0.67566419305752257" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <state key="normal" title="Top 100">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapSongGenreButtonTop100" destination="2" eventType="touchUpInside" id="L1Y-Op-hWq"/>
+                                            <action selector="didTapControlCenterButtonTop100" destination="2" eventType="touchUpInside" id="2ia-FN-dxo"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRo-kq-Ffc">
+                                <rect key="frame" x="19" y="530" width="56" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapOpenControlCenterButton" destination="2" eventType="touchUpInside" id="Xpd-bm-yOy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Dwb-eQ-GX5" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="44" id="1H4-GY-B2q"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="1gf-LG-sLm"/>
                             <constraint firstItem="Dwb-eQ-GX5" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" constant="10" id="1jW-yf-ygK"/>
-                            <constraint firstItem="dI5-ha-IW9" firstAttribute="width" secondItem="3" secondAttribute="width" multiplier="0.5" constant="-3" id="3R6-Ur-Qvj"/>
                             <constraint firstItem="T7q-Ko-Que" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" id="63R-i6-jw2"/>
-                            <constraint firstAttribute="bottom" secondItem="dI5-ha-IW9" secondAttribute="bottom" id="6pC-3x-KX0"/>
-                            <constraint firstItem="dje-2i-9YC" firstAttribute="height" secondItem="dI5-ha-IW9" secondAttribute="height" id="87t-61-7V4"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="width" secondItem="3" secondAttribute="width" multiplier="0.4" id="ABo-Ds-mDZ"/>
-                            <constraint firstItem="dI5-ha-IW9" firstAttribute="height" secondItem="Xtk-3T-WBS" secondAttribute="height" multiplier="0.35" id="B5t-oP-JDE"/>
                             <constraint firstAttribute="centerX" secondItem="Xtk-3T-WBS" secondAttribute="centerX" id="B6s-aK-z81"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="top" secondItem="1fX-iU-owr" secondAttribute="bottom" constant="17" id="BCa-iP-xVM"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="height" secondItem="3" secondAttribute="width" multiplier="0.4" id="BSR-23-ZOo"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="top" secondItem="Tf8-UJ-WxH" secondAttribute="bottom" constant="11" id="ERA-DM-T7m"/>
-                            <constraint firstItem="dje-2i-9YC" firstAttribute="width" secondItem="dI5-ha-IW9" secondAttribute="width" id="EYU-6r-O8c"/>
                             <constraint firstAttribute="centerX" secondItem="Dwb-eQ-GX5" secondAttribute="centerX" id="G7R-LP-YV5"/>
                             <constraint firstAttribute="trailing" secondItem="T7q-Ko-Que" secondAttribute="trailing" constant="-18" id="M2d-1a-E2j"/>
-                            <constraint firstAttribute="trailing" secondItem="dI5-ha-IW9" secondAttribute="trailing" id="VfU-K3-972"/>
-                            <constraint firstAttribute="bottom" secondItem="dje-2i-9YC" secondAttribute="bottom" id="ahe-hk-Ft9"/>
                             <constraint firstItem="1fX-iU-owr" firstAttribute="leading" secondItem="Tf8-UJ-WxH" secondAttribute="leading" id="cmh-CB-p1A"/>
                             <constraint firstItem="1fX-iU-owr" firstAttribute="height" secondItem="3" secondAttribute="height" multiplier="0.0704" id="e55-cV-CWF"/>
                             <constraint firstAttribute="trailing" secondItem="Tf8-UJ-WxH" secondAttribute="trailing" id="fII-wK-0MU"/>
-                            <constraint firstItem="dje-2i-9YC" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="hqf-2F-SaG"/>
                             <constraint firstItem="1fX-iU-owr" firstAttribute="trailing" secondItem="Tf8-UJ-WxH" secondAttribute="trailing" id="oAQ-xW-0JL"/>
                             <constraint firstItem="1fX-iU-owr" firstAttribute="top" secondItem="3" secondAttribute="topMargin" constant="64" id="uX0-kb-X9G"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Xtk-3T-WBS" secondAttribute="bottom" constant="6" id="yN0-fu-IF4"/>
@@ -371,20 +368,20 @@
                     <connections>
                         <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="dxv-8x-Abq"/>
                         <outlet property="bottomConstraint" destination="yN0-fu-IF4" id="yTl-AA-hhl"/>
-                        <outlet property="micModeButton" destination="dI5-ha-IW9" id="X8L-1K-fmn"/>
+                        <outlet property="controlCenterButtonFive" destination="fdq-Cp-K49" id="cmT-AR-SjH"/>
+                        <outlet property="controlCenterButtonFour" destination="Gww-a9-d2f" id="XbN-AX-XXi"/>
+                        <outlet property="controlCenterButtonMic" destination="c6Y-Jm-1fY" id="dwF-P5-qw4"/>
+                        <outlet property="controlCenterButtonOne" destination="vpw-8x-ySj" id="Gax-Ic-djP"/>
+                        <outlet property="controlCenterButtonSearch" destination="rzF-qu-wIy" id="caH-J5-1ok"/>
+                        <outlet property="controlCenterButtonSix" destination="rPm-37-rej" id="HDW-rX-jgS"/>
+                        <outlet property="controlCenterButtonThree" destination="chs-Tz-vGw" id="bFS-kg-O1g"/>
+                        <outlet property="controlCenterButtonTop100" destination="DWb-xI-2D8" id="eOg-hp-817"/>
+                        <outlet property="controlCenterButtonTwo" destination="C2h-SQ-0Fm" id="0QA-4d-wTu"/>
+                        <outlet property="controlCenterView" destination="BHT-hO-bCo" id="sLl-Wk-lJ8"/>
+                        <outlet property="openControlCenterButton" destination="mRo-kq-Ffc" id="wIC-po-dYz"/>
                         <outlet property="playButton" destination="rCz-SL-MJs" id="ing-QD-Skk"/>
                         <outlet property="recordButton" destination="Xtk-3T-WBS" id="R1a-Wi-774"/>
                         <outlet property="recordProgressView" destination="1fX-iU-owr" id="7zx-v4-F5E"/>
-                        <outlet property="songGenreButtonFive" destination="fdq-Cp-K49" id="d08-ry-s97"/>
-                        <outlet property="songGenreButtonFour" destination="Gww-a9-d2f" id="nwk-X2-xVI"/>
-                        <outlet property="songGenreButtonOne" destination="vpw-8x-ySj" id="kA6-fC-Uaj"/>
-                        <outlet property="songGenreButtonSearch" destination="rzF-qu-wIy" id="FfM-M8-MeN"/>
-                        <outlet property="songGenreButtonSix" destination="rPm-37-rej" id="qqZ-nC-VP6"/>
-                        <outlet property="songGenreButtonThree" destination="chs-Tz-vGw" id="wER-t0-rPq"/>
-                        <outlet property="songGenreButtonTop100" destination="DWb-xI-2D8" id="0QH-WO-7Aa"/>
-                        <outlet property="songGenreButtonTwo" destination="C2h-SQ-0Fm" id="Ysx-ah-XTc"/>
-                        <outlet property="songGenreView" destination="BHT-hO-bCo" id="bXP-pQ-xpc"/>
-                        <outlet property="spotifyModeButton" destination="dje-2i-9YC" id="xRf-Q6-xxF"/>
                         <outlet property="titleLabel" destination="Dwb-eQ-GX5" id="VNy-3I-KSC"/>
                         <outlet property="topLeftButton" destination="yjE-ev-SsG" id="D5w-gs-u5p"/>
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
@@ -1722,6 +1719,7 @@ Type it here!</string>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
+        <image name="MicrophoneWhiteSmooth.png" width="48" height="48"/>
         <image name="Microphone_White2.png" width="256" height="256"/>
         <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PlusButtonWhite2.png" width="20" height="20"/>
@@ -1741,6 +1739,6 @@ Type it here!</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="czb-n6-hbf"/>
+        <segue reference="AEp-MY-7pq"/>
     </inferredMetricsTieBreakers>
 </document>

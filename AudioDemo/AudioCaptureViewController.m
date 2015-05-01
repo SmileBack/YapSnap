@@ -27,24 +27,30 @@
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
 @property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
-@property (nonatomic, strong) IBOutlet UIView *songGenreView;
-@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonOne;
-@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonTwo;
-@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonThree;
-@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonFour;
-@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonFive;
-@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonSix;
-@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonTop100;
-@property (nonatomic, strong) IBOutlet UIButton *songGenreButtonSearch;
 
-- (IBAction)didTapSongGenreButtonOne;
-- (IBAction)didTapSongGenreButtonTwo;
-- (IBAction)didTapSongGenreButtonThree;
-- (IBAction)didTapSongGenreButtonFour;
-- (IBAction)didTapSongGenreButtonFive;
-- (IBAction)didTapSongGenreButtonSix;
-- (IBAction)didTapSongGenreButtonTop100;
-- (IBAction)didTapSongGenreButtonSearch;
+@property (nonatomic, strong) IBOutlet UIView *controlCenterView;
+@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonOne;
+@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonTwo;
+@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonThree;
+@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonFour;
+@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonFive;
+@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonSix;
+@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonTop100;
+@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonSearch;
+@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonMic;
+@property (nonatomic, strong) IBOutlet UIButton *openControlCenterButton;
+
+- (IBAction)didTapControlCenterButtonOne;
+- (IBAction)didTapControlCenterButtonTwo;
+- (IBAction)didTapControlCenterButtonThree;
+- (IBAction)didTapControlCenterButtonFour;
+- (IBAction)didTapControlCenterButtonFive;
+- (IBAction)didTapControlCenterButtonSix;
+- (IBAction)didTapControlCenterButtonTop100;
+- (IBAction)didTapControlCenterButtonSearch;
+- (IBAction)didTapControlCenterButtonMic;
+
+- (IBAction)didTapOpenControlCenterButton;
 
 @end
 
@@ -65,9 +71,7 @@ static const float TIMER_INTERVAL = .01;
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil
                                                                             action:nil];
-    self.micModeButton.reverseImageOffset = YES;
-    self.spotifyModeButton.image = [UIImage imageNamed:@"MusicIconBlue3"];
-    self.micModeButton.image = [UIImage imageNamed:@"MicModeButtonIcon"];
+
     [self.recordButton setBackgroundImage:[UIImage imageNamed:@"RecordButtonBlueBorder10Pressed.png"] forState:UIControlStateHighlighted];
     
     self.recordProgressView.progress = 0;
@@ -78,29 +82,17 @@ static const float TIMER_INTERVAL = .01;
         [self showWelcomePopup];
     }
 
-    if ([AppDelegate sharedDelegate].appOpenedCount <= 2) {
-        YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
-        [self addChildViewController:spotifySource];
-        spotifySource.view.frame = self.audioSourceContainer.bounds;
-        [self.audioSourceContainer addSubview:spotifySource.view];
-        self.audioSource = spotifySource;
-        self.micModeButton.alpha = .3;
-        self.spotifyModeButton.alpha = 1;
-    } else {
-        YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
-        [self addChildViewController:micSource];
-        micSource.view.frame = self.audioSourceContainer.bounds;
-        [self.audioSourceContainer addSubview:micSource.view];
-        self.audioSource = micSource;
-        self.micModeButton.alpha = 1;
-        self.spotifyModeButton.alpha = .3;
-    }
+    YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+    [self addChildViewController:spotifySource];
+    spotifySource.view.frame = self.audioSourceContainer.bounds;
+    [self.audioSourceContainer addSubview:spotifySource.view];
+    self.audioSource = spotifySource;
     
     [self setupNotifications];
     
     [self setupNavBarStuff];
     
-    [self designSongGenreButtons];
+    [self designControlCenterButtons];
     
     //[self.playButton setEnabled:YES];
 }
@@ -170,7 +162,7 @@ static const float TIMER_INTERVAL = .01;
     [self.audioSource stopAudioCapture:self.elapsedTime];
     
     if ([self isInReplyMode]) {
-        [self micModeButtonPressed:nil]; //This line is a hacky fix to an issue where spotify songs remain on screen after pop
+        [self switchToMicMode]; //This line is a hacky fix to an issue where spotify songs remain on screen after pop
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
@@ -342,7 +334,7 @@ static const float TIMER_INTERVAL = .01;
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Show Song Genre View");
-                        [self showSongGenreView];
+                        [self showControlCenter];
                         [self.audioSource fadeMusicIcon];
                         [self.audioSource fadeTitleLabel];
                     }];
@@ -352,7 +344,7 @@ static const float TIMER_INTERVAL = .01;
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Show Song Genre View");
-                        [self hideSongGenreView];
+                        [self hideControlCenter];
                     }];
 }
 
@@ -382,9 +374,7 @@ static const float TIMER_INTERVAL = .01;
 {
     self.elapsedTime = 0;
     [self.recordProgressView setProgress:0];
-
-    self.explanation.hidden = YES;
-
+    
     if ([self.audioSource startAudioCapture]) {
         if (self.audioSource.class == [YSSpotifySourceController class]) {
             [self.recordProgressView.activityIndicator startAnimating];
@@ -407,12 +397,6 @@ static const float TIMER_INTERVAL = .01;
             }
         });
         
-        self.explanation.hidden = YES;
-        //Make explanation label disappear
-        double delay2 = 2.0;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.explanation.hidden = YES;
-        });
     } else {
         [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
     }
@@ -474,25 +458,14 @@ static const float TIMER_INTERVAL = .01;
     }
 }
 
-- (void) resetUI
-{
-    if ([AppDelegate sharedDelegate].appOpenedCount <= 2) {
-        [self spotifyModeButtonPressed:nil];
-    } else {
-        [self micModeButtonPressed:nil];
-    }
-}
-
 #pragma mark - Mode Changing
-- (IBAction)spotifyModeButtonPressed:(UIButton *)sender
+- (void)switchToSpotifyMode
 {
     if (![self isInSpotifyMode]) {
         YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
-        self.micModeButton.alpha = .3;
-        self.spotifyModeButton.alpha = 1;
         [self flipController:self.audioSource to:spotifySource];
     }
-    
+    /*
     if (sender) {
         if (!self.didTapMusicModeButtonForFirstTime) {
             double delay = .1;
@@ -501,20 +474,18 @@ static const float TIMER_INTERVAL = .01;
             });
         }
     }
+    */
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Music Mode Button"];
 }
 
-- (IBAction)micModeButtonPressed:(UIButton *)sender
-{
+- (void)switchToMicMode {
     if (![self isInRecordMode]) {
         YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
-        self.micModeButton.alpha = 1;
-        self.spotifyModeButton.alpha = .3;
         [self flipController:self.audioSource to:micSource];
     }
-    
+    /*
     if (sender) {
         if (!self.didTapMicModeButtonForFirstTime) {
             double delay = .3;
@@ -529,6 +500,7 @@ static const float TIMER_INTERVAL = .01;
             });
         }
     }
+     */
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Mic Mode Button"];
@@ -553,16 +525,6 @@ static const float TIMER_INTERVAL = .01;
                                 [from removeFromParentViewController];
                                 weakSelf.audioSource = to;
                             }];
-}
-
-- (BOOL) didTapMicModeButtonForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
-}
-
-- (BOOL) didTapMusicModeButtonForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
 }
 
 - (BOOL) didOpenYapForFirstTime
@@ -606,47 +568,66 @@ static const float TIMER_INTERVAL = .01;
 
 #pragma mark - Song Genre Buttons
 
-- (IBAction)didTapSongGenreButtonOne {
-    [self.audioSource tappedSongGenreButton:@"One"];
-    [self hideSongGenreView];
+- (IBAction)didTapControlCenterButtonOne {
+    [self switchToSpotifyMode];
+    [self.audioSource tappedControlCenterButton:@"One"];
+    [self hideControlCenter];
 }
 
-- (IBAction)didTapSongGenreButtonTwo {
-    [self.audioSource tappedSongGenreButton:@"Two"];
-    [self hideSongGenreView];
+- (IBAction)didTapControlCenterButtonTwo {
+    [self switchToSpotifyMode];
+    [self.audioSource tappedControlCenterButton:@"Two"];
+    [self hideControlCenter];
 }
 
-- (IBAction)didTapSongGenreButtonThree {
-    [self.audioSource tappedSongGenreButton:@"Three"];
-    [self hideSongGenreView];
+- (IBAction)didTapControlCenterButtonThree {
+    [self switchToSpotifyMode];
+    [self.audioSource tappedControlCenterButton:@"Three"];
+    [self hideControlCenter];
 }
 
-- (IBAction)didTapSongGenreButtonFour {
-    [self.audioSource tappedSongGenreButton:@"Four"];
-    [self hideSongGenreView];
+- (IBAction)didTapControlCenterButtonFour {
+    [self switchToSpotifyMode];
+    [self.audioSource tappedControlCenterButton:@"Four"];
+    [self hideControlCenter];
 }
 
-- (IBAction)didTapSongGenreButtonFive {
-    [self.audioSource tappedSongGenreButton:@"Five"];
-    [self hideSongGenreView];
+- (IBAction)didTapControlCenterButtonFive {
+    [self switchToSpotifyMode];
+    [self.audioSource tappedControlCenterButton:@"Five"];
+    [self hideControlCenter];
 }
 
-- (IBAction)didTapSongGenreButtonSix {
-    [self.audioSource tappedSongGenreButton:@"Six"];
-    [self hideSongGenreView];
+- (IBAction)didTapControlCenterButtonSix {
+    [self switchToSpotifyMode];
+    [self.audioSource tappedControlCenterButton:@"Six"];
+    [self hideControlCenter];
 }
 
-- (IBAction)didTapSongGenreButtonTop100 {
-    [self.audioSource tappedSongGenreButton:@"Top100"];
-    [self hideSongGenreView];
+- (IBAction)didTapControlCenterButtonTop100 {
+    [self switchToSpotifyMode];
+    [self.audioSource tappedControlCenterButton:@"Top100"];
+    [self hideControlCenter];
 }
 
-- (IBAction)didTapSongGenreButtonSearch {
-    [self.audioSource tappedSongGenreButton:@"Search"];
-    [self hideSongGenreView];
+- (IBAction)didTapControlCenterButtonSearch {
+    [self switchToSpotifyMode];
+    [self.audioSource tappedControlCenterButton:@"Search"];
+    [self hideControlCenter];
 }
 
-- (void)hideSongGenreView {
+- (IBAction)didTapControlCenterButtonMic {
+    [self switchToMicMode];
+    [self hideControlCenter];
+}
+
+- (IBAction)didTapOpenControlCenterButton {
+    [self showControlCenter];
+}
+
+- (void)hideControlCenter {
+    self.openControlCenterButton.hidden = NO;
+    
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = screenRect.size.height;
     CGFloat screenWidth = screenRect.size.width;
@@ -654,16 +635,15 @@ static const float TIMER_INTERVAL = .01;
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.songGenreView.frame = CGRectMake(0, screenHeight, screenWidth, 300);
+                         self.controlCenterView.frame = CGRectMake(0, screenHeight, screenWidth, 300);
                      }
                      completion:^(BOOL finished) {
-                         self.songGenreView.hidden = YES;
                          [self.audioSource songGenreViewIsVisible:NO];
                      }];
 }
 
-- (void)showSongGenreView {
-    self.songGenreView.hidden = NO;
+- (void)showControlCenter {
+    self.openControlCenterButton.hidden = YES;
 
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenHeight = screenRect.size.height;
@@ -673,7 +653,7 @@ static const float TIMER_INTERVAL = .01;
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.songGenreView.frame = CGRectMake(0, screenHeight-300, screenWidth, 300);
+                         self.controlCenterView.frame = CGRectMake(0, screenHeight-300, screenWidth, 300);
                      }
                      completion:^(BOOL finished) {
                          [self.audioSource songGenreViewIsVisible:YES];
@@ -682,38 +662,42 @@ static const float TIMER_INTERVAL = .01;
     [self.audioSource hideResetAndShuffleButtons];
 }
 
-- (void) designSongGenreButtons {
-    self.songGenreButtonOne.layer.cornerRadius = 42;
-    self.songGenreButtonOne.layer.borderWidth = 1;
-    self.songGenreButtonOne.layer.borderColor = [UIColor whiteColor].CGColor;
+- (void) designControlCenterButtons {
+    self.controlCenterButtonOne.layer.cornerRadius = 42;
+    self.controlCenterButtonOne.layer.borderWidth = 1;
+    self.controlCenterButtonOne.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.songGenreButtonTwo.layer.cornerRadius = 42;
-    self.songGenreButtonTwo.layer.borderWidth = 1;
-    self.songGenreButtonTwo.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.controlCenterButtonTwo.layer.cornerRadius = 42;
+    self.controlCenterButtonTwo.layer.borderWidth = 1;
+    self.controlCenterButtonTwo.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.songGenreButtonThree.layer.cornerRadius = 42;
-    self.songGenreButtonThree.layer.borderWidth = 1;
-    self.songGenreButtonThree.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.controlCenterButtonThree.layer.cornerRadius = 42;
+    self.controlCenterButtonThree.layer.borderWidth = 1;
+    self.controlCenterButtonThree.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.songGenreButtonFour.layer.cornerRadius = 42;
-    self.songGenreButtonFour.layer.borderWidth = 1;
-    self.songGenreButtonFour.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.controlCenterButtonFour.layer.cornerRadius = 42;
+    self.controlCenterButtonFour.layer.borderWidth = 1;
+    self.controlCenterButtonFour.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.songGenreButtonFive.layer.cornerRadius = 42;
-    self.songGenreButtonFive.layer.borderWidth = 1;
-    self.songGenreButtonFive.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.controlCenterButtonFive.layer.cornerRadius = 42;
+    self.controlCenterButtonFive.layer.borderWidth = 1;
+    self.controlCenterButtonFive.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.songGenreButtonSix.layer.cornerRadius = 42;
-    self.songGenreButtonSix.layer.borderWidth = 1;
-    self.songGenreButtonSix.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.controlCenterButtonSix.layer.cornerRadius = 42;
+    self.controlCenterButtonSix.layer.borderWidth = 1;
+    self.controlCenterButtonSix.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.songGenreButtonSearch.layer.cornerRadius = 42;
-    self.songGenreButtonSearch.layer.borderWidth = 1;
-    self.songGenreButtonSearch.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.controlCenterButtonSearch.layer.cornerRadius = 42;
+    self.controlCenterButtonSearch.layer.borderWidth = 1;
+    self.controlCenterButtonSearch.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.songGenreButtonTop100.layer.cornerRadius = 42;
-    self.songGenreButtonTop100.layer.borderWidth = 1;
-    self.songGenreButtonTop100.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.controlCenterButtonTop100.layer.cornerRadius = 42;
+    self.controlCenterButtonTop100.layer.borderWidth = 1;
+    self.controlCenterButtonTop100.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.controlCenterButtonMic.layer.cornerRadius = 42;
+    self.controlCenterButtonMic.layer.borderWidth = 1;
+    self.controlCenterButtonMic.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 @end

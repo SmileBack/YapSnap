@@ -16,22 +16,15 @@
 
 @interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate, MFMailComposeViewControllerDelegate>
 
-#define TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.TappedMicModeButtonForFirstTimeKey"
-#define TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.TappedMusicModeButtonForFirstTimeKey"
 #define SHOW_FEEDBACK_PAGE @"yaptap.ShowFeedbackPage"
 #define TAPPED_PROGRESS_VIEW_NOTIFICATION @"yaptap.TappedProgressViewNotification"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
 #define DID_SEE_WELCOME_POPUP_KEY @"yaptap.DidSeeWelcomePopupKey"
-#define SHOW_SONG_GENRE_VIEW @"yaptap.ShowSongGenreViewNotification"
-#define HIDE_SONG_GENRE_VIEW @"yaptap.HideSongGenreViewNotification"
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 @property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;
 @property (weak, nonatomic) IBOutlet UIButton *topLeftButton;
-@property (weak, nonatomic) IBOutlet UIView *explanation;
-@property (strong, nonatomic) IBOutlet OffsetImageButton *spotifyModeButton;
-@property (strong, nonatomic) IBOutlet OffsetImageButton *micModeButton;
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
 @property (weak, nonatomic) IBOutlet YSRecordProgressView *recordProgressView;
 
@@ -46,7 +39,5 @@
 - (BOOL)isInRecordMode;
 
 - (void) flipController:(UIViewController *)from to:(YSAudioSourceController *)to;
-
-- (void) resetUI;
 
 @end

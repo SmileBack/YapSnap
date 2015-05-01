@@ -35,7 +35,7 @@
 - (YapBuilder *) getYapBuilder;
 
 // These are only relevant for Spotify!
-- (void) tappedSongGenreButton:(NSString*)genre;
+- (void) tappedControlCenterButton:(NSString*)genre;
 - (void) fadeMusicIcon;
 - (void) fadeTitleLabel;
 - (void) hideResetAndShuffleButtons;
