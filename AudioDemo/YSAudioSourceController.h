@@ -25,8 +25,6 @@
 - (BOOL) startAudioCapture;
 - (void) stopAudioCapture:(float)elapsedTime;
 
-- (void) resetUI;
-
 - (void) startPlayback;
 - (void) stopPlayback;
 
@@ -37,6 +35,5 @@
 // These are only relevant for Spotify!
 - (void) tappedControlCenterButton:(NSString*)genre;
 - (void) songGenreViewIsVisible:(BOOL)visible;
-- (void) resetSpotifyUI;
 
 @end

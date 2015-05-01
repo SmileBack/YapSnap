@@ -76,7 +76,11 @@
         self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if ([self.searchBox.text length] == 0) {
             [self.view endEditing:YES];
-            self.searchBox.alpha = 0;
+            double delay = .3;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER_NOTIFICATION object:nil];
+                [self resetSpotifyUI];
+            });
         } else {
             [self search:self.searchBox.text];
             [self.view endEditing:YES];
@@ -93,16 +97,16 @@
 }
 
 - (IBAction) didTapResetButton {
-    [self resetSpotifyUI];
-    
+    double delay = .3;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER_NOTIFICATION object:nil];
+        [self resetSpotifyUI];
+    });
+
     if (!self.didTapResetButtonForFirstTime) {
         [[YTNotifications sharedNotifications] showNotificationText:@"Reset"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_RESET_BUTTON];
     }
-    double delay = .3;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER_VIEW_NOTIFICATION object:nil];
-    });
 }
 
 - (void) searchGenre:(NSString *)genre {
@@ -220,6 +224,11 @@
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
                 });
+                
+                double delay2 = 1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.searchBox becomeFirstResponder];
+                });
             } else {
                 NSLog(@"Returned Songs Successfully");
                 [self.loadingIndicator stopAnimating];
@@ -235,12 +244,25 @@
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
                 });
+                
+                double delay2 = 1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER_NOTIFICATION object:nil];
+                    [self resetSpotifyUI];
+                });
             } else {
                 NSLog(@"Error Returning Songs %@", error);
                 double delay = 0.1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong! Try Again."];
                 });
+                
+                double delay2 = 1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER_NOTIFICATION object:nil];
+                    [self resetSpotifyUI];
+                });
+                
                 [mixpanel track:@"Spotify Error - search (other)"];
             }
         }
@@ -776,9 +798,9 @@
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_RANDOM_PICK_ALERT];
         } else {
             if ([genre isEqual: @"Six"]) {
-                [[YTNotifications sharedNotifications] showBlueNotificationText:@"Show/Film Selected"];
+                //[[YTNotifications sharedNotifications] showBlueNotificationText:@"Show/Film Selected"];
             } else {
-                [[YTNotifications sharedNotifications] showBlueNotificationText:@"Artist Selected"];
+                //[[YTNotifications sharedNotifications] showBlueNotificationText:@"Artist Selected"];
             }
         }
         
@@ -817,19 +839,6 @@
     [self searchGenre:self.selectedGenre];
 }
 
-- (void) hideSearchBox
-{
-    [UIView animateWithDuration:.2
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.searchBox.alpha = 0;
-                     }
-                     completion:^(BOOL finished) {
-                         self.searchBox.text = @"";
-                     }];
-}
-
 - (void) showSearchBox
 {
     [UIView animateWithDuration:.3
@@ -866,7 +875,9 @@
                          self.searchBox.alpha = 0;
                          self.carousel.alpha = 0;
                      }
-                     completion:nil];
+                     completion:^(BOOL finished) {
+                         self.searchBox.text = @"";
+                     }];
 }
 
 @end

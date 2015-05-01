@@ -324,7 +324,7 @@ static const float TIMER_INTERVAL = .01;
                         }];
                     }];
     
-    [center addObserverForName:SHOW_CONTROL_CENTER_VIEW_NOTIFICATION
+    [center addObserverForName:SHOW_CONTROL_CENTER_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
@@ -336,7 +336,7 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        NSLog(@"Show Song Genre View");
+                        NSLog(@"Hide Song Genre View");
                         [self hideControlCenter];
                     }];
 }
@@ -621,7 +621,7 @@ static const float TIMER_INTERVAL = .01;
 }
 
 - (void)hideControlCenter {
-    [UIView animateWithDuration:.3
+    [UIView animateWithDuration:1
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
@@ -660,9 +660,7 @@ static const float TIMER_INTERVAL = .01;
                      }
                      completion:^(BOOL finished) {
                          [self.audioSource songGenreViewIsVisible:YES];
-                     }];
-    
-    [self.audioSource resetSpotifyUI];
+                     }];    
 }
 
 - (void) styleControlCenterButtons {

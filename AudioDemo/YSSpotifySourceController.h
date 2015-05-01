@@ -19,7 +19,7 @@
 #define VIEWED_RANDOM_PICK_ALERT @"yaptap.ViewedRandomPickAlert"
 #define TAPPED_RESET_BUTTON @"yaptap.TappedResetButton"
 #define TAPPED_SHUFFLE_BUTTON @"yaptap.TappedShuffleButton"
-#define SHOW_CONTROL_CENTER_VIEW_NOTIFICATION @"yaptap.ShowControlCenterViewNotification"
+#define SHOW_CONTROL_CENTER_NOTIFICATION @"yaptap.ShowControlCenterViewNotification"
 #define HIDE_CONTROL_CENTER_VIEW_NOTIFICATION @"yaptap.HideControlCenterViewNotification"
 
 @end
