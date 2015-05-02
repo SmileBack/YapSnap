@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "FBShimmering.h"
 #import "FBShimmeringView.h"
+#import "SpotifyArtistFactory.h"
 
 @interface YSSpotifySourceController ()
 @property (nonatomic, strong) NSArray *songs;
@@ -107,21 +108,7 @@
 }
 
 - (void) searchGenre:(NSString *)genre {
-    if ([genre  isEqual: @"Pop"]) {
-        self.artists = [[NSArray alloc] initWithObjects:@"Maroon 5", @"Wiz Khalifa", @"Drake", @"Ed Sheeran", @"Sam Smith", @"All Time Low", @"Meghan Trainor", @"Ellie Goulding", @"Ariana Grande", @"Nicki Minaj",@"Kendrick Lamar", @"Rihanna", @"Mark Ronson", @"Wiz Khalifa", @"Nick Jonas", @"Bruno Mars",@"WALK THE MOON", @"Fall Out Boy", @"Imagine Dragons", @"Fetty Wap", @"Sam Hunt", @"Flo Rida", @"Jason Derulo", @"Beyonce", @"Florida Georgia Line", @"Katy Perry", @"Big Sean", @"Luke Bryan",@"Charlie Puth", @"Wale", @"Sia", @"Tove Lo", @"Kelly Clarkson", @"Hozier",@"One Direction", @"Chris Brown", @"Eminem", @"Zac Brown Band", @"Darius Rucker", @"Ludacris",@"Rae Sremmurd", @"J. Cole", @"Blake Shelton", @"Jason Aldean", @"Kanye West", @"Iggy Azalea",@"Eric Church", @"Natalie La Rose", @"Selena Gomez", @"Pitbull", @"Ne-Yo", @"Lee Brice",@"Vance Joy", @"George Ezra", @"Calvin Harris", @"Trey Songz", @"Andy Grammer", @"Lord Huron", @"Carrie Underwood", @"Mumford & Sons", @"Justin Bieber", @"David Guetta", @"Kidz Bop Kids", @"Fifth Harmony", @"Cole Swindell", @"Tyga", @"Little Big Town", @"OneRepublic", @"Miranda Lambert",@"Usher", @"Echosmith", @"Jeremih", @"Thomas Rhett", @"Zedd", @"Dierks Bentley", @"Justin Timberlake", @"Kid Ink", @"Brian Wilson", @"Madonna", @"Omarion", @"AC/DC", @"Kenny Chesney", @"Tim McGraw", @"Death Cab For Cutie", @"Romeo Santos", @"Kid Rock", @"Pharrell Williams", @"Twenty One Pilots", @"DJ Snake", @"John Legend", @"Three Days Grace", @"Adele", @"Michael Jackson", @"Shawn Mendes", @"Led Zeppelin", @"Matt And Kim", @"Matt And Kim", @"Billy Currington", @"Paul McCartney", @"U2", @"Coldplay", @"Avicci", nil];
-    } else if ([genre  isEqual: @"Hip Hop"]) {
-        self.artists = [[NSArray alloc] initWithObjects:@"Hip Hop", nil];
-    } else if ([genre  isEqual: @"Rock"]) {
-        self.artists = [[NSArray alloc] initWithObjects:@"Rock", @"Wiz Khalifa", @"Drake", @"Ed Sheeran", @"Sam Smith", @"All Time Low", nil];
-    } else if ([genre  isEqual: @"EDM"]) {
-        self.artists = [[NSArray alloc] initWithObjects:@"EDM", nil];
-    } else if ([genre  isEqual: @"Country"]) {
-        self.artists = [[NSArray alloc] initWithObjects:@"Country", nil];
-    } else if ([genre  isEqual: @"TV/Film"]) {
-        self.artists = [[NSArray alloc] initWithObjects:@"TV/Film", nil];
-    } else if ([genre  isEqual: @"Top100"]) {
-        self.artists = [[NSArray alloc] initWithObjects:@"Top100", nil];
-    }
+    self.artists = [SpotifyArtistFactory artistsForGenre:genre];
     
     NSString *randomlySelectedArtist = [self.artists objectAtIndex: arc4random() % [self.artists count]];
     
