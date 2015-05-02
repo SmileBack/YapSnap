@@ -16,11 +16,15 @@
 #define DID_SEE_DOUBLE_TAP_BANNER @"yaptap.DidSeeDoubleTapBannerKey"
 #define DID_SEE_WELCOME_YAP_BANNER @"yaptap.DidSeeWelcomeYapBannerKey"
 
+typedef void (^StrangerCallback)(YSYap *yap);
+
 @interface PlaybackVC : UIViewController<STKAudioPlayerDelegate> {
     MPVolumeView *_mpVolumeView;
 }
 @property (nonatomic, strong) YSYap *yap;
 @property (nonatomic, strong) IBOutlet MPVolumeView *volumeView;
+
+@property (nonatomic, strong) StrangerCallback strangerCallback;
 
 - (void) stop;
 @end

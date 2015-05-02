@@ -23,6 +23,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *yapPhoto;
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 
+// nil means we don't know yet. YES/NO means the backend told us.
+@property (nonatomic, strong) NSNumber *isFromFriend;
 @end
 
 #define TIME_INTERVAL .01f
@@ -156,11 +158,16 @@
 {
     NSLog(@"Stopping");
     [self.timer invalidate];
-    [self.player stop];
+
+    /*
+     if (self.player.state != STKAudioPlayerStatePlaying) {
+     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+     [self dismissThis];
+     });
+     }
+     */
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self dismissViewControllerAnimated:NO completion:nil];
-    });
+    [self.player stop];
 }
 
 - (void) setupNotifications
@@ -179,6 +186,18 @@
                         }];
                          */
                     }];
+}
+
+- (void) dismissThis
+{
+    [self dismissViewControllerAnimated:NO completion:nil];
+
+    if (self.isFromFriend && !self.isFromFriend.boolValue) {
+        __weak YSYap *weakYap = self.yap;
+        if (self.strangerCallback) {
+            self.strangerCallback(weakYap);
+        }
+    }
 }
 
 #pragma mark - Progress Stuff
@@ -243,9 +262,9 @@
             
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
             
-            [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error) {
-                if (error) {
-
+            [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error, NSNumber *isFriend) {
+                if (success) {
+                    self.isFromFriend = isFriend;
                 }
             }];
             
@@ -263,7 +282,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:PLAYBACK_STOPPED_NOTIFICATION object:nil]; //Not currently used
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self dismissViewControllerAnimated:NO completion:nil];
+            [self dismissThis];
             
             /*
             if ([self.yap.text isEqual: @"Welcome to YapTap :)"] && self.yap.senderID.intValue == 1)
@@ -307,7 +326,7 @@
             
             // In the following code we don't want to include songs where seeking occurs, since buffering will happen much more frequently
             if ([self.yap.type isEqual:@"VoiceMessage"] || ([self.yap.type isEqual:@"SpotifyMessage"] && (self.yap.secondsToFastForward.intValue < 10))) {
-                [[API sharedAPI] updateYapStatus:self.yap toStatus:@"unopened" withCallback:^(BOOL success, NSError *error) {
+                [[API sharedAPI] updateYapStatus:self.yap toStatus:@"unopened" withCallback:^(BOOL success, NSError *error, NSNumber *isFriend) {
                     if (error) {
                         
                     }
@@ -359,7 +378,7 @@
     });
     
     // TODO: File won't play unfortunately (need to get to the bottom of this). Unclog this yap from user's unopened list
-    [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error) {
+    [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error, NSNumber *isFriend) {
         if (error) {
             
         }

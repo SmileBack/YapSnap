@@ -210,12 +210,29 @@ static API *sharedAPI;
         parameters:[self paramsWithDict:params]
            success:^(AFHTTPRequestOperation *operation, id responseObject) {
                callback(YES, nil);
-               NSLog(@"Cleared Yaps Successfully");
+               NSLog(@"Added friends successfully");
            }
            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                callback(NO, error);
-               NSLog(@"Error clearing yaps: %@", error);
+               NSLog(@"Error adding friends: %@", error);
            }];
+}
+
+- (void) confirmFriendFromYap:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback
+{
+    NSDictionary *params = @{@"yap_id": yap.yapID};
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:[self urlForEndpoint:@"friends/confirm"]
+       parameters:[self paramsWithDict:params]
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              callback(YES, nil);
+              NSLog(@"Friend confirmed successfully");
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              callback(NO, error);
+              NSLog(@"Error confirming friend: %@", error);
+          }];
 }
 
 #pragma mark - Yaps
@@ -379,7 +396,7 @@ static API *sharedAPI;
           }];
 }
 
-- (void) updateYapStatus:(YSYap *)yap toStatus:(NSString *)status withCallback:(SuccessOrErrorCallback)callback
+- (void) updateYapStatus:(YSYap *)yap toStatus:(NSString *)status withCallback:(IsFriendCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -388,20 +405,26 @@ static API *sharedAPI;
                                         @"status" : status}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              if (![responseObject isKindOfClass:[NSDictionary class]]) {
-                 callback(NO, nil);
+                 callback(NO, nil, NO);
                  return;
              }
-             NSDictionary *responseDict = responseObject;
-             YSYap *yap = [YSYap yapWithDictionary:responseDict];
+             NSDictionary *yapDict = responseObject;
+             YSYap *yap = [YSYap yapWithDictionary:yapDict];
+             
+             NSNumber *isFriend = yapDict[@"is_friend"];
+             if (!isFriend || isFriend.class == [NSNull class]) {
+                 isFriend = nil;
+             }
+             
              [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_OPENED object:yap];
-             callback(YES, nil);
+             callback(YES, nil, isFriend);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              Mixpanel *mixpanel = [Mixpanel sharedInstance];
              [mixpanel track:@"API Error - updateYapStatus"];
              
              [self processFailedOperation:operation];
-             callback(NO, error);
+             callback(NO, error, NO);
          }];
 }
 

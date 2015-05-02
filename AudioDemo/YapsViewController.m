@@ -21,12 +21,13 @@
 #import "YSPushManager.h"
 #import "UIViewController+Navigation.h"
 #import "YapsCache.h"
+#import "AddFriendAlertView.h"
+#import "BlockFriendAlertView.h"
 
 #define PENDING_YAPS_SECTION 0
 
 @interface YapsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) PlaybackVC *playbackVC;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
 @property (nonatomic, strong) YSYap *yapToBlock; //Saved when the AlertView is shown
@@ -39,6 +40,7 @@
 @property (strong, nonatomic) UIImage *redSquareEmptyOpened;
 
 @property (nonatomic, readonly) NSArray *yaps;
+@property (nonatomic, strong) YSYap *addFriendYap;
 
 - (IBAction)didTapSettingsButton;
 
@@ -251,6 +253,21 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
+#pragma mark - Add Friend flow
+- (void) promptToAddFriend:(YSYap *)yap
+{
+    self.yapToBlock = yap;
+
+    AddFriendAlertView *alertView = [[AddFriendAlertView alloc] initWithYap:self.yapToBlock andDelegate:self];
+    [alertView show];
+}
+
+- (void) promptToBlock
+{
+    BlockFriendAlertView *alertView = [[BlockFriendAlertView alloc] initWithYap:self.yapToBlock andDelegate:self];
+    [alertView show];
+}
+
 #pragma UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -444,6 +461,10 @@ static NSString *CellIdentifier = @"Cell";
         PlaybackVC *vc = segue.destinationViewController;
         YSYap *yap = sender;
         vc.yap = yap;
+        __weak YapsViewController *weakSelf = self;
+        vc.strangerCallback = ^(YSYap *yap) {
+            [weakSelf promptToAddFriend:yap];
+        };
     } else if ([@"Reply Segue" isEqualToString:segue.identifier]) {
         AudioCaptureViewController *audioVC = segue.destinationViewController;
         YSYap *yap = sender;
@@ -569,25 +590,53 @@ static NSString *CellIdentifier = @"Cell";
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
-        // If user confirms blocking do this:
-        NSLog(@"User confirms blocking");
-        
-        __weak YapsViewController *weakSelf = self;
-        
-        [[API sharedAPI] blockUserId:self.yapToBlock.senderID
-                        withCallback:^(BOOL success, NSError *error) {
-                            if (success) {
-                                NSLog(@"Blocking Worked");
-                                [weakSelf removeBlockedYap];
-                            } else {
-                                NSLog(@"Error blocking! %@", error);
-                                double delay = 0.5;
-                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                    [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Blocking User!"];
-                                });
-                            }
-                        }];
+    __weak YapsViewController *weakSelf = self;
+    if ([alertView isKindOfClass:[AddFriendAlertView class]]) {
+        if (buttonIndex == 1) {
+            [[API sharedAPI] confirmFriendFromYap:self.yapToBlock withCallback:^(BOOL success, NSError *error) {
+                if (success) {
+                    [[YTNotifications sharedNotifications] showNotificationText:@"Friends!"];
+                }
+            }];
+            self.yapToBlock = nil;
+        } else {
+            [self promptToBlock];
+        }
+    } else if ([alertView isKindOfClass:[BlockFriendAlertView class]]) {
+        if (buttonIndex == 1) {
+            [[API sharedAPI] blockUserId:self.yapToBlock.senderID
+                            withCallback:^(BOOL success, NSError *error) {
+                                if (success) {
+                                    NSString *text = [NSString stringWithFormat:@"%@ blocked", weakSelf.yapToBlock.displaySenderName];
+                                    [[YTNotifications sharedNotifications] showNotificationText:text];
+                                    [self.tableView reloadData];
+                                }
+                                weakSelf.yapToBlock = nil;
+                            }];
+        } else {
+            self.yapToBlock = nil;
+        }
+    } else {
+        if (buttonIndex == 1) {
+            // If user confirms blocking do this:
+            NSLog(@"User confirms blocking");
+            
+            __weak YapsViewController *weakSelf = self;
+            
+            [[API sharedAPI] blockUserId:self.yapToBlock.senderID
+                            withCallback:^(BOOL success, NSError *error) {
+                                if (success) {
+                                    NSLog(@"Blocking Worked");
+                                    [weakSelf removeBlockedYap];
+                                } else {
+                                    NSLog(@"Error blocking! %@", error);
+                                    double delay = 0.5;
+                                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                        [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Blocking User!"];
+                                    });
+                                }
+                            }];
+        }
     }
 }
 
