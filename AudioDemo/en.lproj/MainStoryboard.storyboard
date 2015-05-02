@@ -192,9 +192,9 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzc-3L-GdR" userLabel="Control Center">
-                                <rect key="frame" x="0.0" y="268" width="320" height="300"/>
+                                <rect key="frame" x="0.0" y="218" width="320" height="350"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="CnN-5P-hG1"/>
+                                    <constraint firstAttribute="height" constant="350" id="CnN-5P-hG1"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="RfI-jj-dXL" kind="embed" id="uuP-JT-hrg"/>
@@ -244,15 +244,6 @@
                         <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="dxv-8x-Abq"/>
                         <outlet property="bottomConstraint" destination="yN0-fu-IF4" id="yTl-AA-hhl"/>
                         <outlet property="controlCenterBottomConstraint" destination="a6a-cY-y9j" id="rnD-N3-AgC"/>
-                        <outlet property="controlCenterButtonFive" destination="fdq-Cp-K49" id="cmT-AR-SjH"/>
-                        <outlet property="controlCenterButtonFour" destination="Gww-a9-d2f" id="XbN-AX-XXi"/>
-                        <outlet property="controlCenterButtonMic" destination="c6Y-Jm-1fY" id="dwF-P5-qw4"/>
-                        <outlet property="controlCenterButtonOne" destination="vpw-8x-ySj" id="Gax-Ic-djP"/>
-                        <outlet property="controlCenterButtonSearch" destination="rzF-qu-wIy" id="caH-J5-1ok"/>
-                        <outlet property="controlCenterButtonSix" destination="rPm-37-rej" id="HDW-rX-jgS"/>
-                        <outlet property="controlCenterButtonThree" destination="chs-Tz-vGw" id="bFS-kg-O1g"/>
-                        <outlet property="controlCenterButtonTop100" destination="DWb-xI-2D8" id="eOg-hp-817"/>
-                        <outlet property="controlCenterButtonTwo" destination="C2h-SQ-0Fm" id="0QA-4d-wTu"/>
                         <outlet property="controlCenterView" destination="rzc-3L-GdR" id="67k-sE-0XL"/>
                         <outlet property="openControlCenterButton" destination="mRo-kq-Ffc" id="wIC-po-dYz"/>
                         <outlet property="playButton" destination="rCz-SL-MJs" id="ing-QD-Skk"/>
@@ -285,7 +276,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHT-hO-bCo" userLabel="Control Center View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpw-8x-ySj">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpw-8x-ySj">
                                         <rect key="frame" x="18" y="111" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
@@ -297,7 +288,7 @@
                                             <action selector="didTapControlCenterButtonOne" destination="RfI-jj-dXL" eventType="touchUpInside" id="24d-ce-qZE"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2h-SQ-0Fm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2h-SQ-0Fm">
                                         <rect key="frame" x="118" y="111" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
@@ -309,7 +300,7 @@
                                             <action selector="didTapControlCenterButtonTwo" destination="RfI-jj-dXL" eventType="touchUpInside" id="F0Y-cw-eYr"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzF-qu-wIy" userLabel="Search">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzF-qu-wIy" userLabel="Search">
                                         <rect key="frame" x="118" y="14" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.20049832340000001" green="0.87062026520000002" blue="0.67566419310000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
@@ -321,7 +312,14 @@
                                             <action selector="didTapControlCenterButtonSearch" destination="RfI-jj-dXL" eventType="touchUpInside" id="hnR-QU-xBp"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chs-Tz-vGw">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MagnifyingGlass.png" translatesAutoresizingMaskIntoConstraints="NO" id="wdU-yL-U2q">
+                                        <rect key="frame" x="146" y="42" width="28" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="5Dm-y1-6k4"/>
+                                            <constraint firstAttribute="width" constant="28" id="Ger-GV-2I8"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chs-Tz-vGw">
                                         <rect key="frame" x="218" y="111" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
@@ -333,7 +331,7 @@
                                             <action selector="didTapControlCenterButtonThree" destination="RfI-jj-dXL" eventType="touchUpInside" id="bVU-UR-Eb8"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6Y-Jm-1fY">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6Y-Jm-1fY" userLabel="Mic">
                                         <rect key="frame" x="218" y="14" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.052852660293101428" green="0.63516623459384958" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
@@ -345,7 +343,14 @@
                                             <action selector="didTapControlCenterButtonMic" destination="RfI-jj-dXL" eventType="touchUpInside" id="m68-AD-Q43"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gww-a9-d2f">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MicrophoneWhiteSmooth.png" translatesAutoresizingMaskIntoConstraints="NO" id="MuV-Q3-1un">
+                                        <rect key="frame" x="247" y="44" width="26" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="46k-Yi-Jxv"/>
+                                            <constraint firstAttribute="width" constant="26" id="ejd-oM-cbb"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gww-a9-d2f">
                                         <rect key="frame" x="18" y="208" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
@@ -357,37 +362,7 @@
                                             <action selector="didTapControlCenterButtonFour" destination="RfI-jj-dXL" eventType="touchUpInside" id="DbT-qP-dFf"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPm-37-rej">
-                                        <rect key="frame" x="218" y="208" width="84" height="84"/>
-                                        <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal" title="TV/Film">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapControlCenterButtonSix" destination="RfI-jj-dXL" eventType="touchUpInside" id="kS4-Ky-pUj"/>
-                                        </connections>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MagnifyingGlass.png" translatesAutoresizingMaskIntoConstraints="NO" id="wdU-yL-U2q">
-                                        <rect key="frame" x="146" y="42" width="28" height="28"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MicrophoneWhiteSmooth.png" translatesAutoresizingMaskIntoConstraints="NO" id="MuV-Q3-1un">
-                                        <rect key="frame" x="247" y="44" width="26" height="26"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWb-xI-2D8" userLabel="Search">
-                                        <rect key="frame" x="18" y="14" width="84" height="84"/>
-                                        <color key="backgroundColor" red="1" green="0.50980392156862742" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal" title="Top 100">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapControlCenterButtonTop100" destination="RfI-jj-dXL" eventType="touchUpInside" id="Zmk-yZ-8rq"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdq-Cp-K49">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdq-Cp-K49">
                                         <rect key="frame" x="118" y="208" width="84" height="84"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
@@ -399,8 +374,83 @@
                                             <action selector="didTapControlCenterButtonFive" destination="RfI-jj-dXL" eventType="touchUpInside" id="GT7-M5-MMn"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPm-37-rej">
+                                        <rect key="frame" x="218" y="208" width="84" height="84"/>
+                                        <color key="backgroundColor" red="0.14117647058823529" green="0.39215686274509803" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                        <state key="normal" title="TV/Film">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapControlCenterButtonSix" destination="RfI-jj-dXL" eventType="touchUpInside" id="kS4-Ky-pUj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWb-xI-2D8">
+                                        <rect key="frame" x="18" y="14" width="84" height="84"/>
+                                        <color key="backgroundColor" red="1" green="0.50980392156862742" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                        <state key="normal" title="Top 100">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapControlCenterButtonTop100" destination="RfI-jj-dXL" eventType="touchUpInside" id="Zmk-yZ-8rq"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="height" secondItem="c6Y-Jm-1fY" secondAttribute="height" id="04H-ab-2Rh"/>
+                                    <constraint firstItem="wdU-yL-U2q" firstAttribute="centerX" secondItem="rzF-qu-wIy" secondAttribute="centerX" id="2c4-eA-CHZ"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="rPm-37-rej" secondAttribute="width" id="4C8-1V-wnp"/>
+                                    <constraint firstAttribute="trailing" secondItem="chs-Tz-vGw" secondAttribute="trailing" constant="18" id="8aj-B2-Akb"/>
+                                    <constraint firstItem="fdq-Cp-K49" firstAttribute="leading" secondItem="Gww-a9-d2f" secondAttribute="trailing" constant="16" id="BQZ-6D-8P7"/>
+                                    <constraint firstItem="C2h-SQ-0Fm" firstAttribute="top" secondItem="rzF-qu-wIy" secondAttribute="bottom" constant="13" id="Bfx-af-B5x"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="rzF-qu-wIy" secondAttribute="height" multiplier="1:1" id="CP1-jt-Xk6"/>
+                                    <constraint firstItem="c6Y-Jm-1fY" firstAttribute="centerX" secondItem="MuV-Q3-1un" secondAttribute="centerX" id="CcX-FW-G12"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="height" secondItem="rPm-37-rej" secondAttribute="height" id="DUI-LS-uw8"/>
+                                    <constraint firstAttribute="trailing" secondItem="rPm-37-rej" secondAttribute="trailing" constant="18" id="DWs-zr-7bL"/>
+                                    <constraint firstItem="vpw-8x-ySj" firstAttribute="top" secondItem="DWb-xI-2D8" secondAttribute="bottom" constant="13" id="DiS-1w-A4m"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="Gww-a9-d2f" secondAttribute="width" id="Euk-gN-D5E"/>
+                                    <constraint firstItem="C2h-SQ-0Fm" firstAttribute="leading" secondItem="vpw-8x-ySj" secondAttribute="trailing" constant="16" id="HqU-g1-xW9"/>
+                                    <constraint firstAttribute="bottom" secondItem="Gww-a9-d2f" secondAttribute="bottom" constant="8" id="Idm-Ul-Cya"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="DWb-xI-2D8" secondAttribute="height" multiplier="1:1" id="J7Y-JN-c72"/>
+                                    <constraint firstItem="rPm-37-rej" firstAttribute="leading" secondItem="fdq-Cp-K49" secondAttribute="trailing" constant="16" id="JPe-O2-laK"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="DWb-xI-2D8" secondAttribute="width" id="Kpm-bt-ib7"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="Gww-a9-d2f" secondAttribute="height" multiplier="1:1" id="NhO-GN-Tfc"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="vpw-8x-ySj" secondAttribute="width" id="O63-Na-u0M"/>
+                                    <constraint firstItem="rPm-37-rej" firstAttribute="top" secondItem="chs-Tz-vGw" secondAttribute="bottom" constant="13" id="OT2-yZ-LOn"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="C2h-SQ-0Fm" secondAttribute="height" multiplier="1:1" id="Oql-aB-UD0"/>
+                                    <constraint firstAttribute="trailing" secondItem="c6Y-Jm-1fY" secondAttribute="trailing" constant="18" id="QB1-4S-7kc"/>
+                                    <constraint firstItem="rzF-qu-wIy" firstAttribute="leading" secondItem="DWb-xI-2D8" secondAttribute="trailing" constant="16" id="QYo-h7-eIe"/>
+                                    <constraint firstItem="fdq-Cp-K49" firstAttribute="top" secondItem="C2h-SQ-0Fm" secondAttribute="bottom" constant="13" id="TnA-au-DK3"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="rzF-qu-wIy" secondAttribute="width" id="XHs-PN-xh5"/>
+                                    <constraint firstItem="Gww-a9-d2f" firstAttribute="leading" secondItem="BHT-hO-bCo" secondAttribute="leading" constant="18" id="YCY-kX-kkI"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="height" secondItem="vpw-8x-ySj" secondAttribute="height" id="YJE-RN-Af3"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="height" secondItem="DWb-xI-2D8" secondAttribute="height" id="ZRQ-ox-Mva"/>
+                                    <constraint firstItem="Gww-a9-d2f" firstAttribute="top" secondItem="vpw-8x-ySj" secondAttribute="bottom" constant="13" id="alq-QG-cWX"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="c6Y-Jm-1fY" secondAttribute="width" id="bzj-Q1-vgP"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="c6Y-Jm-1fY" secondAttribute="height" multiplier="1:1" id="djl-NX-ns2"/>
+                                    <constraint firstItem="DWb-xI-2D8" firstAttribute="leading" secondItem="BHT-hO-bCo" secondAttribute="leading" constant="18" id="e2w-pA-GAV"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="fdq-Cp-K49" secondAttribute="height" multiplier="1:1" id="ecw-iv-gJH"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="top" secondItem="c6Y-Jm-1fY" secondAttribute="bottom" constant="13" id="fOL-z2-eaJ"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="vpw-8x-ySj" secondAttribute="height" multiplier="1:1" id="fV9-LM-hvs"/>
+                                    <constraint firstItem="c6Y-Jm-1fY" firstAttribute="centerY" secondItem="MuV-Q3-1un" secondAttribute="centerY" constant="-1" id="fyu-Fu-RZy"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="rPm-37-rej" secondAttribute="height" multiplier="1:1" id="gIV-ge-8a0"/>
+                                    <constraint firstItem="vpw-8x-ySj" firstAttribute="leading" secondItem="BHT-hO-bCo" secondAttribute="leading" constant="18" id="h0e-wY-JSV"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="leading" secondItem="C2h-SQ-0Fm" secondAttribute="trailing" constant="16" id="h44-TS-tq1"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="height" secondItem="rzF-qu-wIy" secondAttribute="height" id="hTC-DJ-Vqs"/>
+                                    <constraint firstAttribute="bottom" secondItem="fdq-Cp-K49" secondAttribute="bottom" constant="8" id="ixC-cH-Jy1"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="C2h-SQ-0Fm" secondAttribute="width" id="kXt-oS-qf6"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="height" secondItem="fdq-Cp-K49" secondAttribute="height" id="l7J-PI-ez1"/>
+                                    <constraint firstItem="wdU-yL-U2q" firstAttribute="centerY" secondItem="rzF-qu-wIy" secondAttribute="centerY" id="lwY-3h-s8i"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="width" secondItem="fdq-Cp-K49" secondAttribute="width" id="pSo-M3-kNQ"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="height" secondItem="C2h-SQ-0Fm" secondAttribute="height" id="qQS-0j-1cE"/>
+                                    <constraint firstAttribute="bottom" secondItem="rPm-37-rej" secondAttribute="bottom" constant="8" id="sHE-Mc-yhf"/>
+                                    <constraint firstItem="c6Y-Jm-1fY" firstAttribute="leading" secondItem="rzF-qu-wIy" secondAttribute="trailing" constant="16" id="wrF-uE-USM"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="height" secondItem="Gww-a9-d2f" secondAttribute="height" id="yT3-qk-wdC"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -414,9 +464,15 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="300"/>
                     <connections>
+                        <outlet property="controlCenterButtonFive" destination="fdq-Cp-K49" id="8kW-DM-eNg"/>
+                        <outlet property="controlCenterButtonFour" destination="Gww-a9-d2f" id="dwE-DE-Y7B"/>
                         <outlet property="controlCenterButtonMic" destination="c6Y-Jm-1fY" id="bUW-Ip-XO6"/>
+                        <outlet property="controlCenterButtonOne" destination="vpw-8x-ySj" id="XlB-4K-64i"/>
                         <outlet property="controlCenterButtonSearch" destination="rzF-qu-wIy" id="KEs-1g-8wO"/>
+                        <outlet property="controlCenterButtonSix" destination="rPm-37-rej" id="nCV-CV-ZRC"/>
+                        <outlet property="controlCenterButtonThree" destination="chs-Tz-vGw" id="uQE-5A-hcp"/>
                         <outlet property="controlCenterButtonTop100" destination="DWb-xI-2D8" id="7Ft-TL-z2T"/>
+                        <outlet property="controlCenterButtonTwo" destination="C2h-SQ-0Fm" id="FBE-Ff-MzW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BhY-SL-dDT" userLabel="First Responder" sceneMemberID="firstResponder"/>

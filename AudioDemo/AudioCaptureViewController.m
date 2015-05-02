@@ -18,7 +18,7 @@
 #import "WelcomePopupViewController.h"
 #import "FriendsViewController.h"
 
-#define CONTROL_CENTER_HEIGHT 300.0f
+#define CONTROL_CENTER_HEIGHT 350.0f
 
 @interface AudioCaptureViewController () {
     NSTimer *timer;
@@ -532,11 +532,14 @@ static const float TIMER_INTERVAL = .01;
                      completion:nil];
     __weak typeof(self) weakSelf = self;
 
+    CGRect frame = self.controlCenterView.frame;
+    frame.origin.y += CONTROL_CENTER_HEIGHT;
+    
     [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         weakSelf.controlCenterBottomConstraint.constant = -CONTROL_CENTER_HEIGHT;
+                         weakSelf.controlCenterView.frame = frame;
                      }
                      completion:nil];
     
@@ -548,12 +551,15 @@ static const float TIMER_INTERVAL = .01;
     __weak typeof(self) weakSelf = self;
     
     [self.audioSource resetUI];
+    
+    CGRect frame = self.controlCenterView.frame;
+    frame.origin.y -= CONTROL_CENTER_HEIGHT;
 
-    [UIView animateWithDuration:3 //TODO
+    [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         weakSelf.controlCenterBottomConstraint.constant = 0;
+                         weakSelf.controlCenterView.frame = frame;
                      }
                      completion:nil];
 }
