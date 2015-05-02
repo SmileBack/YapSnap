@@ -163,6 +163,11 @@
     }
 }
 
+- (void) resetUI
+{
+    // Nothing for now.
+}
+
 #pragma mark - AVAudioRecorderDelegate
 - (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
     [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_END_NOTIFICATION object:nil];

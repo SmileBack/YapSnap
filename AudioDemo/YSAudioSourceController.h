@@ -28,6 +28,8 @@
 - (void) startPlayback;
 - (void) stopPlayback;
 
+- (void) resetUI;
+
 // Spotify source will return the YSTrack.
 // Mic source could return the audio file. for now will return nothing.
 - (YapBuilder *) getYapBuilder;

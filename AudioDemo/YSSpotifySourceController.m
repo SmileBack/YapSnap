@@ -851,7 +851,7 @@
     self.resetButton.hidden = YES;
 }
 
-- (void) resetSpotifyUI {
+- (void) resetUI {
     self.songs = nil;
     [self hideResetAndShuffleButtons];
     

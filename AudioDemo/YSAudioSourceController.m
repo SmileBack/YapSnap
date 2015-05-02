@@ -33,6 +33,11 @@
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
 
+- (void) resetUI
+{
+    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
+}
+
 - (YapBuilder *) getYapBuilder
 {
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
