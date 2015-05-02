@@ -10,6 +10,8 @@
 #import "ContactManager.h"
 #import "UIViewController+Alerts.h"
 #import "YapsViewController.h"
+#import "YapBuilder.h"
+#import "AddFriendsBuilder.h"
 
 @interface ContactsViewController ()
 
@@ -70,6 +72,11 @@ static NSString *CellIdentifier = @"Cell";
                                                                             target:nil
                                                                             action:nil];
     
+    if (self.builder.builderType == BuilderTypeAddFriends) {
+        UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
+        [self.navigationItem setLeftBarButtonItem:cancel];
+    }
+    
     if ([self internetIsNotReachable]) {
         NSLog(@"Internet is not reachable");
     } else {
@@ -95,6 +102,11 @@ static NSString *CellIdentifier = @"Cell";
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
     
+}
+
+- (void) cancelPressed
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(BOOL) internetIsNotReachable
@@ -341,22 +353,10 @@ static NSString *CellIdentifier = @"Cell";
         self.continueButton.userInteractionEnabled = YES;
         [self showNoInternetAlert];
     } else {
-        __weak ContactsViewController *weakSelf = self;
+        self.builder.contacts = self.selectedContacts;
         
-        self.yapBuilder.contacts = self.selectedContacts;
-        
-        NSArray *pendingYaps =
-        [[API sharedAPI] sendYapBuilder:self.yapBuilder
-                    withCallback:^(BOOL success, NSError *error) {
-                        if (success) {
-                            [[ContactManager sharedContactManager] sentYapTo:self.selectedContacts];
-                        } else {
-                            // uh oh spaghettios
-                            // TODO: tell the user something went wrong
-                        }
-                    }];
+        [self processBuilder];
 
-        [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
         self.continueButton.userInteractionEnabled = YES;
     }
 }
@@ -369,6 +369,53 @@ static NSString *CellIdentifier = @"Cell";
         vc.pendingYaps = pendingYaps;
         vc.comingFromContactsOrAddTextPage = YES;
     }
+}
+
+#pragma mark - Continue Actions
+- (void) processBuilder
+{
+    if (self.builder.builderType == BuilderTypeAddFriends) {
+        [self sendAddFriendsBuilder];
+    } else if (self.builder.builderType == BuilderTypeYap) {
+        [self sendYapBuilder];
+    }
+}
+
+- (void) sendAddFriendsBuilder
+{
+    __weak ContactsViewController *weakSelf = self;
+
+    AddFriendsBuilder *addFriendsBuilder = (AddFriendsBuilder *) self.builder;
+    
+    [[API sharedAPI] addFriends:addFriendsBuilder
+                       withCallback:^(BOOL success, NSError *error) {
+                           if (success) {
+                               [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+                           } else {
+                               // uh oh spaghettios
+                               // TODO: tell the user something went wrong
+                           }
+                       }];
+}
+
+- (void) sendYapBuilder
+{
+    __weak ContactsViewController *weakSelf = self;
+
+    YapBuilder *yapBuilder = (YapBuilder *)self.builder;
+    
+    NSArray *pendingYaps =
+    [[API sharedAPI] sendYapBuilder:yapBuilder
+                       withCallback:^(BOOL success, NSError *error) {
+                           if (success) {
+                               [[ContactManager sharedContactManager] sentYapTo:weakSelf.selectedContacts];
+                           } else {
+                               // uh oh spaghettios
+                               // TODO: tell the user something went wrong
+                           }
+                       }];
+    
+    [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
 }
 
 #pragma mark - UISearchDisplayDelegate

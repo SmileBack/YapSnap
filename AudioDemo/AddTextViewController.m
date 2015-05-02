@@ -278,7 +278,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([@"Contacts Segue" isEqualToString:segue.identifier]) {
         ContactsViewController *vc = segue.destinationViewController;
-        vc.yapBuilder = self.yapBuilder;
+        vc.builder = self.yapBuilder;
     } else if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
         YapsViewController *vc = segue.destinationViewController;
         vc.pendingYaps = sender;

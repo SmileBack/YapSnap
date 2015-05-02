@@ -18,4 +18,6 @@ typedef enum {
 @property (nonatomic, readonly) BuilderType builderType;
 
 @property (nonatomic, strong) NSArray *contacts;
+@property (nonatomic, readonly) NSString *contactsList;
+
 @end

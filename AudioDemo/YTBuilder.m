@@ -9,4 +9,10 @@
 #import "YTBuilder.h"
 
 @implementation YTBuilder
+
+- (NSString *) contactsList
+{
+    return [[self.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
+}
+
 @end

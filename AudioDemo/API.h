@@ -12,6 +12,7 @@
 #import "YSYap.h"
 #import "YSUser.h"
 #import "YapBuilder.h"
+#import "AddFriendsBuilder.h"
 
 #define NOTIFICATION_INVALID_SESSION @"com.yapsnap.InvalidSessionNotification"
 #define NOTIFICATION_LOGOUT @"com.yapsnap.LogoutNotification"
@@ -41,6 +42,7 @@ typedef void (^FriendsCallback)(NSArray *friends, NSError *error);
 - (void) getMeWithCallback:(UserCallback)callback;
 - (void) blockUserId:(NSNumber *)userId withCallback:(SuccessOrErrorCallback)callback;
 - (void) clearYaps:(SuccessOrErrorCallback)callback;
+- (void) addFriends:(AddFriendsBuilder *)addFriendsBuilder withCallback:(SuccessOrErrorCallback)callback;
 
 # pragma mark - Updating of User Data
 - (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback;

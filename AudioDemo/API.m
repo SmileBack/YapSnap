@@ -72,7 +72,7 @@ static API *sharedAPI;
     NSMutableDictionary *params = [self paramsWithDict:dict];
     params[@"text"] = yapBuilder.text;
     
-    NSString* recipients = [[yapBuilder.contacts valueForKey:@"phoneNumber"] componentsJoinedByString:@", "];
+    NSString* recipients = yapBuilder.contactsList;
     params[@"recipients"] = recipients;
     
     params[@"duration"] = [NSNumber numberWithFloat:yapBuilder.duration];
@@ -199,6 +199,23 @@ static API *sharedAPI;
               callback(NO, error);
               NSLog(@"Error clearing yaps: %@", error);
           }];
+}
+
+- (void) addFriends:(AddFriendsBuilder *)addFriendsBuilder withCallback:(SuccessOrErrorCallback)callback
+{
+    NSDictionary *params = @{@"recipients": addFriendsBuilder.contactsList};
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:[self urlForEndpoint:@"friends/add"]
+        parameters:[self paramsWithDict:params]
+           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+               callback(YES, nil);
+               NSLog(@"Cleared Yaps Successfully");
+           }
+           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+               callback(NO, error);
+               NSLog(@"Error clearing yaps: %@", error);
+           }];
 }
 
 #pragma mark - Yaps

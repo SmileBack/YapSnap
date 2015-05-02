@@ -9,6 +9,7 @@
 #import "FriendsViewController.h"
 #import "API.h"
 #import "UserCell.h"
+#import "ContactsViewController.h"
 
 #define CELL_COLLAPSED @"Collapsed Cell"
 #define CELL_EXPANDED @"Expanded Cell"
@@ -306,27 +307,21 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Add Friend"];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add a Friend"
-                                                    message:@"To add a friend, send a yap to anyone from your contacts. They'll become your friend once they open your yap!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"Send Yap", nil];
-    [alert show];
+    [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([@"Contacts Segue" isEqualToString:segue.identifier]) {
+        UINavigationController *vc = segue.destinationViewController;
+        ContactsViewController *contactsVC = vc.viewControllers.firstObject;
+        contactsVC.builder = [AddFriendsBuilder new];
+    }
 }
 
 - (IBAction)tappedCancelButton:(UIBarButtonItem *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - UIAlertViewDelegate
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Tapped Send Yap in UIAlert"];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
 }
 
 @end
