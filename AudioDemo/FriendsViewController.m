@@ -10,6 +10,9 @@
 #import "API.h"
 #import "UserCell.h"
 #import "ContactsViewController.h"
+#import "AudioCaptureViewController.h"
+#import "ContactManager.h"
+
 
 #define CELL_COLLAPSED @"Collapsed Cell"
 #define CELL_EXPANDED @"Expanded Cell"
@@ -94,6 +97,14 @@
                      completion:nil];
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
+    
+    [self setupDoubleTap];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void) getSelfAndUpdateScore
@@ -108,6 +119,51 @@
     }];
 }
 
+#pragma mark - Double Tap
+- (void) setupDoubleTap
+{
+    UITapGestureRecognizer* doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    doubleTap.numberOfTapsRequired = 2;
+    doubleTap.numberOfTouchesRequired = 1;
+    [self.tableView addGestureRecognizer:doubleTap];
+}
+
+- (void) handleDoubleTap:(UIGestureRecognizer *)tap
+{
+    if (UIGestureRecognizerStateEnded == tap.state)
+    {
+        CGPoint p = [tap locationInView:tap.view];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+        if (indexPath.section > 0) {
+            [self cellTappedTwiceAtIndexPath:indexPath];
+        }
+    }
+}
+
+- (void) cellTappedTwiceAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Double tap on: %@", indexPath);
+    
+    if (indexPath.section == 0) {
+        // This is our own cell
+        return;
+    }
+    
+//    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+//    [mixpanel track:@"Double Tapped Row"];
+    
+    YSUser *friend = self.friends[indexPath.row];
+
+    YSContact *contact;
+    PhoneContact *phoneContact = [[ContactManager sharedContactManager] contactForPhoneNumber:friend.phone];
+    if (phoneContact) {
+        contact = phoneContact;
+    } else {
+        contact = [YSContact contactWithName:friend.displayNameNotFromContacts andPhoneNumber:friend.phone];
+    }
+
+    [self performSegueWithIdentifier:@"Send Yap Segue" sender:contact];
+}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -206,18 +262,13 @@
     [cell.friendThreeLabel sizeToFit];
 }
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void) expandAndContractCell:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Tapped Self"];
-        return;
-    }
     YSUser *expandingUser = self.friends[indexPath.row];
     NSMutableArray *changedIndexPaths = [NSMutableArray array];
     [changedIndexPaths addObject:indexPath];
-
-    [tableView beginUpdates];
+    
+    [self.tableView beginUpdates];
     if (!self.selectedIndexPath) {
         // Nothing is selected yet. Just expand the cell.
         self.selectedIndexPath = indexPath;
@@ -230,11 +281,11 @@
         [changedIndexPaths addObject:self.selectedIndexPath];
         self.selectedIndexPath = indexPath;
     }
-
-    [tableView reloadRowsAtIndexPaths:changedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     
-    [tableView endUpdates];
-
+    [self.tableView reloadRowsAtIndexPaths:changedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [self.tableView endUpdates];
+    
     if (expandingUser) {
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Tapped Friend"];
@@ -247,13 +298,28 @@
             [[API sharedAPI] topFriendsForUser:expandingUser withCallback:^(NSArray *friends, NSError *error) {
                 [self.loadingSpinner stopAnimating];
                 if (error) {
-
+                    
                 } else {
                     weakSelf.topFriendMap[expandingUser.userID] = friends;
                     [weakSelf showTopFriendsForIndexPath:indexPath andFriends:friends];
                 }
             }];
         }
+    }
+
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Self"];
+        return;
+    } else {
+        __weak FriendsViewController *weakSelf = self;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf expandAndContractCell:indexPath];
+        });
     }
 }
 
@@ -316,6 +382,10 @@
         UINavigationController *vc = segue.destinationViewController;
         ContactsViewController *contactsVC = vc.viewControllers.firstObject;
         contactsVC.builder = [AddFriendsBuilder new];
+    } else if ([@"Send Yap Segue" isEqualToString:segue.identifier]) {
+        AudioCaptureViewController *vc = segue.destinationViewController;
+        YSContact *contact = sender;
+        vc.contactReplyingTo = contact;
     }
 }
 

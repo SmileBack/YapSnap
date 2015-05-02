@@ -775,6 +775,7 @@
                         <outlet property="friendsExplanationView" destination="H5l-NO-JDy" id="MTH-MG-3Sh"/>
                         <outlet property="tableView" destination="jGg-FF-Oxq" id="XAx-Qp-6mJ"/>
                         <segue destination="Zdf-1T-TJC" kind="modal" identifier="Contacts Segue" id="c26-Bf-LAT"/>
+                        <segue destination="2" kind="push" identifier="Send Yap Segue" id="Q0Z-rg-Tpo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dqY-2D-Jm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1736,7 +1737,7 @@ Type it here!</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="JlX-pb-AK5"/>
-        <segue reference="Enn-ka-dSJ"/>
+        <segue reference="Q0Z-rg-Tpo"/>
         <segue reference="syO-tE-hvG"/>
     </inferredMetricsTieBreakers>
 </document>

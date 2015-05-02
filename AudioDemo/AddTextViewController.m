@@ -17,6 +17,7 @@
 #import "YapsViewController.h"
 #import <STKAudioPlayer.h>
 #import <AVFoundation/AVAudioSession.h>
+#import "FriendsViewController.h"
 
 @interface AddTextViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
@@ -299,11 +300,20 @@
     } else {
         __weak AddTextViewController *weakSelf = self;
         
+        NSArray *vcs = self.navigationController.viewControllers;
+        BOOL isFriendsFlow = vcs && vcs.count > 1 && [vcs[0] isKindOfClass:[FriendsViewController class]];
+        
         NSArray *pendingYaps =
         [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
+                            double delay = 0.5;
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                if (isFriendsFlow) {
+                                    [[YTNotifications sharedNotifications] showNotificationText:@"Yap sent!"];
+                                }
+                            });
                         } else {
                             double delay = 0.5;
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -313,7 +323,12 @@
                         }
                     }];
         NSLog(@"Sent yaps call");
-        [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
+        
+        if (isFriendsFlow) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        } else {
+            [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
+        }
         self.continueButton.userInteractionEnabled = YES;
     }
 }

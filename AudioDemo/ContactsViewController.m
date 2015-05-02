@@ -390,7 +390,7 @@ static NSString *CellIdentifier = @"Cell";
     [[API sharedAPI] addFriends:addFriendsBuilder
                        withCallback:^(BOOL success, NSError *error) {
                            if (success) {
-                               [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+                               [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
                            } else {
                                // uh oh spaghettios
                                // TODO: tell the user something went wrong
