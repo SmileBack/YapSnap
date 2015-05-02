@@ -18,6 +18,8 @@
 #import "WelcomePopupViewController.h"
 #import "FriendsViewController.h"
 
+#define CONTROL_CENTER_HEIGHT 300.0f
+
 @interface AudioCaptureViewController () {
     NSTimer *timer;
 }
@@ -30,28 +32,13 @@
 @property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
 
 @property (nonatomic, strong) IBOutlet UIView *controlCenterView;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonOne;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonTwo;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonThree;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonFour;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonFive;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonSix;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonTop100;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonSearch;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonMic;
+
 @property (nonatomic, strong) IBOutlet UIButton *openControlCenterButton;
 
-- (IBAction)didTapControlCenterButtonOne;
-- (IBAction)didTapControlCenterButtonTwo;
-- (IBAction)didTapControlCenterButtonThree;
-- (IBAction)didTapControlCenterButtonFour;
-- (IBAction)didTapControlCenterButtonFive;
-- (IBAction)didTapControlCenterButtonSix;
-- (IBAction)didTapControlCenterButtonTop100;
-- (IBAction)didTapControlCenterButtonSearch;
-- (IBAction)didTapControlCenterButtonMic;
 
 - (IBAction)didTapOpenControlCenterButton;
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *controlCenterBottomConstraint;
 
 @end
 
@@ -90,8 +77,7 @@ static const float TIMER_INTERVAL = .01;
     
     [self setupNavBarStuff];
     
-    [self styleControlCenterButtons];
-        
+    [self setupControlCenter];
     //[self.playButton setEnabled:YES];
 }
 
@@ -321,22 +307,6 @@ static const float TIMER_INTERVAL = .01;
                         [self showFeedbackEmailViewControllerWithCompletion:^{
                         }];
                     }];
-    
-    [center addObserverForName:SHOW_CONTROL_CENTER_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        NSLog(@"Show Song Genre View");
-                        [self showControlCenter];
-                    }];
-    
-    [center addObserverForName:HIDE_CONTROL_CENTER_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        NSLog(@"Hide Song Genre View");
-                        [self hideControlCenter];
-                    }];
 }
 
 - (void) updateProgress {
@@ -547,78 +517,6 @@ static const float TIMER_INTERVAL = .01;
     }
 }
 
-#pragma mark - Song Genre Buttons
-
-- (IBAction)didTapControlCenterButtonOne {
-    [self switchToSpotifyMode];
-    [self.audioSource tappedControlCenterButton:@"One"];
-    [self hideControlCenter];
-}
-
-- (IBAction)didTapControlCenterButtonTwo {
-    [self switchToSpotifyMode];
-    [self.audioSource tappedControlCenterButton:@"Two"];
-    [self hideControlCenter];
-}
-
-- (IBAction)didTapControlCenterButtonThree {
-    [self switchToSpotifyMode];
-    [self.audioSource tappedControlCenterButton:@"Three"];
-    [self hideControlCenter];
-}
-
-- (IBAction)didTapControlCenterButtonFour {
-    [self switchToSpotifyMode];
-    [self.audioSource tappedControlCenterButton:@"Four"];
-    [self hideControlCenter];
-}
-
-- (IBAction)didTapControlCenterButtonFive {
-    [self switchToSpotifyMode];
-    [self.audioSource tappedControlCenterButton:@"Five"];
-    [self hideControlCenter];
-}
-
-- (IBAction)didTapControlCenterButtonSix {
-    [self switchToSpotifyMode];
-    [self.audioSource tappedControlCenterButton:@"Six"];
-    [self hideControlCenter];
-}
-
-- (IBAction)didTapControlCenterButtonTop100 {
-    [self switchToSpotifyMode];
-    [self.audioSource tappedControlCenterButton:@"Top100"];
-    [self hideControlCenter];
-}
-
-- (IBAction)didTapControlCenterButtonSearch {
-    [self switchToSpotifyMode];
-    [self.audioSource tappedControlCenterButton:@"Search"];
-    [self hideControlCenter];
-}
-
-- (IBAction)didTapControlCenterButtonMic {
-    [self switchToMicMode];
-
-    double delay = .1;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self hideControlCenter];
-    });
-    
-    /*
-    double delay = .3;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
-                                                        message:@"Record your voice and then tap the white balloon!"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles: nil];
-        [alert show];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
-    });
-    */
-}
-
 - (IBAction)didTapOpenControlCenterButton {
     [self switchToSpotifyMode];
     [self showControlCenter];
@@ -632,16 +530,13 @@ static const float TIMER_INTERVAL = .01;
                          self.openControlCenterButton.alpha = 1;
                      }
                      completion:nil];
-    
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenHeight = screenRect.size.height;
-    CGFloat screenWidth = screenRect.size.width;
-    
+    __weak typeof(self) weakSelf = self;
+
     [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.controlCenterView.frame = CGRectMake(0, screenHeight, screenWidth, 300);
+                         weakSelf.controlCenterBottomConstraint.constant = -CONTROL_CENTER_HEIGHT;
                      }
                      completion:nil];
     
@@ -650,55 +545,58 @@ static const float TIMER_INTERVAL = .01;
 - (void)showControlCenter {
     self.openControlCenterButton.alpha = 0;
 
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenHeight = screenRect.size.height;
-    CGFloat screenWidth = screenRect.size.width;
+    __weak typeof(self) weakSelf = self;
     
-    [UIView animateWithDuration:0.3
+    [self.audioSource resetUI];
+
+    [UIView animateWithDuration:3 //TODO
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.controlCenterView.frame = CGRectMake(0, screenHeight-300, screenWidth, 300);
+                         weakSelf.controlCenterBottomConstraint.constant = 0;
                      }
                      completion:nil];
 }
 
-- (void) styleControlCenterButtons {
-    self.controlCenterButtonOne.layer.cornerRadius = 42;
-    self.controlCenterButtonOne.layer.borderWidth = 1;
-    self.controlCenterButtonOne.layer.borderColor = [UIColor whiteColor].CGColor;
+#pragma mark - Control Center
+- (void) setupControlCenter
+{
+    for (UIViewController *vc in self.childViewControllers) {
+        if ([vc isKindOfClass:[ControlCenterViewController class]]) {
+            ControlCenterViewController *controlVC = (ControlCenterViewController *)vc;
+            controlVC.delegate = self;
+        }
+    }
+}
+
+- (void) tappedSpotifyButton:(NSString *)type
+{
+    [self switchToSpotifyMode];
+    [self.audioSource tappedControlCenterButton:type];
+    [self hideControlCenter];
+}
+
+- (void) tappedRecordButton
+{
+    [self switchToMicMode];
     
-    self.controlCenterButtonTwo.layer.cornerRadius = 42;
-    self.controlCenterButtonTwo.layer.borderWidth = 1;
-    self.controlCenterButtonTwo.layer.borderColor = [UIColor whiteColor].CGColor;
+    double delay = .1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self hideControlCenter];
+    });
     
-    self.controlCenterButtonThree.layer.cornerRadius = 42;
-    self.controlCenterButtonThree.layer.borderWidth = 1;
-    self.controlCenterButtonThree.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    self.controlCenterButtonFour.layer.cornerRadius = 42;
-    self.controlCenterButtonFour.layer.borderWidth = 1;
-    self.controlCenterButtonFour.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    self.controlCenterButtonFive.layer.cornerRadius = 42;
-    self.controlCenterButtonFive.layer.borderWidth = 1;
-    self.controlCenterButtonFive.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    self.controlCenterButtonSix.layer.cornerRadius = 42;
-    self.controlCenterButtonSix.layer.borderWidth = 1;
-    self.controlCenterButtonSix.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    self.controlCenterButtonSearch.layer.cornerRadius = 42;
-    self.controlCenterButtonSearch.layer.borderWidth = 1;
-    self.controlCenterButtonSearch.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    self.controlCenterButtonTop100.layer.cornerRadius = 42;
-    self.controlCenterButtonTop100.layer.borderWidth = 1;
-    self.controlCenterButtonTop100.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    self.controlCenterButtonMic.layer.cornerRadius = 42;
-    self.controlCenterButtonMic.layer.borderWidth = 1;
-    self.controlCenterButtonMic.layer.borderColor = [UIColor whiteColor].CGColor;
+    /*
+     double delay = .3;
+     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
+     message:@"Record your voice and then tap the white balloon!"
+     delegate:nil
+     cancelButtonTitle:@"OK"
+     otherButtonTitles: nil];
+     [alert show];
+     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
+     });
+     */
 }
 
 @end

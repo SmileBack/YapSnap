@@ -13,8 +13,9 @@
 #import "YSRecordProgressView.h"
 #import "OffsetImageButton.h"
 #import <MessageUI/MessageUI.h>
+#import "ControlCenterViewController.h"
 
-@interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate, MFMailComposeViewControllerDelegate>
+@interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate, MFMailComposeViewControllerDelegate, ControlCenterDelegate>
 
 #define SHOW_FEEDBACK_PAGE @"yaptap.ShowFeedbackPage"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
