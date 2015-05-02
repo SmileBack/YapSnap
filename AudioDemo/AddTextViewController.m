@@ -325,7 +325,7 @@
         NSLog(@"Sent yaps call");
         
         if (isFriendsFlow) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:FRIENDS_YAP_SENT_NOTIFICATION object:nil];
         } else {
             [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
         }

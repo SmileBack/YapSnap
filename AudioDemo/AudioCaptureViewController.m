@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "WelcomePopupViewController.h"
+#import "FriendsViewController.h"
 
 @interface AudioCaptureViewController () {
     NSTimer *timer;
@@ -445,6 +446,12 @@ static const float TIMER_INTERVAL = .01;
     } else if ([@"YapsPageViewControllerSegue" isEqualToString:segue.identifier]) {
         YapsViewController *yapsVC = segue.destinationViewController;
         yapsVC.unopenedYapsCount = self.unopenedYapsCount;
+    } else if ([@"Friends Segue" isEqualToString:segue.identifier]) {
+        UINavigationController *navVC = segue.destinationViewController;
+        FriendsViewController *vc = navVC.viewControllers[0];
+        vc.yapsSentCallback = ^() {
+            [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:nil];
+        };
     }
 }
 

@@ -99,6 +99,16 @@
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
     
     [self setupDoubleTap];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:FRIENDS_YAP_SENT_NOTIFICATION
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      if (self.yapsSentCallback) {
+                                                          self.yapsSentCallback();
+                                                      }
+                                                      [self dismissViewControllerAnimated:NO completion:nil];
+                                                  }];
 }
 
 - (void) viewWillAppear:(BOOL)animated
