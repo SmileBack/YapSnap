@@ -354,12 +354,6 @@
 - (IBAction)didTapBackButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:NO];
-    
-    //TODO: FIX THIS!
-    double delay = .1;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_CONTROL_CENTER_NOTIFICATION object:nil];
-    });
 }
 
 - (IBAction)didTapAddTextButton {

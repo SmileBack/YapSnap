@@ -77,8 +77,7 @@
             [self.view endEditing:YES];
             double delay = .3;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER_NOTIFICATION object:nil];
-                [self resetSpotifyUI];
+                //TODO SHOW CONTROL CENTER
             });
         } else {
             [self search:self.searchBox.text];
@@ -98,8 +97,7 @@
 - (IBAction) didTapResetButton {
     double delay = .3;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER_NOTIFICATION object:nil];
-        [self resetSpotifyUI];
+        // TODO SHOW CONTROL CENTER
     });
 
     if (!self.didTapResetButtonForFirstTime) {
@@ -246,8 +244,7 @@
                 
                 double delay2 = 1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER_NOTIFICATION object:nil];
-                    [self resetSpotifyUI];
+                    // TODO SHOW CONTROL CENTER
                 });
             } else {
                 NSLog(@"Error Returning Songs %@", error);
@@ -258,8 +255,7 @@
                 
                 double delay2 = 1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER_NOTIFICATION object:nil];
-                    [self resetSpotifyUI];
+                    // TODO SHOW CONTROL CENTER
                 });
                 
                 [mixpanel track:@"Spotify Error - search (other)"];
