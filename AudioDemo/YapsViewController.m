@@ -609,7 +609,7 @@ static NSString *CellIdentifier = @"Cell";
                                 if (success) {
                                     NSString *text = [NSString stringWithFormat:@"%@ blocked", weakSelf.yapToBlock.displaySenderName];
                                     [[YTNotifications sharedNotifications] showNotificationText:text];
-                                    [self.tableView reloadData];
+                                    [self loadYaps];
                                 }
                                 weakSelf.yapToBlock = nil;
                             }];
