@@ -7,18 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YTBuilder.h"
 #import "YSTrack.h"
 
 #define MESSAGE_TYPE_VOICE @"VoiceMessage"
 #define MESSAGE_TYPE_SPOTIFY @"SpotifyMessage"
 
-@interface YapBuilder : NSObject
+@interface YapBuilder : YTBuilder
 
 @property (nonatomic, strong) NSString *messageType;
 @property (nonatomic, strong) YSTrack *track; // Only used for Spotify
 @property (nonatomic) CGFloat duration;
 @property (nonatomic, strong) NSString *text;
-@property (nonatomic, strong) NSArray *contacts;
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) NSNumber *pitchValueInCentUnits;
 

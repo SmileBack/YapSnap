@@ -190,6 +190,8 @@
 		FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */; };
 		FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF993C1A6D6F06000FDE4C /* NoAnimationPushSegue.m */; };
 		FCEF99401A6D7BF2000FDE4C /* YapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF993F1A6D7BF2000FDE4C /* YapCell.m */; };
+		FCFCE4511AF528100094926E /* YTBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE4501AF528100094926E /* YTBuilder.m */; };
+		FCFCE4541AF529030094926E /* AddFriendsBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE4531AF529030094926E /* AddFriendsBuilder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -446,6 +448,10 @@
 		FCEF993C1A6D6F06000FDE4C /* NoAnimationPushSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoAnimationPushSegue.m; sourceTree = "<group>"; };
 		FCEF993E1A6D7BF2000FDE4C /* YapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YapCell.h; sourceTree = "<group>"; };
 		FCEF993F1A6D7BF2000FDE4C /* YapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YapCell.m; sourceTree = "<group>"; };
+		FCFCE44F1AF528100094926E /* YTBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTBuilder.h; sourceTree = "<group>"; };
+		FCFCE4501AF528100094926E /* YTBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTBuilder.m; sourceTree = "<group>"; };
+		FCFCE4521AF529030094926E /* AddFriendsBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsBuilder.h; sourceTree = "<group>"; };
+		FCFCE4531AF529030094926E /* AddFriendsBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsBuilder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1069,6 +1075,7 @@
 		FC609BC01A3CC22F00182F08 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FCFCE44E1AF527F20094926E /* Builders */,
 				FC0642D31A9D65D000E3D60F /* Environment.h */,
 				FC0642D41A9D65D000E3D60F /* Environment.m */,
 				78A5699E1A731EE700818A17 /* Categories */,
@@ -1080,8 +1087,6 @@
 				FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */,
 				FC1E89B91A4B8E94007A8CDA /* YSYap.h */,
 				FC1E89BA1A4B8E94007A8CDA /* YSYap.m */,
-				FCEF99371A6D6B9A000FDE4C /* YapBuilder.h */,
-				FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */,
 				FCBB96FD1A7D4C97003D5F24 /* YSUser.h */,
 				FCBB96FE1A7D4C97003D5F24 /* YSUser.m */,
 				FCE234471AAB749E00C1EDB0 /* YTNotifications.h */,
@@ -1151,6 +1156,19 @@
 				FCEF993C1A6D6F06000FDE4C /* NoAnimationPushSegue.m */,
 			);
 			name = Segues;
+			sourceTree = "<group>";
+		};
+		FCFCE44E1AF527F20094926E /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				FCEF99371A6D6B9A000FDE4C /* YapBuilder.h */,
+				FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */,
+				FCFCE44F1AF528100094926E /* YTBuilder.h */,
+				FCFCE4501AF528100094926E /* YTBuilder.m */,
+				FCFCE4521AF529030094926E /* AddFriendsBuilder.h */,
+				FCFCE4531AF529030094926E /* AddFriendsBuilder.m */,
+			);
+			name = Builders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1384,6 +1402,7 @@
 				FC1E89BB1A4B8E94007A8CDA /* YSYap.m in Sources */,
 				FC0595821A6D87A700FCCED2 /* ContactManager.m in Sources */,
 				7853936E1AD9C17500C6BEA7 /* WelcomePopupViewController.m in Sources */,
+				FCFCE4511AF528100094926E /* YTBuilder.m in Sources */,
 				7840480B1AB7334A00FE6D93 /* NextButton.m in Sources */,
 				FCD2577A1ABA60AE00981E5D /* UIViewController+Navigation.m in Sources */,
 				78A569A31A73227200818A17 /* YSColorPicker.m in Sources */,
@@ -1405,6 +1424,7 @@
 				FCEF99361A6D6B22000FDE4C /* AddTextViewController.m in Sources */,
 				FCBB96FF1A7D4C97003D5F24 /* YSUser.m in Sources */,
 				FCBB97061A7D6CDF003D5F24 /* EditFieldViewController.m in Sources */,
+				FCFCE4541AF529030094926E /* AddFriendsBuilder.m in Sources */,
 				FCE234491AAB749E00C1EDB0 /* YTNotifications.m in Sources */,
 				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,

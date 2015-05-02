@@ -19,4 +19,9 @@
     return self;
 }
 
+- (BuilderType) builderType
+{
+    return BuilderTypeYap;
+}
+
 @end
