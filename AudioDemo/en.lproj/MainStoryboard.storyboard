@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
@@ -390,7 +390,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbk-tQ-1er" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="95" y="1559"/>
+            <point key="canvasLocation" x="95" y="2347"/>
         </scene>
         <!--Settings-->
         <scene sceneID="WQN-iU-g00">
@@ -590,7 +590,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1638" y="-630"/>
+            <point key="canvasLocation" x="1388" y="1328"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="oVZ-24-JgD">
@@ -774,11 +774,28 @@
                     <connections>
                         <outlet property="friendsExplanationView" destination="H5l-NO-JDy" id="MTH-MG-3Sh"/>
                         <outlet property="tableView" destination="jGg-FF-Oxq" id="XAx-Qp-6mJ"/>
+                        <segue destination="Zdf-1T-TJC" kind="modal" identifier="Contacts Segue" id="c26-Bf-LAT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dqY-2D-Jm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="778" y="1559"/>
+            <point key="canvasLocation" x="778" y="2347"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FNZ-jd-esV">
+            <objects>
+                <navigationController id="Zdf-1T-TJC" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="elq-RA-hI0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="iTO-dn-ews" kind="relationship" relationship="rootViewController" id="JlX-pb-AK5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ang-Ma-Nhd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1388" y="2347"/>
         </scene>
         <!--Add Text View Controller-->
         <scene sceneID="xd9-E1-nLy">
@@ -1011,7 +1028,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3i7-3r-yTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1122" y="-630"/>
+            <point key="canvasLocation" x="778" y="1328"/>
         </scene>
         <!--Yaps View Controller-->
         <scene sceneID="XHH-iK-vw0">
@@ -1718,7 +1735,8 @@ Type it here!</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="JlX-pb-AK5"/>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="czb-n6-hbf"/>
+        <segue reference="syO-tE-hvG"/>
     </inferredMetricsTieBreakers>
 </document>
