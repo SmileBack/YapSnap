@@ -540,6 +540,7 @@ static const float TIMER_INTERVAL = .01;
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          weakSelf.controlCenterView.frame = frame;
+                         weakSelf.controlCenterBottomConstraint.constant = -CONTROL_CENTER_HEIGHT;
                      }
                      completion:nil];
     
@@ -560,6 +561,7 @@ static const float TIMER_INTERVAL = .01;
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          weakSelf.controlCenterView.frame = frame;
+                         weakSelf.controlCenterBottomConstraint.constant = 0;
                      }
                      completion:nil];
 }
