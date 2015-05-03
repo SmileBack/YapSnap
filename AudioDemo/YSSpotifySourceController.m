@@ -31,7 +31,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *shuffleButton;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) NSArray *artists;
-@property (nonatomic, strong) NSString *selectedGenre;
+@property (nonatomic, strong) NSString *selectedGenre;\
+@property (nonatomic, strong) NSDictionary *typeToGenreMap;
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapShuffleButton;
@@ -761,12 +762,22 @@
 }
 
 #pragma mark - Song Genre Stuff
-
-- (void) tappedControlCenterButton:(NSString *)genre
+- (NSDictionary *) typeToGenreMap
 {
-    self.selectedGenre = genre;
-    
-    if ([genre isEqual: @"Search"]) {
+    if (!_typeToGenreMap) {
+        _typeToGenreMap = @{@"One": @"Pop",
+                            @"Two": @"Hip Hop",
+                            @"Three": @"Rock",
+                            @"Four": @"EDM",
+                            @"Five": @"Country",
+                            @"Six": @"TV/Film"};
+    }
+    return _typeToGenreMap;
+}
+
+- (void) tappedControlCenterButton:(NSString *)type
+{
+    if ([type isEqual: @"Search"]) {
         [self showSearchBox];
         double delay = .3;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -779,27 +790,9 @@
             [self showRandomPickAlert];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_RANDOM_PICK_ALERT];
         } else {
-            if ([genre isEqual: @"Six"]) {
-                //[[YTNotifications sharedNotifications] showBlueNotificationText:@"Show/Film Selected"];
-            } else {
-                //[[YTNotifications sharedNotifications] showBlueNotificationText:@"Artist Selected"];
-            }
-        }
-        
-        if ([genre isEqual: @"One"]) {
-            [self searchGenre:@"Pop"];
-        } else if ([genre isEqual: @"Two"]) {
-            [self searchGenre:@"Hip Hop"];
-        } else if ([genre isEqual: @"Three"]) {
-            [self searchGenre:@"Rock"];
-        } else if ([genre isEqual: @"Four"]) {
-            [self searchGenre:@"EDM"];
-        } else if ([genre isEqual: @"Five"]) {
-            [self searchGenre:@"Country"];
-        } else if ([genre isEqual: @"Six"]) {
-            [self searchGenre:@"TV/Film"];
-        } else if ([genre isEqual: @"Top100"]) {
-            [self searchGenre:@"Top100"];
+            self.selectedGenre = self.typeToGenreMap[type];
+            if (!self.selectedGenre) self.selectedGenre = type;
+            [self searchGenre:self.selectedGenre];
         }
     }
 }
