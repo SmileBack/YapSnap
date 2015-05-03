@@ -104,10 +104,12 @@
                                                       object:nil
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note) {
-                                                      if (self.yapsSentCallback) {
-                                                          self.yapsSentCallback();
-                                                      }
-                                                      [self dismissViewControllerAnimated:NO completion:nil];
+                                                      [self dismissViewControllerAnimated:NO completion:^{
+                                                          if (weakSelf.yapsSentCallback) {
+                                                              weakSelf.yapsSentCallback();
+                                                              weakSelf.yapsSentCallback = nil;
+                                                          }
+                                                      }];
                                                   }];
 }
 
