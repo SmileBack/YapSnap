@@ -79,7 +79,8 @@
             [self.view endEditing:YES];
             double delay = .3;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                //TODO SHOW CONTROL CENTER
+                //SHOW CONTROL CENTER
+                [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER object:nil];
             });
         } else {
             [self search:self.searchBox.text];
@@ -100,6 +101,7 @@
     double delay = .3;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // TODO SHOW CONTROL CENTER
+        [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER object:nil];
     });
 
     if (!self.didTapResetButtonForFirstTime) {
@@ -233,6 +235,7 @@
                 double delay2 = 1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     // TODO SHOW CONTROL CENTER
+                    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER object:nil];
                 });
             } else {
                 NSLog(@"Error Returning Songs %@", error);
@@ -244,6 +247,7 @@
                 double delay2 = 1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     // TODO SHOW CONTROL CENTER
+                    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER object:nil];
                 });
                 
                 [mixpanel track:@"Spotify Error - search (other)"];
@@ -761,7 +765,7 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SHUFFLE_BUTTON];
 }
 
-#pragma mark - Song Genre Stuff
+#pragma mark - Control Center Stuff
 - (NSDictionary *) typeToGenreMap
 {
     if (!_typeToGenreMap) {
@@ -785,6 +789,7 @@
         });
     } else {
         self.shuffleButton.alpha = 1;
+        self.resetButton.alpha = 1;
 
         if (!self.didViewRandomPickAlertForFirstTime) {
             [self showRandomPickAlert];
@@ -828,6 +833,7 @@
 - (void) hideResetAndShuffleButtons {
     self.shuffleButton.alpha = 0;
     self.shuffleButton.hidden = YES;
+    self.resetButton.alpha = 0;
     self.resetButton.hidden = YES;
 }
 
@@ -841,6 +847,7 @@
                      animations:^{
                          self.searchBox.alpha = 0;
                          self.carousel.alpha = 0;
+                         [self hideResetAndShuffleButtons];
                      }
                      completion:^(BOOL finished) {
                          self.searchBox.text = @"";

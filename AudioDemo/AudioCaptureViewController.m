@@ -307,6 +307,14 @@ static const float TIMER_INTERVAL = .01;
                         [self showFeedbackEmailViewControllerWithCompletion:^{
                         }];
                     }];
+    
+    [center addObserverForName:SHOW_CONTROL_CENTER
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Show Control Center");
+                        [self showControlCenter];
+                    }];
 }
 
 - (void) updateProgress {
@@ -432,16 +440,6 @@ static const float TIMER_INTERVAL = .01;
         YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
         [self flipController:self.audioSource to:spotifySource];
     }
-    /*
-    if (sender) {
-        if (!self.didTapMusicModeButtonForFirstTime) {
-            double delay = .1;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MUSIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
-            });
-        }
-    }
-    */
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Music Mode Button"];
