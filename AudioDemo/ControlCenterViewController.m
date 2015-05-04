@@ -124,7 +124,7 @@
 }
 
 - (IBAction)didTapControlCenterButtonMusic {
-    [UIView animateWithDuration:0.1
+    [UIView animateWithDuration:.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -136,7 +136,7 @@
 }
 
 - (void) showMusicView {
-    [UIView animateWithDuration:0.2
+    [UIView animateWithDuration:.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{

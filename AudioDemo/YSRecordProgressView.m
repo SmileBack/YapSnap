@@ -36,7 +36,7 @@
     self.progressViewStyle = UIProgressViewStyleBar;
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 
-    self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ProgressViewNotches5.png"]];
+    self.imageView = [[UIImageView alloc] init];//]WithImage:[UIImage imageNamed:@"ProgressViewNotches5.png"]];
     self.imageView.alpha = 0.2;
     
     if (IS_IPHONE_5_SIZE) {
@@ -46,8 +46,6 @@
     } else {
         [self setProgressImage:[UIImage imageNamed:@"ProgressViewRed.png"]];
     }
-
-    //self.progressTintColor = THEME_RED_COLOR;
     
     self.trackTintColor = UIColor.whiteColor;
     
@@ -59,7 +57,7 @@
 
 - (void)layoutSubviews
 {
-    self.imageView.frame = self.bounds;
+    //self.imageView.frame = self.bounds;
     self.activityIndicator.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     [super layoutSubviews];
 }

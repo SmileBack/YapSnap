@@ -80,6 +80,7 @@
 		7853936A1AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785393681AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.m */; };
 		7853936E1AD9C17500C6BEA7 /* WelcomePopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853936C1AD9C17500C6BEA7 /* WelcomePopupViewController.m */; };
 		7853936F1AD9C17500C6BEA7 /* WelcomePopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7853936D1AD9C17500C6BEA7 /* WelcomePopupViewController.xib */; };
+		7854B0671AF75EF500A02DF9 /* CartoonsLong2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0661AF75EF500A02DF9 /* CartoonsLong2.png */; };
 		7863B5DD1A99A25F00531CED /* sound1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7863B5DC1A99A25F00531CED /* sound1.wav */; };
 		786BCB431ADC274600BA3FDD /* UploadIcon100.png in Resources */ = {isa = PBXBuildFile; fileRef = 786BCB421ADC274600BA3FDD /* UploadIcon100.png */; };
 		786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */; };
@@ -295,6 +296,7 @@
 		7853936B1AD9C17500C6BEA7 /* WelcomePopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomePopupViewController.h; sourceTree = "<group>"; };
 		7853936C1AD9C17500C6BEA7 /* WelcomePopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomePopupViewController.m; sourceTree = "<group>"; };
 		7853936D1AD9C17500C6BEA7 /* WelcomePopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomePopupViewController.xib; sourceTree = "<group>"; };
+		7854B0661AF75EF500A02DF9 /* CartoonsLong2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CartoonsLong2.png; sourceTree = "<group>"; };
 		7863B5DC1A99A25F00531CED /* sound1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound1.wav; sourceTree = "<group>"; };
 		786BCB421ADC274600BA3FDD /* UploadIcon100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UploadIcon100.png; sourceTree = "<group>"; };
 		786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImageWhiteCircle.png; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7854B0661AF75EF500A02DF9 /* CartoonsLong2.png */,
 				7819048F1AF3293700196DFF /* MicrophoneWhiteSmooth.png */,
 				7819048D1AF2CB2F00196DFF /* ArrowImage@2x.png */,
 				781904851AF287C100196DFF /* ResetButton60@2x.png */,
@@ -1335,6 +1338,7 @@
 				786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */,
 				787EC6161ACA245E000C5539 /* ProgressViewRediPhone4@2x.png in Resources */,
 				37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */,
+				7854B0671AF75EF500A02DF9 /* CartoonsLong2.png in Resources */,
 				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
 				78439FC21AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png in Resources */,
 				78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */,
