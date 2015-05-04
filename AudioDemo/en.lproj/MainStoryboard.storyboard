@@ -267,9 +267,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CartoonsLong2.png" translatesAutoresizingMaskIntoConstraints="NO" id="3jj-uv-5P2">
-                                <rect key="frame" x="0.0" y="409" width="320" height="96"/>
-                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-qO-eT7" userLabel="Control Center View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5m-Ta-bnl">
+                                        <rect key="frame" x="18" y="5" width="284" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="7d1-KF-upc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="45"/>
+                                        <color key="textColor" red="0.93333333330000001" green="0.95686274510000002" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R76-A3-8pM">
+                                        <rect key="frame" x="68" y="217" width="84" height="84"/>
+                                        <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="84" id="I4x-sO-Tm4"/>
+                                            <constraint firstAttribute="width" constant="84" id="iAz-iC-jtl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                        <state key="normal" title="Mic">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapControlCenterButtonMic" destination="RfI-jj-dXL" eventType="touchUpInside" id="a1q-xy-536"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-ff-fwd">
+                                        <rect key="frame" x="168" y="217" width="84" height="84"/>
+                                        <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                        <state key="normal" title="Music">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapControlCenterButtonMusic" destination="RfI-jj-dXL" eventType="touchUpInside" id="O5g-dC-KS3"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CartoonsLong2.png" translatesAutoresizingMaskIntoConstraints="NO" id="TZn-lg-0gG">
+                                        <rect key="frame" x="0.0" y="409" width="320" height="96"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="R76-A3-8pM" firstAttribute="top" secondItem="N5m-Ta-bnl" secondAttribute="bottom" constant="122" id="Ci9-HR-kvA"/>
+                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hca-qO-eT7" secondAttribute="leading" constant="18" id="DWj-Ic-Egd"/>
+                                    <constraint firstItem="R76-A3-8pM" firstAttribute="baseline" secondItem="kgP-ff-fwd" secondAttribute="firstBaseline" id="K8x-zR-MCr"/>
+                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="top" secondItem="Hca-qO-eT7" secondAttribute="top" constant="5" id="LQc-9R-YjU"/>
+                                    <constraint firstAttribute="trailing" secondItem="kgP-ff-fwd" secondAttribute="trailing" constant="68" id="RUV-Qf-0Fi"/>
+                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="leading" secondItem="R76-A3-8pM" secondAttribute="trailing" constant="16" id="TsF-Gu-ydN"/>
+                                    <constraint firstItem="R76-A3-8pM" firstAttribute="leading" secondItem="Hca-qO-eT7" secondAttribute="leading" constant="68" id="Uix-n1-jbX"/>
+                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="leading" secondItem="Hca-qO-eT7" secondAttribute="leading" constant="18" id="W3u-eC-Jyc"/>
+                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="top" secondItem="R76-A3-8pM" secondAttribute="top" id="kK5-jR-ESd"/>
+                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hca-qO-eT7" secondAttribute="top" constant="5" id="lV7-Rn-fF7"/>
+                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="centerX" secondItem="Hca-qO-eT7" secondAttribute="centerX" id="luB-f1-okM"/>
+                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="baseline" secondItem="R76-A3-8pM" secondAttribute="firstBaseline" id="uFd-s7-MYE"/>
+                                </constraints>
+                            </view>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHT-hO-bCo" userLabel="Music View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
                                 <subviews>
@@ -444,66 +501,9 @@
                                     <constraint firstItem="rzF-qu-wIy" firstAttribute="leading" secondItem="C2h-SQ-0Fm" secondAttribute="leading" constant="50" id="yWM-cS-2XP"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-qO-eT7" userLabel="Control Center View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5m-Ta-bnl">
-                                        <rect key="frame" x="18" y="5" width="284" height="133"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="133" id="7d1-KF-upc"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="45"/>
-                                        <color key="textColor" red="0.93333333330000001" green="0.95686274510000002" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R76-A3-8pM">
-                                        <rect key="frame" x="68" y="217" width="84" height="84"/>
-                                        <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="84" id="I4x-sO-Tm4"/>
-                                            <constraint firstAttribute="width" constant="84" id="iAz-iC-jtl"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal" title="Mic">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapControlCenterButtonMic" destination="RfI-jj-dXL" eventType="touchUpInside" id="a1q-xy-536"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-ff-fwd">
-                                        <rect key="frame" x="168" y="217" width="84" height="84"/>
-                                        <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal" title="Music">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapControlCenterButtonMusic" destination="RfI-jj-dXL" eventType="touchUpInside" id="O5g-dC-KS3"/>
-                                        </connections>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CartoonsLong2.png" translatesAutoresizingMaskIntoConstraints="NO" id="TZn-lg-0gG">
-                                        <rect key="frame" x="0.0" y="409" width="320" height="96"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="R76-A3-8pM" firstAttribute="top" secondItem="N5m-Ta-bnl" secondAttribute="bottom" constant="79" id="Ci9-HR-kvA"/>
-                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hca-qO-eT7" secondAttribute="leading" constant="18" id="DWj-Ic-Egd"/>
-                                    <constraint firstItem="R76-A3-8pM" firstAttribute="baseline" secondItem="kgP-ff-fwd" secondAttribute="firstBaseline" id="K8x-zR-MCr"/>
-                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="top" secondItem="Hca-qO-eT7" secondAttribute="top" constant="5" id="LQc-9R-YjU"/>
-                                    <constraint firstAttribute="trailing" secondItem="kgP-ff-fwd" secondAttribute="trailing" constant="68" id="RUV-Qf-0Fi"/>
-                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="leading" secondItem="R76-A3-8pM" secondAttribute="trailing" constant="16" id="TsF-Gu-ydN"/>
-                                    <constraint firstItem="R76-A3-8pM" firstAttribute="leading" secondItem="Hca-qO-eT7" secondAttribute="leading" constant="68" id="Uix-n1-jbX"/>
-                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="leading" secondItem="Hca-qO-eT7" secondAttribute="leading" constant="18" id="W3u-eC-Jyc"/>
-                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="top" secondItem="R76-A3-8pM" secondAttribute="top" id="kK5-jR-ESd"/>
-                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hca-qO-eT7" secondAttribute="top" constant="5" id="lV7-Rn-fF7"/>
-                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="centerX" secondItem="Hca-qO-eT7" secondAttribute="centerX" id="luB-f1-okM"/>
-                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="baseline" secondItem="R76-A3-8pM" secondAttribute="firstBaseline" id="uFd-s7-MYE"/>
-                                </constraints>
-                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CartoonsLong2.png" translatesAutoresizingMaskIntoConstraints="NO" id="3jj-uv-5P2">
+                                <rect key="frame" x="0.0" y="409" width="320" height="96"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>

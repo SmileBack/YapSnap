@@ -521,7 +521,7 @@ static const float TIMER_INTERVAL = .01;
 }
 
 - (void)hideControlCenter {
-    [UIView animateWithDuration:1
+    [UIView animateWithDuration:.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{

@@ -781,6 +781,7 @@
 
 - (void) tappedControlCenterButton:(NSString *)type
 {
+    self.resetButton.alpha = 1;
     if ([type isEqual: @"Search"]) {
         [self showSearchBox];
         double delay = .3;
@@ -789,7 +790,6 @@
         });
     } else {
         self.shuffleButton.alpha = 1;
-        self.resetButton.alpha = 1;
 
         if (!self.didViewRandomPickAlertForFirstTime) {
             [self showRandomPickAlert];
