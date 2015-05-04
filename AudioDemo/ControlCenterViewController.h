@@ -19,14 +19,18 @@
 
 @property (nonatomic, strong) id<ControlCenterDelegate> delegate;
 
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonOne;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonTwo;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonThree;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonFour;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonFive;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonSix;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonTop100;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonSearch;
+@property (nonatomic, strong) IBOutlet UIButton *musicButtonOne;
+@property (nonatomic, strong) IBOutlet UIButton *musicButtonTwo;
+@property (nonatomic, strong) IBOutlet UIButton *musicButtonThree;
+@property (nonatomic, strong) IBOutlet UIButton *musicButtonFour;
+@property (nonatomic, strong) IBOutlet UIButton *musicButtonFive;
+@property (nonatomic, strong) IBOutlet UIButton *musicButtonSix;
+@property (nonatomic, strong) IBOutlet UIButton *musicButtonTop100;
+@property (nonatomic, strong) IBOutlet UIButton *musicButtonSearch;
 @property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonMic;
+@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonMusic;
+
+@property (nonatomic, strong) IBOutlet UIView *controlCenterView;
+@property (nonatomic, strong) IBOutlet UIView *musicView;
 
 @end

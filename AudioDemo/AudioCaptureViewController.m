@@ -18,7 +18,7 @@
 #import "WelcomePopupViewController.h"
 #import "FriendsViewController.h"
 
-#define CONTROL_CENTER_HEIGHT 350.0f
+#define CONTROL_CENTER_HEIGHT 503.0f
 
 @interface AudioCaptureViewController () {
     NSTimer *timer;

@@ -10,15 +10,17 @@
 
 @interface ControlCenterViewController ()
 
-- (IBAction)didTapControlCenterButtonOne;
-- (IBAction)didTapControlCenterButtonTwo;
-- (IBAction)didTapControlCenterButtonThree;
-- (IBAction)didTapControlCenterButtonFour;
-- (IBAction)didTapControlCenterButtonFive;
-- (IBAction)didTapControlCenterButtonSix;
-- (IBAction)didTapControlCenterButtonTop100;
-- (IBAction)didTapControlCenterButtonSearch;
+- (IBAction)didTapMusicButtonOne;
+- (IBAction)didTapMusicButtonTwo;
+- (IBAction)didTapMusicButtonThree;
+- (IBAction)didTapMusicButtonFour;
+- (IBAction)didTapMusicButtonFive;
+- (IBAction)didTapMusicButtonSix;
+- (IBAction)didTapMusicButtonTop100;
+- (IBAction)didTapMusicButtonSearch;
+
 - (IBAction)didTapControlCenterButtonMic;
+- (IBAction)didTapControlCenterButtonMusic;
 
 @end
 
@@ -41,75 +43,79 @@
     CGFloat spacing = 18 + 16 + 16 + 18;
     CGFloat radius = ([[UIScreen mainScreen] bounds].size.width - spacing) / 3 / 2;
 
-    self.controlCenterButtonOne.clipsToBounds = YES;
-    self.controlCenterButtonOne.layer.cornerRadius = radius;
-    self.controlCenterButtonOne.layer.borderWidth = 1;
-    self.controlCenterButtonOne.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.musicButtonOne.clipsToBounds = YES;
+    self.musicButtonOne.layer.cornerRadius = radius;
+    self.musicButtonOne.layer.borderWidth = 1;
+    self.musicButtonOne.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.controlCenterButtonTwo.layer.cornerRadius = radius;
-    self.controlCenterButtonTwo.layer.borderWidth = 1;
-    self.controlCenterButtonTwo.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.musicButtonTwo.layer.cornerRadius = radius;
+    self.musicButtonTwo.layer.borderWidth = 1;
+    self.musicButtonTwo.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.controlCenterButtonThree.layer.cornerRadius = radius;
-    self.controlCenterButtonThree.layer.borderWidth = 1;
-    self.controlCenterButtonThree.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.musicButtonThree.layer.cornerRadius = radius;
+    self.musicButtonThree.layer.borderWidth = 1;
+    self.musicButtonThree.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.controlCenterButtonFour.layer.cornerRadius = radius;
-    self.controlCenterButtonFour.layer.borderWidth = 1;
-    self.controlCenterButtonFour.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.musicButtonFour.layer.cornerRadius = radius;
+    self.musicButtonFour.layer.borderWidth = 1;
+    self.musicButtonFour.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.controlCenterButtonFive.layer.cornerRadius = radius;
-    self.controlCenterButtonFive.layer.borderWidth = 1;
-    self.controlCenterButtonFive.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.musicButtonFive.layer.cornerRadius = radius;
+    self.musicButtonFive.layer.borderWidth = 1;
+    self.musicButtonFive.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.controlCenterButtonSix.layer.cornerRadius = radius;
-    self.controlCenterButtonSix.layer.borderWidth = 1;
-    self.controlCenterButtonSix.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.musicButtonSix.layer.cornerRadius = radius;
+    self.musicButtonSix.layer.borderWidth = 1;
+    self.musicButtonSix.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.controlCenterButtonSearch.layer.cornerRadius = radius;
-    self.controlCenterButtonSearch.layer.borderWidth = 1;
-    self.controlCenterButtonSearch.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.musicButtonSearch.layer.cornerRadius = radius;
+    self.musicButtonSearch.layer.borderWidth = 1;
+    self.musicButtonSearch.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.controlCenterButtonTop100.layer.cornerRadius = radius;
-    self.controlCenterButtonTop100.layer.borderWidth = 1;
-    self.controlCenterButtonTop100.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.musicButtonTop100.layer.cornerRadius = radius;
+    self.musicButtonTop100.layer.borderWidth = 1;
+    self.musicButtonTop100.layer.borderColor = [UIColor whiteColor].CGColor;
     
     self.controlCenterButtonMic.layer.cornerRadius = radius;
     self.controlCenterButtonMic.layer.borderWidth = 1;
     self.controlCenterButtonMic.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.controlCenterButtonMusic.layer.cornerRadius = radius;
+    self.controlCenterButtonMusic.layer.borderWidth = 1;
+    self.controlCenterButtonMusic.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 #pragma mark - Song Genre Buttons
 
-- (IBAction)didTapControlCenterButtonOne {
+- (IBAction)didTapMusicButtonOne {
     [self.delegate tappedSpotifyButton:@"One"];
 }
 
-- (IBAction)didTapControlCenterButtonTwo {
+- (IBAction)didTapMusicButtonTwo {
     [self.delegate tappedSpotifyButton:@"Two"];
 }
 
-- (IBAction)didTapControlCenterButtonThree {
+- (IBAction)didTapMusicButtonThree {
     [self.delegate tappedSpotifyButton:@"Three"];
 }
 
-- (IBAction)didTapControlCenterButtonFour {
+- (IBAction)didTapMusicButtonFour {
     [self.delegate tappedSpotifyButton:@"Four"];
 }
 
-- (IBAction)didTapControlCenterButtonFive {
+- (IBAction)didTapMusicButtonFive {
     [self.delegate tappedSpotifyButton:@"Five"];
 }
 
-- (IBAction)didTapControlCenterButtonSix {
+- (IBAction)didTapMusicButtonSix {
     [self.delegate tappedSpotifyButton:@"Six"];
 }
 
-- (IBAction)didTapControlCenterButtonTop100 {
+- (IBAction)didTapMusicButtonTop100 {
     [self.delegate tappedSpotifyButton:@"Top100"];
 }
 
-- (IBAction)didTapControlCenterButtonSearch {
+- (IBAction)didTapMusicButtonSearch {
     [self.delegate tappedSpotifyButton:@"Search"];
 }
 
@@ -117,5 +123,26 @@
     [self.delegate tappedRecordButton];
 }
 
+- (IBAction)didTapControlCenterButtonMusic {
+    [UIView animateWithDuration:0.1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.controlCenterView.alpha = 0;
+                     }
+                     completion:^(BOOL finished) {
+                         [self showMusicView];
+                     }];
+}
+
+- (void) showMusicView {
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.musicView.alpha = 1;
+                     }
+                     completion:nil];
+}
 
 @end
