@@ -14,6 +14,4 @@ typedef void (^YapsSentCallback)();
 
 @property (nonatomic, strong) YapsSentCallback yapsSentCallback;
 
-#define TAPPED_CANCEL_BUTTON_ON_FRIENDS_EXPLANATION_VIEW_KEY @"yaptap.FriendsExplanationCancelled"
-
 @end

@@ -906,40 +906,30 @@
                                     <outlet property="delegate" destination="IdD-6v-OZr" id="c0b-90-dYp"/>
                                 </connections>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5l-NO-JDy">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5l-NO-JDy">
                                 <rect key="frame" x="0.0" y="423" width="320" height="145"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yuO-zt-d2M">
-                                        <rect key="frame" x="140" y="94" width="40" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Joe-p3-743">
+                                        <rect key="frame" x="30" y="13" width="260" height="100"/>
+                                        <color key="backgroundColor" red="1" green="0.21830097379999999" blue="0.44227100019999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="gPU-ZL-oxy"/>
-                                            <constraint firstAttribute="width" constant="40" id="luS-ps-fRt"/>
+                                            <constraint firstAttribute="height" constant="100" id="Fid-3m-07E"/>
+                                            <constraint firstAttribute="width" constant="260" id="Lx2-mG-GrY"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="CancelImageWhiteCircle.png">
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                        <state key="normal" title="Add Friends!">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="tappedCancelFeedbackExplanationButton" destination="IdD-6v-OZr" eventType="touchUpInside" id="nep-dK-Dmu"/>
+                                            <action selector="didTapLargeAddFriendsButton" destination="IdD-6v-OZr" eventType="touchUpInside" id="K1j-Y9-1HT"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To add a friend, send a yap to anyone from your contacts. They'll become your friend once they open your yap!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITT-tX-hG0">
-                                        <rect key="frame" x="15" y="16" width="290" height="59"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="290" id="cGl-ro-ZVA"/>
-                                            <constraint firstAttribute="height" constant="59" id="ygI-vN-fVD"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.16470588235294117" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="145" id="6VC-rJ-R6E"/>
-                                    <constraint firstAttribute="centerX" secondItem="yuO-zt-d2M" secondAttribute="centerX" id="Jlx-dk-lii"/>
-                                    <constraint firstAttribute="centerX" secondItem="ITT-tX-hG0" secondAttribute="centerX" id="aEg-Mx-L5Z"/>
-                                    <constraint firstItem="ITT-tX-hG0" firstAttribute="top" secondItem="H5l-NO-JDy" secondAttribute="top" constant="16" id="iZG-qp-oTb"/>
-                                    <constraint firstAttribute="bottom" secondItem="yuO-zt-d2M" secondAttribute="bottom" constant="11" id="szf-36-2GM"/>
+                                    <constraint firstAttribute="centerX" secondItem="Joe-p3-743" secondAttribute="centerX" id="Nu1-07-K5u"/>
+                                    <constraint firstAttribute="bottom" secondItem="Joe-p3-743" secondAttribute="bottom" constant="32" id="vPy-5d-Xso"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -969,7 +959,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="friendsExplanationView" destination="H5l-NO-JDy" id="MTH-MG-3Sh"/>
+                        <outlet property="addFriendsView" destination="H5l-NO-JDy" id="AZh-Nn-tzY"/>
+                        <outlet property="largeAddFriendsButton" destination="Joe-p3-743" id="ohW-cF-LfU"/>
                         <outlet property="tableView" destination="jGg-FF-Oxq" id="XAx-Qp-6mJ"/>
                         <segue destination="Zdf-1T-TJC" kind="modal" identifier="Contacts Segue" id="c26-Bf-LAT"/>
                         <segue destination="2" kind="push" identifier="Send Yap Segue" id="Q0Z-rg-Tpo"/>

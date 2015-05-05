@@ -217,13 +217,14 @@ static NSString *CellIdentifier = @"Cell";
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             return 1;
         }else {
-            return 1 + self.allLetters.count;
+            return self.allLetters.count;
         }
+    
     } else {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             return 1;
         }else {
-            return self.allLetters.count;
+            return 1 + self.allLetters.count;
         }
     }
 }
@@ -235,9 +236,10 @@ static NSString *CellIdentifier = @"Cell";
             return self.filteredContacts.count;
         }
 
-        NSString *letter = self.allLetters[section - 1];
+        NSString *letter = self.allLetters[section];
         NSArray *contactsInRow = self.contactDict[letter];
         return contactsInRow.count;
+        
     } else {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             return self.filteredContacts.count;
@@ -260,7 +262,7 @@ static NSString *CellIdentifier = @"Cell";
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             contact = self.filteredContacts[indexPath.row];
         } else {
-            NSString *letter = self.allLetters[indexPath.section - 1];
+            NSString *letter = self.allLetters[indexPath.section];
             NSArray *contacts = self.contactDict[letter];
             contact = contacts[indexPath.row];
         }
@@ -281,6 +283,7 @@ static NSString *CellIdentifier = @"Cell";
         cell.nameLabel.font = [self.selectedContacts containsObject:contact] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
         
         return cell;
+        
     } else {
         PhoneContact *contact;
         if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -318,9 +321,12 @@ static NSString *CellIdentifier = @"Cell";
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             return nil;
         }
-        NSString *letter = self.allLetters[section - 1];
+        
+        NSString *letter = self.allLetters[section];
         NSArray *contacts = self.contactDict[letter];
         return contacts.count > 0 ? letter : nil;
+        
+        
     } else {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             return nil;
@@ -348,15 +354,9 @@ static NSString *CellIdentifier = @"Cell";
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             contact = self.filteredContacts[indexPath.row];
         } else {
-            if (indexPath.section == 0) {
-                ContactManager *contactManager = [ContactManager sharedContactManager];
-                RecentContact *recent = contactManager.recentContacts[indexPath.row];
-                contact = [contactManager contactForContactID:recent.contactID];
-            } else {
-                NSString *letter = self.allLetters[indexPath.section - 1];
-                NSArray *contacts = self.contactDict[letter];
-                contact = contacts[indexPath.row];
-            }
+            NSString *letter = self.allLetters[indexPath.section];
+            NSArray *contacts = self.contactDict[letter];
+            contact = contacts[indexPath.row];
         }
         
         if ([self.selectedContacts containsObject:contact]) {
@@ -370,6 +370,7 @@ static NSString *CellIdentifier = @"Cell";
         [self showOrHideBottomView];
         
         [self updateBottomViewText];
+        
     } else {
         PhoneContact *contact;
         if (tableView == self.searchDisplayController.searchResultsTableView) {

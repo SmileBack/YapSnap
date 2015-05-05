@@ -27,11 +27,13 @@
 @property (nonatomic, strong) NSArray *friends;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) NSMutableDictionary *topFriendMap; //Friend ID :: Top friends array
-@property (strong, nonatomic) IBOutlet UIView *friendsExplanationView;
+@property (strong, nonatomic) IBOutlet UIView *addFriendsView;
 @property (strong, nonatomic) UIActivityIndicatorView *loadingSpinner;
 @property (nonatomic, strong) NSString *friendOneLabelString;
+@property (strong, nonatomic) IBOutlet UIView *largeAddFriendsButton;
 
-- (IBAction)tappedCancelFeedbackExplanationButton;
+- (IBAction) didTapLargeAddFriendsButton;
+
 
 @end
 
@@ -80,21 +82,9 @@
     
     [self getSelfAndUpdateScore];
     
-    if (!self.didTapCancelFeedbackExplanationButton) {
-        self.friendsExplanationView.hidden = NO;
-    }
-    
     // TEXT COLOR OF UINAVBAR
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    
-    [UIView animateWithDuration:1
-                          delay:.2
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.friendsExplanationView.frame = CGRectMake(0, 0, 320, 118);
-                     }
-                     completion:nil];
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
     
@@ -111,6 +101,10 @@
                                                           }
                                                       }];
                                                   }];
+    
+    self.largeAddFriendsButton.layer.cornerRadius = 8;
+    self.largeAddFriendsButton.layer.borderWidth = 1;
+    self.largeAddFriendsButton.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -360,30 +354,6 @@
     return _topFriendMap;
 }
 
-- (void) tappedCancelFeedbackExplanationButton
-{
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenHeight = screenRect.size.height;
-    CGFloat screenWidth = screenRect.size.width;
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_CANCEL_BUTTON_ON_FRIENDS_EXPLANATION_VIEW_KEY];
-    [UIView animateWithDuration:0.5
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.friendsExplanationView.frame = CGRectMake(0, screenHeight, screenWidth, 118);
-                     }
-                     completion:^(BOOL finished) {
-                         self.friendsExplanationView.hidden = YES;
-                     }];
-}
-
-- (BOOL) didTapCancelFeedbackExplanationButton
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_CANCEL_BUTTON_ON_FRIENDS_EXPLANATION_VIEW_KEY];
-    
-}
-
 - (IBAction)addFriendButtonPressed:(UIBarButtonItem *)sender
 {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -408,6 +378,11 @@
 - (IBAction)tappedCancelButton:(UIBarButtonItem *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)didTapLargeAddFriendsButton
+{
+    [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
 }
 
 @end
