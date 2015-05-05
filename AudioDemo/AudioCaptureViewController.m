@@ -33,6 +33,7 @@
 @property (nonatomic, strong) IBOutlet UIView *controlCenterView;
 @property (nonatomic, strong) IBOutlet UIView *controlCenterMusicHeaderView;
 @property (nonatomic, strong) IBOutlet UIButton *openControlCenterButton;
+@property (nonatomic, strong) IBOutlet UILabel *doubleTapLabel;
 
 @property (assign, nonatomic) BOOL controlCenterIsVisible;
 
@@ -129,6 +130,10 @@ static const float TIMER_INTERVAL = .01;
         UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
         [self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
         self.topLeftButton.alpha = 1;
+        
+        self.doubleTapLabel.hidden = NO;
+        self.doubleTapLabel.text = [NSString stringWithFormat:@"For: %@", self.contactReplyingTo.name];
+        
         NSLog(@"In reply mode");
     } else {
         NSLog(@"Not in reply mode");

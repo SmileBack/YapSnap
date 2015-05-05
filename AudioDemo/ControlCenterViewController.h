@@ -35,5 +35,6 @@
 
 #define SHOW_CONTROL_CENTER_MUSIC_HEADER_VIEW @"yaptap.ShowControlCenterMusicHeaderViewNotification"
 #define TRANSITION_TO_FIRST_CONTROL_CENTER_VIEW @"yaptap.TransitionToFirstControlCenterViewNotification"
+#define TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.TappedMicButtonForFirstTimeNotification"
 
 @end

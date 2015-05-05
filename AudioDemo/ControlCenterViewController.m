@@ -150,16 +150,18 @@
 - (IBAction)didTapMicButton {
     [self.delegate tappedRecordButton];
     
-     double delay = .3;
-     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
-         message:@"Record your voice and then tap the white balloon!"
-         delegate:nil
-         cancelButtonTitle:@"OK"
-         otherButtonTitles: nil];
-         [alert show];
-     //[[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
-     });
+    if (!self.didTapMicButtonForFirstTime) {
+        double delay = .3;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
+            message:@"Record your voice and then tap the white balloons!"
+            delegate:nil
+            cancelButtonTitle:@"OK"
+            otherButtonTitles: nil];
+            [alert show];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY];
+        });
+    }
 }
 
 - (IBAction)didTapMusicButton {
@@ -214,6 +216,10 @@
     [self transitionToFirstControlCenterView];
 }
 
+- (BOOL) didTapMicButtonForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY];
+}
 
 
 @end
