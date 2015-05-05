@@ -87,6 +87,7 @@
 		7854B06F1AF86B1000A02DF9 /* LeftArrow10.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B06E1AF86B1000A02DF9 /* LeftArrow10.png */; };
 		7854B0711AF88C1900A02DF9 /* LeftArrow30.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0701AF88C1900A02DF9 /* LeftArrow30.png */; };
 		7854B0731AF88CCF00A02DF9 /* LeftArrow50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0721AF88CCF00A02DF9 /* LeftArrow50.png */; };
+		7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */; };
 		7863B5DD1A99A25F00531CED /* sound1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7863B5DC1A99A25F00531CED /* sound1.wav */; };
 		786BCB431ADC274600BA3FDD /* UploadIcon100.png in Resources */ = {isa = PBXBuildFile; fileRef = 786BCB421ADC274600BA3FDD /* UploadIcon100.png */; };
 		786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */; };
@@ -309,6 +310,7 @@
 		7854B06E1AF86B1000A02DF9 /* LeftArrow10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow10.png; sourceTree = "<group>"; };
 		7854B0701AF88C1900A02DF9 /* LeftArrow30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow30.png; sourceTree = "<group>"; };
 		7854B0721AF88CCF00A02DF9 /* LeftArrow50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow50.png; sourceTree = "<group>"; };
+		7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow60.png; sourceTree = "<group>"; };
 		7863B5DC1A99A25F00531CED /* sound1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound1.wav; sourceTree = "<group>"; };
 		786BCB421ADC274600BA3FDD /* UploadIcon100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UploadIcon100.png; sourceTree = "<group>"; };
 		786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImageWhiteCircle.png; sourceTree = "<group>"; };
@@ -508,6 +510,7 @@
 				7854B06E1AF86B1000A02DF9 /* LeftArrow10.png */,
 				7854B0701AF88C1900A02DF9 /* LeftArrow30.png */,
 				7854B0721AF88CCF00A02DF9 /* LeftArrow50.png */,
+				7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */,
 				7854B06C1AF85BC900A02DF9 /* LeftArrow.png */,
 				7854B0681AF8523100A02DF9 /* ControlCenterButton@2x.png */,
 				7854B06A1AF8535500A02DF9 /* ControlCenterButton2@2x.png */,
@@ -1300,6 +1303,7 @@
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
 				78319A7D1ACD0111000C3FD6 /* MicModeButtonIcon@2x.png in Resources */,
 				781904821AF1E3CE00196DFF /* ResetButton40@2x.png in Resources */,
+				7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */,
 				782D13441ACB8349007C8499 /* YapIconUnopenedSent.png in Resources */,
 				78A2E8691ACC840000B5A404 /* BalloonGreen20.png in Resources */,
 				784047FC1AB4FB7200FE6D93 /* MusicIconBlue3@2x.png in Resources */,
