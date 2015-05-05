@@ -83,6 +83,8 @@ static NSString *CellIdentifier = @"Cell";
         NSLog(@"Internet is reachable");
     }
     
+    self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
+    
     [self registerForKeyboardNotifications];
 }
 
@@ -211,107 +213,191 @@ static NSString *CellIdentifier = @"Cell";
 #pragma UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return 1;
-    }else {
-        return 1 + self.allLetters.count;
+    if (self.builder.builderType == BuilderTypeAddFriends) {
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            return 1;
+        }else {
+            return 1 + self.allLetters.count;
+        }
+    } else {
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            return 1;
+        }else {
+            return self.allLetters.count;
+        }
     }
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return self.filteredContacts.count;
-    }
+    if (self.builder.builderType == BuilderTypeAddFriends) {
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            return self.filteredContacts.count;
+        }
 
-    if (section == 0) {
-        return [ContactManager sharedContactManager].recentContacts.count;
-    } else {
         NSString *letter = self.allLetters[section - 1];
         NSArray *contactsInRow = self.contactDict[letter];
         return contactsInRow.count;
+    } else {
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            return self.filteredContacts.count;
+        }
+        
+        if (section == 0) {
+            return [ContactManager sharedContactManager].recentContacts.count;
+        } else {
+            NSString *letter = self.allLetters[section - 1];
+            NSArray *contactsInRow = self.contactDict[letter];
+            return contactsInRow.count;
+        }
     }
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PhoneContact *contact;
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        contact = self.filteredContacts[indexPath.row];
-    } else if (indexPath.section == 0) {
-        contact = [[ContactManager sharedContactManager] recentContactAtIndex:indexPath.row];
-    } else {
-        NSString *letter = self.allLetters[indexPath.section - 1];
-        NSArray *contacts = self.contactDict[letter];
-        contact = contacts[indexPath.row];
-    }
-    
-    ContactSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    if (self.builder.builderType == BuilderTypeAddFriends) {
+        PhoneContact *contact;
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            contact = self.filteredContacts[indexPath.row];
+        } else {
+            NSString *letter = self.allLetters[indexPath.section - 1];
+            NSArray *contacts = self.contactDict[letter];
+            contact = contacts[indexPath.row];
+        }
+        
+        ContactSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    cell.nameLabel.text = contact.name;
-    cell.phoneLabel.text = contact.phoneNumber;
-    cell.typeLabel.text = contact.label;
-    
-    cell.selectionView.layer.cornerRadius = 8.0f;
-    cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
-    cell.selectionView.layer.borderWidth = 1.0f;
-    cell.selectionView.backgroundColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR : [UIColor clearColor];
-    
-    cell.backgroundColor = [UIColor whiteColor];
-    
-    cell.nameLabel.font = [self.selectedContacts containsObject:contact] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
-    
-    return cell;
+        cell.nameLabel.text = contact.name;
+        cell.phoneLabel.text = contact.phoneNumber;
+        cell.typeLabel.text = contact.label;
+        
+        cell.selectionView.layer.cornerRadius = 8.0f;
+        cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
+        cell.selectionView.layer.borderWidth = 1.0f;
+        cell.selectionView.backgroundColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR : [UIColor clearColor];
+        
+        cell.backgroundColor = [UIColor whiteColor];
+        
+        cell.nameLabel.font = [self.selectedContacts containsObject:contact] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
+        
+        return cell;
+    } else {
+        PhoneContact *contact;
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            contact = self.filteredContacts[indexPath.row];
+        } else if (indexPath.section == 0) {
+            contact = [[ContactManager sharedContactManager] recentContactAtIndex:indexPath.row];
+        } else {
+            NSString *letter = self.allLetters[indexPath.section - 1];
+            NSArray *contacts = self.contactDict[letter];
+            contact = contacts[indexPath.row];
+        }
+        
+        ContactSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        
+        cell.nameLabel.text = contact.name;
+        cell.phoneLabel.text = contact.phoneNumber;
+        cell.typeLabel.text = contact.label;
+        
+        cell.selectionView.layer.cornerRadius = 8.0f;
+        cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
+        cell.selectionView.layer.borderWidth = 1.0f;
+        cell.selectionView.backgroundColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR : [UIColor clearColor];
+        
+        cell.backgroundColor = [UIColor whiteColor];
+        
+        cell.nameLabel.font = [self.selectedContacts containsObject:contact] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
+        
+        return cell;
+    }
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return nil;
-    }
-
-    if (section == 0) {
-        if ([ContactManager sharedContactManager].recentContacts.count > 0) {
-            return @"Recent Contacts";
-        } else {
+    if (self.builder.builderType == BuilderTypeAddFriends) {
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
             return nil;
         }
-    } else {
         NSString *letter = self.allLetters[section - 1];
         NSArray *contacts = self.contactDict[letter];
         return contacts.count > 0 ? letter : nil;
+    } else {
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            return nil;
+        }
+        
+        if (section == 0) {
+            if ([ContactManager sharedContactManager].recentContacts.count > 0) {
+                return @"Recent Contacts";
+            } else {
+                return nil;
+            }
+        } else {
+            NSString *letter = self.allLetters[section - 1];
+            NSArray *contacts = self.contactDict[letter];
+            return contacts.count > 0 ? letter : nil;
+        }
     }
 }
 
 #pragma mark UITableViewCellDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PhoneContact *contact;
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        contact = self.filteredContacts[indexPath.row];
-    } else {
-        if (indexPath.section == 0) {
-            ContactManager *contactManager = [ContactManager sharedContactManager];
-            RecentContact *recent = contactManager.recentContacts[indexPath.row];
-            contact = [contactManager contactForContactID:recent.contactID];
+    if (self.builder.builderType == BuilderTypeAddFriends) {
+        PhoneContact *contact;
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            contact = self.filteredContacts[indexPath.row];
         } else {
-            NSString *letter = self.allLetters[indexPath.section - 1];
-            NSArray *contacts = self.contactDict[letter];
-            contact = contacts[indexPath.row];
+            if (indexPath.section == 0) {
+                ContactManager *contactManager = [ContactManager sharedContactManager];
+                RecentContact *recent = contactManager.recentContacts[indexPath.row];
+                contact = [contactManager contactForContactID:recent.contactID];
+            } else {
+                NSString *letter = self.allLetters[indexPath.section - 1];
+                NSArray *contacts = self.contactDict[letter];
+                contact = contacts[indexPath.row];
+            }
         }
-    }
-    
-    if ([self.selectedContacts containsObject:contact]) {
-        [self.selectedContacts removeObject:contact];
-    } else {
-        [self.selectedContacts addObject:contact];
-    }
-    
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        if ([self.selectedContacts containsObject:contact]) {
+            [self.selectedContacts removeObject:contact];
+        } else {
+            [self.selectedContacts addObject:contact];
+        }
+        
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
-    [self showOrHideBottomView];
-    
-    [self updateBottomViewText];
+        [self showOrHideBottomView];
+        
+        [self updateBottomViewText];
+    } else {
+        PhoneContact *contact;
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            contact = self.filteredContacts[indexPath.row];
+        } else {
+            if (indexPath.section == 0) {
+                ContactManager *contactManager = [ContactManager sharedContactManager];
+                RecentContact *recent = contactManager.recentContacts[indexPath.row];
+                contact = [contactManager contactForContactID:recent.contactID];
+            } else {
+                NSString *letter = self.allLetters[indexPath.section - 1];
+                NSArray *contacts = self.contactDict[letter];
+                contact = contacts[indexPath.row];
+            }
+        }
+        
+        if ([self.selectedContacts containsObject:contact]) {
+            [self.selectedContacts removeObject:contact];
+        } else {
+            [self.selectedContacts addObject:contact];
+        }
+        
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        [self showOrHideBottomView];
+        
+        [self updateBottomViewText];
+    }
 }
 
 - (void) showOrHideBottomView

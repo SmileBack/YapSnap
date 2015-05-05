@@ -219,12 +219,16 @@
         cell.friendThreeImage.hidden = myFriend == nil;
         cell.friendThreeLabel.text = myFriend.displayName;
         [cell.friendThreeLabel sizeToFit];
+        
+        cell.doubleTapLabel.hidden = YES;
     } else if ([indexPath isEqual:self.selectedIndexPath]) {
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_EXPANDED forIndexPath:indexPath];
         [cell clearLabels];
         self.loadingSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [cell addSubview:self.loadingSpinner];
         self.loadingSpinner.center = CGPointMake(160, 50);
+        cell.doubleTapLabel.hidden = NO;
+
         // Labels will be set in showTopFriendsForIndexPath
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_COLLAPSED forIndexPath:indexPath];

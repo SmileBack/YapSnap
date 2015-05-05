@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (strong, nonatomic) IBOutlet UILabel *doubleTapLabel;
 
 @property (strong, nonatomic) IBOutlet UILabel *friendOneLabel;
 @property (strong, nonatomic) IBOutlet UILabel *friendTwoLabel;
