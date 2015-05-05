@@ -67,6 +67,10 @@
             } else if (friends.count > 0) {
                 self.myTopFriends = friends;
             }
+            
+            if (friends.count < 4) {
+                self.largeAddFriendsButton.hidden = NO;
+            }
 
             weakSelf.friends = [friends sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
                 YSUser *user1 = obj1;

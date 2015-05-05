@@ -48,7 +48,12 @@ static NSString *CellIdentifier = @"Cell";
     [mixpanel track:@"Viewed Select Contacts Page"];
     
     self.bottomView.hidden = YES;
-    self.navigationItem.title = @"SEND TO...";
+    
+    if (self.builder.builderType == BuilderTypeAddFriends) {
+        self.navigationItem.title = @"Add Friends";
+    } else {
+        self.navigationItem.title = @"SEND TO...";
+    }
     [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
     self.selectedContacts = [NSMutableArray new];
     
@@ -73,7 +78,7 @@ static NSString *CellIdentifier = @"Cell";
                                                                             action:nil];
     
     if (self.builder.builderType == BuilderTypeAddFriends) {
-        UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
+        UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(cancelPressed)];
         [self.navigationItem setLeftBarButtonItem:cancel];
     }
     
