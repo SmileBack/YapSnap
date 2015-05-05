@@ -98,6 +98,13 @@
 }
 
 - (IBAction) didTapResetButton {
+    [self resetUI];
+    double delay = .4;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self showSearchBox];
+        [self.searchBox becomeFirstResponder];
+    });
+    /*
     double delay = .3;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // TODO SHOW CONTROL CENTER
@@ -108,6 +115,7 @@
         [[YTNotifications sharedNotifications] showNotificationText:@"Reset"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_RESET_BUTTON];
     }
+     */
 }
 
 - (void) searchGenre:(NSString *)genre {
@@ -193,7 +201,9 @@
     self.songs = nil;
     [self.carousel reloadData];
     self.carousel.alpha = 1;
+    self.loadingIndicator.alpha = 1;
     [self.loadingIndicator startAnimating];
+    self.resetButton.alpha = 1;
     
     __weak YSSpotifySourceController *weakSelf = self;
     [[SpotifyAPI sharedApi] searchSongs:search withCallback:^(NSArray *songs, NSError *error) {
@@ -219,8 +229,6 @@
             } else {
                 NSLog(@"Returned Songs Successfully");
                 [self.loadingIndicator stopAnimating];
-                self.resetButton.hidden = NO;
-                self.shuffleButton.hidden = NO;
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];
@@ -260,7 +268,8 @@
     NSLog(@"Textfield did begin editing");
     self.carousel.scrollEnabled = NO;
     self.carousel.alpha = 0;
-    [self hideResetAndShuffleButtons];
+    [self hideResetButton];
+    [self hideShuffleButton];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -269,7 +278,6 @@
 }
 
 #pragma mark - iCarousel Stuff
-#pragma mark iCarousel
 - (NSInteger) numberOfItemsInCarousel:(iCarousel *)carousel
 {
     return self.songs.count;
@@ -637,7 +645,7 @@
     
     if (state == STKAudioPlayerStateStopped) {
         NSLog(@"state == STKAudioPlayerStateStopped");
-        [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
+        [self stopLoadingSpinner];
         [self enableUserInteraction];
         
         // set self.playerAlreadyStartedPlayingForThisSong to FALSE!
@@ -698,15 +706,10 @@
                                                   otherButtonTitles:nil];
             [alert show];
             [self enableUserInteraction];
-            //THE FOLLOWING LINES STOP THE LOADING SPINNER
-            double delay = 0.2;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
-            });
+            [self stopLoadingSpinner];
             return NO;
         } else {
             float volume = [[AVAudioSession sharedInstance] outputVolume];
-            //NSLog(@"Volume: %f", volume);
             if (volume <= 0.125) {
                 double delay = 0.1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -729,6 +732,15 @@
         }
     }
 }
+
+- (void) stopLoadingSpinner {
+    double delay = 0.2;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
+    });
+}
+
+#pragma mark - Setting NSDefaults
 
 - (BOOL) didTapAlbumCoverForFirstTime
 {
@@ -781,7 +793,6 @@
 
 - (void) tappedControlCenterButton:(NSString *)type
 {
-    self.resetButton.alpha = 1;
     if ([type isEqual: @"Search"]) {
         [self showSearchBox];
         double delay = .3;
@@ -830,24 +841,26 @@
                      completion:nil];
 }
 
-- (void) hideResetAndShuffleButtons {
-    self.shuffleButton.alpha = 0;
-    self.shuffleButton.hidden = YES;
+- (void) hideResetButton {
     self.resetButton.alpha = 0;
-    self.resetButton.hidden = YES;
+}
+
+- (void) hideShuffleButton {
+    self.shuffleButton.alpha = 0;
 }
 
 - (void) resetUI {
     self.songs = nil;
-    [self hideResetAndShuffleButtons];
-    
+
     [UIView animateWithDuration:.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          self.searchBox.alpha = 0;
                          self.carousel.alpha = 0;
-                         [self hideResetAndShuffleButtons];
+                         [self hideResetButton];
+                         [self hideShuffleButton];
+                         self.loadingIndicator.alpha = 0;
                      }
                      completion:^(BOOL finished) {
                          self.searchBox.text = @"";

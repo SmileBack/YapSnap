@@ -43,7 +43,7 @@
                                 <rect key="frame" x="142" y="135" width="37" height="37"/>
                                 <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUD-ix-h4T" userLabel="Music">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUD-ix-h4T" userLabel="Music">
                                 <rect key="frame" x="0.0" y="-3" width="50" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="3Pv-a8-Dg2"/>
@@ -185,9 +185,9 @@
                                     <action selector="playTapped:" destination="2" eventType="touchUpInside" id="VKC-1I-ZLd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRo-kq-Ffc" userLabel="Control Center Button">
-                                <rect key="frame" x="19" y="530" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRo-kq-Ffc" userLabel="Control Center Button">
+                                <rect key="frame" x="10" y="516" width="60" height="44"/>
+                                <state key="normal" title="Button" image="ControlCenterButton2.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -216,7 +216,6 @@
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="top" secondItem="1fX-iU-owr" secondAttribute="bottom" constant="17" id="BCa-iP-xVM"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="height" secondItem="3" secondAttribute="width" multiplier="0.4" id="BSR-23-ZOo"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="top" secondItem="Tf8-UJ-WxH" secondAttribute="bottom" constant="11" id="ERA-DM-T7m"/>
-                            <constraint firstItem="4Aj-fk-XgX" firstAttribute="top" secondItem="mRo-kq-Ffc" secondAttribute="bottom" constant="8" id="FDo-ag-tCz"/>
                             <constraint firstAttribute="centerX" secondItem="Dwb-eQ-GX5" secondAttribute="centerX" id="G7R-LP-YV5"/>
                             <constraint firstItem="rzc-3L-GdR" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="HKQ-bH-dg2"/>
                             <constraint firstAttribute="trailing" secondItem="T7q-Ko-Que" secondAttribute="trailing" constant="-18" id="M2d-1a-E2j"/>
@@ -227,7 +226,6 @@
                             <constraint firstItem="1fX-iU-owr" firstAttribute="trailing" secondItem="Tf8-UJ-WxH" secondAttribute="trailing" id="oAQ-xW-0JL"/>
                             <constraint firstAttribute="trailing" secondItem="rzc-3L-GdR" secondAttribute="trailing" id="q9g-nL-crI"/>
                             <constraint firstItem="1fX-iU-owr" firstAttribute="top" secondItem="3" secondAttribute="topMargin" constant="64" id="uX0-kb-X9G"/>
-                            <constraint firstItem="mRo-kq-Ffc" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="19" id="wNc-Sa-tor"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Xtk-3T-WBS" secondAttribute="bottom" constant="6" id="yN0-fu-IF4"/>
                         </constraints>
                     </view>
@@ -1886,6 +1884,7 @@ Type it here!</string>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
         <image name="CartoonsLong2.png" width="640" height="192"/>
+        <image name="ControlCenterButton2.png" width="64" height="49"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>

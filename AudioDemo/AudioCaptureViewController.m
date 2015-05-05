@@ -533,7 +533,7 @@ static const float TIMER_INTERVAL = .01;
     CGRect frame = self.controlCenterView.frame;
     frame.origin.y += CONTROL_CENTER_HEIGHT;
     
-    [UIView animateWithDuration:0.3
+    [UIView animateWithDuration:0.4
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -554,7 +554,7 @@ static const float TIMER_INTERVAL = .01;
     CGRect frame = self.controlCenterView.frame;
     frame.origin.y -= CONTROL_CENTER_HEIGHT;
 
-    [UIView animateWithDuration:0.3
+    [UIView animateWithDuration:.4
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
