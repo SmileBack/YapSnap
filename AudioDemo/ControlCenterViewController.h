@@ -30,7 +30,10 @@
 @property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonMic;
 @property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonMusic;
 
-@property (nonatomic, strong) IBOutlet UIView *controlCenterView;
-@property (nonatomic, strong) IBOutlet UIView *musicView;
+@property (nonatomic, strong) IBOutlet UIView *firstControlCenterView;
+@property (nonatomic, strong) IBOutlet UIView *secondControlCenterView;
+
+#define SHOW_CONTROL_CENTER_MUSIC_HEADER_VIEW @"yaptap.ShowControlCenterMusicHeaderViewNotification"
+#define TRANSITION_TO_FIRST_CONTROL_CENTER_VIEW @"yaptap.TransitionToFirstControlCenterViewNotification"
 
 @end

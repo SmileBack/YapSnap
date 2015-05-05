@@ -204,6 +204,21 @@
                                     <segue destination="RfI-jj-dXL" kind="embed" id="uuP-JT-hrg"/>
                                 </connections>
                             </containerView>
+                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="84I-XS-qgz" userLabel="Music Control Center Header">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4u-mS-fwB">
+                                        <rect key="frame" x="15" y="29" width="30" height="30"/>
+                                        <state key="normal" image="LeftArrow10.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapGoToFirstControlCenterViewButton" destination="2" eventType="touchUpInside" id="UnM-Eb-w8L"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -236,6 +251,7 @@
                         <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="dxv-8x-Abq"/>
                         <outlet property="bottomConstraint" destination="yN0-fu-IF4" id="yTl-AA-hhl"/>
                         <outlet property="controlCenterBottomConstraint" destination="a6a-cY-y9j" id="rnD-N3-AgC"/>
+                        <outlet property="controlCenterMusicHeaderView" destination="84I-XS-qgz" id="XaZ-AE-KPQ"/>
                         <outlet property="controlCenterView" destination="rzc-3L-GdR" id="67k-sE-0XL"/>
                         <outlet property="openControlCenterButton" destination="mRo-kq-Ffc" id="wIC-po-dYz"/>
                         <outlet property="playButton" destination="rCz-SL-MJs" id="ing-QD-Skk"/>
@@ -269,60 +285,67 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5m-Ta-bnl">
-                                        <rect key="frame" x="18" y="5" width="284" height="90"/>
+                                        <rect key="frame" x="18" y="5" width="283" height="90"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="7d1-KF-upc"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="45"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="38"/>
                                         <color key="textColor" red="0.93333333330000001" green="0.95686274510000002" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R76-A3-8pM">
-                                        <rect key="frame" x="68" y="217" width="84" height="84"/>
-                                        <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="32" y="113" width="120" height="120"/>
+                                        <color key="backgroundColor" red="0.20049832340000001" green="0.87062026520000002" blue="0.67566419310000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="84" id="I4x-sO-Tm4"/>
-                                            <constraint firstAttribute="width" constant="84" id="iAz-iC-jtl"/>
+                                            <constraint firstAttribute="height" constant="120" id="I4x-sO-Tm4"/>
+                                            <constraint firstAttribute="width" constant="120" id="iAz-iC-jtl"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal" title="Mic">
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapControlCenterButtonMic" destination="RfI-jj-dXL" eventType="touchUpInside" id="a1q-xy-536"/>
+                                            <action selector="didTapMicButton" destination="RfI-jj-dXL" eventType="touchUpInside" id="2ZE-Qx-B3L"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-ff-fwd">
-                                        <rect key="frame" x="168" y="217" width="84" height="84"/>
-                                        <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="172" y="113" width="120" height="120"/>
+                                        <color key="backgroundColor" red="1" green="0.50980392159999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal" title="Music">
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapControlCenterButtonMusic" destination="RfI-jj-dXL" eventType="touchUpInside" id="O5g-dC-KS3"/>
+                                            <action selector="didTapMusicButton" destination="RfI-jj-dXL" eventType="touchUpInside" id="01h-eY-1sp"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CartoonsLong2.png" translatesAutoresizingMaskIntoConstraints="NO" id="TZn-lg-0gG">
                                         <rect key="frame" x="0.0" y="409" width="320" height="96"/>
                                     </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MicrophoneWhiteSmooth.png" translatesAutoresizingMaskIntoConstraints="NO" id="sP9-qt-bQe">
+                                        <rect key="frame" x="75" y="155" width="35" height="35"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MusicIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="u9u-rJ-1Tk">
+                                        <rect key="frame" x="215" y="155" width="35" height="35"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="R76-A3-8pM" firstAttribute="top" secondItem="N5m-Ta-bnl" secondAttribute="bottom" constant="122" id="Ci9-HR-kvA"/>
+                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="leading" secondItem="R76-A3-8pM" secondAttribute="trailing" constant="20" id="2Ln-xJ-kjd"/>
+                                    <constraint firstItem="R76-A3-8pM" firstAttribute="top" secondItem="N5m-Ta-bnl" secondAttribute="bottom" constant="18" id="Ci9-HR-kvA"/>
                                     <constraint firstItem="N5m-Ta-bnl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hca-qO-eT7" secondAttribute="leading" constant="18" id="DWj-Ic-Egd"/>
-                                    <constraint firstItem="R76-A3-8pM" firstAttribute="baseline" secondItem="kgP-ff-fwd" secondAttribute="firstBaseline" id="K8x-zR-MCr"/>
+                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="bottom" secondItem="R76-A3-8pM" secondAttribute="bottom" id="JJY-5v-wlg"/>
+                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="top" secondItem="R76-A3-8pM" secondAttribute="top" id="JMA-08-LT9"/>
                                     <constraint firstItem="N5m-Ta-bnl" firstAttribute="top" secondItem="Hca-qO-eT7" secondAttribute="top" constant="5" id="LQc-9R-YjU"/>
-                                    <constraint firstAttribute="trailing" secondItem="kgP-ff-fwd" secondAttribute="trailing" constant="68" id="RUV-Qf-0Fi"/>
-                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="leading" secondItem="R76-A3-8pM" secondAttribute="trailing" constant="16" id="TsF-Gu-ydN"/>
-                                    <constraint firstItem="R76-A3-8pM" firstAttribute="leading" secondItem="Hca-qO-eT7" secondAttribute="leading" constant="68" id="Uix-n1-jbX"/>
+                                    <constraint firstItem="R76-A3-8pM" firstAttribute="leading" secondItem="Hca-qO-eT7" secondAttribute="leading" constant="32" id="Uix-n1-jbX"/>
                                     <constraint firstItem="N5m-Ta-bnl" firstAttribute="leading" secondItem="Hca-qO-eT7" secondAttribute="leading" constant="18" id="W3u-eC-Jyc"/>
-                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="top" secondItem="R76-A3-8pM" secondAttribute="top" id="kK5-jR-ESd"/>
+                                    <constraint firstAttribute="trailing" secondItem="kgP-ff-fwd" secondAttribute="trailing" constant="28" id="dVW-8Q-5Jd"/>
+                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="firstBaseline" secondItem="R76-A3-8pM" secondAttribute="firstBaseline" id="jPR-Cc-sGH"/>
                                     <constraint firstItem="N5m-Ta-bnl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hca-qO-eT7" secondAttribute="top" constant="5" id="lV7-Rn-fF7"/>
                                     <constraint firstItem="N5m-Ta-bnl" firstAttribute="centerX" secondItem="Hca-qO-eT7" secondAttribute="centerX" id="luB-f1-okM"/>
-                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="baseline" secondItem="R76-A3-8pM" secondAttribute="firstBaseline" id="uFd-s7-MYE"/>
+                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="baseline" secondItem="R76-A3-8pM" secondAttribute="baseline" id="omb-QG-6Dq"/>
                                 </constraints>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHT-hO-bCo" userLabel="Music View">
@@ -440,11 +463,11 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find a Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSA-gl-hP1">
-                                        <rect key="frame" x="18" y="5" width="284" height="90"/>
+                                        <rect key="frame" x="40" y="5" width="240" height="90"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="p9p-5s-ssz"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="45"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="38"/>
                                         <color key="textColor" red="0.93333333330000001" green="0.95686274510000002" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -455,10 +478,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Onr-im-Luj" userLabel="Left Arrow">
+                                        <rect key="frame" x="10" y="38" width="25" height="25"/>
+                                        <state key="normal" backgroundImage="LeftArrow10.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapGoToFirstControlCenterViewButton" destination="RfI-jj-dXL" eventType="touchUpInside" id="gG3-fP-pTf"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="RSA-gl-hP1" firstAttribute="leading" secondItem="BHT-hO-bCo" secondAttribute="leading" constant="18" id="09C-8h-W7D"/>
+                                    <constraint firstItem="RSA-gl-hP1" firstAttribute="leading" secondItem="BHT-hO-bCo" secondAttribute="leading" constant="40" id="09C-8h-W7D"/>
                                     <constraint firstItem="DWb-xI-2D8" firstAttribute="leading" secondItem="vpw-8x-ySj" secondAttribute="leading" constant="50" id="0KH-R4-Xtg"/>
                                     <constraint firstItem="rzF-qu-wIy" firstAttribute="centerX" secondItem="wdU-yL-U2q" secondAttribute="centerX" id="5eU-rW-Lgy"/>
                                     <constraint firstItem="chs-Tz-vGw" firstAttribute="leading" secondItem="rPm-37-rej" secondAttribute="leading" id="6IX-et-EAS"/>
@@ -476,7 +508,7 @@
                                     <constraint firstItem="C2h-SQ-0Fm" firstAttribute="baseline" secondItem="chs-Tz-vGw" secondAttribute="firstBaseline" id="SV9-el-ahd"/>
                                     <constraint firstItem="RSA-gl-hP1" firstAttribute="top" secondItem="BHT-hO-bCo" secondAttribute="top" constant="5" id="T0E-8W-UcN"/>
                                     <constraint firstItem="vpw-8x-ySj" firstAttribute="trailing" secondItem="DWb-xI-2D8" secondAttribute="trailing" constant="-50" id="ViZ-l3-K8Y"/>
-                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="trailing" secondItem="RSA-gl-hP1" secondAttribute="trailing" id="YIM-jH-nhg"/>
+                                    <constraint firstItem="chs-Tz-vGw" firstAttribute="trailing" secondItem="RSA-gl-hP1" secondAttribute="trailing" constant="22" id="YIM-jH-nhg"/>
                                     <constraint firstItem="fdq-Cp-K49" firstAttribute="baseline" secondItem="rPm-37-rej" secondAttribute="baseline" id="YPM-kB-dde"/>
                                     <constraint firstItem="chs-Tz-vGw" firstAttribute="top" secondItem="C2h-SQ-0Fm" secondAttribute="top" id="a6H-nU-k3a"/>
                                     <constraint firstItem="fdq-Cp-K49" firstAttribute="baseline" secondItem="rPm-37-rej" secondAttribute="firstBaseline" id="b2y-aA-u2t"/>
@@ -489,7 +521,7 @@
                                     <constraint firstItem="chs-Tz-vGw" firstAttribute="baseline" secondItem="C2h-SQ-0Fm" secondAttribute="baseline" id="lru-LL-xzO"/>
                                     <constraint firstItem="C2h-SQ-0Fm" firstAttribute="top" secondItem="vpw-8x-ySj" secondAttribute="top" id="mhd-yw-lnG"/>
                                     <constraint firstItem="Gww-a9-d2f" firstAttribute="bottom" secondItem="BHT-hO-bCo" secondAttribute="bottomMargin" constant="-104" id="ohv-M5-w26"/>
-                                    <constraint firstItem="RSA-gl-hP1" firstAttribute="leading" secondItem="DWb-xI-2D8" secondAttribute="leading" constant="-50" id="oxb-Qg-IgU"/>
+                                    <constraint firstItem="RSA-gl-hP1" firstAttribute="leading" secondItem="DWb-xI-2D8" secondAttribute="leading" constant="-28" id="oxb-Qg-IgU"/>
                                     <constraint firstItem="rPm-37-rej" firstAttribute="trailing" secondItem="chs-Tz-vGw" secondAttribute="trailing" id="saU-tm-X7P"/>
                                     <constraint firstItem="vpw-8x-ySj" firstAttribute="baseline" secondItem="C2h-SQ-0Fm" secondAttribute="firstBaseline" id="vcS-yq-OL0"/>
                                     <constraint firstItem="wdU-yL-U2q" firstAttribute="centerX" secondItem="RSA-gl-hP1" secondAttribute="centerX" constant="50" id="vjB-cC-k56"/>
@@ -520,7 +552,7 @@
                     <connections>
                         <outlet property="controlCenterButtonMic" destination="R76-A3-8pM" id="vbW-rl-NGV"/>
                         <outlet property="controlCenterButtonMusic" destination="kgP-ff-fwd" id="nKS-Ba-5lp"/>
-                        <outlet property="controlCenterView" destination="Hca-qO-eT7" id="Rzj-WD-oNt"/>
+                        <outlet property="firstControlCenterView" destination="Hca-qO-eT7" id="NnR-cM-f3v"/>
                         <outlet property="musicButtonFive" destination="fdq-Cp-K49" id="mch-58-4Mx"/>
                         <outlet property="musicButtonFour" destination="Gww-a9-d2f" id="oaF-pM-wte"/>
                         <outlet property="musicButtonOne" destination="vpw-8x-ySj" id="yyH-Up-N1c"/>
@@ -529,7 +561,7 @@
                         <outlet property="musicButtonThree" destination="chs-Tz-vGw" id="iqg-Nv-SaL"/>
                         <outlet property="musicButtonTop100" destination="DWb-xI-2D8" id="Jhu-L0-0ra"/>
                         <outlet property="musicButtonTwo" destination="C2h-SQ-0Fm" id="aNH-zg-ZfJ"/>
-                        <outlet property="musicView" destination="BHT-hO-bCo" id="x1V-qd-B5V"/>
+                        <outlet property="secondControlCenterView" destination="BHT-hO-bCo" id="kuf-0Z-2V7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BhY-SL-dDT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -978,7 +1010,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CUSTOMIZE &amp; SEND" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-0v-8cp">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CUSTOMIZE YAP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-0v-8cp">
                                 <rect key="frame" x="50" y="32" width="220" height="24"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1886,9 +1918,12 @@ Type it here!</string>
         <image name="CartoonsLong2.png" width="640" height="192"/>
         <image name="ControlCenterButton2.png" width="64" height="49"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
+        <image name="LeftArrow10.png" width="100" height="100"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
+        <image name="MicrophoneWhiteSmooth.png" width="48" height="48"/>
         <image name="Microphone_White2.png" width="256" height="256"/>
+        <image name="MusicIcon.png" width="100" height="100"/>
         <image name="PlusButtonWhite2.png" width="20" height="20"/>
         <image name="RecordButtonBlueBorder10.png" width="240" height="240"/>
         <image name="ResetButton3.png" width="32" height="32"/>

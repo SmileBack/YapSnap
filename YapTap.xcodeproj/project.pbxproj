@@ -83,6 +83,8 @@
 		7854B0671AF75EF500A02DF9 /* CartoonsLong2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0661AF75EF500A02DF9 /* CartoonsLong2.png */; };
 		7854B0691AF8523100A02DF9 /* ControlCenterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0681AF8523100A02DF9 /* ControlCenterButton@2x.png */; };
 		7854B06B1AF8535500A02DF9 /* ControlCenterButton2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B06A1AF8535500A02DF9 /* ControlCenterButton2@2x.png */; };
+		7854B06D1AF85BC900A02DF9 /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B06C1AF85BC900A02DF9 /* LeftArrow.png */; };
+		7854B06F1AF86B1000A02DF9 /* LeftArrow10.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B06E1AF86B1000A02DF9 /* LeftArrow10.png */; };
 		7863B5DD1A99A25F00531CED /* sound1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7863B5DC1A99A25F00531CED /* sound1.wav */; };
 		786BCB431ADC274600BA3FDD /* UploadIcon100.png in Resources */ = {isa = PBXBuildFile; fileRef = 786BCB421ADC274600BA3FDD /* UploadIcon100.png */; };
 		786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */; };
@@ -301,6 +303,8 @@
 		7854B0661AF75EF500A02DF9 /* CartoonsLong2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CartoonsLong2.png; sourceTree = "<group>"; };
 		7854B0681AF8523100A02DF9 /* ControlCenterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ControlCenterButton@2x.png"; sourceTree = "<group>"; };
 		7854B06A1AF8535500A02DF9 /* ControlCenterButton2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ControlCenterButton2@2x.png"; sourceTree = "<group>"; };
+		7854B06C1AF85BC900A02DF9 /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow.png; sourceTree = "<group>"; };
+		7854B06E1AF86B1000A02DF9 /* LeftArrow10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow10.png; sourceTree = "<group>"; };
 		7863B5DC1A99A25F00531CED /* sound1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound1.wav; sourceTree = "<group>"; };
 		786BCB421ADC274600BA3FDD /* UploadIcon100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UploadIcon100.png; sourceTree = "<group>"; };
 		786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImageWhiteCircle.png; sourceTree = "<group>"; };
@@ -497,6 +501,8 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7854B06E1AF86B1000A02DF9 /* LeftArrow10.png */,
+				7854B06C1AF85BC900A02DF9 /* LeftArrow.png */,
 				7854B0681AF8523100A02DF9 /* ControlCenterButton@2x.png */,
 				7854B06A1AF8535500A02DF9 /* ControlCenterButton2@2x.png */,
 				7854B0661AF75EF500A02DF9 /* CartoonsLong2.png */,
@@ -1336,6 +1342,7 @@
 				788363A61AD79572001CBD1B /* OneNotSelectediPhone6@2x.png in Resources */,
 				781904881AF288C100196DFF /* ResetButton70@2x.png in Resources */,
 				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
+				7854B06F1AF86B1000A02DF9 /* LeftArrow10.png in Resources */,
 				78439FBF1AE77145004CFB5F /* SongVersionOneSelected@2x.png in Resources */,
 				7819916F1AABBA6E00309E38 /* SettingsIconWhite8@2x.png in Resources */,
 				37D413C619D2235C00021548 /* Images.xcassets in Resources */,
@@ -1370,6 +1377,7 @@
 				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */,
 				78439FB01AE6EF46004CFB5F /* OpenGift700.png in Resources */,
 				7883637B1AD781C3001CBD1B /* OneNotSelected@2x.png in Resources */,
+				7854B06D1AF85BC900A02DF9 /* LeftArrow.png in Resources */,
 				78439F901AE61528004CFB5F /* YapsIconReceivedUnopened4.png in Resources */,
 				78A2E8561ACC671600B5A404 /* PinkStar3.png in Resources */,
 				78A2E8661ACC822800B5A404 /* Balloon20.png in Resources */,

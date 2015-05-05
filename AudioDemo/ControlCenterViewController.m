@@ -19,8 +19,9 @@
 - (IBAction)didTapMusicButtonTop100;
 - (IBAction)didTapMusicButtonSearch;
 
-- (IBAction)didTapControlCenterButtonMic;
-- (IBAction)didTapControlCenterButtonMusic;
+- (IBAction)didTapMicButton;
+- (IBAction)didTapMusicButton;
+- (IBAction)didTapGoToFirstControlCenterViewButton;
 
 @end
 
@@ -33,9 +34,36 @@
     [self styleControlCenterButtons];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    [self setupNotifications];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) setupNotifications {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:TRANSITION_TO_FIRST_CONTROL_CENTER_VIEW
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Show First Control Center View");
+                        [self transitionToFirstControlCenterView];
+                    }];
+    
+    [center addObserverForName:UIApplicationDidEnterBackgroundNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"popToBaseAudioCaptureController");
+                        self.secondControlCenterView.alpha = 0;
+                        self.firstControlCenterView.alpha = 1;
+                    }];
 }
 
 - (void) styleControlCenterButtons {
@@ -76,11 +104,11 @@
     self.musicButtonTop100.layer.borderWidth = 1;
     self.musicButtonTop100.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.controlCenterButtonMic.layer.cornerRadius = radius;
+    self.controlCenterButtonMic.layer.cornerRadius = 60;
     self.controlCenterButtonMic.layer.borderWidth = 1;
     self.controlCenterButtonMic.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.controlCenterButtonMusic.layer.cornerRadius = radius;
+    self.controlCenterButtonMusic.layer.cornerRadius = 60;
     self.controlCenterButtonMusic.layer.borderWidth = 1;
     self.controlCenterButtonMusic.layer.borderColor = [UIColor whiteColor].CGColor;
 }
@@ -119,30 +147,73 @@
     [self.delegate tappedSpotifyButton:@"Search"];
 }
 
-- (IBAction)didTapControlCenterButtonMic {
+- (IBAction)didTapMicButton {
     [self.delegate tappedRecordButton];
+    
+     double delay = .3;
+     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
+         message:@"Record your voice and then tap the white balloon!"
+         delegate:nil
+         cancelButtonTitle:@"OK"
+         otherButtonTitles: nil];
+         [alert show];
+     //[[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
+     });
 }
 
-- (IBAction)didTapControlCenterButtonMusic {
-    [UIView animateWithDuration:.3
+- (IBAction)didTapMusicButton {
+    //[[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER_MUSIC_HEADER_VIEW object:nil];
+    
+    [UIView animateWithDuration:.2
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.controlCenterView.alpha = 0;
+                         self.firstControlCenterView.alpha = 0;
                      }
                      completion:^(BOOL finished) {
-                         [self showMusicView];
+                         [self unhideSecondControlCenterView];
                      }];
 }
 
-- (void) showMusicView {
+- (void) unhideSecondControlCenterView {
     [UIView animateWithDuration:.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.musicView.alpha = 1;
+                         self.secondControlCenterView.alpha = 1;
                      }
                      completion:nil];
 }
+
+- (void) unhideFirstControlCenterView {
+    [UIView animateWithDuration:.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.firstControlCenterView.alpha = 1;
+                     }
+                     completion:nil];
+}
+
+
+- (void) transitionToFirstControlCenterView {
+    [UIView animateWithDuration:.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.secondControlCenterView.alpha = 0;
+                     }
+                     completion:^(BOOL finished) {
+                         [self unhideFirstControlCenterView];
+                     }];
+}
+
+- (IBAction)didTapGoToFirstControlCenterViewButton
+{
+    [self transitionToFirstControlCenterView];
+}
+
+
 
 @end

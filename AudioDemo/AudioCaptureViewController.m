@@ -30,10 +30,12 @@
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
 @property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
-
 @property (nonatomic, strong) IBOutlet UIView *controlCenterView;
-
+@property (nonatomic, strong) IBOutlet UIView *controlCenterMusicHeaderView;
 @property (nonatomic, strong) IBOutlet UIButton *openControlCenterButton;
+
+@property (assign, nonatomic) BOOL controlCenterIsVisible;
+
 
 
 - (IBAction)didTapOpenControlCenterButton;
@@ -141,7 +143,6 @@ static const float TIMER_INTERVAL = .01;
     [self.audioSource stopAudioCapture:self.elapsedTime];
     
     if ([self isInReplyMode]) {
-        [self switchToMicMode]; //This line is a hacky fix to an issue where spotify songs remain on screen after pop
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
@@ -315,6 +316,23 @@ static const float TIMER_INTERVAL = .01;
                         NSLog(@"Show Control Center");
                         [self showControlCenter];
                     }];
+    /*
+    [center addObserverForName:SHOW_CONTROL_CENTER_MUSIC_HEADER_VIEW
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Show Control Center");
+                        [self showControlCenterMusicHeaderView];
+                    }];
+    
+    [center addObserverForName:HIDE_CONTROL_CENTER_MUSIC_HEADER_VIEW
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Show Control Center");
+                        [self hideControlCenterMusicHeaderView];
+                    }];
+     */
 }
 
 - (void) updateProgress {
@@ -521,6 +539,8 @@ static const float TIMER_INTERVAL = .01;
 }
 
 - (void)hideControlCenter {
+    //[self hideControlCenterMusicHeaderView];
+
     [UIView animateWithDuration:.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -533,7 +553,7 @@ static const float TIMER_INTERVAL = .01;
     CGRect frame = self.controlCenterView.frame;
     frame.origin.y += CONTROL_CENTER_HEIGHT;
     
-    [UIView animateWithDuration:0.4
+    [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -541,6 +561,7 @@ static const float TIMER_INTERVAL = .01;
                          weakSelf.controlCenterBottomConstraint.constant = -CONTROL_CENTER_HEIGHT;
                      }
                      completion:nil];
+    
     
 }
 
@@ -590,19 +611,37 @@ static const float TIMER_INTERVAL = .01;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self hideControlCenter];
     });
-    
-    /*
-     double delay = .3;
-     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
-     message:@"Record your voice and then tap the white balloon!"
-     delegate:nil
-     cancelButtonTitle:@"OK"
-     otherButtonTitles: nil];
-     [alert show];
-     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_MODE_BUTTON_FOR_FIRST_TIME_KEY];
-     });
-     */
+}
+
+/*
+- (void) showControlCenterMusicHeaderView
+{
+    [UIView animateWithDuration:.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.controlCenterMusicHeaderView.alpha = 1;
+                     }
+                     completion:nil];
+}
+
+- (void) hideControlCenterMusicHeaderView
+{
+    [UIView animateWithDuration:.3
+                          delay:.2
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.controlCenterMusicHeaderView.alpha = 0;
+                     }
+                     completion:nil];
+}
+*/
+
+- (IBAction) didTapGoToFirstControlCenterViewButton
+{
+    NSLog(@"tapped first control center view button");
+    [[NSNotificationCenter defaultCenter] postNotificationName:TRANSITION_TO_FIRST_CONTROL_CENTER_VIEW object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:HIDE_CONTROL_CENTER_MUSIC_HEADER_VIEW object:nil];
 }
 
 @end
