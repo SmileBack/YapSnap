@@ -220,7 +220,7 @@ static API *sharedAPI;
 
 - (void) confirmFriendFromYap:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback
 {
-    NSDictionary *params = @{@"yap_id": yap.yapID};
+    NSDictionary *params = @{@"sender_id": yap.senderID};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:[self urlForEndpoint:@"friends/confirm"]
@@ -372,6 +372,7 @@ static API *sharedAPI;
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSArray *yapDicts = responseObject; //Assuming it is an array
               NSArray *yaps = [YSYap yapsWithArray:yapDicts];
+              NSLog(@"Yaps: %@", responseObject);
               
               NSMutableArray *imagesToPrefetch = [NSMutableArray new];
               for (YSYap *yap in yaps) {

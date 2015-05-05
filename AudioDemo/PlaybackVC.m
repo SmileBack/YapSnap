@@ -192,7 +192,7 @@
 {
     [self dismissViewControllerAnimated:NO completion:nil];
 
-    if (self.isFromFriend && !self.isFromFriend.boolValue) {
+    if (!self.isFromFriend.boolValue) {
         __weak YSYap *weakYap = self.yap;
         if (self.strangerCallback) {
             self.strangerCallback(weakYap);
@@ -283,15 +283,6 @@
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self dismissThis];
-            
-            /*
-            if ([self.yap.text isEqual: @"Welcome to YapTap :)"] && self.yap.senderID.intValue == 1)
-            {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"Send Someone a Yap!"];
-                });
-            }
-             */
             
             if (!self.didSeeDoubleTapBanner && self.yap.senderID.intValue != 1) {
                 [[YTNotifications sharedNotifications] showNotificationText:@"Double Tap To Reply!"];
