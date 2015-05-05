@@ -186,7 +186,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.0" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRo-kq-Ffc" userLabel="Control Center Button">
-                                <rect key="frame" x="10" y="516" width="60" height="44"/>
+                                <rect key="frame" x="10" y="525" width="55" height="35"/>
                                 <state key="normal" title="Button" image="ControlCenterButton2.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
