@@ -483,11 +483,18 @@ static NSString *CellIdentifier = @"Cell";
                        withCallback:^(BOOL success, NSError *error) {
                            if (success) {
                                [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
+                               
+                               double delay = .3;
+                               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                   [self showFriendsSuccessAlert];
+                               });
                            } else {
                                // uh oh spaghettios
                                // TODO: tell the user something went wrong
                            }
                        }];
+    
+    [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) sendYapBuilder
@@ -544,6 +551,16 @@ static NSString *CellIdentifier = @"Cell";
 - (BOOL) didViewContactsAlert
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_CONTACTS_ALERT_KEY];
+}
+
+- (void) showFriendsSuccessAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Friend Request Sent"
+                                                    message:@"They'll be added to your friends once they accept!"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end
