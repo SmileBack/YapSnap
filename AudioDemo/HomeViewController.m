@@ -1,0 +1,275 @@
+//
+//  HomeViewController.m
+//  YapTap
+//
+//  Created by Dan B on 5/7/15.
+//  Copyright (c) 2015 Appcoda. All rights reserved.
+//
+
+#import "HomeViewController.h"
+#import "WelcomePopupViewController.h"
+#import "FriendsViewController.h"
+#import "ControlCenterViewController.h"
+#import "YapsViewController.h"
+#import "API.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "AudioCaptureViewController.h"
+
+@interface HomeViewController ()
+
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *doubleTapLabel;
+@property (nonatomic, strong) NSNumber *unopenedYapsCount;
+@property (strong, nonatomic) NSTimer *pulsatingTimer;
+@property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
+
+@end
+
+@implementation HomeViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    if (!self.didSeeWelcomePopup) {
+        [self showWelcomePopup];
+    }
+    
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    
+    self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:nil
+                                                                            action:nil];
+    __weak HomeViewController *weakSelf = self;
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:SHOW_FEEDBACK_PAGE
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Show Feedback Page");
+                        [self showFeedbackEmailViewControllerWithCompletion:^{
+                        }];
+                    }];
+    
+    [center addObserverForName:UIApplicationDidBecomeActiveNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [weakSelf reloadUnopenedYapsCount];
+                    }];
+    [self setupNavBarStuff];
+    [self setupControlCenter];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+    
+    //Nav bar should not be transparent after finishing registration process
+    self.navigationController.navigationBar.translucent = NO;
+    [self reloadUnopenedYapsCount];
+    [self updateYapsButtonAnimation];
+}
+
+- (void) reloadUnopenedYapsCount
+{
+    [[API sharedAPI] unopenedYapsCountWithCallback:^(NSNumber *count, NSError *error) {
+        if (error) {
+            [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
+        } else if (count.description.intValue == 0) {
+            NSLog(@"0 Yaps");
+            UIImage *buttonImage = [UIImage imageNamed:@"YapsButtonNoYaps.png"];
+            [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+            [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateHighlighted];
+            // Remove number from button
+            [self.yapsPageButton setTitle:@"" forState:UIControlStateNormal];
+        } else {
+            UIImage *buttonImage = [UIImage imageNamed:@"YapsButton100.png"];
+            [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+            [self.yapsPageButton setBackgroundImage:buttonImage forState:UIControlStateHighlighted];
+            
+            // Add number to button
+            [self.yapsPageButton setTitle:count.description forState:UIControlStateNormal];
+            self.unopenedYapsCount = count;
+        }
+    }];
+}
+
+- (BOOL) isInReplyMode
+{
+    return self.contactReplyingTo != nil;
+}
+
+- (void) tappedWelcomePopup {
+    NSLog(@"tapped Welcome Popup");
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideTopTop];
+    double delay = .2;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self didTapYapsPageButton];
+    });
+}
+
+- (void) showWelcomePopup {
+    NSLog(@"tapped Welcome Popup");
+    double delay = 1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.welcomePopupVC = [[WelcomePopupViewController alloc] initWithNibName:@"WelcomePopupViewController" bundle:nil];
+        [self presentPopupViewController:self.welcomePopupVC animationType:MJPopupViewAnimationSlideTopTop];
+        
+        UITapGestureRecognizer *tappedWelcomePopup = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedWelcomePopup)];
+        [self.welcomePopupVC.view addGestureRecognizer:tappedWelcomePopup];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_WELCOME_POPUP_KEY];
+    });
+}
+
+- (void) setupNavBarStuff
+{
+    if ([self isInReplyMode]) {
+        self.yapsPageButton.hidden = YES;
+        UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
+        [self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
+        self.topLeftButton.alpha = 1;
+        
+        self.doubleTapLabel.hidden = NO;
+        self.doubleTapLabel.text = [NSString stringWithFormat:@"For: %@", self.contactReplyingTo.name];
+        
+        NSLog(@"In reply mode");
+    } else {
+        NSLog(@"Not in reply mode");
+    }
+}
+
+- (void) pulsateYapsButton
+{
+    CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    [animation setFromValue:[NSNumber numberWithFloat:1.3]];
+    [animation setToValue:[NSNumber numberWithFloat:1]];
+    [animation setDuration:.5];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.1 :1.3 :1 :1]];
+    [self.yapsPageButton.layer addAnimation:animation forKey:@"bounceAnimation"];
+}
+
+- (void) updateYapsButtonAnimation {
+    if (!self.didOpenYapForFirstTime) {
+        if (self.pulsatingTimer){
+            [self.pulsatingTimer invalidate];
+        }
+        NSLog(@"Add pulsating animation");
+        self.pulsatingTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                               target:self
+                                                             selector:@selector(pulsateYapsButton)
+                                                             userInfo:nil
+                                                              repeats:YES];
+    } else {
+        if (self.pulsatingTimer){
+            [self.pulsatingTimer invalidate];
+        }
+        [self.yapsPageButton.layer removeAnimationForKey:@"bounceAnimation"];
+        NSLog(@"Remove pulsating animation");
+    }
+}
+
+- (IBAction)leftButtonPressed:(id)sender
+{
+    if ([self isInReplyMode]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
+    }
+}
+
+- (IBAction) didTapYapsPageButton
+{
+    [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:self];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([@"YapsPageViewControllerSegue" isEqualToString:segue.identifier]) {
+        YapsViewController *yapsVC = segue.destinationViewController;
+        yapsVC.unopenedYapsCount = self.unopenedYapsCount;
+    } else if ([@"Friends Segue" isEqualToString:segue.identifier]) {
+        UINavigationController *navVC = segue.destinationViewController;
+        FriendsViewController *vc = navVC.viewControllers[0];
+        vc.yapsSentCallback = ^() {
+            [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:nil];
+        };
+    } else if ([@"Audio Record" isEqualToString:segue.identifier]) {
+        UINavigationController *navVC = segue.destinationViewController;
+        AudioCaptureViewController* audio = navVC.topViewController;
+        if ([sender isEqualToString:@"mic"]) {
+         //   [audio switchToMicMode];
+        } else {
+           // [audio switchToSpotifyMode];
+        }
+    }
+}
+
+#pragma mark - Control Center
+- (void) setupControlCenter
+{
+    for (UIViewController *vc in self.childViewControllers) {
+        if ([vc isKindOfClass:[ControlCenterViewController class]]) {
+            ControlCenterViewController *controlVC = (ControlCenterViewController *)vc;
+            controlVC.delegate = self;
+        }
+    }
+}
+
+#pragma mark - Feedback
+- (void) showFeedbackEmailViewControllerWithCompletion:(void (^)(void))completion
+{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+        mailer.mailComposeDelegate = self;
+        [mailer setSubject:@"Feedback"];
+        NSArray *toRecipients = [NSArray arrayWithObjects:@"team@yaptapapp.com", nil];
+        [mailer setToRecipients:toRecipients];
+        NSString *emailBody = @"";
+        [mailer setMessageBody:emailBody isHTML:NO];
+        [self presentViewController:mailer animated:YES completion:completion];
+        [mailer becomeFirstResponder];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email didn't send"
+                                                        message:@"You don't have your e-mail setup. Please contact us at team@yaptapapp.com."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
+#pragma mark - Mail Delegate
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (BOOL) didOpenYapForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
+}
+
+- (BOOL) didSeeWelcomePopup
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_POPUP_KEY];
+}
+
+- (void) tappedSpotifyButton:(NSString *)type
+{
+    //TODO:
+    [self performSegueWithIdentifier:@"Audio Record" sender:@"spotify"];
+}
+
+- (void) tappedMicButton
+{
+    //TODO:
+    [self performSegueWithIdentifier:@"Audio Record" sender:@"mic"];
+}
+
+@end

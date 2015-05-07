@@ -148,7 +148,7 @@
 }
 
 - (IBAction)didTapMicButton {
-    [self.delegate tappedRecordButton];
+    [self.delegate tappedMicButton];
     
     if (!self.didTapMicButtonForFirstTime) {
         double delay = .3;

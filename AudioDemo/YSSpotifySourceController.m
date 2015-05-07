@@ -31,7 +31,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *shuffleButton;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) NSArray *artists;
-@property (nonatomic, strong) NSString *selectedGenre;\
+@property (nonatomic, strong) NSString *selectedGenre;
 @property (nonatomic, strong) NSDictionary *typeToGenreMap;
 
 - (IBAction)didTapResetButton;
@@ -762,11 +762,6 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
 }
 
-- (BOOL) didViewRandomPickAlertForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_RANDOM_PICK_ALERT];
-}
-
 - (BOOL) didTapResetButtonForFirstTime
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_RESET_BUTTON];
@@ -777,50 +772,7 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SHUFFLE_BUTTON];
 }
 
-#pragma mark - Control Center Stuff
-- (NSDictionary *) typeToGenreMap
-{
-    if (!_typeToGenreMap) {
-        _typeToGenreMap = @{@"One": @"Pop",
-                            @"Two": @"Hip Hop",
-                            @"Three": @"Rock",
-                            @"Four": @"EDM",
-                            @"Five": @"Country",
-                            @"Six": @"TV/Film"};
-    }
-    return _typeToGenreMap;
-}
 
-- (void) tappedControlCenterButton:(NSString *)type
-{
-    if ([type isEqual: @"Search"]) {
-        [self showSearchBox];
-        double delay = .3;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.searchBox becomeFirstResponder];
-        });
-    } else {
-        self.shuffleButton.alpha = 1;
-
-        if (!self.didViewRandomPickAlertForFirstTime) {
-            [self showRandomPickAlert];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_RANDOM_PICK_ALERT];
-        } else {
-            self.selectedGenre = self.typeToGenreMap[type];
-            if (!self.selectedGenre) self.selectedGenre = type;
-            [self searchGenre:self.selectedGenre];
-        }
-    }
-}
-
-- (void) showRandomPickAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Here's a Random Artist"
-                                                    message:@"Tap the shuffle button to explore\nmore artists."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
 
 - (IBAction) didTapShuffleButton {
     if (!self.didTapShuffleButtonForFirstTime) {
@@ -865,6 +817,46 @@
                      completion:^(BOOL finished) {
                          self.searchBox.text = @"";
                      }];
+}
+
+#pragma mark - Control Center Stuff
+- (NSDictionary *) typeToGenreMap
+{
+    if (!_typeToGenreMap) {
+        _typeToGenreMap = @{@"One": @"Pop",
+                            @"Two": @"Hip Hop",
+                            @"Three": @"Rock",
+                            @"Four": @"EDM",
+                            @"Five": @"Country",
+                            @"Six": @"TV/Film"};
+    }
+    return _typeToGenreMap;
+}
+
+- (void) tappedControlCenterButton:(NSString *)type
+{
+    if ([type isEqual: @"Search"]) {
+        [self showSearchBox];
+        double delay = .3;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.searchBox becomeFirstResponder];
+        });
+    } else {
+        self.shuffleButton.alpha = 1;
+
+        self.selectedGenre = self.typeToGenreMap[type];
+        if (!self.selectedGenre) self.selectedGenre = type;
+        [self searchGenre:self.selectedGenre];
+    }
+}
+
+- (void) showRandomPickAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Here's a Random Artist"
+                                                    message:@"Tap the shuffle button to explore\nmore artists."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

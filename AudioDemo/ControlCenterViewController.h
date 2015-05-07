@@ -11,7 +11,7 @@
 @protocol ControlCenterDelegate
 
 - (void) tappedSpotifyButton:(NSString *)type;
-- (void) tappedRecordButton;
+- (void) tappedMicButton;
 
 @end
 

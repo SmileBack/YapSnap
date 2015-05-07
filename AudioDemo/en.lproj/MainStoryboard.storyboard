@@ -110,10 +110,80 @@
             </objects>
             <point key="canvasLocation" x="1638" y="-1202"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LTI-G7-kci">
+            <objects>
+                <navigationController id="XzA-PH-XVB" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ILc-dr-JaM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="XE5-ww-gTm" kind="relationship" relationship="rootViewController" id="jg0-TF-Y5q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NK7-nh-SCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-697" y="1328"/>
+        </scene>
         <!--Audio Capture View Controller-->
+        <scene sceneID="u3h-oE-Tn6">
+            <objects>
+                <viewController id="XE5-ww-gTm" customClass="AudioCaptureViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2I6-Gf-QtV"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ezh-9p-xYZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jch-J9-Qbc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tf8-UJ-WxH" userLabel="Source Container">
+                                <rect key="frame" x="0.0" y="107" width="320" height="302"/>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtk-3T-WBS">
+                                <rect key="frame" x="96" y="420" width="128" height="128"/>
+                                <state key="normal" backgroundImage="RecordButtonBlueBorder10.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordTapped:" destination="XE5-ww-gTm" eventType="touchDown" id="pI7-03-qJ8"/>
+                                    <action selector="recordUntapped:" destination="XE5-ww-gTm" eventType="touchDragExit" id="MJL-sZ-LOE"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fX-iU-owr" userLabel="Progress Container" customClass="YSRecordProgressView">
+                                <rect key="frame" x="0.0" y="52" width="320" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCz-SL-MJs">
+                                <rect key="frame" x="244" y="439" width="46" height="30"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playTapped:" destination="2" eventType="touchUpInside" id="VKC-1I-ZLd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aLc-kc-Dc8"/>
+                    <connections>
+                        <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="OWQ-Ga-xCg"/>
+                        <outlet property="recordButton" destination="Xtk-3T-WBS" id="sP2-Fz-YSB"/>
+                        <outlet property="recordProgressView" destination="1fX-iU-owr" id="ZU5-oD-Me6"/>
+                        <segue destination="j1Z-Ou-SMe" kind="custom" identifier="Prepare Yap For Text Segue" customClass="NoAnimationPushSegue" id="eDP-Ek-kdM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qBt-zv-nzn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-206" y="1328"/>
+        </scene>
+        <!--Home View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController storyboardIdentifier="AudioCaptureViewController" id="2" customClass="AudioCaptureViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AudioCaptureViewController" id="2" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="He3-zt-M1e"/>
                         <viewControllerLayoutGuide type="bottom" id="4Aj-fk-XgX"/>
@@ -157,44 +227,12 @@
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf8-UJ-WxH" userLabel="Source Container">
-                                <rect key="frame" x="0.0" y="121" width="320" height="302"/>
-                            </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtk-3T-WBS">
-                                <rect key="frame" x="96" y="434" width="128" height="128"/>
-                                <state key="normal" backgroundImage="RecordButtonBlueBorder10.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="recordTapped:" destination="2" eventType="touchDown" id="p0K-bZ-3nh"/>
-                                    <action selector="recordUntapped:" destination="2" eventType="touchUpInside" id="MtL-ad-XAR"/>
-                                    <action selector="recordUntapped:" destination="2" eventType="touchDragExit" id="Q0s-7Y-xrS"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fX-iU-owr" userLabel="Progress Container" customClass="YSRecordProgressView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCz-SL-MJs">
-                                <rect key="frame" x="244" y="453" width="46" height="30"/>
-                                <state key="normal" title="Play">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="playTapped:" destination="2" eventType="touchUpInside" id="VKC-1I-ZLd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRo-kq-Ffc" userLabel="Control Center Button">
-                                <rect key="frame" x="10" y="525" width="55" height="35"/>
-                                <state key="normal" title="Button" image="ControlCenterButton2.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapOpenControlCenterButton" destination="2" eventType="touchUpInside" id="Xpd-bm-yOy"/>
-                                </connections>
-                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6Y-rR-iWd">
+                                <rect key="frame" x="40" y="31" width="240" height="21"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzc-3L-GdR" userLabel="Control Center">
                                 <rect key="frame" x="0.0" y="63" width="320" height="504"/>
                                 <constraints>
@@ -204,35 +242,17 @@
                                     <segue destination="RfI-jj-dXL" kind="embed" id="uuP-JT-hrg"/>
                                 </connections>
                             </containerView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6Y-rR-iWd">
-                                <rect key="frame" x="40" y="31" width="240" height="21"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Dwb-eQ-GX5" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="44" id="1H4-GY-B2q"/>
-                            <constraint firstItem="Tf8-UJ-WxH" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="1gf-LG-sLm"/>
                             <constraint firstItem="Dwb-eQ-GX5" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" constant="10" id="1jW-yf-ygK"/>
                             <constraint firstItem="T7q-Ko-Que" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" id="63R-i6-jw2"/>
-                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="width" secondItem="3" secondAttribute="width" multiplier="0.4" id="ABo-Ds-mDZ"/>
-                            <constraint firstAttribute="centerX" secondItem="Xtk-3T-WBS" secondAttribute="centerX" id="B6s-aK-z81"/>
-                            <constraint firstItem="Tf8-UJ-WxH" firstAttribute="top" secondItem="1fX-iU-owr" secondAttribute="bottom" constant="17" id="BCa-iP-xVM"/>
-                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="height" secondItem="3" secondAttribute="width" multiplier="0.4" id="BSR-23-ZOo"/>
-                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="top" secondItem="Tf8-UJ-WxH" secondAttribute="bottom" constant="11" id="ERA-DM-T7m"/>
                             <constraint firstAttribute="centerX" secondItem="Dwb-eQ-GX5" secondAttribute="centerX" id="G7R-LP-YV5"/>
                             <constraint firstItem="rzc-3L-GdR" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="HKQ-bH-dg2"/>
                             <constraint firstAttribute="trailing" secondItem="T7q-Ko-Que" secondAttribute="trailing" constant="-18" id="M2d-1a-E2j"/>
                             <constraint firstItem="4Aj-fk-XgX" firstAttribute="top" secondItem="rzc-3L-GdR" secondAttribute="bottom" constant="1" id="a6a-cY-y9j"/>
-                            <constraint firstItem="1fX-iU-owr" firstAttribute="leading" secondItem="Tf8-UJ-WxH" secondAttribute="leading" id="cmh-CB-p1A"/>
-                            <constraint firstItem="1fX-iU-owr" firstAttribute="height" secondItem="3" secondAttribute="height" multiplier="0.0704" id="e55-cV-CWF"/>
-                            <constraint firstAttribute="trailing" secondItem="Tf8-UJ-WxH" secondAttribute="trailing" id="fII-wK-0MU"/>
-                            <constraint firstItem="1fX-iU-owr" firstAttribute="trailing" secondItem="Tf8-UJ-WxH" secondAttribute="trailing" id="oAQ-xW-0JL"/>
                             <constraint firstAttribute="trailing" secondItem="rzc-3L-GdR" secondAttribute="trailing" id="q9g-nL-crI"/>
-                            <constraint firstItem="1fX-iU-owr" firstAttribute="top" secondItem="3" secondAttribute="topMargin" constant="64" id="uX0-kb-X9G"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Xtk-3T-WBS" secondAttribute="bottom" constant="6" id="yN0-fu-IF4"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -240,25 +260,21 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="dxv-8x-Abq"/>
-                        <outlet property="bottomConstraint" destination="yN0-fu-IF4" id="yTl-AA-hhl"/>
-                        <outlet property="controlCenterBottomConstraint" destination="a6a-cY-y9j" id="rnD-N3-AgC"/>
                         <outlet property="controlCenterView" destination="rzc-3L-GdR" id="67k-sE-0XL"/>
                         <outlet property="doubleTapLabel" destination="j6Y-rR-iWd" id="blf-4Q-E4U"/>
-                        <outlet property="openControlCenterButton" destination="mRo-kq-Ffc" id="wIC-po-dYz"/>
                         <outlet property="playButton" destination="rCz-SL-MJs" id="ing-QD-Skk"/>
-                        <outlet property="recordButton" destination="Xtk-3T-WBS" id="R1a-Wi-774"/>
                         <outlet property="recordProgressView" destination="1fX-iU-owr" id="7zx-v4-F5E"/>
                         <outlet property="titleLabel" destination="Dwb-eQ-GX5" id="VNy-3I-KSC"/>
                         <outlet property="topLeftButton" destination="yjE-ev-SsG" id="D5w-gs-u5p"/>
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="AEp-MY-7pq"/>
-                        <segue destination="j1Z-Ou-SMe" kind="custom" identifier="Prepare Yap For Text Segue" customClass="NoAnimationPushSegue" id="nBD-Sc-cVG"/>
                         <segue destination="99I-02-yZb" kind="modal" identifier="Friends Segue" id="POl-Pz-fbY"/>
+                        <segue destination="XzA-PH-XVB" kind="modal" identifier="Audio Record" id="A1q-1y-Edd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="108" y="179"/>
+            <point key="canvasLocation" x="95" y="120"/>
         </scene>
         <!--Control Center View Controller-->
         <scene sceneID="QV7-1W-sQA">
@@ -272,7 +288,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-qO-eT7" userLabel="Control Center View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-qO-eT7" userLabel="First Control Center View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5m-Ta-bnl">
@@ -339,7 +355,7 @@
                                     <constraint firstItem="kgP-ff-fwd" firstAttribute="baseline" secondItem="R76-A3-8pM" secondAttribute="baseline" id="omb-QG-6Dq"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHT-hO-bCo" userLabel="Music View">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHT-hO-bCo" userLabel="Second Control Center View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpw-8x-ySj">
@@ -525,7 +541,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CartoonsLong2.png" translatesAutoresizingMaskIntoConstraints="NO" id="3jj-uv-5P2">
                                 <rect key="frame" x="0.0" y="409" width="320" height="96"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YapTap, Inc." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9B-pY-Mol">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YapTap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9B-pY-Mol">
                                 <rect key="frame" x="105" y="481" width="100" height="21"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -563,7 +579,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BhY-SL-dDT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="690" y="547.5"/>
+            <point key="canvasLocation" x="538" y="361.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g4r-i2-C16">
@@ -1860,7 +1876,7 @@ Type it here!</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQa-zj-YXn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1832" y="-1121"/>
+            <point key="canvasLocation" x="-1708" y="-1061"/>
         </scene>
         <!--Mic Source Controller-->
         <scene sceneID="WW9-bF-VOv">
@@ -1904,7 +1920,6 @@ Type it here!</string>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
         <image name="CartoonsLong2.png" width="640" height="192"/>
-        <image name="ControlCenterButton2.png" width="64" height="49"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LeftArrow60.png" width="100" height="100"/>
         <image name="LoginPageImage" width="375" height="175"/>
@@ -1928,8 +1943,8 @@ Type it here!</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="JlX-pb-AK5"/>
-        <segue reference="Q0Z-rg-Tpo"/>
+        <segue reference="1l7-bL-RcX"/>
         <segue reference="AEp-MY-7pq"/>
+        <segue reference="0bM-75-hD3"/>
     </inferredMetricsTieBreakers>
 </document>

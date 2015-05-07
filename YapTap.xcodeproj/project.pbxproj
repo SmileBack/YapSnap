@@ -88,6 +88,7 @@
 		7854B0711AF88C1900A02DF9 /* LeftArrow30.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0701AF88C1900A02DF9 /* LeftArrow30.png */; };
 		7854B0731AF88CCF00A02DF9 /* LeftArrow50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0721AF88CCF00A02DF9 /* LeftArrow50.png */; };
 		7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */; };
+		7857CABE1AFBB43300ADF999 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857CABD1AFBB43300ADF999 /* HomeViewController.m */; };
 		7863B5DD1A99A25F00531CED /* sound1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7863B5DC1A99A25F00531CED /* sound1.wav */; };
 		786BCB431ADC274600BA3FDD /* UploadIcon100.png in Resources */ = {isa = PBXBuildFile; fileRef = 786BCB421ADC274600BA3FDD /* UploadIcon100.png */; };
 		786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */; };
@@ -311,6 +312,8 @@
 		7854B0701AF88C1900A02DF9 /* LeftArrow30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow30.png; sourceTree = "<group>"; };
 		7854B0721AF88CCF00A02DF9 /* LeftArrow50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow50.png; sourceTree = "<group>"; };
 		7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow60.png; sourceTree = "<group>"; };
+		7857CABC1AFBB43300ADF999 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		7857CABD1AFBB43300ADF999 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		7863B5DC1A99A25F00531CED /* sound1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound1.wav; sourceTree = "<group>"; };
 		786BCB421ADC274600BA3FDD /* UploadIcon100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UploadIcon100.png; sourceTree = "<group>"; };
 		786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImageWhiteCircle.png; sourceTree = "<group>"; };
@@ -707,6 +710,8 @@
 				F44B0C5D16DA404700E6CD88 /* AudioCaptureViewController.h */,
 				F44B0C5E16DA404700E6CD88 /* AudioCaptureViewController.m */,
 				FC0C1D431A45F3DC00B148AB /* Audio Source */,
+				7857CABC1AFBB43300ADF999 /* HomeViewController.h */,
+				7857CABD1AFBB43300ADF999 /* HomeViewController.m */,
 			);
 			name = "Audio Capture";
 			sourceTree = "<group>";
@@ -1492,6 +1497,7 @@
 				FCFCE45E1AF549C20094926E /* BlockFriendAlertView.m in Sources */,
 				37D413CA19D22B5E00021548 /* EnterNameEmailViewController.m in Sources */,
 				3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */,
+				7857CABE1AFBB43300ADF999 /* HomeViewController.m in Sources */,
 				FC1A03701A7D775A00074E6A /* AmazonAPI.m in Sources */,
 				37D413C019D21A1F00021548 /* UIColor+BButton.m in Sources */,
 				FCAA32901A8C2FD900FDCC78 /* UserCell.m in Sources */,

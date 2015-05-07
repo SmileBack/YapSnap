@@ -9,42 +9,25 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "YSAudioSourceController.h"
-#import "PhoneContact.h"
 #import "YSRecordProgressView.h"
+#import "PhoneContact.h"
 #import "OffsetImageButton.h"
-#import <MessageUI/MessageUI.h>
-#import "ControlCenterViewController.h"
 
-@interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate, MFMailComposeViewControllerDelegate, ControlCenterDelegate>
+@interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
-#define SHOW_FEEDBACK_PAGE @"yaptap.ShowFeedbackPage"
-#define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
-#define DID_SEE_WELCOME_POPUP_KEY @"yaptap.DidSeeWelcomePopupKey"
-#define SHOW_CONTROL_CENTER @"yaptap.ShowControlCenterNotification"
-//#define SHOW_CONTROL_CENTER_MUSIC_HEADER_VIEW @"yaptap.ShowControlCenterMusicHeaderViewNotification"
-//#define HIDE_CONTROL_CENTER_MUSIC_HEADER_VIEW @"yaptap.HideControlCenterMusicHeaderViewNotification"
-#define TRANSITION_TO_FIRST_CONTROL_CENTER_VIEW @"yaptap.TransitionToFirstControlCenterViewNotification"
-
-@property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (nonatomic) YSContact *contactReplyingTo;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
-@property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;
-@property (weak, nonatomic) IBOutlet UIButton *topLeftButton;
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
 @property (weak, nonatomic) IBOutlet YSRecordProgressView *recordProgressView;
 
-// This is set if the recording is initiated as a reply to a contact
-@property (nonatomic) YSContact *contactReplyingTo;
-
 
 - (IBAction)recordTapped:(id)sender;
-- (IBAction)playTapped:(id)sender;
 
-- (IBAction)didTapYapsPageButton;
+- (void)switchToSpotifyMode;
+- (void)switchToMicMode;
+
 - (BOOL)isInRecordMode;
 
 - (void) flipController:(UIViewController *)from to:(YSAudioSourceController *)to;
-
-- (IBAction)didTapGoToFirstControlCenterViewButton;
-
 
 @end
