@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ControlCenterViewController.h"
 
 @interface MusicGenreViewController : UIViewController
-
-@property (nonatomic, strong) id<ControlCenterDelegate> delegate;
 
 @property (nonatomic, strong) IBOutlet UIButton *musicButtonOne;
 @property (nonatomic, strong) IBOutlet UIButton *musicButtonTwo;

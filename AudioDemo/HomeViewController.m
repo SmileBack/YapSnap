@@ -9,7 +9,6 @@
 #import "HomeViewController.h"
 #import "WelcomePopupViewController.h"
 #import "FriendsViewController.h"
-#import "ControlCenterViewController.h"
 #import "YapsViewController.h"
 #import "API.h"
 #import "UIViewController+MJPopupViewController.h"
@@ -107,13 +106,13 @@
 }
 
 - (void) styleControlCenterButtons {
-    self.controlCenterButtonMic.layer.cornerRadius = 60;
-    self.controlCenterButtonMic.layer.borderWidth = 1;
-    self.controlCenterButtonMic.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.micButton.layer.cornerRadius = 60;
+    self.micButton.layer.borderWidth = 1;
+    self.micButton.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.controlCenterButtonMusic.layer.cornerRadius = 60;
-    self.controlCenterButtonMusic.layer.borderWidth = 1;
-    self.controlCenterButtonMusic.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.musicButton.layer.cornerRadius = 60;
+    self.musicButton.layer.borderWidth = 1;
+    self.musicButton.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 - (void) reloadUnopenedYapsCount
@@ -253,8 +252,8 @@
         }
         audio.contactReplyingTo = self.contactReplyingTo;
     } else if ([@"Music Genre" isEqualToString: segue.identifier]) {
-        MusicGenreViewController* vc = segue.destinationViewController;
-        vc.delegate = self.delegate;
+        //MusicGenreViewController* vc = segue.destinationViewController;
+        //vc.delegate = self.delegate;
     }
 }
 
@@ -262,7 +261,7 @@
 #pragma mark - Song Genre Buttons
 
 - (IBAction)didTapMicButton {
-    [self.delegate tappedMicButton];
+    [self tappedMicButton];
     
     if (!self.didTapMicButtonForFirstTime) {
         double delay = .3;
@@ -289,12 +288,14 @@
 #pragma mark - Control Center
 - (void) setupControlCenter
 {
+    /*
     for (UIViewController *vc in self.childViewControllers) {
         if ([vc isKindOfClass:[ControlCenterViewController class]]) {
             ControlCenterViewController *controlVC = (ControlCenterViewController *)vc;
             controlVC.delegate = self;
         }
     }
+     */
 }
 
 #pragma mark - Feedback
@@ -334,11 +335,6 @@
 - (BOOL) didSeeWelcomePopup
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_POPUP_KEY];
-}
-
-- (void) tappedSpotifyButton:(NSString *)type
-{
-    [self performSegueWithIdentifier:@"Audio Record" sender:type];
 }
 
 - (void) tappedMicButton

@@ -55,7 +55,7 @@
 }
 
 - (IBAction)didTapMusicButtonFive {
-    [self.delegate tappedSpotifyButton:@"Five"];
+    [self tappedSpotifyButton:@"Five"];
 }
 
 - (IBAction)didTapMusicButtonSix {
@@ -107,6 +107,12 @@
     self.musicButtonTop100.layer.cornerRadius = radius;
     self.musicButtonTop100.layer.borderWidth = 1;
     self.musicButtonTop100.layer.borderColor = [UIColor whiteColor].CGColor;
+}
+
+
+- (void) tappedSpotifyButton:(NSString *)type
+{
+    [self performSegueWithIdentifier:@"Audio Record" sender:type];
 }
 
 @end

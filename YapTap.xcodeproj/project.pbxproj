@@ -204,7 +204,6 @@
 		FCFCE4541AF529030094926E /* AddFriendsBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE4531AF529030094926E /* AddFriendsBuilder.m */; };
 		FCFCE4581AF5413D0094926E /* AddFriendAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE4571AF5413D0094926E /* AddFriendAlertView.m */; };
 		FCFCE45E1AF549C20094926E /* BlockFriendAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE45D1AF549C20094926E /* BlockFriendAlertView.m */; };
-		FCFCE4621AF559C50094926E /* ControlCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE4611AF559C50094926E /* ControlCenterViewController.m */; };
 		FCFCE4661AF568000094926E /* SpotifyArtistFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE4651AF568000094926E /* SpotifyArtistFactory.m */; };
 /* End PBXBuildFile section */
 
@@ -482,8 +481,6 @@
 		FCFCE4571AF5413D0094926E /* AddFriendAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendAlertView.m; sourceTree = "<group>"; };
 		FCFCE45C1AF549C20094926E /* BlockFriendAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockFriendAlertView.h; sourceTree = "<group>"; };
 		FCFCE45D1AF549C20094926E /* BlockFriendAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockFriendAlertView.m; sourceTree = "<group>"; };
-		FCFCE4601AF559C50094926E /* ControlCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlCenterViewController.h; sourceTree = "<group>"; };
-		FCFCE4611AF559C50094926E /* ControlCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlCenterViewController.m; sourceTree = "<group>"; };
 		FCFCE4641AF568000094926E /* SpotifyArtistFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyArtistFactory.h; sourceTree = "<group>"; };
 		FCFCE4651AF568000094926E /* SpotifyArtistFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyArtistFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1230,8 +1227,6 @@
 		FCFCE45F1AF559B50094926E /* Control Center */ = {
 			isa = PBXGroup;
 			children = (
-				FCFCE4601AF559C50094926E /* ControlCenterViewController.h */,
-				FCFCE4611AF559C50094926E /* ControlCenterViewController.m */,
 				7857CABF1AFBD11200ADF999 /* MusicGenreViewController.h */,
 				7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */,
 				7857CABC1AFBB43300ADF999 /* HomeViewController.h */,
@@ -1545,7 +1540,6 @@
 				FC342F381A5099D200518765 /* OpenInSpotifyAlertView.m in Sources */,
 				F44B0C5F16DA404700E6CD88 /* AudioCaptureViewController.m in Sources */,
 				FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */,
-				FCFCE4621AF559C50094926E /* ControlCenterViewController.m in Sources */,
 				785393691AD9C07C00C6BEA7 /* MJPopupBackgroundView.m in Sources */,
 				FCD885AE1AC8A2A0007729CC /* YapsCache.m in Sources */,
 				FC52C1AD1A785D2800D85FA8 /* YSPushManager.m in Sources */,
