@@ -238,15 +238,53 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzc-3L-GdR" userLabel="Control Center">
-                                <rect key="frame" x="0.0" y="63" width="320" height="100"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R76-A3-8pM">
+                                <rect key="frame" x="24" y="156" width="120" height="120"/>
+                                <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-ff-fwd">
+                                <rect key="frame" x="160" y="142" width="120" height="120"/>
+                                <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="MusicIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="u9u-rJ-1Tk">
+                                <rect key="frame" x="203" y="184" width="35" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="CnN-5P-hG1"/>
+                                    <constraint firstAttribute="height" constant="35" id="H0f-O2-C81"/>
+                                    <constraint firstAttribute="width" constant="35" id="QDM-aZ-RBD"/>
                                 </constraints>
-                                <connections>
-                                    <segue destination="RfI-jj-dXL" kind="embed" id="uuP-JT-hrg"/>
-                                </connections>
-                            </containerView>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="MicrophoneWhiteSmooth.png" translatesAutoresizingMaskIntoConstraints="NO" id="sP9-qt-bQe">
+                                <rect key="frame" x="109" y="174" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="DhP-Y1-dO7"/>
+                                    <constraint firstAttribute="height" constant="35" id="GOX-zw-Mb4"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Create a Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5m-Ta-bnl">
+                                <rect key="frame" x="19" y="44" width="283" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="7d1-KF-upc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="38"/>
+                                <color key="textColor" red="0.93333333330000001" green="0.95686274510000002" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="CartoonsLong2.png" translatesAutoresizingMaskIntoConstraints="NO" id="3jj-uv-5P2">
+                                <rect key="frame" x="60" y="142" width="320" height="96"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="96" id="NEB-xH-cx0"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -254,10 +292,7 @@
                             <constraint firstItem="Dwb-eQ-GX5" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" constant="10" id="1jW-yf-ygK"/>
                             <constraint firstItem="T7q-Ko-Que" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" id="63R-i6-jw2"/>
                             <constraint firstAttribute="centerX" secondItem="Dwb-eQ-GX5" secondAttribute="centerX" id="G7R-LP-YV5"/>
-                            <constraint firstItem="rzc-3L-GdR" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="HKQ-bH-dg2"/>
                             <constraint firstAttribute="trailing" secondItem="T7q-Ko-Que" secondAttribute="trailing" constant="-18" id="M2d-1a-E2j"/>
-                            <constraint firstItem="4Aj-fk-XgX" firstAttribute="top" secondItem="rzc-3L-GdR" secondAttribute="bottom" constant="405" id="a6a-cY-y9j"/>
-                            <constraint firstAttribute="trailing" secondItem="rzc-3L-GdR" secondAttribute="trailing" id="q9g-nL-crI"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -265,7 +300,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="dxv-8x-Abq"/>
-                        <outlet property="controlCenterView" destination="rzc-3L-GdR" id="67k-sE-0XL"/>
                         <outlet property="doubleTapLabel" destination="j6Y-rR-iWd" id="blf-4Q-E4U"/>
                         <outlet property="recordProgressView" destination="1fX-iU-owr" id="7zx-v4-F5E"/>
                         <outlet property="titleLabel" destination="Dwb-eQ-GX5" id="VNy-3I-KSC"/>
@@ -292,79 +326,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-qO-eT7" userLabel="First Control Center View">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-qO-eT7" userLabel="First Control Center View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5m-Ta-bnl">
-                                        <rect key="frame" x="18" y="8" width="283" height="90"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="7d1-KF-upc"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="38"/>
-                                        <color key="textColor" red="0.93333333330000001" green="0.95686274510000002" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R76-A3-8pM">
-                                        <rect key="frame" x="34" y="113" width="120" height="120"/>
-                                        <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-ff-fwd">
-                                        <rect key="frame" x="169" y="113" width="120" height="120"/>
-                                        <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CartoonsLong2.png" translatesAutoresizingMaskIntoConstraints="NO" id="TZn-lg-0gG">
                                         <rect key="frame" x="0.0" y="409" width="320" height="96"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MicrophoneWhiteSmooth.png" translatesAutoresizingMaskIntoConstraints="NO" id="sP9-qt-bQe">
-                                        <rect key="frame" x="77" y="155" width="35" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="35" id="DhP-Y1-dO7"/>
-                                            <constraint firstAttribute="height" constant="35" id="GOX-zw-Mb4"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MusicIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="u9u-rJ-1Tk">
-                                        <rect key="frame" x="212" y="155" width="35" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="H0f-O2-C81"/>
-                                            <constraint firstAttribute="width" constant="35" id="QDM-aZ-RBD"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="R76-A3-8pM" firstAttribute="centerY" secondItem="sP9-qt-bQe" secondAttribute="centerY" id="3tw-4K-3tu"/>
-                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="width" secondItem="R76-A3-8pM" secondAttribute="width" id="6ii-On-Dca"/>
-                                    <constraint firstItem="u9u-rJ-1Tk" firstAttribute="centerY" secondItem="kgP-ff-fwd" secondAttribute="centerY" id="CdJ-Qn-9ZJ"/>
-                                    <constraint firstAttribute="centerX" secondItem="R76-A3-8pM" secondAttribute="centerX" multiplier="1.7" id="D3e-UQ-6YR"/>
-                                    <constraint firstItem="R76-A3-8pM" firstAttribute="width" secondItem="Hca-qO-eT7" secondAttribute="width" multiplier="0.375" id="F6d-Ab-yFn"/>
-                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="top" secondItem="Hca-qO-eT7" secondAttribute="top" constant="8" id="LQc-9R-YjU"/>
-                                    <constraint firstItem="R76-A3-8pM" firstAttribute="centerX" secondItem="sP9-qt-bQe" secondAttribute="centerX" id="QEl-Mk-zUg"/>
-                                    <constraint firstItem="kgP-ff-fwd" firstAttribute="centerY" secondItem="R76-A3-8pM" secondAttribute="centerY" id="TZV-PN-f8m"/>
-                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="leading" secondItem="Hca-qO-eT7" secondAttribute="leading" constant="18" id="W3u-eC-Jyc"/>
-                                    <constraint firstItem="R76-A3-8pM" firstAttribute="height" secondItem="Hca-qO-eT7" secondAttribute="width" multiplier="0.375" id="g0D-KM-bOr"/>
-                                    <constraint firstItem="R76-A3-8pM" firstAttribute="height" secondItem="kgP-ff-fwd" secondAttribute="height" id="hZO-Ay-Fth"/>
-                                    <constraint firstAttribute="centerX" secondItem="kgP-ff-fwd" secondAttribute="centerX" multiplier="0.7" id="itx-4Y-XDp"/>
-                                    <constraint firstItem="N5m-Ta-bnl" firstAttribute="centerX" secondItem="Hca-qO-eT7" secondAttribute="centerX" id="luB-f1-okM"/>
-                                    <constraint firstItem="R76-A3-8pM" firstAttribute="top" secondItem="N5m-Ta-bnl" secondAttribute="bottom" constant="15" id="nTQ-2t-Ucq"/>
-                                    <constraint firstItem="u9u-rJ-1Tk" firstAttribute="centerX" secondItem="kgP-ff-fwd" secondAttribute="centerX" id="pcG-gY-qqd"/>
-                                </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CartoonsLong2.png" translatesAutoresizingMaskIntoConstraints="NO" id="3jj-uv-5P2">
-                                <rect key="frame" x="0.0" y="409" width="320" height="96"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="96" id="NEB-xH-cx0"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YapTap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9B-pY-Mol">
                                 <rect key="frame" x="136" y="483" width="48" height="19"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
@@ -376,11 +346,8 @@
                         <constraints>
                             <constraint firstItem="Hca-qO-eT7" firstAttribute="top" secondItem="iU1-uX-dF1" secondAttribute="bottom" id="8op-nu-hJx"/>
                             <constraint firstAttribute="centerX" secondItem="K9B-pY-Mol" secondAttribute="centerX" id="Edp-HH-bai"/>
-                            <constraint firstAttribute="width" secondItem="3jj-uv-5P2" secondAttribute="width" id="Igv-wV-qgB"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="3jj-uv-5P2" secondAttribute="bottom" constant="-2" id="aMn-tW-wBx"/>
                             <constraint firstItem="Hca-qO-eT7" firstAttribute="leading" secondItem="KGv-Ul-q1I" secondAttribute="leadingMargin" constant="-16" id="dcT-8f-Kav"/>
                             <constraint firstItem="oFL-u8-8vJ" firstAttribute="top" secondItem="K9B-pY-Mol" secondAttribute="bottom" constant="1" id="g1L-zY-P7L"/>
-                            <constraint firstAttribute="centerX" secondItem="3jj-uv-5P2" secondAttribute="centerX" id="nR2-YO-4n2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Hca-qO-eT7" secondAttribute="trailing" constant="-16" id="vhV-zN-gaW"/>
                             <constraint firstItem="oFL-u8-8vJ" firstAttribute="top" secondItem="Hca-qO-eT7" secondAttribute="bottom" id="zml-ft-JCk"/>
                         </constraints>
