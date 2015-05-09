@@ -39,19 +39,19 @@
 }
 
 - (IBAction)didTapMusicButtonOne {
-    [self.delegate tappedSpotifyButton:@"One"];
+    [self tappedSpotifyButton:@"One"];
 }
 
 - (IBAction)didTapMusicButtonTwo {
-    [self.delegate tappedSpotifyButton:@"Two"];
+    [self tappedSpotifyButton:@"Two"];
 }
 
 - (IBAction)didTapMusicButtonThree {
-    [self.delegate tappedSpotifyButton:@"Three"];
+    [self tappedSpotifyButton:@"Three"];
 }
 
 - (IBAction)didTapMusicButtonFour {
-    [self.delegate tappedSpotifyButton:@"Four"];
+    [self tappedSpotifyButton:@"Four"];
 }
 
 - (IBAction)didTapMusicButtonFive {
@@ -59,15 +59,15 @@
 }
 
 - (IBAction)didTapMusicButtonSix {
-    [self.delegate tappedSpotifyButton:@"Six"];
+    [self tappedSpotifyButton:@"Six"];
 }
 
 - (IBAction)didTapMusicButtonTop100 {
-    [self.delegate tappedSpotifyButton:@"Top100"];
+    [self tappedSpotifyButton:@"Top100"];
 }
 
 - (IBAction)didTapMusicButtonSearch {
-    [self.delegate tappedSpotifyButton:@"Search"];
+    [self tappedSpotifyButton:@"Search"];
 }
 
 - (void) styleControlCenterButtons {

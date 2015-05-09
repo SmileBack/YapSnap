@@ -19,9 +19,6 @@
 
 @property (nonatomic, strong) id<ControlCenterDelegate> delegate;
 
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonMic;
-@property (nonatomic, strong) IBOutlet UIButton *controlCenterButtonMusic;
-
 #define TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.TappedMicButtonForFirstTimeNotification"
 
 @end

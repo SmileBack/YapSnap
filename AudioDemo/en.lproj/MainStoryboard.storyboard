@@ -239,9 +239,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzc-3L-GdR" userLabel="Control Center">
-                                <rect key="frame" x="0.0" y="63" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="63" width="320" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="504" id="CnN-5P-hG1"/>
+                                    <constraint firstAttribute="height" constant="100" id="CnN-5P-hG1"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="RfI-jj-dXL" kind="embed" id="uuP-JT-hrg"/>
@@ -256,7 +256,7 @@
                             <constraint firstAttribute="centerX" secondItem="Dwb-eQ-GX5" secondAttribute="centerX" id="G7R-LP-YV5"/>
                             <constraint firstItem="rzc-3L-GdR" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="HKQ-bH-dg2"/>
                             <constraint firstAttribute="trailing" secondItem="T7q-Ko-Que" secondAttribute="trailing" constant="-18" id="M2d-1a-E2j"/>
-                            <constraint firstItem="4Aj-fk-XgX" firstAttribute="top" secondItem="rzc-3L-GdR" secondAttribute="bottom" constant="1" id="a6a-cY-y9j"/>
+                            <constraint firstItem="4Aj-fk-XgX" firstAttribute="top" secondItem="rzc-3L-GdR" secondAttribute="bottom" constant="405" id="a6a-cY-y9j"/>
                             <constraint firstAttribute="trailing" secondItem="rzc-3L-GdR" secondAttribute="trailing" id="q9g-nL-crI"/>
                         </constraints>
                     </view>
@@ -312,9 +312,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="didTapMicButton" destination="RfI-jj-dXL" eventType="touchUpInside" id="2ZE-Qx-B3L"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-ff-fwd">
                                         <rect key="frame" x="169" y="113" width="120" height="120"/>
@@ -324,9 +321,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="didTapMusicButton" destination="RfI-jj-dXL" eventType="touchUpInside" id="01h-eY-1sp"/>
-                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CartoonsLong2.png" translatesAutoresizingMaskIntoConstraints="NO" id="TZn-lg-0gG">
                                         <rect key="frame" x="0.0" y="409" width="320" height="96"/>
@@ -394,9 +388,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="503"/>
                     <connections>
-                        <outlet property="controlCenterButtonMic" destination="R76-A3-8pM" id="vbW-rl-NGV"/>
-                        <outlet property="controlCenterButtonMusic" destination="kgP-ff-fwd" id="nKS-Ba-5lp"/>
-                        <outlet property="secondControlCenterView" destination="BHT-hO-bCo" id="kuf-0Z-2V7"/>
                         <segue destination="hAm-Db-kl0" kind="push" identifier="Music Genre" id="ypq-fo-lGb"/>
                     </connections>
                 </viewController>

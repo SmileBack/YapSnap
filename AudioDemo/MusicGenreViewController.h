@@ -22,4 +22,6 @@
 @property (nonatomic, strong) IBOutlet UIButton *musicButtonTop100;
 @property (nonatomic, strong) IBOutlet UIButton *musicButtonSearch;
 
+- (void) tappedSpotifyButton:(NSString *)type;
+
 @end

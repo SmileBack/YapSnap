@@ -14,6 +14,7 @@
 #import "API.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "AudioCaptureViewController.h"
+#import "MusicGenreViewController.h"
 
 @interface HomeViewController ()
 
@@ -22,6 +23,10 @@
 @property (nonatomic, strong) NSNumber *unopenedYapsCount;
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
 @property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
+
+
+- (IBAction)didTapMicButton;
+- (IBAction)didTapMusicButton;
 
 @end
 
@@ -81,6 +86,7 @@
     
     [self setupNavBarStuff];
     [self setupControlCenter];
+    [self styleControlCenterButtons];
 }
 
 - (void)dealloc
@@ -98,6 +104,16 @@
     self.navigationController.navigationBar.translucent = NO;
     [self reloadUnopenedYapsCount];
     [self updateYapsButtonAnimation];
+}
+
+- (void) styleControlCenterButtons {
+    self.controlCenterButtonMic.layer.cornerRadius = 60;
+    self.controlCenterButtonMic.layer.borderWidth = 1;
+    self.controlCenterButtonMic.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.controlCenterButtonMusic.layer.cornerRadius = 60;
+    self.controlCenterButtonMusic.layer.borderWidth = 1;
+    self.controlCenterButtonMusic.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 - (void) reloadUnopenedYapsCount
@@ -236,7 +252,38 @@
             audio.type = AudioCaptureTypeMic;
         }
         audio.contactReplyingTo = self.contactReplyingTo;
+    } else if ([@"Music Genre" isEqualToString: segue.identifier]) {
+        MusicGenreViewController* vc = segue.destinationViewController;
+        vc.delegate = self.delegate;
     }
+}
+
+
+#pragma mark - Song Genre Buttons
+
+- (IBAction)didTapMicButton {
+    [self.delegate tappedMicButton];
+    
+    if (!self.didTapMicButtonForFirstTime) {
+        double delay = .3;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
+                                                            message:@"Record your voice and then tap the white balloons!"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles: nil];
+            [alert show];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY];
+        });
+    }
+}
+
+- (IBAction)didTapMusicButton {
+    [self performSegueWithIdentifier:@"Music Genre" sender:nil];
+}
+
+- (BOOL) didTapMicButtonForFirstTime {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY];
 }
 
 #pragma mark - Control Center
