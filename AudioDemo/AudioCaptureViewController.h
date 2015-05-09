@@ -13,8 +13,17 @@
 #import "PhoneContact.h"
 #import "OffsetImageButton.h"
 
+typedef NS_ENUM(NSUInteger, AudioCaptureType) {
+    AudioCaptureTypeMic,
+    AudioCapTureTypeSpotify
+};
+
+static NSString* const AudioCaptureContextGenreName = @"genre";
+
 @interface AudioCaptureViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
+@property AudioCaptureType type;
+@property NSDictionary* audioCaptureContext; // A bag of data that specifies the context in which we should start recording, e.g. Spotify music genre. See above constants for related dictionary keys
 @property (nonatomic) YSContact *contactReplyingTo;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
@@ -22,9 +31,6 @@
 
 
 - (IBAction)recordTapped:(id)sender;
-
-- (void)switchToSpotifyMode;
-- (void)switchToMicMode;
 
 - (BOOL)isInRecordMode;
 

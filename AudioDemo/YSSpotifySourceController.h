@@ -21,4 +21,6 @@
 #define TAPPED_SHUFFLE_BUTTON @"yaptap.TappedShuffleButton"
 #define SHOW_CONTROL_CENTER @"yaptap.ShowControlCenterNotification"
 
+@property (nonatomic, strong) NSString *selectedGenre;
+
 @end

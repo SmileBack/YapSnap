@@ -89,6 +89,7 @@
 		7854B0731AF88CCF00A02DF9 /* LeftArrow50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0721AF88CCF00A02DF9 /* LeftArrow50.png */; };
 		7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */; };
 		7857CABE1AFBB43300ADF999 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857CABD1AFBB43300ADF999 /* HomeViewController.m */; };
+		7857CAC11AFBD11200ADF999 /* MusicGenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */; };
 		7863B5DD1A99A25F00531CED /* sound1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7863B5DC1A99A25F00531CED /* sound1.wav */; };
 		786BCB431ADC274600BA3FDD /* UploadIcon100.png in Resources */ = {isa = PBXBuildFile; fileRef = 786BCB421ADC274600BA3FDD /* UploadIcon100.png */; };
 		786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */; };
@@ -314,6 +315,8 @@
 		7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow60.png; sourceTree = "<group>"; };
 		7857CABC1AFBB43300ADF999 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		7857CABD1AFBB43300ADF999 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		7857CABF1AFBD11200ADF999 /* MusicGenreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicGenreViewController.h; sourceTree = "<group>"; };
+		7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicGenreViewController.m; sourceTree = "<group>"; };
 		7863B5DC1A99A25F00531CED /* sound1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound1.wav; sourceTree = "<group>"; };
 		786BCB421ADC274600BA3FDD /* UploadIcon100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UploadIcon100.png; sourceTree = "<group>"; };
 		786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImageWhiteCircle.png; sourceTree = "<group>"; };
@@ -710,8 +713,6 @@
 				F44B0C5D16DA404700E6CD88 /* AudioCaptureViewController.h */,
 				F44B0C5E16DA404700E6CD88 /* AudioCaptureViewController.m */,
 				FC0C1D431A45F3DC00B148AB /* Audio Source */,
-				7857CABC1AFBB43300ADF999 /* HomeViewController.h */,
-				7857CABD1AFBB43300ADF999 /* HomeViewController.m */,
 			);
 			name = "Audio Capture";
 			sourceTree = "<group>";
@@ -1231,6 +1232,10 @@
 			children = (
 				FCFCE4601AF559C50094926E /* ControlCenterViewController.h */,
 				FCFCE4611AF559C50094926E /* ControlCenterViewController.m */,
+				7857CABF1AFBD11200ADF999 /* MusicGenreViewController.h */,
+				7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */,
+				7857CABC1AFBB43300ADF999 /* HomeViewController.h */,
+				7857CABD1AFBB43300ADF999 /* HomeViewController.m */,
 			);
 			name = "Control Center";
 			sourceTree = "<group>";
@@ -1481,6 +1486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC1E89BB1A4B8E94007A8CDA /* YSYap.m in Sources */,
+				7857CAC11AFBD11200ADF999 /* MusicGenreViewController.m in Sources */,
 				FC0595821A6D87A700FCCED2 /* ContactManager.m in Sources */,
 				7853936E1AD9C17500C6BEA7 /* WelcomePopupViewController.m in Sources */,
 				FCFCE4511AF528100094926E /* YTBuilder.m in Sources */,

@@ -23,6 +23,9 @@
 @property (nonatomic) float elapsedTime;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
+- (void)switchToSpotifyMode;
+- (void)switchToMicMode;
+
 @end
 
 @implementation AudioCaptureViewController
@@ -30,19 +33,31 @@
 static const float MAX_CAPTURE_TIME = 12.0;
 static const float TIMER_INTERVAL = .01;
 
-- (void)viewDidLoad
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)awakeFromNib {
+    [self commonInit];
+}
+
+- (void)commonInit {
+    self.type = AudioCaptureTypeMic;
+}
+
+- (void)viewDidLoad {
     [super viewDidLoad];
-        
+    
+    UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(cancelPressed)];
+    cancel.tintColor = UIColor.whiteColor;
+    [self.navigationItem setLeftBarButtonItem:cancel];
+    
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
-
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:nil
-                                                                            action:nil];
-
     [self.recordButton setBackgroundImage:[UIImage imageNamed:@"RecordButtonBlueBorder10Pressed.png"] forState:UIControlStateHighlighted];
     self.recordProgressView.progress = 0;
 
@@ -51,8 +66,18 @@ static const float TIMER_INTERVAL = .01;
     spotifySource.view.frame = self.audioSourceContainer.bounds;
     [self.audioSourceContainer addSubview:spotifySource.view];
     self.audioSource = spotifySource;
-    [self switchToMicMode];
+    if (self.type == AudioCaptureTypeMic) {
+        [self switchToMicMode];
+    } else {
+        [self switchToSpotifyMode];
+    }
+    
     [self setupNotifications];
+}
+
+- (void)cancelPressed
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(BOOL) internetIsNotReachable
@@ -61,11 +86,7 @@ static const float TIMER_INTERVAL = .01;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
-    
-    //Nav bar should not be transparent after finishing registration process
-    self.navigationController.navigationBar.translucent = NO;
     
     if (IS_BEFORE_IOS_8) {
         self.bottomConstraint.constant = 9;
@@ -234,9 +255,16 @@ static const float TIMER_INTERVAL = .01;
 #pragma mark - Mode Changing
 - (void)switchToSpotifyMode
 {
-    if (![self isInSpotifyMode]) {
-        YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+    YSSpotifySourceController *spotifySource;
+    if ([self isInSpotifyMode]) {
+        spotifySource = (YSSpotifySourceController*)self.audioSource;
+    } else {
+        spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
         [self flipController:self.audioSource to:spotifySource];
+    }
+    
+    if (self.audioCaptureContext && self.audioCaptureContext[AudioCaptureContextGenreName]) {
+        spotifySource.selectedGenre = self.audioCaptureContext[AudioCaptureContextGenreName];
     }
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -260,18 +288,20 @@ static const float TIMER_INTERVAL = .01;
     [from willMoveToParentViewController:self];
 
     __weak AudioCaptureViewController *weakSelf = self;
-    [self transitionFromViewController:from
-                      toViewController:to
-                              duration:.25
-                               options:UIViewAnimationOptionCurveEaseInOut
-                            animations:^{
-                            }
-                            completion:^(BOOL finished) {
-                                [to didMoveToParentViewController:weakSelf];
-                                [from.view removeFromSuperview];
-                                [from removeFromParentViewController];
-                                weakSelf.audioSource = to;
-                            }];
+    if (from && to) {
+        [self transitionFromViewController:from
+                          toViewController:to
+                                  duration:.25
+                                   options:UIViewAnimationOptionCurveEaseInOut
+                                animations:^{
+                                }
+                                completion:^(BOOL finished) {
+                                    [to didMoveToParentViewController:weakSelf];
+                                    [from.view removeFromSuperview];
+                                    [from removeFromParentViewController];
+                                    weakSelf.audioSource = to;
+                                }];
+    }
 }
 
 @end

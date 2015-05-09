@@ -75,10 +75,8 @@ static NSString *CellIdentifier = @"Cell";
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     if (self.comingFromContactsOrAddTextPage) {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MicrophoneWhite30.png"]
-                                                                                 style:UIBarButtonItemStylePlain
-                                                                                target:self
-                                                                                action:@selector(didTapGoToAudioCaptureButton)];
+        UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissViewController)];
+        [self.navigationItem setLeftBarButtonItem:cancel];
         [self showFirstYapAlert];
     }
     
@@ -120,6 +118,13 @@ static NSString *CellIdentifier = @"Cell";
     if (!self.didOpenYapForFirstTime) {
         self.navigationItem.rightBarButtonItem = nil;
     }
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -570,8 +575,9 @@ static NSString *CellIdentifier = @"Cell";
     [alert show];
 }
 
-- (void)didTapGoToAudioCaptureButton {
-    [self popToBaseAudioCaptureController:YES];
+- (void)dismissViewController {
+    [[NSNotificationCenter defaultCenter] postNotificationName:DID_DISMISS_AFTER_SENDING_YAP object:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) removeBlockedYap

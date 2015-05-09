@@ -52,6 +52,8 @@
                                                   usingBlock:^(NSNotification *note) {
                                                       [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
                                                   }];
+
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void) viewWillAppear:(BOOL)animated

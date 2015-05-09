@@ -31,11 +31,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *shuffleButton;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) NSArray *artists;
-@property (nonatomic, strong) NSString *selectedGenre;
 @property (nonatomic, strong) NSDictionary *typeToGenreMap;
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapShuffleButton;
+- (void) searchGenre:(NSString *)genre;
 
 @end
 
@@ -833,9 +833,10 @@
     return _typeToGenreMap;
 }
 
-- (void) tappedControlCenterButton:(NSString *)type
+- (void)setSelectedGenre:(NSString *)selectedGenre
 {
-    if ([type isEqual: @"Search"]) {
+    _selectedGenre = selectedGenre;
+    if ([selectedGenre isEqual: @"Search"]) {
         [self showSearchBox];
         double delay = .3;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -843,9 +844,9 @@
         });
     } else {
         self.shuffleButton.alpha = 1;
-
-        self.selectedGenre = self.typeToGenreMap[type];
-        if (!self.selectedGenre) self.selectedGenre = type;
+        
+        _selectedGenre = self.typeToGenreMap[selectedGenre];
+        if (!_selectedGenre) _selectedGenre = selectedGenre;
         [self searchGenre:self.selectedGenre];
     }
 }

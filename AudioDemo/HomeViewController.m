@@ -59,15 +59,40 @@
                     usingBlock:^(NSNotification *note) {
                         [weakSelf reloadUnopenedYapsCount];
                     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:DID_DISMISS_AFTER_SENDING_YAP
+                                                      object:nil
+                                                       queue:[NSOperationQueue currentQueue]
+                                                  usingBlock:^(NSNotification *note) {
+                                                      // HACKKKKKKKKKKK
+                                                      // This goes through all the view controllers in the stack, finds the first HomeViewController,
+                                                      // then pops to it.
+                                                      UIViewController* vcToPopTo = nil;
+                                                      for (UIViewController* vc in self.navigationController.viewControllers) {
+                                                          if ([vc isKindOfClass:[HomeViewController class]]) {
+                                                              vcToPopTo = vc;
+                                                              break;
+                                                          }
+                                                      }
+                                                      if (vcToPopTo) {
+                                                          [self.navigationController popToViewController:vcToPopTo animated:NO];
+                                                      }
+    }];
+    
     [self setupNavBarStuff];
     [self setupControlCenter];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:DID_DISMISS_AFTER_SENDING_YAP object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationItem.backBarButtonItem.tintColor = UIColor.whiteColor;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [super viewWillAppear:animated];
     
     //Nav bar should not be transparent after finishing registration process
     self.navigationController.navigationBar.translucent = NO;
@@ -202,11 +227,15 @@
     } else if ([@"Audio Record" isEqualToString:segue.identifier]) {
         UINavigationController *navVC = segue.destinationViewController;
         AudioCaptureViewController* audio = navVC.topViewController;
-        if ([sender isEqualToString:@"mic"]) {
-         //   [audio switchToMicMode];
+        if (sender) { // The presence of a sender means that there was a spotify genre specified
+            audio.type = AudioCapTureTypeSpotify;
+            audio.audioCaptureContext = @{
+                                          AudioCaptureContextGenreName: sender
+                                          };
         } else {
-           // [audio switchToSpotifyMode];
+            audio.type = AudioCaptureTypeMic;
         }
+        audio.contactReplyingTo = self.contactReplyingTo;
     }
 }
 
@@ -262,14 +291,12 @@
 
 - (void) tappedSpotifyButton:(NSString *)type
 {
-    //TODO:
-    [self performSegueWithIdentifier:@"Audio Record" sender:@"spotify"];
+    [self performSegueWithIdentifier:@"Audio Record" sender:type];
 }
 
 - (void) tappedMicButton
 {
-    //TODO:
-    [self performSegueWithIdentifier:@"Audio Record" sender:@"mic"];
+    [self performSegueWithIdentifier:@"Audio Record" sender:nil];
 }
 
 @end
