@@ -25,16 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupNotifications];
-}
-
-- (void) setupNotifications {
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidEnterBackgroundNotification
-                                                      object:nil
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *note) {
-                                                      [self.navigationController popViewControllerAnimated:YES];
-                                                  }];
+    //[self setupNotifications];
 }
 
 - (void) styleControlCenterButtons {
