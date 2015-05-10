@@ -29,7 +29,6 @@
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 @property (strong, nonatomic) IBOutlet UIButton *resetButton;
 @property (strong, nonatomic) IBOutlet UIButton *shuffleButton;
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) NSArray *artists;
 @property (nonatomic, strong) NSDictionary *typeToGenreMap;
 
@@ -64,13 +63,7 @@
     tappedSpotifyView.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tappedSpotifyView];
     
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserverForName:DISMISS_KEYBOARD_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        [self.view endEditing:YES];
-                    }];
+    [self setupNotifications];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -78,6 +71,16 @@
     [super viewDidAppear:animated];
 
     self.playerAlreadyStartedPlayingForThisSong = NO;
+}
+
+- (void) setupNotifications {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:DISMISS_KEYBOARD_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self.view endEditing:YES];
+                    }];
 }
 
 - (void)tappedSpotifyView {
@@ -160,6 +163,9 @@
     [self.searchBox setTintColor:[UIColor whiteColor]];
     self.searchBox.font = [UIFont fontWithName:@"Futura-Medium" size:28];
     self.searchBox.delegate = self;
+    [self.searchBox addTarget:self
+                       action:@selector(textFieldDidChange:)
+             forControlEvents:UIControlEventEditingChanged];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -183,6 +189,13 @@
     }
     
     return YES;
+}
+
+-(void)textFieldDidChange:(UITextField *)searchBox {
+    if ([self.searchBox.text length] == 0) {
+        NSLog(@"Empty String");
+        [self hideShuffleButton];
+    }
 }
 
 - (void) search:(NSString *)search
@@ -250,7 +263,6 @@
     self.carousel.scrollEnabled = NO;
     self.carousel.alpha = 0;
     [self hideResetButton];
-    [self hideShuffleButton];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -756,6 +768,10 @@
 
 
 - (IBAction) didTapShuffleButton {
+    if (self.searchBox.isFirstResponder) {
+        [self.view endEditing:YES];
+    }
+    
     if (!self.didTapShuffleButtonForFirstTime) {
         [[YTNotifications sharedNotifications] showNotificationText:@"Shuffled"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SHUFFLE_BUTTON];
@@ -779,7 +795,11 @@
 }
 
 - (void) hideShuffleButton {
-    self.shuffleButton.alpha = 0;
+    self.shuffleButton.hidden = YES;
+}
+
+- (void) unhideShuffleButton {
+    self.shuffleButton.hidden = NO;
 }
 
 - (void) resetUI {
@@ -828,11 +848,10 @@
             [self.searchBox becomeFirstResponder];
         });
     } else {
-        self.shuffleButton.alpha = 1;
-        
         _selectedGenre = self.typeToGenreMap[selectedGenre];
         if (!_selectedGenre) _selectedGenre = selectedGenre;
         [self searchGenre:self.selectedGenre];
+        [self unhideShuffleButton];
     }
 }
 

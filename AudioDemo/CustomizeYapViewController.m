@@ -71,9 +71,6 @@
     
     self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textView.delegate = self;
-    self.colorPicker.delegate = self;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:self.textView];
     
     if (self.yapBuilder.contacts.count > 0) {
         PhoneContact *contact = self.yapBuilder.contacts.firstObject;
