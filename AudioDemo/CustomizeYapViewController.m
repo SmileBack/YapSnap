@@ -25,7 +25,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
 @property (weak, nonatomic) IBOutlet YSColorPicker *colorPicker;
 @property (strong, nonatomic) UIView *progressViewRemainder;
-@property (strong, nonatomic) IBOutlet UIImageView *flashbackImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *yapPhoto;
 @property (strong, nonatomic) IBOutlet UILabel *contactLabel;
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (strong, nonatomic) STKAudioPlayer* player;
@@ -103,7 +103,7 @@
     }
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapImageView)];
-    [self.flashbackImageView addGestureRecognizer:tapGesture];
+    [self.yapPhoto addGestureRecognizer:tapGesture];
     
     if (IS_IPHONE_4_SIZE) {
         self.bottomConstraint.constant = 5;
@@ -359,7 +359,6 @@
 - (IBAction)didTapAddTextButton {
     [self.textView becomeFirstResponder];
     self.textView.hidden = NO;
-    [self reduceAlphaOfButtons];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Add Text Button"];
@@ -383,7 +382,7 @@
         
         if (self.textView.text.length == 0) {
             self.textView.hidden = YES;
-            [self restoreAlphaOfButtons];
+            [self updateAlphaOfButtons];
         }
         
         return NO;
@@ -439,11 +438,12 @@
 - (IBAction)didTapResetPhotoButton {
     NSLog(@"Tapped Cancel Photo Button");
     
-    self.flashbackImageView.image = nil;
+    self.yapPhoto.image = nil;
     self.yapBuilder.image = nil;
     self.resetPhotoButton.hidden = YES;
-    self.flashbackImageView.hidden = YES;
+    self.yapPhoto.hidden = YES;
     [self removeShadowFromTextView];
+    [self updateAlphaOfButtons];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Cancel Photo Button"];
@@ -454,9 +454,9 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.flashbackImageView.image = chosenImage;
+    self.yapPhoto.image = chosenImage;
     
-    self.flashbackImageView.hidden = NO;
+    self.yapPhoto.hidden = NO;
     self.resetPhotoButton.hidden = NO;
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -471,8 +471,9 @@
 
     //self.textView.userInteractionEnabled = NO;
     [self addShadowToTextView];
-    
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    [self updateAlphaOfButtons];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -517,6 +518,15 @@
     self.textView.layer.shadowOffset = CGSizeMake(0, 0);
     self.textView.layer.shadowOpacity = 0;
     self.textView.layer.shadowRadius = 0;
+}
+
+- (void) updateAlphaOfButtons {
+    if ((self.textView.text.length > 0) || self.yapPhoto.image != nil) {
+        [self reduceAlphaOfButtons];
+    } else {
+        [self restoreAlphaOfButtons];
+    }
+    
 }
 
 - (void) reduceAlphaOfButtons {

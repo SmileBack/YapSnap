@@ -21,7 +21,8 @@
 }
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 @property (nonatomic) float elapsedTime;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+//@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (nonatomic, strong) NSString *titleString;
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
@@ -63,19 +64,6 @@ static const float TIMER_INTERVAL = .01;
     UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelModalButton];
     [self.navigationItem setLeftBarButtonItem:cancelButton];
     
-    CGRect frame = CGRectMake(40, 0, 160, 44);
-    UILabel *label = [[UILabel alloc] initWithFrame:frame];
-    label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    if (self.type == AudioCaptureTypeMic) {
-        label.text = @"Record Voice";
-    } else {
-        label.text = @"Find a Song";
-    }
-    self.navigationItem.titleView = label;
-    
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
@@ -89,6 +77,17 @@ static const float TIMER_INTERVAL = .01;
     }
     
     [self setupNotifications];
+}
+
+- (void) updateTitleLabel {
+    CGRect frame = CGRectMake(40, 0, 160, 44);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = self.titleString;
+    self.navigationItem.titleView = label;
 }
 
 - (void)cancelPressed
@@ -105,9 +104,18 @@ static const float TIMER_INTERVAL = .01;
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    if (self.type == AudioCaptureTypeMic) {
+        self.titleString = @"Record Voice";
+    } else {
+        self.titleString = @"Find a Song";
+    }
+    [self updateTitleLabel];
+    
+    /*
     if (IS_BEFORE_IOS_8) {
         self.bottomConstraint.constant = 9;
     }
+     */
 }
 
 - (void) setupNotifications
@@ -209,6 +217,13 @@ static const float TIMER_INTERVAL = .01;
         if (self.audioSource.class == [YSSpotifySourceController class]) {
             [self.recordProgressView.activityIndicator startAnimating];
         }
+        
+        if (self.type == AudioCaptureTypeMic) {
+            self.titleString = @"Recording...";
+        } else {
+            self.titleString = @"Playing...";
+        }
+        [self updateTitleLabel];
     }
 }
 
@@ -227,6 +242,12 @@ static const float TIMER_INTERVAL = .01;
             }
         });
         
+        if (self.type == AudioCaptureTypeMic) {
+            self.titleString = @"Record Voice";
+        } else {
+            self.titleString = @"Find a Song";
+        }
+        [self updateTitleLabel];
     } else {
         [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
     }

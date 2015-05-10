@@ -22,6 +22,7 @@
 @property (strong, nonatomic) UIView *progressViewRemainder;
 @property (strong, nonatomic) IBOutlet UIImageView *yapPhoto;
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
 // nil means we don't know yet. YES/NO means the backend told us.
 @property (nonatomic, strong) NSNumber *isFromFriend;
@@ -41,6 +42,8 @@
     
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
+    
+    self.titleLabel.text = [NSString stringWithFormat:@"%@", self.yap.senderName];
     
     if ([self.yap.type isEqual:@"VoiceMessage"]) {
         // To get pitch value in pitchShift unit, divide self.yap.pitchValueInCentUnits by STK_PITCHSHIFT_TRANSFORM
