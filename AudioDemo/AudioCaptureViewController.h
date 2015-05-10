@@ -13,6 +13,8 @@
 #import "PhoneContact.h"
 #import "OffsetImageButton.h"
 
+#define DISMISS_KEYBOARD_NOTIFICATION @"DismissKeyboardNotification"
+
 typedef NS_ENUM(NSUInteger, AudioCaptureType) {
     AudioCaptureTypeMic,
     AudioCapTureTypeSpotify

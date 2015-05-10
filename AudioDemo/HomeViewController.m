@@ -84,8 +84,7 @@
     }];
     
     [self setupNavBarStuff];
-    [self setupControlCenter];
-    [self styleControlCenterButtons];
+    [self styleButtons];
 }
 
 - (void)dealloc
@@ -105,7 +104,7 @@
     [self updateYapsButtonAnimation];
 }
 
-- (void) styleControlCenterButtons {
+- (void) styleButtons {
     self.micButton.layer.cornerRadius = 60;
     self.micButton.layer.borderWidth = 1;
     self.micButton.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -252,8 +251,8 @@
         }
         audio.contactReplyingTo = self.contactReplyingTo;
     } else if ([@"Music Genre" isEqualToString: segue.identifier]) {
-        //MusicGenreViewController* vc = segue.destinationViewController;
-        //vc.delegate = self.delegate;
+        MusicGenreViewController* vc = segue.destinationViewController;
+        vc.contactReplyingTo = self.contactReplyingTo;
     }
 }
 
@@ -283,19 +282,6 @@
 
 - (BOOL) didTapMicButtonForFirstTime {
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY];
-}
-
-#pragma mark - Control Center
-- (void) setupControlCenter
-{
-    /*
-    for (UIViewController *vc in self.childViewControllers) {
-        if ([vc isKindOfClass:[ControlCenterViewController class]]) {
-            ControlCenterViewController *controlVC = (ControlCenterViewController *)vc;
-            controlVC.delegate = self;
-        }
-    }
-     */
 }
 
 #pragma mark - Feedback

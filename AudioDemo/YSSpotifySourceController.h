@@ -19,7 +19,7 @@
 #define VIEWED_RANDOM_PICK_ALERT @"yaptap.ViewedRandomPickAlert"
 #define TAPPED_RESET_BUTTON @"yaptap.TappedResetButton"
 #define TAPPED_SHUFFLE_BUTTON @"yaptap.TappedShuffleButton"
-#define SHOW_CONTROL_CENTER @"yaptap.ShowControlCenterNotification"
+#define DISMISS_KEYBOARD_NOTIFICATION @"DismissKeyboardNotification"
 
 @property (nonatomic, strong) NSString *selectedGenre;
 

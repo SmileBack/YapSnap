@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhoneContact.h"
 
 @interface MusicGenreViewController : UIViewController
 
@@ -16,9 +17,13 @@
 @property (nonatomic, strong) IBOutlet UIButton *musicButtonFour;
 @property (nonatomic, strong) IBOutlet UIButton *musicButtonFive;
 @property (nonatomic, strong) IBOutlet UIButton *musicButtonSix;
-@property (nonatomic, strong) IBOutlet UIButton *musicButtonTop100;
+@property (nonatomic, strong) IBOutlet UIButton *musicButtonSeven;
+@property (nonatomic, strong) IBOutlet UIButton *musicButtonEight;
+@property (nonatomic, strong) IBOutlet UIButton *musicButtonNine;
 @property (nonatomic, strong) IBOutlet UIButton *musicButtonSearch;
+@property (nonatomic) YSContact *contactReplyingTo;
 
 - (void) tappedSpotifyButton:(NSString *)type;
+- (IBAction) didTapBackButton;
 
 @end

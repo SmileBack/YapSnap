@@ -179,9 +179,4 @@
     [self.player prepareToPlay];
 }
 
-// TODO: REMOVE THE FOLLOWING METHOD:
-- (void) tappedControlCenterButton:(NSString *)genre
-{
-}
-
 @end

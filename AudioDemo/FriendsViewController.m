@@ -49,7 +49,14 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [[UITableViewHeaderFooterView appearance] setTintColor:[UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:0.99]];
 
-    self.navigationItem.title = @"Friends";
+    CGRect frame = CGRectMake(0, 0, 160, 44);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = @"Friends";
+    self.navigationItem.titleView = label;
     
     self.friendOneLabelString = @"Loading...";
     
@@ -109,6 +116,14 @@
     self.largeAddFriendsButton.layer.cornerRadius = 8;
     self.largeAddFriendsButton.layer.borderWidth = 1;
     self.largeAddFriendsButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    UIImage* cancelModalImage = [UIImage imageNamed:@"WhiteDownArrow2.png"];
+    UIButton *cancelModalButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [cancelModalButton setBackgroundImage:cancelModalImage forState:UIControlStateNormal];
+    [cancelModalButton addTarget:self action:@selector(cancelPressed)
+                forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelModalButton];
+    [self.navigationItem setLeftBarButtonItem:cancelButton];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -379,7 +394,7 @@
     }
 }
 
-- (IBAction)tappedCancelButton:(UIBarButtonItem *)sender
+- (void) cancelPressed
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

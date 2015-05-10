@@ -17,7 +17,9 @@
 - (IBAction)didTapMusicButtonFour;
 - (IBAction)didTapMusicButtonFive;
 - (IBAction)didTapMusicButtonSix;
-- (IBAction)didTapMusicButtonTop100;
+- (IBAction)didTapMusicButtonSeven;
+- (IBAction)didTapMusicButtonEight;
+- (IBAction)didTapMusicButtonNine;
 - (IBAction)didTapMusicButtonSearch;
 
 @end
@@ -26,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self styleControlCenterButtons];
+    [self styleButtons];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -63,15 +65,23 @@
     [self tappedSpotifyButton:@"Six"];
 }
 
-- (IBAction)didTapMusicButtonTop100 {
-    [self tappedSpotifyButton:@"Top100"];
+- (IBAction)didTapMusicButtonSeven {
+    [self tappedSpotifyButton:@"Seven"];
+}
+
+- (IBAction)didTapMusicButtonEight {
+    [self tappedSpotifyButton:@"Eight"];
+}
+
+- (IBAction)didTapMusicButtonNine {
+    [self tappedSpotifyButton:@"Nine"];
 }
 
 - (IBAction)didTapMusicButtonSearch {
     [self tappedSpotifyButton:@"Search"];
 }
 
-- (void) styleControlCenterButtons {
+- (void) styleButtons {
     //    CGFloat radius = self.controlCenterButtonOne.frame.size.height / 2.0f;
     CGFloat spacing = 18 + 16 + 16 + 18;
     CGFloat radius = ([[UIScreen mainScreen] bounds].size.width - spacing) / 3 / 2;
@@ -101,13 +111,21 @@
     self.musicButtonSix.layer.borderWidth = 1;
     self.musicButtonSix.layer.borderColor = [UIColor whiteColor].CGColor;
     
+    self.musicButtonSeven.layer.cornerRadius = radius;
+    self.musicButtonSeven.layer.borderWidth = 1;
+    self.musicButtonSeven.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.musicButtonEight.layer.cornerRadius = radius;
+    self.musicButtonEight.layer.borderWidth = 1;
+    self.musicButtonEight.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.musicButtonNine.layer.cornerRadius = radius;
+    self.musicButtonNine.layer.borderWidth = 1;
+    self.musicButtonNine.layer.borderColor = [UIColor whiteColor].CGColor;
+    
     self.musicButtonSearch.layer.cornerRadius = radius;
     self.musicButtonSearch.layer.borderWidth = 1;
     self.musicButtonSearch.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    self.musicButtonTop100.layer.cornerRadius = radius;
-    self.musicButtonTop100.layer.borderWidth = 1;
-    self.musicButtonTop100.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 
@@ -129,6 +147,12 @@
     } else {
         audio.type = AudioCaptureTypeMic;
     }
+    audio.contactReplyingTo = self.contactReplyingTo;
+}
+
+- (IBAction) didTapBackButton
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

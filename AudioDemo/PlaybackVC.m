@@ -106,16 +106,18 @@
 {
     __weak PlaybackVC *weakSelf = self;
     if (self.yap.yapPhotoURL && ![self.yap.yapPhotoURL isEqual: [NSNull null]]) {
-            [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yap.yapPhotoURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                if (cacheType == SDImageCacheTypeDisk) {
-                    NSLog(@"Photo from disk");
-                } else if (cacheType == SDImageCacheTypeMemory) {
-                    NSLog(@"Photo from memory");
-                } else {
-                    NSLog(@"Photo from web");
-                }
-                [weakSelf playYapAudio];
-            }];
+        [self addShadowToTextView];
+        
+        [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yap.yapPhotoURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (cacheType == SDImageCacheTypeDisk) {
+                NSLog(@"Photo from disk");
+            } else if (cacheType == SDImageCacheTypeMemory) {
+                NSLog(@"Photo from memory");
+            } else {
+                NSLog(@"Photo from web");
+            }
+            [weakSelf playYapAudio];
+        }];
     } else {
         [self playYapAudio];
     }
@@ -394,6 +396,14 @@
 - (BOOL) didSeeDoubleTapBanner
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_DOUBLE_TAP_BANNER];
+}
+
+- (void) addShadowToTextView
+{
+    self.textView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.textView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.textView.layer.shadowOpacity = 1.0f;
+    self.textView.layer.shadowRadius = 1.0f;
 }
 
 @end

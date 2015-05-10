@@ -13,7 +13,7 @@
 #define AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION @"com.yapsnap.AudioCaptureErrorNotification"
 #define AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION @"com.yapsnap.AudioCaptureLostConnectionNotification"
 #define STOP_LOADING_SPINNER_NOTIFICATION @"com.yapsnap.StopLoadingSpinnerNotification"
-#define CAPTURE_THRESHOLD 1 //seconds
+#define CAPTURE_THRESHOLD .8 //seconds
 
 
 /*
@@ -32,8 +32,5 @@
 // Spotify source will return the YSTrack.
 // Mic source could return the audio file. for now will return nothing.
 - (YapBuilder *) getYapBuilder;
-
-// These are only relevant for Spotify!
-- (void) tappedControlCenterButton:(NSString*)genre;
 
 @end

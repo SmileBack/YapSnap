@@ -49,11 +49,19 @@ static NSString *CellIdentifier = @"Cell";
     
     self.bottomView.hidden = YES;
     
+    CGRect frame = CGRectMake(0, 0, 160, 44);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
     if (self.builder.builderType == BuilderTypeAddFriends) {
-        self.navigationItem.title = @"Add Friends";
+        label.text = @"Add Friends";
     } else {
-        self.navigationItem.title = @"SEND TO...";
+        label.text = @"Send To...";
     }
+    self.navigationItem.titleView = label;
+    
     [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
     self.selectedContacts = [NSMutableArray new];
     
@@ -418,7 +426,19 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void) updateBottomViewText
 {
-    self.bottomViewLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.selectedContacts.count];
+    if (self.builder.builderType == BuilderTypeYap) {
+        if (self.selectedContacts.count == 1) {
+            self.bottomViewLabel.text = [NSString stringWithFormat:@"%lu Recipient", (unsigned long)self.selectedContacts.count];
+        } else {
+            self.bottomViewLabel.text = [NSString stringWithFormat:@"%lu Recipients", (unsigned long)self.selectedContacts.count];
+        }
+    } else if (self.builder.builderType == BuilderTypeAddFriends) {
+        if (self.selectedContacts.count == 1) {
+            self.bottomViewLabel.text = [NSString stringWithFormat:@"%lu Request", (unsigned long)self.selectedContacts.count];
+        } else {
+            self.bottomViewLabel.text = [NSString stringWithFormat:@"%lu Requests", (unsigned long)self.selectedContacts.count];
+        }
+    }
 }
 
 
@@ -555,12 +575,23 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void) showFriendsSuccessAlert
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Friend Request Sent"
-                                                    message:@"They'll be added to your friends once they accept!"
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+    if (self.selectedContacts.count == 1) {
+        YSContact *selectedContact = self.selectedContacts[0];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Friend Request Sent"
+                                                        message:[NSString stringWithFormat:@"%@ will be added to your friends once they accept!", selectedContact.name]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Friend Requests Sent"
+                                                        message:@"They'll be added to your friends once they accept!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 @end

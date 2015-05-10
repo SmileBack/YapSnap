@@ -63,6 +63,14 @@
     UITapGestureRecognizer *tappedSpotifyView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedSpotifyView)];
     tappedSpotifyView.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tappedSpotifyView];
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:DISMISS_KEYBOARD_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self.view endEditing:YES];
+                    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -77,16 +85,13 @@
         self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if ([self.searchBox.text length] == 0) {
             [self.view endEditing:YES];
-            double delay = .3;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                //SHOW CONTROL CENTER
-                [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER object:nil];
-            });
         } else {
             [self search:self.searchBox.text];
             [self.view endEditing:YES];
             [self setBackgroundColorForSearchBox];
         }
+    } else {
+        [self.searchBox becomeFirstResponder];
     }
 }
 
@@ -104,18 +109,6 @@
         [self showSearchBox];
         [self.searchBox becomeFirstResponder];
     });
-    /*
-    double delay = .3;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // TODO SHOW CONTROL CENTER
-        [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER object:nil];
-    });
-
-    if (!self.didTapResetButtonForFirstTime) {
-        [[YTNotifications sharedNotifications] showNotificationText:@"Reset"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_RESET_BUTTON];
-    }
-     */
 }
 
 - (void) searchGenre:(NSString *)genre {
@@ -239,23 +232,11 @@
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
                 });
-                
-                double delay2 = 1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    // TODO SHOW CONTROL CENTER
-                    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER object:nil];
-                });
             } else {
                 NSLog(@"Error Returning Songs %@", error);
                 double delay = 0.1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong! Try Again."];
-                });
-                
-                double delay2 = 1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    // TODO SHOW CONTROL CENTER
-                    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_CONTROL_CENTER object:nil];
                 });
                 
                 [mixpanel track:@"Spotify Error - search (other)"];
@@ -681,8 +662,8 @@
         return NO;
     } else if (self.songs.count == 0) {
         NSLog(@"Can't Play Because No Song");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tap Above"
-                                                        message:@"Tap above to find a song for your yap!"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search Above"
+                                                        message:@"Type a song, artist, or phrase above to find a song for your yap!"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -823,12 +804,16 @@
 - (NSDictionary *) typeToGenreMap
 {
     if (!_typeToGenreMap) {
-        _typeToGenreMap = @{@"One": @"Pop",
-                            @"Two": @"Hip Hop",
-                            @"Three": @"Rock",
+        _typeToGenreMap = @{@"One": @"Top 100",
+                            @"Two": @"Pop",
+                            @"Three": @"Hip Hop",
                             @"Four": @"EDM",
                             @"Five": @"Country",
-                            @"Six": @"TV/Film"};
+                            @"Six": @"Rock",
+                            @"Seven": @"Latin",
+                            @"Eight": @"TV/Film",
+                            @"Nine": @"Humor"
+                            };
     }
     return _typeToGenreMap;
 }

@@ -48,11 +48,4 @@
 - (void) startPlayback{}
 - (void) stopPlayback{}
 
-
-// Only relevant for Spotify
-- (void) tappedControlCenterButton:(NSString *)genre
-{
-    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
-}
-
 @end

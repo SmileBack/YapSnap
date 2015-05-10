@@ -51,9 +51,30 @@ static const float TIMER_INTERVAL = .01;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(cancelPressed)];
-    cancel.tintColor = UIColor.whiteColor;
-    [self.navigationItem setLeftBarButtonItem:cancel];
+    //UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(cancelPressed)];
+    //cancel.tintColor = UIColor.whiteColor;
+    //[self.navigationItem setLeftBarButtonItem:cancel];
+    
+    UIImage* cancelModalImage = [UIImage imageNamed:@"WhiteDownArrow2.png"];
+    UIButton *cancelModalButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [cancelModalButton setBackgroundImage:cancelModalImage forState:UIControlStateNormal];
+    [cancelModalButton addTarget:self action:@selector(cancelPressed)
+         forControlEvents:UIControlEventTouchUpInside];    
+    UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelModalButton];
+    [self.navigationItem setLeftBarButtonItem:cancelButton];
+    
+    CGRect frame = CGRectMake(40, 0, 160, 44);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    if (self.type == AudioCaptureTypeMic) {
+        label.text = @"Record Voice";
+    } else {
+        label.text = @"Find a Song";
+    }
+    self.navigationItem.titleView = label;
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
@@ -72,6 +93,7 @@ static const float TIMER_INTERVAL = .01;
 
 - (void)cancelPressed
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_KEYBOARD_NOTIFICATION object:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

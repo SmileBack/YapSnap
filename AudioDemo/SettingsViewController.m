@@ -33,6 +33,15 @@
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
     
+    CGRect frame = CGRectMake(0, 0, 160, 44);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = @"Settings";
+    self.navigationItem.titleView = label;
+    
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     

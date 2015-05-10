@@ -42,6 +42,8 @@
 @property (nonatomic, readonly) NSArray *yaps;
 @property (nonatomic, strong) YSYap *addFriendYap;
 
+@property (nonatomic, strong) NSString *titleString;
+
 - (IBAction)didTapSettingsButton;
 
 @end
@@ -63,7 +65,8 @@ static NSString *CellIdentifier = @"Cell";
     self.dateFormatter.doesRelativeDateFormatting = YES;
     self.dateFormatter.locale = [NSLocale currentLocale];
     
-    self.navigationItem.title = @"Your Yaps";
+    self.titleString = @"Your Yaps";
+    [self updateTitleLabel];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                              style:UIBarButtonItemStylePlain
@@ -135,6 +138,17 @@ static NSString *CellIdentifier = @"Cell";
     self.settingsButton.enabled = YES;
 }
 
+- (void) updateTitleLabel {
+    CGRect frame = CGRectMake(0, 0, 160, 44);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = self.titleString;
+    self.navigationItem.titleView = label;
+}
+
 - (void) refresh:(UIRefreshControl *)refreshControl {
     [self loadYaps];
 }
@@ -152,9 +166,11 @@ static NSString *CellIdentifier = @"Cell";
             [weakSelf.refreshControl endRefreshing];
             [weakSelf.tableView reloadData];
             if (yaps.count == 0) {
-                self.navigationItem.title = @"Your Yaps (0)";
+                self.titleString = @"Your Yaps (0)";
+                [self updateTitleLabel];
             } else {
-                self.navigationItem.title = @"Your Yaps";
+                self.titleString = @"Your Yaps";
+                [self updateTitleLabel];
             }
         } else {
             NSLog(@"Error! %@", error);
@@ -175,8 +191,8 @@ static NSString *CellIdentifier = @"Cell";
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        NSLog(@"popToBaseAudioCaptureController");
-                        [self popToBaseAudioCaptureController:NO];
+                        //[self popToBaseAudioCaptureController:NO];
+                        [self dismissViewController];
                     }];
     
     [center addObserverForName:NOTIFICATION_YAP_OPENED

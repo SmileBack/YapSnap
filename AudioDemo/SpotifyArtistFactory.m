@@ -24,8 +24,14 @@
         return @[@"Country"];
     } else if ([genre  isEqual: @"TV/Film"]) {
         return @[@"TV/Film"];
-    } else if ([genre  isEqual: @"Top100"]) {
-        return @[@"Top100"];
+    } else if ([genre  isEqual: @"Top 100"]) {
+        return @[@"Top 100"];
+    } else if ([genre  isEqual: @"Latin"]) {
+        return @[@"Latin"];
+    } else if ([genre  isEqual: @"Humor"]) {
+        return @[@"Humor"];
+    } else {
+        return @[@"Error"];
     }
 
     return @[];
