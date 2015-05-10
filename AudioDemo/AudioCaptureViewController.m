@@ -7,7 +7,7 @@
 //
 
 #import "AudioCaptureViewController.h"
-#import "AddTextViewController.h"
+#import "CustomizeYapViewController.h"
 #import "YSSpotifySourceController.h"
 #import "YSMicSourceController.h"
 #import "API.h"
@@ -60,12 +60,7 @@ static const float TIMER_INTERVAL = .01;
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
     [self.recordButton setBackgroundImage:[UIImage imageNamed:@"RecordButtonBlueBorder10Pressed.png"] forState:UIControlStateHighlighted];
     self.recordProgressView.progress = 0;
-
-    YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
-    [self addChildViewController:spotifySource];
-    spotifySource.view.frame = self.audioSourceContainer.bounds;
-    [self.audioSourceContainer addSubview:spotifySource.view];
-    self.audioSource = spotifySource;
+    
     if (self.type == AudioCaptureTypeMic) {
         [self switchToMicMode];
     } else {
@@ -237,7 +232,7 @@ static const float TIMER_INTERVAL = .01;
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([@"Prepare Yap For Text Segue" isEqualToString:segue.identifier]) {
-        AddTextViewController *addTextVC = segue.destinationViewController;
+        CustomizeYapViewController *addTextVC = segue.destinationViewController;
 
         //Create yap object
         YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
@@ -255,13 +250,14 @@ static const float TIMER_INTERVAL = .01;
 #pragma mark - Mode Changing
 - (void)switchToSpotifyMode
 {
-    YSSpotifySourceController *spotifySource;
-    if ([self isInSpotifyMode]) {
-        spotifySource = (YSSpotifySourceController*)self.audioSource;
-    } else {
-        spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
-        [self flipController:self.audioSource to:spotifySource];
-    }
+    YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+    [self addChildViewController:spotifySource];
+    spotifySource.view.frame = self.audioSourceContainer.bounds;
+    [self.audioSourceContainer addSubview:spotifySource.view];
+    self.audioSource = spotifySource;
+    
+    spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+    [self flipController:self.audioSource to:spotifySource];
     
     if (self.audioCaptureContext && self.audioCaptureContext[AudioCaptureContextGenreName]) {
         spotifySource.selectedGenre = self.audioCaptureContext[AudioCaptureContextGenreName];
@@ -272,10 +268,14 @@ static const float TIMER_INTERVAL = .01;
 }
 
 - (void)switchToMicMode {
-    if (![self isInRecordMode]) {
-        YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
-        [self flipController:self.audioSource to:micSource];
-    }
+    YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
+    [self addChildViewController:micSource];
+    micSource.view.frame = self.audioSourceContainer.bounds;
+    [self.audioSourceContainer addSubview:micSource.view];
+    self.audioSource = micSource;
+    
+    micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
+    [self flipController:self.audioSource to:micSource];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Mic Mode Button"];

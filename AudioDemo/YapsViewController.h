@@ -16,7 +16,7 @@
 #define DID_DISMISS_AFTER_SENDING_YAP @"DidDismissAfterSendingYap"
 
 @property (nonatomic, strong) NSArray *pendingYaps;
-@property (assign, nonatomic) BOOL comingFromContactsOrAddTextPage;
+@property (assign, nonatomic) BOOL comingFromContactsOrCustomizeYapPage;
 @property (nonatomic, strong) NSNumber *unopenedYapsCount;
 
 @end

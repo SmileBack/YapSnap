@@ -7,6 +7,7 @@
 //
 
 #import "MusicGenreViewController.h"
+#import "AudioCaptureViewController.h"
 
 @interface MusicGenreViewController ()
 
@@ -113,6 +114,21 @@
 - (void) tappedSpotifyButton:(NSString *)type
 {
     [self performSegueWithIdentifier:@"Audio Record" sender:type];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    UINavigationController *navVC = segue.destinationViewController;
+    AudioCaptureViewController* audio = navVC.topViewController;
+
+    if (sender) { // The presence of a sender means that there was a spotify genre specified
+        audio.type = AudioCapTureTypeSpotify;
+        audio.audioCaptureContext = @{
+                                      AudioCaptureContextGenreName: sender
+                                      };
+    } else {
+        audio.type = AudioCaptureTypeMic;
+    }
 }
 
 @end

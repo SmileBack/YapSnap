@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Appcoda. All rights reserved.
 //
 
-#import "AddTextViewController.h"
+#import "CustomizeYapViewController.h"
 #import "ContactsViewController.h"
 #import "YSAudioSourceController.h"
 #import "PhoneContact.h"
@@ -19,7 +19,7 @@
 #import <AVFoundation/AVAudioSession.h>
 #import "FriendsViewController.h"
 
-@interface AddTextViewController ()
+@interface CustomizeYapViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet YSRecordProgressView *progressView;
 @property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
@@ -52,7 +52,7 @@
 
 @end
 
-@implementation AddTextViewController
+@implementation CustomizeYapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -283,7 +283,7 @@
     } else if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
         YapsViewController *vc = segue.destinationViewController;
         vc.pendingYaps = sender;
-        vc.comingFromContactsOrAddTextPage = YES;
+        vc.comingFromContactsOrCustomizeYapPage = YES;
     }
 }
 
@@ -298,7 +298,7 @@
         self.continueButton.userInteractionEnabled = YES;
         [self showNoInternetAlert];
     } else {
-        __weak AddTextViewController *weakSelf = self;
+        __weak CustomizeYapViewController *weakSelf = self;
         
         NSArray *vcs = self.navigationController.viewControllers;
         BOOL isFriendsFlow = vcs && vcs.count > 1 && [vcs[0] isKindOfClass:[FriendsViewController class]];

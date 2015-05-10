@@ -196,7 +196,7 @@
 		FCD885AE1AC8A2A0007729CC /* YapsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD885AD1AC8A2A0007729CC /* YapsCache.m */; };
 		FCE234491AAB749E00C1EDB0 /* YTNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE234481AAB749E00C1EDB0 /* YTNotifications.m */; };
 		FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE2347C1AAB917100C1EDB0 /* LaunchScreen.xib */; };
-		FCEF99361A6D6B22000FDE4C /* AddTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */; };
+		FCEF99361A6D6B22000FDE4C /* CustomizeYapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99351A6D6B22000FDE4C /* CustomizeYapViewController.m */; };
 		FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */; };
 		FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF993C1A6D6F06000FDE4C /* NoAnimationPushSegue.m */; };
 		FCEF99401A6D7BF2000FDE4C /* YapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF993F1A6D7BF2000FDE4C /* YapCell.m */; };
@@ -465,8 +465,8 @@
 		FCE234471AAB749E00C1EDB0 /* YTNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTNotifications.h; sourceTree = "<group>"; };
 		FCE234481AAB749E00C1EDB0 /* YTNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTNotifications.m; sourceTree = "<group>"; };
 		FCE2347C1AAB917100C1EDB0 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		FCEF99341A6D6B22000FDE4C /* AddTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTextViewController.h; sourceTree = "<group>"; };
-		FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTextViewController.m; sourceTree = "<group>"; };
+		FCEF99341A6D6B22000FDE4C /* CustomizeYapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizeYapViewController.h; sourceTree = "<group>"; };
+		FCEF99351A6D6B22000FDE4C /* CustomizeYapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizeYapViewController.m; sourceTree = "<group>"; };
 		FCEF99371A6D6B9A000FDE4C /* YapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YapBuilder.h; sourceTree = "<group>"; };
 		FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YapBuilder.m; sourceTree = "<group>"; };
 		FCEF993B1A6D6F06000FDE4C /* NoAnimationPushSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoAnimationPushSegue.h; sourceTree = "<group>"; };
@@ -762,13 +762,13 @@
 			name = Playback;
 			sourceTree = "<group>";
 		};
-		785393721AD9C48B00C6BEA7 /* Add text */ = {
+		785393721AD9C48B00C6BEA7 /* Customize Yap */ = {
 			isa = PBXGroup;
 			children = (
-				FCEF99341A6D6B22000FDE4C /* AddTextViewController.h */,
-				FCEF99351A6D6B22000FDE4C /* AddTextViewController.m */,
+				FCEF99341A6D6B22000FDE4C /* CustomizeYapViewController.h */,
+				FCEF99351A6D6B22000FDE4C /* CustomizeYapViewController.m */,
 			);
-			name = "Add text";
+			name = "Customize Yap";
 			sourceTree = "<group>";
 		};
 		786BCB411ADC25A300BA3FDD /* Add Text Page */ = {
@@ -780,6 +780,15 @@
 				78A8239F1AC1A74900135369 /* PencilIcon2.png */,
 			);
 			name = "Add Text Page";
+			sourceTree = "<group>";
+		};
+		786E0BDF1AFEEA5600005D1D /* Music Genre */ = {
+			isa = PBXGroup;
+			children = (
+				7857CABF1AFBD11200ADF999 /* MusicGenreViewController.h */,
+				7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */,
+			);
+			name = "Music Genre";
 			sourceTree = "<group>";
 		};
 		787EC5E01AC9D09B000C5539 /* ProgressView */ = {
@@ -993,6 +1002,7 @@
 			children = (
 				F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */,
 				FC0C1D4D1A46065B00B148AB /* Libraries */,
+				FCAFD5A01A8AE6130030B923 /* Categories */,
 				FC0C1D3F1A45EE5E00B148AB /* Controllers */,
 				FCA2CE9E1A3CCC9B0055C76A /* Views */,
 				FC609BC01A3CC22F00182F08 /* Model */,
@@ -1037,9 +1047,9 @@
 		FC0C1D3F1A45EE5E00B148AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FCFCE45F1AF559B50094926E /* Control Center */,
-				785393721AD9C48B00C6BEA7 /* Add text */,
-				FCAFD5A01A8AE6130030B923 /* Categories */,
+				FCFCE45F1AF559B50094926E /* Home View Controller */,
+				786E0BDF1AFEEA5600005D1D /* Music Genre */,
+				785393721AD9C48B00C6BEA7 /* Customize Yap */,
 				FC3ECAE61A830482002678F6 /* Friends */,
 				FCBB97001A7D635B003D5F24 /* Settings */,
 				FC52C1B11A787DA600D85FA8 /* Helpers */,
@@ -1224,15 +1234,13 @@
 			name = "Alert View";
 			sourceTree = "<group>";
 		};
-		FCFCE45F1AF559B50094926E /* Control Center */ = {
+		FCFCE45F1AF559B50094926E /* Home View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7857CABF1AFBD11200ADF999 /* MusicGenreViewController.h */,
-				7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */,
 				7857CABC1AFBB43300ADF999 /* HomeViewController.h */,
 				7857CABD1AFBB43300ADF999 /* HomeViewController.m */,
 			);
-			name = "Control Center";
+			name = "Home View Controller";
 			sourceTree = "<group>";
 		};
 		FCFCE4631AF567E80094926E /* Spotify */ = {
@@ -1505,7 +1513,7 @@
 				FC1E89BE1A4B9518007A8CDA /* PlaybackVC.m in Sources */,
 				787EC5E31AC9D0AD000C5539 /* JEProgressView.m in Sources */,
 				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,
-				FCEF99361A6D6B22000FDE4C /* AddTextViewController.m in Sources */,
+				FCEF99361A6D6B22000FDE4C /* CustomizeYapViewController.m in Sources */,
 				FCBB96FF1A7D4C97003D5F24 /* YSUser.m in Sources */,
 				FCBB97061A7D6CDF003D5F24 /* EditFieldViewController.m in Sources */,
 				FCFCE4661AF568000094926E /* SpotifyArtistFactory.m in Sources */,

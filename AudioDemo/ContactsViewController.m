@@ -459,7 +459,7 @@ static NSString *CellIdentifier = @"Cell";
         NSArray *pendingYaps = sender;
         YapsViewController *vc = segue.destinationViewController;
         vc.pendingYaps = pendingYaps;
-        vc.comingFromContactsOrAddTextPage = YES;
+        vc.comingFromContactsOrCustomizeYapPage = YES;
     }
 }
 
