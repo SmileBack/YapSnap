@@ -117,6 +117,16 @@
     self.largeAddFriendsButton.layer.borderWidth = 1;
     self.largeAddFriendsButton.layer.borderColor = [UIColor whiteColor].CGColor;
     
+    [self addCancelButton];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
+- (void) addCancelButton {
     UIImage* cancelModalImage = [UIImage imageNamed:@"WhiteDownArrow2.png"];
     UIButton *cancelModalButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [cancelModalButton setBackgroundImage:cancelModalImage forState:UIControlStateNormal];
@@ -124,12 +134,6 @@
                 forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelModalButton];
     [self.navigationItem setLeftBarButtonItem:cancelButton];
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void) getSelfAndUpdateScore

@@ -98,7 +98,7 @@
 - (void) setBackgroundColorForSearchBox {
     //Background text color
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
-    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.15] range:NSMakeRange(0, self.searchBox.text.length)];
+    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.25] range:NSMakeRange(0, self.searchBox.text.length)];
     self.searchBox.attributedText = attributedString;
 }
 

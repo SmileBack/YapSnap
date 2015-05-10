@@ -86,8 +86,7 @@ static NSString *CellIdentifier = @"Cell";
                                                                             action:nil];
     
     if (self.builder.builderType == BuilderTypeAddFriends) {
-        UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(cancelPressed)];
-        [self.navigationItem setLeftBarButtonItem:cancel];
+        [self addCancelButton];
     }
     
     if ([self internetIsNotReachable]) {
@@ -105,6 +104,16 @@ static NSString *CellIdentifier = @"Cell";
 {
     [super viewDidAppear:animated];
     self.continueButton.userInteractionEnabled = YES;
+}
+
+- (void) addCancelButton {
+    UIImage* cancelModalImage = [UIImage imageNamed:@"WhiteDownArrow2.png"];
+    UIButton *cancelModalButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [cancelModalButton setBackgroundImage:cancelModalImage forState:UIControlStateNormal];
+    [cancelModalButton addTarget:self action:@selector(cancelPressed)
+                forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelModalButton];
+    [self.navigationItem setLeftBarButtonItem:cancelButton];
 }
 
 - (void)registerForKeyboardNotifications

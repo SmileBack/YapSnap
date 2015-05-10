@@ -106,8 +106,8 @@ static const float TIMER_INTERVAL = .01;
     
     if (self.type == AudioCaptureTypeMic) {
         self.titleString = @"Record Voice";
-    } else {
-        self.titleString = @"Find a Song";
+    } else if (self.type == AudioCapTureTypeSpotify) {
+        self.titleString = @"";
     }
     [self updateTitleLabel];
     
@@ -140,6 +140,13 @@ static const float TIMER_INTERVAL = .01;
                                                                    userInfo:nil
                                                                     repeats:YES];
                         }
+                        
+                        if (self.type == AudioCaptureTypeMic) {
+                            self.titleString = @"Recording...";
+                        } else {
+                            self.titleString = @"Playing...";
+                        }
+                        [self updateTitleLabel];
                     }];
     
     [center addObserverForName:AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION
@@ -217,13 +224,6 @@ static const float TIMER_INTERVAL = .01;
         if (self.audioSource.class == [YSSpotifySourceController class]) {
             [self.recordProgressView.activityIndicator startAnimating];
         }
-        
-        if (self.type == AudioCaptureTypeMic) {
-            self.titleString = @"Recording...";
-        } else {
-            self.titleString = @"Playing...";
-        }
-        [self updateTitleLabel];
     }
 }
 
@@ -244,9 +244,10 @@ static const float TIMER_INTERVAL = .01;
         
         if (self.type == AudioCaptureTypeMic) {
             self.titleString = @"Record Voice";
-        } else {
-            self.titleString = @"Find a Song";
+        } else if (self.type == AudioCapTureTypeSpotify) {
+            self.titleString = @"";
         }
+        
         [self updateTitleLabel];
     } else {
         [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
