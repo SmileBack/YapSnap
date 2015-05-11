@@ -81,6 +81,13 @@
                     usingBlock:^(NSNotification *note) {
                         [self.view endEditing:YES];
                     }];
+    
+    [center addObserverForName:TAPPED_PROGRESS_BAR_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self.searchBox becomeFirstResponder];
+                    }];
 }
 
 - (void)tappedSpotifyView {

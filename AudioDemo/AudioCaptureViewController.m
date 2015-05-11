@@ -52,23 +52,16 @@ static const float TIMER_INTERVAL = .01;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(cancelPressed)];
-    //cancel.tintColor = UIColor.whiteColor;
-    //[self.navigationItem setLeftBarButtonItem:cancel];
-    
-    UIImage* cancelModalImage = [UIImage imageNamed:@"WhiteDownArrow2.png"];
-    UIButton *cancelModalButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [cancelModalButton setBackgroundImage:cancelModalImage forState:UIControlStateNormal];
-    [cancelModalButton addTarget:self action:@selector(cancelPressed)
-         forControlEvents:UIControlEventTouchUpInside];    
-    UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelModalButton];
-    [self.navigationItem setLeftBarButtonItem:cancelButton];
+    [self addCancelButton];
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
     [self.recordButton setBackgroundImage:[UIImage imageNamed:@"RecordButtonBlueBorder10Pressed.png"] forState:UIControlStateHighlighted];
     self.recordProgressView.progress = 0;
+
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedProgressView)];
+    [self.recordProgressView addGestureRecognizer:tapGesture];
     
     if (self.type == AudioCaptureTypeMic) {
         [self switchToMicMode];
@@ -77,6 +70,15 @@ static const float TIMER_INTERVAL = .01;
     }
     
     [self setupNotifications];
+}
+
+- (void) tappedProgressView {
+    NSLog(@"Tapped Progress Bar");
+    if (self.type == AudioCaptureTypeMic) {
+        [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
+    } else if (self.type == AudioCapTureTypeSpotify) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TAPPED_PROGRESS_BAR_NOTIFICATION object:nil];
+    }
 }
 
 - (void) updateTitleLabel {
@@ -88,6 +90,16 @@ static const float TIMER_INTERVAL = .01;
     label.textAlignment = NSTextAlignmentCenter;
     label.text = self.titleString;
     self.navigationItem.titleView = label;
+}
+
+- (void) addCancelButton {
+    UIImage* cancelModalImage = [UIImage imageNamed:@"WhiteDownArrow2.png"];
+    UIButton *cancelModalButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [cancelModalButton setBackgroundImage:cancelModalImage forState:UIControlStateNormal];
+    [cancelModalButton addTarget:self action:@selector(cancelPressed)
+                forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelModalButton];
+    [self.navigationItem setLeftBarButtonItem:cancelButton];
 }
 
 - (void)cancelPressed

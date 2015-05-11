@@ -20,6 +20,7 @@
 #define TAPPED_RESET_BUTTON @"yaptap.TappedResetButton"
 #define TAPPED_SHUFFLE_BUTTON @"yaptap.TappedShuffleButton"
 #define DISMISS_KEYBOARD_NOTIFICATION @"DismissKeyboardNotification"
+#define TAPPED_PROGRESS_BAR_NOTIFICATION @"TappedProgressBarNotification"
 
 @property (nonatomic, strong) NSString *selectedGenre;
 

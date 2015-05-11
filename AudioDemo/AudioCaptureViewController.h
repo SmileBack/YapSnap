@@ -14,6 +14,7 @@
 #import "OffsetImageButton.h"
 
 #define DISMISS_KEYBOARD_NOTIFICATION @"DismissKeyboardNotification"
+#define TAPPED_PROGRESS_BAR_NOTIFICATION @"TappedProgressBarNotification"
 
 typedef NS_ENUM(NSUInteger, AudioCaptureType) {
     AudioCaptureTypeMic,
