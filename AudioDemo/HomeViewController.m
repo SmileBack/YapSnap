@@ -146,7 +146,7 @@
 - (void) tappedWelcomePopup {
     NSLog(@"tapped Welcome Popup");
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideTopTop];
-    double delay = .2;
+    double delay = .6;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self didTapYapsPageButton];
     });

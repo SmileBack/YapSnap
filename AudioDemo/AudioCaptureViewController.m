@@ -18,11 +18,15 @@
 
 @interface AudioCaptureViewController (){
     NSTimer *timer;
+    NSTimer *countdownTimer;
+    int currMinute;
+    int currSeconds;
 }
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 @property (nonatomic) float elapsedTime;
 //@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (nonatomic, strong) NSString *titleString;
+@property (strong, nonatomic) UIButton *countdownTimerButton;
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
@@ -72,6 +76,36 @@ static const float TIMER_INTERVAL = .01;
     [self setupNotifications];
 }
 
+-(void)start
+{
+    NSLog(@"Start");
+    if (countdownTimer){
+        [countdownTimer invalidate];
+    }
+    countdownTimer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countdownTimerFired) userInfo:nil repeats:YES];
+}
+
+-(void)countdownTimerFired
+{
+    NSLog(@"countdownTimer fired");
+    NSLog(@"currMinute: %d; currSeconds: %d", currMinute, currSeconds);
+    if((currMinute>0 || currSeconds>=0) && currMinute>=0)
+    {
+        if(currSeconds>0)
+        {
+            NSLog(@"currSeconds: %d", currSeconds);
+            currSeconds-=1;
+        }
+        
+        [self.countdownTimerButton setTitle:[NSString stringWithFormat:@"%d",currSeconds] forState:UIControlStateNormal];
+    }
+    else
+    {
+        NSLog(@"countdownTimer invalidate");
+        [countdownTimer invalidate];
+    }
+}
+
 - (void) tappedProgressView {
     NSLog(@"Tapped Progress Bar");
     if (self.type == AudioCaptureTypeMic) {
@@ -90,6 +124,14 @@ static const float TIMER_INTERVAL = .01;
     label.textAlignment = NSTextAlignmentCenter;
     label.text = self.titleString;
     self.navigationItem.titleView = label;
+}
+
+- (void) addCountDownTimerLabel {
+    self.countdownTimerButton.hidden = NO;
+    self.countdownTimerButton = [[UIButton alloc] initWithFrame:CGRectMake(240, 0, 24, 44)];
+    self.countdownTimerButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+    UIBarButtonItem *countdownTimerButton =[[UIBarButtonItem alloc] initWithCustomView:self.countdownTimerButton];
+    [self.navigationItem setRightBarButtonItem:countdownTimerButton];
 }
 
 - (void) addCancelButton {
@@ -123,6 +165,7 @@ static const float TIMER_INTERVAL = .01;
     }
     [self updateTitleLabel];
     
+    self.countdownTimerButton.hidden = YES;
     /*
     if (IS_BEFORE_IOS_8) {
         self.bottomConstraint.constant = 9;
@@ -156,9 +199,14 @@ static const float TIMER_INTERVAL = .01;
                         if (self.type == AudioCaptureTypeMic) {
                             self.titleString = @"Recording...";
                         } else {
-                            self.titleString = @"Playing...";
+                            self.titleString = @"Recording Song...";
                         }
                         [self updateTitleLabel];
+                        
+                        [self addCountDownTimerLabel];
+                        [self.countdownTimerButton setTitle:@"12" forState:UIControlStateNormal];
+                        currSeconds=12;
+                        [self start];
                     }];
     
     [center addObserverForName:AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION
