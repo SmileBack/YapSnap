@@ -56,22 +56,48 @@
                                     <action selector="didTapResetButton" destination="jNN-gb-fip" eventType="touchUpInside" id="rcI-xz-3ec"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2WW-dD-1n6">
-                                <rect key="frame" x="282" y="38" width="28" height="31"/>
-                                <state key="normal" image="Shuffle50.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapShuffleButton" destination="jNN-gb-fip" eventType="touchUpInside" id="3UX-bK-3V3"/>
-                                </connections>
-                            </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hip Hop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fI5-25-QgU">
-                                <rect key="frame" x="282" y="6" width="35" height="11"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f17-kx-GaG" userLabel="Shuffle View">
+                                <rect key="frame" x="274" y="38" width="42" height="36"/>
+                                <subviews>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2WW-dD-1n6" userLabel="Shuffle Button">
+                                        <rect key="frame" x="7" y="10" width="28" height="27"/>
+                                        <state key="normal" image="Shuffle60.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapShuffleButton" destination="jNN-gb-fip" eventType="touchUpInside" id="3UX-bK-3V3"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hip Hop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOF-x4-8Cu" userLabel="Shuffle Label">
+                                        <rect key="frame" x="-1" y="-4" width="42" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="a3q-gv-sIe"/>
+                                            <constraint firstAttribute="height" constant="21" id="hs3-Rt-vDk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="9"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="2WW-dD-1n6" firstAttribute="leading" secondItem="f17-kx-GaG" secondAttribute="leading" constant="7" id="0fn-wE-nKH"/>
+                                    <constraint firstItem="xOF-x4-8Cu" firstAttribute="leading" secondItem="f17-kx-GaG" secondAttribute="leading" constant="-1" id="3w7-iw-5qL"/>
+                                    <constraint firstItem="xOF-x4-8Cu" firstAttribute="leading" secondItem="f17-kx-GaG" secondAttribute="leading" constant="-1" id="6Vc-tV-Bon"/>
+                                    <constraint firstAttribute="trailing" secondItem="xOF-x4-8Cu" secondAttribute="trailing" constant="1" id="7PP-Uz-k2t"/>
+                                    <constraint firstItem="xOF-x4-8Cu" firstAttribute="top" secondItem="f17-kx-GaG" secondAttribute="top" constant="-4" id="9H5-Nk-6u5"/>
+                                    <constraint firstItem="2WW-dD-1n6" firstAttribute="top" secondItem="f17-kx-GaG" secondAttribute="top" constant="10" id="9Qa-gO-XjK"/>
+                                    <constraint firstItem="xOF-x4-8Cu" firstAttribute="centerX" secondItem="2WW-dD-1n6" secondAttribute="centerX" constant="-1" id="DJg-cg-vys"/>
+                                    <constraint firstItem="xOF-x4-8Cu" firstAttribute="leading" secondItem="f17-kx-GaG" secondAttribute="leading" constant="-1" id="MzO-m6-wxC"/>
+                                    <constraint firstAttribute="trailing" secondItem="xOF-x4-8Cu" secondAttribute="trailing" constant="1" id="NrF-QP-v8R"/>
+                                    <constraint firstItem="xOF-x4-8Cu" firstAttribute="top" secondItem="f17-kx-GaG" secondAttribute="top" constant="-4" id="Pnk-mT-gqz"/>
+                                    <constraint firstItem="xOF-x4-8Cu" firstAttribute="centerX" secondItem="f17-kx-GaG" secondAttribute="centerX" constant="-1" id="RzO-xz-Jfb"/>
+                                    <constraint firstAttribute="bottom" secondItem="xOF-x4-8Cu" secondAttribute="bottom" constant="19" id="fnP-PJ-V7l"/>
+                                    <constraint firstItem="xOF-x4-8Cu" firstAttribute="top" secondItem="f17-kx-GaG" secondAttribute="top" constant="-4" id="hhL-yN-s5m"/>
+                                    <constraint firstItem="xOF-x4-8Cu" firstAttribute="leading" secondItem="f17-kx-GaG" secondAttribute="leading" constant="-1" id="tYa-YT-FkW"/>
+                                    <constraint firstItem="xOF-x4-8Cu" firstAttribute="centerY" secondItem="2WW-dD-1n6" secondAttribute="centerY" constant="-17" id="y5d-qQ-Lc8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -79,17 +105,13 @@
                             <constraint firstItem="iKi-hk-1A5" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="115" id="7E1-ft-JPZ"/>
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="50" id="9Cq-I9-19w"/>
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" id="9zR-GB-wuh"/>
-                            <constraint firstItem="ZNs-R1-CJc" firstAttribute="top" secondItem="2WW-dD-1n6" secondAttribute="bottom" constant="1" id="BYe-WO-jis"/>
                             <constraint firstAttribute="trailing" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="45" id="BpS-sr-djQ"/>
-                            <constraint firstItem="2WW-dD-1n6" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="18" id="C3z-1V-qVS"/>
                             <constraint firstItem="oUD-ix-h4T" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leadingMargin" constant="-16" id="Cvx-fN-AIb"/>
-                            <constraint firstItem="fI5-25-QgU" firstAttribute="top" secondItem="B8N-jO-1bl" secondAttribute="topMargin" constant="6" id="F6Q-9h-EPv"/>
                             <constraint firstAttribute="bottom" secondItem="ZNs-R1-CJc" secondAttribute="bottom" constant="20" id="Fcg-Ri-wcV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2WW-dD-1n6" secondAttribute="trailing" constant="-6" id="aBh-Gg-BmB"/>
+                            <constraint firstItem="f17-kx-GaG" firstAttribute="top" secondItem="6hl-m2-tvk" secondAttribute="top" constant="3" id="aKf-iU-sAf"/>
                             <constraint firstAttribute="trailing" secondItem="ZNs-R1-CJc" secondAttribute="trailing" id="f6a-b0-12B"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f17-kx-GaG" secondAttribute="trailing" constant="-12" id="gar-Pa-Isz"/>
                             <constraint firstItem="oUD-ix-h4T" firstAttribute="trailing" secondItem="ZNs-R1-CJc" secondAttribute="trailing" constant="-270" id="h0O-JB-HSE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fI5-25-QgU" secondAttribute="trailing" constant="-13" id="hGi-bd-w76"/>
-                            <constraint firstItem="2WW-dD-1n6" firstAttribute="leading" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="7" id="ivy-5Z-BBf"/>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="15" id="mMM-JG-YVP"/>
                             <constraint firstAttribute="centerX" secondItem="iKi-hk-1A5" secondAttribute="centerX" id="mm6-BP-Za3"/>
                             <constraint firstItem="oUD-ix-h4T" firstAttribute="top" secondItem="B8N-jO-1bl" secondAttribute="topMargin" constant="-3" id="ngR-2Q-EaC"/>
@@ -104,6 +126,8 @@
                         <outlet property="resetButton" destination="oUD-ix-h4T" id="Gbn-6y-zbp"/>
                         <outlet property="searchBox" destination="6hl-m2-tvk" id="lF2-ss-GVa"/>
                         <outlet property="shuffleButton" destination="2WW-dD-1n6" id="151-YV-dTU"/>
+                        <outlet property="shuffleLabel" destination="xOF-x4-8Cu" id="0kg-BI-a65"/>
+                        <outlet property="shuffleView" destination="f17-kx-GaG" id="uMk-FL-vft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eqw-WM-wJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1998,7 +2022,7 @@ Type it here!</string>
         <image name="ResetButton3.png" width="32" height="32"/>
         <image name="ResetButton70.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
-        <image name="Shuffle50.png" width="64" height="64"/>
+        <image name="Shuffle60.png" width="64" height="64"/>
         <image name="WhiteBackArrow5.png" width="88" height="88"/>
         <image name="YapsButtonNoYaps.png" width="160" height="84"/>
         <image name="YellowStar.png" width="40" height="40"/>

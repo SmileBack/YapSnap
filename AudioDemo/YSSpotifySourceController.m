@@ -28,9 +28,12 @@
 @property (nonatomic) float carouselHeight;
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 @property (strong, nonatomic) IBOutlet UIButton *resetButton;
-@property (strong, nonatomic) IBOutlet UIButton *shuffleButton;
 @property (nonatomic, strong) NSArray *artists;
 @property (nonatomic, strong) NSDictionary *typeToGenreMap;
+@property (strong, nonatomic) IBOutlet UIButton *shuffleButton;
+@property (strong, nonatomic) IBOutlet UILabel *shuffleLabel;
+@property (strong, nonatomic) IBOutlet UIView *shuffleView;
+
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapShuffleButton;
@@ -201,7 +204,7 @@
 -(void)textFieldDidChange:(UITextField *)searchBox {
     if ([self.searchBox.text length] == 0) {
         NSLog(@"Empty String");
-        [self hideShuffleButton];
+        [self hideShuffleView];
     }
 }
 
@@ -801,12 +804,12 @@
     self.resetButton.alpha = 0;
 }
 
-- (void) hideShuffleButton {
-    self.shuffleButton.hidden = YES;
+- (void) hideShuffleView {
+    self.shuffleView.hidden = YES;
 }
 
-- (void) unhideShuffleButton {
-    self.shuffleButton.hidden = NO;
+- (void) unhideShuffleView {
+    self.shuffleView.hidden = NO;
 }
 
 - (void) resetUI {
@@ -819,7 +822,7 @@
                          self.searchBox.alpha = 0;
                          self.carousel.alpha = 0;
                          [self hideResetButton];
-                         [self hideShuffleButton];
+                         [self hideShuffleView];
                          self.loadingIndicator.alpha = 0;
                      }
                      completion:^(BOOL finished) {
@@ -858,8 +861,13 @@
         _selectedGenre = self.typeToGenreMap[selectedGenre];
         if (!_selectedGenre) _selectedGenre = selectedGenre;
         [self searchGenre:self.selectedGenre];
-        [self unhideShuffleButton];
+        [self unhideShuffleView];
+        [self updateShuffleLabel];
     }
+}
+
+- (void) updateShuffleLabel {
+    self.shuffleLabel.text = self.selectedGenre;
 }
 
 - (void) showRandomPickAlert {

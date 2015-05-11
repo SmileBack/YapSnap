@@ -96,6 +96,7 @@
 		786E0BE11AFFEDE700005D1D /* WhiteDownArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 786E0BE01AFFEDE700005D1D /* WhiteDownArrow.png */; };
 		786E0BE31AFFEE8C00005D1D /* WhiteDownArrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 786E0BE21AFFEE8C00005D1D /* WhiteDownArrow2.png */; };
 		786E0BE51B0019AE00005D1D /* PlusButtonWhite3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786E0BE41B0019AE00005D1D /* PlusButtonWhite3@2x.png */; };
+		786E0BE71B00755800005D1D /* Shuffle60.png in Resources */ = {isa = PBXBuildFile; fileRef = 786E0BE61B00755800005D1D /* Shuffle60.png */; };
 		787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A6D941A4DD8A2001551C6 /* Crashlytics.framework */; };
 		787C84DB1A76C77D005D80D5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787C84DA1A76C77D005D80D5 /* AudioToolbox.framework */; };
 		787C84DF1A7732E4005D80D5 /* PhoneNumberChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 787C84DE1A7732E4005D80D5 /* PhoneNumberChecker.m */; };
@@ -325,6 +326,7 @@
 		786E0BE01AFFEDE700005D1D /* WhiteDownArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteDownArrow.png; sourceTree = "<group>"; };
 		786E0BE21AFFEE8C00005D1D /* WhiteDownArrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteDownArrow2.png; sourceTree = "<group>"; };
 		786E0BE41B0019AE00005D1D /* PlusButtonWhite3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlusButtonWhite3@2x.png"; sourceTree = "<group>"; };
+		786E0BE61B00755800005D1D /* Shuffle60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Shuffle60.png; sourceTree = "<group>"; };
 		787A6D941A4DD8A2001551C6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		787C84DA1A76C77D005D80D5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		787C84DD1A7732E4005D80D5 /* PhoneNumberChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumberChecker.h; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 				781904811AF1E3CE00196DFF /* ResetButton40@2x.png */,
 				78B252251AF0238800353711 /* MagnifyingGlass.png */,
 				78B0B7611AEF3834001C074B /* Shuffle50.png */,
+				786E0BE61B00755800005D1D /* Shuffle60.png */,
 				78439FC51AE9A330004CFB5F /* PlusButtonWhite@2x.png */,
 				78439FC71AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png */,
 				786BCB411ADC25A300BA3FDD /* Add Text Page */,
@@ -1390,6 +1393,7 @@
 				7854B0671AF75EF500A02DF9 /* CartoonsLong2.png in Resources */,
 				786E0BE31AFFEE8C00005D1D /* WhiteDownArrow2.png in Resources */,
 				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
+				786E0BE71B00755800005D1D /* Shuffle60.png in Resources */,
 				78439FC21AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png in Resources */,
 				78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */,
 				781904861AF287C100196DFF /* ResetButton60@2x.png in Resources */,
