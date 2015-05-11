@@ -33,7 +33,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *shuffleButton;
 @property (strong, nonatomic) IBOutlet UILabel *shuffleLabel;
 @property (strong, nonatomic) IBOutlet UIView *shuffleView;
-
+@property (strong, nonatomic) NSTimer *pulsatingTimer;
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapShuffleButton;
@@ -65,6 +65,10 @@
     UITapGestureRecognizer *tappedSpotifyView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedSpotifyView)];
     tappedSpotifyView.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tappedSpotifyView];
+    
+    UITapGestureRecognizer *tappedShuffleView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedShuffleView)];
+    tappedSpotifyView.numberOfTapsRequired = 1;
+    [self.shuffleView addGestureRecognizer:tappedShuffleView];
     
     [self setupNotifications];
 }
@@ -103,8 +107,6 @@
             [self.view endEditing:YES];
             [self setBackgroundColorForSearchBox];
         }
-    } else {
-        [self.searchBox becomeFirstResponder];
     }
 }
 
@@ -245,6 +247,13 @@
             } else {
                 NSLog(@"Returned Songs Successfully");
                 [self.loadingIndicator stopAnimating];
+                if (!self.didViewSpotifySongs) {
+                    double delay = .7;
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [[YTNotifications sharedNotifications] showNotificationText:@"Find a Song"];
+                        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_VIEW_SPOTIFY_SONGS];
+                    });
+                }
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];
@@ -390,6 +399,44 @@
     [trackView.albumImageButton addTarget:self action:@selector(tappedAlbumImage:) forControlEvents:UIControlEventTouchUpInside];
     
     return trackView;
+}
+
+- (void)carouselDidEndDragging:(iCarousel *)carousel willDecelerate:(BOOL)decelerate{
+    NSLog(@"DidEndDragging");
+    if (!self.didScrollCarousel) {
+        [self addShuffleViewAnimation];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:SCROLLED_CAROUSEL];
+    }
+}
+
+- (void) pulsateShuffleView
+{
+    CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    [animation setFromValue:[NSNumber numberWithFloat:1.5]];
+    [animation setToValue:[NSNumber numberWithFloat:1]];
+    [animation setDuration:.5];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.1 :1.3 :1 :1]];
+    [self.shuffleView.layer addAnimation:animation forKey:@"bounceAnimation"];
+}
+
+- (void) addShuffleViewAnimation {
+    NSLog(@"Add pulsating animation");
+    if (self.pulsatingTimer){
+        [self.pulsatingTimer invalidate];
+    }
+    self.pulsatingTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                               target:self
+                                                             selector:@selector(pulsateShuffleView)
+                                                             userInfo:nil
+                                                              repeats:YES];
+}
+
+- (void) removeShuffleViewAnimation {
+    NSLog(@"Remove pulsating animation");
+    if (self.pulsatingTimer){
+        [self.pulsatingTimer invalidate];
+    }
+    [self.shuffleView.layer removeAnimationForKey:@"bounceAnimation"];
 }
 
 - (void) tappedSongVersionOneButton:(UIButton *)button {
@@ -765,17 +812,24 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
 }
 
-- (BOOL) didTapResetButtonForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_RESET_BUTTON];
-}
-
 - (BOOL) didTapShuffleButtonForFirstTime
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SHUFFLE_BUTTON];
 }
 
+- (BOOL) didScrollCarousel
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:SCROLLED_CAROUSEL];
+}
 
+- (BOOL) didViewSpotifySongs
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_VIEW_SPOTIFY_SONGS];
+}
+
+- (void) tappedShuffleView {
+    [self didTapShuffleButton];
+}
 
 - (IBAction) didTapShuffleButton {
     if (self.searchBox.isFirstResponder) {
@@ -783,10 +837,13 @@
     }
     
     if (!self.didTapShuffleButtonForFirstTime) {
-        [[YTNotifications sharedNotifications] showNotificationText:@"Shuffled"];
+        [[YTNotifications sharedNotifications] showNotificationText:@"New Artist"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SHUFFLE_BUTTON];
     }
+    
     [self searchGenre:self.selectedGenre];
+    
+    [self removeShuffleViewAnimation];
 }
 
 - (void) showSearchBox

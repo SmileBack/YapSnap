@@ -87,7 +87,7 @@ static NSString *CellIdentifier = @"Cell";
     
     if (!self.comingFromContactsOrCustomizeYapPage) {
         [self loadYaps];
-        [self showWelcomeYapBanner];
+        //[self showWelcomeYapBanner];
     }
     
     // Pull down to refresh

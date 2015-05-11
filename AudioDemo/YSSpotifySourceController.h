@@ -16,11 +16,11 @@
 #define TAPPED_SONG_VERSION_ONE @"yaptap.TappedSongVersionOneKey"
 #define TAPPED_SONG_VERSION_TWO @"yaptap.TappedSongVersionTwoKey"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
-#define VIEWED_RANDOM_PICK_ALERT @"yaptap.ViewedRandomPickAlert"
-#define TAPPED_RESET_BUTTON @"yaptap.TappedResetButton"
-#define TAPPED_SHUFFLE_BUTTON @"yaptap.TappedShuffleButton"
 #define DISMISS_KEYBOARD_NOTIFICATION @"DismissKeyboardNotification"
 #define TAPPED_PROGRESS_BAR_NOTIFICATION @"TappedProgressBarNotification"
+#define TAPPED_SHUFFLE_BUTTON @"yaptap.TappedShuffleButtonKey8"
+#define SCROLLED_CAROUSEL @"yaptap.ScrolledCarouselKey7"
+#define DID_VIEW_SPOTIFY_SONGS @"yaptap.DidViewSpotifySongs"
 
 @property (nonatomic, strong) NSString *selectedGenre;
 
