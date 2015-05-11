@@ -11,10 +11,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CartoonsLong2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hdw-pP-tN3">
-                    <rect key="frame" x="0.0" y="384" width="320" height="96"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CartoonsLong5.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hdw-pP-tN3">
+                    <rect key="frame" x="0.0" y="360" width="320" height="120"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="96" id="E1D-aq-5rh"/>
+                        <constraint firstAttribute="height" constant="120" id="E1D-aq-5rh"/>
                     </constraints>
                 </imageView>
             </subviews>
@@ -30,6 +30,6 @@
         </view>
     </objects>
     <resources>
-        <image name="CartoonsLong2.png" width="640" height="192"/>
+        <image name="CartoonsLong5.png" width="640" height="240"/>
     </resources>
 </document>

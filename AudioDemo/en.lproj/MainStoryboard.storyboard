@@ -305,10 +305,10 @@
                                 <color key="textColor" red="0.93333333330000001" green="0.95686274510000002" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CartoonsLong2.png" translatesAutoresizingMaskIntoConstraints="NO" id="3jj-uv-5P2">
-                                <rect key="frame" x="0.0" y="472" width="320" height="96"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CartoonsLong5.png" translatesAutoresizingMaskIntoConstraints="NO" id="3jj-uv-5P2">
+                                <rect key="frame" x="0.0" y="448" width="320" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="96" id="NEB-xH-cx0"/>
+                                    <constraint firstAttribute="height" constant="120" id="NEB-xH-cx0"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MicrophoneWhiteSmooth.png" translatesAutoresizingMaskIntoConstraints="NO" id="sP9-qt-bQe">
@@ -341,7 +341,7 @@
                             <constraint firstItem="sP9-qt-bQe" firstAttribute="centerX" secondItem="R76-A3-8pM" secondAttribute="centerX" id="fMA-Jz-leP"/>
                             <constraint firstItem="j6Y-rR-iWd" firstAttribute="centerX" secondItem="3jj-uv-5P2" secondAttribute="centerX" id="iln-gT-tGa"/>
                             <constraint firstItem="3jj-uv-5P2" firstAttribute="bottom" secondItem="4Aj-fk-XgX" secondAttribute="top" id="jBR-BQ-oc2"/>
-                            <constraint firstItem="3jj-uv-5P2" firstAttribute="top" secondItem="j6Y-rR-iWd" secondAttribute="bottom" constant="96" id="nhi-fd-n32"/>
+                            <constraint firstItem="3jj-uv-5P2" firstAttribute="top" secondItem="j6Y-rR-iWd" secondAttribute="bottom" constant="72" id="nhi-fd-n32"/>
                             <constraint firstItem="kgP-ff-fwd" firstAttribute="firstBaseline" secondItem="R76-A3-8pM" secondAttribute="firstBaseline" id="oED-Gr-cnx"/>
                             <constraint firstItem="yjE-ev-SsG" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="-12" id="pd4-Zh-EzV"/>
                             <constraint firstItem="Dwb-eQ-GX5" firstAttribute="leading" secondItem="yjE-ev-SsG" secondAttribute="trailing" constant="9" id="r9Y-Ld-Aqq"/>
@@ -2010,7 +2010,7 @@ Type it here!</string>
         <image name="CameraIcon20.png" width="150" height="150"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
-        <image name="CartoonsLong2.png" width="640" height="192"/>
+        <image name="CartoonsLong5.png" width="640" height="240"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
@@ -2034,9 +2034,9 @@ Type it here!</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="AEp-MY-7pq"/>
         <segue reference="Q0Z-rg-Tpo"/>
-        <segue reference="CHs-ge-chV"/>
-        <segue reference="czb-n6-hbf"/>
+        <segue reference="A1q-1y-Edd"/>
         <segue reference="0bM-75-hD3"/>
     </inferredMetricsTieBreakers>
 </document>
