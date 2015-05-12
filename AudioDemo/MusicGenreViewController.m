@@ -83,8 +83,9 @@
 
 - (void) styleButtons {
     //    CGFloat radius = self.controlCenterButtonOne.frame.size.height / 2.0f;
-    CGFloat spacing = 18 + 16 + 16 + 18;
-    CGFloat radius = ([[UIScreen mainScreen] bounds].size.width - spacing) / 3 / 2;
+    //CGFloat spacing = 18 + 16 + 16 + 18;
+    //CGFloat radius = ([[UIScreen mainScreen] bounds].size.width - spacing) / 3 / 2;
+    CGFloat radius = 42;
     
     self.musicButtonOne.clipsToBounds = YES;
     self.musicButtonOne.layer.cornerRadius = radius;
