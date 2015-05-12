@@ -12,12 +12,12 @@
 
 - (id) initWithYap:(YSYap *)yap andDelegate:(id<UIAlertViewDelegate>)delegate
 {
-    NSString *message = [NSString stringWithFormat:@"Block %@", yap.displaySenderName];
-
-    self = [super initWithTitle:@"Block them?"
+    NSString *message = [NSString stringWithFormat:@"Do you want to block %@? This cannot be undone.", yap.displaySenderName];
+    
+    self = [super initWithTitle:@"Block User?"
                         message:message
                        delegate:delegate
-              cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+              cancelButtonTitle:@"No" otherButtonTitles:@"Block", nil];
     return self;
 }
 
