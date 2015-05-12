@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#define DISMISS_WELCOME_POPUP @"DismissWelcomePopup"
+
 @interface WelcomePopupViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet UIButton *dismissPopupButton;
+- (IBAction)didTapCancelButton;
 
 @end

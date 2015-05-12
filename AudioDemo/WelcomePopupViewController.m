@@ -15,7 +15,7 @@
 {
     [super viewDidLoad];
 
-    CGFloat borderWidth = 2.0f;
+    CGFloat borderWidth = 1.0f;
     
     if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
         self.view.frame = CGRectMake(0,0,270,260);
@@ -26,10 +26,10 @@
     }
     self.view.layer.borderColor = [UIColor whiteColor].CGColor;
     self.view.layer.borderWidth = borderWidth;
-    
-    self.dismissPopupButton.layer.cornerRadius = 10;
-    self.dismissPopupButton.layer.borderWidth = 1;
-    self.dismissPopupButton.layer.borderColor = [UIColor whiteColor].CGColor;
+}
+
+- (IBAction) didTapCancelButton {
+    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_WELCOME_POPUP object:nil];
 }
 
 @end

@@ -45,8 +45,13 @@
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil
                                                                             action:nil];
-    __weak HomeViewController *weakSelf = self;
+    [self setupNotifications];
     
+    [self setupNavBarStuff];
+    [self styleButtons];
+}
+
+- (void) setupNotifications {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserverForName:SHOW_FEEDBACK_PAGE
                         object:nil
@@ -57,6 +62,15 @@
                         }];
                     }];
     
+    [center addObserverForName:DISMISS_WELCOME_POPUP
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Dismiss Welcome Popup");
+                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                    }];
+    
+    __weak HomeViewController *weakSelf = self;
     [center addObserverForName:UIApplicationDidBecomeActiveNotification
                         object:nil
                          queue:nil
@@ -81,10 +95,7 @@
                                                       if (vcToPopTo) {
                                                           [self.navigationController popToViewController:vcToPopTo animated:NO];
                                                       }
-    }];
-    
-    [self setupNavBarStuff];
-    [self styleButtons];
+                                                  }];
 }
 
 - (void)dealloc
@@ -142,7 +153,7 @@
 {
     return self.contactReplyingTo != nil;
 }
-
+/*
 - (void) tappedWelcomePopup {
     NSLog(@"tapped Welcome Popup");
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideTopTop];
@@ -151,6 +162,7 @@
         [self didTapYapsPageButton];
     });
 }
+ */
 
 - (void) showWelcomePopup {
     NSLog(@"tapped Welcome Popup");
@@ -158,10 +170,10 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.welcomePopupVC = [[WelcomePopupViewController alloc] initWithNibName:@"WelcomePopupViewController" bundle:nil];
         [self presentPopupViewController:self.welcomePopupVC animationType:MJPopupViewAnimationSlideTopTop];
-        
+        /*
         UITapGestureRecognizer *tappedWelcomePopup = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedWelcomePopup)];
         [self.welcomePopupVC.view addGestureRecognizer:tappedWelcomePopup];
-        
+        */
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_WELCOME_POPUP_KEY];
     });
 }
