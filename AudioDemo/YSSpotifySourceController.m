@@ -98,6 +98,7 @@
 }
 
 - (void)tappedSpotifyView {
+    NSLog(@"Tapped Spotify View");
     if (self.searchBox.isFirstResponder) {
         self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if ([self.searchBox.text length] == 0) {
@@ -106,6 +107,11 @@
             [self search:self.searchBox.text];
             [self.view endEditing:YES];
             [self setBackgroundColorForSearchBox];
+        }
+    } else {
+        // if carousel isn't showing
+        if (self.carousel.alpha < 1) {
+            [self.searchBox becomeFirstResponder];
         }
     }
 }
