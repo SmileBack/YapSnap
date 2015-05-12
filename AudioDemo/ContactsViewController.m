@@ -31,7 +31,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *keyboardVerticalSpace;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
-#define VIEWED_CONTACTS_ALERT_KEY @"yaptap.ViewedContactsAlertKey"
+#define VIEWED_CONTACTS_ALERT_KEY @"yaptap.ViewedContactsAlertKey2"
 
 @end
 
@@ -176,7 +176,6 @@ static NSString *CellIdentifier = @"Cell";
     __weak ContactsViewController *weakSelf = self;
     
     if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
-       
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             weakSelf.contacts = [[ContactManager sharedContactManager] getAllContacts];
             
@@ -185,6 +184,14 @@ static NSString *CellIdentifier = @"Cell";
                 [weakSelf.tableView reloadData];
             });
         });
+        if (!self.didViewContactsAlert) {
+            if (self.builder.builderType == BuilderTypeYap) {
+                double delay = .8;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self showOnboardingAlert];
+                });
+            }
+        }
     } else {
         ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
         ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {

@@ -47,8 +47,6 @@
 - (IBAction)didTapResetPhotoButton;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
-#define VIEWED_BALLOON_ALERT_KEY @"yaptap.ViewedBalloonAlert"
-#define VIEWED_PHOTO_TEXT_ALERT_KEY @"yaptap.ViewedPhotoTextAlert"
 
 @end
 
@@ -104,28 +102,6 @@
     
     if (IS_IPHONE_4_SIZE) {
         self.bottomConstraint.constant = 5;
-    }
-    
-    if ([self.yapBuilder.messageType isEqual: @"VoiceMessage"]) {
-        if (!self.didViewBalloonAlert) {
-            double delay2 = 0.5;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[YTNotifications sharedNotifications] showBlueNotificationText:@"Tap the Balloons!"];
-            });
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_BALLOON_ALERT_KEY];
-        }
-    } else {
-        if (!self.didViewPhotoTextAlert) {
-            /*
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Photo and Text"
-                                                            message:@"You can add a photo or text\nto your yap!"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_PHOTO_TEXT_ALERT_KEY];
-             */
-        }
     }
 }
 
@@ -391,16 +367,6 @@
 {
     NSLog(@"Textfield did begin editing");
     [self reduceAlphaOfButtons];
-}
-
-- (BOOL) didViewBalloonAlert
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_BALLOON_ALERT_KEY];
-}
-
-- (BOOL) didViewPhotoTextAlert
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_PHOTO_TEXT_ALERT_KEY];
 }
 
 #pragma mark - YSColorPickerDelegate

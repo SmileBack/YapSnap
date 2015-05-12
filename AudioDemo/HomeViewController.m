@@ -162,7 +162,7 @@
         [self didTapYapsPageButton];
     });
 }
- */
+*/
 
 - (void) showWelcomePopup {
     NSLog(@"tapped Welcome Popup");

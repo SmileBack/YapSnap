@@ -492,9 +492,11 @@ static NSString *CellIdentifier = @"Cell";
         YSYap *yap = sender;
         vc.yap = yap;
         __weak YapsViewController *weakSelf = self;
-        vc.strangerCallback = ^(YSYap *yap) {
-            [weakSelf promptToAddFriend:yap];
-        };
+        if (yap.senderID.intValue != 1) {
+            vc.strangerCallback = ^(YSYap *yap) {
+                [weakSelf promptToAddFriend:yap];
+            };
+        }
     } else if ([@"Reply Segue" isEqualToString:segue.identifier]) {
         AudioCaptureViewController *audioVC = segue.destinationViewController;
         YSYap *yap = sender;

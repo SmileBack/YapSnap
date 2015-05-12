@@ -12,7 +12,6 @@
 #import "YSMicSourceController.h"
 #import "API.h"
 #import "YapBuilder.h"
-#import "AppDelegate.h"
 
 #define CONTROL_CENTER_HEIGHT 503.0f
 

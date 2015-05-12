@@ -297,7 +297,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MusicIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="u9u-rJ-1Tk">
-                                <rect key="frame" x="213" y="213" width="35" height="35"/>
+                                <rect key="frame" x="213" y="225" width="35" height="35"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5m-Ta-bnl">
                                 <rect key="frame" x="20" y="62" width="280" height="90"/>
@@ -312,7 +312,7 @@
                                 <rect key="frame" x="0.0" y="448" width="320" height="120"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MicrophoneWhiteSmooth.png" translatesAutoresizingMaskIntoConstraints="NO" id="sP9-qt-bQe">
-                                <rect key="frame" x="74" y="213" width="35" height="35"/>
+                                <rect key="frame" x="74" y="225" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="aHE-Ig-xB1"/>
                                     <constraint firstAttribute="width" constant="35" id="iSU-69-iir"/>
@@ -328,6 +328,22 @@
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOK-e0-6FO">
+                                <rect key="frame" x="68" y="186" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                <state key="normal" title="Voice">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6D-lK-LwV">
+                                <rect key="frame" x="207" y="186" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                <state key="normal" title="Song">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -361,7 +377,7 @@
                             <constraint firstAttribute="trailing" secondItem="3jj-uv-5P2" secondAttribute="trailing" id="wC8-EP-orW"/>
                             <constraint firstItem="R76-A3-8pM" firstAttribute="bottom" secondItem="kgP-ff-fwd" secondAttribute="bottom" id="wg6-iD-Cvg"/>
                             <constraint firstItem="u9u-rJ-1Tk" firstAttribute="top" secondItem="sP9-qt-bQe" secondAttribute="top" id="wzI-Qs-niI"/>
-                            <constraint firstItem="sP9-qt-bQe" firstAttribute="top" secondItem="N5m-Ta-bnl" secondAttribute="bottom" constant="61" id="yGO-dZ-CSY"/>
+                            <constraint firstItem="sP9-qt-bQe" firstAttribute="top" secondItem="N5m-Ta-bnl" secondAttribute="bottom" constant="73" id="yGO-dZ-CSY"/>
                             <constraint firstItem="N5m-Ta-bnl" firstAttribute="centerX" secondItem="Dwb-eQ-GX5" secondAttribute="centerX" id="yIp-uz-tRH"/>
                             <constraint firstItem="j6Y-rR-iWd" firstAttribute="top" secondItem="R76-A3-8pM" secondAttribute="bottom" constant="59" id="yd2-bn-ked"/>
                         </constraints>
@@ -2029,8 +2045,8 @@ Type it here!</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Q0Z-rg-Tpo"/>
+        <segue reference="A1q-1y-Edd"/>
         <segue reference="AEp-MY-7pq"/>
-        <segue reference="CHs-ge-chV"/>
         <segue reference="0bM-75-hD3"/>
     </inferredMetricsTieBreakers>
 </document>

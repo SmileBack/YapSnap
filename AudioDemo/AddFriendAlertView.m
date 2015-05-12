@@ -12,9 +12,9 @@
 
 - (id) initWithYap:(YSYap *)yap andDelegate:(id<UIAlertViewDelegate>)delegate
 {
-    NSString *message = [NSString stringWithFormat:@"Add %@ as a friend?", yap.displaySenderName];
+    NSString *message = [NSString stringWithFormat:@"%@ wants to be your friend. Would you like to accept?", yap.displaySenderName];
 
-    self = [super initWithTitle:@"Add friend?"
+    self = [super initWithTitle:@"Friend Request"
                         message:message
                        delegate:delegate
               cancelButtonTitle:@"Decline" otherButtonTitles:@"Accept", nil];

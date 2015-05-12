@@ -898,14 +898,14 @@
 {
     if (!_typeToGenreMap) {
         _typeToGenreMap = @{@"One": @"Top 100",
-                            @"Two": @"Pop",
-                            @"Three": @"Hip Hop",
-                            @"Four": @"EDM",
-                            @"Five": @"Country",
-                            @"Six": @"Rock",
+                            @"Two": @"TV/Film",
+                            @"Three": @"Humor",
+                            @"Four": @"Hip Hop",
+                            @"Five": @"Pop",
+                            @"Six": @"EDM",
                             @"Seven": @"Latin",
-                            @"Eight": @"TV/Film",
-                            @"Nine": @"Humor"
+                            @"Eight": @"Country",
+                            @"Nine": @"Rock"
                             };
     }
     return _typeToGenreMap;

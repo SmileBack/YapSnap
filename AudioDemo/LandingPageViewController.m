@@ -25,9 +25,6 @@
     self.logInButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:30];
     [self.logInButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
     
-    self.signUpButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:22];
-    [self.signUpButton setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal];
-    
     YSUser *user = [YSUser currentUser];
     
     // if we're already authenticated, go right to the recording page
@@ -63,11 +60,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-}
-
-- (IBAction) didTapSignUpButton
-{
-    [self performSegueWithIdentifier:@"SignUpWithPhoneNumberViewControllerSegue" sender:self];
 }
 
 - (IBAction) didTapLogInButton
