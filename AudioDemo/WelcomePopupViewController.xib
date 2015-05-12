@@ -16,17 +16,17 @@
             <rect key="frame" x="0.0" y="0.0" width="260" height="260"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Welcome!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4">
                     <rect key="frame" x="54" y="30" width="152" height="49"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="152" id="8"/>
                         <constraint firstAttribute="height" constant="49" id="9"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
+                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="32"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We sent you a yap! Tap the gift above." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We sent you a yap. Tap the gift above." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="7">
                     <rect key="frame" x="16" y="91" width="228" height="58"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="58" id="18"/>
@@ -46,7 +46,7 @@
                         <action selector="didTapCancelButton" destination="-1" eventType="touchUpInside" id="lnH-n8-gfC"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="YapsButton3.png" translatesAutoresizingMaskIntoConstraints="NO" id="HNk-zV-Cou">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YapsButton3.png" translatesAutoresizingMaskIntoConstraints="NO" id="HNk-zV-Cou">
                     <rect key="frame" x="58" y="168" width="150" height="73"/>
                 </imageView>
             </subviews>
@@ -58,6 +58,10 @@
                 <constraint firstItem="4" firstAttribute="centerX" secondItem="7" secondAttribute="centerX" id="17"/>
                 <constraint firstAttribute="centerX" secondItem="7" secondAttribute="centerX" id="7d6-D9-7fK"/>
                 <constraint firstAttribute="centerX" secondItem="4" secondAttribute="centerX" id="DQW-kE-bDS"/>
+                <constraint firstAttribute="bottom" secondItem="HNk-zV-Cou" secondAttribute="bottom" constant="19" id="IOZ-p0-6nd"/>
+                <constraint firstItem="HNk-zV-Cou" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="19" id="V8m-Pj-3BC"/>
+                <constraint firstAttribute="centerX" secondItem="HNk-zV-Cou" secondAttribute="centerX" constant="-3" id="cpn-yS-MNa"/>
+                <constraint firstItem="HNk-zV-Cou" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="58" id="tKJ-Nd-lsH"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

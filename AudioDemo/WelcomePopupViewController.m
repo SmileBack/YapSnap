@@ -26,6 +26,7 @@
     }
     self.view.layer.borderColor = [UIColor whiteColor].CGColor;
     self.view.layer.borderWidth = borderWidth;
+    self.view.layer.cornerRadius = 5;
 }
 
 - (IBAction) didTapCancelButton {
