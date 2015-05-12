@@ -31,7 +31,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *keyboardVerticalSpace;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
-#define VIEWED_CONTACTS_ALERT_KEY @"yaptap.ViewedContactsAlert"
+#define VIEWED_CONTACTS_ALERT_KEY @"yaptap.ViewedContactsAlertKey"
 
 @end
 
@@ -138,7 +138,7 @@ static NSString *CellIdentifier = @"Cell";
     return ![AFNetworkReachabilityManager sharedManager].reachable;
 }
 
-- (void) showContactsAlert {
+- (void) showOnboardingAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send To Anyone"
                                                     message:@"You can send your yap to anyone, even if they don't have YapTap yet!"
                                                    delegate:nil
@@ -191,10 +191,12 @@ static NSString *CellIdentifier = @"Cell";
             if (granted) {
                 [weakSelf loadContacts];
                 if (!self.didViewContactsAlert) {
-                    double delay = 1;
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [self showContactsAlert];
-                    });
+                    if (self.builder.builderType == BuilderTypeYap) {
+                        double delay = 1;
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [self showOnboardingAlert];
+                        });
+                    }
                 }
             } else {
                 // User denied access
@@ -588,7 +590,7 @@ static NSString *CellIdentifier = @"Cell";
         YSContact *selectedContact = self.selectedContacts[0];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Friend Request Sent"
-                                                        message:[NSString stringWithFormat:@"%@ will be added to your friends once they accept!", selectedContact.name]
+                                                        message:[NSString stringWithFormat:@"%@ will be added to your friends once he/she accepts!", selectedContact.name]
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];

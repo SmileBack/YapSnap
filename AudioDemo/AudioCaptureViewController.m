@@ -24,7 +24,6 @@
 }
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 @property (nonatomic) float elapsedTime;
-//@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (nonatomic, strong) NSString *titleString;
 @property (strong, nonatomic) UIButton *countdownTimerButton;
 
@@ -80,7 +79,7 @@ static const float TIMER_INTERVAL = .01;
     [super viewWillDisappear:animated];
     
     if (countdownTimer) {
-        [countdownTimer invalidate];
+        [self stopCountdownTimer];
     }
     
     if (timer) {
@@ -88,16 +87,20 @@ static const float TIMER_INTERVAL = .01;
     }
 }
 
--(void)start
+-(void) startCountdownTimer
 {
     NSLog(@"Start");
     if (countdownTimer){
-        [countdownTimer invalidate];
+        [self stopCountdownTimer];
     }
     countdownTimer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countdownTimerFired) userInfo:nil repeats:YES];
 }
 
--(void)countdownTimerFired
+-(void) stopCountdownTimer {
+    [countdownTimer invalidate];
+}
+
+-(void) countdownTimerFired
 {
     NSLog(@"countdownTimer fired");
     NSLog(@"currMinute: %d; currSeconds: %d", currMinute, currSeconds);
@@ -114,7 +117,7 @@ static const float TIMER_INTERVAL = .01;
     else
     {
         NSLog(@"countdownTimer invalidate");
-        [countdownTimer invalidate];
+        [self stopCountdownTimer];
     }
 }
 
@@ -178,11 +181,6 @@ static const float TIMER_INTERVAL = .01;
     [self updateTitleLabel];
     
     self.countdownTimerButton.hidden = YES;
-    /*
-    if (IS_BEFORE_IOS_8) {
-        self.bottomConstraint.constant = 9;
-    }
-     */
 }
 
 - (void) setupNotifications
@@ -218,7 +216,7 @@ static const float TIMER_INTERVAL = .01;
                         [self addCountDownTimerLabel];
                         [self.countdownTimerButton setTitle:@"12" forState:UIControlStateNormal];
                         currSeconds=12;
-                        [self start];
+                        [self startCountdownTimer];
                     }];
     
     [center addObserverForName:AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION
@@ -321,6 +319,9 @@ static const float TIMER_INTERVAL = .01;
         }
         
         [self updateTitleLabel];
+        
+        [self stopCountdownTimer];
+        self.countdownTimerButton.hidden = YES;
     } else {
         [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
     }
