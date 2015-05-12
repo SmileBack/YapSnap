@@ -43,7 +43,7 @@
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
     
-    self.titleLabel.text = [NSString stringWithFormat:@"%@", self.yap.senderName];
+    self.titleLabel.text = [NSString stringWithFormat:@"%@", self.yap.displaySenderName];
     
     if ([self.yap.type isEqual:@"VoiceMessage"]) {
         // To get pitch value in pitchShift unit, divide self.yap.pitchValueInCentUnits by STK_PITCHSHIFT_TRANSFORM
@@ -57,7 +57,6 @@
 
     [self.progressView.activityIndicator startAnimating];
     
-    // Snapchat allows for 48 characters horizontally; 31 vertically 
     self.textView.text = self.yap.text; 
     
     if ([self.textView.text length] == 0) {
@@ -151,6 +150,14 @@
     // set self.playerAlreadyStartedPlayingForThisSong to False!
     self.playerAlreadyStartedPlayingForThisSong = NO;
     NSLog(@"Set playerAlreadyStartedPlayingForThisSong to FALSE");
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    if (self.timer) {
+        [self.timer invalidate];
+    }
 }
 
 - (IBAction)didTapStopButton:(id)sender {

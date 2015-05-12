@@ -253,7 +253,7 @@ static NSString *CellIdentifier = @"Cell";
             
             if (!self.didViewFirstSentYapAlert) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congrats!"
-                                                                message:[NSString stringWithFormat:@"You just sent your first yap! %@ will be added to your friends list after opening it.", yap.displayReceiverName]
+                                                                message:[NSString stringWithFormat:@"You just sent your first yap! We'll add %@ to your friends list after they open it.", yap.displayReceiverName]
                                                                delegate:nil
                                                       cancelButtonTitle:@"OK"
                                                       otherButtonTitles: nil];
@@ -455,15 +455,24 @@ static NSString *CellIdentifier = @"Cell";
 {
     NSLog(@"Long Pressed on: %@", indexPath);
     
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Long Pressed Row"];
-    
     YSYap *yap = self.yaps[indexPath.row];
     
-    if ([yap.status isEqual: @"opened2"]) {
-        [self alreadyReplayedYapAlert];
-    } else {
-        [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
+    if (yap.receivedByCurrentUser) {
+        if ([yap.status isEqual: @"opened2"]) {
+            [self alreadyReplayedYapAlert];
+        } else {
+            if ([self internetIsNotReachable]){
+                double delay = 0.1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+                });
+            } else {
+                [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
+            }
+        }
+        
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Long Pressed Row"];
     }
 }
 

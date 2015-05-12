@@ -76,6 +76,18 @@ static const float TIMER_INTERVAL = .01;
     [self setupNotifications];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if (countdownTimer) {
+        [countdownTimer invalidate];
+    }
+    
+    if (timer) {
+        [timer invalidate];
+    }
+}
+
 -(void)start
 {
     NSLog(@"Start");
