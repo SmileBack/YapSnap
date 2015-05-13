@@ -17,6 +17,7 @@
 #define TAPPED_PROGRESS_BAR_NOTIFICATION @"TappedProgressBarNotification"
 #define TAPPED_DICE_BUTTON @"yaptap.TappedDiceButton"
 //#define SEARCHED_FOR_SONG_NOTIFICATION @"yaptap.SearchedForSongNotification"
+#define TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION @"yaptap.TappedAlbumCoverFirstTimeNotification4"
 
 typedef NS_ENUM(NSUInteger, AudioCaptureType) {
     AudioCaptureTypeMic,

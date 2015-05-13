@@ -131,6 +131,12 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf8-UJ-WxH" userLabel="Source Container">
                                 <rect key="frame" x="0.0" y="107" width="320" height="302"/>
                             </containerView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="GuidanceArrowLeft.png" translatesAutoresizingMaskIntoConstraints="NO" id="dQR-UV-jFt">
+                                <rect key="frame" x="30" y="445" width="64" height="64"/>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="GuidanceArrowRight.png" translatesAutoresizingMaskIntoConstraints="NO" id="2kW-c7-XcP">
+                                <rect key="frame" x="226" y="445" width="64" height="64"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -151,6 +157,8 @@
                     <navigationItem key="navigationItem" id="aLc-kc-Dc8"/>
                     <connections>
                         <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="OWQ-Ga-xCg"/>
+                        <outlet property="guidanceArrowLeft" destination="dQR-UV-jFt" id="0js-g2-1bw"/>
+                        <outlet property="guidanceArrowRight" destination="2kW-c7-XcP" id="l5P-ah-2wh"/>
                         <outlet property="recordButton" destination="Xtk-3T-WBS" id="sP2-Fz-YSB"/>
                         <outlet property="recordProgressView" destination="1fX-iU-owr" id="ZU5-oD-Me6"/>
                         <segue destination="j1Z-Ou-SMe" kind="custom" identifier="Prepare Yap For Text Segue" customClass="NoAnimationPushSegue" id="eDP-Ek-kdM"/>
@@ -1058,7 +1066,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-0v-8cp">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize and Send" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-0v-8cp">
                                 <rect key="frame" x="50" y="30" width="220" height="24"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1490,7 +1498,7 @@ in your phone's settings!</string>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zM8-Va-aql" customClass="YSRecordProgressView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="22"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i6A-Iw-epG">
@@ -1512,10 +1520,10 @@ in your phone's settings!</string>
                             <constraint firstAttribute="centerX" secondItem="7Kj-1X-Ut8" secondAttribute="centerX" id="U8m-Sj-3YD"/>
                             <constraint firstItem="zM8-Va-aql" firstAttribute="top" secondItem="8Sd-XX-W3O" secondAttribute="topMargin" constant="64" id="W1F-D8-YBk"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="10" id="ZC6-E8-daL"/>
-                            <constraint firstItem="i6A-Iw-epG" firstAttribute="top" secondItem="zM8-Va-aql" secondAttribute="bottom" constant="19" id="ZbP-QP-A0y"/>
+                            <constraint firstItem="i6A-Iw-epG" firstAttribute="top" secondItem="zM8-Va-aql" secondAttribute="bottom" constant="37" id="ZbP-QP-A0y"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="i6A-Iw-epG" secondAttribute="bottom" constant="117" id="Zzs-2G-QdH"/>
                             <constraint firstAttribute="centerY" secondItem="cEy-3F-cQc" secondAttribute="centerY" id="fLh-md-Agx"/>
-                            <constraint firstItem="zM8-Va-aql" firstAttribute="height" secondItem="8Sd-XX-W3O" secondAttribute="height" multiplier="0.0704" id="hwa-hx-yhT"/>
+                            <constraint firstItem="zM8-Va-aql" firstAttribute="height" secondItem="8Sd-XX-W3O" secondAttribute="height" multiplier="0.0704" constant="-17.987200000000001" id="hwa-hx-yhT"/>
                             <constraint firstItem="Cjl-Kr-TQg" firstAttribute="top" secondItem="7Kj-1X-Ut8" secondAttribute="bottom" constant="3" id="kea-wd-YlH"/>
                             <constraint firstAttribute="trailing" secondItem="cEy-3F-cQc" secondAttribute="trailing" constant="10" id="mr8-m3-Say"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="zM8-Va-aql" secondAttribute="centerX" id="pTh-O6-Kic"/>
@@ -1575,7 +1583,7 @@ in your phone's settings!</string>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="LoginPageImage" translatesAutoresizingMaskIntoConstraints="NO" id="4Wj-u3-ig0">
                                 <rect key="frame" x="0.0" y="294" width="320" height="175"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be Heard" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dp-kR-bOT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just Yap It" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dp-kR-bOT">
                                 <rect key="frame" x="47" y="209" width="226" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="tKm-qX-q6a"/>
@@ -1970,6 +1978,8 @@ Type it here!</string>
         <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
         <image name="CartoonsLong5.png" width="320" height="120"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
+        <image name="GuidanceArrowLeft.png" width="128" height="128"/>
+        <image name="GuidanceArrowRight.png" width="128" height="128"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
         <image name="MicrophoneWhiteSmooth.png" width="48" height="48"/>
@@ -1992,8 +2002,8 @@ Type it here!</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Q0Z-rg-Tpo"/>
-        <segue reference="JlX-pb-AK5"/>
         <segue reference="A1q-1y-Edd"/>
-        <segue reference="AEp-MY-7pq"/>
+        <segue reference="0bM-75-hD3"/>
+        <segue reference="czb-n6-hbf"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,7 +12,7 @@
 
 #define SHOW_FEEDBACK_PAGE @"yaptap.ShowFeedbackPage"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
-#define DID_SEE_WELCOME_POPUP_KEY @"yaptap.DidSeeWelcomePopupKey44"
+#define DID_SEE_WELCOME_POPUP_KEY @"yaptap.DidSeeWelcomePopupKey46"
 #define TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.TappedMicButtonForFirstTimeNotification"
 #define DISMISS_WELCOME_POPUP @"DismissWelcomePopup"
 

@@ -57,7 +57,11 @@
 
     [self.progressView.activityIndicator startAnimating];
     
-    self.textView.text = self.yap.text; 
+    if (self.yap.senderID.intValue == 1) { // TODO: REMOVE
+        self.textView.text = @"YapTap let's you send yaps like this one!";
+    } else {
+        self.textView.text = self.yap.text;
+    }
     
     if ([self.textView.text length] == 0) {
         self.textView.hidden = YES;
@@ -127,6 +131,8 @@
 
 - (void) playYapAudio
 {
+    [self.player play:@"https://p.scdn.co/mp3-preview/8e573f93e04336be514edd54167f062162592b22"];
+    /* TODO: UNDO
     NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
     NSLog(@"Playing URL: %@ %@ auth token", self.yap.playbackURL, headers ? @"with" : @"without");
     if (headers) {
@@ -134,6 +140,7 @@
     } else {
         [self.player play:self.yap.playbackURL];
     }
+     */
 }
 
 - (void)viewDidAppear:(BOOL)animated {

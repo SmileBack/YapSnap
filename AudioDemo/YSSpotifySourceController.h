@@ -12,7 +12,7 @@
 
 @interface YSSpotifySourceController : YSAudioSourceController<iCarouselDataSource, iCarouselDelegate, UITextFieldDelegate, STKAudioPlayerDelegate>
 
-#define TAPPED_ALBUM_COVER @"yaptap.TappedAlbumCoverKey"
+#define TAPPED_ALBUM_COVER @"yaptap.TappedAlbumCoverKey5"
 #define TAPPED_SONG_VERSION_ONE @"yaptap.TappedSongVersionOneKey"
 #define TAPPED_SONG_VERSION_TWO @"yaptap.TappedSongVersionTwoKey"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
@@ -22,6 +22,7 @@
 #define SCROLLED_CAROUSEL @"yaptap.ScrolledCarouselKey7"
 #define DID_VIEW_SPOTIFY_SONGS @"yaptap.DidViewSpotifySongs"
 #define TAPPED_DICE_BUTTON @"yaptap.TappedDiceButton"
+#define TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION @"yaptap.TappedAlbumCoverFirstTimeNotification4"
 //#define SEARCHED_FOR_SONG_NOTIFICATION @"yaptap.SearchedForSongNotification"
 
 @property (nonatomic, strong) NSString *selectedGenre;

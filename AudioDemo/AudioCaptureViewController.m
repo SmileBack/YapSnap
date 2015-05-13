@@ -25,6 +25,9 @@
 @property (nonatomic) float elapsedTime;
 @property (nonatomic, strong) NSString *titleString;
 @property (strong, nonatomic) UIButton *countdownTimerButton;
+@property (strong, nonatomic) IBOutlet UIImageView *guidanceArrowLeft;
+@property (strong, nonatomic) IBOutlet UIImageView *guidanceArrowRight;
+
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
@@ -228,7 +231,7 @@ static const float TIMER_INTERVAL = .01;
                         if (self.type == AudioCaptureTypeMic) {
                             self.titleString = @"Recording...";
                         } else {
-                            self.titleString = @"Recording Song...";
+                            self.titleString = @"Playing...";
                         }
                         [self updateTitleLabel];
                         
@@ -284,6 +287,14 @@ static const float TIMER_INTERVAL = .01;
                         [timer invalidate];
                         self.recordProgressView.progress = 0.0;
                         [self.audioSource stopAudioCapture:self.elapsedTime];
+                    }];
+    
+    [center addObserverForName:TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        self.guidanceArrowLeft.hidden = NO;
+                        self.guidanceArrowRight.hidden = NO;
                     }];
     /*
     [center addObserverForName:SEARCHED_FOR_SONG_NOTIFICATION
@@ -355,6 +366,7 @@ static const float TIMER_INTERVAL = .01;
         [self stopCountdownTimer];
         self.countdownTimerButton.hidden = YES;
     } else {
+        [self hideGuidanceArrows];
         [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
     }
 
@@ -366,6 +378,11 @@ static const float TIMER_INTERVAL = .01;
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Untapped Record Button"];
+}
+
+- (void) hideGuidanceArrows {
+    self.guidanceArrowLeft.hidden = YES;
+    self.guidanceArrowRight.hidden = YES;
 }
 
 - (BOOL) isInSpotifyMode

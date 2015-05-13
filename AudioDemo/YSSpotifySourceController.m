@@ -143,7 +143,7 @@
 - (void) searchGenre { // TODO: Replace this function with the one below
     [self.view endEditing:YES];
     
-    self.artists = [SpotifyArtistFactory artistsForGenre:@"Pop"]; // Pop is hardcoded!
+    self.artists = [SpotifyArtistFactory artistsForGenre:@"Humor"]; // Pop is hardcoded!
     
     NSString *randomlySelectedArtist = [self.artists objectAtIndex: arc4random() % [self.artists count]];
     
@@ -268,7 +268,7 @@
                 
                 double delay = 0.1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
+                    //[[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
                 });
                 
                 double delay2 = 1;
@@ -604,6 +604,7 @@
         if (!self.didTapAlbumCoverForFirstTime) {
             double delay = 0.1;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION object:self];
                 [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button To Play"];
             });
         }
