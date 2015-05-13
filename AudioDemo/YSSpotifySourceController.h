@@ -22,7 +22,7 @@
 #define SCROLLED_CAROUSEL @"yaptap.ScrolledCarouselKey7"
 #define DID_VIEW_SPOTIFY_SONGS @"yaptap.DidViewSpotifySongs"
 #define TAPPED_DICE_BUTTON @"yaptap.TappedDiceButton"
-#define SEARCHED_FOR_SONG_NOTIFICATION @"yaptap.SearchedForSongNotification"
+//#define SEARCHED_FOR_SONG_NOTIFICATION @"yaptap.SearchedForSongNotification"
 
 @property (nonatomic, strong) NSString *selectedGenre;
 

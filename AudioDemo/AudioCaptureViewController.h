@@ -16,7 +16,7 @@
 #define DISMISS_KEYBOARD_NOTIFICATION @"DismissKeyboardNotification"
 #define TAPPED_PROGRESS_BAR_NOTIFICATION @"TappedProgressBarNotification"
 #define TAPPED_DICE_BUTTON @"yaptap.TappedDiceButton"
-#define SEARCHED_FOR_SONG_NOTIFICATION @"yaptap.SearchedForSongNotification"
+//#define SEARCHED_FOR_SONG_NOTIFICATION @"yaptap.SearchedForSongNotification"
 
 typedef NS_ENUM(NSUInteger, AudioCaptureType) {
     AudioCaptureTypeMic,

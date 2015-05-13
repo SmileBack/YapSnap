@@ -37,7 +37,8 @@
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 
     self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ProgressViewNotches5.png"]];
-    self.imageView.alpha = 0.2;
+    //self.imageView.alpha = 0.2;
+    self.imageView.alpha = 0;
     
     if (IS_IPHONE_5_SIZE) {
         [self setProgressImage:[UIImage imageNamed:@"ProgressViewRediPhone5.png"]];

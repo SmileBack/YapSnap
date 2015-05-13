@@ -285,7 +285,7 @@
                         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_VIEW_SPOTIFY_SONGS];
                     });
                 }
-                [[NSNotificationCenter defaultCenter] postNotificationName:SEARCHED_FOR_SONG_NOTIFICATION object:nil];
+                //[[NSNotificationCenter defaultCenter] postNotificationName:SEARCHED_FOR_SONG_NOTIFICATION object:nil];
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];

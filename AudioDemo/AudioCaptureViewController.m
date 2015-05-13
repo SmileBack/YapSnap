@@ -61,9 +61,6 @@ static const float TIMER_INTERVAL = .01;
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
     [self.recordButton setBackgroundImage:[UIImage imageNamed:@"RecordButtonBlueBorder10Pressed.png"] forState:UIControlStateHighlighted];
     self.recordProgressView.progress = 0;
-    if (self.type == AudioCapTureTypeSpotify) {
-        self.recordProgressView.alpha = 0;
-    }
 
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedProgressView)];
     [self.recordProgressView addGestureRecognizer:tapGesture];
@@ -288,7 +285,7 @@ static const float TIMER_INTERVAL = .01;
                         self.recordProgressView.progress = 0.0;
                         [self.audioSource stopAudioCapture:self.elapsedTime];
                     }];
-    
+    /*
     [center addObserverForName:SEARCHED_FOR_SONG_NOTIFICATION
                         object:nil
                          queue:nil
@@ -297,10 +294,10 @@ static const float TIMER_INTERVAL = .01;
                                               delay:0
                                             options:UIViewAnimationOptionCurveEaseOut
                                          animations:^{
-                                             self.recordProgressView.alpha = 1;
                                          }
                                          completion:nil];
                     }];
+     */
 }
 
 - (void) updateProgress {
