@@ -61,6 +61,9 @@ static const float TIMER_INTERVAL = .01;
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
     [self.recordButton setBackgroundImage:[UIImage imageNamed:@"RecordButtonBlueBorder10Pressed.png"] forState:UIControlStateHighlighted];
     self.recordProgressView.progress = 0;
+    if (self.type == AudioCapTureTypeSpotify) {
+        self.recordProgressView.alpha = 0;
+    }
 
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedProgressView)];
     [self.recordProgressView addGestureRecognizer:tapGesture];
@@ -72,6 +75,23 @@ static const float TIMER_INTERVAL = .01;
     }
     
     [self setupNotifications];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (self.type == AudioCaptureTypeMic) {
+        self.titleString = @"Record Voice";
+    } else if (self.type == AudioCapTureTypeSpotify) {
+        self.titleString = @"Find a Song";
+    }
+    [self updateTitleLabel];
+    
+    self.countdownTimerButton.hidden = YES;
+    
+    if (self.type == AudioCapTureTypeSpotify) {
+        [self addRandomSearchButton];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -158,28 +178,31 @@ static const float TIMER_INTERVAL = .01;
     [self.navigationItem setLeftBarButtonItem:cancelButton];
 }
 
+- (void) addRandomSearchButton {
+    UIImage* diceImage = [UIImage imageNamed:@"Dice7.png"];
+    UIButton *randomSearchButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [randomSearchButton setBackgroundImage:diceImage forState:UIControlStateNormal];
+    [randomSearchButton addTarget:self action:@selector(randomSearchPressed)
+                forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *randomSearchBarButtonItom =[[UIBarButtonItem alloc] initWithCustomView:randomSearchButton];
+    [self.navigationItem setRightBarButtonItem:randomSearchBarButtonItom];
+}
+
 - (void)cancelPressed
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_KEYBOARD_NOTIFICATION object:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)randomSearchPressed
+{
+    NSLog(@"Tapped Right Button");
+    [[NSNotificationCenter defaultCenter] postNotificationName:TAPPED_DICE_BUTTON object:nil];
+}
+
 -(BOOL) internetIsNotReachable
 {
     return ![AFNetworkReachabilityManager sharedManager].reachable;
-}
-
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    if (self.type == AudioCaptureTypeMic) {
-        self.titleString = @"Record Voice";
-    } else if (self.type == AudioCapTureTypeSpotify) {
-        self.titleString = @"";
-    }
-    [self updateTitleLabel];
-    
-    self.countdownTimerButton.hidden = YES;
 }
 
 - (void) setupNotifications
@@ -265,6 +288,19 @@ static const float TIMER_INTERVAL = .01;
                         self.recordProgressView.progress = 0.0;
                         [self.audioSource stopAudioCapture:self.elapsedTime];
                     }];
+    
+    [center addObserverForName:SEARCHED_FOR_SONG_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [UIView animateWithDuration:.3
+                                              delay:0
+                                            options:UIViewAnimationOptionCurveEaseOut
+                                         animations:^{
+                                             self.recordProgressView.alpha = 1;
+                                         }
+                                         completion:nil];
+                    }];
 }
 
 - (void) updateProgress {
@@ -314,7 +350,7 @@ static const float TIMER_INTERVAL = .01;
         if (self.type == AudioCaptureTypeMic) {
             self.titleString = @"Record Voice";
         } else if (self.type == AudioCapTureTypeSpotify) {
-            self.titleString = @"";
+            self.titleString = @"Find a Song";
         }
         
         [self updateTitleLabel];

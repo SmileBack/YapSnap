@@ -37,7 +37,8 @@
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapShuffleButton;
-- (void) searchGenre:(NSString *)genre;
+//- (void) searchGenre:(NSString *)genre; TODO: Add this back!
+- (void) searchGenre;
 
 @end
 
@@ -95,6 +96,13 @@
                     usingBlock:^(NSNotification *note) {
                         [self.searchBox becomeFirstResponder];
                     }];
+    
+    [center addObserverForName:TAPPED_DICE_BUTTON
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self searchGenre];
+                    }];
 }
 
 - (void)tappedSpotifyView {
@@ -132,6 +140,22 @@
     });
 }
 
+- (void) searchGenre { // TODO: Replace this function with the one below
+    [self.view endEditing:YES];
+    
+    self.artists = [SpotifyArtistFactory artistsForGenre:@"Pop"]; // Pop is hardcoded!
+    
+    NSString *randomlySelectedArtist = [self.artists objectAtIndex: arc4random() % [self.artists count]];
+    
+    NSLog(@"string: %@", randomlySelectedArtist);
+    
+    [self search:randomlySelectedArtist];
+    [self showSearchBox];
+    self.searchBox.text = randomlySelectedArtist;
+    [self setBackgroundColorForSearchBox];
+}
+
+/* TODO: UNDO
 - (void) searchGenre:(NSString *)genre {
     self.artists = [SpotifyArtistFactory artistsForGenre:genre];
     
@@ -144,6 +168,7 @@
     self.searchBox.text = randomlySelectedArtist;
     [self setBackgroundColorForSearchBox];
 }
+*/
 
 -(BOOL) internetIsNotReachable
 {
@@ -256,10 +281,11 @@
                 if (!self.didViewSpotifySongs) {
                     double delay = .7;
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [[YTNotifications sharedNotifications] showNotificationText:@"Find a Song"];
+                        //[[YTNotifications sharedNotifications] showNotificationText:@"Find a Song"];
                         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_VIEW_SPOTIFY_SONGS];
                     });
                 }
+                [[NSNotificationCenter defaultCenter] postNotificationName:SEARCHED_FOR_SONG_NOTIFICATION object:nil];
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];
@@ -847,7 +873,7 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SHUFFLE_BUTTON];
     }
     
-    [self searchGenre:self.selectedGenre];
+    //[self searchGenre:self.selectedGenre]; TODO: Uncomment this
     
     [self removeShuffleViewAnimation];
 }
@@ -923,7 +949,7 @@
     } else {
         _selectedGenre = self.typeToGenreMap[selectedGenre];
         if (!_selectedGenre) _selectedGenre = selectedGenre;
-        [self searchGenre:self.selectedGenre];
+        //[self searchGenre:self.selectedGenre]; TODO: UNCOMMENT
         [self unhideShuffleView];
         [self updateShuffleLabel];
     }

@@ -25,8 +25,9 @@
 
 
 - (IBAction)didTapMicButton;
+/*
 - (IBAction)didTapMusicButton;
-
+*/
 @end
 
 @implementation HomeViewController
@@ -268,6 +269,14 @@
     }
 }
 
+- (IBAction)didTapMusicButtonSearch {
+    [self tappedSpotifyButton:@"Search"];
+}
+
+- (void) tappedSpotifyButton:(NSString *)type
+{
+    [self performSegueWithIdentifier:@"Audio Record" sender:type];
+}
 
 #pragma mark - Song Genre Buttons
 
@@ -287,11 +296,11 @@
         });
     }
 }
-
+/*
 - (IBAction)didTapMusicButton {
     [self performSegueWithIdentifier:@"Music Genre" sender:nil];
 }
-
+*/
 - (BOOL) didTapMicButtonForFirstTime {
     return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY];
 }

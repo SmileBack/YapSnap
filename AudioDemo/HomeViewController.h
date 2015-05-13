@@ -27,6 +27,7 @@
 
 - (IBAction)didTapYapsPageButton;
 - (IBAction)leftButtonPressed:(id)sender;
+- (void) tappedSpotifyButton:(NSString *)type;
 
 
 @end
