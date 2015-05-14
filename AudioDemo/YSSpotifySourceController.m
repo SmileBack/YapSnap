@@ -30,13 +30,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *resetButton;
 @property (nonatomic, strong) NSArray *artists;
 @property (nonatomic, strong) NSDictionary *typeToGenreMap;
-@property (strong, nonatomic) IBOutlet UIButton *shuffleButton;
-@property (strong, nonatomic) IBOutlet UILabel *shuffleLabel;
-@property (strong, nonatomic) IBOutlet UIView *shuffleView;
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
+@property (strong, nonatomic) UIButton *spotifyButton;
 
 - (IBAction)didTapResetButton;
-- (IBAction)didTapShuffleButton;
 //- (void) searchGenre:(NSString *)genre; TODO: Add this back!
 - (void) searchGenre;
 
@@ -66,10 +63,6 @@
     UITapGestureRecognizer *tappedSpotifyView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedSpotifyView)];
     tappedSpotifyView.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tappedSpotifyView];
-    
-    UITapGestureRecognizer *tappedShuffleView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedShuffleView)];
-    tappedSpotifyView.numberOfTapsRequired = 1;
-    [self.shuffleView addGestureRecognizer:tappedShuffleView];
     
     [self setupNotifications];
 }
@@ -237,7 +230,6 @@
 -(void)textFieldDidChange:(UITextField *)searchBox {
     if ([self.searchBox.text length] == 0) {
         NSLog(@"Empty String");
-        [self hideShuffleView];
     }
 }
 
@@ -366,6 +358,9 @@
         [trackView.spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
         [trackView addSubview:trackView.spotifyButton];
         
+        //TODO: this is a hack
+        self.spotifyButton = trackView.spotifyButton;
+        
         if (IS_IPHONE_6_PLUS_SIZE) {
             trackView.songVersionBackground = [[UIView alloc]initWithFrame:
                                            CGRectMake(0, self.carouselHeight-26, self.carouselHeight, 26)];
@@ -431,44 +426,6 @@
     [trackView.albumImageButton addTarget:self action:@selector(tappedAlbumImage:) forControlEvents:UIControlEventTouchUpInside];
     
     return trackView;
-}
-
-- (void)carouselDidEndDragging:(iCarousel *)carousel willDecelerate:(BOOL)decelerate{
-    NSLog(@"DidEndDragging");
-    if (!self.didScrollCarousel) {
-        [self addShuffleViewAnimation];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:SCROLLED_CAROUSEL];
-    }
-}
-
-- (void) pulsateShuffleView
-{
-    CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    [animation setFromValue:[NSNumber numberWithFloat:1.5]];
-    [animation setToValue:[NSNumber numberWithFloat:1]];
-    [animation setDuration:.5];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.1 :1.3 :1 :1]];
-    [self.shuffleView.layer addAnimation:animation forKey:@"bounceAnimation"];
-}
-
-- (void) addShuffleViewAnimation {
-    NSLog(@"Add pulsating animation");
-    if (self.pulsatingTimer){
-        [self.pulsatingTimer invalidate];
-    }
-    self.pulsatingTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                               target:self
-                                                             selector:@selector(pulsateShuffleView)
-                                                             userInfo:nil
-                                                              repeats:YES];
-}
-
-- (void) removeShuffleViewAnimation {
-    NSLog(@"Remove pulsating animation");
-    if (self.pulsatingTimer){
-        [self.pulsatingTimer invalidate];
-    }
-    [self.shuffleView.layer removeAnimationForKey:@"bounceAnimation"];
 }
 
 - (void) tappedSongVersionOneButton:(UIButton *)button {
@@ -709,7 +666,9 @@
             // set self.playerAlreadyStartedPlayingForThisSong to True!
             self.playerAlreadyStartedPlayingForThisSong = YES;
             NSLog(@"Set playerAlreadyStartedPlayingForThisSong to TRUE");
-        }
+            }
+        
+            // TODO: Have access to the selected trackview here!
     }
     
     if (state == STKAudioPlayerStateBuffering) {
@@ -875,8 +834,6 @@
     }
     
     //[self searchGenre:self.selectedGenre]; TODO: Uncomment this
-    
-    [self removeShuffleViewAnimation];
 }
 
 - (void) showSearchBox
@@ -894,14 +851,6 @@
     self.resetButton.alpha = 0;
 }
 
-- (void) hideShuffleView {
-    self.shuffleView.hidden = YES;
-}
-
-- (void) unhideShuffleView {
-    self.shuffleView.hidden = NO;
-}
-
 - (void) resetUI {
     self.songs = nil;
 
@@ -912,7 +861,6 @@
                          self.searchBox.alpha = 0;
                          self.carousel.alpha = 0;
                          [self hideResetButton];
-                         [self hideShuffleView];
                          self.loadingIndicator.alpha = 0;
                      }
                      completion:^(BOOL finished) {
@@ -951,13 +899,7 @@
         _selectedGenre = self.typeToGenreMap[selectedGenre];
         if (!_selectedGenre) _selectedGenre = selectedGenre;
         //[self searchGenre:self.selectedGenre]; TODO: UNCOMMENT
-        [self unhideShuffleView];
-        [self updateShuffleLabel];
     }
-}
-
-- (void) updateShuffleLabel {
-    self.shuffleLabel.text = self.selectedGenre;
 }
 
 - (void) showRandomPickAlert {

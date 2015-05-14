@@ -339,19 +339,19 @@
 }
 
 - (IBAction)didTapCameraButton {
-    if ([self.textView isFirstResponder]) {
-        [self.textView resignFirstResponder];
-    }
-    
-    [self reduceAlphaOfButtons];
-    self.commandLabel.hidden = YES;
-    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:@"Take a Photo", @"Upload a Photo", nil];
     [actionSheet showInView:self.view];
+    
+    if ([self.textView isFirstResponder]) {
+        [self.textView resignFirstResponder];
+    }
+    
+    [self reduceAlphaOfButtons];
+    self.commandLabel.hidden = YES;
 }
 
 - (BOOL) textView: (UITextView*) textView shouldChangeTextInRange: (NSRange) range replacementText: (NSString*) text
