@@ -1296,6 +1296,7 @@
                         <outlet property="changePitchButton1" destination="C8u-j8-TJl" id="yCc-nS-K5z"/>
                         <outlet property="changePitchButton2" destination="H1t-6Q-weW" id="duJ-Rf-yDM"/>
                         <outlet property="changePitchButton3" destination="Mku-hD-YTT" id="Blg-zS-eLm"/>
+                        <outlet property="commandLabel" destination="3JO-QB-ANa" id="W93-Rk-I7h"/>
                         <outlet property="contactLabel" destination="B2R-OB-er0" id="efQ-Ea-t9a"/>
                         <outlet property="continueButton" destination="9XV-zO-GXP" id="849-UU-MZ0"/>
                         <outlet property="pitchSlider" destination="KiZ-xJ-FAU" id="XQJ-Uw-u9W"/>

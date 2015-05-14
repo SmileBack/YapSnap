@@ -37,6 +37,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *cameraButton;
 @property (strong, nonatomic) IBOutlet UIButton *resetPhotoButton;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (strong, nonatomic) IBOutlet UILabel *commandLabel;
 
 - (IBAction)didTapAddTextButton;
 - (IBAction)didTapPitchButton1;
@@ -338,6 +339,13 @@
 }
 
 - (IBAction)didTapCameraButton {
+    if ([self.textView isFirstResponder]) {
+        [self.textView resignFirstResponder];
+    }
+    
+    [self reduceAlphaOfButtons];
+    self.commandLabel.hidden = YES;
+    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
@@ -367,6 +375,7 @@
 {
     NSLog(@"Textfield did begin editing");
     [self reduceAlphaOfButtons];
+    self.commandLabel.hidden = YES;
 }
 
 #pragma mark - YSColorPickerDelegate
@@ -486,8 +495,10 @@
 - (void) updateAlphaOfButtons {
     if ((self.textView.text.length > 0) || self.yapPhoto.image != nil) {
         [self reduceAlphaOfButtons];
+        self.commandLabel.hidden = YES;
     } else {
         [self restoreAlphaOfButtons];
+        self.commandLabel.hidden = NO;
     }
     
 }
@@ -526,7 +537,12 @@
         [self selectPhoto];
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Tapped Upload Photo"];
+    
+    } else if (buttonIndex == 2) {
+        NSLog(@"Did tap cancel");
+        [self updateAlphaOfButtons];
     }
+    
 }
 
 
