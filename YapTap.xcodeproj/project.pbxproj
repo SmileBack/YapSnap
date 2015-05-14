@@ -98,6 +98,17 @@
 		78624BE71B03BA9100C8E049 /* GuidanceArrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE51B03BA9100C8E049 /* GuidanceArrowLeft.png */; };
 		78624BE81B03BA9100C8E049 /* GuidanceArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE61B03BA9100C8E049 /* GuidanceArrowRight.png */; };
 		78624BEA1B03EB3600C8E049 /* ProgressViewRediPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE91B03EB3600C8E049 /* ProgressViewRediPhone5@2x.png */; };
+		78624BF01B04EABB00C8E049 /* ProgressViewRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BEF1B04EABB00C8E049 /* ProgressViewRed@2x.png */; };
+		78624BF21B04EB5600C8E049 /* ProgressViewGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BF11B04EB5600C8E049 /* ProgressViewGreen@2x.png */; };
+		78624BF41B04EBF000C8E049 /* ProgressViewLightBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BF31B04EBF000C8E049 /* ProgressViewLightBlue@2x.png */; };
+		78624BF61B04EC6B00C8E049 /* ProgressViewYellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BF51B04EC6B00C8E049 /* ProgressViewYellow@2x.png */; };
+		78624BF81B04ED4100C8E049 /* ProgressViewYellowiPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BF71B04ED4100C8E049 /* ProgressViewYellowiPhone5@2x.png */; };
+		78624BFA1B04ED9900C8E049 /* ProgressViewLightBlueiPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BF91B04ED9900C8E049 /* ProgressViewLightBlueiPhone5@2x.png */; };
+		78624BFC1B04EDFF00C8E049 /* ProgressViewGreeniPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BFB1B04EDFF00C8E049 /* ProgressViewGreeniPhone5@2x.png */; };
+		78624C021B04F0B500C8E049 /* ProgressViewGreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624C011B04F0B500C8E049 /* ProgressViewGreen@3x.png */; };
+		78624C041B04F0C000C8E049 /* ProgressViewLightBlue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624C031B04F0C000C8E049 /* ProgressViewLightBlue@3x.png */; };
+		78624C061B04F0CE00C8E049 /* ProgressViewRed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624C051B04F0CE00C8E049 /* ProgressViewRed@3x.png */; };
+		78624C081B04F0D700C8E049 /* ProgressViewYellow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624C071B04F0D700C8E049 /* ProgressViewYellow@3x.png */; };
 		7863B5DD1A99A25F00531CED /* sound1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7863B5DC1A99A25F00531CED /* sound1.wav */; };
 		7867C1C61B01808D0050632F /* GiftButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7867C1C51B01808D0050632F /* GiftButton.png */; };
 		7867C1C81B01A58E0050632F /* CancelImageWhite2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7867C1C71B01A58E0050632F /* CancelImageWhite2.png */; };
@@ -115,26 +126,26 @@
 		787C84DB1A76C77D005D80D5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787C84DA1A76C77D005D80D5 /* AudioToolbox.framework */; };
 		787C84DF1A7732E4005D80D5 /* PhoneNumberChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 787C84DE1A7732E4005D80D5 /* PhoneNumberChecker.m */; };
 		787EC5E31AC9D0AD000C5539 /* JEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 787EC5E21AC9D0AD000C5539 /* JEProgressView.m */; };
-		787EC5E71AC9D4D0000C5539 /* ProgressViewYellowiPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5E61AC9D4D0000C5539 /* ProgressViewYellowiPhone5@2x.png */; };
-		787EC5EF1AC9EB16000C5539 /* ProgressViewYellow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5EE1AC9EB16000C5539 /* ProgressViewYellow@3x.png */; };
-		787EC5F11AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F01AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png */; };
-		787EC5F31AC9EC6A000C5539 /* ProgressViewLightBlueiPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F21AC9EC6A000C5539 /* ProgressViewLightBlueiPhone5@2x.png */; };
-		787EC5F61AC9EE8C000C5539 /* ProgressViewGreeniPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F41AC9EE8C000C5539 /* ProgressViewGreeniPhone5@2x.png */; };
-		787EC5F71AC9EE8C000C5539 /* ProgressViewGreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F51AC9EE8C000C5539 /* ProgressViewGreen@3x.png */; };
+		787EC5E71AC9D4D0000C5539 /* OldProgressViewYellowiPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5E61AC9D4D0000C5539 /* OldProgressViewYellowiPhone5@2x.png */; };
+		787EC5EF1AC9EB16000C5539 /* OldProgressViewYellow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5EE1AC9EB16000C5539 /* OldProgressViewYellow@3x.png */; };
+		787EC5F11AC9EC0A000C5539 /* OldProgressViewLightBlue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F01AC9EC0A000C5539 /* OldProgressViewLightBlue@3x.png */; };
+		787EC5F31AC9EC6A000C5539 /* OldProgressViewLightBlueiPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F21AC9EC6A000C5539 /* OldProgressViewLightBlueiPhone5@2x.png */; };
+		787EC5F61AC9EE8C000C5539 /* OldProgressViewGreeniPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F41AC9EE8C000C5539 /* OldProgressViewGreeniPhone5@2x.png */; };
+		787EC5F71AC9EE8C000C5539 /* OldProgressViewGreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F51AC9EE8C000C5539 /* OldProgressViewGreen@3x.png */; };
 		787EC5F91ACA0477000C5539 /* Balloon10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5F81ACA0477000C5539 /* Balloon10.png */; };
 		787EC5FF1ACA068F000C5539 /* BalloonYellow10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC5FE1ACA068F000C5539 /* BalloonYellow10.png */; };
 		787EC6011ACA09A1000C5539 /* BalloonLightBlue10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6001ACA09A1000C5539 /* BalloonLightBlue10.png */; };
 		787EC6031ACA09B8000C5539 /* BalloonGreen10.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6021ACA09B8000C5539 /* BalloonGreen10.png */; };
-		787EC6051ACA123C000C5539 /* ProgressViewGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6041ACA123C000C5539 /* ProgressViewGreen@2x.png */; };
-		787EC6071ACA12DB000C5539 /* ProgressViewLightBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6061ACA12DB000C5539 /* ProgressViewLightBlue@2x.png */; };
-		787EC6091ACA12E7000C5539 /* ProgressViewYellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6081ACA12E7000C5539 /* ProgressViewYellow@2x.png */; };
+		787EC6051ACA123C000C5539 /* OldProgressViewGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6041ACA123C000C5539 /* OldProgressViewGreen@2x.png */; };
+		787EC6071ACA12DB000C5539 /* OldProgressViewLightBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6061ACA12DB000C5539 /* OldProgressViewLightBlue@2x.png */; };
+		787EC6091ACA12E7000C5539 /* OldProgressViewYellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6081ACA12E7000C5539 /* OldProgressViewYellow@2x.png */; };
 		787EC60B1ACA1B00000C5539 /* ProgressViewLightBlueiPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC60A1ACA1B00000C5539 /* ProgressViewLightBlueiPhone4@2x.png */; };
 		787EC60D1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC60C1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png */; };
 		787EC60F1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC60E1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png */; };
-		787EC6151ACA245E000C5539 /* ProgressViewRed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6111ACA245E000C5539 /* ProgressViewRed@3x.png */; };
+		787EC6151ACA245E000C5539 /* OldProgressViewRed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6111ACA245E000C5539 /* OldProgressViewRed@3x.png */; };
 		787EC6161ACA245E000C5539 /* ProgressViewRediPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6121ACA245E000C5539 /* ProgressViewRediPhone4@2x.png */; };
 		787EC6171ACA245E000C5539 /* OldProgressViewRediPhone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6131ACA245E000C5539 /* OldProgressViewRediPhone5@2x.png */; };
-		787EC6181ACA245E000C5539 /* ProgressViewRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6141ACA245E000C5539 /* ProgressViewRed@2x.png */; };
+		787EC6181ACA245E000C5539 /* OldProgressViewRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC6141ACA245E000C5539 /* OldProgressViewRed@2x.png */; };
 		787EC61E1ACA2B17000C5539 /* ResetButton3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EC61D1ACA2B17000C5539 /* ResetButton3@2x.png */; };
 		788363771AD781A0001CBD1B /* TwoNotSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 788363761AD781A0001CBD1B /* TwoNotSelected@2x.png */; };
 		7883637B1AD781C3001CBD1B /* OneNotSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7883637A1AD781C3001CBD1B /* OneNotSelected@2x.png */; };
@@ -342,6 +353,17 @@
 		78624BE51B03BA9100C8E049 /* GuidanceArrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GuidanceArrowLeft.png; sourceTree = "<group>"; };
 		78624BE61B03BA9100C8E049 /* GuidanceArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GuidanceArrowRight.png; sourceTree = "<group>"; };
 		78624BE91B03EB3600C8E049 /* ProgressViewRediPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewRediPhone5@2x.png"; sourceTree = "<group>"; };
+		78624BEF1B04EABB00C8E049 /* ProgressViewRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewRed@2x.png"; sourceTree = "<group>"; };
+		78624BF11B04EB5600C8E049 /* ProgressViewGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreen@2x.png"; sourceTree = "<group>"; };
+		78624BF31B04EBF000C8E049 /* ProgressViewLightBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewLightBlue@2x.png"; sourceTree = "<group>"; };
+		78624BF51B04EC6B00C8E049 /* ProgressViewYellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewYellow@2x.png"; sourceTree = "<group>"; };
+		78624BF71B04ED4100C8E049 /* ProgressViewYellowiPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewYellowiPhone5@2x.png"; sourceTree = "<group>"; };
+		78624BF91B04ED9900C8E049 /* ProgressViewLightBlueiPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewLightBlueiPhone5@2x.png"; sourceTree = "<group>"; };
+		78624BFB1B04EDFF00C8E049 /* ProgressViewGreeniPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreeniPhone5@2x.png"; sourceTree = "<group>"; };
+		78624C011B04F0B500C8E049 /* ProgressViewGreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreen@3x.png"; sourceTree = "<group>"; };
+		78624C031B04F0C000C8E049 /* ProgressViewLightBlue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewLightBlue@3x.png"; sourceTree = "<group>"; };
+		78624C051B04F0CE00C8E049 /* ProgressViewRed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewRed@3x.png"; sourceTree = "<group>"; };
+		78624C071B04F0D700C8E049 /* ProgressViewYellow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewYellow@3x.png"; sourceTree = "<group>"; };
 		7863B5DC1A99A25F00531CED /* sound1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound1.wav; sourceTree = "<group>"; };
 		7867C1C51B01808D0050632F /* GiftButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GiftButton.png; sourceTree = "<group>"; };
 		7867C1C71B01A58E0050632F /* CancelImageWhite2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImageWhite2.png; sourceTree = "<group>"; };
@@ -361,26 +383,26 @@
 		787C84DE1A7732E4005D80D5 /* PhoneNumberChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumberChecker.m; sourceTree = "<group>"; };
 		787EC5E11AC9D0AD000C5539 /* JEProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JEProgressView.h; sourceTree = "<group>"; };
 		787EC5E21AC9D0AD000C5539 /* JEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JEProgressView.m; sourceTree = "<group>"; };
-		787EC5E61AC9D4D0000C5539 /* ProgressViewYellowiPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewYellowiPhone5@2x.png"; sourceTree = "<group>"; };
-		787EC5EE1AC9EB16000C5539 /* ProgressViewYellow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewYellow@3x.png"; sourceTree = "<group>"; };
-		787EC5F01AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewLightBlue@3x.png"; sourceTree = "<group>"; };
-		787EC5F21AC9EC6A000C5539 /* ProgressViewLightBlueiPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewLightBlueiPhone5@2x.png"; sourceTree = "<group>"; };
-		787EC5F41AC9EE8C000C5539 /* ProgressViewGreeniPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreeniPhone5@2x.png"; sourceTree = "<group>"; };
-		787EC5F51AC9EE8C000C5539 /* ProgressViewGreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreen@3x.png"; sourceTree = "<group>"; };
+		787EC5E61AC9D4D0000C5539 /* OldProgressViewYellowiPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OldProgressViewYellowiPhone5@2x.png"; sourceTree = "<group>"; };
+		787EC5EE1AC9EB16000C5539 /* OldProgressViewYellow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OldProgressViewYellow@3x.png"; sourceTree = "<group>"; };
+		787EC5F01AC9EC0A000C5539 /* OldProgressViewLightBlue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OldProgressViewLightBlue@3x.png"; sourceTree = "<group>"; };
+		787EC5F21AC9EC6A000C5539 /* OldProgressViewLightBlueiPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OldProgressViewLightBlueiPhone5@2x.png"; sourceTree = "<group>"; };
+		787EC5F41AC9EE8C000C5539 /* OldProgressViewGreeniPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OldProgressViewGreeniPhone5@2x.png"; sourceTree = "<group>"; };
+		787EC5F51AC9EE8C000C5539 /* OldProgressViewGreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OldProgressViewGreen@3x.png"; sourceTree = "<group>"; };
 		787EC5F81ACA0477000C5539 /* Balloon10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon10.png; sourceTree = "<group>"; };
 		787EC5FE1ACA068F000C5539 /* BalloonYellow10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BalloonYellow10.png; sourceTree = "<group>"; };
 		787EC6001ACA09A1000C5539 /* BalloonLightBlue10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BalloonLightBlue10.png; sourceTree = "<group>"; };
 		787EC6021ACA09B8000C5539 /* BalloonGreen10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BalloonGreen10.png; sourceTree = "<group>"; };
-		787EC6041ACA123C000C5539 /* ProgressViewGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreen@2x.png"; sourceTree = "<group>"; };
-		787EC6061ACA12DB000C5539 /* ProgressViewLightBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewLightBlue@2x.png"; sourceTree = "<group>"; };
-		787EC6081ACA12E7000C5539 /* ProgressViewYellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewYellow@2x.png"; sourceTree = "<group>"; };
+		787EC6041ACA123C000C5539 /* OldProgressViewGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OldProgressViewGreen@2x.png"; sourceTree = "<group>"; };
+		787EC6061ACA12DB000C5539 /* OldProgressViewLightBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OldProgressViewLightBlue@2x.png"; sourceTree = "<group>"; };
+		787EC6081ACA12E7000C5539 /* OldProgressViewYellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OldProgressViewYellow@2x.png"; sourceTree = "<group>"; };
 		787EC60A1ACA1B00000C5539 /* ProgressViewLightBlueiPhone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewLightBlueiPhone4@2x.png"; sourceTree = "<group>"; };
 		787EC60C1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewYellowiPhone4@2x.png"; sourceTree = "<group>"; };
 		787EC60E1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewGreeniPhone4@2x.png"; sourceTree = "<group>"; };
-		787EC6111ACA245E000C5539 /* ProgressViewRed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewRed@3x.png"; sourceTree = "<group>"; };
+		787EC6111ACA245E000C5539 /* OldProgressViewRed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OldProgressViewRed@3x.png"; sourceTree = "<group>"; };
 		787EC6121ACA245E000C5539 /* ProgressViewRediPhone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewRediPhone4@2x.png"; sourceTree = "<group>"; };
 		787EC6131ACA245E000C5539 /* OldProgressViewRediPhone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OldProgressViewRediPhone5@2x.png"; sourceTree = "<group>"; };
-		787EC6141ACA245E000C5539 /* ProgressViewRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewRed@2x.png"; sourceTree = "<group>"; };
+		787EC6141ACA245E000C5539 /* OldProgressViewRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OldProgressViewRed@2x.png"; sourceTree = "<group>"; };
 		787EC61D1ACA2B17000C5539 /* ResetButton3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton3@2x.png"; sourceTree = "<group>"; };
 		788363761AD781A0001CBD1B /* TwoNotSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TwoNotSelected@2x.png"; sourceTree = "<group>"; };
 		7883637A1AD781C3001CBD1B /* OneNotSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OneNotSelected@2x.png"; sourceTree = "<group>"; };
@@ -870,10 +892,13 @@
 		787EC5EB1AC9EA5F000C5539 /* Yellow */ = {
 			isa = PBXGroup;
 			children = (
+				78624C071B04F0D700C8E049 /* ProgressViewYellow@3x.png */,
+				78624BF51B04EC6B00C8E049 /* ProgressViewYellow@2x.png */,
 				787EC60C1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png */,
-				787EC5E61AC9D4D0000C5539 /* ProgressViewYellowiPhone5@2x.png */,
-				787EC5EE1AC9EB16000C5539 /* ProgressViewYellow@3x.png */,
-				787EC6081ACA12E7000C5539 /* ProgressViewYellow@2x.png */,
+				787EC5E61AC9D4D0000C5539 /* OldProgressViewYellowiPhone5@2x.png */,
+				78624BF71B04ED4100C8E049 /* ProgressViewYellowiPhone5@2x.png */,
+				787EC5EE1AC9EB16000C5539 /* OldProgressViewYellow@3x.png */,
+				787EC6081ACA12E7000C5539 /* OldProgressViewYellow@2x.png */,
 			);
 			name = Yellow;
 			sourceTree = "<group>";
@@ -881,10 +906,13 @@
 		787EC5EC1AC9EA6C000C5539 /* Green */ = {
 			isa = PBXGroup;
 			children = (
+				78624BF11B04EB5600C8E049 /* ProgressViewGreen@2x.png */,
 				787EC60E1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png */,
-				787EC5F41AC9EE8C000C5539 /* ProgressViewGreeniPhone5@2x.png */,
-				787EC5F51AC9EE8C000C5539 /* ProgressViewGreen@3x.png */,
-				787EC6041ACA123C000C5539 /* ProgressViewGreen@2x.png */,
+				787EC5F41AC9EE8C000C5539 /* OldProgressViewGreeniPhone5@2x.png */,
+				787EC5F51AC9EE8C000C5539 /* OldProgressViewGreen@3x.png */,
+				78624BFB1B04EDFF00C8E049 /* ProgressViewGreeniPhone5@2x.png */,
+				787EC6041ACA123C000C5539 /* OldProgressViewGreen@2x.png */,
+				78624C011B04F0B500C8E049 /* ProgressViewGreen@3x.png */,
 			);
 			name = Green;
 			sourceTree = "<group>";
@@ -892,10 +920,13 @@
 		787EC5ED1AC9EA7E000C5539 /* Light Blue */ = {
 			isa = PBXGroup;
 			children = (
+				78624C031B04F0C000C8E049 /* ProgressViewLightBlue@3x.png */,
+				78624BF31B04EBF000C8E049 /* ProgressViewLightBlue@2x.png */,
 				787EC60A1ACA1B00000C5539 /* ProgressViewLightBlueiPhone4@2x.png */,
-				787EC5F21AC9EC6A000C5539 /* ProgressViewLightBlueiPhone5@2x.png */,
-				787EC5F01AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png */,
-				787EC6061ACA12DB000C5539 /* ProgressViewLightBlue@2x.png */,
+				787EC5F21AC9EC6A000C5539 /* OldProgressViewLightBlueiPhone5@2x.png */,
+				787EC5F01AC9EC0A000C5539 /* OldProgressViewLightBlue@3x.png */,
+				78624BF91B04ED9900C8E049 /* ProgressViewLightBlueiPhone5@2x.png */,
+				787EC6061ACA12DB000C5539 /* OldProgressViewLightBlue@2x.png */,
 			);
 			name = "Light Blue";
 			sourceTree = "<group>";
@@ -906,8 +937,10 @@
 				78624BE91B03EB3600C8E049 /* ProgressViewRediPhone5@2x.png */,
 				787EC6121ACA245E000C5539 /* ProgressViewRediPhone4@2x.png */,
 				787EC6131ACA245E000C5539 /* OldProgressViewRediPhone5@2x.png */,
-				787EC6111ACA245E000C5539 /* ProgressViewRed@3x.png */,
-				787EC6141ACA245E000C5539 /* ProgressViewRed@2x.png */,
+				787EC6111ACA245E000C5539 /* OldProgressViewRed@3x.png */,
+				787EC6141ACA245E000C5539 /* OldProgressViewRed@2x.png */,
+				78624BEF1B04EABB00C8E049 /* ProgressViewRed@2x.png */,
+				78624C051B04F0CE00C8E049 /* ProgressViewRed@3x.png */,
 			);
 			name = Red;
 			sourceTree = "<group>";
@@ -1384,7 +1417,7 @@
 				787EC6171ACA245E000C5539 /* OldProgressViewRediPhone5@2x.png in Resources */,
 				7854B06B1AF8535500A02DF9 /* ControlCenterButton2@2x.png in Resources */,
 				78319A7F1ACD0290000C3FD6 /* MicModeButtonIcon@3x.png in Resources */,
-				787EC6091ACA12E7000C5539 /* ProgressViewYellow@2x.png in Resources */,
+				787EC6091ACA12E7000C5539 /* OldProgressViewYellow@2x.png in Resources */,
 				78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */,
 				F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */,
 				78624BE81B03BA9100C8E049 /* GuidanceArrowRight.png in Resources */,
@@ -1395,25 +1428,27 @@
 				F44B0C5516DA404700E6CD88 /* Default.png in Resources */,
 				78439FBA1AE76EEB004CFB5F /* SongVersionTwoSelected@2x.png in Resources */,
 				786BCB431ADC274600BA3FDD /* UploadIcon100.png in Resources */,
-				787EC5E71AC9D4D0000C5539 /* ProgressViewYellowiPhone5@2x.png in Resources */,
+				787EC5E71AC9D4D0000C5539 /* OldProgressViewYellowiPhone5@2x.png in Resources */,
 				78A2E8551ACC671600B5A404 /* PinkStar2.png in Resources */,
+				78624BFC1B04EDFF00C8E049 /* ProgressViewGreeniPhone5@2x.png in Resources */,
 				787EC6011ACA09A1000C5539 /* BalloonLightBlue10.png in Resources */,
 				7854B0691AF8523100A02DF9 /* ControlCenterButton@2x.png in Resources */,
 				78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
+				78624BF61B04EC6B00C8E049 /* ProgressViewYellow@2x.png in Resources */,
 				78B0B7621AEF3834001C074B /* Shuffle50.png in Resources */,
 				78439FC81AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png in Resources */,
 				786E0BEB1B0079AC00005D1D /* CartoonsLong5@2x.png in Resources */,
 				78439FB21AE70830004CFB5F /* LoginPageImageSmalleriPhonesMusicNotes@2x.png in Resources */,
 				787EC60D1ACA1B0D000C5539 /* ProgressViewYellowiPhone4@2x.png in Resources */,
 				782D13A01ACC605D007C8499 /* YapsIconReceivedOpened.png in Resources */,
-				787EC5EF1AC9EB16000C5539 /* ProgressViewYellow@3x.png in Resources */,
+				787EC5EF1AC9EB16000C5539 /* OldProgressViewYellow@3x.png in Resources */,
 				37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */,
 				787EC60B1ACA1B00000C5539 /* ProgressViewLightBlueiPhone4@2x.png in Resources */,
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
 				78624BE71B03BA9100C8E049 /* GuidanceArrowLeft.png in Resources */,
-				787EC6071ACA12DB000C5539 /* ProgressViewLightBlue@2x.png in Resources */,
+				787EC6071ACA12DB000C5539 /* OldProgressViewLightBlue@2x.png in Resources */,
 				78439F881AE5C6A1004CFB5F /* SmallMusicIcon2.png in Resources */,
 				788363901AD78BB6001CBD1B /* OneNotSelectediPhone4@2x.png in Resources */,
 				7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */,
@@ -1426,10 +1461,12 @@
 				78624BE41B03189000C8E049 /* Dice7@2x.png in Resources */,
 				781904881AF288C100196DFF /* ResetButton70@2x.png in Resources */,
 				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
+				78624BF81B04ED4100C8E049 /* ProgressViewYellowiPhone5@2x.png in Resources */,
 				7854B06F1AF86B1000A02DF9 /* LeftArrow10.png in Resources */,
 				78439FBF1AE77145004CFB5F /* SongVersionOneSelected@2x.png in Resources */,
 				7854B0711AF88C1900A02DF9 /* LeftArrow30.png in Resources */,
 				7867C1C81B01A58E0050632F /* CancelImageWhite2.png in Resources */,
+				78624BF21B04EB5600C8E049 /* ProgressViewGreen@2x.png in Resources */,
 				7819916F1AABBA6E00309E38 /* SettingsIconWhite8@2x.png in Resources */,
 				37D413C619D2235C00021548 /* Images.xcassets in Resources */,
 				78D7812A1ABA249E00F483A8 /* RecordButtonBlueBorder10Pressed.png in Resources */,
@@ -1439,15 +1476,17 @@
 				788363891AD78604001CBD1B /* TwoNotSelected@3x.png in Resources */,
 				786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */,
 				787EC6161ACA245E000C5539 /* ProgressViewRediPhone4@2x.png in Resources */,
+				78624C021B04F0B500C8E049 /* ProgressViewGreen@3x.png in Resources */,
 				37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */,
 				7854B0671AF75EF500A02DF9 /* CartoonsLong4.png in Resources */,
 				786E0BE31AFFEE8C00005D1D /* WhiteDownArrow2.png in Resources */,
 				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
+				78624C041B04F0C000C8E049 /* ProgressViewLightBlue@3x.png in Resources */,
 				786E0BE71B00755800005D1D /* Shuffle60.png in Resources */,
 				78439FC21AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png in Resources */,
 				78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */,
 				781904861AF287C100196DFF /* ResetButton60@2x.png in Resources */,
-				787EC6181ACA245E000C5539 /* ProgressViewRed@2x.png in Resources */,
+				787EC6181ACA245E000C5539 /* OldProgressViewRed@2x.png in Resources */,
 				787EC5FF1ACA068F000C5539 /* BalloonYellow10.png in Resources */,
 				7867C1CC1B01C5E30050632F /* CartoonsLong5@3x.png in Resources */,
 				78A2E86C1ACC840B00B5A404 /* BalloonYellow20.png in Resources */,
@@ -1455,12 +1494,12 @@
 				788363A21AD79488001CBD1B /* TwoNotSelectediPhone6@2x.png in Resources */,
 				78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */,
 				78624BE21B03180400C8E049 /* Dice6@2x.png in Resources */,
-				787EC5F11AC9EC0A000C5539 /* ProgressViewLightBlue@3x.png in Resources */,
+				787EC5F11AC9EC0A000C5539 /* OldProgressViewLightBlue@3x.png in Resources */,
 				786E0BE51B0019AE00005D1D /* PlusButtonWhite3@2x.png in Resources */,
 				78439FC11AE77145004CFB5F /* SongVersionOneSelectediPhone4@2x.png in Resources */,
 				78F1E4171AD306B400C2743B /* ResetButtonLarger@2x.png in Resources */,
 				7819048E1AF2CB2F00196DFF /* ArrowImage@2x.png in Resources */,
-				787EC5F71AC9EE8C000C5539 /* ProgressViewGreen@3x.png in Resources */,
+				787EC5F71AC9EE8C000C5539 /* OldProgressViewGreen@3x.png in Resources */,
 				787EC61E1ACA2B17000C5539 /* ResetButton3@2x.png in Resources */,
 				78439FB81AE76EEB004CFB5F /* SongVersionTwoSelectediPhone4@2x.png in Resources */,
 				788363771AD781A0001CBD1B /* TwoNotSelected@2x.png in Resources */,
@@ -1473,13 +1512,16 @@
 				78439F901AE61528004CFB5F /* YapsIconReceivedUnopened4.png in Resources */,
 				78A2E8561ACC671600B5A404 /* PinkStar3.png in Resources */,
 				78A2E8661ACC822800B5A404 /* Balloon20.png in Resources */,
+				78624C061B04F0CE00C8E049 /* ProgressViewRed@3x.png in Resources */,
 				78439FC01AE77145004CFB5F /* SongVersionOneSelected@3x.png in Resources */,
 				78F1E4111AD2E80A00C2743B /* CameraIcon20.png in Resources */,
 				FC0642D71A9D65E200E3D60F /* Environments.plist in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				78624BDC1B03134000C8E049 /* Dice2@2x.png in Resources */,
 				78B252371AF1453600353711 /* YapsButtonNoYaps4.png in Resources */,
+				78624BFA1B04ED9900C8E049 /* ProgressViewLightBlueiPhone5@2x.png in Resources */,
 				78439FB91AE76EEB004CFB5F /* SongVersionTwoSelected@3x.png in Resources */,
+				78624BF41B04EBF000C8E049 /* ProgressViewLightBlue@2x.png in Resources */,
 				78624BDE1B03158900C8E049 /* Dice3@2x.png in Resources */,
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
 				786E0BE11AFFEDE700005D1D /* WhiteDownArrow.png in Resources */,
@@ -1488,22 +1530,24 @@
 				78439FAE1AE6D705004CFB5F /* Record.png in Resources */,
 				784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */,
 				78624BEA1B03EB3600C8E049 /* ProgressViewRediPhone5@2x.png in Resources */,
+				78624C081B04F0D700C8E049 /* ProgressViewYellow@3x.png in Resources */,
 				787EC60F1ACA1B1B000C5539 /* ProgressViewGreeniPhone4@2x.png in Resources */,
 				782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */,
 				781904841AF1F27700196DFF /* YapsButtonNoYaps5.png in Resources */,
 				7867C1CA1B01A64D0050632F /* CancelImageWhite3.png in Resources */,
-				787EC6151ACA245E000C5539 /* ProgressViewRed@3x.png in Resources */,
+				787EC6151ACA245E000C5539 /* OldProgressViewRed@3x.png in Resources */,
 				782D13531ACB9431007C8499 /* MicrophoneWhite30@3x.png in Resources */,
-				787EC5F31AC9EC6A000C5539 /* ProgressViewLightBlueiPhone5@2x.png in Resources */,
+				787EC5F31AC9EC6A000C5539 /* OldProgressViewLightBlueiPhone5@2x.png in Resources */,
 				78A2E86A1ACC840000B5A404 /* BalloonLightBlue20.png in Resources */,
+				78624BF01B04EABB00C8E049 /* ProgressViewRed@2x.png in Resources */,
 				788363871AD785FB001CBD1B /* OneNotSelected@3x.png in Resources */,
 				78A2E8641ACC7FB100B5A404 /* YapsButton100.png in Resources */,
 				782D13491ACB8B7A007C8499 /* YapIconOpenedSent3.png in Resources */,
 				78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */,
 				780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */,
 				78DA1F801AA1961200693015 /* AlbumImagePlaceholder.png in Resources */,
-				787EC6051ACA123C000C5539 /* ProgressViewGreen@2x.png in Resources */,
-				787EC5F61AC9EE8C000C5539 /* ProgressViewGreeniPhone5@2x.png in Resources */,
+				787EC6051ACA123C000C5539 /* OldProgressViewGreen@2x.png in Resources */,
+				787EC5F61AC9EE8C000C5539 /* OldProgressViewGreeniPhone5@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
