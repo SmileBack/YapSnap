@@ -1979,11 +1979,16 @@ Type it here!</string>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vhM-aB-1Ig" customClass="ZLSinusWaveView">
                                 <rect key="frame" x="80" y="90" width="160" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="WtW-rl-Q0N"/>
+                                    <constraint firstAttribute="width" constant="160" id="bXe-DU-6SA"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="v0o-hk-bRQ" firstAttribute="height" secondItem="3lk-k2-w1W" secondAttribute="height" multiplier="0.3" id="IKM-by-u5z"/>
+                            <constraint firstAttribute="centerX" secondItem="vhM-aB-1Ig" secondAttribute="centerX" id="Vuh-gQ-K4t"/>
                             <constraint firstAttribute="centerX" secondItem="v0o-hk-bRQ" secondAttribute="centerX" id="duN-UP-9L5"/>
                             <constraint firstItem="v0o-hk-bRQ" firstAttribute="top" secondItem="e15-6z-nCE" secondAttribute="bottom" constant="85" id="rmR-aL-oss"/>
                         </constraints>
