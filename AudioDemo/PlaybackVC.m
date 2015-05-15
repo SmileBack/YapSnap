@@ -57,11 +57,7 @@
 
     [self.progressView.activityIndicator startAnimating];
     
-    if (self.yap.senderID.intValue == 1) { // TODO: REMOVE
-        self.textView.text = @"YapTap let's you send yaps like this one!";
-    } else {
-        self.textView.text = self.yap.text;
-    }
+    self.textView.text = self.yap.text;
     
     if ([self.textView.text length] == 0) {
         self.textView.hidden = YES;
@@ -131,8 +127,6 @@
 
 - (void) playYapAudio
 {
-    [self.player play:@"https://p.scdn.co/mp3-preview/fb4adc1d77aafc9ed6739e4d9bc11d9bdeba8e7d"];
-    /* TODO: UNDO
     NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
     NSLog(@"Playing URL: %@ %@ auth token", self.yap.playbackURL, headers ? @"with" : @"without");
     if (headers) {
@@ -140,7 +134,6 @@
     } else {
         [self.player play:self.yap.playbackURL];
     }
-     */
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -304,8 +297,10 @@
             [self dismissThis];
             
             if (!self.didSeeDoubleTapBanner && self.yap.senderID.intValue != 1) {
-                [[YTNotifications sharedNotifications] showNotificationText:@"Double Tap To Reply!"];
-                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_DOUBLE_TAP_BANNER];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showNotificationText:@"Double Tap To Reply!"];
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_DOUBLE_TAP_BANNER];
+                });
             }
         });
         

@@ -612,4 +612,23 @@ static API *sharedAPI;
     [self updateUserData:@{@"email": email} withCallback:callback];
 }
 
+#pragma mark - Metric events
+
+- (void) sendSearchTerm:(NSString*)searchTerm withCallback:(SuccessOrErrorCallback)callback
+{
+    NSDictionary *params = [self paramsWithDict:@{@"search_term": searchTerm}];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager PUT:[self urlForEndpoint:@"metrics/searchTerms"]
+      parameters:params
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            callback(YES, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             Mixpanel *mixpanel = [Mixpanel sharedInstance];
+             [mixpanel track:@"API Error - sendSearchTerm"];
+             [self processFailedOperation:operation];
+             callback(NO, error);
+         }];
+}
+
 @end

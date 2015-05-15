@@ -334,7 +334,7 @@ static const float TIMER_INTERVAL = .01;
     [self.recordProgressView setProgress:0];
     
     if ([self.audioSource startAudioCapture]) {
-        if (self.audioSource.class == [YSSpotifySourceController class]) {
+        if (self.type == AudioCapTureTypeSpotify) {
             [self.recordProgressView.activityIndicator startAnimating];
         }
     }
@@ -348,7 +348,7 @@ static const float TIMER_INTERVAL = .01;
         self.recordProgressView.progress = 0.0;
         double delay = .1;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if (self.audioSource.class == [YSSpotifySourceController class]) {
+            if (self.type == AudioCapTureTypeSpotify) {
                 [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Play"];
             } else {
                 [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Record"];
@@ -385,16 +385,6 @@ static const float TIMER_INTERVAL = .01;
     self.guidanceArrowRight.hidden = YES;
 }
 
-- (BOOL) isInSpotifyMode
-{
-    return [self.audioSource isKindOfClass:[YSSpotifySourceController class]];
-}
-
-- (BOOL) isInRecordMode
-{
-    return [self.audioSource isKindOfClass:[YSMicSourceController class]];
-}
-
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([@"Prepare Yap For Text Segue" isEqualToString:segue.identifier]) {
@@ -414,60 +404,24 @@ static const float TIMER_INTERVAL = .01;
 }
 
 #pragma mark - Mode Changing
-- (void)switchToSpotifyMode
-{
+
+- (void)switchToSpotifyMode {
     YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
-    [self addChildViewController:spotifySource];
-    spotifySource.view.frame = self.audioSourceContainer.bounds;
-    [self.audioSourceContainer addSubview:spotifySource.view];
-    self.audioSource = spotifySource;
-    
-    spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
-    [self flipController:self.audioSource to:spotifySource];
-    
-    if (self.audioCaptureContext && self.audioCaptureContext[AudioCaptureContextGenreName]) {
-        spotifySource.selectedGenre = self.audioCaptureContext[AudioCaptureContextGenreName];
-    }
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Music Mode Button"];
+    [self setRecordSourceViewController:spotifySource];
 }
 
 - (void)switchToMicMode {
     YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
-    [self addChildViewController:micSource];
-    micSource.view.frame = self.audioSourceContainer.bounds;
-    [self.audioSourceContainer addSubview:micSource.view];
-    self.audioSource = micSource;
-    
-    micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
-    [self flipController:self.audioSource to:micSource];
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Mic Mode Button"];
+    [self setRecordSourceViewController:micSource];
 }
 
-- (void) flipController:(UIViewController *)from to:(YSAudioSourceController *)to
-{
-    to.view.frame = from.view.bounds;
+- (void) setRecordSourceViewController:(YSAudioSourceController *)to {
+    NSAssert(to != nil, @"To controller cannot be nil");
     [self addChildViewController:to];
-    [from willMoveToParentViewController:self];
-
-    __weak AudioCaptureViewController *weakSelf = self;
-    if (from && to) {
-        [self transitionFromViewController:from
-                          toViewController:to
-                                  duration:.25
-                                   options:UIViewAnimationOptionCurveEaseInOut
-                                animations:^{
-                                }
-                                completion:^(BOOL finished) {
-                                    [to didMoveToParentViewController:weakSelf];
-                                    [from.view removeFromSuperview];
-                                    [from removeFromParentViewController];
-                                    weakSelf.audioSource = to;
-                                }];
-    }
+    to.view.frame = self.audioSourceContainer.bounds;
+    [self.audioSourceContainer addSubview:to.view];
+    self.audioSource = to;
+    [to didMoveToParentViewController:self];
 }
 
 @end

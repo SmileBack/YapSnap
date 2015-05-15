@@ -38,8 +38,4 @@ static NSString* const AudioCaptureContextGenreName = @"genre";
 
 - (IBAction)recordTapped:(id)sender;
 
-- (BOOL)isInRecordMode;
-
-- (void) flipController:(UIViewController *)from to:(YSAudioSourceController *)to;
-
 @end

@@ -56,9 +56,6 @@
     } else {
         NSLog(@"Internet is reachable");
     }
-            
-    UITapGestureRecognizer *tappedMusicIconImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMusicIconImage)];
-    tappedMusicIconImage.numberOfTapsRequired = 1;
     
     UITapGestureRecognizer *tappedSpotifyView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedSpotifyView)];
     tappedSpotifyView.numberOfTapsRequired = 1;
@@ -70,7 +67,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
+    [self.searchBox becomeFirstResponder];
     self.playerAlreadyStartedPlayingForThisSong = NO;
 }
 
@@ -108,14 +105,7 @@
 - (void)tappedSpotifyView {
     NSLog(@"Tapped Spotify View");
     if (self.searchBox.isFirstResponder) {
-        self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        if ([self.searchBox.text length] == 0) {
-            [self.view endEditing:YES];
-        } else {
-            [self search:self.searchBox.text];
-            [self.view endEditing:YES];
-            [self setBackgroundColorForSearchBox];
-        }
+        [self searchWithTextInTextField:self.searchBox withAlertWhenMissingSearchTerm:NO];
     } else {
         // if carousel isn't showing
         if (self.carousel.alpha < 1) {
@@ -154,21 +144,6 @@
     self.searchBox.text = randomlySelectedArtist;
     [self setBackgroundColorForSearchBox];
 }
-
-/* TODO: UNDO
-- (void) searchGenre:(NSString *)genre {
-    self.artists = [SpotifyArtistFactory artistsForGenre:genre];
-    
-    NSString *randomlySelectedArtist = [self.artists objectAtIndex: arc4random() % [self.artists count]];
-    
-    NSLog(@"string: %@", randomlySelectedArtist);
-    
-    [self search:randomlySelectedArtist];
-    [self showSearchBox];
-    self.searchBox.text = randomlySelectedArtist;
-    [self setBackgroundColorForSearchBox];
-}
-*/
 
 -(BOOL) internetIsNotReachable
 {
@@ -211,28 +186,7 @@
              forControlEvents:UIControlEventEditingChanged];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    //Remove extra space at end of string
-    self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    if ([self.searchBox.text length] == 0) {
-        NSLog(@"Searched Empty String");
-        [self.view endEditing:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search Above"
-                                                        message:@"Type the name of an artist or song above!"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-    } else {
-        [self.view endEditing:YES];
-        [self search:self.searchBox.text];
-        [self setBackgroundColorForSearchBox];
-    }
-    
-    return YES;
-}
+
 
 -(void)textFieldDidChange:(UITextField *)searchBox {
     if ([self.searchBox.text length] == 0) {
@@ -318,6 +272,40 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"Textfield did end editing");
     self.carousel.scrollEnabled = YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    //Remove extra space at end of string
+    [self searchWithTextInTextField:textField withAlertWhenMissingSearchTerm:YES];
+    return YES;
+}
+
+- (void)searchWithTextInTextField:(UITextField*)textField withAlertWhenMissingSearchTerm:(BOOL)alert {
+    self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    [[API sharedAPI] sendSearchTerm:textField.text withCallback:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"Sent search term metric");
+        } else {
+            NSLog(@"Failed to send search term metric");
+        }
+    }];
+    
+    [self.view endEditing:YES];
+    if ([self.searchBox.text length] == 0) {
+        NSLog(@"Searched Empty String");
+        if (alert) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search Above"
+                                                            message:@"Type the name of an artist or song above!"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    } else {
+        [self search:self.searchBox.text];
+        [self setBackgroundColorForSearchBox];
+    }
 }
 
 #pragma mark - iCarousel Stuff
