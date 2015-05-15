@@ -10,6 +10,13 @@
 
 #import <CRToast/CRToast.h>
 
+static CGFloat const YTNotificationDuplicateNotificationPreventedByDelay = 3;
+
+@interface YTNotifications()
+
+@property NSMutableSet* recentNotifications;
+
+@end
 
 @implementation YTNotifications
 
@@ -42,9 +49,13 @@ static YTNotifications *_sharedNotifications;
     return _sharedNotifications;
 }
 
-- (void) showNotificationText:(NSString *)text
+- (id)init
 {
-    [CRToastManager showNotificationWithMessage:text completionBlock:nil];
+    if (self = [super init])
+    {
+        self.recentNotifications = [NSMutableSet set];
+    }
+    return self;
 }
 
 - (void) showBlueNotificationText:(NSString *)text
@@ -54,7 +65,7 @@ static YTNotifications *_sharedNotifications;
                               kCRToastBackgroundColorKey: THEME_BACKGROUND_COLOR,
                               };
     
-    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
+    [self showNotificationWithKey:text options:options];
 }
 
 - (void) showBufferingText:(NSString *)text
@@ -65,7 +76,7 @@ static YTNotifications *_sharedNotifications;
                               kCRToastBackgroundColorKey: THEME_BACKGROUND_COLOR
                               };
     
-    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
+    [self showNotificationWithKey:text options:options];
 }
 
 - (void) showSongVersionText:(NSString *)text
@@ -76,7 +87,7 @@ static YTNotifications *_sharedNotifications;
                               kCRToastAnimationInTimeIntervalKey: @.3,
                               };
     
-    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
+    [self showNotificationWithKey:text options:options];
 }
 
 - (void) showStatusBarText:(NSString *)text
@@ -88,7 +99,31 @@ static YTNotifications *_sharedNotifications;
                               kCRToastFontKey: [UIFont fontWithName:@"Futura-Medium" size:12],
                               };
     
-    [CRToastManager showNotificationWithOptions:options completionBlock:nil];
+    [self showNotificationWithKey:text options:options];
+}
+
+- (void)showNotificationWithKey:(NSString*)key options:(NSDictionary*)options
+{
+    if (![self.recentNotifications containsObject:key])
+    {
+        [self.recentNotifications addObject:key];
+        [CRToastManager showNotificationWithOptions:options completionBlock:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(YTNotificationDuplicateNotificationPreventedByDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.recentNotifications removeObject:key];
+        });
+    }
+}
+
+- (void) showNotificationText:(NSString *)text
+{
+    if (![self.recentNotifications containsObject:text])
+    {
+        [self.recentNotifications addObject:text];
+        [CRToastManager showNotificationWithMessage:text completionBlock:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(YTNotificationDuplicateNotificationPreventedByDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.recentNotifications removeObject:text];
+        });
+    }
 }
 
 @end

@@ -50,6 +50,7 @@
     [SpotifyAPI sharedApi]; //Activate to get access token
     
     [self setupSearchBox];
+    [self.searchBox becomeFirstResponder];
     
     if ([self internetIsNotReachable]) {
         NSLog(@"Internet is not reachable");
@@ -67,7 +68,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.searchBox becomeFirstResponder];
     self.playerAlreadyStartedPlayingForThisSong = NO;
 }
 
@@ -85,6 +85,7 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self.searchBox becomeFirstResponder];
+                        NSLog(@"Tapped Progress Bar");
                     }];
     
     [center addObserverForName:TAPPED_DICE_BUTTON_NOTIFICATION
@@ -283,13 +284,6 @@
 
 - (void)searchWithTextInTextField:(UITextField*)textField withAlertWhenMissingSearchTerm:(BOOL)alert {
     self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    [[API sharedAPI] sendSearchTerm:textField.text withCallback:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"Sent search term metric");
-        } else {
-            NSLog(@"Failed to send search term metric");
-        }
-    }];
     
     [self.view endEditing:YES];
     if ([self.searchBox.text length] == 0) {
@@ -305,6 +299,13 @@
     } else {
         [self search:self.searchBox.text];
         [self setBackgroundColorForSearchBox];
+        [[API sharedAPI] sendSearchTerm:textField.text withCallback:^(BOOL success, NSError *error) {
+            if (success) {
+                NSLog(@"Sent search term metric");
+            } else {
+                NSLog(@"Failed to send search term metric");
+            }
+        }];
     }
 }
 
@@ -661,11 +662,15 @@
             // set self.playerAlreadyStartedPlayingForThisSong to True!
             self.playerAlreadyStartedPlayingForThisSong = YES;
             NSLog(@"Set playerAlreadyStartedPlayingForThisSong to TRUE");
-            }
+        }
         
-            // TODO: Have access to the selected trackview here!
+        // Show Song Clip buttons when user is playing a song
         SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
-        trackView.hidden = YES;
+        YSTrack *track = self.songs[self.carousel.currentItemIndex];
+        trackView.songVersionOneButton.hidden = NO;
+        trackView.songVersionTwoButton.hidden = NO;
+        trackView.songVersionBackground.hidden = NO;
+        track.songVersionButtonsAreShowing = YES;
     }
     
     if (state == STKAudioPlayerStateBuffering) {

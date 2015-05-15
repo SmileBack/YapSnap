@@ -264,7 +264,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="ety-tA-YD8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="43"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="45"/>
                                 <color key="textColor" red="0.93333333330000001" green="0.95686274510000002" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -285,7 +285,7 @@
                                     <constraint firstAttribute="height" constant="21" id="MGO-gJ-im6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="textColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="with Music" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qF-kW-NZI">
@@ -1240,7 +1240,7 @@
                                     <constraint firstAttribute="width" constant="271" id="S7l-1Y-cCy"/>
                                     <constraint firstAttribute="height" constant="220" id="kBr-mr-kgh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="52"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="29"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1970,35 +1970,29 @@ Type it here!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Microphone_White2.png" translatesAutoresizingMaskIntoConstraints="NO" id="v0o-hk-bRQ">
-                                <rect key="frame" x="32" y="180" width="256" height="96"/>
+                                <rect key="frame" x="32" y="105" width="256" height="96"/>
                             </imageView>
                             <view hidden="YES" alpha="0.49999999999999961" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jo4-Xs-jwF">
                                 <rect key="frame" x="0.0" y="226" width="320" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhM-aB-1Ig" customClass="ZLSinusWaveView">
-                                <rect key="frame" x="0.0" y="5" width="320" height="140"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vhM-aB-1Ig" customClass="ZLSinusWaveView">
+                                <rect key="frame" x="80" y="90" width="160" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="o9C-Wa-YvF"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="vhM-aB-1Ig" secondAttribute="centerX" id="6vP-BR-0gf"/>
                             <constraint firstItem="v0o-hk-bRQ" firstAttribute="height" secondItem="3lk-k2-w1W" secondAttribute="height" multiplier="0.3" id="IKM-by-u5z"/>
-                            <constraint firstItem="vhM-aB-1Ig" firstAttribute="width" secondItem="3lk-k2-w1W" secondAttribute="width" id="SVf-lD-jFp"/>
-                            <constraint firstItem="vhM-aB-1Ig" firstAttribute="top" secondItem="3lk-k2-w1W" secondAttribute="topMargin" constant="5" id="Yfw-mc-oev"/>
                             <constraint firstAttribute="centerX" secondItem="v0o-hk-bRQ" secondAttribute="centerX" id="duN-UP-9L5"/>
-                            <constraint firstItem="v0o-hk-bRQ" firstAttribute="top" secondItem="e15-6z-nCE" secondAttribute="bottom" constant="160" id="rmR-aL-oss"/>
+                            <constraint firstItem="v0o-hk-bRQ" firstAttribute="top" secondItem="e15-6z-nCE" secondAttribute="bottom" constant="85" id="rmR-aL-oss"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="320"/>
                     <connections>
-                        <outlet property="microphone" destination="v0o-hk-bRQ" id="Z4i-Gp-vEh"/>
+                        <outlet property="microphoneView" destination="v0o-hk-bRQ" id="5av-t2-S6U"/>
                         <outlet property="sinusWaveView" destination="vhM-aB-1Ig" id="1Yb-5F-fNy"/>
                     </connections>
                 </viewController>
@@ -2056,8 +2050,8 @@ Type it here!</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Q0Z-rg-Tpo"/>
-        <segue reference="AEp-MY-7pq"/>
         <segue reference="A1q-1y-Edd"/>
         <segue reference="0bM-75-hD3"/>
+        <segue reference="czb-n6-hbf"/>
     </inferredMetricsTieBreakers>
 </document>

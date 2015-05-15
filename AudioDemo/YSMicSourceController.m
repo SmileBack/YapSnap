@@ -9,14 +9,14 @@
 #import "YSMicSourceController.h"
 #import <AudioToolbox/AudioToolbox.h> // IS THIS NECESSARY HERE? Added this for short sound feature. If not necessary, remove framework
 #import "EZAudio.h"
-#import "ZLSinusWaveView.h"
+
+#define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
 
 @interface YSMicSourceController ()<EZMicrophoneDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *microphoneView;
 @property (nonatomic, strong) AVAudioPlayer *player;
 @property (nonatomic, strong) EZMicrophone* microphone;
 @property (nonatomic, strong) EZRecorder* recorder;
-@property (weak, nonatomic) IBOutlet ZLSinusWaveView *sinusWaveView;
 
 @end
 
@@ -24,11 +24,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Mic Page"];
 
     [self setupRecorder];
+    
+    [self setupNotifications];
     
     UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMicrophoneImage)];
     tapped.numberOfTapsRequired = 1;
@@ -42,7 +43,39 @@
     self.sinusWaveView.backgroundColor = THEME_BACKGROUND_COLOR;
     self.sinusWaveView.color           = [UIColor whiteColor];
     self.sinusWaveView.plotType        = EZPlotTypeBuffer;
-    self.sinusWaveView.maxAmplitude = 3/10.0;
+    self.sinusWaveView.maxAmplitude = 8.0/10.0;
+    self.sinusWaveView.idleAmplitude = 1;
+    //self.sinusWaveView.waveWidth = 10;
+    self.sinusWaveView.density = 1;
+    //self.sinusWaveView.phaseShift = 2;
+    
+    self.sinusWaveView.alpha = 0;
+    //self.navigationItem.titleView = self.sinusWaveView;
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.microphoneView.alpha = 1;
+    self.sinusWaveView.alpha = 0;
+}
+
+- (void) setupNotifications {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+    [center addObserverForName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [UIView animateWithDuration:.1
+                                              delay:0
+                                            options:UIViewAnimationOptionCurveEaseOut
+                                         animations:^{
+                                             self.microphoneView.alpha = 1;
+                                             self.sinusWaveView.alpha = 0;
+                                         }
+                                         completion:nil];
+                    }];
 }
 
 - (void)tappedMicrophoneImage {
@@ -109,9 +142,13 @@ withNumberOfChannels:(UInt32)numberOfChannels {
                                        nil];
             NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
             
-            self.recorder = [EZRecorder recorderWithDestinationURL:outputFileURL
-                                                      sourceFormat:self.microphone.audioStreamBasicDescription
-                                               destinationFileType:EZRecorderFileTypeM4A];
+            if (!self.recorder) {
+                NSLog(@"CREATE RECORDER");
+                self.recorder = [EZRecorder recorderWithDestinationURL:outputFileURL
+                                                          sourceFormat:self.microphone.audioStreamBasicDescription
+                                                   destinationFileType:EZRecorderFileTypeM4A];
+            }
+            
             [self.microphone startFetchingAudio];
             
             AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -119,7 +156,8 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
             
-            self.microphoneView.image = [UIImage imageNamed:@"Microphone_Gray2.png"];
+            self.microphoneView.alpha = 0;
+            self.sinusWaveView.alpha = 1;
             
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Recorded Voice"];
@@ -142,6 +180,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 - (void) stopAudioCapture:(float)elapsedTime
 {
     [self.microphone stopFetchingAudio];
+    NSLog(@"DESTROY RECORDER");
     [self.recorder closeAudioFile];
     self.recorder = nil;
     
