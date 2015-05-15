@@ -133,7 +133,7 @@
 
 - (IBAction) didTapResetButton {
     [self resetUI];
-    double delay = .4;
+    double delay = .1;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self showSearchBox];
         [self.searchBox becomeFirstResponder];
@@ -828,7 +828,7 @@
 
 - (void) showSearchBox
 {
-    [UIView animateWithDuration:.3
+    [UIView animateWithDuration:.1
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
@@ -844,7 +844,7 @@
 - (void) resetUI {
     self.songs = nil;
 
-    [UIView animateWithDuration:.3
+    [UIView animateWithDuration:.05
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
