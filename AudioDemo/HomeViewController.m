@@ -117,11 +117,11 @@
 }
 
 - (void) styleButtons {
-    self.micButton.layer.cornerRadius = 60;
+    self.micButton.layer.cornerRadius = 65;
     self.micButton.layer.borderWidth = 1;
     self.micButton.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.musicButton.layer.cornerRadius = 60;
+    self.musicButton.layer.cornerRadius = 65;
     self.musicButton.layer.borderWidth = 1;
     self.musicButton.layer.borderColor = [UIColor whiteColor].CGColor;
 }
@@ -167,7 +167,7 @@
 
 - (void) showWelcomePopup {
     NSLog(@"tapped Welcome Popup");
-    double delay = 1;
+    double delay = .5;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.welcomePopupVC = [[WelcomePopupViewController alloc] initWithNibName:@"WelcomePopupViewController" bundle:nil];
         [self presentPopupViewController:self.welcomePopupVC animationType:MJPopupViewAnimationSlideTopTop];

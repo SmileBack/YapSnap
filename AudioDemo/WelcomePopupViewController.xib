@@ -46,8 +46,12 @@
                         <action selector="didTapCancelButton" destination="-1" eventType="touchUpInside" id="lnH-n8-gfC"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Balloon20.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yju-Y3-5lf">
-                    <rect key="frame" x="101" y="228" width="59" height="59"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Balloon20.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yju-Y3-5lf">
+                    <rect key="frame" x="101" y="222" width="59" height="59"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="59" id="GBx-GQ-hfZ"/>
+                        <constraint firstAttribute="width" constant="59" id="V6Y-1L-bwf"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -58,6 +62,8 @@
                 <constraint firstItem="4" firstAttribute="centerX" secondItem="7" secondAttribute="centerX" id="17"/>
                 <constraint firstAttribute="centerX" secondItem="7" secondAttribute="centerX" id="7d6-D9-7fK"/>
                 <constraint firstAttribute="centerX" secondItem="4" secondAttribute="centerX" id="DQW-kE-bDS"/>
+                <constraint firstAttribute="bottom" secondItem="Yju-Y3-5lf" secondAttribute="bottom" constant="14" id="WL8-L5-tFZ"/>
+                <constraint firstAttribute="centerX" secondItem="Yju-Y3-5lf" secondAttribute="centerX" id="uhl-gh-k0I"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="183" y="237.5"/>
