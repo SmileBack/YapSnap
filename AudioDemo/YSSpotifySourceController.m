@@ -90,11 +90,18 @@
                         [self.searchBox becomeFirstResponder];
                     }];
     
-    [center addObserverForName:TAPPED_DICE_BUTTON
+    [center addObserverForName:TAPPED_DICE_BUTTON_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self searchGenre];
+                        if (!self.didTapDiceButtonForFirstTime) {
+                            double delay = .1;
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                [[YTNotifications sharedNotifications] showNotificationText:@"Random Search"];
+                                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_TAP_DICE_BUTTON];
+                            });
+                        }
                     }];
 }
 
@@ -804,9 +811,9 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
 }
 
-- (BOOL) didTapShuffleButtonForFirstTime
+- (BOOL) didTapDiceButtonForFirstTime
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SHUFFLE_BUTTON];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_TAP_DICE_BUTTON];
 }
 
 - (BOOL) didScrollCarousel
@@ -817,23 +824,6 @@
 - (BOOL) didViewSpotifySongs
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_VIEW_SPOTIFY_SONGS];
-}
-
-- (void) tappedShuffleView {
-    [self didTapShuffleButton];
-}
-
-- (IBAction) didTapShuffleButton {
-    if (self.searchBox.isFirstResponder) {
-        [self.view endEditing:YES];
-    }
-    
-    if (!self.didTapShuffleButtonForFirstTime) {
-        [[YTNotifications sharedNotifications] showNotificationText:@"New Artist"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SHUFFLE_BUTTON];
-    }
-    
-    //[self searchGenre:self.selectedGenre]; TODO: Uncomment this
 }
 
 - (void) showSearchBox

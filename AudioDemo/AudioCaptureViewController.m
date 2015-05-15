@@ -197,7 +197,7 @@ static const float TIMER_INTERVAL = .01;
 - (void)randomSearchPressed
 {
     NSLog(@"Tapped Right Button");
-    [[NSNotificationCenter defaultCenter] postNotificationName:TAPPED_DICE_BUTTON object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TAPPED_DICE_BUTTON_NOTIFICATION object:nil];
 }
 
 -(BOOL) internetIsNotReachable

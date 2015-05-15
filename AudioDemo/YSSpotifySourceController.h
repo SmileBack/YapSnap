@@ -18,10 +18,10 @@
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
 #define DISMISS_KEYBOARD_NOTIFICATION @"DismissKeyboardNotification"
 #define TAPPED_PROGRESS_BAR_NOTIFICATION @"TappedProgressBarNotification"
-#define TAPPED_SHUFFLE_BUTTON @"yaptap.TappedShuffleButtonKey8"
+#define DID_TAP_DICE_BUTTON @"yaptap.DidTapDiceButtonKey9"
 #define SCROLLED_CAROUSEL @"yaptap.ScrolledCarouselKey7"
 #define DID_VIEW_SPOTIFY_SONGS @"yaptap.DidViewSpotifySongs"
-#define TAPPED_DICE_BUTTON @"yaptap.TappedDiceButton"
+#define TAPPED_DICE_BUTTON_NOTIFICATION @"yaptap.TappedDiceButtonNotification"
 #define TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION @"yaptap.TappedAlbumCoverFirstTimeNotification4"
 //#define SEARCHED_FOR_SONG_NOTIFICATION @"yaptap.SearchedForSongNotification"
 
