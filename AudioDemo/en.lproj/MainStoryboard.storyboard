@@ -1970,18 +1970,28 @@ Type it here!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Microphone_White2.png" translatesAutoresizingMaskIntoConstraints="NO" id="v0o-hk-bRQ">
-                                <rect key="frame" x="32" y="95" width="256" height="96"/>
+                                <rect key="frame" x="32" y="180" width="256" height="96"/>
                             </imageView>
                             <view hidden="YES" alpha="0.49999999999999961" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jo4-Xs-jwF">
                                 <rect key="frame" x="0.0" y="226" width="320" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhM-aB-1Ig" customClass="ZLSinusWaveView">
+                                <rect key="frame" x="0.0" y="5" width="320" height="140"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="o9C-Wa-YvF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="vhM-aB-1Ig" secondAttribute="centerX" id="6vP-BR-0gf"/>
                             <constraint firstItem="v0o-hk-bRQ" firstAttribute="height" secondItem="3lk-k2-w1W" secondAttribute="height" multiplier="0.3" id="IKM-by-u5z"/>
+                            <constraint firstItem="vhM-aB-1Ig" firstAttribute="width" secondItem="3lk-k2-w1W" secondAttribute="width" id="SVf-lD-jFp"/>
+                            <constraint firstItem="vhM-aB-1Ig" firstAttribute="top" secondItem="3lk-k2-w1W" secondAttribute="topMargin" constant="5" id="Yfw-mc-oev"/>
                             <constraint firstAttribute="centerX" secondItem="v0o-hk-bRQ" secondAttribute="centerX" id="duN-UP-9L5"/>
-                            <constraint firstItem="v0o-hk-bRQ" firstAttribute="top" secondItem="e15-6z-nCE" secondAttribute="bottom" constant="75" id="rmR-aL-oss"/>
+                            <constraint firstItem="v0o-hk-bRQ" firstAttribute="top" secondItem="e15-6z-nCE" secondAttribute="bottom" constant="160" id="rmR-aL-oss"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -1989,11 +1999,29 @@ Type it here!</string>
                     <size key="freeformSize" width="320" height="320"/>
                     <connections>
                         <outlet property="microphone" destination="v0o-hk-bRQ" id="Z4i-Gp-vEh"/>
+                        <outlet property="sinusWaveView" destination="vhM-aB-1Ig" id="1Yb-5F-fNy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYb-Fr-0gL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1837" y="-2570"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="7Og-A9-Nqw">
+            <objects>
+                <viewController id="6Sx-vq-rTr" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Hy-Vs-BCS"/>
+                        <viewControllerLayoutGuide type="bottom" id="pSg-mE-SIN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t6D-LJ-uAm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FCF-xp-Inm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

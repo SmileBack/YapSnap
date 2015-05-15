@@ -8,12 +8,15 @@
 
 #import "YSMicSourceController.h"
 #import <AudioToolbox/AudioToolbox.h> // IS THIS NECESSARY HERE? Added this for short sound feature. If not necessary, remove framework
+#import "EZAudio.h"
+#import "ZLSinusWaveView.h"
 
-@interface YSMicSourceController ()
-@property (weak, nonatomic) IBOutlet UIImageView *microphone;
-@property (nonatomic, strong) AVAudioRecorder *recorder;
+@interface YSMicSourceController ()<EZMicrophoneDelegate>
+@property (weak, nonatomic) IBOutlet UIImageView *microphoneView;
 @property (nonatomic, strong) AVAudioPlayer *player;
-@property (assign) SystemSoundID soundID; // Added this for short sound feature
+@property (nonatomic, strong) EZMicrophone* microphone;
+@property (nonatomic, strong) EZRecorder* recorder;
+@property (weak, nonatomic) IBOutlet ZLSinusWaveView *sinusWaveView;
 
 @end
 
@@ -29,7 +32,17 @@
     
     UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMicrophoneImage)];
     tapped.numberOfTapsRequired = 1;
-    [self.microphone addGestureRecognizer:tapped];
+    [self.microphoneView addGestureRecognizer:tapped];
+    
+    // Sinus wave view
+    
+    self.sinusWaveView.plotType        = EZPlotTypeBuffer;
+    self.sinusWaveView.shouldFill      = NO;
+    self.sinusWaveView.shouldMirror    = YES;
+    self.sinusWaveView.backgroundColor = THEME_BACKGROUND_COLOR;
+    self.sinusWaveView.color           = [UIColor whiteColor];
+    self.sinusWaveView.plotType        = EZPlotTypeBuffer;
+    self.sinusWaveView.maxAmplitude = 3/10.0;
 }
 
 - (void)tappedMicrophoneImage {
@@ -38,11 +51,6 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
     });
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (YapBuilder *) getYapBuilder
@@ -62,34 +70,26 @@
     [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     
     // Define the recorder setting
-    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
-    
-    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
-
-    // Set the audio file
-    NSArray *pathComponents = [NSArray arrayWithObjects:
-                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                               @"MyAudioMemo.m4a",
-                               nil];
-    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-
-    // Initiate and prepare the recorder
-    self.recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:nil];
-    self.recorder.delegate = self;
-    self.recorder.meteringEnabled = YES;
-    [self.recorder prepareToRecord];
+    self.microphone = [EZMicrophone microphoneWithDelegate:self];
 }
 
-- (void) playMicNotificationSound
-{
-    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"sound1" ofType:@"wav"];
+#pragma mark - EZMicrophoneDelegate
 
-    NSURL *soundUrl = [NSURL fileURLWithPath:soundPath];
+-(void)microphone:(EZMicrophone *)microphone
+ hasAudioReceived:(float **)buffer
+   withBufferSize:(UInt32)bufferSize
+withNumberOfChannels:(UInt32)numberOfChannels {
+    dispatch_async(dispatch_get_main_queue(),^{
+        [self.sinusWaveView updateBuffer:buffer[0] withBufferSize:bufferSize];
+    });
+}
 
-    AudioServicesCreateSystemSoundID ((__bridge CFURLRef)soundUrl, &_soundID);
-    AudioServicesPlaySystemSound(self.soundID);
+-(void)microphone:(EZMicrophone *)microphone
+    hasBufferList:(AudioBufferList *)bufferList
+   withBufferSize:(UInt32)bufferSize
+withNumberOfChannels:(UInt32)numberOfChannels {
+        [self.recorder appendDataFromBufferList:bufferList
+                                 withBufferSize:bufferSize];
 }
 
 #pragma mark - Public API Methods
@@ -98,21 +98,28 @@
     [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
         if (granted) {
             NSLog(@"Microphone permission granted");
-            [self playMicNotificationSound];
-            
             // Stop the audio player before recording
             if (self.player.playing) {
                 [self.player stop];
             }
             
-            [self.recorder record];
+            NSArray *pathComponents = [NSArray arrayWithObjects:
+                                       [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                                       @"MyAudioMemo.m4a",
+                                       nil];
+            NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+            
+            self.recorder = [EZRecorder recorderWithDestinationURL:outputFileURL
+                                                      sourceFormat:self.microphone.audioStreamBasicDescription
+                                               destinationFileType:EZRecorderFileTypeM4A];
+            [self.microphone startFetchingAudio];
             
             AVAudioSession *session = [AVAudioSession sharedInstance];
             [session setActive:YES error:nil];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
             
-            self.microphone.image = [UIImage imageNamed:@"Microphone_Gray2.png"];
+            self.microphoneView.image = [UIImage imageNamed:@"Microphone_Gray2.png"];
             
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Recorded Voice"];
@@ -134,35 +141,32 @@
 
 - (void) stopAudioCapture:(float)elapsedTime
 {
-    [self.recorder stop];
+    [self.microphone stopFetchingAudio];
+    [self.recorder closeAudioFile];
+    self.recorder = nil;
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:NO error:nil];
     
-    self.microphone.image = [UIImage imageNamed:@"Microphone_White2.png"];
+    self.microphoneView.image = [UIImage imageNamed:@"Microphone_White2.png"];
 }
 
-- (void) startPlayback //Play button isn't in the UI currently
-{
-    if (!self.recorder.recording){
-        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recorder.url error:nil];
-        [self.player setDelegate:self];
-        
-        self.player.enableRate = YES;
-        self.player.rate = 2.0f;
-        
-        [self.player play];
-    }
-}
+//- (void) startPlayback //Play button isn't in the UI currently
+//{
+//    if (!self.recorder.recording){
+//        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recorder.url error:nil];
+//        [self.player setDelegate:self];
+//        
+//        self.player.enableRate = YES;
+//        self.player.rate = 2.0f;
+//        
+//        [self.player play];
+//    }
+//}
 
 - (void) resetUI
 {
     // Nothing for now.
-}
-
-#pragma mark - AVAudioRecorderDelegate
-- (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
-    //[[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_END_NOTIFICATION object:nil];
 }
 
 #pragma mark - AVAudioPlayerDelegate

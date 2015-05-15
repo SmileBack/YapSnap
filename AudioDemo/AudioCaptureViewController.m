@@ -109,10 +109,8 @@ static const float TIMER_INTERVAL = .01;
 -(void) startCountdownTimer
 {
     NSLog(@"Start");
-    if (countdownTimer){
-        [self stopCountdownTimer];
-    }
-    countdownTimer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countdownTimerFired) userInfo:nil repeats:YES];
+    [countdownTimer invalidate];
+    countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countdownTimerFired) userInfo:nil repeats:YES];
 }
 
 -(void) stopCountdownTimer {

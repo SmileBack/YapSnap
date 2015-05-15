@@ -664,6 +664,8 @@
             }
         
             // TODO: Have access to the selected trackview here!
+        SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
+        trackView.hidden = YES;
     }
     
     if (state == STKAudioPlayerStateBuffering) {

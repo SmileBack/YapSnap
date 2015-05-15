@@ -33,6 +33,20 @@
 		37D413CC19D230D000021548 /* ArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D413CB19D230D000021548 /* ArrowWhite.png */; };
 		37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */; };
 		780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 780211611AAB8EE000A71889 /* FriendsIcon@2x.png */; };
+		780D43221B0646770060DAED /* AEFloatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D430B1B0646770060DAED /* AEFloatConverter.m */; };
+		780D43231B0646770060DAED /* EZAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D430D1B0646770060DAED /* EZAudio.m */; };
+		780D43241B0646770060DAED /* EZAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D430F1B0646770060DAED /* EZAudioFile.m */; };
+		780D43251B0646770060DAED /* EZAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D43111B0646770060DAED /* EZAudioPlayer.m */; };
+		780D43261B0646770060DAED /* EZAudioPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D43131B0646770060DAED /* EZAudioPlot.m */; };
+		780D43271B0646770060DAED /* EZAudioPlotGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D43151B0646770060DAED /* EZAudioPlotGL.m */; };
+		780D43281B0646770060DAED /* EZAudioPlotGLKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D43171B0646770060DAED /* EZAudioPlotGLKViewController.m */; };
+		780D43291B0646770060DAED /* EZMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D43191B0646770060DAED /* EZMicrophone.m */; };
+		780D432A1B0646770060DAED /* EZOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D431B1B0646770060DAED /* EZOutput.m */; };
+		780D432B1B0646770060DAED /* EZPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D431D1B0646770060DAED /* EZPlot.m */; };
+		780D432C1B0646770060DAED /* EZRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D431F1B0646770060DAED /* EZRecorder.m */; };
+		780D432D1B0646770060DAED /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 780D43201B0646770060DAED /* TPCircularBuffer.c */; };
+		780D43301B064A3F0060DAED /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 780D432F1B064A3F0060DAED /* GLKit.framework */; };
+		780D43331B064BA00060DAED /* ZLSinusWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D43321B064BA00060DAED /* ZLSinusWaveView.m */; };
 		781904801AF1E2A300196DFF /* ResetButton30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */; };
 		781904821AF1E3CE00196DFF /* ResetButton40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 781904811AF1E3CE00196DFF /* ResetButton40@2x.png */; };
 		781904841AF1F27700196DFF /* YapsButtonNoYaps5.png in Resources */ = {isa = PBXBuildFile; fileRef = 781904831AF1F27600196DFF /* YapsButtonNoYaps5.png */; };
@@ -280,6 +294,33 @@
 		37E122E51A4011560073684D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		41ED5961C23D704BCAF364D2 /* libPods-YapTap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapTap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		780211611AAB8EE000A71889 /* FriendsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FriendsIcon@2x.png"; sourceTree = "<group>"; };
+		780D430A1B0646770060DAED /* AEFloatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEFloatConverter.h; sourceTree = "<group>"; };
+		780D430B1B0646770060DAED /* AEFloatConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEFloatConverter.m; sourceTree = "<group>"; };
+		780D430C1B0646770060DAED /* EZAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudio.h; sourceTree = "<group>"; };
+		780D430D1B0646770060DAED /* EZAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudio.m; sourceTree = "<group>"; };
+		780D430E1B0646770060DAED /* EZAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioFile.h; sourceTree = "<group>"; };
+		780D430F1B0646770060DAED /* EZAudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudioFile.m; sourceTree = "<group>"; };
+		780D43101B0646770060DAED /* EZAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioPlayer.h; sourceTree = "<group>"; };
+		780D43111B0646770060DAED /* EZAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudioPlayer.m; sourceTree = "<group>"; };
+		780D43121B0646770060DAED /* EZAudioPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioPlot.h; sourceTree = "<group>"; };
+		780D43131B0646770060DAED /* EZAudioPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudioPlot.m; sourceTree = "<group>"; };
+		780D43141B0646770060DAED /* EZAudioPlotGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioPlotGL.h; sourceTree = "<group>"; };
+		780D43151B0646770060DAED /* EZAudioPlotGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudioPlotGL.m; sourceTree = "<group>"; };
+		780D43161B0646770060DAED /* EZAudioPlotGLKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioPlotGLKViewController.h; sourceTree = "<group>"; };
+		780D43171B0646770060DAED /* EZAudioPlotGLKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudioPlotGLKViewController.m; sourceTree = "<group>"; };
+		780D43181B0646770060DAED /* EZMicrophone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZMicrophone.h; sourceTree = "<group>"; };
+		780D43191B0646770060DAED /* EZMicrophone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZMicrophone.m; sourceTree = "<group>"; };
+		780D431A1B0646770060DAED /* EZOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZOutput.h; sourceTree = "<group>"; };
+		780D431B1B0646770060DAED /* EZOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZOutput.m; sourceTree = "<group>"; };
+		780D431C1B0646770060DAED /* EZPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZPlot.h; sourceTree = "<group>"; };
+		780D431D1B0646770060DAED /* EZPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZPlot.m; sourceTree = "<group>"; };
+		780D431E1B0646770060DAED /* EZRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZRecorder.h; sourceTree = "<group>"; };
+		780D431F1B0646770060DAED /* EZRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZRecorder.m; sourceTree = "<group>"; };
+		780D43201B0646770060DAED /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
+		780D43211B0646770060DAED /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
+		780D432F1B064A3F0060DAED /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		780D43311B064BA00060DAED /* ZLSinusWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZLSinusWaveView.h; path = External/ZLSinusWaveView/ZLSinusWaveView.h; sourceTree = SOURCE_ROOT; };
+		780D43321B064BA00060DAED /* ZLSinusWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZLSinusWaveView.m; path = External/ZLSinusWaveView/ZLSinusWaveView.m; sourceTree = SOURCE_ROOT; };
 		7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton30@2x.png"; sourceTree = "<group>"; };
 		781904811AF1E3CE00196DFF /* ResetButton40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton40@2x.png"; sourceTree = "<group>"; };
 		781904831AF1F27600196DFF /* YapsButtonNoYaps5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsButtonNoYaps5.png; sourceTree = "<group>"; };
@@ -548,6 +589,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				780D43301B064A3F0060DAED /* GLKit.framework in Frameworks */,
 				FC0642D91A9D68FC00E3D60F /* SystemConfiguration.framework in Frameworks */,
 				7828A8DC1A846C0C00BAA609 /* MessageUI.framework in Frameworks */,
 				787C84DB1A76C77D005D80D5 /* AudioToolbox.framework in Frameworks */,
@@ -680,6 +722,46 @@
 				37D413BA19D21A1F00021548 /* FontAwesome.ttf */,
 			);
 			path = resources;
+			sourceTree = "<group>";
+		};
+		780D43091B0646670060DAED /* EZAudio */ = {
+			isa = PBXGroup;
+			children = (
+				780D430A1B0646770060DAED /* AEFloatConverter.h */,
+				780D430B1B0646770060DAED /* AEFloatConverter.m */,
+				780D430C1B0646770060DAED /* EZAudio.h */,
+				780D430D1B0646770060DAED /* EZAudio.m */,
+				780D430E1B0646770060DAED /* EZAudioFile.h */,
+				780D430F1B0646770060DAED /* EZAudioFile.m */,
+				780D43101B0646770060DAED /* EZAudioPlayer.h */,
+				780D43111B0646770060DAED /* EZAudioPlayer.m */,
+				780D43121B0646770060DAED /* EZAudioPlot.h */,
+				780D43131B0646770060DAED /* EZAudioPlot.m */,
+				780D43141B0646770060DAED /* EZAudioPlotGL.h */,
+				780D43151B0646770060DAED /* EZAudioPlotGL.m */,
+				780D43161B0646770060DAED /* EZAudioPlotGLKViewController.h */,
+				780D43171B0646770060DAED /* EZAudioPlotGLKViewController.m */,
+				780D43181B0646770060DAED /* EZMicrophone.h */,
+				780D43191B0646770060DAED /* EZMicrophone.m */,
+				780D431A1B0646770060DAED /* EZOutput.h */,
+				780D431B1B0646770060DAED /* EZOutput.m */,
+				780D431C1B0646770060DAED /* EZPlot.h */,
+				780D431D1B0646770060DAED /* EZPlot.m */,
+				780D431E1B0646770060DAED /* EZRecorder.h */,
+				780D431F1B0646770060DAED /* EZRecorder.m */,
+				780D43201B0646770060DAED /* TPCircularBuffer.c */,
+				780D43211B0646770060DAED /* TPCircularBuffer.h */,
+			);
+			name = EZAudio;
+			sourceTree = "<group>";
+		};
+		780D432E1B0647E50060DAED /* ZLSinusWaveView */ = {
+			isa = PBXGroup;
+			children = (
+				780D43311B064BA00060DAED /* ZLSinusWaveView.h */,
+				780D43321B064BA00060DAED /* ZLSinusWaveView.m */,
+			);
+			name = ZLSinusWaveView;
 			sourceTree = "<group>";
 		};
 		782D133E1ACB49D9007C8499 /* Balloons & Reset Button */ = {
@@ -1067,6 +1149,7 @@
 		F44B0C4116DA404700E6CD88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				780D432F1B064A3F0060DAED /* GLKit.framework */,
 				FC0642D81A9D68FC00E3D60F /* SystemConfiguration.framework */,
 				787A6D941A4DD8A2001551C6 /* Crashlytics.framework */,
 				F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */,
@@ -1167,6 +1250,8 @@
 		FC0C1D4D1A46065B00B148AB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				780D432E1B0647E50060DAED /* ZLSinusWaveView */,
+				780D43091B0646670060DAED /* EZAudio */,
 				78B252311AF0AB4400353711 /* FBShimmering */,
 				785393641AD9C04700C6BEA7 /* MJPopup */,
 				785393631AD9C03A00C6BEA7 /* Phone Number Checker */,
@@ -1609,6 +1694,7 @@
 				FC0595821A6D87A700FCCED2 /* ContactManager.m in Sources */,
 				7853936E1AD9C17500C6BEA7 /* WelcomePopupViewController.m in Sources */,
 				FCFCE4511AF528100094926E /* YTBuilder.m in Sources */,
+				780D43271B0646770060DAED /* EZAudioPlotGL.m in Sources */,
 				7840480B1AB7334A00FE6D93 /* NextButton.m in Sources */,
 				FCD2577A1ABA60AE00981E5D /* UIViewController+Navigation.m in Sources */,
 				78A569A31A73227200818A17 /* YSColorPicker.m in Sources */,
@@ -1619,6 +1705,9 @@
 				FC52C1B41A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m in Sources */,
 				FC52C1B01A786F0F00D85FA8 /* RecentContact.m in Sources */,
 				787C84DF1A7732E4005D80D5 /* PhoneNumberChecker.m in Sources */,
+				780D43281B0646770060DAED /* EZAudioPlotGLKViewController.m in Sources */,
+				780D432C1B0646770060DAED /* EZRecorder.m in Sources */,
+				780D432B1B0646770060DAED /* EZPlot.m in Sources */,
 				FCFCE45E1AF549C20094926E /* BlockFriendAlertView.m in Sources */,
 				37D413CA19D22B5E00021548 /* EnterNameEmailViewController.m in Sources */,
 				3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */,
@@ -1628,10 +1717,12 @@
 				FCAA32901A8C2FD900FDCC78 /* UserCell.m in Sources */,
 				FC1E89BE1A4B9518007A8CDA /* PlaybackVC.m in Sources */,
 				787EC5E31AC9D0AD000C5539 /* JEProgressView.m in Sources */,
+				780D43291B0646770060DAED /* EZMicrophone.m in Sources */,
 				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,
 				FCEF99361A6D6B22000FDE4C /* CustomizeYapViewController.m in Sources */,
 				FCBB96FF1A7D4C97003D5F24 /* YSUser.m in Sources */,
 				FCBB97061A7D6CDF003D5F24 /* EditFieldViewController.m in Sources */,
+				780D43221B0646770060DAED /* AEFloatConverter.m in Sources */,
 				FCFCE4661AF568000094926E /* SpotifyArtistFactory.m in Sources */,
 				FCFCE4541AF529030094926E /* AddFriendsBuilder.m in Sources */,
 				FCE234491AAB749E00C1EDB0 /* YTNotifications.m in Sources */,
@@ -1639,6 +1730,7 @@
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
 				FC1E89B81A4B852C007A8CDA /* SpotifyTrackView.m in Sources */,
+				780D43251B0646770060DAED /* EZAudioPlayer.m in Sources */,
 				FCEF99401A6D7BF2000FDE4C /* YapCell.m in Sources */,
 				FC029EA21A96BC190013B866 /* YSContact.m in Sources */,
 				FCFCE4581AF5413D0094926E /* AddFriendAlertView.m in Sources */,
@@ -1660,15 +1752,21 @@
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
 				7853936A1AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.m in Sources */,
 				78B252301AF0A2E400353711 /* FBShimmeringView.m in Sources */,
+				780D43241B0646770060DAED /* EZAudioFile.m in Sources */,
+				780D43231B0646770060DAED /* EZAudio.m in Sources */,
 				37D413BD19D21A1F00021548 /* BButton.m in Sources */,
 				FC342F381A5099D200518765 /* OpenInSpotifyAlertView.m in Sources */,
 				F44B0C5F16DA404700E6CD88 /* AudioCaptureViewController.m in Sources */,
 				FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */,
 				785393691AD9C07C00C6BEA7 /* MJPopupBackgroundView.m in Sources */,
 				FCD885AE1AC8A2A0007729CC /* YapsCache.m in Sources */,
+				780D43331B064BA00060DAED /* ZLSinusWaveView.m in Sources */,
 				FC52C1AD1A785D2800D85FA8 /* YSPushManager.m in Sources */,
+				780D432D1B0646770060DAED /* TPCircularBuffer.c in Sources */,
 				37BF0DDF19E8FCF70077B74F /* YapsViewController.m in Sources */,
+				780D43261B0646770060DAED /* EZAudioPlot.m in Sources */,
 				FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */,
+				780D432A1B0646770060DAED /* EZOutput.m in Sources */,
 				FCAFD5A31A8AE6410030B923 /* UIViewController+Alerts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
