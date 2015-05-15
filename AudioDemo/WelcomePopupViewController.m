@@ -18,11 +18,11 @@
     CGFloat borderWidth = 1.0f;
     
     if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
-        self.view.frame = CGRectMake(0,0,270,260);
+        self.view.frame = CGRectMake(0,0,270,295);
     } else if (IS_IPHONE_6_SIZE) {
-        self.view.frame = CGRectMake(0,0,300,265);
+        self.view.frame = CGRectMake(0,0,300,295);
     } else if (IS_IPHONE_6_PLUS_SIZE) {
-        self.view.frame = CGRectMake(0,0,340,265);
+        self.view.frame = CGRectMake(0,0,340,295);
     }
     self.view.layer.borderColor = [UIColor whiteColor].CGColor;
     self.view.layer.borderWidth = borderWidth;

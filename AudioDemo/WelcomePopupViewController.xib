@@ -13,11 +13,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="260" height="260"/>
+            <rect key="frame" x="0.0" y="0.0" width="260" height="295"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                    <rect key="frame" x="54" y="45" width="152" height="49"/>
+                    <rect key="frame" x="54" y="22" width="152" height="49"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="152" id="8"/>
                         <constraint firstAttribute="height" constant="49" id="9"/>
@@ -26,10 +26,10 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We sent you a yap!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                    <rect key="frame" x="16" y="86" width="228" height="58"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YapTap is a fun way to send audio messages!  Record your voice and tap the white balloon." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                    <rect key="frame" x="16" y="74" width="228" height="145"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="58" id="18"/>
+                        <constraint firstAttribute="height" constant="145" id="18"/>
                         <constraint firstAttribute="width" constant="228" id="19"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
@@ -46,41 +46,26 @@
                         <action selector="didTapCancelButton" destination="-1" eventType="touchUpInside" id="lnH-n8-gfC"/>
                     </connections>
                 </button>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YapsButton3.png" translatesAutoresizingMaskIntoConstraints="NO" id="HNk-zV-Cou">
-                    <rect key="frame" x="58" y="168" width="150" height="73"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Balloon20.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yju-Y3-5lf">
+                    <rect key="frame" x="101" y="228" width="59" height="59"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the gift up top." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="zyy-0g-qBI">
-                    <rect key="frame" x="16" y="116" width="228" height="58"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="58" id="veO-fq-VxW"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="7" firstAttribute="top" secondItem="1" secondAttribute="top" constant="86" id="12"/>
+                <constraint firstItem="7" firstAttribute="top" secondItem="1" secondAttribute="top" constant="74" id="12"/>
                 <constraint firstItem="4" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="15"/>
-                <constraint firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" constant="45" id="16"/>
+                <constraint firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" constant="22" id="16"/>
                 <constraint firstItem="4" firstAttribute="centerX" secondItem="7" secondAttribute="centerX" id="17"/>
                 <constraint firstAttribute="centerX" secondItem="7" secondAttribute="centerX" id="7d6-D9-7fK"/>
                 <constraint firstAttribute="centerX" secondItem="4" secondAttribute="centerX" id="DQW-kE-bDS"/>
-                <constraint firstAttribute="bottom" secondItem="HNk-zV-Cou" secondAttribute="bottom" constant="19" id="IOZ-p0-6nd"/>
-                <constraint firstItem="zyy-0g-qBI" firstAttribute="leading" secondItem="7" secondAttribute="leading" id="NyM-mX-I4E"/>
-                <constraint firstItem="zyy-0g-qBI" firstAttribute="trailing" secondItem="7" secondAttribute="trailing" id="Rzm-2s-4rw"/>
-                <constraint firstItem="HNk-zV-Cou" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="24" id="V8m-Pj-3BC"/>
-                <constraint firstAttribute="centerX" secondItem="HNk-zV-Cou" secondAttribute="centerX" constant="-3" id="cpn-yS-MNa"/>
-                <constraint firstItem="zyy-0g-qBI" firstAttribute="top" secondItem="1" secondAttribute="top" constant="116" id="mIA-XY-HSF"/>
-                <constraint firstItem="HNk-zV-Cou" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="58" id="tKJ-Nd-lsH"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="183" y="237.5"/>
         </view>
     </objects>
     <resources>
+        <image name="Balloon20.png" width="162" height="162"/>
         <image name="CancelImageWhite3.png" width="350" height="350"/>
-        <image name="YapsButton3.png" width="160" height="84"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
