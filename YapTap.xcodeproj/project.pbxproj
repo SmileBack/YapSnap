@@ -105,6 +105,8 @@
 		7857CABE1AFBB43300ADF999 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857CABD1AFBB43300ADF999 /* HomeViewController.m */; };
 		7857CAC11AFBD11200ADF999 /* MusicGenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */; };
 		786192471B06BA5B007279E8 /* MegaphoneWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192461B06BA5B007279E8 /* MegaphoneWhite.png */; };
+		7861924B1B0712F8007279E8 /* megaphone_shutterstock2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861924A1B0712F8007279E8 /* megaphone_shutterstock2.png */; };
+		7861924D1B072077007279E8 /* WhiteCamera100.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861924C1B072077007279E8 /* WhiteCamera100.png */; };
 		78624BDC1B03134000C8E049 /* Dice2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BDB1B03134000C8E049 /* Dice2@2x.png */; };
 		78624BDE1B03158900C8E049 /* Dice3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BDD1B03158900C8E049 /* Dice3@2x.png */; };
 		78624BE01B0316A700C8E049 /* Dice4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BDF1B0316A700C8E049 /* Dice4@2x.png */; };
@@ -388,6 +390,8 @@
 		7857CABF1AFBD11200ADF999 /* MusicGenreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicGenreViewController.h; sourceTree = "<group>"; };
 		7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicGenreViewController.m; sourceTree = "<group>"; };
 		786192461B06BA5B007279E8 /* MegaphoneWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MegaphoneWhite.png; path = "../../../Dropbox/MacBook Pro (New)/YapTap Images/MegaphoneWhite.png"; sourceTree = "<group>"; };
+		7861924A1B0712F8007279E8 /* megaphone_shutterstock2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = megaphone_shutterstock2.png; sourceTree = "<group>"; };
+		7861924C1B072077007279E8 /* WhiteCamera100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCamera100.png; sourceTree = "<group>"; };
 		78624BDB1B03134000C8E049 /* Dice2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice2@2x.png"; sourceTree = "<group>"; };
 		78624BDD1B03158900C8E049 /* Dice3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice3@2x.png"; sourceTree = "<group>"; };
 		78624BDF1B0316A700C8E049 /* Dice4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice4@2x.png"; sourceTree = "<group>"; };
@@ -612,8 +616,10 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7861924C1B072077007279E8 /* WhiteCamera100.png */,
 				786192461B06BA5B007279E8 /* MegaphoneWhite.png */,
 				78624BE51B03BA9100C8E049 /* GuidanceArrowLeft.png */,
+				7861924A1B0712F8007279E8 /* megaphone_shutterstock2.png */,
 				78624BE61B03BA9100C8E049 /* GuidanceArrowRight.png */,
 				78624BDB1B03134000C8E049 /* Dice2@2x.png */,
 				78624BDD1B03158900C8E049 /* Dice3@2x.png */,
@@ -1574,6 +1580,7 @@
 				786E0BE71B00755800005D1D /* Shuffle60.png in Resources */,
 				78439FC21AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png in Resources */,
 				78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */,
+				7861924D1B072077007279E8 /* WhiteCamera100.png in Resources */,
 				781904861AF287C100196DFF /* ResetButton60@2x.png in Resources */,
 				787EC6181ACA245E000C5539 /* OldProgressViewRed@2x.png in Resources */,
 				787EC5FF1ACA068F000C5539 /* BalloonYellow10.png in Resources */,
@@ -1604,6 +1611,7 @@
 				78624C061B04F0CE00C8E049 /* ProgressViewRed@3x.png in Resources */,
 				78439FC01AE77145004CFB5F /* SongVersionOneSelected@3x.png in Resources */,
 				78F1E4111AD2E80A00C2743B /* CameraIcon20.png in Resources */,
+				7861924B1B0712F8007279E8 /* megaphone_shutterstock2.png in Resources */,
 				FC0642D71A9D65E200E3D60F /* Environments.plist in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				78624BDC1B03134000C8E049 /* Dice2@2x.png in Resources */,

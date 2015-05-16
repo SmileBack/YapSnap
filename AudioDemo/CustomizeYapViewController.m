@@ -22,21 +22,23 @@
 @interface CustomizeYapViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet YSRecordProgressView *progressView;
-@property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
 @property (weak, nonatomic) IBOutlet YSColorPicker *colorPicker;
 @property (strong, nonatomic) UIView *progressViewRemainder;
 @property (strong, nonatomic) IBOutlet UIImageView *yapPhoto;
 @property (strong, nonatomic) IBOutlet UILabel *contactLabel;
-@property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (strong, nonatomic) STKAudioPlayer* player;
-@property (strong, nonatomic) IBOutlet UIButton *balloonButton;
 @property (nonatomic) CGFloat pitchShiftValue;
-@property (strong, nonatomic) IBOutlet UIButton *cameraButton;
 @property (strong, nonatomic) IBOutlet UIButton *resetPhotoButton;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (strong, nonatomic) IBOutlet UILabel *commandLabel;
-@property (strong, nonatomic) IBOutlet UIView *voiceChangeView;
 
+@property (strong, nonatomic) IBOutlet NextButton *continueButton;
+@property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
+@property (strong, nonatomic) IBOutlet UIButton *balloonButton;
+@property (strong, nonatomic) IBOutlet UIImageView *balloonButtonImage;
+@property (strong, nonatomic) IBOutlet UIButton *cameraButton;
+@property (strong, nonatomic) IBOutlet UIImageView *cameraButtonImage;
+@property (nonatomic, strong) NSString *balloonCancelButtonTitle;
 
 - (IBAction)didTapAddTextButton;
 - (IBAction)didTapBalloonButton;
@@ -98,39 +100,40 @@
     if (IS_IPHONE_4_SIZE) {
         self.bottomConstraint.constant = 5;
     }
+    if (IS_IPHONE_5_SIZE) {
+        self.bottomConstraint.constant = 25;
+    }
     
     [self styleCustomizationButtons];
 }
 
 - (void) styleCustomizationButtons {
-    self.balloonButton.layer.cornerRadius = 30;
+    self.balloonButton.layer.cornerRadius = 26;
     self.balloonButton.layer.borderWidth = 2;
     self.balloonButton.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.addTextToYapButton.layer.cornerRadius = 30;
+    self.addTextToYapButton.layer.cornerRadius = 26;
     self.addTextToYapButton.layer.borderWidth = 2;
     self.addTextToYapButton.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.cameraButton.layer.cornerRadius = 30;
+    self.cameraButton.layer.cornerRadius = 26;
     self.cameraButton.layer.borderWidth = 2;
     self.cameraButton.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 - (void) didTapBalloonButton
 {
-    [UIView animateWithDuration:.4
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.voiceChangeView.alpha = 1;
-                     }
-                     completion:nil];
-    
-    /*UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose your voice filter!"
+    if (self.pitchShiftValue == 0) {
+        self.balloonCancelButtonTitle = @"Cancel";
+    } else {
+        self.balloonCancelButtonTitle = @"Back to Normal";
+    }
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose your voice filter!"
                                                              delegate:self
-                                                    cancelButtonTitle:@"Cancel"
+                                                    cancelButtonTitle:self.balloonCancelButtonTitle
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:@"Helium", @"Chipmunk", @"Darth Vader", nil];
+    actionSheet.tag = 200;
     [actionSheet showInView:self.view];
     
     if ([self.textView isFirstResponder]) {
@@ -139,88 +142,8 @@
     
     [self reduceAlphaOfButtons];
     self.commandLabel.hidden = YES;
-    */
-    /*
-    UIImage *buttonImage = [UIImage imageNamed:@"BalloonYellow20.png"];
-    [self.balloonButton setImage:buttonImage forState:UIControlStateNormal];
-    
-    if (self.isiPhone5Size) {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone5.png"]];
-    } else if (self.isiPhone4Size) {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone4.png"]];
-    } else {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellow.png"]];
-    }
-
-    float volume = [[AVAudioSession sharedInstance] outputVolume];
-    if (volume < 0.5) {
-        double delay = .1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showBlueNotificationText:@"Turn Up The Volume!"];
-        });
-    }
-    
-    self.pitchShiftValue = 1.0; // +1000
-    [self playAudioWithPitch:self.pitchShiftValue];
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Balloon 1"];
-     */
 }
 /*
-- (void) didTapPitchButton2
-{
-    [self unhideResetButton];
-    
-    UIImage *buttonImage = [UIImage imageNamed:@"BalloonGreen20.png"];
-    [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
-    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
-    [self.balloonButton setImage:whiteBalloonImage forState:UIControlStateNormal];
-    [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
-    
-    if (self.isiPhone5Size) {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone5.png"]];
-    } else if (self.isiPhone4Size) {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone4.png"]];
-    } else {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreen.png"]];
-    }
-    
-    self.pitchShiftValue = 0.5; // +500
-    [self playAudioWithPitch:self.pitchShiftValue];
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Balloon 2"];
-}
-
-- (void) didTapPitchButton3
-{
-    [self unhideResetButton];
-    
-    UIImage *buttonImage = [UIImage imageNamed:@"BalloonLightBlue20.png"];
-    [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
-    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
-    [self.balloonButton setImage:whiteBalloonImage forState:UIControlStateNormal];
-    [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
-    
-    if (self.isiPhone5Size) {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone5.png"]];
-    } else if (self.isiPhone4Size) {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone4.png"]];
-    } else {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlue.png"]];
-    }
-    
-    self.pitchShiftValue = -0.4; // -400
-    [self playAudioWithPitch:self.pitchShiftValue];
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Balloon 3"];
-}
-
-- (void) unhideResetButton {
-    self.resetPitchButton.hidden = NO;
-}
 
 - (void) didTapResetPitchButton {
     [[YTNotifications sharedNotifications] showBlueNotificationText:@"Voice Reset"];
@@ -228,12 +151,7 @@
     [self resetProgressViewColor];
     self.player.pitchShift = 0;
     
-    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
-    [self.balloonButton setImage:whiteBalloonImage forState:UIControlStateNormal];
-    [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
-    [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
-    
-    self.resetPitchButton.hidden = YES;
+
 
     
     [self.player stop];
@@ -374,6 +292,7 @@
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:@"Take a Photo", @"Upload a Photo", nil];
+    actionSheet.tag = 200;
     [actionSheet showInView:self.view];
     
     if ([self.textView isFirstResponder]) {
@@ -537,12 +456,17 @@
     self.cameraButton.alpha = 0.3;
     self.addTextToYapButton.alpha = 0.3;
     self.balloonButton.alpha = 0.3;
+    self.balloonButtonImage.alpha = 0.3;
+    self.cameraButtonImage.alpha = 0.3;
 }
 
 - (void) restoreAlphaOfButtons {
     self.cameraButton.alpha = 1;
     self.addTextToYapButton.alpha = 1;
     self.balloonButton.alpha = 1;
+    self.balloonButtonImage.alpha = 1;
+    self.cameraButtonImage.alpha = 1;
+    
     self.resetPhotoButton.alpha = 1;
 }
 
@@ -551,20 +475,119 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSLog(@"Tapped Action Sheet; Button Index: %ld", (long)buttonIndex);
     // Take a photo
-    if (buttonIndex == 0) {
-        [self takePhoto];
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Tapped Take Photo"];
+    if (actionSheet.tag == 100) {
+        if (buttonIndex == 0) {
+            [self takePhoto];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Take Photo"];
+            
+        // Upload a photo
+        } else if (buttonIndex == 1) {
+            [self selectPhoto];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Upload Photo"];
         
-    // Upload a photo
-    } else if (buttonIndex == 1) {
-        [self selectPhoto];
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Tapped Upload Photo"];
-    
-    } else if (buttonIndex == 2) {
-        NSLog(@"Did tap cancel");
-        [self updateAlphaOfButtons];
+        } else if (buttonIndex == 2) {
+            NSLog(@"Did tap cancel");
+            [self updateAlphaOfButtons];
+        }
+    } else if (actionSheet.tag == 200) {
+        if (buttonIndex == 0) {
+            if (self.isiPhone5Size) {
+                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone5.png"]];
+            } else if (self.isiPhone4Size) {
+                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone4.png"]];
+            } else {
+                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellow.png"]];
+            }
+            
+            float volume = [[AVAudioSession sharedInstance] outputVolume];
+            if (volume < 0.5) {
+                double delay = .1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Turn Up The Volume!"];
+                });
+            }
+            
+            self.pitchShiftValue = 1.0; // +1000
+            [self playAudioWithPitch:self.pitchShiftValue];
+            
+            self.balloonButton.layer.borderColor = [UIColor yellowColor].CGColor;
+            self.balloonButton.layer.borderWidth = 3;
+            
+            [self updateAlphaOfButtons];
+            
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Balloon 1"];
+        } else if (buttonIndex == 1) {
+            if (self.isiPhone5Size) {
+                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone5.png"]];
+            } else if (self.isiPhone4Size) {
+                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone4.png"]];
+            } else {
+                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreen.png"]];
+            }
+            
+            float volume = [[AVAudioSession sharedInstance] outputVolume];
+            if (volume < 0.5) {
+                double delay = .1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Turn Up The Volume!"];
+                });
+            }
+            
+            self.pitchShiftValue = 0.5; // +500
+            [self playAudioWithPitch:self.pitchShiftValue];
+            
+            self.balloonButton.layer.borderColor = [UIColor greenColor].CGColor;
+            self.balloonButton.layer.borderWidth = 3;
+            
+            [self updateAlphaOfButtons];
+            
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Balloon 2"];
+        } else if (buttonIndex == 2) {
+            if (self.isiPhone5Size) {
+                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone5.png"]];
+            } else if (self.isiPhone4Size) {
+                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone4.png"]];
+            } else {
+                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlue.png"]];
+            }
+            
+            float volume = [[AVAudioSession sharedInstance] outputVolume];
+            if (volume < 0.5) {
+                double delay = .1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Turn Up The Volume!"];
+                });
+            }
+            
+            self.pitchShiftValue = -0.4; // -400
+            [self playAudioWithPitch:self.pitchShiftValue];
+            
+            self.balloonButton.layer.borderColor = [UIColor blueColor].CGColor;
+            self.balloonButton.layer.borderWidth = 3;
+            
+            [self updateAlphaOfButtons];
+            
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Balloon 3"];
+        } else if (buttonIndex == 3) {
+            NSLog(@"Did tap cancel");
+            
+            self.balloonButton.layer.borderColor = [UIColor whiteColor].CGColor;
+            self.balloonButton.layer.borderWidth = 2;
+            
+            [self updateAlphaOfButtons];
+            
+            if (self.pitchShiftValue != 0) {
+                [[YTNotifications sharedNotifications] showBlueNotificationText:@"Back to Normal"];
+                [self resetProgressViewColor];
+                self.player.pitchShift = 0;
+                [self.player stop];
+            }
+        }
     }
     
 }

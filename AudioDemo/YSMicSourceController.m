@@ -36,16 +36,15 @@
     [self.microphoneView addGestureRecognizer:tapped];
     
     // Sinus wave view
-    
     self.sinusWaveView.plotType        = EZPlotTypeBuffer;
     self.sinusWaveView.shouldFill      = NO;
     self.sinusWaveView.shouldMirror    = YES;
     self.sinusWaveView.backgroundColor = THEME_BACKGROUND_COLOR;
     self.sinusWaveView.color           = [UIColor whiteColor];
     self.sinusWaveView.plotType        = EZPlotTypeBuffer;
-    self.sinusWaveView.maxAmplitude = 8.0/10.0;
+    self.sinusWaveView.maxAmplitude = 4.0/10.0;
     self.sinusWaveView.idleAmplitude = 1;
-    //self.sinusWaveView.waveWidth = 10;
+    self.sinusWaveView.waveWidth = 1;
     self.sinusWaveView.density = 1;
     //self.sinusWaveView.phaseShift = 2;
     
@@ -156,7 +155,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
             
-            self.microphoneView.alpha = 0;
+            //self.microphoneView.alpha = 0;
             self.sinusWaveView.alpha = 1;
             
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -187,7 +186,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:NO error:nil];
     
-    self.microphoneView.image = [UIImage imageNamed:@"Microphone_White2.png"];
+    self.microphoneView.image = [UIImage imageNamed:@"megaphone_shutterstock2.png"];
 }
 
 //- (void) startPlayback //Play button isn't in the UI currently

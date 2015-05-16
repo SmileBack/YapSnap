@@ -81,7 +81,7 @@ static const float TIMER_INTERVAL = .01;
     [super viewWillAppear:animated];
     
     if (self.type == AudioCaptureTypeMic) {
-        self.titleString = @"Record Voice";
+        self.titleString = @"Start Yappin'";
     } else if (self.type == AudioCapTureTypeSpotify) {
         self.titleString = @"Find a Song";
     }
@@ -227,9 +227,9 @@ static const float TIMER_INTERVAL = .01;
                         }
                         
                         if (self.type == AudioCaptureTypeMic) {
-                            self.titleString = @"Recording...";
+                            self.titleString = @"Recording Yap...";
                         } else {
-                            self.titleString = @"Playing...";
+                            self.titleString = @"Playing Yap...";
                         }
                         [self updateTitleLabel];
                         
@@ -355,7 +355,7 @@ static const float TIMER_INTERVAL = .01;
         });
         
         if (self.type == AudioCaptureTypeMic) {
-            self.titleString = @"Record Voice";
+            self.titleString = @"Start Yappin'";
         } else if (self.type == AudioCapTureTypeSpotify) {
             self.titleString = @"Find a Song";
         }
