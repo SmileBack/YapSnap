@@ -29,21 +29,17 @@
 @property (strong, nonatomic) IBOutlet UILabel *contactLabel;
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (strong, nonatomic) STKAudioPlayer* player;
-@property (strong, nonatomic) IBOutlet UIButton *changePitchButton1;
-@property (strong, nonatomic) IBOutlet UIButton *changePitchButton2;
-@property (strong, nonatomic) IBOutlet UIButton *changePitchButton3;
-@property (strong, nonatomic) IBOutlet UIButton *resetPitchButton;
+@property (strong, nonatomic) IBOutlet UIButton *balloonButton;
 @property (nonatomic) CGFloat pitchShiftValue;
 @property (strong, nonatomic) IBOutlet UIButton *cameraButton;
 @property (strong, nonatomic) IBOutlet UIButton *resetPhotoButton;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (strong, nonatomic) IBOutlet UILabel *commandLabel;
+@property (strong, nonatomic) IBOutlet UIView *voiceChangeView;
+
 
 - (IBAction)didTapAddTextButton;
-- (IBAction)didTapPitchButton1;
-- (IBAction)didTapPitchButton2;
-- (IBAction)didTapPitchButton3;
-- (IBAction)didTapResetPitchButton;
+- (IBAction)didTapBalloonButton;
 - (IBAction)didTapCameraButton;
 - (IBAction)didTapResetPhotoButton;
 
@@ -93,9 +89,7 @@
     });
     
     if ([self.yapBuilder.messageType  isEqual: @"VoiceMessage"]) {
-        self.changePitchButton1.hidden = NO;
-        self.changePitchButton2.hidden = NO;
-        self.changePitchButton3.hidden = NO;
+        self.balloonButton.hidden = NO;
     }
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapImageView)];
@@ -104,17 +98,51 @@
     if (IS_IPHONE_4_SIZE) {
         self.bottomConstraint.constant = 5;
     }
+    
+    [self styleCustomizationButtons];
 }
 
-- (void) didTapPitchButton1
-{
-    [self unhideResetButton];
+- (void) styleCustomizationButtons {
+    self.balloonButton.layer.cornerRadius = 30;
+    self.balloonButton.layer.borderWidth = 2;
+    self.balloonButton.layer.borderColor = [UIColor whiteColor].CGColor;
     
+    self.addTextToYapButton.layer.cornerRadius = 30;
+    self.addTextToYapButton.layer.borderWidth = 2;
+    self.addTextToYapButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.cameraButton.layer.cornerRadius = 30;
+    self.cameraButton.layer.borderWidth = 2;
+    self.cameraButton.layer.borderColor = [UIColor whiteColor].CGColor;
+}
+
+- (void) didTapBalloonButton
+{
+    [UIView animateWithDuration:.4
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.voiceChangeView.alpha = 1;
+                     }
+                     completion:nil];
+    
+    /*UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose your voice filter!"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Helium", @"Chipmunk", @"Darth Vader", nil];
+    [actionSheet showInView:self.view];
+    
+    if ([self.textView isFirstResponder]) {
+        [self.textView resignFirstResponder];
+    }
+    
+    [self reduceAlphaOfButtons];
+    self.commandLabel.hidden = YES;
+    */
+    /*
     UIImage *buttonImage = [UIImage imageNamed:@"BalloonYellow20.png"];
-    [self.changePitchButton1 setImage:buttonImage forState:UIControlStateNormal];
-    UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
-    [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
-    [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    [self.balloonButton setImage:buttonImage forState:UIControlStateNormal];
     
     if (self.isiPhone5Size) {
         [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone5.png"]];
@@ -137,8 +165,9 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Balloon 1"];
+     */
 }
-
+/*
 - (void) didTapPitchButton2
 {
     [self unhideResetButton];
@@ -146,7 +175,7 @@
     UIImage *buttonImage = [UIImage imageNamed:@"BalloonGreen20.png"];
     [self.changePitchButton2 setImage:buttonImage forState:UIControlStateNormal];
     UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
-    [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    [self.balloonButton setImage:whiteBalloonImage forState:UIControlStateNormal];
     [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
     
     if (self.isiPhone5Size) {
@@ -171,7 +200,7 @@
     UIImage *buttonImage = [UIImage imageNamed:@"BalloonLightBlue20.png"];
     [self.changePitchButton3 setImage:buttonImage forState:UIControlStateNormal];
     UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
-    [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    [self.balloonButton setImage:whiteBalloonImage forState:UIControlStateNormal];
     [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
     
     if (self.isiPhone5Size) {
@@ -200,7 +229,7 @@
     self.player.pitchShift = 0;
     
     UIImage *whiteBalloonImage = [UIImage imageNamed:@"Balloon20.png"];
-    [self.changePitchButton1 setImage:whiteBalloonImage forState:UIControlStateNormal];
+    [self.balloonButton setImage:whiteBalloonImage forState:UIControlStateNormal];
     [self.changePitchButton2 setImage:whiteBalloonImage forState:UIControlStateNormal];
     [self.changePitchButton3 setImage:whiteBalloonImage forState:UIControlStateNormal];
     
@@ -212,6 +241,7 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Reset Button"];
 }
+ */
 
 - (void) playAudioWithPitch:(CGFloat)pitch {
     NSArray *pathComponents = [NSArray arrayWithObjects:
@@ -506,20 +536,14 @@
 - (void) reduceAlphaOfButtons {
     self.cameraButton.alpha = 0.3;
     self.addTextToYapButton.alpha = 0.3;
-    self.changePitchButton1.alpha = 0.3;
-    self.changePitchButton2.alpha = 0.3;
-    self.changePitchButton3.alpha = 0.3;
-    self.resetPitchButton.alpha = 0.3;
+    self.balloonButton.alpha = 0.3;
 }
 
 - (void) restoreAlphaOfButtons {
     self.cameraButton.alpha = 1;
     self.addTextToYapButton.alpha = 1;
-    self.changePitchButton1.alpha = 1;
-    self.changePitchButton2.alpha = 1;
-    self.changePitchButton3.alpha = 1;
+    self.balloonButton.alpha = 1;
     self.resetPhotoButton.alpha = 1;
-    self.resetPitchButton.alpha = 1;
 }
 
 #pragma mark - UIActionSheet method implementation

@@ -104,6 +104,7 @@
 		7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */; };
 		7857CABE1AFBB43300ADF999 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857CABD1AFBB43300ADF999 /* HomeViewController.m */; };
 		7857CAC11AFBD11200ADF999 /* MusicGenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */; };
+		786192471B06BA5B007279E8 /* MegaphoneWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192461B06BA5B007279E8 /* MegaphoneWhite.png */; };
 		78624BDC1B03134000C8E049 /* Dice2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BDB1B03134000C8E049 /* Dice2@2x.png */; };
 		78624BDE1B03158900C8E049 /* Dice3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BDD1B03158900C8E049 /* Dice3@2x.png */; };
 		78624BE01B0316A700C8E049 /* Dice4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BDF1B0316A700C8E049 /* Dice4@2x.png */; };
@@ -386,6 +387,7 @@
 		7857CABD1AFBB43300ADF999 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		7857CABF1AFBD11200ADF999 /* MusicGenreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicGenreViewController.h; sourceTree = "<group>"; };
 		7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicGenreViewController.m; sourceTree = "<group>"; };
+		786192461B06BA5B007279E8 /* MegaphoneWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MegaphoneWhite.png; path = "../../../Dropbox/MacBook Pro (New)/YapTap Images/MegaphoneWhite.png"; sourceTree = "<group>"; };
 		78624BDB1B03134000C8E049 /* Dice2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice2@2x.png"; sourceTree = "<group>"; };
 		78624BDD1B03158900C8E049 /* Dice3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice3@2x.png"; sourceTree = "<group>"; };
 		78624BDF1B0316A700C8E049 /* Dice4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice4@2x.png"; sourceTree = "<group>"; };
@@ -610,6 +612,7 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				786192461B06BA5B007279E8 /* MegaphoneWhite.png */,
 				78624BE51B03BA9100C8E049 /* GuidanceArrowLeft.png */,
 				78624BE61B03BA9100C8E049 /* GuidanceArrowRight.png */,
 				78624BDB1B03134000C8E049 /* Dice2@2x.png */,
@@ -1486,6 +1489,7 @@
 				787EC6031ACA09B8000C5539 /* BalloonGreen10.png in Resources */,
 				782D13981ACC59E6007C8499 /* YapsButtonNoYaps.png in Resources */,
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
+				786192471B06BA5B007279E8 /* MegaphoneWhite.png in Resources */,
 				78319A7D1ACD0111000C3FD6 /* MicModeButtonIcon@2x.png in Resources */,
 				781904821AF1E3CE00196DFF /* ResetButton40@2x.png in Resources */,
 				7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */,
