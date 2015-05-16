@@ -229,7 +229,7 @@ static const float TIMER_INTERVAL = .01;
                         if (self.type == AudioCaptureTypeMic) {
                             self.titleString = @"Recording Yap...";
                         } else {
-                            self.titleString = @"Playing Yap...";
+                            self.titleString = @"Playing...";
                         }
                         [self updateTitleLabel];
                         

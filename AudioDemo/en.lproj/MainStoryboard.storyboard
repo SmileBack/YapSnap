@@ -1193,10 +1193,14 @@
                                     <action selector="didTapCameraButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="8RZ-Cx-FBM"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CameraIcon20.png" translatesAutoresizingMaskIntoConstraints="NO" id="RdJ-1E-CU6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CameraIcon20.png" translatesAutoresizingMaskIntoConstraints="NO" id="RdJ-1E-CU6">
                                 <rect key="frame" x="210" y="108" width="36" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="Jxl-lo-jMB"/>
+                                    <constraint firstAttribute="width" constant="36" id="eoZ-3X-ZTm"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8u-j8-TJl" userLabel="Balloon1">
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8u-j8-TJl" userLabel="Balloon1">
                                 <rect key="frame" x="67" y="97" width="52" height="52"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1210,7 +1214,7 @@
                                     <action selector="didTapBalloonButton" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="pUD-5g-EkF"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Balloon20.png" translatesAutoresizingMaskIntoConstraints="NO" id="u6z-Sq-Wub">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Balloon20.png" translatesAutoresizingMaskIntoConstraints="NO" id="u6z-Sq-Wub">
                                 <rect key="frame" x="75" y="108" width="36" height="33"/>
                             </imageView>
                         </subviews>
@@ -1220,7 +1224,9 @@
                             <constraint firstAttribute="trailing" secondItem="gWj-LF-pEZ" secondAttribute="trailing" constant="10" id="2s9-gr-ybv"/>
                             <constraint firstAttribute="centerX" secondItem="KiZ-xJ-FAU" secondAttribute="centerX" id="41D-jr-5hK"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="height" secondItem="54R-6y-Wab" secondAttribute="height" multiplier="0.0704" constant="-17.987200000000001" id="469-8N-Xfv"/>
+                            <constraint firstItem="BUN-6m-GZB" firstAttribute="leading" secondItem="C8u-j8-TJl" secondAttribute="trailing" constant="16" id="4kp-D2-kv5"/>
                             <constraint firstItem="vM0-Ja-t0y" firstAttribute="centerX" secondItem="B2R-OB-er0" secondAttribute="centerX" id="5tG-oe-mth"/>
+                            <constraint firstItem="KDf-Vb-ilr" firstAttribute="leading" secondItem="BUN-6m-GZB" secondAttribute="trailing" constant="15" id="7Ew-XX-Ca7"/>
                             <constraint firstAttribute="centerX" secondItem="B2R-OB-er0" secondAttribute="centerX" id="Bck-GS-k44"/>
                             <constraint firstAttribute="centerX" secondItem="3JO-QB-ANa" secondAttribute="centerX" id="Kty-yl-WnI"/>
                             <constraint firstItem="C8u-j8-TJl" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="51" id="L5M-Fr-zX4"/>
@@ -1229,15 +1235,15 @@
                             <constraint firstItem="gWj-LF-pEZ" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" constant="10" id="RaP-vP-B4s"/>
                             <constraint firstItem="Yo4-ls-PqW" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" constant="5" id="UnD-gZ-hhJ"/>
                             <constraint firstItem="9XV-zO-GXP" firstAttribute="centerY" secondItem="T1S-dg-Qvf" secondAttribute="top" constant="-43" id="X0t-yl-0Ze"/>
+                            <constraint firstItem="RdJ-1E-CU6" firstAttribute="centerX" secondItem="KDf-Vb-ilr" secondAttribute="centerX" id="Xjb-Fr-oLK"/>
                             <constraint firstItem="BUN-6m-GZB" firstAttribute="leading" secondItem="KDf-Vb-ilr" secondAttribute="leading" constant="-67" id="Xu2-bN-gX3"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="top" secondItem="54R-6y-Wab" secondAttribute="topMargin" constant="64" id="Xvf-wH-6CH"/>
                             <constraint firstItem="Yo4-ls-PqW" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="80" id="YWI-cm-XFl"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="EyU-Er-gqZ" secondAttribute="bottom" constant="10" id="fBu-C8-GXW"/>
+                            <constraint firstItem="RdJ-1E-CU6" firstAttribute="centerY" secondItem="KDf-Vb-ilr" secondAttribute="centerY" constant="1.5" id="g94-HU-74Q"/>
                             <constraint firstItem="gWj-LF-pEZ" firstAttribute="bottom" secondItem="vM0-Ja-t0y" secondAttribute="bottom" constant="-34" id="hgO-wt-fNU"/>
                             <constraint firstAttribute="trailing" secondItem="Yo4-ls-PqW" secondAttribute="trailing" constant="5" id="jDc-3I-w2v"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="KDf-Vb-ilr" secondAttribute="trailing" constant="50" id="ldi-sa-ld4"/>
                             <constraint firstItem="9XV-zO-GXP" firstAttribute="centerX" secondItem="54R-6y-Wab" secondAttribute="rightMargin" constant="-25" id="mW8-Gp-gvc"/>
-                            <constraint firstItem="KDf-Vb-ilr" firstAttribute="leading" secondItem="BUN-6m-GZB" secondAttribute="trailing" constant="15" id="sSn-0F-m3h"/>
                             <constraint firstAttribute="centerY" secondItem="gWj-LF-pEZ" secondAttribute="centerY" constant="-20" id="tZe-q4-Vfa"/>
                             <constraint firstItem="EyU-Er-gqZ" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="-8" id="tsJ-Fv-uDI"/>
                             <constraint firstItem="C8u-j8-TJl" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="11" id="v6e-Nv-xCe"/>
@@ -1252,6 +1258,7 @@
                         <outlet property="addTextToYapButton" destination="BUN-6m-GZB" id="ET7-et-9hw"/>
                         <outlet property="balloonButton" destination="C8u-j8-TJl" id="rXY-xD-mcn"/>
                         <outlet property="balloonButtonImage" destination="u6z-Sq-Wub" id="te3-e4-75Z"/>
+                        <outlet property="balloonLeftConstraint" destination="L5M-Fr-zX4" id="1GC-Pk-xtd"/>
                         <outlet property="bottomConstraint" destination="vNZ-Va-hqk" id="Y4o-LV-ULS"/>
                         <outlet property="cameraButton" destination="KDf-Vb-ilr" id="pDy-7e-C88"/>
                         <outlet property="cameraButtonImage" destination="RdJ-1E-CU6" id="9dh-kW-V4I"/>

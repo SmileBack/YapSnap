@@ -30,6 +30,7 @@
 @property (nonatomic) CGFloat pitchShiftValue;
 @property (strong, nonatomic) IBOutlet UIButton *resetPhotoButton;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *balloonLeftConstraint;
 @property (strong, nonatomic) IBOutlet UILabel *commandLabel;
 
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
@@ -92,6 +93,17 @@
     
     if ([self.yapBuilder.messageType  isEqual: @"VoiceMessage"]) {
         self.balloonButton.hidden = NO;
+        self.balloonButtonImage.hidden = NO;
+    } else {
+        if (IS_IPHONE_4_SIZE) {
+            self.balloonLeftConstraint.constant = 40;
+        } else if (IS_IPHONE_5_SIZE) {
+           self.balloonLeftConstraint.constant = 0;
+        } else if (IS_IPHONE_6_SIZE) {
+            self.balloonLeftConstraint.constant = 0;
+        } else if (IS_IPHONE_6_PLUS_SIZE ) {
+            self.balloonLeftConstraint.constant = 0;
+        }
     }
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapImageView)];
