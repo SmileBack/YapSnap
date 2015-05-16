@@ -96,9 +96,9 @@
         self.balloonButtonImage.hidden = NO;
     } else {
         if (IS_IPHONE_4_SIZE) {
-            self.balloonLeftConstraint.constant = 40;
+            self.balloonLeftConstraint.constant = 0;
         } else if (IS_IPHONE_5_SIZE) {
-           self.balloonLeftConstraint.constant = 0;
+           self.balloonLeftConstraint.constant = 18;
         } else if (IS_IPHONE_6_SIZE) {
             self.balloonLeftConstraint.constant = 0;
         } else if (IS_IPHONE_6_PLUS_SIZE ) {
@@ -304,7 +304,7 @@
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:@"Take a Photo", @"Upload a Photo", nil];
-    actionSheet.tag = 200;
+    actionSheet.tag = 100;
     [actionSheet showInView:self.view];
     
     if ([self.textView isFirstResponder]) {
