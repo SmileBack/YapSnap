@@ -17,5 +17,6 @@
 - (void) showSongVersionText:(NSString *)text;
 - (void) showBufferingText:(NSString *)text;
 - (void) showStatusBarText:(NSString *)text;
+- (void) showPitchVolumeText:(NSString *)text andSubtitleText:(NSString *)subtitleText;
 
 @end

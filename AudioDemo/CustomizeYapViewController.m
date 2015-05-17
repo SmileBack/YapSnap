@@ -31,7 +31,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *resetPhotoButton;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *balloonLeftConstraint;
-@property (strong, nonatomic) IBOutlet UILabel *commandLabel;
 
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
@@ -153,7 +152,6 @@
     }
     
     [self reduceAlphaOfButtons];
-    self.commandLabel.hidden = YES;
 }
 /*
 
@@ -312,7 +310,6 @@
     }
     
     [self reduceAlphaOfButtons];
-    self.commandLabel.hidden = YES;
 }
 
 - (BOOL) textView: (UITextView*) textView shouldChangeTextInRange: (NSRange) range replacementText: (NSString*) text
@@ -336,7 +333,6 @@
 {
     NSLog(@"Textfield did begin editing");
     [self reduceAlphaOfButtons];
-    self.commandLabel.hidden = YES;
 }
 
 #pragma mark - YSColorPickerDelegate
@@ -456,10 +452,8 @@
 - (void) updateAlphaOfButtons {
     if ((self.textView.text.length > 0) || self.yapPhoto.image != nil) {
         [self reduceAlphaOfButtons];
-        self.commandLabel.hidden = YES;
     } else {
         [self restoreAlphaOfButtons];
-        self.commandLabel.hidden = NO;
     }
     
 }
@@ -515,17 +509,23 @@
             
             float volume = [[AVAudioSession sharedInstance] outputVolume];
             if (volume < 0.5) {
+                double delay = .2;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showPitchVolumeText:@"Playing Helium Voice..." andSubtitleText:@"Turn up the volume"];
+                });
+            } else {            
                 double delay = .1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Turn Up The Volume!"];
+                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Playing Helium Voice..."];
                 });
             }
             
             self.pitchShiftValue = 1.0; // +1000
             [self playAudioWithPitch:self.pitchShiftValue];
             
-            self.balloonButton.layer.borderColor = [UIColor yellowColor].CGColor;
+            self.balloonButton.layer.borderColor = HELIUM_PITCH_COLOR.CGColor;
             self.balloonButton.layer.borderWidth = 3;
+            [self.balloonButtonImage setImage:[UIImage imageNamed:@"Balloon20.png"]];
             
             [self updateAlphaOfButtons];
             
@@ -544,15 +544,21 @@
             if (volume < 0.5) {
                 double delay = .1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Turn Up The Volume!"];
+                    [[YTNotifications sharedNotifications] showPitchVolumeText:@"Playing Chipmunk Voice..." andSubtitleText:@"Turn up the volume"];
+                });
+            } else {
+                double delay = .1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Playing Chipmunk Voice..."];
                 });
             }
             
             self.pitchShiftValue = 0.5; // +500
             [self playAudioWithPitch:self.pitchShiftValue];
             
-            self.balloonButton.layer.borderColor = [UIColor greenColor].CGColor;
+            self.balloonButton.layer.borderColor = CHIPMUNK_PITCH_COLOR.CGColor;
             self.balloonButton.layer.borderWidth = 3;
+            [self.balloonButtonImage setImage:[UIImage imageNamed:@"Chipmunk80.png"]];
             
             [self updateAlphaOfButtons];
             
@@ -571,15 +577,21 @@
             if (volume < 0.5) {
                 double delay = .1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Turn Up The Volume!"];
+                    [[YTNotifications sharedNotifications] showPitchVolumeText:@"Playing Darth Vader Voice..." andSubtitleText:@"Turn up the volume"];
+                });
+            } else {
+                double delay = .1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Playing Darth Vader Voice..."];
                 });
             }
             
             self.pitchShiftValue = -0.4; // -400
             [self playAudioWithPitch:self.pitchShiftValue];
             
-            self.balloonButton.layer.borderColor = [UIColor blueColor].CGColor;
+            self.balloonButton.layer.borderColor = DARTH_VADER_PITCH_COLOR.CGColor;
             self.balloonButton.layer.borderWidth = 3;
+            [self.balloonButtonImage setImage:[UIImage imageNamed:@"DarthVader10.png"]];
             
             [self updateAlphaOfButtons];
             
@@ -596,7 +608,9 @@
             if (self.pitchShiftValue != 0) {
                 [[YTNotifications sharedNotifications] showBlueNotificationText:@"Back to Normal"];
                 [self resetProgressViewColor];
+                [self.balloonButtonImage setImage:[UIImage imageNamed:@"Balloon20.png"]];
                 self.player.pitchShift = 0;
+                self.pitchShiftValue = 0;
                 [self.player stop];
             }
         }

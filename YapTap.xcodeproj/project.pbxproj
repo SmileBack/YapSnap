@@ -107,6 +107,16 @@
 		786192471B06BA5B007279E8 /* MegaphoneWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192461B06BA5B007279E8 /* MegaphoneWhite.png */; };
 		7861924B1B0712F8007279E8 /* megaphone_shutterstock2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861924A1B0712F8007279E8 /* megaphone_shutterstock2.png */; };
 		7861924D1B072077007279E8 /* WhiteCamera100.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861924C1B072077007279E8 /* WhiteCamera100.png */; };
+		7861924F1B07E86D007279E8 /* Darth Vader.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861924E1B07E86D007279E8 /* Darth Vader.png */; };
+		786192511B07EA1B007279E8 /* DarthVader10.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192501B07EA1B007279E8 /* DarthVader10.png */; };
+		786192531B07EE2B007279E8 /* Chipmunk.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192521B07EE2B007279E8 /* Chipmunk.png */; };
+		786192551B07EF3D007279E8 /* Chipmunk10.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192541B07EF3D007279E8 /* Chipmunk10.png */; };
+		786192571B080A9C007279E8 /* Chipmunk20.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192561B080A9C007279E8 /* Chipmunk20.png */; };
+		786192591B080C65007279E8 /* Chipmunk30.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192581B080C65007279E8 /* Chipmunk30.png */; };
+		7861925B1B080CFB007279E8 /* Chipmunk50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861925A1B080CFB007279E8 /* Chipmunk50.png */; };
+		7861925D1B080D92007279E8 /* Chipmunk60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861925C1B080D92007279E8 /* Chipmunk60.png */; };
+		7861925F1B080DF9007279E8 /* Chipmunk70.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861925E1B080DF9007279E8 /* Chipmunk70.png */; };
+		786192611B080E8C007279E8 /* Chipmunk80.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192601B080E8C007279E8 /* Chipmunk80.png */; };
 		78624BDC1B03134000C8E049 /* Dice2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BDB1B03134000C8E049 /* Dice2@2x.png */; };
 		78624BDE1B03158900C8E049 /* Dice3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BDD1B03158900C8E049 /* Dice3@2x.png */; };
 		78624BE01B0316A700C8E049 /* Dice4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BDF1B0316A700C8E049 /* Dice4@2x.png */; };
@@ -392,6 +402,16 @@
 		786192461B06BA5B007279E8 /* MegaphoneWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MegaphoneWhite.png; path = "../../../Dropbox/MacBook Pro (New)/YapTap Images/MegaphoneWhite.png"; sourceTree = "<group>"; };
 		7861924A1B0712F8007279E8 /* megaphone_shutterstock2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = megaphone_shutterstock2.png; sourceTree = "<group>"; };
 		7861924C1B072077007279E8 /* WhiteCamera100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCamera100.png; sourceTree = "<group>"; };
+		7861924E1B07E86D007279E8 /* Darth Vader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Darth Vader.png"; sourceTree = "<group>"; };
+		786192501B07EA1B007279E8 /* DarthVader10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DarthVader10.png; sourceTree = "<group>"; };
+		786192521B07EE2B007279E8 /* Chipmunk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chipmunk.png; sourceTree = "<group>"; };
+		786192541B07EF3D007279E8 /* Chipmunk10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chipmunk10.png; sourceTree = "<group>"; };
+		786192561B080A9C007279E8 /* Chipmunk20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chipmunk20.png; sourceTree = "<group>"; };
+		786192581B080C65007279E8 /* Chipmunk30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chipmunk30.png; sourceTree = "<group>"; };
+		7861925A1B080CFB007279E8 /* Chipmunk50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chipmunk50.png; sourceTree = "<group>"; };
+		7861925C1B080D92007279E8 /* Chipmunk60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chipmunk60.png; sourceTree = "<group>"; };
+		7861925E1B080DF9007279E8 /* Chipmunk70.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chipmunk70.png; sourceTree = "<group>"; };
+		786192601B080E8C007279E8 /* Chipmunk80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chipmunk80.png; sourceTree = "<group>"; };
 		78624BDB1B03134000C8E049 /* Dice2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice2@2x.png"; sourceTree = "<group>"; };
 		78624BDD1B03158900C8E049 /* Dice3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice3@2x.png"; sourceTree = "<group>"; };
 		78624BDF1B0316A700C8E049 /* Dice4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice4@2x.png"; sourceTree = "<group>"; };
@@ -616,6 +636,15 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				786192541B07EF3D007279E8 /* Chipmunk10.png */,
+				786192561B080A9C007279E8 /* Chipmunk20.png */,
+				786192581B080C65007279E8 /* Chipmunk30.png */,
+				7861925A1B080CFB007279E8 /* Chipmunk50.png */,
+				7861925C1B080D92007279E8 /* Chipmunk60.png */,
+				7861925E1B080DF9007279E8 /* Chipmunk70.png */,
+				786192601B080E8C007279E8 /* Chipmunk80.png */,
+				7861924E1B07E86D007279E8 /* Darth Vader.png */,
+				786192501B07EA1B007279E8 /* DarthVader10.png */,
 				7861924C1B072077007279E8 /* WhiteCamera100.png */,
 				786192461B06BA5B007279E8 /* MegaphoneWhite.png */,
 				78624BE51B03BA9100C8E049 /* GuidanceArrowLeft.png */,
@@ -653,7 +682,8 @@
 				786E0BE61B00755800005D1D /* Shuffle60.png */,
 				78439FC51AE9A330004CFB5F /* PlusButtonWhite@2x.png */,
 				78439FC71AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png */,
-				786BCB411ADC25A300BA3FDD /* Add Text Page */,
+				786192521B07EE2B007279E8 /* Chipmunk.png */,
+				786BCB411ADC25A300BA3FDD /* Customize Page */,
 				78319A741ACCF878000C3FD6 /* Audio Capture Page */,
 				78319A731ACCF818000C3FD6 /* Spotify Page */,
 				37D413CB19D230D000021548 /* ArrowWhite.png */,
@@ -937,7 +967,7 @@
 			name = "Customize Yap";
 			sourceTree = "<group>";
 		};
-		786BCB411ADC25A300BA3FDD /* Add Text Page */ = {
+		786BCB411ADC25A300BA3FDD /* Customize Page */ = {
 			isa = PBXGroup;
 			children = (
 				782D133E1ACB49D9007C8499 /* Balloons & Reset Button */,
@@ -945,7 +975,7 @@
 				786BCB421ADC274600BA3FDD /* UploadIcon100.png */,
 				78A8239F1AC1A74900135369 /* PencilIcon2.png */,
 			);
-			name = "Add Text Page";
+			name = "Customize Page";
 			sourceTree = "<group>";
 		};
 		786E0BDF1AFEEA5600005D1D /* Music Genre */ = {
@@ -1496,6 +1526,7 @@
 				782D13981ACC59E6007C8499 /* YapsButtonNoYaps.png in Resources */,
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
 				786192471B06BA5B007279E8 /* MegaphoneWhite.png in Resources */,
+				786192611B080E8C007279E8 /* Chipmunk80.png in Resources */,
 				78319A7D1ACD0111000C3FD6 /* MicModeButtonIcon@2x.png in Resources */,
 				781904821AF1E3CE00196DFF /* ResetButton40@2x.png in Resources */,
 				7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */,
@@ -1525,10 +1556,13 @@
 				786BCB431ADC274600BA3FDD /* UploadIcon100.png in Resources */,
 				787EC5E71AC9D4D0000C5539 /* OldProgressViewYellowiPhone5@2x.png in Resources */,
 				78A2E8551ACC671600B5A404 /* PinkStar2.png in Resources */,
+				7861925F1B080DF9007279E8 /* Chipmunk70.png in Resources */,
 				78624BFC1B04EDFF00C8E049 /* ProgressViewGreeniPhone5@2x.png in Resources */,
 				787EC6011ACA09A1000C5539 /* BalloonLightBlue10.png in Resources */,
 				7854B0691AF8523100A02DF9 /* ControlCenterButton@2x.png in Resources */,
 				78A823A01AC1A74900135369 /* PencilIcon2.png in Resources */,
+				7861925B1B080CFB007279E8 /* Chipmunk50.png in Resources */,
+				7861925D1B080D92007279E8 /* Chipmunk60.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
 				78624BF61B04EC6B00C8E049 /* ProgressViewYellow@2x.png in Resources */,
 				78B0B7621AEF3834001C074B /* Shuffle50.png in Resources */,
@@ -1554,11 +1588,14 @@
 				78A2E84F1ACC65B000B5A404 /* PinkStar.png in Resources */,
 				788363A61AD79572001CBD1B /* OneNotSelectediPhone6@2x.png in Resources */,
 				78624BE41B03189000C8E049 /* Dice7@2x.png in Resources */,
+				786192511B07EA1B007279E8 /* DarthVader10.png in Resources */,
 				781904881AF288C100196DFF /* ResetButton70@2x.png in Resources */,
 				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
 				78624BF81B04ED4100C8E049 /* ProgressViewYellowiPhone5@2x.png in Resources */,
 				7854B06F1AF86B1000A02DF9 /* LeftArrow10.png in Resources */,
 				78439FBF1AE77145004CFB5F /* SongVersionOneSelected@2x.png in Resources */,
+				786192591B080C65007279E8 /* Chipmunk30.png in Resources */,
+				786192571B080A9C007279E8 /* Chipmunk20.png in Resources */,
 				7854B0711AF88C1900A02DF9 /* LeftArrow30.png in Resources */,
 				7867C1C81B01A58E0050632F /* CancelImageWhite2.png in Resources */,
 				78624BF21B04EB5600C8E049 /* ProgressViewGreen@2x.png in Resources */,
@@ -1615,11 +1652,14 @@
 				FC0642D71A9D65E200E3D60F /* Environments.plist in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				78624BDC1B03134000C8E049 /* Dice2@2x.png in Resources */,
+				7861924F1B07E86D007279E8 /* Darth Vader.png in Resources */,
 				78B252371AF1453600353711 /* YapsButtonNoYaps4.png in Resources */,
+				786192551B07EF3D007279E8 /* Chipmunk10.png in Resources */,
 				78624BFA1B04ED9900C8E049 /* ProgressViewLightBlueiPhone5@2x.png in Resources */,
 				78439FB91AE76EEB004CFB5F /* SongVersionTwoSelected@3x.png in Resources */,
 				78624BF41B04EBF000C8E049 /* ProgressViewLightBlue@2x.png in Resources */,
 				78624BDE1B03158900C8E049 /* Dice3@2x.png in Resources */,
+				786192531B07EE2B007279E8 /* Chipmunk.png in Resources */,
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
 				786E0BE11AFFEDE700005D1D /* WhiteDownArrow.png in Resources */,
 				78A2E85A1ACC6A4100B5A404 /* YapsButton3.png in Resources */,

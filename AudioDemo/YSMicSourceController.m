@@ -42,11 +42,14 @@
     self.sinusWaveView.backgroundColor = THEME_BACKGROUND_COLOR;
     self.sinusWaveView.color           = [UIColor whiteColor];
     self.sinusWaveView.plotType        = EZPlotTypeBuffer;
-    self.sinusWaveView.maxAmplitude = 4.0/10.0;
-    self.sinusWaveView.idleAmplitude = 1;
+    self.sinusWaveView.maxAmplitude = 10.0/10.0;
+    //self.sinusWaveView.idleAmplitude = 1.5;
     self.sinusWaveView.waveWidth = 1;
     self.sinusWaveView.density = 1;
     //self.sinusWaveView.phaseShift = 2;
+    //self.sinusWaveView.phase = 10;
+    //self.sinusWaveView.frequency = 0.8;
+    //self.sinusWaveView.waves = 4;
     
     self.sinusWaveView.alpha = 0;
     //self.navigationItem.titleView = self.sinusWaveView;
@@ -155,7 +158,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
             
-            //self.microphoneView.alpha = 0;
+            self.microphoneView.alpha = 0;
             self.sinusWaveView.alpha = 1;
             
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
