@@ -1658,13 +1658,6 @@ Type it here!</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" alpha="0.49999999999999961" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jo4-Xs-jwF">
-                                <rect key="frame" x="0.0" y="226" width="320" height="1"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="megaphone_shutterstock2.png" translatesAutoresizingMaskIntoConstraints="NO" id="v0o-hk-bRQ">
-                                <rect key="frame" x="84" y="42" width="153" height="175"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhM-aB-1Ig" customClass="ZLSinusWaveView">
                                 <rect key="frame" x="84" y="124" width="153" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1684,7 +1677,6 @@ Type it here!</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="320"/>
                     <connections>
-                        <outlet property="megaphoneImageView" destination="v0o-hk-bRQ" id="9yf-XA-B8A"/>
                         <outlet property="sinusWaveView" destination="vhM-aB-1Ig" id="1Yb-5F-fNy"/>
                     </connections>
                 </viewController>

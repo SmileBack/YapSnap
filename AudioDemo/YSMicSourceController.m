@@ -13,7 +13,7 @@
 #define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
 
 @interface YSMicSourceController ()<EZMicrophoneDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *megaphoneImageView;
+@property (strong, nonatomic) UIImageView *megaphoneImageView;
 @property (nonatomic, strong) AVAudioPlayer *player;
 @property (nonatomic, strong) EZMicrophone* microphone;
 @property (nonatomic, strong) EZRecorder* recorder;
@@ -65,8 +65,19 @@
 }
 
 - (void) setFrameOfMegaPhoneImageView {
-    self.megaphoneImageView.frame = CGRectMake(100, 100, 20, 20);
-    //self.megaphoneImageView.center = self.megaphoneImageView.superview.center;
+    if (IS_IPHONE_4_SIZE ) {
+        
+    } else if (IS_IPHONE_5_SIZE) {
+        
+    } else if (IS_IPHONE_6_SIZE) {
+        
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        self.megaphoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(108, 70, 200, 200)];
+    }
+    
+    self.megaphoneImageView.image = [UIImage imageNamed:@"megaphone_shutterstock2.png"];
+    self.megaphoneImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:self.megaphoneImageView];
 }
 
 - (void) setupNotifications {
