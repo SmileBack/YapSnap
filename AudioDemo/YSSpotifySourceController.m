@@ -30,7 +30,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *resetButton;
 @property (nonatomic, strong) NSArray *artists;
 @property (nonatomic, strong) NSDictionary *typeToGenreMap;
-@property (strong, nonatomic) NSTimer *pulsatingTimer;
 @property (strong, nonatomic) UIButton *spotifyButton;
 
 - (IBAction)didTapResetButton;
@@ -243,7 +242,6 @@
                         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_VIEW_SPOTIFY_SONGS];
                     });
                 }
-                //[[NSNotificationCenter defaultCenter] postNotificationName:SEARCHED_FOR_SONG_NOTIFICATION object:nil];
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];

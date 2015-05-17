@@ -23,7 +23,6 @@
 #define DID_VIEW_SPOTIFY_SONGS @"yaptap.DidViewSpotifySongs"
 #define TAPPED_DICE_BUTTON_NOTIFICATION @"yaptap.TappedDiceButtonNotification"
 #define TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION @"yaptap.TappedAlbumCoverFirstTimeNotification4"
-//#define SEARCHED_FOR_SONG_NOTIFICATION @"yaptap.SearchedForSongNotification"
 
 @property (nonatomic, strong) NSString *selectedGenre;
 

@@ -13,10 +13,8 @@
 #import "API.h"
 #import "YapBuilder.h"
 
-#define CONTROL_CENTER_HEIGHT 503.0f
-
 @interface AudioCaptureViewController (){
-    NSTimer *timer;
+    NSTimer *audioProgressTimer;
     NSTimer *countdownTimer;
     int currMinute;
     int currSeconds;
@@ -28,7 +26,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *guidanceArrowLeft;
 @property (strong, nonatomic) IBOutlet UIImageView *guidanceArrowRight;
 
-
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
 
@@ -37,7 +34,7 @@
 @implementation AudioCaptureViewController
 
 static const float MAX_CAPTURE_TIME = 12.0;
-static const float TIMER_INTERVAL = .01;
+static const float TIMER_INTERVAL = .02;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -101,14 +98,15 @@ static const float TIMER_INTERVAL = .01;
         [self stopCountdownTimer];
     }
     
-    if (timer) {
-        [timer invalidate];
+    if (audioProgressTimer) {
+        [audioProgressTimer invalidate];
+        NSLog(@"Audio Progress Timer Invalidate 1");
     }
 }
 
 -(void) startCountdownTimer
 {
-    NSLog(@"Start");
+    NSLog(@"Start Countdown Timer");
     [countdownTimer invalidate];
     countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countdownTimerFired) userInfo:nil repeats:YES];
 }
@@ -216,14 +214,16 @@ static const float TIMER_INTERVAL = .01;
                         [weakSelf.recordProgressView.activityIndicator stopAnimating];
                         
                         if (note.object == weakSelf.audioSource) {
-                            if (timer){
-                                [timer invalidate];
+                            if (audioProgressTimer){
+                                [audioProgressTimer invalidate];
+                                NSLog(@"Audio Progress Timer Invalidate 2");
                             }
-                            timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
+                            audioProgressTimer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
                                                                      target:weakSelf
                                                                    selector:@selector(updateProgress)
                                                                    userInfo:nil
                                                                     repeats:YES];
+                            NSLog(@"Start Audio Progress Timer!");
                         }
                         
                         if (self.type == AudioCaptureTypeMic) {
@@ -250,7 +250,8 @@ static const float TIMER_INTERVAL = .01;
                         });
                         [weakSelf.recordProgressView setProgress:0];
                         weakSelf.elapsedTime = 0;
-                        [timer invalidate];
+                        [audioProgressTimer invalidate];
+                        NSLog(@"Audio Progress Timer Invalidate 3");
                     }];
     
     [center addObserverForName:AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION
@@ -264,7 +265,8 @@ static const float TIMER_INTERVAL = .01;
                         });
                         [weakSelf.recordProgressView setProgress:0];
                         weakSelf.elapsedTime = 0;
-                        [timer invalidate];
+                        [audioProgressTimer invalidate];
+                        NSLog(@"Audio Progress Timer Invalidate 4");
                     }];
     
     [center addObserverForName:STOP_LOADING_SPINNER_NOTIFICATION
@@ -282,7 +284,8 @@ static const float TIMER_INTERVAL = .01;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [timer invalidate];
+                        [audioProgressTimer invalidate];
+                        NSLog(@"Audio Progress Timer Invalidate 5");
                         self.recordProgressView.progress = 0.0;
                         [self.audioSource stopAudioCapture:self.elapsedTime];
                     }];
@@ -294,28 +297,19 @@ static const float TIMER_INTERVAL = .01;
                         self.guidanceArrowLeft.hidden = NO;
                         self.guidanceArrowRight.hidden = NO;
                     }];
-    /*
-    [center addObserverForName:SEARCHED_FOR_SONG_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        [UIView animateWithDuration:.3
-                                              delay:0
-                                            options:UIViewAnimationOptionCurveEaseOut
-                                         animations:^{
-                                         }
-                                         completion:nil];
-                    }];
-     */
 }
 
 - (void) updateProgress {
     self.elapsedTime += TIMER_INTERVAL;
+    NSLog(@"self.elapsedTime: %f", self.elapsedTime);
     
     [self.recordProgressView setProgress:(self.elapsedTime / MAX_CAPTURE_TIME)];
+    NSLog(@"recordProgressView progess: %f", self.recordProgressView.progress);
     
-    if (self.elapsedTime >= MAX_CAPTURE_TIME) {
-        [timer invalidate];
+    // Added the minus .02 because otherwise the page would transition .02 seconds too early
+    if (self.elapsedTime - .02 >= MAX_CAPTURE_TIME) {
+        [audioProgressTimer invalidate];
+        NSLog(@"Audio Progress Timer Invalidate 6");
         [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
         
         // The following 0.1 second delay is here because otherwise the page takes an extra half second to transition to the AddTextViewController (not sure why that happens)
@@ -340,7 +334,8 @@ static const float TIMER_INTERVAL = .01;
 
 - (IBAction)recordUntapped:(id)sender
 {
-    [timer invalidate];
+    [audioProgressTimer invalidate];
+    NSLog(@"Audio Progress Timer Invalidate 7");
     
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
         self.recordProgressView.progress = 0.0;
