@@ -22,7 +22,7 @@
 @interface CustomizeYapViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet YSRecordProgressView *progressView;
-@property (weak, nonatomic) IBOutlet YSColorPicker *colorPicker;
+//@property (weak, nonatomic) IBOutlet YSColorPicker *colorPicker;
 @property (strong, nonatomic) UIView *progressViewRemainder;
 @property (strong, nonatomic) IBOutlet UIImageView *yapPhoto;
 @property (strong, nonatomic) IBOutlet UILabel *contactLabel;
@@ -71,7 +71,11 @@
     
     if (self.yapBuilder.contacts.count > 0) {
         PhoneContact *contact = self.yapBuilder.contacts.firstObject;
-        self.contactLabel.text = [NSString stringWithFormat:@"Send to\n%@", contact.name];
+        if (IS_IPHONE_4_SIZE) {
+            self.contactLabel.text = [NSString stringWithFormat:@"To: %@", contact.name];
+        } else {
+            self.contactLabel.text = [NSString stringWithFormat:@"Send to\n%@", contact.name];
+        }
         self.contactLabel.numberOfLines = 2;
     } else {
         self.contactLabel.text = @"";
@@ -93,6 +97,16 @@
     if ([self.yapBuilder.messageType  isEqual: @"VoiceMessage"]) {
         self.balloonButton.hidden = NO;
         self.balloonButtonImage.hidden = NO;
+        if (IS_IPHONE_4_SIZE) {
+            // Nothing necessary here
+        } else if (IS_IPHONE_5_SIZE) {
+            // Nothing necessary here
+        } else if (IS_IPHONE_6_SIZE) {
+            self.balloonLeftConstraint.constant = 78;
+        } else if (IS_IPHONE_6_PLUS_SIZE ) {
+            self.balloonLeftConstraint.constant = 87;
+        }
+        
     } else {
         if (IS_IPHONE_4_SIZE) {
             self.balloonLeftConstraint.constant = 0;
@@ -109,10 +123,7 @@
     [self.yapPhoto addGestureRecognizer:tapGesture];
     
     if (IS_IPHONE_4_SIZE) {
-        self.bottomConstraint.constant = 5;
-    }
-    if (IS_IPHONE_5_SIZE) {
-        self.bottomConstraint.constant = 25;
+        self.bottomConstraint.constant = 0;
     }
     
     [self styleCustomizationButtons];

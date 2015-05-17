@@ -13,7 +13,6 @@
 #import "API.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "AudioCaptureViewController.h"
-#import "MusicGenreViewController.h"
 
 @interface HomeViewController ()
 
@@ -22,6 +21,7 @@
 @property (nonatomic, strong) NSNumber *unopenedYapsCount;
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
 @property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *doubleTapConstraint;
 
 
 - (IBAction)didTapMicButton;
@@ -48,6 +48,14 @@
         
     [self setupNavBarStuff];
     [self styleButtons];
+    
+    if (IS_IPHONE_4_SIZE) {
+        self.doubleTapConstraint.constant = 20;
+    } else if (IS_IPHONE_6_SIZE) {
+        self.doubleTapConstraint.constant = 80;
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        self.doubleTapConstraint.constant = 100;
+    }
 }
 
 - (void) setupNotifications {
@@ -247,7 +255,7 @@
         double delay = .3;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
-                                                            message:@"Record your voice and then tap the white balloons!"
+                                                            message:@"Record your voice and then tap the white balloon!"
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles: nil];

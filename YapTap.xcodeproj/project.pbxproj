@@ -103,7 +103,6 @@
 		7854B0731AF88CCF00A02DF9 /* LeftArrow50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0721AF88CCF00A02DF9 /* LeftArrow50.png */; };
 		7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */; };
 		7857CABE1AFBB43300ADF999 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857CABD1AFBB43300ADF999 /* HomeViewController.m */; };
-		7857CAC11AFBD11200ADF999 /* MusicGenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */; };
 		786192471B06BA5B007279E8 /* MegaphoneWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192461B06BA5B007279E8 /* MegaphoneWhite.png */; };
 		7861924B1B0712F8007279E8 /* megaphone_shutterstock2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861924A1B0712F8007279E8 /* megaphone_shutterstock2.png */; };
 		7861924D1B072077007279E8 /* WhiteCamera100.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861924C1B072077007279E8 /* WhiteCamera100.png */; };
@@ -397,8 +396,6 @@
 		7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow60.png; sourceTree = "<group>"; };
 		7857CABC1AFBB43300ADF999 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		7857CABD1AFBB43300ADF999 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		7857CABF1AFBD11200ADF999 /* MusicGenreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicGenreViewController.h; sourceTree = "<group>"; };
-		7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicGenreViewController.m; sourceTree = "<group>"; };
 		786192461B06BA5B007279E8 /* MegaphoneWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MegaphoneWhite.png; path = "../../../Dropbox/MacBook Pro (New)/YapTap Images/MegaphoneWhite.png"; sourceTree = "<group>"; };
 		7861924A1B0712F8007279E8 /* megaphone_shutterstock2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = megaphone_shutterstock2.png; sourceTree = "<group>"; };
 		7861924C1B072077007279E8 /* WhiteCamera100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCamera100.png; sourceTree = "<group>"; };
@@ -978,15 +975,6 @@
 			name = "Customize Page";
 			sourceTree = "<group>";
 		};
-		786E0BDF1AFEEA5600005D1D /* Music Genre */ = {
-			isa = PBXGroup;
-			children = (
-				7857CABF1AFBD11200ADF999 /* MusicGenreViewController.h */,
-				7857CAC01AFBD11200ADF999 /* MusicGenreViewController.m */,
-			);
-			name = "Music Genre";
-			sourceTree = "<group>";
-		};
 		787EC5E01AC9D09B000C5539 /* ProgressView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1257,7 +1245,6 @@
 			isa = PBXGroup;
 			children = (
 				FCFCE45F1AF559B50094926E /* Home View Controller */,
-				786E0BDF1AFEEA5600005D1D /* Music Genre */,
 				785393721AD9C48B00C6BEA7 /* Customize Yap */,
 				FC3ECAE61A830482002678F6 /* Friends */,
 				FCBB97001A7D635B003D5F24 /* Settings */,
@@ -1742,7 +1729,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC1E89BB1A4B8E94007A8CDA /* YSYap.m in Sources */,
-				7857CAC11AFBD11200ADF999 /* MusicGenreViewController.m in Sources */,
 				FC0595821A6D87A700FCCED2 /* ContactManager.m in Sources */,
 				7853936E1AD9C17500C6BEA7 /* WelcomePopupViewController.m in Sources */,
 				FCFCE4511AF528100094926E /* YTBuilder.m in Sources */,
