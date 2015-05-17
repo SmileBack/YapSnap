@@ -13,7 +13,7 @@
 #define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
 
 @interface YSMicSourceController ()<EZMicrophoneDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *microphoneView;
+@property (weak, nonatomic) IBOutlet UIImageView *megaphoneImageView;
 @property (nonatomic, strong) AVAudioPlayer *player;
 @property (nonatomic, strong) EZMicrophone* microphone;
 @property (nonatomic, strong) EZRecorder* recorder;
@@ -33,7 +33,7 @@
     
     UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMicrophoneImage)];
     tapped.numberOfTapsRequired = 1;
-    [self.microphoneView addGestureRecognizer:tapped];
+    [self.megaphoneImageView addGestureRecognizer:tapped];
     
     // Sinus wave view
     self.sinusWaveView.plotType        = EZPlotTypeBuffer;
@@ -53,13 +53,20 @@
     
     self.sinusWaveView.alpha = 0;
     //self.navigationItem.titleView = self.sinusWaveView;
+    
+    [self setFrameOfMegaPhoneImageView];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.microphoneView.alpha = 1;
+    self.megaphoneImageView.alpha = 1;
     self.sinusWaveView.alpha = 0;
+}
+
+- (void) setFrameOfMegaPhoneImageView {
+    self.megaphoneImageView.frame = CGRectMake(100, 100, 20, 20);
+    //self.megaphoneImageView.center = self.megaphoneImageView.superview.center;
 }
 
 - (void) setupNotifications {
@@ -73,7 +80,7 @@
                                               delay:0
                                             options:UIViewAnimationOptionCurveEaseOut
                                          animations:^{
-                                             self.microphoneView.alpha = 1;
+                                             self.megaphoneImageView.alpha = 1;
                                              self.sinusWaveView.alpha = 0;
                                          }
                                          completion:nil];
@@ -158,7 +165,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
             
-            self.microphoneView.alpha = 0;
+            self.megaphoneImageView.alpha = 0;
             self.sinusWaveView.alpha = 1;
             
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -189,7 +196,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:NO error:nil];
     
-    self.microphoneView.image = [UIImage imageNamed:@"megaphone_shutterstock2.png"];
+    self.megaphoneImageView.image = [UIImage imageNamed:@"megaphone_shutterstock2.png"];
 }
 
 //- (void) startPlayback //Play button isn't in the UI currently

@@ -1684,7 +1684,7 @@ Type it here!</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="320"/>
                     <connections>
-                        <outlet property="microphoneView" destination="v0o-hk-bRQ" id="5av-t2-S6U"/>
+                        <outlet property="megaphoneImageView" destination="v0o-hk-bRQ" id="9yf-XA-B8A"/>
                         <outlet property="sinusWaveView" destination="vhM-aB-1Ig" id="1Yb-5F-fNy"/>
                     </connections>
                 </viewController>
