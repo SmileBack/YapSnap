@@ -184,26 +184,26 @@ static NSString *CellIdentifier = @"Cell";
                 [weakSelf.tableView reloadData];
             });
         });
-        if (!self.didViewContactsAlert) {
-            if (self.builder.builderType == BuilderTypeYap) {
-                double delay = .8;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (self.builder.builderType == BuilderTypeYap) {
+            double delay = .8;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (!self.didViewContactsAlert) {
                     [self showOnboardingAlert];
-                });
-            }
+                }
+            });
         }
     } else {
         ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
         ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
             if (granted) {
                 [weakSelf loadContacts];
-                if (!self.didViewContactsAlert) {
-                    if (self.builder.builderType == BuilderTypeYap) {
-                        double delay = 1;
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (self.builder.builderType == BuilderTypeYap) {
+                    double delay = 1;
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        if (!self.didViewContactsAlert) {
                             [self showOnboardingAlert];
-                        });
-                    }
+                        }
+                    });
                 }
             } else {
                 // User denied access
