@@ -94,30 +94,8 @@
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
     });
     
-    if ([self.yapBuilder.messageType  isEqual: @"VoiceMessage"]) {
-        self.balloonButton.hidden = NO;
-        self.balloonButtonImage.hidden = NO;
-        if (IS_IPHONE_4_SIZE) {
-            // Nothing necessary here
-        } else if (IS_IPHONE_5_SIZE) {
-            // Nothing necessary here
-        } else if (IS_IPHONE_6_SIZE) {
-            self.balloonLeftConstraint.constant = 78;
-        } else if (IS_IPHONE_6_PLUS_SIZE ) {
-            self.balloonLeftConstraint.constant = 87;
-        }
-        
-    } else {
-        if (IS_IPHONE_4_SIZE) {
-            self.balloonLeftConstraint.constant = 0;
-        } else if (IS_IPHONE_5_SIZE) {
-           self.balloonLeftConstraint.constant = 18;
-        } else if (IS_IPHONE_6_SIZE) {
-            self.balloonLeftConstraint.constant = 0;
-        } else if (IS_IPHONE_6_PLUS_SIZE ) {
-            self.balloonLeftConstraint.constant = 0;
-        }
-    }
+    
+    [self setBalloonLeftConstraint];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapImageView)];
     [self.yapPhoto addGestureRecognizer:tapGesture];
@@ -128,6 +106,33 @@
     }
     
     [self styleCustomizationButtons];
+}
+
+- (void) setBalloonLeftConstraint {
+    if ([self.yapBuilder.messageType isEqual: @"VoiceMessage"]) {
+        self.balloonButton.hidden = NO;
+        self.balloonButtonImage.hidden = NO;
+        if (IS_IPHONE_4_SIZE) {
+            // Nothing necessary here
+        } else if (IS_IPHONE_5_SIZE) {
+            // Nothing necessary here
+        } else if (IS_IPHONE_6_SIZE) {
+            self.balloonLeftConstraint.constant = 78;
+        } else if (IS_IPHONE_6_PLUS_SIZE ) {
+            self.balloonLeftConstraint.constant = 94;
+        }
+        
+    } else if ([self.yapBuilder.messageType isEqual: @"SpotifyMessage"]) {
+        if (IS_IPHONE_4_SIZE) {
+            self.balloonLeftConstraint.constant = 16;
+        } else if (IS_IPHONE_5_SIZE) {
+            self.balloonLeftConstraint.constant = 16;
+        } else if (IS_IPHONE_6_SIZE) {
+            self.balloonLeftConstraint.constant = 43;
+        } else if (IS_IPHONE_6_PLUS_SIZE ) {
+            self.balloonLeftConstraint.constant = 59;
+        }
+    }
 }
 
 - (void) styleCustomizationButtons {
