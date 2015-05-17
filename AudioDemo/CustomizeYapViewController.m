@@ -124,6 +124,7 @@
     
     if (IS_IPHONE_4_SIZE) {
         self.bottomConstraint.constant = 0;
+        self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:32];
     }
     
     [self styleCustomizationButtons];
