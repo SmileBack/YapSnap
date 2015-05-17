@@ -139,7 +139,7 @@
     } else {
         self.balloonCancelButtonTitle = @"Back to Normal";
     }
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose your voice filter!"
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select a voice filter"
                                                              delegate:self
                                                     cancelButtonTitle:self.balloonCancelButtonTitle
                                                destructiveButtonTitle:nil
@@ -153,23 +153,6 @@
     
     [self reduceAlphaOfButtons];
 }
-/*
-
-- (void) didTapResetPitchButton {
-    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Voice Reset"];
-    
-    [self resetProgressViewColor];
-    self.player.pitchShift = 0;
-    
-
-
-    
-    [self.player stop];
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Reset Button"];
-}
- */
 
 - (void) playAudioWithPitch:(CGFloat)pitch {
     NSArray *pathComponents = [NSArray arrayWithObjects:
