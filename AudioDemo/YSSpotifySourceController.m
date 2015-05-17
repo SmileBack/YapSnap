@@ -58,9 +58,7 @@
         NSLog(@"Internet is reachable");
     }
     
-    UITapGestureRecognizer *tappedSpotifyView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedSpotifyView)];
-    tappedSpotifyView.numberOfTapsRequired = 1;
-    [self.view addGestureRecognizer:tappedSpotifyView];
+    [self setupGestureRecognizers];
     
     [self setupNotifications];
 }
@@ -69,6 +67,12 @@
 {
     [super viewDidAppear:animated];
     self.playerAlreadyStartedPlayingForThisSong = NO;
+}
+
+- (void) setupGestureRecognizers {
+    UITapGestureRecognizer *tappedSpotifyView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedSpotifyView)];
+    tappedSpotifyView.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tappedSpotifyView];
 }
 
 - (void) setupNotifications {

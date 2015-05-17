@@ -25,9 +25,7 @@
 
 
 - (IBAction)didTapMicButton;
-/*
-- (IBAction)didTapMusicButton;
-*/
+
 @end
 
 @implementation HomeViewController
@@ -47,7 +45,7 @@
                                                                             target:nil
                                                                             action:nil];
     [self setupNotifications];
-    
+        
     [self setupNavBarStuff];
     [self styleButtons];
 }
@@ -240,6 +238,29 @@
     [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:self];
 }
 
+#pragma mark - Mic and Music Buttons
+
+- (IBAction)didTapMicButton {
+    [self tappedMicButton];
+    
+    if (!self.didTapMicButtonForFirstTime) {
+        double delay = .3;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
+                                                            message:@"Record your voice and then tap the white balloons!"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles: nil];
+            [alert show];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY];
+        });
+    }
+}
+
+- (BOOL) didTapMicButtonForFirstTime {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY];
+}
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([@"YapsPageViewControllerSegue" isEqualToString:segue.identifier]) {
@@ -263,46 +284,16 @@
             audio.type = AudioCaptureTypeMic;
         }
         audio.contactReplyingTo = self.contactReplyingTo;
-    } else if ([@"Music Genre" isEqualToString: segue.identifier]) {
-        MusicGenreViewController* vc = segue.destinationViewController;
-        vc.contactReplyingTo = self.contactReplyingTo;
     }
 }
 
-- (IBAction)didTapMusicButtonSearch {
+- (IBAction)didTapMusicButton {
     [self tappedSpotifyButton:@"Search"];
 }
 
 - (void) tappedSpotifyButton:(NSString *)type
 {
     [self performSegueWithIdentifier:@"Audio Record" sender:type];
-}
-
-#pragma mark - Song Genre Buttons
-
-- (IBAction)didTapMicButton {
-    [self tappedMicButton];
-    
-    if (!self.didTapMicButtonForFirstTime) {
-        double delay = .3;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
-                                                            message:@"Record your voice and then tap the white balloons!"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles: nil];
-            [alert show];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY];
-        });
-    }
-}
-/*
-- (IBAction)didTapMusicButton {
-    [self performSegueWithIdentifier:@"Music Genre" sender:nil];
-}
-*/
-- (BOOL) didTapMicButtonForFirstTime {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY];
 }
 
 #pragma mark - Feedback

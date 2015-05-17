@@ -22,6 +22,7 @@
 @property (nonatomic) YSContact *contactReplyingTo;
 @property (weak, nonatomic) IBOutlet UIButton *topLeftButton;
 @property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;
+
 @property (nonatomic, strong) IBOutlet UIButton *micButton;
 @property (nonatomic, strong) IBOutlet UIButton *musicButton;
 

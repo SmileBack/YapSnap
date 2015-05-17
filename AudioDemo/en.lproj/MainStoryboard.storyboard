@@ -253,7 +253,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapMusicButtonSearch" destination="2" eventType="touchUpInside" id="Xjy-hC-SwL"/>
+                                    <action selector="didTapMusicButton" destination="2" eventType="touchUpInside" id="Qlt-jN-opb"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MusicIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="u9u-rJ-1Tk">
@@ -2035,9 +2035,9 @@ Type it here!</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="czb-n6-hbf"/>
-        <segue reference="A1q-1y-Edd"/>
         <segue reference="Q0Z-rg-Tpo"/>
+        <segue reference="AEp-MY-7pq"/>
+        <segue reference="A1q-1y-Edd"/>
         <segue reference="0bM-75-hD3"/>
     </inferredMetricsTieBreakers>
 </document>
