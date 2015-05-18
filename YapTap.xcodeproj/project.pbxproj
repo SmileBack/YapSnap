@@ -125,6 +125,9 @@
 		786192781B09B810007279E8 /* ContactsPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192761B09B810007279E8 /* ContactsPopupViewController.m */; };
 		786192791B09B810007279E8 /* ContactsPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192771B09B810007279E8 /* ContactsPopupViewController.xib */; };
 		7861927C1B09BE7F007279E8 /* DiceYellow2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861927B1B09BE7F007279E8 /* DiceYellow2@2x.png */; };
+		7861927E1B0A4AD8007279E8 /* CancelImageButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861927D1B0A4AD8007279E8 /* CancelImageButton@2x.png */; };
+		786192801B0A4CB0007279E8 /* CancelPhotoButton100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861927F1B0A4CB0007279E8 /* CancelPhotoButton100@2x.png */; };
+		786192821B0A4D5F007279E8 /* CancelPhotoButton200@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192811B0A4D5F007279E8 /* CancelPhotoButton200@2x.png */; };
 		78624BE41B03189000C8E049 /* Dice7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE31B03189000C8E049 /* Dice7@2x.png */; };
 		78624BE71B03BA9100C8E049 /* GuidanceArrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE51B03BA9100C8E049 /* GuidanceArrowLeft.png */; };
 		78624BE81B03BA9100C8E049 /* GuidanceArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE61B03BA9100C8E049 /* GuidanceArrowRight.png */; };
@@ -425,6 +428,9 @@
 		786192771B09B810007279E8 /* ContactsPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsPopupViewController.xib; sourceTree = "<group>"; };
 		7861927A1B09B81E007279E8 /* ContactsPopupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactsPopupViewController.h; sourceTree = "<group>"; };
 		7861927B1B09BE7F007279E8 /* DiceYellow2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DiceYellow2@2x.png"; sourceTree = "<group>"; };
+		7861927D1B0A4AD8007279E8 /* CancelImageButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelImageButton@2x.png"; sourceTree = "<group>"; };
+		7861927F1B0A4CB0007279E8 /* CancelPhotoButton100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelPhotoButton100@2x.png"; sourceTree = "<group>"; };
+		786192811B0A4D5F007279E8 /* CancelPhotoButton200@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelPhotoButton200@2x.png"; sourceTree = "<group>"; };
 		78624BE31B03189000C8E049 /* Dice7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice7@2x.png"; sourceTree = "<group>"; };
 		78624BE51B03BA9100C8E049 /* GuidanceArrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GuidanceArrowLeft.png; sourceTree = "<group>"; };
 		78624BE61B03BA9100C8E049 /* GuidanceArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GuidanceArrowRight.png; sourceTree = "<group>"; };
@@ -812,6 +818,9 @@
 		782D133E1ACB49D9007C8499 /* Balloons & Reset Button */ = {
 			isa = PBXGroup;
 			children = (
+				7861927F1B0A4CB0007279E8 /* CancelPhotoButton100@2x.png */,
+				786192811B0A4D5F007279E8 /* CancelPhotoButton200@2x.png */,
+				7861927D1B0A4AD8007279E8 /* CancelImageButton@2x.png */,
 				787EC61D1ACA2B17000C5539 /* ResetButton3@2x.png */,
 				78F1E4161AD306B400C2743B /* ResetButtonLarger@2x.png */,
 				787EC5F81ACA0477000C5539 /* Balloon10.png */,
@@ -1582,6 +1591,7 @@
 				78624BE81B03BA9100C8E049 /* GuidanceArrowRight.png in Resources */,
 				3793FDF919BCF0DC00FBBBCE /* ContactSelectionCell.xib in Resources */,
 				786E0BE91B0078A300005D1D /* CartoonsLong2.png in Resources */,
+				7861927E1B0A4AD8007279E8 /* CancelImageButton@2x.png in Resources */,
 				7854B0731AF88CCF00A02DF9 /* LeftArrow50.png in Resources */,
 				788363921AD78BB6001CBD1B /* TwoNotSelectediPhone4@2x.png in Resources */,
 				F44B0C5516DA404700E6CD88 /* Default.png in Resources */,
@@ -1598,6 +1608,7 @@
 				786192671B086251007279E8 /* ProgressViewLightBlueiPhone4@2x.png in Resources */,
 				7861925D1B080D92007279E8 /* Chipmunk60.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
+				786192821B0A4D5F007279E8 /* CancelPhotoButton200@2x.png in Resources */,
 				78624BF61B04EC6B00C8E049 /* ProgressViewYellow@2x.png in Resources */,
 				78B0B7621AEF3834001C074B /* Shuffle50.png in Resources */,
 				78439FC81AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png in Resources */,
@@ -1703,6 +1714,7 @@
 				78624C081B04F0D700C8E049 /* ProgressViewYellow@3x.png in Resources */,
 				787EC60F1ACA1B1B000C5539 /* OldProgressViewGreeniPhone4@2x.png in Resources */,
 				782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */,
+				786192801B0A4CB0007279E8 /* CancelPhotoButton100@2x.png in Resources */,
 				781904841AF1F27700196DFF /* YapsButtonNoYaps5.png in Resources */,
 				7867C1CA1B01A64D0050632F /* CancelImageWhite3.png in Resources */,
 				787EC6151ACA245E000C5539 /* OldProgressViewRed@3x.png in Resources */,

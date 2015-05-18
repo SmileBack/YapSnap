@@ -322,17 +322,11 @@ static const float TIMER_INTERVAL = .02;
     if (self.elapsedTime - .02 >= MAX_CAPTURE_TIME) {
         [audioProgressTimer invalidate];
         NSLog(@"Audio Progress Timer Invalidate 6");
-        
+        [self.audioSource stopAudioCapture:self.elapsedTime];
         // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
-        double delay1 = .15;
+        double delay1 = .1;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
-        });
-        
-        // The following 0.1 second delay is here because otherwise the page takes an extra half second to transition to the AddTextViewController (not sure why that happens)
-        double delay2 = .1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.audioSource stopAudioCapture:self.elapsedTime];
         });
     }
 }
@@ -376,20 +370,16 @@ static const float TIMER_INTERVAL = .02;
         
         [self stopCountdownTimer];
         self.countdownTimerButton.hidden = YES;
+        [self.audioSource stopAudioCapture:self.elapsedTime];
     } else {
+        [self.audioSource stopAudioCapture:self.elapsedTime];
         [self hideGuidanceArrows];
         // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
-        double delay1 = .15;
+        double delay1 = .1;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
         });
     }
-
-    // The following 0.1 second delay is here because otherwise the page takes an extra half second to transition to the AddTextViewController (not sure why that happens)
-    double delay2 = .1;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.audioSource stopAudioCapture:self.elapsedTime];
-    });
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Untapped Record Button"];
