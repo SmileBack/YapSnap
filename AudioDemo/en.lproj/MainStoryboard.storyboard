@@ -237,7 +237,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapMicButton" destination="2" eventType="touchUpInside" id="6ky-47-Q38"/>
+                                    <action selector="didTapMegaphoneButton" destination="2" eventType="touchUpInside" id="yvy-bO-226"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-ff-fwd" userLabel="Music Button">

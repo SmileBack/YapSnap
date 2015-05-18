@@ -23,7 +23,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *doubleTapConstraint;
 
 
-- (IBAction)didTapMicButton;
+- (IBAction)didTapMegaphoneButton;
 
 @end
 
@@ -31,6 +31,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Viewed Home Page"];
+    
     if (!self.didSeeWelcomePopup) {
         [self showWelcomePopup];
     }
@@ -159,16 +163,6 @@
 {
     return self.contactReplyingTo != nil;
 }
-/*
-- (void) tappedWelcomePopup {
-    NSLog(@"tapped Welcome Popup");
-    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideTopTop];
-    double delay = .6;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self didTapYapsPageButton];
-    });
-}
-*/
 
 - (void) showWelcomePopup {
     NSLog(@"tapped Welcome Popup");
@@ -240,12 +234,24 @@
 - (IBAction) didTapYapsPageButton
 {
     [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:self];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Yaps Page Button"];
 }
 
 #pragma mark - Mic and Music Buttons
 
-- (IBAction)didTapMicButton {
-    [self tappedMicButton];
+- (IBAction)didTapMegaphoneButton {
+    [self performSegueWithIdentifier:@"Audio Record" sender:nil];
+}
+
+- (IBAction)didTapMusicButton {
+    [self tappedSpotifyButton:@"Search"];
+}
+
+- (void) tappedSpotifyButton:(NSString *)type
+{
+    [self performSegueWithIdentifier:@"Audio Record" sender:type];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -272,15 +278,6 @@
         }
         audio.contactReplyingTo = self.contactReplyingTo;
     }
-}
-
-- (IBAction)didTapMusicButton {
-    [self tappedSpotifyButton:@"Search"];
-}
-
-- (void) tappedSpotifyButton:(NSString *)type
-{
-    [self performSegueWithIdentifier:@"Audio Record" sender:type];
 }
 
 #pragma mark - Feedback
@@ -320,11 +317,6 @@
 - (BOOL) didSeeWelcomePopup
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_POPUP_KEY];
-}
-
-- (void) tappedMicButton
-{
-    [self performSegueWithIdentifier:@"Audio Record" sender:nil];
 }
 
 @end

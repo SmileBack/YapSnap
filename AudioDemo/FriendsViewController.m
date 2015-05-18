@@ -178,9 +178,6 @@
         return;
     }
     
-//    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-//    [mixpanel track:@"Double Tapped Row"];
-    
     YSUser *friend = self.friends[indexPath.row];
 
     YSContact *contact;
@@ -192,6 +189,9 @@
     }
 
     [self performSegueWithIdentifier:@"Send Yap Segue" sender:contact];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Double Tapped Row"];
 }
 
 #pragma mark - UITableViewDataSource
@@ -379,10 +379,10 @@
 
 - (IBAction)addFriendButtonPressed:(UIBarButtonItem *)sender
 {
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Add Friend"];
-    
     [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Add Friends Button (Plus)"];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -406,6 +406,9 @@
 - (IBAction)didTapLargeAddFriendsButton
 {
     [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Add Friends Button (Large)"];
 }
 
 @end

@@ -47,7 +47,7 @@ static NSString *CellIdentifier = @"Cell";
     [super viewDidLoad];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Viewed Select Contacts Page"];
+    [mixpanel track:@"Viewed Contacts Page"];
     
     self.bottomView.hidden = YES;
     
@@ -415,6 +415,8 @@ static NSString *CellIdentifier = @"Cell";
         
         [self updateBottomViewText];
         
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Selected Contact for Friend Request"];
     } else {
         PhoneContact *contact;
         if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -442,6 +444,9 @@ static NSString *CellIdentifier = @"Cell";
         [self showOrHideBottomView];
         
         [self updateBottomViewText];
+        
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Selected Contact for Yap"];
     }
 }
 
@@ -533,6 +538,9 @@ static NSString *CellIdentifier = @"Cell";
     [[API sharedAPI] addFriends:addFriendsBuilder
                        withCallback:^(BOOL success, NSError *error) {
                            if (success) {
+                               Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                               [mixpanel track:@"Sent Friend Request"];
+                               
                                [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
                                
                                double delay = .3;

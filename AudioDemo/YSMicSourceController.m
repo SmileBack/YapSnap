@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Viewed Mic Page"];
+    [mixpanel track:@"Viewed Megaphone Page"];
 
     [self setupRecorder];
     
@@ -44,7 +44,7 @@
     [self setSinusWaveConstraints];
     
     self.megaphoneImageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMicrophoneImage)];
+    UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMegaphoneImage)];
     tapped.numberOfTapsRequired = 1;
     [self.megaphoneImageView addGestureRecognizer:tapped];
     
@@ -137,12 +137,15 @@
                     }];
 }
 
-- (void)tappedMicrophoneImage {
+- (void)tappedMegaphoneImage {
     NSLog(@"Tapped Microphone Image");
     double delay = 0.1;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
     });
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Megaphone Image"];
 }
 
 - (YapBuilder *) getYapBuilder

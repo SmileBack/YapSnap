@@ -55,7 +55,7 @@
     [super viewDidLoad];
         
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Viewed Add Text Page"];
+    [mixpanel track:@"Viewed Customize Page"];
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
@@ -169,6 +169,9 @@
     }
     
     [self reduceAlphaOfButtons];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Balloon"];
 }
 
 - (void) playAudioWithPitch:(CGFloat)pitch {
@@ -281,7 +284,7 @@
     }
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Continue On Add Text Page"];
+    [mixpanel track:@"Tapped Continue On Customize Page"];
 }
 - (IBAction)didTapBackButton:(id)sender
 {
@@ -310,6 +313,9 @@
     }
     
     [self reduceAlphaOfButtons];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Add Camera Button"];
 }
 
 - (BOOL) textView: (UITextView*) textView shouldChangeTextInRange: (NSRange) range replacementText: (NSString*) text
@@ -375,7 +381,7 @@
     [self updateAlphaOfButtons];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Cancel Photo Button"];
+    [mixpanel track:@"Tapped Reset Photo Button"];
 }
 
 #pragma mark - Image Picker Controller delegate methods
@@ -530,7 +536,7 @@
             [self updateAlphaOfButtons];
             
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Balloon 1"];
+            [mixpanel track:@"Tapped Pitch Helium"];
         } else if (buttonIndex == 1) {
             if (self.isiPhone5Size) {
                 [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone5.png"]];
@@ -563,7 +569,7 @@
             [self updateAlphaOfButtons];
             
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Balloon 2"];
+            [mixpanel track:@"Tapped Pitch Chipmunk"];
         } else if (buttonIndex == 2) {
             if (self.isiPhone5Size) {
                 [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone5.png"]];
@@ -596,7 +602,7 @@
             [self updateAlphaOfButtons];
             
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Balloon 3"];
+            [mixpanel track:@"Tapped Pitch Darth Vader"];
         } else if (buttonIndex == 3) {
             NSLog(@"Did tap cancel");
             
@@ -612,6 +618,11 @@
                 self.player.pitchShift = 0;
                 self.pitchShiftValue = 0;
                 [self.player stop];
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"Tapped Pitch Normal"];
+            } else {
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"Tapped Pitch Cancel"];
             }
         }
     }

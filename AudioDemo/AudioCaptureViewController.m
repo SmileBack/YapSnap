@@ -185,7 +185,7 @@ static const float TIMER_INTERVAL = .02;
     }
     UIButton *randomSearchButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [randomSearchButton setBackgroundImage:self.diceImage forState:UIControlStateNormal];
-    [randomSearchButton addTarget:self action:@selector(randomSearchPressed)
+    [randomSearchButton addTarget:self action:@selector(diceButtonPressed)
                 forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *randomSearchBarButtonItom =[[UIBarButtonItem alloc] initWithCustomView:randomSearchButton];
     [self.navigationItem setRightBarButtonItem:randomSearchBarButtonItom];
@@ -193,14 +193,21 @@ static const float TIMER_INTERVAL = .02;
 
 - (void)cancelPressed
 {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Dismiss Audio Capture Modal"];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_KEYBOARD_NOTIFICATION object:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)randomSearchPressed
+- (void)diceButtonPressed
 {
     NSLog(@"Tapped Right Button");
     [[NSNotificationCenter defaultCenter] postNotificationName:TAPPED_DICE_BUTTON_NOTIFICATION object:nil];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Dice Button"];
+    [mixpanel.people increment:@"Tapped Dice Button #" by:[NSNumber numberWithInt:1]];
 }
 
 -(BOOL) internetIsNotReachable
@@ -317,7 +324,7 @@ static const float TIMER_INTERVAL = .02;
         NSLog(@"Audio Progress Timer Invalidate 6");
         
         // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
-        double delay1 = .2;
+        double delay1 = .15;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
         });
@@ -372,7 +379,7 @@ static const float TIMER_INTERVAL = .02;
     } else {
         [self hideGuidanceArrows];
         // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
-        double delay1 = .2;
+        double delay1 = .15;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
         });
