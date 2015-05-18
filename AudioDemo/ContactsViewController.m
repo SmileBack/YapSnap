@@ -33,7 +33,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *keyboardVerticalSpace;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
-#define VIEWED_CONTACTS_ONBOARDING_ALERT_KEY @"yaptap.ViewedContactsOnboardingAlertKey2"
+#define VIEWED_CONTACTS_ONBOARDING_ALERT_KEY @"yaptap.ViewedContactsOnboardingAlertKey3"
 
 @end
 
@@ -198,7 +198,7 @@ static NSString *CellIdentifier = @"Cell";
             });
         });
         if (self.builder.builderType == BuilderTypeYap) {
-            double delay = .8;
+            double delay = 0.5;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 if (!self.didViewContactsOnboardingAlert) {
                     [self showOnboardingPopup];
@@ -211,7 +211,7 @@ static NSString *CellIdentifier = @"Cell";
             if (granted) {
                 [weakSelf loadContacts];
                 if (self.builder.builderType == BuilderTypeYap) {
-                    double delay = 1;
+                    double delay = 0.5;
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         if (!self.didViewContactsOnboardingAlert) {
                             [self showOnboardingPopup];
