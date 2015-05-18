@@ -9,8 +9,12 @@
 #import "YSMicSourceController.h"
 #import <AudioToolbox/AudioToolbox.h> // IS THIS NECESSARY HERE? Added this for short sound feature. If not necessary, remove framework
 #import "EZAudio.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "RecordPopupViewController.h"
 
 #define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
+#define DID_SEE_ONBOARDING_POPUP_KEY @"yaptap.DidSeeOnboardingPopupKey5"
+#define DISMISS_ONBOARDING_POPUP @"DismissOnboardingPopup"
 
 @interface YSMicSourceController ()<EZMicrophoneDelegate>
 @property (strong, nonatomic) UIImageView *megaphoneImageView;
@@ -19,6 +23,7 @@
 @property (nonatomic, strong) EZRecorder* recorder;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *sinusWaveTopConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *sinusWaveWidthConstraint;
+@property (strong, nonatomic) RecordPopupViewController *recordPopupVC;
 
 @end
 
@@ -42,6 +47,10 @@
     UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMicrophoneImage)];
     tapped.numberOfTapsRequired = 1;
     [self.megaphoneImageView addGestureRecognizer:tapped];
+    
+    if (!self.didSeeOnboardingPopup) {
+        [self showOnboardingPopup];
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -117,6 +126,14 @@
                                              self.sinusWaveView.alpha = 0;
                                          }
                                          completion:nil];
+                    }];
+    
+    [center addObserverForName:DISMISS_ONBOARDING_POPUP
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Dismiss Welcome Popup");
+                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
 }
 
@@ -232,19 +249,6 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     self.megaphoneImageView.image = [UIImage imageNamed:@"megaphone_shutterstock3.png"];
 }
 
-//- (void) startPlayback //Play button isn't in the UI currently
-//{
-//    if (!self.recorder.recording){
-//        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recorder.url error:nil];
-//        [self.player setDelegate:self];
-//        
-//        self.player.enableRate = YES;
-//        self.player.rate = 2.0f;
-//        
-//        [self.player play];
-//    }
-//}
-
 - (void) resetUI
 {
     // Nothing for now.
@@ -254,6 +258,22 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
     [self.player stop];
     [self.player prepareToPlay];
+}
+
+#pragma mark - Onboarding Popup
+- (void) showOnboardingPopup {
+    double delay = .5;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.recordPopupVC = [[RecordPopupViewController alloc] initWithNibName:@"RecordPopupViewController" bundle:nil];
+        [self presentPopupViewController:self.recordPopupVC animationType:MJPopupViewAnimationFade];
+
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_ONBOARDING_POPUP_KEY];
+    });
+}
+
+- (BOOL) didSeeOnboardingPopup
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_ONBOARDING_POPUP_KEY];
 }
 
 @end

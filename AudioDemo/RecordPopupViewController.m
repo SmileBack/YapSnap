@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 martinjuhasz.de. All rights reserved.
 //
 
-#import "WelcomePopupViewController.h"
+#import "RecordPopupViewController.h"
 
-@implementation WelcomePopupViewController
+@implementation RecordPopupViewController
 
 
 - (void)viewDidLoad
@@ -30,7 +30,7 @@
 }
 
 - (IBAction) didTapCancelButton {
-    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_WELCOME_POPUP object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_ONBOARDING_POPUP object:nil];
 }
 
 @end

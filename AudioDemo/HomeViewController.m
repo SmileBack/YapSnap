@@ -3,7 +3,6 @@
 //  YapTap
 //
 //  Created by Dan B on 5/7/15.
-//  Copyright (c) 2015 Appcoda. All rights reserved.
 //
 
 #import "HomeViewController.h"
@@ -250,23 +249,6 @@
 
 - (IBAction)didTapMicButton {
     [self tappedMicButton];
-    
-    if (!self.didTapMicButtonForFirstTime) {
-        double delay = .3;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Helium to Your Voice"
-                                                            message:@"Record your voice and then tap the white balloon!"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles: nil];
-            [alert show];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY];
-        });
-    }
-}
-
-- (BOOL) didTapMicButtonForFirstTime {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_MIC_BUTTON_FOR_FIRST_TIME_KEY];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
