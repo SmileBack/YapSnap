@@ -36,7 +36,6 @@ static NSString* const AudioCaptureContextGenreName = @"genre";
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
 @property (weak, nonatomic) IBOutlet YSRecordProgressView *recordProgressView;
 
-
 - (IBAction)recordTapped:(id)sender;
 
 @end

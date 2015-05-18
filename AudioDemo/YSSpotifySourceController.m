@@ -597,6 +597,7 @@
 {
     [self.carousel setUserInteractionEnabled:YES];
     self.searchBox.enabled = YES;
+    self.resetButton.enabled = YES;
 }
 
 #pragma mark - STKAudioPlayerDelegate
@@ -738,6 +739,7 @@
         //Disable User Interactions
         [self.carousel setUserInteractionEnabled:NO];
         self.searchBox.enabled = NO;
+        self.resetButton.enabled = NO;
         
         YSTrack *song = self.songs[self.carousel.currentItemIndex];
         self.player = [STKAudioPlayer new];

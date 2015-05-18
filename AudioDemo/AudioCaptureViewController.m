@@ -103,6 +103,8 @@ static const float TIMER_INTERVAL = .02;
         [audioProgressTimer invalidate];
         NSLog(@"Audio Progress Timer Invalidate 1");
     }
+    
+    [self.audioSource stopAudioCapture:self.elapsedTime];
 }
 
 -(void) startCountdownTimer
