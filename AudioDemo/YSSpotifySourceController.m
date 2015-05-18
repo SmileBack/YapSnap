@@ -34,7 +34,7 @@
 
 - (IBAction)didTapResetButton;
 //- (void) searchGenre:(NSString *)genre; TODO: Add this back!
-- (void) searchGenre;
+- (void) performRandomSearch;
 
 @end
 
@@ -95,7 +95,7 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self searchGenre];
+                        [self performRandomSearch];
                         if (!self.didTapDiceButtonForFirstTime) {
                             double delay = .1;
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -134,14 +134,14 @@
     });
 }
 
-- (void) searchGenre { // TODO: Replace this function with the one below
+- (void) performRandomSearch { // TODO: Replace this function with the one below
     [self.view endEditing:YES];
     
-    self.artists = [SpotifyArtistFactory artistsForGenre:@"Humor"]; // Pop is hardcoded!
+    self.artists = [SpotifyArtistFactory artistsForCategory:@"Random"]; // Pop is hardcoded!
     
     NSString *randomlySelectedArtist = [self.artists objectAtIndex: arc4random() % [self.artists count]];
     
-    NSLog(@"string: %@", randomlySelectedArtist);
+    NSLog(@"Randomly Selected Artist: %@", randomlySelectedArtist);
     
     [self search:randomlySelectedArtist];
     [self showSearchBox];

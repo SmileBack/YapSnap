@@ -10,6 +10,6 @@
 
 @interface SpotifyArtistFactory : NSObject
 
-+ (NSArray *) artistsForGenre:(NSString *) genre;
++ (NSArray *) artistsForCategory:(NSString *) genre;
 
 @end

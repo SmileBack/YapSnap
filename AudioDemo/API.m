@@ -618,7 +618,7 @@ static API *sharedAPI;
 {
     NSDictionary *params = [self paramsWithDict:@{@"search_term": searchTerm}];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager PUT:[self urlForEndpoint:@"metrics/searchTerms"]
+    [manager POST:[self urlForEndpoint:@"search_terms"]
       parameters:params
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
             callback(YES, nil);
