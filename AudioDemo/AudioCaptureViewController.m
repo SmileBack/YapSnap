@@ -308,20 +308,23 @@ static const float TIMER_INTERVAL = .02;
 
 - (void) updateProgress {
     self.elapsedTime += TIMER_INTERVAL;
-    NSLog(@"self.elapsedTime: %f", self.elapsedTime);
     
     [self.recordProgressView setProgress:(self.elapsedTime / MAX_CAPTURE_TIME)];
-    NSLog(@"recordProgressView progess: %f", self.recordProgressView.progress);
     
     // Added the minus .02 because otherwise the page would transition .02 seconds too early
     if (self.elapsedTime - .02 >= MAX_CAPTURE_TIME) {
         [audioProgressTimer invalidate];
         NSLog(@"Audio Progress Timer Invalidate 6");
-        [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+        
+        // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
+        double delay1 = .2;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+        });
         
         // The following 0.1 second delay is here because otherwise the page takes an extra half second to transition to the AddTextViewController (not sure why that happens)
-        double delay = .1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        double delay2 = .1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.audioSource stopAudioCapture:self.elapsedTime];
         });
     }
@@ -368,12 +371,16 @@ static const float TIMER_INTERVAL = .02;
         self.countdownTimerButton.hidden = YES;
     } else {
         [self hideGuidanceArrows];
-        [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+        // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
+        double delay1 = .2;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+        });
     }
 
     // The following 0.1 second delay is here because otherwise the page takes an extra half second to transition to the AddTextViewController (not sure why that happens)
-    double delay = .1;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    double delay2 = .1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.audioSource stopAudioCapture:self.elapsedTime];
     });
     

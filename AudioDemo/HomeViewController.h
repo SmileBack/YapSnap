@@ -12,7 +12,7 @@
 
 #define SHOW_FEEDBACK_PAGE @"yaptap.ShowFeedbackPage"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
-#define DID_SEE_WELCOME_POPUP_KEY @"yaptap.DidSeeWelcomePopupKey58"
+#define DID_SEE_WELCOME_POPUP_KEY @"yaptap.DidSeeWelcomePopupKey601"
 #define DISMISS_WELCOME_POPUP @"DismissWelcomePopup"
 
 @interface HomeViewController : UIViewController<MFMailComposeViewControllerDelegate>

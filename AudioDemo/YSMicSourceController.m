@@ -13,7 +13,7 @@
 #import "RecordPopupViewController.h"
 
 #define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
-#define DID_SEE_ONBOARDING_POPUP_KEY @"yaptap.DidSeeOnboardingPopupKey5"
+#define DID_SEE_ONBOARDING_POPUP_KEY @"yaptap.DidSeeOnboardingPopupKey6"
 #define DISMISS_ONBOARDING_POPUP @"DismissOnboardingPopup"
 
 @interface YSMicSourceController ()<EZMicrophoneDelegate>

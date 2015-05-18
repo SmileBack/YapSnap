@@ -985,6 +985,7 @@
 			children = (
 				7861926F1B09A913007279E8 /* Record Popup */,
 				785393701AD9C17C00C6BEA7 /* Welcome Popup */,
+				786192751B09B597007279E8 /* Contacts Popup */,
 			);
 			name = "Onboarding Popups";
 			sourceTree = "<group>";
@@ -997,6 +998,13 @@
 				786192711B09A942007279E8 /* RecordPopupViewController.xib */,
 			);
 			name = "Record Popup";
+			sourceTree = "<group>";
+		};
+		786192751B09B597007279E8 /* Contacts Popup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Contacts Popup";
 			sourceTree = "<group>";
 		};
 		786BCB411ADC25A300BA3FDD /* Customize Page */ = {
