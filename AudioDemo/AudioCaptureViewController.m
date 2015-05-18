@@ -179,7 +179,7 @@ static const float TIMER_INTERVAL = .02;
 
 - (void) addRandomSearchButton {
     if (!self.didTapDiceButtonForFirstTime) {
-        self.diceImage = [UIImage imageNamed:@"DiceYellow.png"];
+        self.diceImage = [UIImage imageNamed:@"DiceYellow2.png"];
     } else {
         self.diceImage = [UIImage imageNamed:@"Dice7.png"];
     }
