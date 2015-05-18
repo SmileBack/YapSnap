@@ -12,6 +12,8 @@
 #import "YapsViewController.h"
 #import "YapBuilder.h"
 #import "AddFriendsBuilder.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "ContactsPopupViewController.h"
 
 @interface ContactsViewController ()
 
@@ -22,8 +24,8 @@
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 @property (nonatomic, strong) NSArray *allLetters;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 @property (strong, nonatomic) IBOutlet UILabel *bottomViewLabel;
+@property (strong, nonatomic) ContactsPopupViewController *contactsPopupVC;
 
 // Map of section letter to contacts:  A : [cont1, cont2]
 @property (nonatomic, strong) NSMutableDictionary *contactDict;
@@ -31,7 +33,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *keyboardVerticalSpace;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
-#define VIEWED_CONTACTS_ALERT_KEY @"yaptap.ViewedContactsAlertKey2"
+#define VIEWED_CONTACTS_ONBOARDING_ALERT_KEY @"yaptap.ViewedContactsOnboardingAlertKey2"
 
 @end
 
@@ -98,12 +100,25 @@ static NSString *CellIdentifier = @"Cell";
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
     
     [self registerForKeyboardNotifications];
+    
+    [self setupNotifications];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     self.continueButton.userInteractionEnabled = YES;
+}
+
+- (void) setupNotifications {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:DISMISS_CONTACTS_POPUP
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Dismiss Welcome Popup");
+                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                    }];
 }
 
 - (void) addCancelButton {
@@ -138,14 +153,12 @@ static NSString *CellIdentifier = @"Cell";
     return ![AFNetworkReachabilityManager sharedManager].reachable;
 }
 
-- (void) showOnboardingAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send To Anyone"
-                                                    message:@"You can send your yap to anyone, even if they don't have YapTap yet!"
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_CONTACTS_ALERT_KEY];
+#pragma mark - Onboarding Popup
+- (void) showOnboardingPopup {
+    self.contactsPopupVC = [[ContactsPopupViewController alloc] initWithNibName:@"ContactsPopupViewController" bundle:nil];
+    [self presentPopupViewController:self.contactsPopupVC animationType:MJPopupViewAnimationFade];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_CONTACTS_ONBOARDING_ALERT_KEY];
 }
 
 #pragma mark - Contacts
@@ -187,8 +200,8 @@ static NSString *CellIdentifier = @"Cell";
         if (self.builder.builderType == BuilderTypeYap) {
             double delay = .8;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (!self.didViewContactsAlert) {
-                    [self showOnboardingAlert];
+                if (!self.didViewContactsOnboardingAlert) {
+                    [self showOnboardingPopup];
                 }
             });
         }
@@ -200,8 +213,8 @@ static NSString *CellIdentifier = @"Cell";
                 if (self.builder.builderType == BuilderTypeYap) {
                     double delay = 1;
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        if (!self.didViewContactsAlert) {
-                            [self showOnboardingAlert];
+                        if (!self.didViewContactsOnboardingAlert) {
+                            [self showOnboardingPopup];
                         }
                     });
                 }
@@ -586,9 +599,9 @@ static NSString *CellIdentifier = @"Cell";
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SPOTIFY_ALERT_KEY];
 }
 
-- (BOOL) didViewContactsAlert
+- (BOOL) didViewContactsOnboardingAlert
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_CONTACTS_ALERT_KEY];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_CONTACTS_ONBOARDING_ALERT_KEY];
 }
 
 - (void) showFriendsSuccessAlert

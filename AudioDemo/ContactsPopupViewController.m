@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 martinjuhasz.de. All rights reserved.
 //
 
-#import "RecordPopupViewController.h"
+#import "ContactsPopupViewController.h"
 
-@implementation RecordPopupViewController
+@implementation ContactsPopupViewController
 
 
 - (void)viewDidLoad
@@ -30,7 +30,7 @@
 }
 
 - (IBAction) didTapCancelButton {
-    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_RECORD_POPUP object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_CONTACTS_POPUP object:nil];
 }
 
 @end

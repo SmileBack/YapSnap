@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#define DISMISS_RECORD_POPUP @"DismissRecordPopup"
+#define DISMISS_CONTACTS_POPUP @"DismissContactsPopup"
 
-@interface RecordPopupViewController : UIViewController
+@interface ContactsPopupViewController : UIViewController
 
 - (IBAction)didTapCancelButton;
 

@@ -14,7 +14,7 @@
 
 #define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
 #define DID_SEE_ONBOARDING_POPUP_KEY @"yaptap.DidSeeOnboardingPopupKey6"
-#define DISMISS_ONBOARDING_POPUP @"DismissOnboardingPopup"
+#define DISMISS_RECORD_POPUP @"DismissRecordPopup"
 
 @interface YSMicSourceController ()<EZMicrophoneDelegate>
 @property (strong, nonatomic) UIImageView *megaphoneImageView;
@@ -128,7 +128,7 @@
                                          completion:nil];
                     }];
     
-    [center addObserverForName:DISMISS_ONBOARDING_POPUP
+    [center addObserverForName:DISMISS_RECORD_POPUP
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {

@@ -156,7 +156,7 @@
     } else {
         self.balloonCancelButtonTitle = @"Back to Normal";
     }
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select a voice filter"
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select a Voice Filter"
                                                              delegate:self
                                                     cancelButtonTitle:self.balloonCancelButtonTitle
                                                destructiveButtonTitle:nil

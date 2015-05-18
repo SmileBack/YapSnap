@@ -123,6 +123,8 @@
 		7861926D1B099C67007279E8 /* DiceYellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861926C1B099C67007279E8 /* DiceYellow@2x.png */; };
 		786192731B09A942007279E8 /* RecordPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192711B09A942007279E8 /* RecordPopupViewController.xib */; };
 		786192741B09A942007279E8 /* RecordPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192721B09A942007279E8 /* RecordPopupViewController.m */; };
+		786192781B09B810007279E8 /* ContactsPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192761B09B810007279E8 /* ContactsPopupViewController.m */; };
+		786192791B09B810007279E8 /* ContactsPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192771B09B810007279E8 /* ContactsPopupViewController.xib */; };
 		78624BDC1B03134000C8E049 /* Dice2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BDB1B03134000C8E049 /* Dice2@2x.png */; };
 		78624BDE1B03158900C8E049 /* Dice3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BDD1B03158900C8E049 /* Dice3@2x.png */; };
 		78624BE01B0316A700C8E049 /* Dice4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BDF1B0316A700C8E049 /* Dice4@2x.png */; };
@@ -424,6 +426,9 @@
 		786192701B09A942007279E8 /* RecordPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordPopupViewController.h; sourceTree = "<group>"; };
 		786192711B09A942007279E8 /* RecordPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordPopupViewController.xib; sourceTree = "<group>"; };
 		786192721B09A942007279E8 /* RecordPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordPopupViewController.m; sourceTree = "<group>"; };
+		786192761B09B810007279E8 /* ContactsPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsPopupViewController.m; sourceTree = "<group>"; };
+		786192771B09B810007279E8 /* ContactsPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsPopupViewController.xib; sourceTree = "<group>"; };
+		7861927A1B09B81E007279E8 /* ContactsPopupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactsPopupViewController.h; sourceTree = "<group>"; };
 		78624BDB1B03134000C8E049 /* Dice2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice2@2x.png"; sourceTree = "<group>"; };
 		78624BDD1B03158900C8E049 /* Dice3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice3@2x.png"; sourceTree = "<group>"; };
 		78624BDF1B0316A700C8E049 /* Dice4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice4@2x.png"; sourceTree = "<group>"; };
@@ -1003,6 +1008,9 @@
 		786192751B09B597007279E8 /* Contacts Popup */ = {
 			isa = PBXGroup;
 			children = (
+				7861927A1B09B81E007279E8 /* ContactsPopupViewController.h */,
+				786192761B09B810007279E8 /* ContactsPopupViewController.m */,
+				786192771B09B810007279E8 /* ContactsPopupViewController.xib */,
 			);
 			name = "Contacts Popup";
 			sourceTree = "<group>";
@@ -1668,6 +1676,7 @@
 				788363A21AD79488001CBD1B /* TwoNotSelectediPhone6@2x.png in Resources */,
 				78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */,
 				78624BE21B03180400C8E049 /* Dice6@2x.png in Resources */,
+				786192791B09B810007279E8 /* ContactsPopupViewController.xib in Resources */,
 				787EC5F11AC9EC0A000C5539 /* OldProgressViewLightBlue@3x.png in Resources */,
 				786E0BE51B0019AE00005D1D /* PlusButtonWhite3@2x.png in Resources */,
 				78439FC11AE77145004CFB5F /* SongVersionOneSelectediPhone4@2x.png in Resources */,
@@ -1839,6 +1848,7 @@
 				78319A811ACD29A9000C3FD6 /* FeedbackMonitor.m in Sources */,
 				FCBB97031A7D636A003D5F24 /* SettingsViewController.m in Sources */,
 				FC0C1D4C1A45F98500B148AB /* YSMicSourceController.m in Sources */,
+				786192781B09B810007279E8 /* ContactsPopupViewController.m in Sources */,
 				FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */,
 				784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */,
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
