@@ -128,6 +128,8 @@
 		7861927E1B0A4AD8007279E8 /* CancelImageButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861927D1B0A4AD8007279E8 /* CancelImageButton@2x.png */; };
 		786192801B0A4CB0007279E8 /* CancelPhotoButton100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861927F1B0A4CB0007279E8 /* CancelPhotoButton100@2x.png */; };
 		786192821B0A4D5F007279E8 /* CancelPhotoButton200@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192811B0A4D5F007279E8 /* CancelPhotoButton200@2x.png */; };
+		786192871B0A783B007279E8 /* SpotifyPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192851B0A783B007279E8 /* SpotifyPopupViewController.m */; };
+		786192881B0A783B007279E8 /* SpotifyPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192861B0A783B007279E8 /* SpotifyPopupViewController.xib */; };
 		78624BE41B03189000C8E049 /* Dice7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE31B03189000C8E049 /* Dice7@2x.png */; };
 		78624BE71B03BA9100C8E049 /* GuidanceArrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE51B03BA9100C8E049 /* GuidanceArrowLeft.png */; };
 		78624BE81B03BA9100C8E049 /* GuidanceArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE61B03BA9100C8E049 /* GuidanceArrowRight.png */; };
@@ -431,6 +433,9 @@
 		7861927D1B0A4AD8007279E8 /* CancelImageButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelImageButton@2x.png"; sourceTree = "<group>"; };
 		7861927F1B0A4CB0007279E8 /* CancelPhotoButton100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelPhotoButton100@2x.png"; sourceTree = "<group>"; };
 		786192811B0A4D5F007279E8 /* CancelPhotoButton200@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelPhotoButton200@2x.png"; sourceTree = "<group>"; };
+		786192841B0A783B007279E8 /* SpotifyPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyPopupViewController.h; sourceTree = "<group>"; };
+		786192851B0A783B007279E8 /* SpotifyPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyPopupViewController.m; sourceTree = "<group>"; };
+		786192861B0A783B007279E8 /* SpotifyPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotifyPopupViewController.xib; sourceTree = "<group>"; };
 		78624BE31B03189000C8E049 /* Dice7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice7@2x.png"; sourceTree = "<group>"; };
 		78624BE51B03BA9100C8E049 /* GuidanceArrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GuidanceArrowLeft.png; sourceTree = "<group>"; };
 		78624BE61B03BA9100C8E049 /* GuidanceArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GuidanceArrowRight.png; sourceTree = "<group>"; };
@@ -985,6 +990,7 @@
 		7861926E1B09A904007279E8 /* Onboarding Popups */ = {
 			isa = PBXGroup;
 			children = (
+				786192831B0A77F5007279E8 /* Spotify Popup */,
 				7861926F1B09A913007279E8 /* Record Popup */,
 				785393701AD9C17C00C6BEA7 /* Welcome Popup */,
 				786192751B09B597007279E8 /* Contacts Popup */,
@@ -1010,6 +1016,16 @@
 				786192771B09B810007279E8 /* ContactsPopupViewController.xib */,
 			);
 			name = "Contacts Popup";
+			sourceTree = "<group>";
+		};
+		786192831B0A77F5007279E8 /* Spotify Popup */ = {
+			isa = PBXGroup;
+			children = (
+				786192841B0A783B007279E8 /* SpotifyPopupViewController.h */,
+				786192851B0A783B007279E8 /* SpotifyPopupViewController.m */,
+				786192861B0A783B007279E8 /* SpotifyPopupViewController.xib */,
+			);
+			name = "Spotify Popup";
 			sourceTree = "<group>";
 		};
 		786BCB411ADC25A300BA3FDD /* Customize Page */ = {
@@ -1562,6 +1578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				787EC6031ACA09B8000C5539 /* BalloonGreen10.png in Resources */,
+				786192881B0A783B007279E8 /* SpotifyPopupViewController.xib in Resources */,
 				782D13981ACC59E6007C8499 /* YapsButtonNoYaps.png in Resources */,
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
 				786192471B06BA5B007279E8 /* MegaphoneWhite.png in Resources */,
@@ -1840,6 +1857,7 @@
 				78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */,
 				784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */,
 				FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */,
+				786192871B0A783B007279E8 /* SpotifyPopupViewController.m in Sources */,
 				378191D419E59B4A006EF98F /* API.m in Sources */,
 				78319A811ACD29A9000C3FD6 /* FeedbackMonitor.m in Sources */,
 				FCBB97031A7D636A003D5F24 /* SettingsViewController.m in Sources */,

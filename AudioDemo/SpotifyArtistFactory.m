@@ -94,7 +94,7 @@
                  @"Rihanna",
                  @"Sam Hunt",
                  @"Sam Smith",
-                 @"Sawyer Fredricks",
+                 @"Sawyer Fredericks",
                  @"Sheppard",
                  @"Sia",
                  @"Silento",

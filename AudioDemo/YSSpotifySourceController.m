@@ -17,6 +17,8 @@
 #import "FBShimmering.h"
 #import "FBShimmeringView.h"
 #import "SpotifyArtistFactory.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "SpotifyPopupViewController.h"
 
 @interface YSSpotifySourceController ()
 @property (nonatomic, strong) NSArray *songs;
@@ -31,6 +33,7 @@
 @property (nonatomic, strong) NSArray *artists;
 @property (nonatomic, strong) NSDictionary *typeToGenreMap;
 @property (strong, nonatomic) UIButton *spotifyButton;
+@property (strong, nonatomic) SpotifyPopupViewController *spotifyPopupVC;
 
 - (IBAction)didTapResetButton;
 //- (void) searchGenre:(NSString *)genre; TODO: Add this back!
@@ -49,7 +52,6 @@
     [SpotifyAPI sharedApi]; //Activate to get access token
     
     [self setupSearchBox];
-    [self.searchBox becomeFirstResponder];
     
     if ([self internetIsNotReachable]) {
         NSLog(@"Internet is not reachable");
@@ -60,6 +62,12 @@
     [self setupGestureRecognizers];
     
     [self setupNotifications];
+    
+    if (!self.didSeeSpotifyPopup) {
+        [self showSpotifyPopup];
+    } else {
+        [self.searchBox becomeFirstResponder];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -99,10 +107,22 @@
                         if (!self.didTapDiceButtonForFirstTime) {
                             double delay = .1;
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                [[YTNotifications sharedNotifications] showNotificationText:@"Random Search"];
+                                [[YTNotifications sharedNotifications] showNotificationText:@"Rolling The Die..."];
                                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_TAP_DICE_BUTTON];
                             });
                         }
+                    }];
+    
+    [center addObserverForName:DISMISS_SPOTIFY_POPUP
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Dismiss Welcome Popup");
+                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                        double delay = .2;
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [self.searchBox becomeFirstResponder];
+                        });
                     }];
 }
 
@@ -898,6 +918,22 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+}
+
+#pragma mark - Spotify Popup
+- (void) showSpotifyPopup {
+    double delay = .2;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.spotifyPopupVC = [[SpotifyPopupViewController alloc] initWithNibName:@"SpotifyPopupViewController" bundle:nil];
+        [self presentPopupViewController:self.spotifyPopupVC animationType:MJPopupViewAnimationFade];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_SPOTIFY_POPUP_KEY];
+    });
+}
+
+- (BOOL) didSeeSpotifyPopup
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_SPOTIFY_POPUP_KEY];
 }
 
 @end

@@ -366,6 +366,10 @@ static const float TIMER_INTERVAL = .02;
             self.titleString = @"Find a Song";
         }
         
+        if (self.type == AudioCapTureTypeSpotify) {
+            [self addRandomSearchButton];
+        }
+        
         [self updateTitleLabel];
         
         [self stopCountdownTimer];

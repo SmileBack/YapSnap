@@ -628,7 +628,7 @@ static NSString *CellIdentifier = @"Cell";
         if (buttonIndex == 1) {
             [[API sharedAPI] confirmFriendFromYap:self.yapToBlock withCallback:^(BOOL success, NSError *error) {
                 if (success) {
-                    [[YTNotifications sharedNotifications] showNotificationText:@"Friends!"];
+                    [[YTNotifications sharedNotifications] showNotificationText:@"You Have a New Friend!"];
                 }
             }];
             self.yapToBlock = nil;

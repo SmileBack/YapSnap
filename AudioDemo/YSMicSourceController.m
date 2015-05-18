@@ -13,7 +13,7 @@
 #import "RecordPopupViewController.h"
 
 #define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
-#define DID_SEE_ONBOARDING_POPUP_KEY @"yaptap.DidSeeOnboardingPopupKey6"
+#define DID_SEE_RECORD_POPUP_KEY @"yaptap.DidSeeRecordPopupKey7"
 #define DISMISS_RECORD_POPUP @"DismissRecordPopup"
 
 @interface YSMicSourceController ()<EZMicrophoneDelegate>
@@ -48,8 +48,8 @@
     tapped.numberOfTapsRequired = 1;
     [self.megaphoneImageView addGestureRecognizer:tapped];
     
-    if (!self.didSeeOnboardingPopup) {
-        [self showOnboardingPopup];
+    if (!self.didSeeRecordPopup) {
+        [self showRecordPopup];
     }
 }
 
@@ -264,19 +264,19 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 }
 
 #pragma mark - Onboarding Popup
-- (void) showOnboardingPopup {
-    double delay = .5;
+- (void) showRecordPopup {
+    double delay = .2;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.recordPopupVC = [[RecordPopupViewController alloc] initWithNibName:@"RecordPopupViewController" bundle:nil];
         [self presentPopupViewController:self.recordPopupVC animationType:MJPopupViewAnimationFade];
 
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_ONBOARDING_POPUP_KEY];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_RECORD_POPUP_KEY];
     });
 }
 
-- (BOOL) didSeeOnboardingPopup
+- (BOOL) didSeeRecordPopup
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_ONBOARDING_POPUP_KEY];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_RECORD_POPUP_KEY];
 }
 
 @end
