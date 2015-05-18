@@ -17,6 +17,8 @@
 @property (nonatomic, strong) AVAudioPlayer *player;
 @property (nonatomic, strong) EZMicrophone* microphone;
 @property (nonatomic, strong) EZRecorder* recorder;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *sinusWaveTopConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *sinusWaveWidthConstraint;
 
 @end
 
@@ -31,10 +33,55 @@
     
     [self setupNotifications];
     
+    [self setSinusWaveViewProperties];
+    
+    [self setFrameOfMegaPhoneImageView];
+    [self setSinusWaveConstraints];
+    
+    self.megaphoneImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMicrophoneImage)];
     tapped.numberOfTapsRequired = 1;
     [self.megaphoneImageView addGestureRecognizer:tapped];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
+    self.megaphoneImageView.alpha = 1;
+    self.sinusWaveView.alpha = 0;
+}
+
+- (void) setFrameOfMegaPhoneImageView {
+    if (IS_IPHONE_4_SIZE ) {
+        self.megaphoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(80, 15, 160, 160)];
+    } else if (IS_IPHONE_5_SIZE) {
+        self.megaphoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(75, 50, 170, 170)];
+    } else if (IS_IPHONE_6_SIZE) {
+        self.megaphoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(95, 70, 185, 185)];
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        self.megaphoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(107, 70, 200, 200)];
+    }
+    
+    self.megaphoneImageView.image = [UIImage imageNamed:@"megaphone_shutterstock2.png"];
+    self.megaphoneImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:self.megaphoneImageView];
+}
+
+- (void) setSinusWaveConstraints {
+    if (IS_IPHONE_4_SIZE ) {
+        self.sinusWaveTopConstraint.constant = 70;
+    } else if (IS_IPHONE_5_SIZE) {
+        // Nothing necessary here
+    } else if (IS_IPHONE_6_SIZE) {
+        self.sinusWaveTopConstraint.constant = 135;
+        self.sinusWaveWidthConstraint.constant = 165;
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        self.sinusWaveTopConstraint.constant = 140;
+        self.sinusWaveWidthConstraint.constant = 180;
+    }
+}
+
+- (void) setSinusWaveViewProperties {
     // Sinus wave view
     self.sinusWaveView.plotType        = EZPlotTypeBuffer;
     self.sinusWaveView.shouldFill      = NO;
@@ -53,31 +100,6 @@
     
     self.sinusWaveView.alpha = 0;
     //self.navigationItem.titleView = self.sinusWaveView;
-    
-    [self setFrameOfMegaPhoneImageView];
-}
-
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.megaphoneImageView.alpha = 1;
-    self.sinusWaveView.alpha = 0;
-}
-
-- (void) setFrameOfMegaPhoneImageView {
-    if (IS_IPHONE_4_SIZE ) {
-        
-    } else if (IS_IPHONE_5_SIZE) {
-        
-    } else if (IS_IPHONE_6_SIZE) {
-        
-    } else if (IS_IPHONE_6_PLUS_SIZE) {
-        self.megaphoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(108, 70, 200, 200)];
-    }
-    
-    self.megaphoneImageView.image = [UIImage imageNamed:@"megaphone_shutterstock2.png"];
-    self.megaphoneImageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.view addSubview:self.megaphoneImageView];
 }
 
 - (void) setupNotifications {

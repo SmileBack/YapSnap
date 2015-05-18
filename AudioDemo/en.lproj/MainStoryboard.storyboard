@@ -1677,7 +1677,9 @@ Type it here!</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="320"/>
                     <connections>
+                        <outlet property="sinusWaveTopConstraint" destination="wrs-Y5-MvS" id="nJd-7d-lvS"/>
                         <outlet property="sinusWaveView" destination="vhM-aB-1Ig" id="1Yb-5F-fNy"/>
+                        <outlet property="sinusWaveWidthConstraint" destination="bXe-DU-6SA" id="TTG-rb-Uhl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYb-Fr-0gL" userLabel="First Responder" sceneMemberID="firstResponder"/>
