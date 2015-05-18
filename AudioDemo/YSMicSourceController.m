@@ -62,7 +62,7 @@
         self.megaphoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(107, 70, 200, 200)];
     }
     
-    self.megaphoneImageView.image = [UIImage imageNamed:@"megaphone_shutterstock2.png"];
+    self.megaphoneImageView.image = [UIImage imageNamed:@"megaphone_shutterstock3.png"];
     self.megaphoneImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:self.megaphoneImageView];
 }
@@ -229,7 +229,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:NO error:nil];
     
-    self.megaphoneImageView.image = [UIImage imageNamed:@"megaphone_shutterstock2.png"];
+    self.megaphoneImageView.image = [UIImage imageNamed:@"megaphone_shutterstock3.png"];
 }
 
 //- (void) startPlayback //Play button isn't in the UI currently

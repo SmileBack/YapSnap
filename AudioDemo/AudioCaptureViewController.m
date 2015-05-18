@@ -25,6 +25,7 @@
 @property (strong, nonatomic) UIButton *countdownTimerButton;
 @property (strong, nonatomic) IBOutlet UIImageView *guidanceArrowLeft;
 @property (strong, nonatomic) IBOutlet UIImageView *guidanceArrowRight;
+@property (strong, nonatomic) UIImage *diceImage;
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
@@ -175,9 +176,13 @@ static const float TIMER_INTERVAL = .02;
 }
 
 - (void) addRandomSearchButton {
-    UIImage* diceImage = [UIImage imageNamed:@"Dice7.png"];
+    if (!self.didTapDiceButtonForFirstTime) {
+        self.diceImage = [UIImage imageNamed:@"DiceYellow.png"];
+    } else {
+        self.diceImage = [UIImage imageNamed:@"Dice7.png"];
+    }
     UIButton *randomSearchButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [randomSearchButton setBackgroundImage:diceImage forState:UIControlStateNormal];
+    [randomSearchButton setBackgroundImage:self.diceImage forState:UIControlStateNormal];
     [randomSearchButton addTarget:self action:@selector(randomSearchPressed)
                 forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *randomSearchBarButtonItom =[[UIBarButtonItem alloc] initWithCustomView:randomSearchButton];
@@ -227,7 +232,7 @@ static const float TIMER_INTERVAL = .02;
                         }
                         
                         if (self.type == AudioCaptureTypeMic) {
-                            self.titleString = @"Recording Yap...";
+                            self.titleString = @"Recording...";
                         } else {
                             self.titleString = @"Playing...";
                         }
@@ -395,6 +400,11 @@ static const float TIMER_INTERVAL = .02;
         self.recordProgressView.progress = 0.0;
         self.elapsedTime = 0;
     }
+}
+
+- (BOOL) didTapDiceButtonForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_TAP_DICE_BUTTON];
 }
 
 #pragma mark - Mode Changing

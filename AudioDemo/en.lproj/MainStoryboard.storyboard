@@ -271,7 +271,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CartoonsLong5.png" translatesAutoresizingMaskIntoConstraints="NO" id="3jj-uv-5P2">
                                 <rect key="frame" x="0.0" y="448" width="320" height="120"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="megaphone_shutterstock2.png" translatesAutoresizingMaskIntoConstraints="NO" id="sP9-qt-bQe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="megaphone_shutterstock3.png" translatesAutoresizingMaskIntoConstraints="NO" id="sP9-qt-bQe">
                                 <rect key="frame" x="56" y="229" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="aHE-Ig-xB1"/>
@@ -1742,7 +1742,7 @@ Type it here!</string>
         <image name="YapsButtonNoYaps.png" width="160" height="84"/>
         <image name="YellowStar.png" width="40" height="40"/>
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>
-        <image name="megaphone_shutterstock2.png" width="450" height="470"/>
+        <image name="megaphone_shutterstock3.png" width="450" height="470"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

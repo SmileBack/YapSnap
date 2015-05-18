@@ -18,7 +18,7 @@
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
 #define DISMISS_KEYBOARD_NOTIFICATION @"DismissKeyboardNotification"
 #define TAPPED_PROGRESS_BAR_NOTIFICATION @"TappedProgressBarNotification"
-#define DID_TAP_DICE_BUTTON @"yaptap.DidTapDiceButtonKey9"
+#define DID_TAP_DICE_BUTTON @"yaptap.DidTapDiceButtonKey10"
 #define SCROLLED_CAROUSEL @"yaptap.ScrolledCarouselKey7"
 #define DID_VIEW_SPOTIFY_SONGS @"yaptap.DidViewSpotifySongs"
 #define TAPPED_DICE_BUTTON_NOTIFICATION @"yaptap.TappedDiceButtonNotification"
