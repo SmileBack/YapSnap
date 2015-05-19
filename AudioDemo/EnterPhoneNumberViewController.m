@@ -124,6 +124,7 @@
         return;
     }
     
+    /*
     if (![self.phoneNumberChecker isPhoneNumberValid:self.textField.text]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Number not valid"
                                                         message:@"Please enter a valid number."
@@ -131,14 +132,15 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Number"
-                                                        message:[NSString stringWithFormat:@"Is your mobile number %@?", self.textField.text]
-                                                       delegate:self
-                                              cancelButtonTitle:@"No"
-                                              otherButtonTitles:@"Yes", nil];
-        [alert show];
-    }
+        
+    } */
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Number"
+                                                    message:[NSString stringWithFormat:@"Is your mobile number %@?", self.textField.text]
+                                                   delegate:self
+                                          cancelButtonTitle:@"No"
+                                          otherButtonTitles:@"Yes", nil];
+    [alert show];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
