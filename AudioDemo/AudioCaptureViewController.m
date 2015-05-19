@@ -349,6 +349,8 @@ static const float TIMER_INTERVAL = .02;
     NSLog(@"Audio Progress Timer Invalidate 7");
     
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
+        [self.audioSource stopAudioCapture:self.elapsedTime];
+
         self.recordProgressView.progress = 0.0;
         double delay = .1;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -374,7 +376,6 @@ static const float TIMER_INTERVAL = .02;
         
         [self stopCountdownTimer];
         self.countdownTimerButton.hidden = YES;
-        [self.audioSource stopAudioCapture:self.elapsedTime];
     } else {
         [self.audioSource stopAudioCapture:self.elapsedTime];
         [self hideGuidanceArrows];
