@@ -106,14 +106,16 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-    } else if (![self NSStringIsValidEmail:self.emailTextField.text]) {
+    } /*
+        else if (![self NSStringIsValidEmail:self.emailTextField.text]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your email"
                                                         message:@"Please enter a valid email. We will never send you spam."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-    } else {
+    } */
+        else {
         [self disableContinueButton];
         
         if ([self internetIsNotReachable]) {
