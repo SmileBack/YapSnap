@@ -22,7 +22,7 @@
 #define SCROLLED_CAROUSEL @"yaptap.ScrolledCarouselKey7"
 #define DID_VIEW_SPOTIFY_SONGS @"yaptap.DidViewSpotifySongs"
 #define TAPPED_DICE_BUTTON_NOTIFICATION @"yaptap.TappedDiceButtonNotification"
-#define TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION @"yaptap.TappedAlbumCoverFirstTimeNotification4"
+#define TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION @"yaptap.TappedAlbumCoverFirstTimeNotification5"
 #define DID_SEE_SPOTIFY_POPUP_KEY @"yaptap.DidSeeSpotifyPopupKey15"
 #define DISMISS_SPOTIFY_POPUP @"DismissSpotifyPopup"
 

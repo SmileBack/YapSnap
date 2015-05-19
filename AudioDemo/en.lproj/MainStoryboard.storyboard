@@ -131,11 +131,19 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf8-UJ-WxH" userLabel="Source Container">
                                 <rect key="frame" x="0.0" y="107" width="320" height="302"/>
                             </containerView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="GuidanceArrowLeft.png" translatesAutoresizingMaskIntoConstraints="NO" id="dQR-UV-jFt">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GuidanceArrowLeft.png" translatesAutoresizingMaskIntoConstraints="NO" id="dQR-UV-jFt">
                                 <rect key="frame" x="30" y="445" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="9jG-Wv-Lcj"/>
+                                    <constraint firstAttribute="width" constant="64" id="uoY-7q-dZK"/>
+                                </constraints>
                             </imageView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="GuidanceArrowRight.png" translatesAutoresizingMaskIntoConstraints="NO" id="2kW-c7-XcP">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GuidanceArrowRight.png" translatesAutoresizingMaskIntoConstraints="NO" id="2kW-c7-XcP">
                                 <rect key="frame" x="226" y="445" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="EdG-9P-Wbg"/>
+                                    <constraint firstAttribute="height" constant="64" id="uzK-5O-hWd"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -147,10 +155,14 @@
                             <constraint firstItem="1fX-iU-owr" firstAttribute="leading" secondItem="jch-J9-Qbc" secondAttribute="leading" id="MnQ-CZ-xu4"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="width" secondItem="jch-J9-Qbc" secondAttribute="width" multiplier="0.4" id="Q9O-Im-es9"/>
                             <constraint firstItem="Xtk-3T-WBS" firstAttribute="height" secondItem="jch-J9-Qbc" secondAttribute="width" multiplier="0.4" id="WEK-6b-imR"/>
+                            <constraint firstItem="2kW-c7-XcP" firstAttribute="leading" secondItem="Xtk-3T-WBS" secondAttribute="trailing" constant="2" id="Xoo-kj-j0a"/>
                             <constraint firstItem="Ezh-9p-xYZ" firstAttribute="top" secondItem="Xtk-3T-WBS" secondAttribute="bottom" constant="8" id="YH1-ff-zyO"/>
+                            <constraint firstItem="Ezh-9p-xYZ" firstAttribute="top" secondItem="2kW-c7-XcP" secondAttribute="bottom" constant="59" id="Z8n-sz-A5P"/>
+                            <constraint firstItem="Ezh-9p-xYZ" firstAttribute="top" secondItem="dQR-UV-jFt" secondAttribute="bottom" constant="59" id="cNn-Iv-AqD"/>
                             <constraint firstItem="1fX-iU-owr" firstAttribute="height" secondItem="jch-J9-Qbc" secondAttribute="height" multiplier="0.07" constant="-17.760000000000005" id="f07-zr-A3W"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="leading" secondItem="jch-J9-Qbc" secondAttribute="leadingMargin" constant="-16" id="gLL-xW-HuG"/>
                             <constraint firstAttribute="trailing" secondItem="1fX-iU-owr" secondAttribute="trailing" id="q3J-w8-0Wq"/>
+                            <constraint firstItem="Xtk-3T-WBS" firstAttribute="leading" secondItem="dQR-UV-jFt" secondAttribute="trailing" constant="2" id="vLE-pn-s5X"/>
                             <constraint firstAttribute="centerX" secondItem="Xtk-3T-WBS" secondAttribute="centerX" id="xHl-VM-ig2"/>
                         </constraints>
                     </view>
