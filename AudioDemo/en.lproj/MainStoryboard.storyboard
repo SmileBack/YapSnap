@@ -367,6 +367,7 @@
                     <navigationItem key="navigationItem" id="F8v-Ti-GKQ"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="cartoonsImage" destination="3jj-uv-5P2" id="N5F-JM-oyM"/>
                         <outlet property="doubleTapConstraint" destination="yd2-bn-ked" id="pCm-ZS-K2Z"/>
                         <outlet property="doubleTapLabel" destination="j6Y-rR-iWd" id="blf-4Q-E4U"/>
                         <outlet property="micButton" destination="R76-A3-8pM" id="5TC-w3-zWu"/>
@@ -1310,12 +1311,12 @@ in your phone's settings!</string>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="LoginPageImage" translatesAutoresizingMaskIntoConstraints="NO" id="4Wj-u3-ig0">
                                 <rect key="frame" x="0.0" y="294" width="320" height="175"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just Yap It" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dp-kR-bOT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Messenger" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dp-kR-bOT">
                                 <rect key="frame" x="47" y="209" width="226" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="tKm-qX-q6a"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1763,7 +1764,7 @@ Type it here!</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Q0Z-rg-Tpo"/>
+        <segue reference="AEp-MY-7pq"/>
         <segue reference="0bM-75-hD3"/>
-        <segue reference="czb-n6-hbf"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
 @property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *doubleTapConstraint;
+@property (nonatomic, strong) IBOutlet UIImageView *cartoonsImage;
 
 
 - (IBAction)didTapMegaphoneButton;
@@ -58,6 +59,10 @@
         self.doubleTapConstraint.constant = 80;
     } else if (IS_IPHONE_6_PLUS_SIZE) {
         self.doubleTapConstraint.constant = 100;
+    }
+    
+    if (IS_IPHONE_6_SIZE) {
+        self.cartoonsImage.image = [UIImage imageNamed:@"CartooniPhone6.png"];
     }
 }
 

@@ -130,6 +130,8 @@
 		786192821B0A4D5F007279E8 /* CancelPhotoButton200@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192811B0A4D5F007279E8 /* CancelPhotoButton200@2x.png */; };
 		786192871B0A783B007279E8 /* SpotifyPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192851B0A783B007279E8 /* SpotifyPopupViewController.m */; };
 		786192881B0A783B007279E8 /* SpotifyPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192861B0A783B007279E8 /* SpotifyPopupViewController.xib */; };
+		7861928A1B0E77D4007279E8 /* CartoonsLong5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192891B0E77D4007279E8 /* CartoonsLong5@3x.png */; };
+		7861928C1B0EA528007279E8 /* CartooniPhone6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861928B1B0EA528007279E8 /* CartooniPhone6@2x.png */; };
 		78624BE41B03189000C8E049 /* Dice7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE31B03189000C8E049 /* Dice7@2x.png */; };
 		78624BE71B03BA9100C8E049 /* GuidanceArrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE51B03BA9100C8E049 /* GuidanceArrowLeft.png */; };
 		78624BE81B03BA9100C8E049 /* GuidanceArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE61B03BA9100C8E049 /* GuidanceArrowRight.png */; };
@@ -149,7 +151,6 @@
 		7867C1C61B01808D0050632F /* GiftButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7867C1C51B01808D0050632F /* GiftButton.png */; };
 		7867C1C81B01A58E0050632F /* CancelImageWhite2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7867C1C71B01A58E0050632F /* CancelImageWhite2.png */; };
 		7867C1CA1B01A64D0050632F /* CancelImageWhite3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7867C1C91B01A64D0050632F /* CancelImageWhite3.png */; };
-		7867C1CC1B01C5E30050632F /* CartoonsLong5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7867C1CB1B01C5E30050632F /* CartoonsLong5@3x.png */; };
 		786BCB431ADC274600BA3FDD /* UploadIcon100.png in Resources */ = {isa = PBXBuildFile; fileRef = 786BCB421ADC274600BA3FDD /* UploadIcon100.png */; };
 		786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */; };
 		786E0BE11AFFEDE700005D1D /* WhiteDownArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 786E0BE01AFFEDE700005D1D /* WhiteDownArrow.png */; };
@@ -436,6 +437,8 @@
 		786192841B0A783B007279E8 /* SpotifyPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyPopupViewController.h; sourceTree = "<group>"; };
 		786192851B0A783B007279E8 /* SpotifyPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyPopupViewController.m; sourceTree = "<group>"; };
 		786192861B0A783B007279E8 /* SpotifyPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotifyPopupViewController.xib; sourceTree = "<group>"; };
+		786192891B0E77D4007279E8 /* CartoonsLong5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CartoonsLong5@3x.png"; sourceTree = "<group>"; };
+		7861928B1B0EA528007279E8 /* CartooniPhone6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CartooniPhone6@2x.png"; sourceTree = "<group>"; };
 		78624BE31B03189000C8E049 /* Dice7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice7@2x.png"; sourceTree = "<group>"; };
 		78624BE51B03BA9100C8E049 /* GuidanceArrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GuidanceArrowLeft.png; sourceTree = "<group>"; };
 		78624BE61B03BA9100C8E049 /* GuidanceArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GuidanceArrowRight.png; sourceTree = "<group>"; };
@@ -455,7 +458,6 @@
 		7867C1C51B01808D0050632F /* GiftButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GiftButton.png; sourceTree = "<group>"; };
 		7867C1C71B01A58E0050632F /* CancelImageWhite2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImageWhite2.png; sourceTree = "<group>"; };
 		7867C1C91B01A64D0050632F /* CancelImageWhite3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImageWhite3.png; sourceTree = "<group>"; };
-		7867C1CB1B01C5E30050632F /* CartoonsLong5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CartoonsLong5@3x.png"; sourceTree = "<group>"; };
 		786BCB421ADC274600BA3FDD /* UploadIcon100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UploadIcon100.png; sourceTree = "<group>"; };
 		786D91261A6F476C00177E25 /* CancelImageWhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CancelImageWhiteCircle.png; sourceTree = "<group>"; };
 		786E0BE01AFFEDE700005D1D /* WhiteDownArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteDownArrow.png; sourceTree = "<group>"; };
@@ -656,6 +658,8 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7861928B1B0EA528007279E8 /* CartooniPhone6@2x.png */,
+				786192891B0E77D4007279E8 /* CartoonsLong5@3x.png */,
 				786192541B07EF3D007279E8 /* Chipmunk10.png */,
 				786192561B080A9C007279E8 /* Chipmunk20.png */,
 				786192581B080C65007279E8 /* Chipmunk30.png */,
@@ -686,7 +690,6 @@
 				7854B0661AF75EF500A02DF9 /* CartoonsLong4.png */,
 				786E0BE81B0078A300005D1D /* CartoonsLong2.png */,
 				786E0BEA1B0079AC00005D1D /* CartoonsLong5@2x.png */,
-				7867C1CB1B01C5E30050632F /* CartoonsLong5@3x.png */,
 				7819048F1AF3293700196DFF /* MicrophoneWhiteSmooth.png */,
 				7819048D1AF2CB2F00196DFF /* ArrowImage@2x.png */,
 				781904851AF287C100196DFF /* ResetButton60@2x.png */,
@@ -1611,6 +1614,7 @@
 				7861927E1B0A4AD8007279E8 /* CancelImageButton@2x.png in Resources */,
 				7854B0731AF88CCF00A02DF9 /* LeftArrow50.png in Resources */,
 				788363921AD78BB6001CBD1B /* TwoNotSelectediPhone4@2x.png in Resources */,
+				7861928A1B0E77D4007279E8 /* CartoonsLong5@3x.png in Resources */,
 				F44B0C5516DA404700E6CD88 /* Default.png in Resources */,
 				78439FBA1AE76EEB004CFB5F /* SongVersionTwoSelected@2x.png in Resources */,
 				786BCB431ADC274600BA3FDD /* UploadIcon100.png in Resources */,
@@ -1685,7 +1689,6 @@
 				781904861AF287C100196DFF /* ResetButton60@2x.png in Resources */,
 				787EC6181ACA245E000C5539 /* OldProgressViewRed@2x.png in Resources */,
 				787EC5FF1ACA068F000C5539 /* BalloonYellow10.png in Resources */,
-				7867C1CC1B01C5E30050632F /* CartoonsLong5@3x.png in Resources */,
 				78A2E86C1ACC840B00B5A404 /* BalloonYellow20.png in Resources */,
 				78439FC61AE9A330004CFB5F /* PlusButtonWhite@2x.png in Resources */,
 				788363A21AD79488001CBD1B /* TwoNotSelectediPhone6@2x.png in Resources */,
@@ -1734,6 +1737,7 @@
 				786192801B0A4CB0007279E8 /* CancelPhotoButton100@2x.png in Resources */,
 				781904841AF1F27700196DFF /* YapsButtonNoYaps5.png in Resources */,
 				7867C1CA1B01A64D0050632F /* CancelImageWhite3.png in Resources */,
+				7861928C1B0EA528007279E8 /* CartooniPhone6@2x.png in Resources */,
 				787EC6151ACA245E000C5539 /* OldProgressViewRed@3x.png in Resources */,
 				782D13531ACB9431007C8499 /* MicrophoneWhite30@3x.png in Resources */,
 				787EC5F31AC9EC6A000C5539 /* OldProgressViewLightBlueiPhone5@2x.png in Resources */,
