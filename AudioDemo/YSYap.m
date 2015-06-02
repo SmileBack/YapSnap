@@ -68,6 +68,16 @@
             NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:self.receiverPhone];
             if (displayName) {
                 _displayReceiverName = displayName;
+            } else {
+                NSString* normalizedPhone = self.receiverPhone;
+                if ([normalizedPhone hasPrefix:@"+972"]) {
+                    normalizedPhone = [normalizedPhone substringFromIndex:4];
+                    normalizedPhone = [NSString stringWithFormat:@"0%@", normalizedPhone];
+                    NSString *displayName = [[ContactManager sharedContactManager] nameForPhoneNumber:normalizedPhone];
+                    if (displayName) {
+                        _displayReceiverName = displayName;
+                    }
+                }
             }
         }
         if (!_displayReceiverName) {

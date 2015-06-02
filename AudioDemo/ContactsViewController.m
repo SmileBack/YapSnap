@@ -14,8 +14,11 @@
 #import "AddFriendsBuilder.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "ContactsPopupViewController.h"
+#import <MessageUI/MessageUI.h>
+#import "UIAlertView+Blocks.h"
+#import "YSUninvitedContactInviter.h"
 
-@interface ContactsViewController ()
+@interface ContactsViewController () <MFMessageComposeViewControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *contacts;
 @property (nonatomic, strong) NSArray *filteredContacts;
@@ -26,6 +29,7 @@
 @property (nonatomic, strong) NSArray *allLetters;
 @property (strong, nonatomic) IBOutlet UILabel *bottomViewLabel;
 @property (strong, nonatomic) ContactsPopupViewController *contactsPopupVC;
+@property (strong, nonatomic) YSUninvitedContactInviter *uninvitedContactInviter;
 
 // Map of section letter to contacts:  A : [cont1, cont2]
 @property (nonatomic, strong) NSMutableDictionary *contactDict;
@@ -48,6 +52,8 @@ static NSString *CellIdentifier = @"Cell";
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Contacts Page"];
+    
+    self.uninvitedContactInviter = [[YSUninvitedContactInviter alloc] init];
     
     self.bottomView.hidden = YES;
     
@@ -118,6 +124,18 @@ static NSString *CellIdentifier = @"Cell";
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Dismiss Welcome Popup");
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                    }];
+    
+    [center addObserverForName:NOTIFICATION_YAP_SENT
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Display invite popup");
+                        if ([note.userInfo[@"yaps"] isKindOfClass:[NSArray class]] && [MFMessageComposeViewController canSendText]) {
+                            NSArray* yaps = (NSArray*)note.userInfo[@"yaps"];
+                            [self.uninvitedContactInviter inviteUninvitedContactsFromYapsIfNeeded:yaps
+                                                                               fromViewController:self];
+                        }
                     }];
 }
 

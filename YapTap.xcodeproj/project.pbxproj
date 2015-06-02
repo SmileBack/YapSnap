@@ -67,6 +67,7 @@
 		78319A7D1ACD0111000C3FD6 /* MicModeButtonIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78319A7C1ACD0111000C3FD6 /* MicModeButtonIcon@2x.png */; };
 		78319A7F1ACD0290000C3FD6 /* MicModeButtonIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78319A7E1ACD0290000C3FD6 /* MicModeButtonIcon@3x.png */; };
 		78319A811ACD29A9000C3FD6 /* FeedbackMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78319A801ACD29A9000C3FD6 /* FeedbackMonitor.m */; };
+		783A1CBF1B17721D00B610B3 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 783A1CBE1B17721D00B610B3 /* UIAlertView+Blocks.m */; };
 		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */; };
 		784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
@@ -192,6 +193,7 @@
 		788363921AD78BB6001CBD1B /* TwoNotSelectediPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7883638E1AD78BB6001CBD1B /* TwoNotSelectediPhone4@2x.png */; };
 		788363A21AD79488001CBD1B /* TwoNotSelectediPhone6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 788363A11AD79488001CBD1B /* TwoNotSelectediPhone6@2x.png */; };
 		788363A61AD79572001CBD1B /* OneNotSelectediPhone6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 788363A31AD79572001CBD1B /* OneNotSelectediPhone6@2x.png */; };
+		788480441B177E9D0016536F /* YSUninvitedContactInviter.m in Sources */ = {isa = PBXBuildFile; fileRef = 788480431B177E9D0016536F /* YSUninvitedContactInviter.m */; };
 		7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */; };
 		78A2E84F1ACC65B000B5A404 /* PinkStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E84E1ACC65B000B5A404 /* PinkStar.png */; };
 		78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8511ACC671600B5A404 /* PinkStar1.png */; };
@@ -365,6 +367,8 @@
 		78319A7E1ACD0290000C3FD6 /* MicModeButtonIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MicModeButtonIcon@3x.png"; sourceTree = "<group>"; };
 		78319A801ACD29A9000C3FD6 /* FeedbackMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackMonitor.m; sourceTree = "<group>"; };
 		78319A821ACD29AF000C3FD6 /* FeedbackMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedbackMonitor.h; sourceTree = "<group>"; };
+		783A1CBD1B17721D00B610B3 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
+		783A1CBE1B17721D00B610B3 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSRecordProgressView.h; sourceTree = "<group>"; };
 		784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecordProgressView.m; sourceTree = "<group>"; };
 		784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetImageButton.h; sourceTree = "<group>"; };
@@ -501,6 +505,8 @@
 		7883638E1AD78BB6001CBD1B /* TwoNotSelectediPhone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TwoNotSelectediPhone4@2x.png"; sourceTree = "<group>"; };
 		788363A11AD79488001CBD1B /* TwoNotSelectediPhone6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TwoNotSelectediPhone6@2x.png"; sourceTree = "<group>"; };
 		788363A31AD79572001CBD1B /* OneNotSelectediPhone6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OneNotSelectediPhone6@2x.png"; sourceTree = "<group>"; };
+		788480421B177E9D0016536F /* YSUninvitedContactInviter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSUninvitedContactInviter.h; sourceTree = "<group>"; };
+		788480431B177E9D0016536F /* YSUninvitedContactInviter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSUninvitedContactInviter.m; sourceTree = "<group>"; };
 		7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBackArrow5.png; sourceTree = "<group>"; };
 		78A2E84E1ACC65B000B5A404 /* PinkStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar.png; sourceTree = "<group>"; };
 		78A2E8511ACC671600B5A404 /* PinkStar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar1.png; sourceTree = "<group>"; };
@@ -908,6 +914,15 @@
 			name = "Mic/Music Mode Buttons";
 			sourceTree = "<group>";
 		};
+		783A1CC01B17722100B610B3 /* UIAlertView+Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				783A1CBD1B17721D00B610B3 /* UIAlertView+Blocks.h */,
+				783A1CBE1B17721D00B610B3 /* UIAlertView+Blocks.m */,
+			);
+			name = "UIAlertView+Blocks";
+			sourceTree = "<group>";
+		};
 		784E35E91A659B8C0029AA01 /* Registration Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -1308,6 +1323,8 @@
 				FC52C1AF1A786F0F00D85FA8 /* RecentContact.m */,
 				FC029EA01A96BC190013B866 /* YSContact.h */,
 				FC029EA11A96BC190013B866 /* YSContact.m */,
+				788480421B177E9D0016536F /* YSUninvitedContactInviter.h */,
+				788480431B177E9D0016536F /* YSUninvitedContactInviter.m */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -1347,6 +1364,7 @@
 		FC0C1D4D1A46065B00B148AB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				783A1CC01B17722100B610B3 /* UIAlertView+Blocks */,
 				780D432E1B0647E50060DAED /* ZLSinusWaveView */,
 				780D43091B0646670060DAED /* EZAudio */,
 				78B252311AF0AB4400353711 /* FBShimmering */,
@@ -1816,6 +1834,7 @@
 				FCD2577A1ABA60AE00981E5D /* UIViewController+Navigation.m in Sources */,
 				78A569A31A73227200818A17 /* YSColorPicker.m in Sources */,
 				78B2522F1AF0A2E400353711 /* FBShimmeringLayer.m in Sources */,
+				783A1CBF1B17721D00B610B3 /* UIAlertView+Blocks.m in Sources */,
 				FC3ECAE91A830496002678F6 /* FriendsViewController.m in Sources */,
 				37D413BE19D21A1F00021548 /* NSString+FontAwesome.m in Sources */,
 				786192741B09A942007279E8 /* RecordPopupViewController.m in Sources */,
@@ -1872,6 +1891,7 @@
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
 				7853936A1AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.m in Sources */,
 				78B252301AF0A2E400353711 /* FBShimmeringView.m in Sources */,
+				788480441B177E9D0016536F /* YSUninvitedContactInviter.m in Sources */,
 				780D43241B0646770060DAED /* EZAudioFile.m in Sources */,
 				780D43231B0646770060DAED /* EZAudio.m in Sources */,
 				37D413BD19D21A1F00021548 /* BButton.m in Sources */,
