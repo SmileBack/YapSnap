@@ -129,7 +129,8 @@
                                     [self enableContinueButton];
                                     
                                     if (success) {
-                                        [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
+                                        [self.view endEditing:YES];
+                                        [self dismissViewControllerAnimated:YES completion:nil];
                                         [[YSPushManager sharedPushManager] registerForNotifications];
                                     } else {
                                         NSLog(@"Error! %@", error);

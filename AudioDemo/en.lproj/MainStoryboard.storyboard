@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sH-V7-KSA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sYo-Oj-klg">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -378,11 +378,28 @@
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="AEp-MY-7pq"/>
                         <segue destination="99I-02-yZb" kind="modal" identifier="Friends Segue" id="POl-Pz-fbY"/>
                         <segue destination="XzA-PH-XVB" kind="modal" identifier="Audio Record" id="A1q-1y-Edd"/>
+                        <segue destination="9sH-V7-KSA" kind="modal" identifier="Login" id="hiH-DV-0vZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1053" y="-1061"/>
+            <point key="canvasLocation" x="315" y="-1286"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="biQ-qn-FPa">
+            <objects>
+                <navigationController id="sYo-Oj-klg" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MOQ-0R-fmB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="7MT-2E-BnS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Qe-Br-FXB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-118" y="-1278"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g4r-i2-C16">
@@ -1346,7 +1363,7 @@ in your phone's settings!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m8d-rJ-ZYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1174" y="-1061"/>
+            <point key="canvasLocation" x="-782" y="-2685"/>
         </scene>
         <!--Enter Name Email View Controller-->
         <scene sceneID="riZ-tc-fvh">
@@ -1453,12 +1470,11 @@ in your phone's settings!</string>
                         <outlet property="loadingSpinner" destination="WeI-6r-4od" id="8rJ-yr-EdF"/>
                         <outlet property="progressView" destination="i7z-1r-1As" id="eOs-VN-JQG"/>
                         <outlet property="topConstraint" destination="PMY-Po-dAK" id="ROR-RZ-VK1"/>
-                        <segue destination="2" kind="push" identifier="Push Audio Capture Segue" id="wu3-lb-fb7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzN-be-bxQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="343" y="-1061"/>
+            <point key="canvasLocation" x="451" y="-2697"/>
         </scene>
         <!--Enter Phone Number View Controller-->
         <scene sceneID="l9s-Vm-DtD">
@@ -1545,7 +1561,7 @@ in your phone's settings!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zdk-Ki-ihh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-677" y="-1061"/>
+            <point key="canvasLocation" x="-369" y="-2697"/>
         </scene>
         <!--Enter Code View Controller-->
         <scene sceneID="kBA-no-IN8">
@@ -1634,12 +1650,11 @@ Type it here!</string>
                         <outlet property="topPhoneConstraint" destination="tvN-4s-Hk1" id="nxb-7b-koq"/>
                         <outlet property="topTextConstraint" destination="2yW-au-kXK" id="Eai-PY-jld"/>
                         <segue destination="gKu-qF-bJg" kind="push" identifier="EnterNameAndEmailViewControllerSegue" id="VlH-FK-GED"/>
-                        <segue destination="2" kind="push" identifier="Push Audio Capture Segue" id="1l7-bL-RcX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqp-v6-G3N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-206" y="-1061"/>
+            <point key="canvasLocation" x="54" y="-2697"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iU4-rq-GxL">
@@ -1657,7 +1672,7 @@ Type it here!</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQa-zj-YXn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1708" y="-1061"/>
+            <point key="canvasLocation" x="-1180" y="-2685"/>
         </scene>
         <!--Mic Source Controller-->
         <scene sceneID="WW9-bF-VOv">

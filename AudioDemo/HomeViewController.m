@@ -130,6 +130,13 @@
     [self updateYapsButtonAnimation];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (![YSUser currentUser].hasSessionToken) { // Force log in
+        [self performSegueWithIdentifier:@"Login" sender:nil];
+    }
+}
+
 - (void) styleButtons {
     self.micButton.layer.cornerRadius = 65;
     self.micButton.layer.borderWidth = 1;

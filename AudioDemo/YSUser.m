@@ -149,6 +149,7 @@ static YSUser *currentUser;
 
 + (void) wipeCurrentUserData
 {
+    currentUser = nil;
     dispatch_async(dispatch_get_main_queue(), ^{
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults removeObjectForKey:USER_KEY];

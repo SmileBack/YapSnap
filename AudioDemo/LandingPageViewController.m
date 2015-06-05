@@ -30,8 +30,7 @@
     // if we're already authenticated, go right to the recording page
     if (user.hasSessionToken) {
         if (user.isUserInfoComplete) {
-            AudioCaptureViewController* rvvc = [self.storyboard instantiateViewControllerWithIdentifier:@"AudioCaptureViewController"];
-            [self.navigationController pushViewController:rvvc animated:NO];
+            [self dismissViewControllerAnimated:NO completion:nil];
         } else {
             AudioCaptureViewController* rvvc = [self.storyboard instantiateViewControllerWithIdentifier:@"EnterNameEmailViewController"];
             [self.navigationController pushViewController:rvvc animated:NO];

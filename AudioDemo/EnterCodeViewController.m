@@ -122,7 +122,8 @@
                 if (!user.isUserInfoComplete) {
                     [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
                 } else {
-                    [self performSegueWithIdentifier:@"Push Audio Capture Segue" sender:nil];
+                    [self.view endEditing:YES];
+                    [self dismissViewControllerAnimated:YES completion:nil];
                 }
             } else {
                 // TODO: different UIAlert depending on error (no internet, wrong code, etc.)
