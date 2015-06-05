@@ -22,12 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *topLeftButton;
 @property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;
 
-@property (nonatomic, strong) IBOutlet UIButton *micButton;
-@property (nonatomic, strong) IBOutlet UIButton *musicButton;
-
 - (IBAction)didTapYapsPageButton;
 - (IBAction)leftButtonPressed:(id)sender;
-- (void) tappedSpotifyButton:(NSString *)type;
 
 
 @end

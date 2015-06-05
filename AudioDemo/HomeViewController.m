@@ -16,15 +16,12 @@
 @interface HomeViewController ()
 
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *doubleTapLabel;
+@property (nonatomic, strong) IBOutlet UILabel *recipientLabel;
 @property (nonatomic, strong) NSNumber *unopenedYapsCount;
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
 @property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *doubleTapConstraint;
-@property (nonatomic, strong) IBOutlet UIImageView *cartoonsImage;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *recipientLabelConstraint;
 
-
-- (IBAction)didTapMegaphoneButton;
 
 @end
 
@@ -51,18 +48,13 @@
     [self setupNotifications];
         
     [self setupNavBarStuff];
-    [self styleButtons];
     
     if (IS_IPHONE_4_SIZE) {
-        self.doubleTapConstraint.constant = 20;
+        self.recipientLabelConstraint.constant = 20;
     } else if (IS_IPHONE_6_SIZE) {
-        self.doubleTapConstraint.constant = 80;
+        self.recipientLabelConstraint.constant = 80;
     } else if (IS_IPHONE_6_PLUS_SIZE) {
-        self.doubleTapConstraint.constant = 100;
-    }
-    
-    if (IS_IPHONE_6_SIZE) {
-        self.cartoonsImage.image = [UIImage imageNamed:@"CartooniPhone6.png"];
+        self.recipientLabelConstraint.constant = 100;
     }
 }
 
@@ -97,25 +89,13 @@
                                                       object:nil
                                                        queue:[NSOperationQueue currentQueue]
                                                   usingBlock:^(NSNotification *note) {
-                                                      // HACKKKKKKKKKKK
-                                                      // This goes through all the view controllers in the stack, finds the first HomeViewController,
-                                                      // then pops to it.
-                                                      UIViewController* vcToPopTo = nil;
-                                                      for (UIViewController* vc in self.navigationController.viewControllers) {
-                                                          if ([vc isKindOfClass:[HomeViewController class]]) {
-                                                              vcToPopTo = vc;
-                                                              break;
-                                                          }
-                                                      }
-                                                      if (vcToPopTo) {
-                                                          [self.navigationController popToViewController:vcToPopTo animated:NO];
-                                                      }
+                                                      [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                                                   }];
 }
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:DID_DISMISS_AFTER_SENDING_YAP object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -135,16 +115,6 @@
     if (![YSUser currentUser].hasSessionToken) { // Force log in
         [self performSegueWithIdentifier:@"Login" sender:nil];
     }
-}
-
-- (void) styleButtons {
-    self.micButton.layer.cornerRadius = 65;
-    self.micButton.layer.borderWidth = 1;
-    self.micButton.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    self.musicButton.layer.cornerRadius = 65;
-    self.musicButton.layer.borderWidth = 1;
-    self.musicButton.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 - (void) reloadUnopenedYapsCount
@@ -195,8 +165,8 @@
         [self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
         self.topLeftButton.alpha = 1;
         
-        self.doubleTapLabel.hidden = NO;
-        self.doubleTapLabel.text = [NSString stringWithFormat:@"For: %@", self.contactReplyingTo.name];
+        self.recipientLabel.hidden = NO;
+        self.recipientLabel.text = [NSString stringWithFormat:@"For: %@", self.contactReplyingTo.name];
         
         NSLog(@"In reply mode");
     } else {
@@ -251,21 +221,6 @@
     [mixpanel track:@"Tapped Yaps Page Button"];
 }
 
-#pragma mark - Mic and Music Buttons
-
-- (IBAction)didTapMegaphoneButton {
-    [self performSegueWithIdentifier:@"Audio Record" sender:nil];
-}
-
-- (IBAction)didTapMusicButton {
-    [self tappedSpotifyButton:@"Search"];
-}
-
-- (void) tappedSpotifyButton:(NSString *)type
-{
-    [self performSegueWithIdentifier:@"Audio Record" sender:type];
-}
-
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([@"YapsPageViewControllerSegue" isEqualToString:segue.identifier]) {
@@ -278,8 +233,7 @@
             [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:nil];
         };
     } else if ([@"Audio Record" isEqualToString:segue.identifier]) {
-        UINavigationController *navVC = segue.destinationViewController;
-        AudioCaptureViewController* audio = navVC.topViewController;
+        AudioCaptureViewController* audio = segue.destinationViewController;
         if (sender) { // The presence of a sender means that there was a spotify genre specified
             audio.type = AudioCapTureTypeSpotify;
             audio.audioCaptureContext = @{

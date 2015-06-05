@@ -9,20 +9,36 @@
 #import <UIKit/UIKit.h>
 #import "YapBuilder.h"
 
-#define AUDIO_CAPTURE_DID_START_NOTIFICATION @"com.yapsnap.AudioCaptureDidStartNotification"
-#define AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION @"com.yapsnap.AudioCaptureErrorNotification"
-#define AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION @"com.yapsnap.AudioCaptureLostConnectionNotification"
 #define STOP_LOADING_SPINNER_NOTIFICATION @"com.yapsnap.StopLoadingSpinnerNotification"
 #define CAPTURE_THRESHOLD .8 //seconds
 
+@class YSAudioSourceController;
+
+@protocol YSAudioSourceControllerDelegate <NSObject>
+
+@optional
+
+// Called before audio capture starts (possibly before related content is loaded from the network)
+- (void)audioSourceControllerWillStartAudioCapture:(YSAudioSourceController*)controller;
+
+// Called when audio capture actually has started
+- (void)audioSourceControllerDidStartAudioCapture:(YSAudioSourceController*)controller;
+
+- (void)audioSourceControllerdidFinishAudioCapture:(YSAudioSourceController*)controller;
+
+- (void)audioSourceController:(YSAudioSourceController*)controller didReceieveUnexpectedError:(NSError*)error;
+
+@end
 
 /*
  * Base class for audio sources (i.e. Spotify or recording through the mic)
  */
 @interface YSAudioSourceController : UIViewController
 
+@property (weak) id<YSAudioSourceControllerDelegate> audioCaptureDelegate;
+
 - (BOOL) startAudioCapture;
-- (void) stopAudioCapture:(float)elapsedTime;
+- (void) stopAudioCapture;
 
 - (void) startPlayback;
 - (void) stopPlayback;

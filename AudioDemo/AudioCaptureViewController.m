@@ -13,7 +13,7 @@
 #import "API.h"
 #import "YapBuilder.h"
 
-@interface AudioCaptureViewController (){
+@interface AudioCaptureViewController ()<YSAudioSourceControllerDelegate> {
     NSTimer *audioProgressTimer;
     NSTimer *countdownTimer;
     int currMinute;
@@ -23,12 +23,13 @@
 @property (nonatomic) float elapsedTime;
 @property (nonatomic, strong) NSString *titleString;
 @property (strong, nonatomic) UIButton *countdownTimerButton;
-@property (strong, nonatomic) IBOutlet UIImageView *guidanceArrowLeft;
-@property (strong, nonatomic) IBOutlet UIImageView *guidanceArrowRight;
 @property (strong, nonatomic) UIImage *diceImage;
+@property (weak, nonatomic) IBOutlet UIButton *switchButton;
+@property (weak, nonatomic) IBOutlet UILabel *receiverLabel;
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
+- (IBAction)didTapSwitchRecordSource:(id)sender;
 
 @end
 
@@ -49,7 +50,7 @@ static const float TIMER_INTERVAL = .02;
 }
 
 - (void)commonInit {
-    self.type = AudioCaptureTypeMic;
+    self.type = AudioCapTureTypeSpotify;
 }
 
 - (void)viewDidLoad {
@@ -73,6 +74,11 @@ static const float TIMER_INTERVAL = .02;
     }
     
     [self setupNotifications];
+    
+    if (self.contactReplyingTo) {
+        self.receiverLabel.hidden = NO;
+        self.receiverLabel.text = self.contactReplyingTo.name;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -86,10 +92,6 @@ static const float TIMER_INTERVAL = .02;
     [self updateTitleLabel];
     
     self.countdownTimerButton.hidden = YES;
-    
-    if (self.type == AudioCapTureTypeSpotify) {
-        [self addRandomSearchButton];
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -104,7 +106,7 @@ static const float TIMER_INTERVAL = .02;
         NSLog(@"Audio Progress Timer Invalidate 1");
     }
     
-    [self.audioSource stopAudioCapture:self.elapsedTime];
+    [self.audioSource stopAudioCapture];
 }
 
 -(void) startCountdownTimer
@@ -177,20 +179,6 @@ static const float TIMER_INTERVAL = .02;
     [self.navigationItem setLeftBarButtonItem:cancelButton];
 }
 
-- (void) addRandomSearchButton {
-    if (!self.didTapDiceButtonForFirstTime) {
-        self.diceImage = [UIImage imageNamed:@"DiceYellow2.png"];
-    } else {
-        self.diceImage = [UIImage imageNamed:@"Dice7.png"];
-    }
-    UIButton *randomSearchButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [randomSearchButton setBackgroundImage:self.diceImage forState:UIControlStateNormal];
-    [randomSearchButton addTarget:self action:@selector(diceButtonPressed)
-                forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *randomSearchBarButtonItom =[[UIBarButtonItem alloc] initWithCustomView:randomSearchButton];
-    [self.navigationItem setRightBarButtonItem:randomSearchBarButtonItom];
-}
-
 - (void)cancelPressed
 {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -220,69 +208,7 @@ static const float TIMER_INTERVAL = .02;
     __weak AudioCaptureViewController *weakSelf = self;
 
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    
-    [center addObserverForName:AUDIO_CAPTURE_DID_START_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        [weakSelf.recordProgressView.activityIndicator stopAnimating];
-                        
-                        if (note.object == weakSelf.audioSource) {
-                            if (audioProgressTimer){
-                                [audioProgressTimer invalidate];
-                                NSLog(@"Audio Progress Timer Invalidate 2");
-                            }
-                            audioProgressTimer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
-                                                                     target:weakSelf
-                                                                   selector:@selector(updateProgress)
-                                                                   userInfo:nil
-                                                                    repeats:YES];
-                            NSLog(@"Start Audio Progress Timer!");
-                        }
-                        
-                        if (self.type == AudioCaptureTypeMic) {
-                            self.titleString = @"Recording...";
-                        } else {
-                            self.titleString = @"Playing...";
-                        }
-                        [self updateTitleLabel];
-                        
-                        [self addCountDownTimerLabel];
-                        [self.countdownTimerButton setTitle:@"12" forState:UIControlStateNormal];
-                        currSeconds=12;
-                        [self startCountdownTimer];
-                    }];
-    
-    [center addObserverForName:AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        
-                        double delay = .1;
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong!"];
-                        });
-                        [weakSelf.recordProgressView setProgress:0];
-                        weakSelf.elapsedTime = 0;
-                        [audioProgressTimer invalidate];
-                        NSLog(@"Audio Progress Timer Invalidate 3");
-                    }];
-    
-    [center addObserverForName:AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        
-                        double delay = .1;
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Connection Was Lost!"];
-                        });
-                        [weakSelf.recordProgressView setProgress:0];
-                        weakSelf.elapsedTime = 0;
-                        [audioProgressTimer invalidate];
-                        NSLog(@"Audio Progress Timer Invalidate 4");
-                    }];
-    
+
     [center addObserverForName:STOP_LOADING_SPINNER_NOTIFICATION
                         object:nil
                          queue:nil
@@ -301,15 +227,7 @@ static const float TIMER_INTERVAL = .02;
                         [audioProgressTimer invalidate];
                         NSLog(@"Audio Progress Timer Invalidate 5");
                         self.recordProgressView.progress = 0.0;
-                        [self.audioSource stopAudioCapture:self.elapsedTime];
-                    }];
-    
-    [center addObserverForName:TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        self.guidanceArrowLeft.hidden = NO;
-                        self.guidanceArrowRight.hidden = NO;
+                        [self.audioSource stopAudioCapture];
                     }];
 }
 
@@ -322,77 +240,13 @@ static const float TIMER_INTERVAL = .02;
     if (self.elapsedTime - .02 >= MAX_CAPTURE_TIME) {
         [audioProgressTimer invalidate];
         NSLog(@"Audio Progress Timer Invalidate 6");
-        [self.audioSource stopAudioCapture:self.elapsedTime];
+        [self.audioSource stopAudioCapture];
         // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
         double delay1 = .1;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
         });
     }
-}
-
-- (IBAction)recordTapped:(id)sender
-{
-    self.elapsedTime = 0;
-    [self.recordProgressView setProgress:0];
-    
-    if ([self.audioSource startAudioCapture]) {
-        if (self.type == AudioCapTureTypeSpotify) {
-            [self.recordProgressView.activityIndicator startAnimating];
-        }
-    }
-}
-
-- (IBAction)recordUntapped:(id)sender
-{
-    [audioProgressTimer invalidate];
-    NSLog(@"Audio Progress Timer Invalidate 7");
-    
-    if (self.elapsedTime <= CAPTURE_THRESHOLD) {
-        [self.audioSource stopAudioCapture:self.elapsedTime];
-
-        self.recordProgressView.progress = 0.0;
-        double delay = .1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if (self.type == AudioCapTureTypeSpotify) {
-                [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Play"];
-            } else {
-                [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Record"];
-                [[NSNotificationCenter defaultCenter] postNotificationName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION object:nil];
-            }
-        });
-        
-        if (self.type == AudioCaptureTypeMic) {
-            self.titleString = @"Start Yappin'";
-        } else if (self.type == AudioCapTureTypeSpotify) {
-            self.titleString = @"Find a Song";
-        }
-        
-        if (self.type == AudioCapTureTypeSpotify) {
-            [self addRandomSearchButton];
-        }
-        
-        [self updateTitleLabel];
-        
-        [self stopCountdownTimer];
-        self.countdownTimerButton.hidden = YES;
-    } else {
-        [self.audioSource stopAudioCapture:self.elapsedTime];
-        [self hideGuidanceArrows];
-        // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
-        double delay1 = .1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
-        });
-    }
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Untapped Record Button"];
-}
-
-- (void) hideGuidanceArrows {
-    self.guidanceArrowLeft.hidden = YES;
-    self.guidanceArrowRight.hidden = YES;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -418,20 +272,118 @@ static const float TIMER_INTERVAL = .02;
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_TAP_DICE_BUTTON];
 }
 
+#pragma mark - YSAudioSourceControllerDelegate
+
+- (void)audioSourceControllerWillStartAudioCapture:(YSAudioSourceController *)controller {
+    [self.recordProgressView.activityIndicator startAnimating];
+}
+
+- (void)audioSourceControllerDidStartAudioCapture:(YSAudioSourceController *)controller {
+    [self.recordProgressView.activityIndicator stopAnimating];
+    self.elapsedTime = 0;
+    [self.recordProgressView setProgress:0];
+    
+    if (audioProgressTimer) {
+        [audioProgressTimer invalidate];
+    }
+    audioProgressTimer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL
+                                                          target:self
+                                                        selector:@selector(updateProgress)
+                                                        userInfo:nil
+                                                         repeats:YES];
+    NSLog(@"Start Audio Progress Timer!");
+    
+    if (self.type == AudioCaptureTypeMic) {
+        self.titleString = @"Recording...";
+    } else {
+        self.titleString = @"Playing...";
+    }
+    [self updateTitleLabel];
+    
+    [self addCountDownTimerLabel];
+    [self.countdownTimerButton setTitle:@"12" forState:UIControlStateNormal];
+    currSeconds=12;
+    [self startCountdownTimer];
+}
+
+- (void)audioSourceControllerdidFinishAudioCapture:(YSAudioSourceController *)controller {
+    [audioProgressTimer invalidate];
+    NSLog(@"Audio Progress Timer Invalidate 7");
+    [self.recordProgressView.activityIndicator stopAnimating];
+    
+    if (self.elapsedTime <= CAPTURE_THRESHOLD) {
+        self.recordProgressView.progress = 0.0;
+        double delay = .1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (self.type == AudioCapTureTypeSpotify) {
+                [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Play"];
+            } else {
+                [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Record"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION object:nil];
+            }
+        });
+        
+        if (self.type == AudioCaptureTypeMic) {
+            self.titleString = @"Start Yappin'";
+        } else if (self.type == AudioCapTureTypeSpotify) {
+            self.titleString = @"Find a Song";
+        }
+        
+        [self updateTitleLabel];
+        
+        [self stopCountdownTimer];
+        self.countdownTimerButton.hidden = YES;
+    } else {
+        // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+        });
+    }
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Untapped Record Button"];
+}
+
+- (void)audioSourceController:(YSAudioSourceController *)controller didReceieveUnexpectedError:(NSError *)error {
+    [self.recordProgressView.activityIndicator stopAnimating];
+    double delay = .1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong!"];
+    });
+    [self.recordProgressView setProgress:0];
+    self.elapsedTime = 0;
+    [audioProgressTimer invalidate];
+    NSLog(@"Audio Progress Timer Invalidate 3");
+}
+
 #pragma mark - Mode Changing
 
 - (void)switchToSpotifyMode {
+    self.type = AudioCapTureTypeSpotify;
+    [self.switchButton setTitle:@"Mic" forState:UIControlStateNormal];
     YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
     [self setRecordSourceViewController:spotifySource];
 }
 
 - (void)switchToMicMode {
+    [self.switchButton setTitle:@"Music" forState:UIControlStateNormal];
+    self.type = AudioCaptureTypeMic;
     YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
     [self setRecordSourceViewController:micSource];
 }
 
+- (IBAction)didTapSwitchRecordSource:(id)sender {
+    if (self.type == AudioCapTureTypeSpotify) {
+        [self switchToMicMode];
+    } else {
+        [self switchToSpotifyMode];
+    }
+}
+
 - (void) setRecordSourceViewController:(YSAudioSourceController *)to {
     NSAssert(to != nil, @"To controller cannot be nil");
+    [self.audioSource removeFromParentViewController];
+    to.audioCaptureDelegate = self;
     [self addChildViewController:to];
     to.view.frame = self.audioSourceContainer.bounds;
     [self.audioSourceContainer addSubview:to.view];

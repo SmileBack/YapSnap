@@ -27,17 +27,18 @@
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic, strong) NSString *alertViewString;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
-@property (nonatomic) float carouselHeight;
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 @property (strong, nonatomic) IBOutlet UIButton *resetButton;
 @property (nonatomic, strong) NSArray *artists;
 @property (nonatomic, strong) NSDictionary *typeToGenreMap;
 @property (strong, nonatomic) UIButton *spotifyButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carouselHeightConstraint;
 @property (strong, nonatomic) SpotifyPopupViewController *spotifyPopupVC;
 
 - (IBAction)didTapResetButton;
 //- (void) searchGenre:(NSString *)genre; TODO: Add this back!
 - (void) performRandomSearch;
+- (IBAction)didTapRandomButton:(id)sender;
 
 @end
 
@@ -65,9 +66,27 @@
     
     if (!self.didSeeSpotifyPopup) {
         [self showSpotifyPopup];
-    } else {
-        [self.searchBox becomeFirstResponder];
     }
+    
+    UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPressCarousel:)];
+    longPress.cancelsTouchesInView = NO;
+    longPress.minimumPressDuration = 0.1;
+    
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapCarousel:)];
+    tap.cancelsTouchesInView = NO;
+    [self.carousel addGestureRecognizer:tap];
+    [self.carousel addGestureRecognizer:longPress];
+    CGFloat carouselHeight = 0.0;
+    if (IS_IPHONE_4_SIZE) {
+        carouselHeight = 140; // 69; 138*100
+    } else if (IS_IPHONE_5_SIZE) {
+        carouselHeight = 200; // 99; 198*100
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        carouselHeight = 290; // 144; (288*100) *1.5
+    } else {
+        carouselHeight = 240; // 119; (238*100) *1.172  279*117
+    }
+    self.carouselHeightConstraint.constant = carouselHeight;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -169,6 +188,10 @@
     [self setBackgroundColorForSearchBox];
 }
 
+- (IBAction)didTapRandomButton:(id)sender {
+    [self performRandomSearch];
+}
+
 -(BOOL) internetIsNotReachable
 {
     return ![AFNetworkReachabilityManager sharedManager].reachable;
@@ -243,7 +266,7 @@
                 
                 NSLog(@"No Songs Returned For Search Query");
                 
-                double delay = 0.1;
+                double delay = 0.2;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
                 });
@@ -294,7 +317,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"Textfield did end editing");
-    self.carousel.scrollEnabled = YES;
+    [self setUserInteractionEnabled:YES];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -345,34 +368,23 @@
     if (view && [view isKindOfClass:[SpotifyTrackView class]]) {
         trackView = (SpotifyTrackView *) view;
     } else {
-        
-        if (IS_IPHONE_4_SIZE) {
-            self.carouselHeight = 140; // 69; 138*100
-        } else if (IS_IPHONE_5_SIZE) {
-            self.carouselHeight = 200; // 99; 198*100
-        } else if (IS_IPHONE_6_PLUS_SIZE) {
-            self.carouselHeight = 290; // 144; (288*100) *1.5
-        } else {
-            self.carouselHeight = 240; // 119; (238*100) *1.172  279*117
-        }
-
-        CGRect frame = CGRectMake(0, 0, self.carouselHeight, self.carouselHeight);
+        CGFloat carouselHeight = self.carouselHeightConstraint.constant;
+        CGRect frame = CGRectMake(0, 0, carouselHeight, carouselHeight);
         trackView = [[SpotifyTrackView alloc] initWithFrame:frame];
-
         trackView.imageView = [[UIImageView alloc] initWithFrame:frame];
         [trackView addSubview:trackView.imageView];
         
         trackView.label = [[UILabel alloc]initWithFrame:
-                           CGRectMake(0, self.carouselHeight+4, self.carouselHeight, 25)];
+                           CGRectMake(0, carouselHeight + 4 , carouselHeight, 25)];
         [trackView addSubview:trackView.label];
          
         trackView.albumImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.albumImageButton.frame = CGRectMake(0, 0, self.carouselHeight, self.carouselHeight);
+        trackView.albumImageButton.frame = CGRectMake(0, 0, carouselHeight, carouselHeight);
         [trackView.albumImageButton setImage:nil forState:UIControlStateNormal];
         [trackView addSubview:trackView.albumImageButton];
         
         trackView.spotifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.spotifyButton.frame = CGRectMake(self.carouselHeight-40, 5, 35, 35);
+        trackView.spotifyButton.frame = CGRectMake(carouselHeight-40, 5, 35, 35);
         [trackView.spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
         [trackView addSubview:trackView.spotifyButton];
         
@@ -381,24 +393,24 @@
         
         if (IS_IPHONE_6_PLUS_SIZE) {
             trackView.songVersionBackground = [[UIView alloc]initWithFrame:
-                                           CGRectMake(0, self.carouselHeight-26, self.carouselHeight, 26)];
+                                           CGRectMake(0, carouselHeight-26, carouselHeight, 26)];
         } else if (IS_IPHONE_6_SIZE) {
             trackView.songVersionBackground = [[UIView alloc]initWithFrame:
-                                                   CGRectMake(0, self.carouselHeight-22, self.carouselHeight, 22)];
+                                                   CGRectMake(0, carouselHeight - 22, carouselHeight, 22)];
         } else {
             trackView.songVersionBackground = [[UIView alloc]initWithFrame:
-                                               CGRectMake(0, self.carouselHeight-18, self.carouselHeight, 18)];
+                                               CGRectMake(0, carouselHeight - 18, carouselHeight, 18)];
         }
         trackView.songVersionBackground.backgroundColor = THEME_BACKGROUND_COLOR;
         [trackView addSubview:trackView.songVersionBackground];
         
         trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionOneButton.frame = CGRectMake(0, self.carouselHeight-50, self.carouselHeight/2 - 1, 50);
+        trackView.songVersionOneButton.frame = CGRectMake(0, carouselHeight-50, carouselHeight/2 - 1, 50);
         [trackView.songVersionOneButton addTarget:self action:@selector(tappedSongVersionOneButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionOneButton];
         
         trackView.songVersionTwoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionTwoButton.frame = CGRectMake(self.carouselHeight/2 + 1, self.carouselHeight-50, self.carouselHeight/2 - 1, 50);
+        trackView.songVersionTwoButton.frame = CGRectMake(carouselHeight/2 + 1, carouselHeight-50, carouselHeight/2 - 1, 50);
         [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionTwoButton];
     }
@@ -441,9 +453,27 @@
     trackView.label.font = [UIFont fontWithName:@"Futura-Medium" size:size];
     
     [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
-    [trackView.albumImageButton addTarget:self action:@selector(tappedAlbumImage:) forControlEvents:UIControlEventTouchUpInside];
-    
+//    [trackView.albumImageButton addTarget:self action:@selector(untappedAlbumImage:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside | UIControlEventTouchDragOutside | UIControlEventTouchCancel];
+//    [trackView.albumImageButton addTarget:self action:@selector(tappedAlbumImage:) forControlEvents:UIControlEventTouchDown];
+
     return trackView;
+}
+
+- (void)didTapCarousel:(UITapGestureRecognizer*)tap {
+    [[YTNotifications sharedNotifications] showNotificationText:@"Hold Album Cover To Play"];
+}
+
+-(void)didLongPressCarousel:(UILongPressGestureRecognizer*)longPress {
+    if(longPress.state == UIGestureRecognizerStateBegan)
+    {
+        [self startAudioCapture];
+    }
+    else if(longPress.state == UIGestureRecognizerStateEnded
+            || longPress.state == UIGestureRecognizerStateFailed
+            || longPress.state == UIGestureRecognizerStateCancelled)
+    {
+        [self stopAudioCapture];
+    }
 }
 
 - (void) tappedSongVersionOneButton:(UIButton *)button {
@@ -546,10 +576,15 @@
 
 - (void) tappedAlbumImage:(UIButton *)button
 {
+    [self startAudioCapture];
+}
+
+- (void) untappedAlbumImage:(UIButton *)button
+{
+    [self stopAudioCapture];
     NSLog(@"Tapped Album Image");
     
-    if ([self.searchBox isFirstResponder]) // This case shouldn't be possible
-    {
+    if ([self.searchBox isFirstResponder]) { // This case shouldn't be possible
         [self.view endEditing:YES];
     } else {
         UIView *parent = button.superview;
@@ -576,13 +611,6 @@
             }
         }
         
-        if (!self.didTapAlbumCoverForFirstTime) {
-            double delay = 0.1;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION object:self];
-                [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button To Play"];
-            });
-        }
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_ALBUM_COVER];
     }
 }
@@ -607,17 +635,22 @@
     }
 }
 
-- (void) stopAudioCapture:(float)elapsedTime
+- (void) stopAudioCapture
 {
-    [self.player stop];
-    [self enableUserInteraction]; // This is most likely redundant, but putting it here anyway just in case
+    if ((self.player.state & STKAudioPlayerStateRunning) != 0) {
+        [self.player stop];
+        [self setUserInteractionEnabled:YES]; // This is most likely redundant, but putting it here anyway just in case
+        if ([self.audioCaptureDelegate respondsToSelector:@selector(audioSourceControllerdidFinishAudioCapture:)]) {
+            [self.audioCaptureDelegate audioSourceControllerdidFinishAudioCapture:self];
+        }
+    }
 }
 
-- (void) enableUserInteraction
+- (void) setUserInteractionEnabled:(BOOL)enabled
 {
-    [self.carousel setUserInteractionEnabled:YES];
-    self.searchBox.enabled = YES;
-    self.resetButton.enabled = YES;
+    self.carousel.scrollEnabled = enabled;
+    self.searchBox.enabled = enabled;
+    self.resetButton.enabled = enabled;
 }
 
 #pragma mark - STKAudioPlayerDelegate
@@ -644,9 +677,11 @@
 {
     NSLog(@"audioPlayer unexpected error: %u", errorCode);
 
-    [self enableUserInteraction];
+    [self setUserInteractionEnabled:YES];
     [audioPlayer stop];
-    [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_UNEXPECTED_ERROR_NOTIFICATION object:nil];
+    if ([self.audioCaptureDelegate respondsToSelector:@selector(audioSourceController:didReceieveUnexpectedError:)]) {
+        [self.audioCaptureDelegate audioSourceController:self didReceieveUnexpectedError:[NSError errorWithDomain:@"YSSpotifySourceController" code:errorCode userInfo:nil]];
+    }
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Player Unexpected Error - Spotify"];
@@ -677,7 +712,6 @@
         NSLog(@"state == STKAudioPlayerStatePlaying");
         
         if (!self.playerAlreadyStartedPlayingForThisSong) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
             YSTrack *track = self.songs[self.carousel.currentItemIndex];
             if (track.secondsToFastForward.intValue > 0) {
                 [audioPlayer seekToTime:track.secondsToFastForward.intValue];
@@ -687,6 +721,9 @@
             NSLog(@"Set playerAlreadyStartedPlayingForThisSong to TRUE");
         }
         
+        if ([self.audioCaptureDelegate respondsToSelector:@selector(audioSourceControllerDidStartAudioCapture:)]) {
+            [self.audioCaptureDelegate audioSourceControllerDidStartAudioCapture:self];
+        }
         // Show Song Clip buttons when user is playing a song
         SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
         YSTrack *track = self.songs[self.carousel.currentItemIndex];
@@ -713,7 +750,7 @@
     if (state == STKAudioPlayerStateStopped) {
         NSLog(@"state == STKAudioPlayerStateStopped");
         [self stopLoadingSpinner];
-        [self enableUserInteraction];
+        [self setUserInteractionEnabled:YES];
         
         // set self.playerAlreadyStartedPlayingForThisSong to FALSE!
         self.playerAlreadyStartedPlayingForThisSong = NO;
@@ -728,12 +765,6 @@
     
     if (state == STKAudioPlayerStateDisposed) {
         NSLog(@"state == STKAudioPlayerStateDisposed");
-    }
-    
-    if (state == STKAudioPlayerStateBuffering && previousState == STKAudioPlayerStatePlaying) {
-        NSLog(@"state changed from playing to buffering");
-        //[audioPlayer stop];
-        //[[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_LOST_CONNECTION_NOTIFICATION object:nil];
     }
 }
 
@@ -756,10 +787,7 @@
         [alert show];
         return NO;
     } else {
-        //Disable User Interactions
-        [self.carousel setUserInteractionEnabled:NO];
-        self.searchBox.enabled = NO;
-        self.resetButton.enabled = NO;
+        [self setUserInteractionEnabled:NO];
         
         YSTrack *song = self.songs[self.carousel.currentItemIndex];
         self.player = [STKAudioPlayer new];
@@ -773,7 +801,7 @@
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
-            [self enableUserInteraction];
+            [self setUserInteractionEnabled:YES];
             [self stopLoadingSpinner];
             return NO;
         } else {
@@ -786,6 +814,10 @@
                     [mixpanel track:@"Volume Notification - Spotify"];
                 });
             }
+            if ([self.audioCaptureDelegate respondsToSelector:@selector(audioSourceControllerWillStartAudioCapture:)]) {
+                [self.audioCaptureDelegate audioSourceControllerWillStartAudioCapture:self];
+            }
+            
             NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
             NSLog(@"Playing URL: %@ %@ auth token", song.previewURL, headers ? @"with" : @"without");
             if (headers) {
@@ -809,11 +841,6 @@
 }
 
 #pragma mark - Setting NSDefaults
-
-- (BOOL) didTapAlbumCoverForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_ALBUM_COVER];
-}
 
 - (BOOL) didTapSongVersionOneForFirstTime
 {

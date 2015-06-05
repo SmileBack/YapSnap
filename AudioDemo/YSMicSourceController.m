@@ -17,7 +17,6 @@
 #define DISMISS_RECORD_POPUP @"DismissRecordPopup"
 
 @interface YSMicSourceController ()<EZMicrophoneDelegate>
-@property (strong, nonatomic) UIImageView *megaphoneImageView;
 @property (nonatomic, strong) AVAudioPlayer *player;
 @property (nonatomic, strong) EZMicrophone* microphone;
 @property (nonatomic, strong) EZRecorder* recorder;
@@ -35,18 +34,9 @@
     [mixpanel track:@"Viewed Megaphone Page"];
 
     [self setupRecorder];
-    
     [self setupNotifications];
-    
     [self setSinusWaveViewProperties];
-    
-    [self setFrameOfMegaPhoneImageView];
     [self setSinusWaveConstraints];
-    
-    self.megaphoneImageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMegaphoneImage)];
-    tapped.numberOfTapsRequired = 1;
-    [self.megaphoneImageView addGestureRecognizer:tapped];
     
     if (!self.didSeeRecordPopup) {
         [self showRecordPopup];
@@ -56,24 +46,7 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.megaphoneImageView.alpha = 1;
     self.sinusWaveView.alpha = 0;
-}
-
-- (void) setFrameOfMegaPhoneImageView {
-    if (IS_IPHONE_4_SIZE ) {
-        self.megaphoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(80, 15, 160, 160)];
-    } else if (IS_IPHONE_5_SIZE) {
-        self.megaphoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(75, 50, 170, 170)];
-    } else if (IS_IPHONE_6_SIZE) {
-        self.megaphoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(95, 70, 185, 185)];
-    } else if (IS_IPHONE_6_PLUS_SIZE) {
-        self.megaphoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(107, 70, 200, 200)];
-    }
-    
-    self.megaphoneImageView.image = [UIImage imageNamed:@"megaphone_shutterstock3.png"];
-    self.megaphoneImageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.view addSubview:self.megaphoneImageView];
 }
 
 - (void) setSinusWaveConstraints {
@@ -122,7 +95,7 @@
                                               delay:0
                                             options:UIViewAnimationOptionCurveEaseOut
                                          animations:^{
-                                             self.megaphoneImageView.alpha = 1;
+                                             // TODO: Show text view here
                                              self.sinusWaveView.alpha = 0;
                                          }
                                          completion:nil];
@@ -135,17 +108,6 @@
                         NSLog(@"Dismiss Welcome Popup");
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
-}
-
-- (void)tappedMegaphoneImage {
-    NSLog(@"Tapped Microphone Image");
-    double delay = 0.1;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
-    });
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Megaphone Image"];
 }
 
 - (YapBuilder *) getYapBuilder
@@ -187,11 +149,22 @@ withNumberOfChannels:(UInt32)numberOfChannels {
                                  withBufferSize:bufferSize];
 }
 
+- (IBAction)didTapRecord:(id)sender {
+    [self startAudioCapture];
+}
+- (IBAction)didUntapRecord:(id)sender {
+    [self stopAudioCapture];
+}
+
 #pragma mark - Public API Methods
 - (BOOL) startAudioCapture
 {
     [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
         if (granted) {
+            if ([self.audioCaptureDelegate respondsToSelector:@selector(audioSourceControllerDidStartAudioCapture:)]) {
+                [self.audioCaptureDelegate audioSourceControllerDidStartAudioCapture:self];
+            }
+            
             NSLog(@"Microphone permission granted");
             // Stop the audio player before recording
             if (self.player.playing) {
@@ -215,10 +188,8 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             
             AVAudioSession *session = [AVAudioSession sharedInstance];
             [session setActive:YES error:nil];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:self];
-            
-            self.megaphoneImageView.alpha = 0;
+
+            // TODO: Hide text label here
             self.sinusWaveView.alpha = 1;
             
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -239,17 +210,19 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     return YES;
 }
 
-- (void) stopAudioCapture:(float)elapsedTime
+- (void) stopAudioCapture
 {
-    [self.microphone stopFetchingAudio];
-    NSLog(@"DESTROY RECORDER");
-    [self.recorder closeAudioFile];
-    self.recorder = nil;
-    
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setActive:NO error:nil];
-    
-    self.megaphoneImageView.image = [UIImage imageNamed:@"megaphone_shutterstock3.png"];
+    if (self.recorder) {
+        [self.microphone stopFetchingAudio];
+        NSLog(@"DESTROY RECORDER");
+        [self.recorder closeAudioFile];
+        self.recorder = nil;
+        
+        [[AVAudioSession sharedInstance] setActive:NO error:nil];
+        if ([self.audioCaptureDelegate respondsToSelector:@selector(audioSourceControllerdidFinishAudioCapture:)]) {
+            [self.audioCaptureDelegate audioSourceControllerdidFinishAudioCapture:self];
+        }
+    }
 }
 
 - (void) resetUI
