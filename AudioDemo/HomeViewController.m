@@ -13,7 +13,11 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "AudioCaptureViewController.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () {
+    NSTimer *countdownTimer;
+    int currMinute;
+    int currSeconds;
+}
 
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *recipientLabel;
@@ -21,6 +25,7 @@
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
 @property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *recipientLabelConstraint;
+@property (strong, nonatomic) IBOutlet UILabel *countdownTimerLabel;
 
 
 @end
@@ -77,6 +82,15 @@
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
     
+    [center addObserverForName:AUDIO_CAPTURE_DID_START_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Audio Capture Did Start");
+                        [self showAndStartTimer];
+                        [self hideTopButtons];
+                    }];
+    
     __weak HomeViewController *weakSelf = self;
     [center addObserverForName:UIApplicationDidBecomeActiveNotification
                         object:nil
@@ -108,12 +122,67 @@
     self.navigationController.navigationBar.translucent = NO;
     [self reloadUnopenedYapsCount];
     [self updateYapsButtonAnimation];
+    
+    self.countdownTimerLabel.hidden = YES;
+    [self showTopButtons];
+}
+
+- (void) showTopButtons {
+    self.topLeftButton.alpha = 1;
+    self.yapsPageButton.alpha = 1;
+}
+
+- (void) hideTopButtons {
+    [UIView animateWithDuration:.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.topLeftButton.alpha = 0;
+                         self.yapsPageButton.alpha = 0;
+                     }
+                     completion:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     if (![YSUser currentUser].hasSessionToken) { // Force log in
         [self performSegueWithIdentifier:@"Login" sender:nil];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if (countdownTimer) {
+        [countdownTimer invalidate];
+    }
+}
+
+-(void) startCountdownTimer
+{
+    NSLog(@"Start Countdown Timer");
+    [countdownTimer invalidate];
+    countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countdownTimerFired) userInfo:nil repeats:YES];
+}
+
+-(void) countdownTimerFired
+{
+    NSLog(@"countdownTimer fired");
+    NSLog(@"currMinute: %d; currSeconds: %d", currMinute, currSeconds);
+    if((currMinute>0 || currSeconds>=0) && currMinute>=0)
+    {
+        if(currSeconds>0)
+        {
+            NSLog(@"currSeconds: %d", currSeconds);
+            currSeconds-=1;
+        }
+        
+        self.countdownTimerLabel.text = [NSString stringWithFormat:@"%d",currSeconds];
+    }
+    else
+    {
+        NSLog(@"countdownTimer invalidate");
+        [countdownTimer invalidate];
     }
 }
 
@@ -139,6 +208,13 @@
             self.unopenedYapsCount = count;
         }
     }];
+}
+
+- (void) showAndStartTimer {
+    self.countdownTimerLabel.hidden = NO;
+    self.countdownTimerLabel.text = @"12";
+    currSeconds=12;
+    [self startCountdownTimer];
 }
 
 - (BOOL) isInReplyMode

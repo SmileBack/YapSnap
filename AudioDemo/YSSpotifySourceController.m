@@ -156,13 +156,14 @@
         }
     }
 }
-
+/*
 - (void) setBackgroundColorForSearchBox {
     //Background text color
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
     [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.25] range:NSMakeRange(0, self.searchBox.text.length)];
     self.searchBox.attributedText = attributedString;
 }
+ */
 
 - (IBAction) didTapResetButton {
     [self resetUI];
@@ -185,7 +186,7 @@
     [self search:randomlySelectedArtist];
     [self showSearchBox];
     self.searchBox.text = randomlySelectedArtist;
-    [self setBackgroundColorForSearchBox];
+    //[self setBackgroundColorForSearchBox];
 }
 
 - (IBAction)didTapRandomButton:(id)sender {
@@ -226,11 +227,18 @@
 {
     self.searchBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
     [self.searchBox setTintColor:[UIColor whiteColor]];
-    self.searchBox.font = [UIFont fontWithName:@"Futura-Medium" size:28];
+    self.searchBox.font = [UIFont fontWithName:@"Futura-Medium" size:18];
     self.searchBox.delegate = self;
     [self.searchBox addTarget:self
                        action:@selector(textFieldDidChange:)
              forControlEvents:UIControlEventEditingChanged];
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type any phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
+    self.searchBox.attributedPlaceholder = string;
+    
+    self.searchBox.layer.cornerRadius=2.0f;
+    self.searchBox.layer.masksToBounds=YES;
+    self.searchBox.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.7]CGColor];
+    self.searchBox.layer.borderWidth= 1.0f;
 }
 
 
@@ -313,11 +321,17 @@
     self.carousel.scrollEnabled = NO;
     self.carousel.alpha = 0;
     [self hideResetButton];
+    
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type any phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor clearColor] }];
+    self.searchBox.attributedPlaceholder = string;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"Textfield did end editing");
     [self setUserInteractionEnabled:YES];
+    
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type any phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
+    self.searchBox.attributedPlaceholder = string;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -343,7 +357,7 @@
         }
     } else {
         [self search:self.searchBox.text];
-        [self setBackgroundColorForSearchBox];
+        //[self setBackgroundColorForSearchBox];
         [[API sharedAPI] sendSearchTerm:textField.text withCallback:^(BOOL success, NSError *error) {
             if (success) {
                 NSLog(@"Sent search term metric");
@@ -899,7 +913,10 @@
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         self.searchBox.alpha = 0;
+                         //self.searchBox.alpha = 0;
+                         NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type any phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor clearColor] }];
+                         self.searchBox.attributedPlaceholder = string;
+                         
                          self.carousel.alpha = 0;
                          [self hideResetButton];
                          self.loadingIndicator.alpha = 0;

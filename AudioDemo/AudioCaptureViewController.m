@@ -15,14 +15,10 @@
 
 @interface AudioCaptureViewController ()<YSAudioSourceControllerDelegate> {
     NSTimer *audioProgressTimer;
-    NSTimer *countdownTimer;
-    int currMinute;
-    int currSeconds;
 }
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 @property (nonatomic) float elapsedTime;
 @property (nonatomic, strong) NSString *titleString;
-@property (strong, nonatomic) UIButton *countdownTimerButton;
 @property (strong, nonatomic) UIImage *diceImage;
 @property (weak, nonatomic) IBOutlet UIButton *switchButton;
 @property (weak, nonatomic) IBOutlet UILabel *receiverLabel;
@@ -84,22 +80,18 @@ static const float TIMER_INTERVAL = .02;
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    self.recordProgressView.hidden = YES;
+    
     if (self.type == AudioCaptureTypeMic) {
         self.titleString = @"Start Yappin'";
     } else if (self.type == AudioCapTureTypeSpotify) {
         self.titleString = @"Find a Song";
     }
     [self updateTitleLabel];
-    
-    self.countdownTimerButton.hidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    if (countdownTimer) {
-        [self stopCountdownTimer];
-    }
     
     if (audioProgressTimer) {
         [audioProgressTimer invalidate];
@@ -107,38 +99,6 @@ static const float TIMER_INTERVAL = .02;
     }
     
     [self.audioSource stopAudioCapture];
-}
-
--(void) startCountdownTimer
-{
-    NSLog(@"Start Countdown Timer");
-    [countdownTimer invalidate];
-    countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countdownTimerFired) userInfo:nil repeats:YES];
-}
-
--(void) stopCountdownTimer {
-    [countdownTimer invalidate];
-}
-
--(void) countdownTimerFired
-{
-    NSLog(@"countdownTimer fired");
-    NSLog(@"currMinute: %d; currSeconds: %d", currMinute, currSeconds);
-    if((currMinute>0 || currSeconds>=0) && currMinute>=0)
-    {
-        if(currSeconds>0)
-        {
-            NSLog(@"currSeconds: %d", currSeconds);
-            currSeconds-=1;
-        }
-        
-        [self.countdownTimerButton setTitle:[NSString stringWithFormat:@"%d",currSeconds] forState:UIControlStateNormal];
-    }
-    else
-    {
-        NSLog(@"countdownTimer invalidate");
-        [self stopCountdownTimer];
-    }
 }
 
 - (void) tappedProgressView {
@@ -159,14 +119,6 @@ static const float TIMER_INTERVAL = .02;
     label.textAlignment = NSTextAlignmentCenter;
     label.text = self.titleString;
     self.navigationItem.titleView = label;
-}
-
-- (void) addCountDownTimerLabel {
-    self.countdownTimerButton.hidden = NO;
-    self.countdownTimerButton = [[UIButton alloc] initWithFrame:CGRectMake(240, 0, 24, 44)];
-    self.countdownTimerButton.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
-    UIBarButtonItem *countdownTimerButton =[[UIBarButtonItem alloc] initWithCustomView:self.countdownTimerButton];
-    [self.navigationItem setRightBarButtonItem:countdownTimerButton];
 }
 
 - (void) addCancelButton {
@@ -241,11 +193,14 @@ static const float TIMER_INTERVAL = .02;
         [audioProgressTimer invalidate];
         NSLog(@"Audio Progress Timer Invalidate 6");
         [self.audioSource stopAudioCapture];
+        
+        /*
         // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
         double delay1 = .1;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
         });
+        */
     }
 }
 
@@ -275,10 +230,12 @@ static const float TIMER_INTERVAL = .02;
 #pragma mark - YSAudioSourceControllerDelegate
 
 - (void)audioSourceControllerWillStartAudioCapture:(YSAudioSourceController *)controller {
+    self.recordProgressView.hidden = NO;
     [self.recordProgressView.activityIndicator startAnimating];
 }
 
 - (void)audioSourceControllerDidStartAudioCapture:(YSAudioSourceController *)controller {
+    self.recordProgressView.hidden = NO;
     [self.recordProgressView.activityIndicator stopAnimating];
     self.elapsedTime = 0;
     [self.recordProgressView setProgress:0];
@@ -300,10 +257,7 @@ static const float TIMER_INTERVAL = .02;
     }
     [self updateTitleLabel];
     
-    [self addCountDownTimerLabel];
-    [self.countdownTimerButton setTitle:@"12" forState:UIControlStateNormal];
-    currSeconds=12;
-    [self startCountdownTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
 }
 
 - (void)audioSourceControllerdidFinishAudioCapture:(YSAudioSourceController *)controller {
@@ -330,9 +284,6 @@ static const float TIMER_INTERVAL = .02;
         }
         
         [self updateTitleLabel];
-        
-        [self stopCountdownTimer];
-        self.countdownTimerButton.hidden = YES;
     } else {
         // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
