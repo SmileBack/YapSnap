@@ -460,7 +460,12 @@
 }
 
 - (void)didTapCarousel:(UITapGestureRecognizer*)tap {
-    [[YTNotifications sharedNotifications] showNotificationText:@"Hold Album Cover To Play"];
+    //CGRect frame = self.carousel.currentItemView.frame;
+    //CGPoint point = [tap locationInView:self.carousel];
+    // TODO: Figure out whether the point is within the album cover (not inclusive of the bottom buttons)
+    //if (CGRectContainsPoint(frame, point)) {
+        [[YTNotifications sharedNotifications] showNotificationText:@"Hold Album To Play"];
+    //}
 }
 
 -(void)didLongPressCarousel:(UILongPressGestureRecognizer*)longPress {

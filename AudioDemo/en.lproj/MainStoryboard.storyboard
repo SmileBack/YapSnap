@@ -18,7 +18,7 @@
                         <viewControllerLayoutGuide type="bottom" id="KEa-CH-3fd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B8N-jO-1bl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="482"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNs-R1-CJc" customClass="iCarousel">
@@ -58,9 +58,9 @@
                                     <action selector="didTapResetButton" destination="jNN-gb-fip" eventType="touchUpInside" id="rcI-xz-3ec"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OEq-Yl-zXl">
-                                <rect key="frame" x="131" y="374" width="58" height="30"/>
-                                <state key="normal" title="Random">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OEq-Yl-zXl">
+                                <rect key="frame" x="105" y="364" width="110" height="110"/>
+                                <state key="normal" backgroundImage="DiceButton.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -69,15 +69,13 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.50980392159999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" constant="45" id="0rA-ZM-LMs"/>
                             <constraint firstItem="iKi-hk-1A5" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="115" id="7E1-ft-JPZ"/>
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" id="9zR-GB-wuh"/>
                             <constraint firstAttribute="trailing" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="45" id="BpS-sr-djQ"/>
-                            <constraint firstAttribute="centerX" secondItem="OEq-Yl-zXl" secondAttribute="centerX" id="DMH-Hd-5TX"/>
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="top" secondItem="oUD-ix-h4T" secondAttribute="bottom" constant="18" id="TF2-gT-f9w"/>
-                            <constraint firstItem="KEa-CH-3fd" firstAttribute="top" secondItem="OEq-Yl-zXl" secondAttribute="bottom" constant="64" id="VAZ-HX-LsQ"/>
                             <constraint firstAttribute="trailing" secondItem="ZNs-R1-CJc" secondAttribute="trailing" id="f6a-b0-12B"/>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="35" id="mMM-JG-YVP"/>
                             <constraint firstAttribute="centerX" secondItem="iKi-hk-1A5" secondAttribute="centerX" id="mm6-BP-Za3"/>
@@ -87,7 +85,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="8VQ-xh-4vV"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="468"/>
+                    <size key="freeformSize" width="320" height="482"/>
                     <connections>
                         <outlet property="carousel" destination="ZNs-R1-CJc" id="5vb-SQ-OO6"/>
                         <outlet property="carouselHeightConstraint" destination="hJg-gl-YKL" id="JNK-sm-bxz"/>
@@ -119,8 +117,14 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf8-UJ-WxH" userLabel="Source Container">
                                 <rect key="frame" x="0.0" y="22" width="320" height="481.5"/>
                             </containerView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2D-bs-3xR">
+                                <rect key="frame" x="0.0" y="30" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jl5-Kh-l6z">
-                                <rect key="frame" x="137" y="466" width="47" height="30"/>
+                                <rect key="frame" x="257" y="447" width="47" height="30"/>
                                 <state key="normal" title="Switch">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -129,18 +133,6 @@
                                     <action selector="didTapSwitchRecordSource:" destination="XE5-ww-gTm" eventType="touchUpInside" id="tUT-7W-9R2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opW-DJ-HYe">
-                                <rect key="frame" x="147" y="476" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2D-bs-3xR">
-                                <rect key="frame" x="0.0" y="30" width="320" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -150,10 +142,10 @@
                             <constraint firstAttribute="centerX" secondItem="g2D-bs-3xR" secondAttribute="centerX" id="EkN-1E-x9l"/>
                             <constraint firstItem="Ezh-9p-xYZ" firstAttribute="top" secondItem="Tf8-UJ-WxH" secondAttribute="bottom" id="Jpy-uJ-VYH"/>
                             <constraint firstItem="1fX-iU-owr" firstAttribute="leading" secondItem="jch-J9-Qbc" secondAttribute="leading" id="MnQ-CZ-xu4"/>
-                            <constraint firstItem="Ezh-9p-xYZ" firstAttribute="top" secondItem="Jl5-Kh-l6z" secondAttribute="bottom" constant="8" id="QjN-Dr-mqN"/>
+                            <constraint firstItem="Ezh-9p-xYZ" firstAttribute="top" secondItem="Jl5-Kh-l6z" secondAttribute="bottom" constant="27" id="QjN-Dr-mqN"/>
                             <constraint firstItem="g2D-bs-3xR" firstAttribute="top" secondItem="1fX-iU-owr" secondAttribute="bottom" constant="8" id="W8d-2j-uSz"/>
                             <constraint firstItem="1fX-iU-owr" firstAttribute="height" secondItem="jch-J9-Qbc" secondAttribute="height" multiplier="0.079" constant="-18" id="f07-zr-A3W"/>
-                            <constraint firstAttribute="centerX" secondItem="Jl5-Kh-l6z" secondAttribute="centerX" id="frJ-L6-MGB"/>
+                            <constraint firstAttribute="centerX" secondItem="Jl5-Kh-l6z" secondAttribute="centerX" constant="-120.5" id="frJ-L6-MGB"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="leading" secondItem="jch-J9-Qbc" secondAttribute="leading" id="gLL-xW-HuG"/>
                             <constraint firstItem="g2D-bs-3xR" firstAttribute="width" secondItem="jch-J9-Qbc" secondAttribute="width" id="j7E-tT-mfG"/>
                             <constraint firstAttribute="trailing" secondItem="1fX-iU-owr" secondAttribute="trailing" id="q3J-w8-0Wq"/>
@@ -1547,7 +1539,7 @@ Type it here!</string>
                         <viewControllerLayoutGuide type="bottom" id="FAH-yo-bpJ"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3lk-k2-w1W">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="482"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhM-aB-1Ig" customClass="ZLSinusWaveView">
@@ -1578,7 +1570,7 @@ Type it here!</string>
                     </view>
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="468"/>
+                    <size key="freeformSize" width="320" height="482"/>
                     <connections>
                         <outlet property="sinusWaveTopConstraint" destination="wrs-Y5-MvS" id="nJd-7d-lvS"/>
                         <outlet property="sinusWaveView" destination="vhM-aB-1Ig" id="1Yb-5F-fNy"/>
@@ -1631,6 +1623,7 @@ Type it here!</string>
         <image name="CameraIcon20.png" width="150" height="150"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhiteCircle.png" width="325" height="325"/>
+        <image name="DiceButton.png" width="232" height="224"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="PlusButtonWhite3.png" width="20" height="20"/>
