@@ -41,11 +41,11 @@
     self.imageView.alpha = 0;
     
     if (IS_IPHONE_5_SIZE) {
-        [self setProgressImage:[UIImage imageNamed:@"ProgressViewRediPhone5.png"]];
+        [self setProgressImage:[UIImage imageNamed:@"ProgressViewRedNew.png"]];
     } else if (IS_IPHONE_4_SIZE) {
-        [self setProgressImage:[UIImage imageNamed:@"ProgressViewRediPhone4.png"]];
+        [self setProgressImage:[UIImage imageNamed:@"ProgressViewRedNew.png"]];
     } else {
-        [self setProgressImage:[UIImage imageNamed:@"ProgressViewRed.png"]];
+        [self setProgressImage:[UIImage imageNamed:@"ProgressViewRedNew.png"]];
     }
     
     self.trackTintColor = UIColor.whiteColor;

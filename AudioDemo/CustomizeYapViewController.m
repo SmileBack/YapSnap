@@ -186,11 +186,11 @@
 
 - (void) resetProgressViewColor {
     if (IS_IPHONE_5_SIZE) {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewRediPhone5.png"]];
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewRedNew.png"]];
     } else if (IS_IPHONE_4_SIZE) {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewRediPhone4.png"]];
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewRedNew.png"]];
     } else {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewRed.png"]];
+        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewRedNew.png"]];
     }
 }
 
