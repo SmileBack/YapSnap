@@ -390,11 +390,11 @@ static NSString *CellIdentifier = @"Cell";
             }
             
             if (yap.wasOpened) {
-                if (yap.wasOpenedOnce) {
+                //if (yap.wasOpenedOnce) {
                     cell.createdTimeLabel.text = @"Double Tap to Reply. Hold to Replay.";
-                } else if (yap.wasOpenedTwice) {
-                    cell.createdTimeLabel.text = @"Double Tap to Reply";
-                }
+                //} else if (yap.wasOpenedTwice) {
+                //    cell.createdTimeLabel.text = @"Double Tap to Reply";
+                //}
             }
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -458,9 +458,9 @@ static NSString *CellIdentifier = @"Cell";
     YSYap *yap = self.yaps[indexPath.row];
     
     if (yap.receivedByCurrentUser) {
-        if ([yap.status isEqual: @"opened2"]) {
-            [self alreadyReplayedYapAlert];
-        } else {
+        //if ([yap.status isEqual: @"opened2"]) {
+        //    [self alreadyReplayedYapAlert];
+        //} else {
             if ([self internetIsNotReachable]){
                 double delay = 0.1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -468,7 +468,7 @@ static NSString *CellIdentifier = @"Cell";
                 });
             } else {
                 [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
-            }
+            //}
         }
         
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
