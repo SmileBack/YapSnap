@@ -348,12 +348,14 @@
     if ([self.searchBox.text length] == 0) {
         NSLog(@"Searched Empty String");
         if (alert) {
+            /*
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search Above"
                                                             message:@"Type the name of an artist or song above!"
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
+             */
         }
     } else {
         [self search:self.searchBox.text];

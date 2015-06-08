@@ -273,8 +273,8 @@ static const float TIMER_INTERVAL = .02;
                 [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Play"];
             } else {
                 [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Record"];
-                [[NSNotificationCenter defaultCenter] postNotificationName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION object:nil];
             }
+            [[NSNotificationCenter defaultCenter] postNotificationName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION object:nil];
         });
         
         if (self.type == AudioCaptureTypeMic) {

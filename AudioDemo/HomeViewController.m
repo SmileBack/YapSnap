@@ -91,6 +91,16 @@
                         [self hideTopButtons];
                     }];
     
+    [center addObserverForName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Audio Capture Did Start");
+                        self.countdownTimerLabel.hidden = YES;
+                        [self showTopButtons];
+                        [countdownTimer invalidate];
+                    }];
+    
     __weak HomeViewController *weakSelf = self;
     [center addObserverForName:UIApplicationDidBecomeActiveNotification
                         object:nil

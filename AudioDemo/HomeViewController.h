@@ -15,6 +15,7 @@
 #define DID_SEE_WELCOME_POPUP_KEY @"yaptap.DidSeeWelcomePopupKey601"
 #define DISMISS_WELCOME_POPUP @"DismissWelcomePopup"
 #define AUDIO_CAPTURE_DID_START_NOTIFICATION @"yaptap.AudioCaptureDidStartNotification"
+#define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
 
 @interface HomeViewController : UIViewController<MFMailComposeViewControllerDelegate>
 
