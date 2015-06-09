@@ -24,6 +24,6 @@
 
 @property (nonatomic, strong) UIView *songVersionBackground;
 
-@property (nonatomic, strong) UILabel *keepHoldingLabel;
+@property (nonatomic, strong) UILabel *bannerLabel;
 
 @end

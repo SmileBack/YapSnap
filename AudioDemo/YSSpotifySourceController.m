@@ -87,7 +87,7 @@
 {
     [super viewDidAppear:animated];
     self.playerAlreadyStartedPlayingForThisSong = NO;
-    [self clearAlbumLabel];
+    [self hideAlbumBanner];
 }
 
 - (void) setupGestureRecognizers {
@@ -131,7 +131,7 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self showKeepHoldingLabel];
+                        [self showBannerWithText:@"Keep Holding" temporary:YES];
                     }];
 }
 
@@ -422,18 +422,18 @@
         
         // Keep Holding Label
 
-        trackView.keepHoldingLabel = [[UILabel alloc]initWithFrame:
+        trackView.bannerLabel = [[UILabel alloc]initWithFrame:
                                                CGRectMake(0, 0, carouselHeight, 42)];
         CALayer *bottomBorder = [CALayer layer];
-        bottomBorder.frame = CGRectMake(0.0f, 41.0f, trackView.keepHoldingLabel.frame.size.width, 1.0f);
+        bottomBorder.frame = CGRectMake(0.0f, 41.0f, trackView.bannerLabel.frame.size.width, 1.0f);
         bottomBorder.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8].CGColor;
-        [trackView.keepHoldingLabel.layer addSublayer:bottomBorder];
+        [trackView.bannerLabel.layer addSublayer:bottomBorder];
         
-        trackView.keepHoldingLabel.backgroundColor = THEME_RED_COLOR;
-        trackView.keepHoldingLabel.textAlignment = NSTextAlignmentCenter;
-        trackView.keepHoldingLabel.textColor = [UIColor whiteColor];
-        trackView.keepHoldingLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
-        [trackView addSubview:trackView.keepHoldingLabel];
+        trackView.bannerLabel.backgroundColor = THEME_RED_COLOR;
+        trackView.bannerLabel.textAlignment = NSTextAlignmentCenter;
+        trackView.bannerLabel.textColor = [UIColor whiteColor];
+        trackView.bannerLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+        [trackView addSubview:trackView.bannerLabel];
     }
     
     // Set song version button selections
@@ -451,7 +451,7 @@
     //trackView.songVersionOneButton.hidden = YES;
     //trackView.songVersionTwoButton.hidden = YES;
     //trackView.songVersionBackground.hidden = YES;
-    trackView.keepHoldingLabel.alpha = 0;
+    trackView.bannerLabel.alpha = 0;
     
     // Set seconds to fast forward to 0
     track.secondsToFastForward = [NSNumber numberWithInt:0];
@@ -489,41 +489,32 @@
         //[[YTNotifications sharedNotifications] showNotificationText:@"Hold Album To Play"];
     //}
     
-    [self showKeepHoldingLabel];
+    [self showBannerWithText:@"Keep Holding" temporary:YES];
 }
 
-- (void) showKeepHoldingLabel {
+- (void) showBannerWithText:(NSString*)text temporary:(BOOL)temporary {
     SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
-    trackView.keepHoldingLabel.text = @"Keep Holding";
-    trackView.keepHoldingLabel.alpha = 1;
-    // Hide Label shortly after showing it
-    double delay = 2.5;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:.3
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             trackView.keepHoldingLabel.alpha = 0;
-                         }
-                         completion:nil];
-    });
+    trackView.bannerLabel.text = text;
+    trackView.bannerLabel.alpha = 1;
+    
+    if (temporary) {
+        // Hide Label shortly after showing it
+        double delay = 2;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:.3
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{
+                                 trackView.bannerLabel.alpha = 0;
+                             }
+                             completion:nil];
+        });
+    }
 }
 
-- (void) showBufferingLabel {
+- (void) hideAlbumBanner {
     SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
-    trackView.keepHoldingLabel.text = @"Buffering...";
-    trackView.keepHoldingLabel.alpha = 1;
-}
-
-- (void) showPlayingLabel {
-    SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
-    trackView.keepHoldingLabel.text = @"Playing...";
-    trackView.keepHoldingLabel.alpha = 1;
-}
-
-- (void) clearAlbumLabel {
-    SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
-    trackView.keepHoldingLabel.alpha = 0;
+    trackView.bannerLabel.alpha = 0;
 }
 
 -(void)didLongPressCarousel:(UILongPressGestureRecognizer*)longPress {
@@ -531,7 +522,7 @@
     if(longPress.state == UIGestureRecognizerStateBegan)
     {
         [self startAudioCapture];
-        [self showBufferingLabel];
+        [self showBannerWithText:@"Buffering..." temporary:NO];
     }
     else if(longPress.state == UIGestureRecognizerStateEnded
             || longPress.state == UIGestureRecognizerStateFailed
@@ -567,9 +558,13 @@
         selectedTrack.secondsToFastForward = [NSNumber numberWithInt:0];
     }
     
+    [self showBannerWithText:@"Song Clip 1" temporary:YES];
+    
+    /*
     if (!self.didTapSongVersionOneForFirstTime) {
         [[YTNotifications sharedNotifications] showSongVersionText:@"Song Clip # 1"];
     }
+     */
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_ONE];
     
@@ -603,9 +598,12 @@
         selectedTrack.secondsToFastForward = [NSNumber numberWithInt:17];
     }
     
+    [self showBannerWithText:@"Song Clip 2" temporary:YES];
+    /*
     if (!self.didTapSongVersionTwoForFirstTime) {
         [[YTNotifications sharedNotifications] showSongVersionText:@"Song Clip # 2"];
     }
+    */
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_TWO];
     
@@ -798,7 +796,7 @@
         trackView.songVersionBackground.hidden = NO;
         track.songVersionButtonsAreShowing = YES;
         
-        [self showPlayingLabel];
+        [self showBannerWithText:@"Playing..." temporary:NO];
     }
     
     if (state == STKAudioPlayerStateBuffering) {
