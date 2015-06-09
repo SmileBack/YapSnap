@@ -87,6 +87,13 @@
                         [self showAndStartTimer];
                     }];
     
+    [center addObserverForName:STOP_LOADING_SPINNER_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self.activityIndicator stopAnimating];
+                    }];
+    
     [center addObserverForName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION
                         object:nil
                          queue:nil
@@ -108,13 +115,6 @@
                     usingBlock:^(NSNotification *note) {
                         [self.activityIndicator startAnimating];
                         [self hideTopButtons];
-                    }];
-    
-    [center addObserverForName:STOP_LOADING_SPINNER_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        [self.activityIndicator stopAnimating];
                     }];
     
     [center addObserverForName:COMPLETED_REGISTRATION_NOTIFICATION

@@ -87,6 +87,7 @@
 {
     [super viewDidAppear:animated];
     self.playerAlreadyStartedPlayingForThisSong = NO;
+    [self clearAlbumLabel];
 }
 
 - (void) setupGestureRecognizers {
@@ -512,34 +513,17 @@
     SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
     trackView.keepHoldingLabel.text = @"Buffering...";
     trackView.keepHoldingLabel.alpha = 1;
-    // Hide Label shortly after showing it
-    double delay = 2.5;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:.3
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             trackView.keepHoldingLabel.alpha = 0;
-                         }
-                         completion:nil];
-    });
 }
 
 - (void) showPlayingLabel {
     SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
-    trackView.keepHoldingLabel.text = @"Buffering...";
+    trackView.keepHoldingLabel.text = @"Playing...";
     trackView.keepHoldingLabel.alpha = 1;
-    // Hide Label shortly after showing it
-    double delay = 2.5;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:.3
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             trackView.keepHoldingLabel.alpha = 0;
-                         }
-                         completion:nil];
-    });
+}
+
+- (void) clearAlbumLabel {
+    SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
+    trackView.keepHoldingLabel.alpha = 0;
 }
 
 -(void)didLongPressCarousel:(UILongPressGestureRecognizer*)longPress {
@@ -813,6 +797,8 @@
         trackView.songVersionTwoButton.hidden = NO;
         trackView.songVersionBackground.hidden = NO;
         track.songVersionButtonsAreShowing = YES;
+        
+        [self showPlayingLabel];
     }
     
     if (state == STKAudioPlayerStateBuffering) {

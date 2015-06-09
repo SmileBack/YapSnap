@@ -230,12 +230,21 @@ static const float TIMER_INTERVAL = .02;
 #pragma mark - YSAudioSourceControllerDelegate
 
 - (void)audioSourceControllerWillStartAudioCapture:(YSAudioSourceController *)controller {
-    self.recordProgressView.alpha = 1;
+    NSLog(@"Will Start Audio Capture");
+    [UIView animateWithDuration:.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.recordProgressView.alpha = 1;
+                     }
+                     completion:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:WILL_START_AUDIO_CAPTURE_NOTIFICATION object:nil];
     //[self.recordProgressView.activityIndicator startAnimating];
 }
 
 - (void)audioSourceControllerDidStartAudioCapture:(YSAudioSourceController *)controller {
+    NSLog(@"Did Start Audio Capture");
+
     self.recordProgressView.alpha = 1;
     //[self.recordProgressView.activityIndicator stopAnimating];
     [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
