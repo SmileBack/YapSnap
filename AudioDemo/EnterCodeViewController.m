@@ -11,6 +11,10 @@
 #import "UIViewController+Alerts.h"
 #import "AppDelegate.h"
 
+//TODO: REMOVE
+#define COMPLETED_REGISTRATION_NOTIFICATION @"com.yapsnap.CompletedRegistrationNotification"
+
+
 @interface EnterCodeViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
@@ -123,6 +127,10 @@
                     [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
                 } else {
                     [self.view endEditing:YES];
+                    
+                    //TODO: REMOVE
+                    [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETED_REGISTRATION_NOTIFICATION object:nil];
+                    
                     [self dismissViewControllerAnimated:YES completion:nil];
                 }
             } else {

@@ -39,10 +39,6 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Home Page"];
     
-    if (!self.didSeeWelcomePopup) {
-        [self showWelcomePopup];
-    }
-    
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
@@ -119,6 +115,15 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self.activityIndicator stopAnimating];
+                    }];
+    
+    [center addObserverForName:COMPLETED_REGISTRATION_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        if (!self.didSeeWelcomePopup) {
+                            [self showWelcomePopup];
+                        }
                     }];
     
     __weak HomeViewController *weakSelf = self;
@@ -260,7 +265,7 @@
 
 - (void) showWelcomePopup {
     NSLog(@"tapped Welcome Popup");
-    double delay = .5;
+    double delay = 1;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.welcomePopupVC = [[WelcomePopupViewController alloc] initWithNibName:@"WelcomePopupViewController" bundle:nil];
         [self presentPopupViewController:self.welcomePopupVC animationType:MJPopupViewAnimationSlideTopTop];

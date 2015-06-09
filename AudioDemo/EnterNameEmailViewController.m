@@ -12,6 +12,8 @@
 #import "UIViewController+Alerts.h"
 #import "AppDelegate.h"
 
+#define COMPLETED_REGISTRATION_NOTIFICATION @"com.yapsnap.CompletedRegistrationNotification"
+
 @interface EnterNameEmailViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
@@ -130,6 +132,7 @@
                                     
                                     if (success) {
                                         [self.view endEditing:YES];
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETED_REGISTRATION_NOTIFICATION object:nil];
                                         [self dismissViewControllerAnimated:YES completion:nil];
                                         [[YSPushManager sharedPushManager] registerForNotifications];
                                     } else {

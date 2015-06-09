@@ -18,7 +18,6 @@
 #import "FBShimmeringView.h"
 #import "SpotifyArtistFactory.h"
 #import "UIViewController+MJPopupViewController.h"
-#import "SpotifyPopupViewController.h"
 
 @interface YSSpotifySourceController ()
 @property (nonatomic, strong) NSArray *songs;
@@ -33,7 +32,6 @@
 @property (nonatomic, strong) NSDictionary *typeToGenreMap;
 @property (strong, nonatomic) UIButton *spotifyButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carouselHeightConstraint;
-@property (strong, nonatomic) SpotifyPopupViewController *spotifyPopupVC;
 
 - (IBAction)didTapResetButton;
 //- (void) searchGenre:(NSString *)genre; TODO: Add this back!
@@ -63,10 +61,6 @@
     [self setupGestureRecognizers];
     
     [self setupNotifications];
-    
-    if (!self.didSeeSpotifyPopup) {
-        [self showSpotifyPopup];
-    }
     
     UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPressCarousel:)];
     longPress.cancelsTouchesInView = NO;
@@ -130,18 +124,6 @@
                                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_TAP_DICE_BUTTON];
                             });
                         }
-                    }];
-    
-    [center addObserverForName:DISMISS_SPOTIFY_POPUP
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        NSLog(@"Dismiss Welcome Popup");
-                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-                        double delay = .2;
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [self.searchBox becomeFirstResponder];
-                        });
                     }];
     
     [center addObserverForName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION
@@ -447,7 +429,6 @@
         [trackView.keepHoldingLabel.layer addSublayer:bottomBorder];
         
         trackView.keepHoldingLabel.backgroundColor = THEME_RED_COLOR;
-        trackView.keepHoldingLabel.text = @"Keep Holding";
         trackView.keepHoldingLabel.textAlignment = NSTextAlignmentCenter;
         trackView.keepHoldingLabel.textColor = [UIColor whiteColor];
         trackView.keepHoldingLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
@@ -512,6 +493,41 @@
 
 - (void) showKeepHoldingLabel {
     SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
+    trackView.keepHoldingLabel.text = @"Keep Holding";
+    trackView.keepHoldingLabel.alpha = 1;
+    // Hide Label shortly after showing it
+    double delay = 2.5;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:.3
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             trackView.keepHoldingLabel.alpha = 0;
+                         }
+                         completion:nil];
+    });
+}
+
+- (void) showBufferingLabel {
+    SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
+    trackView.keepHoldingLabel.text = @"Buffering...";
+    trackView.keepHoldingLabel.alpha = 1;
+    // Hide Label shortly after showing it
+    double delay = 2.5;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:.3
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             trackView.keepHoldingLabel.alpha = 0;
+                         }
+                         completion:nil];
+    });
+}
+
+- (void) showPlayingLabel {
+    SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
+    trackView.keepHoldingLabel.text = @"Buffering...";
     trackView.keepHoldingLabel.alpha = 1;
     // Hide Label shortly after showing it
     double delay = 2.5;
@@ -531,6 +547,7 @@
     if(longPress.state == UIGestureRecognizerStateBegan)
     {
         [self startAudioCapture];
+        [self showBufferingLabel];
     }
     else if(longPress.state == UIGestureRecognizerStateEnded
             || longPress.state == UIGestureRecognizerStateFailed
@@ -1013,22 +1030,6 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-}
-
-#pragma mark - Spotify Popup
-- (void) showSpotifyPopup {
-    double delay = .2;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.spotifyPopupVC = [[SpotifyPopupViewController alloc] initWithNibName:@"SpotifyPopupViewController" bundle:nil];
-        [self presentPopupViewController:self.spotifyPopupVC animationType:MJPopupViewAnimationFade];
-        
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_SPOTIFY_POPUP_KEY];
-    });
-}
-
-- (BOOL) didSeeSpotifyPopup
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_SPOTIFY_POPUP_KEY];
 }
 
 @end
