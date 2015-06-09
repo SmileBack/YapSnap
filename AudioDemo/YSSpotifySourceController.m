@@ -260,7 +260,7 @@
     self.carousel.alpha = 1;
     self.loadingIndicator.alpha = 1;
     [self.loadingIndicator startAnimating];
-    self.resetButton.alpha = 1;
+    self.resetButton.alpha = .9;
     
     __weak YSSpotifySourceController *weakSelf = self;
     [[SpotifyAPI sharedApi] searchSongs:search withCallback:^(NSArray *songs, NSError *error) {

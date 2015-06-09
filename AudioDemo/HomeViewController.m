@@ -26,6 +26,7 @@
 @property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *recipientLabelConstraint;
 @property (strong, nonatomic) IBOutlet UILabel *countdownTimerLabel;
+@property IBOutlet UIActivityIndicatorView* activityIndicator;
 
 
 @end
@@ -88,7 +89,6 @@
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Audio Capture Did Start");
                         [self showAndStartTimer];
-                        [self hideTopButtons];
                     }];
     
     [center addObserverForName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION
@@ -99,6 +99,21 @@
                         self.countdownTimerLabel.hidden = YES;
                         [self showTopButtons];
                         [countdownTimer invalidate];
+                    }];
+    
+    [center addObserverForName:WILL_START_AUDIO_CAPTURE_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self.activityIndicator startAnimating];
+                        [self hideTopButtons];
+                    }];
+    
+    [center addObserverForName:STOP_LOADING_SPINNER_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self.activityIndicator stopAnimating];
                     }];
     
     __weak HomeViewController *weakSelf = self;

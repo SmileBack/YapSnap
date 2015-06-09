@@ -165,7 +165,7 @@ static const float TIMER_INTERVAL = .02;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self.recordProgressView.activityIndicator stopAnimating];
+                        //[self.recordProgressView.activityIndicator stopAnimating];
                     }];
     
     [center addObserverForName:NOTIFICATION_LOGOUT object:nil queue:nil usingBlock:^ (NSNotification *note) {
@@ -231,12 +231,14 @@ static const float TIMER_INTERVAL = .02;
 
 - (void)audioSourceControllerWillStartAudioCapture:(YSAudioSourceController *)controller {
     self.recordProgressView.hidden = NO;
-    [self.recordProgressView.activityIndicator startAnimating];
+    [[NSNotificationCenter defaultCenter] postNotificationName:WILL_START_AUDIO_CAPTURE_NOTIFICATION object:nil];
+    //[self.recordProgressView.activityIndicator startAnimating];
 }
 
 - (void)audioSourceControllerDidStartAudioCapture:(YSAudioSourceController *)controller {
     self.recordProgressView.hidden = NO;
-    [self.recordProgressView.activityIndicator stopAnimating];
+    //[self.recordProgressView.activityIndicator stopAnimating];
+    [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
     self.elapsedTime = 0;
     [self.recordProgressView setProgress:0];
     
@@ -263,7 +265,8 @@ static const float TIMER_INTERVAL = .02;
 - (void)audioSourceControllerdidFinishAudioCapture:(YSAudioSourceController *)controller {
     [audioProgressTimer invalidate];
     NSLog(@"Audio Progress Timer Invalidate 7");
-    [self.recordProgressView.activityIndicator stopAnimating];
+    //[self.recordProgressView.activityIndicator stopAnimating];
+    [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
     
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
         self.recordProgressView.progress = 0.0;
@@ -276,6 +279,7 @@ static const float TIMER_INTERVAL = .02;
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION object:nil];
         });
+        self.recordProgressView.hidden = YES;
         
         if (self.type == AudioCaptureTypeMic) {
             self.titleString = @"Start Yappin'";
@@ -296,7 +300,8 @@ static const float TIMER_INTERVAL = .02;
 }
 
 - (void)audioSourceController:(YSAudioSourceController *)controller didReceieveUnexpectedError:(NSError *)error {
-    [self.recordProgressView.activityIndicator stopAnimating];
+    //[self.recordProgressView.activityIndicator stopAnimating];
+    [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
     double delay = .1;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong!"];
