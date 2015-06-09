@@ -613,6 +613,8 @@
 
 - (void) confirmOpenInSpotify:(UIButton *)button
 {
+    [self hideAlbumBanner];
+    
     if([self.searchBox isFirstResponder])
     {
         NSLog(@"Search box is in focus");
