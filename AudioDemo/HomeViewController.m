@@ -95,10 +95,15 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        NSLog(@"Audio Capture Did Start");
-                        self.countdownTimerLabel.hidden = YES;
                         [self showTopButtons];
                         [countdownTimer invalidate];
+                        [UIView animateWithDuration:.1
+                                              delay:0
+                                            options:UIViewAnimationOptionCurveEaseOut
+                                         animations:^{
+                                             self.countdownTimerLabel.alpha = 0;
+                                         }
+                                         completion:nil];
                     }];
     
     [center addObserverForName:WILL_START_AUDIO_CAPTURE_NOTIFICATION
@@ -148,13 +153,19 @@
     [self reloadUnopenedYapsCount];
     [self updateYapsButtonAnimation];
     
-    self.countdownTimerLabel.hidden = YES;
+    self.countdownTimerLabel.alpha = 0;
     [self showTopButtons];
 }
 
 - (void) showTopButtons {
-    self.topLeftButton.alpha = 1;
-    self.yapsPageButton.alpha = 1;
+    [UIView animateWithDuration:.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.topLeftButton.alpha = 1;
+                         self.yapsPageButton.alpha = 1;
+                     }
+                     completion:nil];
 }
 
 - (void) hideTopButtons {
@@ -236,7 +247,7 @@
 }
 
 - (void) showAndStartTimer {
-    self.countdownTimerLabel.hidden = NO;
+    self.countdownTimerLabel.alpha = 1;
     self.countdownTimerLabel.text = @"12";
     currSeconds=12;
     [self startCountdownTimer];

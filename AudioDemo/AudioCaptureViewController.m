@@ -80,7 +80,7 @@ static const float TIMER_INTERVAL = .02;
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.recordProgressView.hidden = YES;
+    self.recordProgressView.alpha = 0;
     
     if (self.type == AudioCaptureTypeMic) {
         self.titleString = @"Start Yappin'";
@@ -230,13 +230,13 @@ static const float TIMER_INTERVAL = .02;
 #pragma mark - YSAudioSourceControllerDelegate
 
 - (void)audioSourceControllerWillStartAudioCapture:(YSAudioSourceController *)controller {
-    self.recordProgressView.hidden = NO;
+    self.recordProgressView.alpha = 1;
     [[NSNotificationCenter defaultCenter] postNotificationName:WILL_START_AUDIO_CAPTURE_NOTIFICATION object:nil];
     //[self.recordProgressView.activityIndicator startAnimating];
 }
 
 - (void)audioSourceControllerDidStartAudioCapture:(YSAudioSourceController *)controller {
-    self.recordProgressView.hidden = NO;
+    self.recordProgressView.alpha = 1;
     //[self.recordProgressView.activityIndicator stopAnimating];
     [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
     self.elapsedTime = 0;
@@ -273,13 +273,21 @@ static const float TIMER_INTERVAL = .02;
         double delay = .1;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (self.type == AudioCapTureTypeSpotify) {
-                [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Play"];
+                //[[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Play"];
             } else {
                 [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Record"];
             }
-            [[NSNotificationCenter defaultCenter] postNotificationName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION object:nil];
         });
-        self.recordProgressView.hidden = YES;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION object:nil];
+        
+        [UIView animateWithDuration:.1
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.recordProgressView.alpha = 0;
+                         }
+                         completion:nil];
         
         if (self.type == AudioCaptureTypeMic) {
             self.titleString = @"Start Yappin'";

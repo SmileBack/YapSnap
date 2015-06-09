@@ -70,7 +70,7 @@
     
     UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPressCarousel:)];
     longPress.cancelsTouchesInView = NO;
-    longPress.minimumPressDuration = 0.1;
+    longPress.minimumPressDuration = 0.2;
     
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapCarousel:)];
     tap.cancelsTouchesInView = NO;
@@ -142,6 +142,13 @@
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             [self.searchBox becomeFirstResponder];
                         });
+                    }];
+    
+    [center addObserverForName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self showKeepHoldingLabel];
                     }];
 }
 
@@ -429,6 +436,22 @@
         trackView.songVersionTwoButton.frame = CGRectMake(carouselHeight/2 + 1, carouselHeight-50, carouselHeight/2 - 1, 50);
         [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.songVersionTwoButton];
+        
+        // Keep Holding Label
+
+        trackView.keepHoldingLabel = [[UILabel alloc]initWithFrame:
+                                               CGRectMake(0, 0, carouselHeight, 42)];
+        CALayer *bottomBorder = [CALayer layer];
+        bottomBorder.frame = CGRectMake(0.0f, 41.0f, trackView.keepHoldingLabel.frame.size.width, 1.0f);
+        bottomBorder.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8].CGColor;
+        [trackView.keepHoldingLabel.layer addSublayer:bottomBorder];
+        
+        trackView.keepHoldingLabel.backgroundColor = THEME_RED_COLOR;
+        trackView.keepHoldingLabel.text = @"Keep Holding";
+        trackView.keepHoldingLabel.textAlignment = NSTextAlignmentCenter;
+        trackView.keepHoldingLabel.textColor = [UIColor whiteColor];
+        trackView.keepHoldingLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+        [trackView addSubview:trackView.keepHoldingLabel];
     }
     
     // Set song version button selections
@@ -443,9 +466,10 @@
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
     }
     
-    trackView.songVersionOneButton.hidden = YES;
-    trackView.songVersionTwoButton.hidden = YES;
-    trackView.songVersionBackground.hidden = YES;
+    //trackView.songVersionOneButton.hidden = YES;
+    //trackView.songVersionTwoButton.hidden = YES;
+    //trackView.songVersionBackground.hidden = YES;
+    trackView.keepHoldingLabel.alpha = 0;
     
     // Set seconds to fast forward to 0
     track.secondsToFastForward = [NSNumber numberWithInt:0];
@@ -480,11 +504,30 @@
     //CGPoint point = [tap locationInView:self.carousel];
     // TODO: Figure out whether the point is within the album cover (not inclusive of the bottom buttons)
     //if (CGRectContainsPoint(frame, point)) {
-        [[YTNotifications sharedNotifications] showNotificationText:@"Hold Album To Play"];
+        //[[YTNotifications sharedNotifications] showNotificationText:@"Hold Album To Play"];
     //}
+    
+    [self showKeepHoldingLabel];
+}
+
+- (void) showKeepHoldingLabel {
+    SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
+    trackView.keepHoldingLabel.alpha = 1;
+    // Hide Label shortly after showing it
+    double delay = 2.5;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:.3
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             trackView.keepHoldingLabel.alpha = 0;
+                         }
+                         completion:nil];
+    });
 }
 
 -(void)didLongPressCarousel:(UILongPressGestureRecognizer*)longPress {
+    NSLog(@"Long Press State: %ld", (long)longPress.state);
     if(longPress.state == UIGestureRecognizerStateBegan)
     {
         [self startAudioCapture];
@@ -594,7 +637,7 @@
         }
     }
 }
-
+/*
 - (void) tappedAlbumImage:(UIButton *)button
 {
     [self startAudioCapture];
@@ -635,6 +678,7 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_ALBUM_COVER];
     }
 }
+ */
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {

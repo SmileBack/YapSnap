@@ -25,6 +25,7 @@
 #define TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION @"yaptap.TappedAlbumCoverFirstTimeNotification5"
 #define DID_SEE_SPOTIFY_POPUP_KEY @"yaptap.DidSeeSpotifyPopupKey15"
 #define DISMISS_SPOTIFY_POPUP @"DismissSpotifyPopup"
+#define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
 
 @property (nonatomic, strong) NSString *selectedGenre;
 
