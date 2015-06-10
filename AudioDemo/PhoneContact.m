@@ -32,6 +32,7 @@
     
    // NSLog(@"InPhoneContact: Phone Number: %@", contact.phoneNumbers );
    // NSLog(@"InPhoneContact: Phone Labels: %@", contact.phoneLabels );
+    
 
     
     return contact;
