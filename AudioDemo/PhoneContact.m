@@ -22,21 +22,40 @@
 }
 */
 
-+ (PhoneContact *) phoneContactWithName:(NSString *)name phoneLabel:(NSString *)label andPhoneNumber:(NSString *)phoneNumber
++ (PhoneContact *) phoneContactWithName:(NSString *)name phoneLabels:(NSMutableArray *)allPhoneLabels andPhoneNumbers:(NSMutableArray *)allPhoneNumbers
 {
     PhoneContact *contact = [PhoneContact new];
 
     contact.name = name;
-    contact.label = label;
-    contact.phoneNumber = phoneNumber;
+    contact.phoneLabels = allPhoneLabels;
+    contact.phoneNumbers = allPhoneNumbers;
+    
+   // NSLog(@"InPhoneContact: Phone Number: %@", contact.phoneNumbers );
+   // NSLog(@"InPhoneContact: Phone Labels: %@", contact.phoneLabels );
+
     
     return contact;
 }
 
 - (NSDictionary *) json
 {
-    return @{@"name": self.name,
-             @"phone_number" : self.phoneNumber};
+    if ([self.phoneNumbers count] > 1) //............................................................................................. if there are more than one phone number for the contact
+    {
+        NSMutableDictionary *rtnDictionary = [[NSMutableDictionary alloc]initWithCapacity:[self.phoneNumbers count] + 1]; //.......... create a dictionary with length of all phone numbers + the name
+        
+        [rtnDictionary setValue:@"name" forKey:self.name]; //......................................................................... set the inial value to the name
+        
+        for (int i = 1; i < [self.phoneNumbers count]; i++) //........................................................................ loop through each phone number
+            [rtnDictionary setValue:[NSString stringWithFormat:@"phone_number_%i", i]
+                             forKey:[self.phoneNumbers objectAtIndex:i] ]; //......................................................... add the phone number to the dictionary
+        
+        return rtnDictionary; //...................................................................................................... return the dictionary
+    }
+    else
+    {
+        return @{@"name": self.name,
+                 @"phone_number_0" : [self.phoneNumbers objectAtIndex:0]};
+    }
 }
 
 - (NSString *) sectionLetter

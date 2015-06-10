@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		101B482C1B261BF900244D0E /* MegaphoneWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 101B482B1B261BF900244D0E /* MegaphoneWhite.png */; };
 		371C2C8A19BCF73800FDA390 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C2C8819BCF73800FDA390 /* AddressBook.framework */; };
 		371C2C8B19BCF73800FDA390 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371C2C8919BCF73800FDA390 /* AddressBookUI.framework */; };
 		374383E019CE29880009C323 /* EnterPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374383DF19CE29880009C323 /* EnterPhoneNumberViewController.m */; };
@@ -103,7 +104,6 @@
 		7854B0731AF88CCF00A02DF9 /* LeftArrow50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0721AF88CCF00A02DF9 /* LeftArrow50.png */; };
 		7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */; };
 		7857CABE1AFBB43300ADF999 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857CABD1AFBB43300ADF999 /* HomeViewController.m */; };
-		786192471B06BA5B007279E8 /* MegaphoneWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192461B06BA5B007279E8 /* MegaphoneWhite.png */; };
 		7861924D1B072077007279E8 /* WhiteCamera100.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861924C1B072077007279E8 /* WhiteCamera100.png */; };
 		7861924F1B07E86D007279E8 /* Darth Vader.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861924E1B07E86D007279E8 /* Darth Vader.png */; };
 		786192511B07EA1B007279E8 /* DarthVader10.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192501B07EA1B007279E8 /* DarthVader10.png */; };
@@ -273,6 +273,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		101B482B1B261BF900244D0E /* MegaphoneWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MegaphoneWhite.png; sourceTree = "<group>"; };
 		2EC984014C0190B93A4FFD0C /* Pods-YapTap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapTap.release.xcconfig"; path = "Pods/Target Support Files/Pods-YapTap/Pods-YapTap.release.xcconfig"; sourceTree = "<group>"; };
 		371C2C8819BCF73800FDA390 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		371C2C8919BCF73800FDA390 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
@@ -406,7 +407,6 @@
 		7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow60.png; sourceTree = "<group>"; };
 		7857CABC1AFBB43300ADF999 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		7857CABD1AFBB43300ADF999 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		786192461B06BA5B007279E8 /* MegaphoneWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MegaphoneWhite.png; path = "../../../Dropbox/MacBook Pro (New)/YapTap Images/MegaphoneWhite.png"; sourceTree = "<group>"; };
 		7861924C1B072077007279E8 /* WhiteCamera100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCamera100.png; sourceTree = "<group>"; };
 		7861924E1B07E86D007279E8 /* Darth Vader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Darth Vader.png"; sourceTree = "<group>"; };
 		786192501B07EA1B007279E8 /* DarthVader10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DarthVader10.png; sourceTree = "<group>"; };
@@ -661,12 +661,12 @@
 				786192581B080C65007279E8 /* Chipmunk30.png */,
 				7861925A1B080CFB007279E8 /* Chipmunk50.png */,
 				7861925C1B080D92007279E8 /* Chipmunk60.png */,
+				101B482B1B261BF900244D0E /* MegaphoneWhite.png */,
 				7861925E1B080DF9007279E8 /* Chipmunk70.png */,
 				786192601B080E8C007279E8 /* Chipmunk80.png */,
 				7861924E1B07E86D007279E8 /* Darth Vader.png */,
 				786192501B07EA1B007279E8 /* DarthVader10.png */,
 				7861924C1B072077007279E8 /* WhiteCamera100.png */,
-				786192461B06BA5B007279E8 /* MegaphoneWhite.png */,
 				78624BE51B03BA9100C8E049 /* GuidanceArrowLeft.png */,
 				7861926A1B099B2E007279E8 /* megaphone_shutterstock3.png */,
 				78624BE61B03BA9100C8E049 /* GuidanceArrowRight.png */,
@@ -1581,7 +1581,6 @@
 				786192881B0A783B007279E8 /* SpotifyPopupViewController.xib in Resources */,
 				782D13981ACC59E6007C8499 /* YapsButtonNoYaps.png in Resources */,
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
-				786192471B06BA5B007279E8 /* MegaphoneWhite.png in Resources */,
 				786192611B080E8C007279E8 /* Chipmunk80.png in Resources */,
 				78319A7D1ACD0111000C3FD6 /* MicModeButtonIcon@2x.png in Resources */,
 				781904821AF1E3CE00196DFF /* ResetButton40@2x.png in Resources */,
@@ -1690,6 +1689,7 @@
 				78439FC61AE9A330004CFB5F /* PlusButtonWhite@2x.png in Resources */,
 				788363A21AD79488001CBD1B /* TwoNotSelectediPhone6@2x.png in Resources */,
 				78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */,
+				101B482C1B261BF900244D0E /* MegaphoneWhite.png in Resources */,
 				786192791B09B810007279E8 /* ContactsPopupViewController.xib in Resources */,
 				787EC5F11AC9EC0A000C5539 /* OldProgressViewLightBlue@3x.png in Resources */,
 				786E0BE51B0019AE00005D1D /* PlusButtonWhite3@2x.png in Resources */,

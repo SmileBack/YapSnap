@@ -84,6 +84,12 @@ static ContactManager *sharedInstance;
             [contacts addObject:contact];
         }
     }
+
+#warning ONLY PRINTS OUT ONE PHONE NUMBER
+//    for( PhoneContact *ctc in contacts)
+//        NSLog(@"\n\nContact: %@\nNumber: %@", ctc.name, ctc.phoneNumbers);
+    
+    
     return [contacts sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         PhoneContact *contact1 = obj1;
         PhoneContact *contact2 = obj2;
@@ -115,31 +121,51 @@ static ContactManager *sharedInstance;
         NSString *fullName = [self nameFromRef:person];
         ABRecordID recordID = ABRecordGetRecordID(person);
         
+        NSMutableArray *allPhoneNumbers = [NSMutableArray new]; //............................................ holds all the phone numbers
+        NSMutableArray *allPhoneLabels = [NSMutableArray new]; //............................................. holds all the phone number labels
+        
         for (CFIndex i = 0; i < ABMultiValueGetCount(phones); i++) {
             CFStringRef labelRef = ABMultiValueCopyLabelAtIndex(phones, i);
-            
+        
             if (labelRef) {
                 NSString *label = [NSString stringWithString:(__bridge NSString *)(labelRef)];
                 label = [self cleanLabel:label];
+                
+                [allPhoneLabels addObject:label]; //.............................................................. adds the label to the label array
                 
                 CFStringRef phoneRef = ABMultiValueCopyValueAtIndex(phones, i);
                 NSString *phone = [NSString stringWithString:(__bridge NSString *)(phoneRef)];
                 phone = [ContactManager stringPhoneNumber:phone];
                 
-                PhoneContact *contact = [PhoneContact phoneContactWithName:fullName phoneLabel:label andPhoneNumber:phone];
+                [allPhoneNumbers addObject:phone]; //............................................................. adds the phone numbers to the array
+                
+                PhoneContact *contact = [PhoneContact phoneContactWithName:fullName phoneLabels:allPhoneLabels andPhoneNumbers:allPhoneNumbers];
+                
+                //NSLog(@"\n\n******%@ Number:\n%@\n******\n\n", contact.name, contact.phoneNumbers);
+                
                 contact.contactID = [NSNumber numberWithInt:recordID];
+                
+                //NSLog(@"\n\n******%@ Number:\n%@\nID:%@******\n\n", contact.name, contact.phoneNumbers, contact.contactID);
+                
                 idToContacts[contact.contactID] = contact;
-                phoneNumberContacts[[self usNumberFromPhoneNumber:contact.phoneNumber]] = contact;
+                phoneNumberContacts[[self usNumberFromPhoneNumber:phone ]] = contact;
                 
                 CFRelease(phoneRef);
                 CFRelease(labelRef);
             }
         }
+        
+        
     }
-
+    
     self.phoneToContacts = phoneNumberContacts;
     self.contactIdToContacts = idToContacts;
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CONTACTS_LOADED object:nil];
+    
+    //NSLog(@"contCtIDtoContacts %@", self.contactIdToContacts.allKeys); //.................... prints integers representing the number of contacts
+    //NSLog(@"Keys to phoneNumberContacts: %@", self.phoneToContacts.allKeys); //.............. prints out the phone numbers
+    //NSLog(@"contCtIDtoContacts values: %@", self.contactIdToContacts.allValues);
+    
 }
 
 #pragma mark - Helpers

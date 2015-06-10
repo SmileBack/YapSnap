@@ -11,7 +11,7 @@
 @interface YSContact : NSObject
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *phoneNumber;
+@property (nonatomic, strong) NSMutableArray *phoneNumbers;
 
 + (YSContact *) contactWithName:(NSString *)name andPhoneNumber:(NSString *)phoneNumber;
 

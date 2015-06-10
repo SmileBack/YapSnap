@@ -15,7 +15,7 @@
     YSContact *contact = [YSContact new];
 
     contact.name = name;
-    contact.phoneNumber = phoneNumber;
+    [contact.phoneNumbers addObject:phoneNumber];
 
     return contact;
 }

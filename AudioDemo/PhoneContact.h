@@ -11,14 +11,14 @@
 
 @interface PhoneContact : YSContact
 
-@property (nonatomic, strong) NSString *label;
+@property (nonatomic, strong) NSMutableArray *phoneLabels;
 @property (nonatomic, strong) NSNumber *contactID;
 
 @property (nonatomic, readonly) NSString *sectionLetter;
 
 //+ (RKObjectMapping *) objectMapping;
 
-+ (PhoneContact *) phoneContactWithName:(NSString *)name phoneLabel:(NSString *)label andPhoneNumber:(NSString *)phoneNumber;
++ (PhoneContact *) phoneContactWithName:(NSString *)name phoneLabels:(NSMutableArray *)allPhoneLabels andPhoneNumbers:(NSMutableArray *)allPhoneNumbers;
 
 - (NSDictionary *) json;
 

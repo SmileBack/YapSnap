@@ -111,7 +111,8 @@
         
         yap.receiverID = nil; //TODO the cell may depend on this
         yap.receiverName = contact.name;
-        yap.receiverPhone = contact.phoneNumber;
+        //TODO: Check to see which phone number they want this sent to
+        yap.receiverPhone = [contact.phoneNumbers objectAtIndex:0];
         
         yap.createdAt = [NSDate date];
         

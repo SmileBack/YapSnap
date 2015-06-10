@@ -241,18 +241,18 @@ static NSString *CellIdentifier = @"Cell";
     [tableView registerNib:[UINib nibWithNibName:@"ContactSelectionCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
 }
 
-- (PhoneContact *) contactForNumber:(NSString *)number
-{
-    
-    for (PhoneContact *contact in self.contacts) {
-        if ([contact.phoneNumber isEqualToString:number]) {
-            return contact;
-        }
-    }
-    
-    //NSLog(@"No contact found for %@", number);
-    return nil;
-}
+//- (PhoneContact *) contactForNumber:(NSString *)number
+//{
+//    
+//    for (PhoneContact *contact in self.contacts) {
+//        if ([contact.phoneNumber isEqualToString:number]) {
+//            return contact;
+//        }
+//    }
+//    
+//    //NSLog(@"No contact found for %@", number);
+//    return nil;
+//}
 
 #pragma UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -275,6 +275,8 @@ static NSString *CellIdentifier = @"Cell";
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    int numOfRows = 0;
+    
     if (self.builder.builderType == BuilderTypeAddFriends) {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             return self.filteredContacts.count;
@@ -314,8 +316,13 @@ static NSString *CellIdentifier = @"Cell";
         ContactSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
         cell.nameLabel.text = contact.name;
-        cell.phoneLabel.text = contact.phoneNumber;
-        cell.typeLabel.text = contact.label;
+        
+        //NSLog(@"%@ Phone numbers: %@", contact.name, contact.phoneNumbers);
+        //NSLog(@"%@ Phone labels: %@", contact.name, contact.phoneLabels);
+        
+        //TODO: Make it check all numbers
+        cell.phoneLabel.text = [contact.phoneNumbers objectAtIndex:0];
+        cell.typeLabel.text = [contact.phoneLabels objectAtIndex:0];
         
         cell.selectionView.layer.cornerRadius = 8.0f;
         cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
@@ -343,8 +350,10 @@ static NSString *CellIdentifier = @"Cell";
         ContactSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
         
         cell.nameLabel.text = contact.name;
-        cell.phoneLabel.text = contact.phoneNumber;
-        cell.typeLabel.text = contact.label;
+        
+        //TODO: Make it check all numbers
+        cell.phoneLabel.text = [contact.phoneNumbers objectAtIndex:0];
+        cell.typeLabel.text = [contact.phoneLabels objectAtIndex:0];
         
         cell.selectionView.layer.cornerRadius = 8.0f;
         cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
