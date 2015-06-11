@@ -121,12 +121,14 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self hideTopButtons];
+                        self.countdownTimerLabel.alpha = 0;
                     }];
     
     [center addObserverForName:WILL_START_AUDIO_CAPTURE_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
+                        self.countdownTimerLabel.alpha = 0;
                         [self.activityIndicator startAnimating];
                         [self hideTopButtons];
                     }];
@@ -145,7 +147,7 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self showTopButtons];
-                        self.countdownTimerLabel.hidden = YES;
+                        self.countdownTimerLabel.alpha = 0;
                     }];
     
     __weak HomeViewController *weakSelf = self;

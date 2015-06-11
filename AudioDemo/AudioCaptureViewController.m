@@ -298,7 +298,7 @@ static const float TIMER_INTERVAL = .02;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
     
-    [self resetSpotifyBannerUI];
+    self.bottomView.hidden = YES;
 }
 
 - (void)audioSourceControllerdidFinishAudioCapture:(YSAudioSourceController *)controller {
@@ -400,6 +400,7 @@ static const float TIMER_INTERVAL = .02;
 - (void) resetSpotifyBannerUI {
     [[NSNotificationCenter defaultCenter] postNotificationName:RESET_SPOTIFY_BANNER_UI object:nil];
     self.bottomView.hidden = YES;
+    [self.recordProgressView setProgress:0];
 }
 
 #pragma mark - Mode Changing
