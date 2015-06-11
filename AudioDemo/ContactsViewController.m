@@ -17,6 +17,7 @@
 #import <MessageUI/MessageUI.h>
 #import "UIAlertView+Blocks.h"
 #import "YSUninvitedContactInviter.h"
+#import "NextButton.h"
 
 @interface ContactsViewController () <MFMessageComposeViewControllerDelegate, UIAlertViewDelegate>
 
@@ -25,7 +26,7 @@
 @property (nonatomic, strong) NSMutableArray *selectedContacts;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
-@property (weak, nonatomic) IBOutlet UIButton *continueButton;
+@property (weak, nonatomic) IBOutlet NextButton *continueButton;
 @property (nonatomic, strong) NSArray *allLetters;
 @property (strong, nonatomic) IBOutlet UILabel *bottomViewLabel;
 @property (strong, nonatomic) ContactsPopupViewController *contactsPopupVC;
@@ -108,6 +109,8 @@ static NSString *CellIdentifier = @"Cell";
     [self registerForKeyboardNotifications];
     
     [self setupNotifications];
+    
+    [self.continueButton startToPulsate];
 }
 
 - (void)viewDidAppear:(BOOL)animated
