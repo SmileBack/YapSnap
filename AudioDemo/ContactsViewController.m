@@ -263,7 +263,7 @@ static NSString *CellIdentifier = @"Cell";
             //NSLog(@"keys count:%lu", (unsigned long)[[[self filteredContactsAndNumbers] allKeys] count]);
             //NSLog(@"filtered ct:%lu", (unsigned long)self.filteredContacts.count);
             
-            return [[[self filteredContactsAndNumbers] allKeys] count];
+            return [[[self filteredContactsWithPhoneNumbers:YES orPhoneLabelsInstead:NO] allKeys] count];
             //return self.filteredContacts.count;
         }else {
             return self.allLetters.count;
@@ -271,7 +271,7 @@ static NSString *CellIdentifier = @"Cell";
     
     } else {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return [[[self filteredContactsAndNumbers] allKeys] count];
+            return [[[self filteredContactsWithPhoneNumbers:YES orPhoneLabelsInstead:NO] allKeys] count];
         }else {
             return 1 + self.allLetters.count;
         }
@@ -284,10 +284,7 @@ static NSString *CellIdentifier = @"Cell";
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             PhoneContact *person = self.filteredContacts[section];
             
-            //NSLog(@"number: %lu",(unsigned long)[[[self filteredContactsAndNumbers] objectForKey:person.name]count] );
-            //NSLog(@"filter: %lu", (unsigned long)self.filteredContacts.count);
-            
-            return [[[self filteredContactsAndNumbers] objectForKey:person.name]count];
+            return [[[self filteredContactsWithPhoneNumbers:YES orPhoneLabelsInstead:NO] objectForKey:person.name]count];
         }
 
         NSString *letter = self.allLetters[section];
@@ -314,8 +311,6 @@ static NSString *CellIdentifier = @"Cell";
     if (self.builder.builderType == BuilderTypeAddFriends) {
         PhoneContact *contact;
         if (tableView == self.searchDisplayController.searchResultsTableView) {
-            
-            //contact = [[[self filteredContactsAndNumbers]objectForKey:tempContact.name]objectAtIndex:indexPath.row];
             contact = self.filteredContacts[indexPath.section];
             
         } else {
@@ -328,13 +323,8 @@ static NSString *CellIdentifier = @"Cell";
 
         cell.nameLabel.text = contact.name;
         
-        //NSLog(@"%@ Phone numbers: %@", contact.name, contact.phoneNumbers);
-        //NSLog(@"%@ Phone labels: %@", contact.name, contact.phoneLabels);
-        
-        //TODO: Make it check all numbers
-        cell.phoneLabel.text = [[[self filteredContactsAndNumbers] objectForKey:contact.name]objectAtIndex:indexPath.row];
-//        cell.phoneLabel.text = [contact.phoneNumbers objectAtIndex:0];
-        cell.typeLabel.text = [contact.phoneLabels objectAtIndex:0];
+        cell.phoneLabel.text = [[[self filteredContactsWithPhoneNumbers:YES orPhoneLabelsInstead:NO] objectForKey:contact.name]objectAtIndex:indexPath.row]; //....................................... sets the phone number label using the dictionary with array of numbers
+        cell.typeLabel.text =  [[[self filteredContactsWithPhoneNumbers:NO orPhoneLabelsInstead:YES]objectForKey:contact.name]objectAtIndex:indexPath.row]; //........................................ sets the phone label using the dictionary with array of labels
         
         cell.selectionView.layer.cornerRadius = 8.0f;
         cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
@@ -504,14 +494,19 @@ static NSString *CellIdentifier = @"Cell";
 // and the telephone numbers associated with it
 // the key is the contact name
 // the object is an array with the  contact phone numbers
--(NSMutableDictionary *)filteredContactsAndNumbers
+// allows you to chose if you want the phone numbers or the labels
+-(NSMutableDictionary *)filteredContactsWithPhoneNumbers: (BOOL)withPhoneNumbers orPhoneLabelsInstead:(BOOL)phoneNumberLabels
 {
     NSMutableDictionary *returnDict = [NSMutableDictionary new]; //................... dictionary to return
     
-    for( PhoneContact *contact in self.filteredContacts ) //.......................... loop through all the filtered contacts
-        [returnDict setObject:contact.phoneNumbers forKey:contact.name]; //........... fill the dictionary with name / phone number
+    if (withPhoneNumbers) //.............................................................. if they want phone numbers
+        for( PhoneContact *contact in self.filteredContacts ) //.......................... loop through all the filtered contacts
+            [returnDict setObject:contact.phoneNumbers forKey:contact.name]; //........... fill the dictionary with name / phone number
+    else
+        for( PhoneContact *contact in self.filteredContacts ) //.......................... loop through all the filtered contacts
+            [returnDict setObject:contact.phoneLabels forKey:contact.name]; //............ fill the dictionary with name / phone number labels
     
-    return returnDict; //............................................................. return it
+    return returnDict; //................................................................. return the dictionary
 }
 
 
