@@ -473,13 +473,13 @@
                                 </connections>
                             </tableView>
                             <view alpha="0.96999999999999997" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGC-QS-5qY">
-                                <rect key="frame" x="0.0" y="390" width="320" height="70"/>
+                                <rect key="frame" x="0.0" y="388" width="320" height="72"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6j-MM-95B" customClass="NextButton">
-                                        <rect key="frame" x="264" y="12" width="46" height="46"/>
+                                        <rect key="frame" x="266" y="16" width="44" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="LDj-cd-ViD"/>
-                                            <constraint firstAttribute="height" constant="46" id="OBI-6e-Pxj"/>
+                                            <constraint firstAttribute="width" constant="44" id="LDj-cd-ViD"/>
+                                            <constraint firstAttribute="height" constant="44" id="OBI-6e-Pxj"/>
                                         </constraints>
                                         <state key="normal" image="ArrowWhite.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -489,7 +489,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNq-aM-kzD">
-                                        <rect key="frame" x="60" y="21" width="200" height="29"/>
+                                        <rect key="frame" x="60" y="23" width="200" height="29"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -501,9 +501,9 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.1647058824" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="K6j-MM-95B" secondAttribute="centerY" id="HLP-8a-MiU"/>
-                                    <constraint firstAttribute="height" constant="70" id="Qm4-KE-MAn"/>
-                                    <constraint firstAttribute="trailing" secondItem="K6j-MM-95B" secondAttribute="trailing" constant="10" id="hxc-0p-Zoa"/>
+                                    <constraint firstAttribute="centerY" secondItem="K6j-MM-95B" secondAttribute="centerY" constant="-2" id="HLP-8a-MiU"/>
+                                    <constraint firstAttribute="height" constant="72" id="Qm4-KE-MAn"/>
+                                    <constraint firstAttribute="centerX" secondItem="K6j-MM-95B" secondAttribute="centerX" constant="-128" id="h6n-n2-9lW"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -908,7 +908,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-Y6-ICb">
                                 <rect key="frame" x="3" y="21" width="38" height="38"/>
-                                <state key="normal" backgroundImage="CancelImageWhite.png">
+                                <state key="normal" backgroundImage="WhiteBackArrow5.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1745,6 +1745,7 @@ Type it here!</string>
         <image name="ResetButton100.png" width="32" height="32"/>
         <image name="ResetButton3.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
+        <image name="WhiteBackArrow5.png" width="88" height="88"/>
         <image name="YapsButtonNoYaps.png" width="160" height="84"/>
         <image name="YellowStar.png" width="40" height="40"/>
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>
@@ -1757,6 +1758,6 @@ Type it here!</string>
     <inferredMetricsTieBreakers>
         <segue reference="7MT-2E-BnS"/>
         <segue reference="0bM-75-hD3"/>
-        <segue reference="syO-tE-hvG"/>
+        <segue reference="czb-n6-hbf"/>
     </inferredMetricsTieBreakers>
 </document>
