@@ -259,14 +259,19 @@ static NSString *CellIdentifier = @"Cell";
 {
     if (self.builder.builderType == BuilderTypeAddFriends) {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return 1;
+            
+            //NSLog(@"keys count:%lu", (unsigned long)[[[self filteredContactsAndNumbers] allKeys] count]);
+            //NSLog(@"filtered ct:%lu", (unsigned long)self.filteredContacts.count);
+            
+            return [[[self filteredContactsAndNumbers] allKeys] count];
+            //return self.filteredContacts.count;
         }else {
             return self.allLetters.count;
         }
     
     } else {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return 1;
+            return [[[self filteredContactsAndNumbers] allKeys] count];
         }else {
             return 1 + self.allLetters.count;
         }
@@ -277,7 +282,12 @@ static NSString *CellIdentifier = @"Cell";
 {
     if (self.builder.builderType == BuilderTypeAddFriends) {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return self.filteredContacts.count;
+            PhoneContact *person = self.filteredContacts[section];
+            
+            //NSLog(@"number: %lu",(unsigned long)[[[self filteredContactsAndNumbers] objectForKey:person.name]count] );
+            //NSLog(@"filter: %lu", (unsigned long)self.filteredContacts.count);
+            
+            return [[[self filteredContactsAndNumbers] objectForKey:person.name]count];
         }
 
         NSString *letter = self.allLetters[section];
@@ -304,7 +314,10 @@ static NSString *CellIdentifier = @"Cell";
     if (self.builder.builderType == BuilderTypeAddFriends) {
         PhoneContact *contact;
         if (tableView == self.searchDisplayController.searchResultsTableView) {
-            contact = self.filteredContacts[indexPath.row];
+            
+            //contact = [[[self filteredContactsAndNumbers]objectForKey:tempContact.name]objectAtIndex:indexPath.row];
+            contact = self.filteredContacts[indexPath.section];
+            
         } else {
             NSString *letter = self.allLetters[indexPath.section];
             NSArray *contacts = self.contactDict[letter];
@@ -319,7 +332,8 @@ static NSString *CellIdentifier = @"Cell";
         //NSLog(@"%@ Phone labels: %@", contact.name, contact.phoneLabels);
         
         //TODO: Make it check all numbers
-        cell.phoneLabel.text = [contact.phoneNumbers objectAtIndex:0];
+        cell.phoneLabel.text = [[[self filteredContactsAndNumbers] objectForKey:contact.name]objectAtIndex:indexPath.row];
+//        cell.phoneLabel.text = [contact.phoneNumbers objectAtIndex:0];
         cell.typeLabel.text = [contact.phoneLabels objectAtIndex:0];
         
         cell.selectionView.layer.cornerRadius = 8.0f;
@@ -482,6 +496,22 @@ static NSString *CellIdentifier = @"Cell";
             self.bottomViewLabel.text = [NSString stringWithFormat:@"%lu Requests", (unsigned long)self.selectedContacts.count];
         }
     }
+}
+
+#pragma mark - HELPER
+
+// Method that will return a dictionary with the user's name
+// and the telephone numbers associated with it
+// the key is the contact name
+// the object is an array with the  contact phone numbers
+-(NSMutableDictionary *)filteredContactsAndNumbers
+{
+    NSMutableDictionary *returnDict = [NSMutableDictionary new]; //................... dictionary to return
+    
+    for( PhoneContact *contact in self.filteredContacts ) //.......................... loop through all the filtered contacts
+        [returnDict setObject:contact.phoneNumbers forKey:contact.name]; //........... fill the dictionary with name / phone number
+    
+    return returnDict; //............................................................. return it
 }
 
 
