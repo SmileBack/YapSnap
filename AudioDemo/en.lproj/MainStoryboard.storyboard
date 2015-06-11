@@ -896,10 +896,10 @@
                                     <constraint firstAttribute="width" constant="36" id="s6r-GV-Fpx"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yD7-vZ-19N">
-                                <rect key="frame" x="60" y="11" width="200" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yD7-vZ-19N">
+                                <rect key="frame" x="60" y="11" width="200" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Q18-sT-X2W"/>
+                                    <constraint firstAttribute="height" constant="24" id="Q18-sT-X2W"/>
                                     <constraint firstAttribute="width" constant="200" id="aYw-wu-fFp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
@@ -907,7 +907,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-Y6-ICb">
-                                <rect key="frame" x="3" y="21" width="38" height="38"/>
+                                <rect key="frame" x="3" y="22" width="38" height="38"/>
                                 <state key="normal" backgroundImage="WhiteBackArrow5.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1187,12 +1187,6 @@ in your phone's settings!</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-3F-cQc">
-                                <rect key="frame" x="10" y="134" width="300" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="cEy-3F-cQc" secondAttribute="height" multiplier="1:1" id="rvl-th-bpW"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zM8-Va-aql" customClass="YSRecordProgressView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="8"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1200,6 +1194,16 @@ in your phone's settings!</string>
                                     <constraint firstAttribute="height" constant="8" id="FKH-qP-4Tv"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" alpha="0.080000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oZS-3k-7XH" userLabel="Album Image">
+                                <rect key="frame" x="11" y="89" width="300" height="300"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.005679481908" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-3F-cQc" userLabel="Flashback Image View">
+                                <rect key="frame" x="5" y="84" width="310" height="310"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cEy-3F-cQc" secondAttribute="height" multiplier="1:1" id="rvl-th-bpW"/>
+                                </constraints>
+                            </imageView>
                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i6A-Iw-epG">
                                 <rect key="frame" x="5" y="123" width="310" height="328"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1212,7 +1216,7 @@ in your phone's settings!</string>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="Cjl-Kr-TQg" secondAttribute="bottom" constant="10" id="4j2-Be-trM"/>
                             <constraint firstAttribute="centerX" secondItem="Cjl-Kr-TQg" secondAttribute="centerX" id="C7Y-NF-G72"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="34" id="DK6-B1-QeJ"/>
-                            <constraint firstItem="cEy-3F-cQc" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leading" constant="10" id="Emi-hf-nzj"/>
+                            <constraint firstItem="cEy-3F-cQc" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leading" constant="5" id="Emi-hf-nzj"/>
                             <constraint firstAttribute="trailing" secondItem="i6A-Iw-epG" secondAttribute="trailing" constant="5" id="H3g-GE-EDB"/>
                             <constraint firstItem="zM8-Va-aql" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leading" id="M2C-Am-O1j"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="cEy-3F-cQc" secondAttribute="centerX" id="PeC-X0-Y2f"/>
@@ -1221,9 +1225,9 @@ in your phone's settings!</string>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="14" id="ZC6-E8-daL"/>
                             <constraint firstItem="i6A-Iw-epG" firstAttribute="top" secondItem="zM8-Va-aql" secondAttribute="bottom" constant="51" id="ZbP-QP-A0y"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="i6A-Iw-epG" secondAttribute="bottom" constant="117" id="Zzs-2G-QdH"/>
-                            <constraint firstAttribute="centerY" secondItem="cEy-3F-cQc" secondAttribute="centerY" id="fLh-md-Agx"/>
+                            <constraint firstAttribute="centerY" secondItem="cEy-3F-cQc" secondAttribute="centerY" constant="45" id="fLh-md-Agx"/>
                             <constraint firstItem="Cjl-Kr-TQg" firstAttribute="top" secondItem="7Kj-1X-Ut8" secondAttribute="bottom" constant="3" id="kea-wd-YlH"/>
-                            <constraint firstAttribute="trailing" secondItem="cEy-3F-cQc" secondAttribute="trailing" constant="10" id="mr8-m3-Say"/>
+                            <constraint firstAttribute="trailing" secondItem="cEy-3F-cQc" secondAttribute="trailing" constant="5" id="mr8-m3-Say"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="zM8-Va-aql" secondAttribute="centerX" id="pTh-O6-Kic"/>
                             <constraint firstItem="i6A-Iw-epG" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leading" constant="5" id="qTa-xT-cDF"/>
                             <constraint firstItem="zM8-Va-aql" firstAttribute="top" secondItem="kCt-ck-W3X" secondAttribute="bottom" constant="10" id="uxv-V6-ube"/>
@@ -1231,6 +1235,7 @@ in your phone's settings!</string>
                     </view>
                     <navigationItem key="navigationItem" id="xVH-kE-ZoD"/>
                     <connections>
+                        <outlet property="albumImage" destination="oZS-3k-7XH" id="2ei-fw-y0P"/>
                         <outlet property="progressView" destination="zM8-Va-aql" id="Oeq-db-IdL"/>
                         <outlet property="textView" destination="i6A-Iw-epG" id="5Gi-rN-03J"/>
                         <outlet property="titleLabel" destination="kCt-ck-W3X" id="vVP-Fu-VXU"/>
@@ -1756,8 +1761,8 @@ Type it here!</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="czb-n6-hbf"/>
         <segue reference="7MT-2E-BnS"/>
         <segue reference="0bM-75-hD3"/>
-        <segue reference="czb-n6-hbf"/>
     </inferredMetricsTieBreakers>
 </document>

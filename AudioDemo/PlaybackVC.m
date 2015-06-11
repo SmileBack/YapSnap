@@ -23,6 +23,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *yapPhoto;
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *albumImage;
+
 
 // nil means we don't know yet. YES/NO means the backend told us.
 @property (nonatomic, strong) NSNumber *isFromFriend;
@@ -75,6 +77,10 @@
             [mixpanel track:@"Volume Notification - PlayBack"];
         });
     }
+    
+    self.albumImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.yap.imageURL]]];
+    
+    [self addShadowToTextView];
 
     // Pitch possibilities: 1000, 500, 0, -400
     if (self.yap.pitchValueInCentUnits.intValue > 750) {

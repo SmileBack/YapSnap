@@ -182,7 +182,7 @@ static const float TIMER_INTERVAL = .02;
     [center addObserverForName:NOTIFICATION_LOGOUT object:nil queue:nil usingBlock:^ (NSNotification *note) {
         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
     }];
-
+/*
     [center addObserverForName:UIApplicationWillResignActiveNotification
                         object:nil
                          queue:nil
@@ -192,7 +192,7 @@ static const float TIMER_INTERVAL = .02;
                         self.recordProgressView.progress = 0.0;
                         [self.audioSource stopAudioCapture];
                     }];
-    
+*/    
     [center addObserverForName:HIDE_PROGRESS_VIEW_NOTIFICATION
                         object:nil
                          queue:nil
