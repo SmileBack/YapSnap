@@ -489,7 +489,7 @@
         //[[YTNotifications sharedNotifications] showNotificationText:@"Hold Album To Play"];
     //}
     
-    [self showBannerWithText:@"Keep Holding" temporary:YES];
+    [self showBannerWithText:@"Hold To Play" temporary:YES];
 }
 
 - (void) showBannerWithText:(NSString*)text temporary:(BOOL)temporary {

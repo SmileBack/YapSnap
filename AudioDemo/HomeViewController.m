@@ -113,6 +113,13 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
+                        [self hideTopButtons];
+                    }];
+    
+    [center addObserverForName:WILL_START_AUDIO_CAPTURE_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
                         [self.activityIndicator startAnimating];
                         [self hideTopButtons];
                     }];

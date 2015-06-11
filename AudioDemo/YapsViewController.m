@@ -77,6 +77,7 @@ static NSString *CellIdentifier = @"Cell";
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
+    //self.comingFromContactsOrCustomizeYapPage = YES; //TODO:Remove
     if (self.comingFromContactsOrCustomizeYapPage) {
         UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissViewController)];
         [self.navigationItem setLeftBarButtonItem:cancel];
@@ -87,7 +88,6 @@ static NSString *CellIdentifier = @"Cell";
     
     if (!self.comingFromContactsOrCustomizeYapPage) {
         [self loadYaps];
-        //[self showWelcomeYapBanner];
     }
     
     // Pull down to refresh
@@ -603,8 +603,7 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 - (void)dismissViewController {
-    [[NSNotificationCenter defaultCenter] postNotificationName:DID_DISMISS_AFTER_SENDING_YAP object:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 - (void) removeBlockedYap

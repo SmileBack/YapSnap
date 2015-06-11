@@ -12,6 +12,9 @@
 #import "YSMicSourceController.h"
 #import "API.h"
 #import "YapBuilder.h"
+#import "ContactsViewController.h"
+#import "ContactManager.h"
+#import "YapsViewController.h"
 
 @interface AudioCaptureViewController ()<YSAudioSourceControllerDelegate> {
     NSTimer *audioProgressTimer;
@@ -71,10 +74,12 @@ static const float TIMER_INTERVAL = .02;
     
     [self setupNotifications];
     
+    /*
     if (self.contactReplyingTo) {
         self.receiverLabel.hidden = NO;
         self.receiverLabel.text = self.contactReplyingTo.name;
     }
+     */
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -181,6 +186,15 @@ static const float TIMER_INTERVAL = .02;
                         self.recordProgressView.progress = 0.0;
                         [self.audioSource stopAudioCapture];
                     }];
+    
+    [center addObserverForName:HIDE_PROGRESS_VIEW_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [audioProgressTimer invalidate];
+                        self.recordProgressView.alpha = 0;
+                        self.recordProgressView.progress = 0.0;
+                    }];
 }
 
 - (void) updateProgress {
@@ -193,14 +207,6 @@ static const float TIMER_INTERVAL = .02;
         [audioProgressTimer invalidate];
         NSLog(@"Audio Progress Timer Invalidate 6");
         [self.audioSource stopAudioCapture];
-        
-        /*
-        // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
-        double delay1 = .1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
-        });
-        */
     }
 }
 
@@ -219,6 +225,20 @@ static const float TIMER_INTERVAL = .02;
         
         self.recordProgressView.progress = 0.0;
         self.elapsedTime = 0;
+    } else if ([@"Contacts Segue" isEqualToString:segue.identifier]) {
+        ContactsViewController *vc = segue.destinationViewController;
+        
+        //Create yap object
+        YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
+        yapBuilder.duration = self.elapsedTime;
+        vc.builder = yapBuilder;
+        
+        if (self.contactReplyingTo) {
+            yapBuilder.contacts = @[self.contactReplyingTo];
+        }
+    } else if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
+        YapsViewController *yapsVC = segue.destinationViewController;
+        yapsVC.comingFromContactsOrCustomizeYapPage = YES;
     }
 }
 
@@ -238,6 +258,8 @@ static const float TIMER_INTERVAL = .02;
                          self.recordProgressView.alpha = 1;
                      }
                      completion:nil];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:WILL_START_AUDIO_CAPTURE_NOTIFICATION object:nil];
 
     //[self.recordProgressView.activityIndicator startAnimating];
 }
@@ -246,6 +268,7 @@ static const float TIMER_INTERVAL = .02;
     NSLog(@"Did Start Audio Capture");
 
     [[NSNotificationCenter defaultCenter] postNotificationName:DID_START_AUDIO_CAPTURE_NOTIFICATION object:nil];
+    
     self.recordProgressView.alpha = 1;
     //[self.recordProgressView.activityIndicator stopAnimating];
     [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
@@ -285,7 +308,7 @@ static const float TIMER_INTERVAL = .02;
             if (self.type == AudioCapTureTypeSpotify) {
                 //[[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Play"];
             } else {
-                [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Record"];
+                //[[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Record"];
             }
         });
         
@@ -308,9 +331,36 @@ static const float TIMER_INTERVAL = .02;
         [self updateTitleLabel];
     } else {
         // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
-        });
+        if (self.type == AudioCaptureTypeMic) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (self.contactReplyingTo) {
+                    //Create yap object
+                    YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
+                    yapBuilder.duration = self.elapsedTime;
+
+                    NSArray *pendingYaps =
+                    [[API sharedAPI] sendYapBuilder:yapBuilder
+                                       withCallback:^(BOOL success, NSError *error) {
+                                           if (success) {
+                                               [[ContactManager sharedContactManager] sentYapTo:yapBuilder.contacts];
+                                           } else {
+                                               NSLog(@"Error Sending Yap: %@", error);
+                                               // uh oh spaghettios
+                                               // TODO: tell the user something went wrong
+                                           }
+                                       }];
+                    NSLog(@"Sent yaps call");
+                    
+                    [self performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
+                } else {
+                    [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
+                }
+            });
+        } else if (self.type == AudioCapTureTypeSpotify) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+            });
+        }
     }
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -334,13 +384,14 @@ static const float TIMER_INTERVAL = .02;
 
 - (void)switchToSpotifyMode {
     self.type = AudioCapTureTypeSpotify;
-    [self.switchButton setTitle:@"Mic" forState:UIControlStateNormal];
+    [self.switchButton setImage:[UIImage imageNamed:@"MicrophoneButton.png"] forState:UIControlStateNormal];
     YSSpotifySourceController *spotifySource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
     [self setRecordSourceViewController:spotifySource];
 }
 
 - (void)switchToMicMode {
-    [self.switchButton setTitle:@"Music" forState:UIControlStateNormal];
+    //[self.switchButton setTitle:@"Music" forState:UIControlStateNormal];
+    [self.switchButton setImage:[UIImage imageNamed:@"MusicButton.png"] forState:UIControlStateNormal];
     self.type = AudioCaptureTypeMic;
     YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
     [self setRecordSourceViewController:micSource];

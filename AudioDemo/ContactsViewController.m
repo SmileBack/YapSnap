@@ -116,6 +116,12 @@ static NSString *CellIdentifier = @"Cell";
     self.continueButton.userInteractionEnabled = YES;
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
 - (void) setupNotifications {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserverForName:DISMISS_CONTACTS_POPUP
@@ -586,6 +592,7 @@ static NSString *CellIdentifier = @"Cell";
                            if (success) {
                                [[ContactManager sharedContactManager] sentYapTo:weakSelf.selectedContacts];
                            } else {
+                               NSLog(@"Error Sending Yap: %@", error);
                                // uh oh spaghettios
                                // TODO: tell the user something went wrong
                            }

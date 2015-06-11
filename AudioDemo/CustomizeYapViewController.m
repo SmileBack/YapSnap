@@ -115,10 +115,12 @@
         
     self.albumImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.yapBuilder.track.imageURL]]];
     
-    double delay3 = 0.3;
+    double delay3 = 0.2;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self didTapAddTextButton];
     });
+    
+    [self addShadowToTextView];
     
     //imageView.image = [UIImage imageWithContentsOfURL:theURL];
     
@@ -499,10 +501,12 @@
 
 - (void) removeShadowFromTextView
 {
+    /*
     self.textView.layer.shadowColor = [[UIColor clearColor] CGColor];
     self.textView.layer.shadowOffset = CGSizeMake(0, 0);
     self.textView.layer.shadowOpacity = 0;
     self.textView.layer.shadowRadius = 0;
+     */
 }
 
 - (void) updateAlphaOfButtons {
