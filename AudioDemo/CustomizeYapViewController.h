@@ -15,4 +15,6 @@
 @property (nonatomic, strong) YapBuilder *yapBuilder;
 @property (weak, nonatomic) IBOutlet UISlider *pitchSlider;
 
+- (IBAction)leftButtonPressed:(id)sender;
+
 @end

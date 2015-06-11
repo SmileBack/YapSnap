@@ -19,7 +19,8 @@
 #import <AVFoundation/AVAudioSession.h>
 #import "FriendsViewController.h"
 
-@interface CustomizeYapViewController ()
+@interface CustomizeYapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet YSRecordProgressView *progressView;
 //@property (weak, nonatomic) IBOutlet YSColorPicker *colorPicker;
@@ -39,6 +40,13 @@
 @property (strong, nonatomic) IBOutlet UIButton *cameraButton;
 @property (strong, nonatomic) IBOutlet UIImageView *cameraButtonImage;
 @property (nonatomic, strong) NSString *balloonCancelButtonTitle;
+
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
+
+@property (weak, nonatomic) IBOutlet UIButton *topLeftButton;
+
+@property (weak, nonatomic) IBOutlet UIImageView *albumImage;
+
 
 - (IBAction)didTapAddTextButton;
 - (IBAction)didTapBalloonButton;
@@ -104,14 +112,44 @@
         self.bottomConstraint.constant = 0;
         self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:32];
     }
+        
+    self.albumImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.yapBuilder.track.imageURL]]];
     
-    [self styleCustomizationButtons];
+    double delay3 = 0.3;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self didTapAddTextButton];
+    });
+    
+    //imageView.image = [UIImage imageWithContentsOfURL:theURL];
+    
+    //[self styleCustomizationButtons];
+    
+    //[self addEmbededCamera];
+    
+    //UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
+    //[self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
+}
+
+- (void) addEmbededCamera {
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagePicker.view.frame = CGRectMake(0, 72, [UIScreen mainScreen].bounds.size.width - 2, [UIScreen mainScreen].bounds.size.width -2);
+    
+    imagePicker.showsCameraControls = NO;
+    //imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+    imagePicker.delegate = self;
+    
+    [self addChildViewController:imagePicker];
+    [self.view addSubview:imagePicker.view];
+    [imagePicker didMoveToParentViewController:self];
+    
+    self.imagePicker = imagePicker;
 }
 
 - (void) setBalloonLeftConstraint {
     if ([self.yapBuilder.messageType isEqual: @"VoiceMessage"]) {
-        self.balloonButton.hidden = NO;
-        self.balloonButtonImage.hidden = NO;
+        //self.balloonButton.hidden = NO;
+        //self.balloonButtonImage.hidden = NO;
         if (IS_IPHONE_4_SIZE) {
             // Nothing necessary here
         } else if (IS_IPHONE_5_SIZE) {
@@ -204,12 +242,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    /*
-    double delay = 0.3;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self didTapAddTextButton];
-    });
-     */
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -337,9 +369,16 @@
         self.textView.text = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         
         if (self.textView.text.length == 0) {
-            self.textView.hidden = YES;
+            //self.textView.hidden = YES;
             [self updateAlphaOfButtons];
         }
+        
+        
+        double delay = .5;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //[self didTapNextButton:self.continueButton];
+
+        });
         
         return NO;
     }
@@ -476,21 +515,24 @@
 }
 
 - (void) reduceAlphaOfButtons {
+    /*
     self.cameraButton.alpha = 0.3;
     self.addTextToYapButton.alpha = 0.3;
     self.balloonButton.alpha = 0.3;
     self.balloonButtonImage.alpha = 0.3;
     self.cameraButtonImage.alpha = 0.3;
+     */
 }
 
 - (void) restoreAlphaOfButtons {
+    /*
     self.cameraButton.alpha = 1;
     self.addTextToYapButton.alpha = 1;
     self.balloonButton.alpha = 1;
     self.balloonButtonImage.alpha = 1;
     self.cameraButtonImage.alpha = 1;
-    
     self.resetPhotoButton.alpha = 1;
+     */
 }
 
 #pragma mark - UIActionSheet method implementation
@@ -638,6 +680,11 @@
         }
     }
     
+}
+
+- (IBAction)leftButtonPressed:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 

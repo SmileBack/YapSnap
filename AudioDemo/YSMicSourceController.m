@@ -23,6 +23,9 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *sinusWaveTopConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *sinusWaveWidthConstraint;
 @property (strong, nonatomic) RecordPopupViewController *recordPopupVC;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UIButton *recordButton;
+
 
 @end
 
@@ -41,12 +44,15 @@
     if (!self.didSeeRecordPopup) {
         [self showRecordPopup];
     }
+    
+    [self.recordButton setImage:[UIImage imageNamed:@"RecordButtonBlueBorder10Pressed.png"] forState:UIControlStateHighlighted];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     self.sinusWaveView.alpha = 0;
+    self.titleLabel.hidden = NO;
 }
 
 - (void) setSinusWaveConstraints {
@@ -151,6 +157,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 
 - (IBAction)didTapRecord:(id)sender {
     [self startAudioCapture];
+    self.titleLabel.hidden = YES;
 }
 - (IBAction)didUntapRecord:(id)sender {
     [self stopAudioCapture];

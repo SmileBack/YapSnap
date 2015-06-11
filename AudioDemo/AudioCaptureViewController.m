@@ -238,13 +238,14 @@ static const float TIMER_INTERVAL = .02;
                          self.recordProgressView.alpha = 1;
                      }
                      completion:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:WILL_START_AUDIO_CAPTURE_NOTIFICATION object:nil];
+
     //[self.recordProgressView.activityIndicator startAnimating];
 }
 
 - (void)audioSourceControllerDidStartAudioCapture:(YSAudioSourceController *)controller {
     NSLog(@"Did Start Audio Capture");
 
+    [[NSNotificationCenter defaultCenter] postNotificationName:DID_START_AUDIO_CAPTURE_NOTIFICATION object:nil];
     self.recordProgressView.alpha = 1;
     //[self.recordProgressView.activityIndicator stopAnimating];
     [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];

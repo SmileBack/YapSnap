@@ -109,7 +109,7 @@
                                          completion:nil];
                     }];
     
-    [center addObserverForName:WILL_START_AUDIO_CAPTURE_NOTIFICATION
+    [center addObserverForName:DID_START_AUDIO_CAPTURE_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
@@ -159,7 +159,9 @@
     [self updateYapsButtonAnimation];
     
     self.countdownTimerLabel.alpha = 0;
-    [self showTopButtons];
+    
+    self.topLeftButton.alpha = 1;
+    self.yapsPageButton.alpha = 1;
 }
 
 - (void) showTopButtons {
