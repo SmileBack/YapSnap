@@ -21,7 +21,7 @@
 #define DID_TAP_DICE_BUTTON @"yaptap.DidTapDiceButtonKey10"
 #define AUDIO_CAPTURE_DID_START_NOTIFICATION @"yaptap.AudioCaptureDidStartNotification"
 #define HIDE_PROGRESS_VIEW_NOTIFICATION @"yaptap.HideProgressViewNotification"
-#define INVALIDATE_COUNTDOWN_TIMER_NOTIFICATION @"com.yapsnap.InvalidateCountdownTimerNotification"
+#define LISTENED_TO_CLIP_NOTIFICATION @"com.yapsnap.ListenedToClipNotification"
 #define REMOVE_BOTTOM_BANNER_NOTIFICATION @"com.yapsnap.RemoveBottomBannerNotification"
 
 typedef NS_ENUM(NSUInteger, AudioCaptureType) {

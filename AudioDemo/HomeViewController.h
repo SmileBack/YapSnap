@@ -20,7 +20,7 @@
 #define COMPLETED_REGISTRATION_NOTIFICATION @"com.yapsnap.CompletedRegistrationNotification"
 #define DID_START_AUDIO_CAPTURE_NOTIFICATION @"com.yapsnap.StartAudioCaptureLoadingSpinnerNotification"
 #define WILL_START_AUDIO_CAPTURE_NOTIFICATION @"com.yapsnap.WillStartAudioCaptureLoadingSpinnerNotification"
-#define INVALIDATE_COUNTDOWN_TIMER_NOTIFICATION @"com.yapsnap.InvalidateCountdownTimerNotification"
+#define LISTENED_TO_CLIP_NOTIFICATION @"com.yapsnap.ListenedToClipNotification"
 #define RESET_SPOTIFY_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
 
 @interface HomeViewController : UIViewController<MFMailComposeViewControllerDelegate>

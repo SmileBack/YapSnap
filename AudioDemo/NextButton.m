@@ -22,7 +22,7 @@
         [self setNeedsLayout];
     };
     
-    CGFloat expandedDimension = originalDimension * 1.2;
+    CGFloat expandedDimension = originalDimension * 1.08;
     changeSize(expandedDimension);
 
     __weak NextButton *weakSelf = self;

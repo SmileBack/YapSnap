@@ -133,6 +133,13 @@
                     usingBlock:^(NSNotification *note) {
                         [self showBannerWithText:@"Keep Holding" temporary:YES];
                     }];
+    
+    [center addObserverForName:LISTENED_TO_CLIP_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self hideAlbumBanner];
+                    }];
 }
 
 - (void)tappedSpotifyView {
@@ -502,7 +509,7 @@
     
     if (temporary) {
         // Hide Label shortly after showing it
-        double delay = 2;
+        double delay = 2.5;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:.3
                                   delay:0
@@ -713,7 +720,6 @@
             [self.audioCaptureDelegate audioSourceControllerdidFinishAudioCapture:self];
         }
     }
-    [self hideAlbumBanner];
 }
 
 - (void) setUserInteractionEnabled:(BOOL)enabled

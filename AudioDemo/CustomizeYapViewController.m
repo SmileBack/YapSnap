@@ -46,6 +46,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *topLeftButton;
 
 @property (weak, nonatomic) IBOutlet UIImageView *albumImage;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+
 
 
 - (IBAction)didTapAddTextButton;
@@ -86,7 +88,7 @@
         }
         self.contactLabel.numberOfLines = 2;
     } else {
-        self.contactLabel.text = @"";
+        self.contactLabel.text = @"Send Yap";
     }
     
     double delay = 0.2;
@@ -369,18 +371,13 @@
         [textView resignFirstResponder];
         
         self.textView.text = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        self.titleLabel.text = @"";
         
         if (self.textView.text.length == 0) {
             //self.textView.hidden = YES;
             [self updateAlphaOfButtons];
+            self.titleLabel.text = @"Add Text";
         }
-        
-        
-        double delay = .5;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            //[self didTapNextButton:self.continueButton];
-
-        });
         
         return NO;
     }

@@ -109,7 +109,7 @@
                                          completion:nil];
                     }];
     
-    [center addObserverForName:INVALIDATE_COUNTDOWN_TIMER_NOTIFICATION
+    [center addObserverForName:LISTENED_TO_CLIP_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
