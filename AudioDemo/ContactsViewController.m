@@ -275,8 +275,6 @@ static NSString *CellIdentifier = @"Cell";
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int numOfRows = 0;
-    
     if (self.builder.builderType == BuilderTypeAddFriends) {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             return self.filteredContacts.count;
