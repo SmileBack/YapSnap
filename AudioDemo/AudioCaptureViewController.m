@@ -25,10 +25,13 @@
 @property (strong, nonatomic) UIImage *diceImage;
 @property (weak, nonatomic) IBOutlet UIButton *switchButton;
 @property (weak, nonatomic) IBOutlet UILabel *receiverLabel;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
 - (IBAction)didTapSwitchRecordSource:(id)sender;
+- (IBAction)didTapNextButton;
+- (IBAction)didTapCancelButton;
 
 @end
 
@@ -93,6 +96,7 @@ static const float TIMER_INTERVAL = .02;
         self.titleString = @"Find a Song";
     }
     [self updateTitleLabel];
+    self.bottomView.hidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -293,6 +297,8 @@ static const float TIMER_INTERVAL = .02;
     [self updateTitleLabel];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
+    
+    [self resetSpotifyBannerUI];
 }
 
 - (void)audioSourceControllerdidFinishAudioCapture:(YSAudioSourceController *)controller {
@@ -358,7 +364,9 @@ static const float TIMER_INTERVAL = .02;
             });
         } else if (self.type == AudioCapTureTypeSpotify) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+                //[self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:INVALIDATE_COUNTDOWN_TIMER_NOTIFICATION object:nil];
+                self.bottomView.hidden = NO;
             });
         }
     }
@@ -378,6 +386,20 @@ static const float TIMER_INTERVAL = .02;
     self.elapsedTime = 0;
     [audioProgressTimer invalidate];
     NSLog(@"Audio Progress Timer Invalidate 3");
+}
+
+#pragma mark - Bottom View
+- (IBAction) didTapNextButton {
+    [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+}
+
+- (IBAction) didTapCancelButton {
+    [self resetSpotifyBannerUI];
+}
+
+- (void) resetSpotifyBannerUI {
+    [[NSNotificationCenter defaultCenter] postNotificationName:RESET_SPOTIFY_BANNER_UI object:nil];
+    self.bottomView.hidden = YES;
 }
 
 #pragma mark - Mode Changing

@@ -710,6 +710,7 @@
             [self.audioCaptureDelegate audioSourceControllerdidFinishAudioCapture:self];
         }
     }
+    [self hideAlbumBanner];
 }
 
 - (void) setUserInteractionEnabled:(BOOL)enabled

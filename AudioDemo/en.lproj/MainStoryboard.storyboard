@@ -147,6 +147,40 @@
                                     <action selector="didTapSwitchRecordSource:" destination="XE5-ww-gTm" eventType="touchUpInside" id="tUT-7W-9R2"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zpi-cJ-NfZ">
+                                <rect key="frame" x="0.0" y="434" width="320" height="70"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GMe-UN-aNF">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose Clip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8L-qW-m1K">
+                                        <rect key="frame" x="67" y="22" width="186" height="26"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYX-lW-YlV" userLabel="Next Button">
+                                        <rect key="frame" x="264" y="12" width="46" height="46"/>
+                                        <state key="normal" backgroundImage="ArrowWhite.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapNextButton" destination="XE5-ww-gTm" eventType="touchUpInside" id="bzc-qY-uBK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wS5-a7-tKN" userLabel="Cancel Button">
+                                        <rect key="frame" x="8" y="12" width="46" height="46"/>
+                                        <state key="normal" backgroundImage="CancelImageWhite.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCancelButton" destination="XE5-ww-gTm" eventType="touchUpInside" id="6lQ-IB-Wj0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.1647058824" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -167,10 +201,11 @@
                     <navigationItem key="navigationItem" id="aLc-kc-Dc8"/>
                     <connections>
                         <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="OWQ-Ga-xCg"/>
+                        <outlet property="bottomView" destination="Zpi-cJ-NfZ" id="gyE-dK-6pj"/>
                         <outlet property="receiverLabel" destination="g2D-bs-3xR" id="ziQ-dB-ktx"/>
                         <outlet property="recordProgressView" destination="1fX-iU-owr" id="ZU5-oD-Me6"/>
                         <outlet property="switchButton" destination="Jl5-Kh-l6z" id="NcZ-a9-7cf"/>
-                        <segue destination="j1Z-Ou-SMe" kind="custom" identifier="Prepare Yap For Text Segue" customClass="NoAnimationPushSegue" id="eDP-Ek-kdM"/>
+                        <segue destination="j1Z-Ou-SMe" kind="push" identifier="Prepare Yap For Text Segue" id="eDP-Ek-kdM"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="Contacts Segue" id="vIm-eD-gkR"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsViewControllerSegue" id="Ny4-zR-Cgq"/>
                     </connections>
@@ -716,20 +751,20 @@
                         <viewControllerLayoutGuide type="bottom" id="T1S-dg-Qvf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="54R-6y-Wab">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.080000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5VO-Xh-MtL" userLabel="Album Image View">
                                 <rect key="frame" x="10" y="84" width="300" height="300"/>
                             </imageView>
                             <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-LF-pEZ" userLabel="Flashback Image">
-                                <rect key="frame" x="5" y="84" width="310" height="310"/>
+                                <rect key="frame" x="5" y="52" width="310" height="310"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gWj-LF-pEZ" secondAttribute="height" multiplier="1:1" id="Tos-Kb-190"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9XV-zO-GXP" customClass="NextButton">
-                                <rect key="frame" x="253" y="499" width="52" height="52"/>
+                                <rect key="frame" x="253" y="435" width="52" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="52" id="Vfc-07-yYR"/>
                                     <constraint firstAttribute="height" constant="52" id="fME-FA-i3s"/>
@@ -743,7 +778,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyU-Er-gqZ" userLabel="Cancel Button">
-                                <rect key="frame" x="8" y="498" width="60" height="60"/>
+                                <rect key="frame" x="8" y="434" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="SZA-Pg-xss"/>
                                     <constraint firstAttribute="width" constant="60" id="uEX-V4-Me2"/>
@@ -766,7 +801,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="B2R-OB-er0">
-                                <rect key="frame" x="80" y="493" width="160" height="60"/>
+                                <rect key="frame" x="80" y="429" width="160" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Xas-7e-BpI"/>
                                     <constraint firstAttribute="width" constant="160" id="cxc-J0-LPo"/>
@@ -783,7 +818,7 @@
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vM0-Ja-t0y">
-                                <rect key="frame" x="144" y="402" width="32" height="32"/>
+                                <rect key="frame" x="144" y="370" width="32" height="32"/>
                                 <state key="normal" image="ResetButton3.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

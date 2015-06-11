@@ -109,6 +109,13 @@
                                          completion:nil];
                     }];
     
+    [center addObserverForName:INVALIDATE_COUNTDOWN_TIMER_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [countdownTimer invalidate];
+                    }];
+    
     [center addObserverForName:DID_START_AUDIO_CAPTURE_NOTIFICATION
                         object:nil
                          queue:nil
@@ -131,6 +138,14 @@
                         if (!self.didSeeWelcomePopup) {
                             [self showWelcomePopup];
                         }
+                    }];
+    
+    [center addObserverForName:RESET_SPOTIFY_BANNER_UI
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self showTopButtons];
+                        self.countdownTimerLabel.hidden = YES;
                     }];
     
     __weak HomeViewController *weakSelf = self;

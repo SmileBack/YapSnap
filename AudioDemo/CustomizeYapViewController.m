@@ -115,7 +115,7 @@
         
     self.albumImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.yapBuilder.track.imageURL]]];
     
-    double delay3 = 0.2;
+    double delay3 = .8;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self didTapAddTextButton];
     });
