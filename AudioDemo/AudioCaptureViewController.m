@@ -199,6 +199,24 @@ static const float TIMER_INTERVAL = .02;
                         self.recordProgressView.alpha = 0;
                         self.recordProgressView.progress = 0.0;
                     }];
+    
+    [center addObserverForName:HIDE_PROGRESS_VIEW_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [audioProgressTimer invalidate];
+                        self.recordProgressView.alpha = 0;
+                        self.recordProgressView.progress = 0.0;
+                    }];
+    
+    [center addObserverForName:REMOVE_BOTTOM_BANNER_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        self.bottomView.hidden = YES;
+                        self.recordProgressView.alpha = 0;
+                        self.recordProgressView.progress = 0.0;
+                    }];
 }
 
 - (void) updateProgress {

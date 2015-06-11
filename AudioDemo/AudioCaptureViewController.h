@@ -22,7 +22,7 @@
 #define AUDIO_CAPTURE_DID_START_NOTIFICATION @"yaptap.AudioCaptureDidStartNotification"
 #define HIDE_PROGRESS_VIEW_NOTIFICATION @"yaptap.HideProgressViewNotification"
 #define INVALIDATE_COUNTDOWN_TIMER_NOTIFICATION @"com.yapsnap.InvalidateCountdownTimerNotification"
-#define RESET_SPOTIFY_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
+#define REMOVE_BOTTOM_BANNER_NOTIFICATION @"com.yapsnap.RemoveBottomBannerNotification"
 
 typedef NS_ENUM(NSUInteger, AudioCaptureType) {
     AudioCaptureTypeMic,

@@ -180,6 +180,7 @@
 }
 
 - (IBAction)didTapRandomButton:(id)sender {
+    [self resetBottomBannerUI];
     [self performRandomSearch];
 }
 
@@ -314,6 +315,8 @@
     
     NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type any phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor clearColor] }];
     self.searchBox.attributedPlaceholder = string;
+    
+    [self resetBottomBannerUI];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -974,6 +977,11 @@
                      completion:^(BOOL finished) {
                          self.searchBox.text = @"";
                      }];
+}
+
+- (void) resetBottomBannerUI {
+    [[NSNotificationCenter defaultCenter] postNotificationName:RESET_SPOTIFY_BANNER_UI object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:REMOVE_BOTTOM_BANNER_NOTIFICATION object:nil];
 }
 
 #pragma mark - Control Center Stuff
