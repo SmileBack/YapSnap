@@ -19,7 +19,7 @@
 
 typedef void (^StrangerCallback)(YSYap *yap);
 
-@interface PlaybackVC : UIViewController<STKAudioPlayerDelegate> {
+@interface PlaybackVC : UIViewController<STKAudioPlayerDelegate, UIActionSheetDelegate> {
     MPVolumeView *_mpVolumeView;
 }
 @property (nonatomic, strong) YSYap *yap;

@@ -20,7 +20,9 @@
 
 @required
 
-- (void)didOriginateReplyFromYap:(YSYap *)yap;
+- (void)didOriginateReplyFromYapSameClip:(YSYap *)yap;
+
+- (void)didOriginateReplyFromYapNewClip:(YSYap *)yap;
 
 - (void)didOriginateForwardFromYap:(YSYap *)yap;
 

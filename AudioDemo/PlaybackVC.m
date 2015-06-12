@@ -177,8 +177,17 @@
 }
 
 - (IBAction)didTapReply:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Use Same Clip", @"Select New Clip", nil];
+    [actionSheet showInView:self.view];
+    
+    /*
     [self dismissThis];
     [self.yapCreatingDelegate didOriginateReplyFromYap:self.yap];
+     */
 }
 
 - (IBAction)didTapForward:(id)sender {
@@ -433,5 +442,28 @@
     self.textView.layer.shadowOpacity = 1.0f;
     self.textView.layer.shadowRadius = 1.0f;
 }
+
+#pragma mark - UIActionSheet method implementation
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"Tapped Action Sheet; Button Index: %ld", (long)buttonIndex);
+    // Take a photo
+        if (buttonIndex == 0) {
+            [self dismissThis];
+            [self.yapCreatingDelegate didOriginateReplyFromYapSameClip:self.yap];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Reply (Same Clip)"];
+            // Upload a photo
+        } else if (buttonIndex == 1) {
+            [self dismissThis];
+            [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Reply (Different Clip)"];
+        } else if (buttonIndex == 2) {
+            NSLog(@"Did tap cancel");
+        }
+    
+}
+
 
 @end

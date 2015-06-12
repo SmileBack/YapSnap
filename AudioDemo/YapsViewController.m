@@ -449,7 +449,7 @@ static NSString *CellIdentifier = @"Cell";
     [mixpanel track:@"Double Tapped Row"];
     
     YSYap *yap = self.yaps[indexPath.row];
-    [self didOriginateReplyFromYap:yap];
+    [self didOriginateReplyFromYapSameClip:yap];
     //[self performSegueWithIdentifier:@"Reply Segue" sender:yap];
 }
 
@@ -749,9 +749,15 @@ static NSString *CellIdentifier = @"Cell";
     [self performSegueWithIdentifier:@"Audio Capture With Yap" sender:@{@"yap": yap, @"action": @"forward"}];
 }
 
-- (void)didOriginateReplyFromYap:(YSYap *)yap
+- (void)didOriginateReplyFromYapSameClip:(YSYap *)yap
 {
     [self performSegueWithIdentifier:@"Audio Capture With Yap" sender:@{@"yap": yap, @"action": @"reply"}];
+}
+
+
+- (void)didOriginateReplyFromYapNewClip:(YSYap *)yap
+{
+    [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
 }
 
 
