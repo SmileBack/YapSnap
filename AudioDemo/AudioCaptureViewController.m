@@ -249,12 +249,19 @@ static const float TIMER_INTERVAL = .02;
         
         self.recordProgressView.progress = 0.0;
         self.elapsedTime = 0;
+        
+    //The following only applies to Voice Messages
     } else if ([@"Contacts Segue" isEqualToString:segue.identifier]) {
         ContactsViewController *vc = segue.destinationViewController;
         
         //Create yap object
         YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
         yapBuilder.duration = self.elapsedTime;
+        yapBuilder.text = @"";
+        yapBuilder.color = self.view.backgroundColor;
+        // To get pitch value in 'cent' units, multiply self.pitchShiftValue by STK_PITCHSHIFT_TRANSFORM
+        yapBuilder.pitchValueInCentUnits = [NSNumber numberWithFloat:0];
+        
         vc.builder = yapBuilder;
         
         if (self.contactReplyingTo) {
@@ -423,6 +430,7 @@ static const float TIMER_INTERVAL = .02;
 - (void) resetSpotifyBannerUI {
     [[NSNotificationCenter defaultCenter] postNotificationName:RESET_SPOTIFY_BANNER_UI object:nil];
     self.bottomView.hidden = YES;
+    self.recordProgressView.alpha = 0;
     [self.recordProgressView setProgress:0];
 }
 

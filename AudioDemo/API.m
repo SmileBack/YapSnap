@@ -287,6 +287,8 @@ static API *sharedAPI;
             NSLog(@"Error uploading voice file to amazon! %@", error);
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
             callback(NO, error);
+        } else {
+            NSLog(@"Successfuly uploaded voice file to AWS");
         }
         
         NSLog(@"Pitch Value (in cent units) = %@", builder.pitchValueInCentUnits);

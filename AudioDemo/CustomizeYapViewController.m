@@ -79,6 +79,8 @@
     
     self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textView.delegate = self;
+    self.textView.textContainer.maximumNumberOfLines = 5;
+    self.textView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
     
     if (self.yapBuilder.contacts.count > 0) {
         PhoneContact *contact = self.yapBuilder.contacts.firstObject;

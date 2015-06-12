@@ -43,7 +43,7 @@
             case YTYapSendingActionReply:
             {
                 PhoneContact* contact = [[ContactManager sharedContactManager] contactForPhoneNumber:yap.senderPhone];
-                self.contacts = @[contact];
+                self.contacts = @[contact]; //TODO
                 
             }
                 break;
