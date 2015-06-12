@@ -565,7 +565,7 @@ static NSString *CellIdentifier = @"Cell";
     [self.tableView addGestureRecognizer:doubleTap];
     
     UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    longPress.minimumPressDuration = 1.0f;
+    longPress.minimumPressDuration = 0.5f;
     [self.tableView addGestureRecognizer:longPress];
 }
 

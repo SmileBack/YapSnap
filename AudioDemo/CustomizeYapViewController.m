@@ -351,7 +351,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Take a Photo", @"Upload a Photo", nil];
+                                                    otherButtonTitles:@"Take a Photo", @"Photo Library", nil];
     actionSheet.tag = 100;
     [actionSheet showInView:self.view];
     

@@ -24,7 +24,7 @@
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *albumImage;
-
+@property IBOutlet UIActivityIndicatorView* activityIndicator;
 
 // nil means we don't know yet. YES/NO means the backend told us.
 @property (nonatomic, strong) NSNumber *isFromFriend;
@@ -52,12 +52,13 @@
         self.player.pitchShift = self.yap.pitchValueInCentUnits.floatValue/1000;
         NSLog(@"Pitch Shift: %f", self.player.pitchShift);
     }
-
+    
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
-
+    
     [self playYapAudioAfterHandlingImage];
-
-    [self.progressView.activityIndicator startAnimating];
+    
+    self.titleLabel.alpha = 0;
+    [self.activityIndicator startAnimating];
     
     self.textView.text = self.yap.text;
     
@@ -77,11 +78,12 @@
             [mixpanel track:@"Volume Notification - PlayBack"];
         });
     }
-    
-    self.albumImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.yap.imageURL]]];
+    if ([self.yap.type isEqual:@"SpotifyMessage"] && self.yap.imageURL) {
+        [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yap.imageURL]];
+    }
     
     [self addShadowToTextView];
-
+    
     // Pitch possibilities: 1000, 500, 0, -400
     if (self.yap.pitchValueInCentUnits.intValue > 750) {
         if (self.isiPhone5Size) {
@@ -160,7 +162,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-
+    
     if (self.timer) {
         [self.timer invalidate];
     }
@@ -176,7 +178,7 @@
 {
     NSLog(@"Stopping");
     [self.timer invalidate];
-
+    
     /*
      if (self.player.state != STKAudioPlayerStatePlaying) {
      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -197,11 +199,11 @@
                     usingBlock:^(NSNotification *note) {
                         [self stop];
                         /*
-                        [[API sharedAPI] updateYapStatus:self.yap toStatus:@"unopened" withCallback:^(BOOL success, NSError *error) {
-                            if (error) {
-
-                            }
-                        }];
+                         [[API sharedAPI] updateYapStatus:self.yap toStatus:@"unopened" withCallback:^(BOOL success, NSError *error) {
+                         if (error) {
+                         
+                         }
+                         }];
                          */
                     }];
 }
@@ -209,7 +211,7 @@
 - (void) dismissThis
 {
     [self dismissViewControllerAnimated:NO completion:nil];
-
+    
     if (!self.isFromFriend.boolValue) {
         __weak YSYap *weakYap = self.yap;
         if (self.strangerCallback) {
@@ -222,7 +224,7 @@
 - (void) timerFired
 {
     self.elapsedTime += TIME_INTERVAL;
-
+    
     CGFloat trackLength = [self.yap.duration floatValue];
     CGFloat progress = self.elapsedTime / 12;
     [self.progressView setProgress:progress];
@@ -251,7 +253,14 @@
                                                         selector:@selector(timerFired)
                                                         userInfo:nil
                                                          repeats:YES];
-            [self.progressView.activityIndicator stopAnimating];
+            [self.activityIndicator stopAnimating];
+            [UIView animateWithDuration:0.3
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{
+                                 self.titleLabel.alpha = 1;
+                             }
+                             completion:nil];
             
             CGFloat width = self.view.frame.size.width;
             CGFloat progressViewRemainderWidth = (12 - [self.yap.duration floatValue]) * width/12;
@@ -296,7 +305,7 @@
         NSLog(@"state == STKAudioPlayerStateStopped");
         [self.timer invalidate];
         self.timer = nil;
-        [self.progressView.activityIndicator stopAnimating]; // This line may not be necessary
+        [self.activityIndicator stopAnimating];
         [[NSNotificationCenter defaultCenter] postNotificationName:PLAYBACK_STOPPED_NOTIFICATION object:nil]; //Not currently used
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
