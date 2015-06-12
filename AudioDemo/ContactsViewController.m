@@ -306,6 +306,8 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
+//TODO: Work on the numbers / names displaying before the search
+//TODO: fix when the search is cancelled - crashes occasionally
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.builder.builderType == BuilderTypeAddFriends) {
