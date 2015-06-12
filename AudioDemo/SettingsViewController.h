@@ -15,6 +15,7 @@
 #define PHONE_NUMBER_SECTION @"Phone"
 #define CLEAR_YAPS_SECTION @"Clear All Yaps"
 #define FEEDBACK_SECTION @"Send Us Feedback"
+#define DOWNLOAD_SPOTIFY_SECTION @"Download Spotify"
 #define LOGOUT_SECTION @"Logout"
 
 @interface SettingsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>

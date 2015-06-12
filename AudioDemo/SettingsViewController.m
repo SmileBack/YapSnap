@@ -14,6 +14,7 @@
 
 #define LOGOUT @"logout"
 #define CLEAR_YAPS @"clear_yaps"
+#define DOWNLOAD_SPOTIFY @"download_spotify"
 
 @interface SettingsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -75,7 +76,7 @@
 - (NSArray *) sections
 {
     if (!_sections) {
-        _sections = @[FIRST_NAME_SECTION, LAST_NAME_SECTION, EMAIL_SECTION, PHONE_NUMBER_SECTION, CLEAR_YAPS_SECTION, FEEDBACK_SECTION, LOGOUT_SECTION];
+        _sections = @[FIRST_NAME_SECTION, LAST_NAME_SECTION, EMAIL_SECTION, PHONE_NUMBER_SECTION, CLEAR_YAPS_SECTION, FEEDBACK_SECTION, DOWNLOAD_SPOTIFY_SECTION, LOGOUT_SECTION];
     }
     return _sections;
 }
@@ -155,6 +156,14 @@
                                               otherButtonTitles:@"Yes", nil];
         self.alertViewString = CLEAR_YAPS;
         [alert show];
+    } else if ([DOWNLOAD_SPOTIFY_SECTION isEqualToString:section]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download Spotify"
+                                                        message:@"We link song snippets to full songs on Spotify!"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Download", nil];
+        self.alertViewString = DOWNLOAD_SPOTIFY;
+        [alert show];
     }
 }
 
@@ -192,6 +201,11 @@
                 }
                 
             }];
+        }
+    } else if ([DOWNLOAD_SPOTIFY isEqualToString:self.alertViewString]) {
+        if (buttonIndex == 1) {
+            NSString *iTunesLink = @"itms-apps://itunes.apple.com/app/id324684580";
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
         }
     }
 }
