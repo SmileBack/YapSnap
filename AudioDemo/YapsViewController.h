@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YTYapCreatorDelegate.h"
 
-@interface YapsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, YTYapCreatingDelegate>
+@interface YapsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, YTYapCreatingDelegate, UIActionSheetDelegate>
 
 #define VIEWED_PUSH_NOTIFICATION_POPUP @"yaptap.ViewedPushNotificationPopup"
 #define VIEWED_FIRST_SENT_YAP_ALERT @"yaptap.ViewedFirstYapAlert"

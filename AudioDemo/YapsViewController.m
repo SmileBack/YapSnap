@@ -448,9 +448,17 @@ static NSString *CellIdentifier = @"Cell";
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Double Tapped Row"];
     
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Reply with Same Clip", @"Reply with New Clip", nil];
+    [actionSheet showInView:self.view];
+    /*
     YSYap *yap = self.yaps[indexPath.row];
     [self didOriginateReplyFromYapSameClip:yap];
     //[self performSegueWithIdentifier:@"Reply Segue" sender:yap];
+     */
 }
 
 - (void) cellLongPressedAtIndexPath:(NSIndexPath *)indexPath
@@ -760,5 +768,25 @@ static NSString *CellIdentifier = @"Cell";
     [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
 }
 
+
+#pragma mark - UIActionSheet method implementation
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"Tapped Action Sheet; Button Index: %ld", (long)buttonIndex);
+    // Take a photo
+    if (buttonIndex == 0) {
+        //[self didOriginateReplyFromYapSameClip:self.yap];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Reply (Same Clip)"];
+        // Upload a photo
+    } else if (buttonIndex == 1) {
+        //[self didOriginateReplyFromYapNewClip:self.yap];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Reply (Different Clip)"];
+    } else if (buttonIndex == 2) {
+        NSLog(@"Did tap cancel");
+    }
+    
+}
 
 @end
