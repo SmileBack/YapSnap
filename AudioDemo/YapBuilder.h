@@ -13,6 +13,13 @@
 #define MESSAGE_TYPE_VOICE @"VoiceMessage"
 #define MESSAGE_TYPE_SPOTIFY @"SpotifyMessage"
 
+typedef NS_ENUM(NSUInteger, YTYapSendingAction) {
+    YTYapSendingActionReply,
+    YTYapSendingActionForward
+};
+
+@class YSYap;
+
 @interface YapBuilder : YTBuilder
 
 @property (nonatomic, strong) NSString *messageType;
@@ -26,5 +33,7 @@
 @property (nonatomic, strong) NSURL *image;
 @property (nonatomic, strong) NSString *imageAwsUrl;
 @property (nonatomic, strong) NSString *imageAwsEtag;
+
+- (id)initWithYap:(YSYap*)yap sendingAction:(YTYapSendingAction)action;
 
 @end

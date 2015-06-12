@@ -10,6 +10,7 @@
 #import <StreamingKit/STKAudioPlayer.h>
 #import "YSYap.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "YTYapCreatorDelegate.h"
 
 #define PLAYBACK_STOPPED_NOTIFICATION @"com.yapsnap.PlaybackStoppedNotification"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
@@ -23,7 +24,7 @@ typedef void (^StrangerCallback)(YSYap *yap);
 }
 @property (nonatomic, strong) YSYap *yap;
 @property (nonatomic, strong) IBOutlet MPVolumeView *volumeView;
-
+@property (nonatomic, weak) id<YTYapCreatingDelegate> yapCreatingDelegate;
 @property (nonatomic, strong) StrangerCallback strangerCallback;
 
 - (void) stop;

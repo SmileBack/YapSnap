@@ -18,6 +18,7 @@
 #import <STKAudioPlayer.h>
 #import <AVFoundation/AVAudioSession.h>
 #import "FriendsViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface CustomizeYapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -114,9 +115,15 @@
         self.bottomConstraint.constant = 0;
         self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:32];
     }
-        
-    self.albumImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.yapBuilder.track.imageURL]]];
     
+    [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.track.imageURL]];
+    self.textView.text = self.yapBuilder.text;
+    if (self.yapBuilder.imageAwsUrl && ![self.yapBuilder.imageAwsUrl isEqual: [NSNull null]]) {
+        [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.imageAwsUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            self.yapPhoto.hidden = NO;
+        }];
+    }
+
     double delay3 = .8;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self didTapAddTextButton];

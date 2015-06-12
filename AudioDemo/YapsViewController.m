@@ -23,6 +23,7 @@
 #import "YapsCache.h"
 #import "AddFriendAlertView.h"
 #import "BlockFriendAlertView.h"
+#import "CustomizeYapViewController.h"
 
 #define PENDING_YAPS_SECTION 0
 
@@ -448,7 +449,8 @@ static NSString *CellIdentifier = @"Cell";
     [mixpanel track:@"Double Tapped Row"];
     
     YSYap *yap = self.yaps[indexPath.row];
-    [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
+    [self didOriginateReplyFromYap:yap];
+    //[self performSegueWithIdentifier:@"Reply Segue" sender:yap];
 }
 
 - (void) cellLongPressedAtIndexPath:(NSIndexPath *)indexPath
@@ -489,6 +491,7 @@ static NSString *CellIdentifier = @"Cell";
 {
     if ([@"Playback Segue" isEqualToString:segue.identifier]) {
         PlaybackVC *vc = segue.destinationViewController;
+        vc.yapCreatingDelegate = self;
         YSYap *yap = sender;
         vc.yap = yap;
         __weak YapsViewController *weakSelf = self;
@@ -517,6 +520,14 @@ static NSString *CellIdentifier = @"Cell";
         } else {
             YSContact *contact = [YSContact contactWithName:targetName andPhoneNumber:targetPhone];
             audioVC.contactReplyingTo = contact;
+        }
+    } else if ([@"Audio Capture With Yap" isEqualToString:segue.identifier]) {
+        if ([sender isKindOfClass:[NSDictionary class]]) {
+            YSYap* yap = (YSYap*)sender[@"yap"];
+            YTYapSendingAction action = [sender[@"action"] isEqualToString:@"reply"] ? YTYapSendingActionReply : YTYapSendingActionForward;
+            YapBuilder* builder = [[YapBuilder alloc] initWithYap:yap sendingAction:action];
+            CustomizeYapViewController* vc = segue.destinationViewController;
+            vc.yapBuilder = builder;
         }
     }
 }
@@ -729,6 +740,18 @@ static NSString *CellIdentifier = @"Cell";
 - (BOOL) didOpenYapForFirstTime
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
+}
+
+#pragma mark - YTYapCreatorDelegate
+
+- (void)didOriginateForwardFromYap:(YSYap *)yap
+{
+    [self performSegueWithIdentifier:@"Audio Capture With Yap" sender:@{@"yap": yap, @"action": @"reply"}];
+}
+
+- (void)didOriginateReplyFromYap:(YSYap *)yap
+{
+    [self performSegueWithIdentifier:@"Audio Capture With Yap" sender:@{@"yap": yap, @"action": @"reply"}];
 }
 
 

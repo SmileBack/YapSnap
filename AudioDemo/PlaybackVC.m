@@ -162,31 +162,31 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    if (self.timer) {
-        [self.timer invalidate];
-    }
+    [self stop];
 }
 
+#pragma mark - Actions
+
 - (IBAction)didTapStopButton:(id)sender {
-    [self stop];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Cancel PlayBack"];
+    [self dismissThis];
+}
+
+- (IBAction)didTapReply:(id)sender {
+    [self dismissThis];
+    [self.yapCreatingDelegate didOriginateReplyFromYap:self.yap];
+}
+
+- (IBAction)didTapForward:(id)sender {
+    [self dismissThis];
+    [self.yapCreatingDelegate didOriginateForwardFromYap:self.yap];
 }
 
 - (void) stop
 {
     NSLog(@"Stopping");
     [self.timer invalidate];
-    
-    /*
-     if (self.player.state != STKAudioPlayerStatePlaying) {
-     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-     [self dismissThis];
-     });
-     }
-     */
-    
     [self.player stop];
 }
 
@@ -309,8 +309,6 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:PLAYBACK_STOPPED_NOTIFICATION object:nil]; //Not currently used
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self dismissThis];
-            
             if (!self.didSeeDoubleTapBanner && self.yap.senderID.intValue != 1) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[YTNotifications sharedNotifications] showNotificationText:@"Double Tap To Reply!"];

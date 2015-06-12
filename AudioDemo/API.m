@@ -329,17 +329,21 @@ static API *sharedAPI;
     NSString *url = [self urlForEndpoint:@"audio_messages"];
     
     YSTrack *song = builder.track;
-    
-    NSDictionary *params = [self paramsWithDict:@{@"spotify_song_name": song.name,
-                                                  @"spotify_song_id": song.spotifyID,
-                                                  @"spotify_image_url": song.imageURL,
-                                                  @"spotify_album_name": song.albumName,
-                                                  @"spotify_artist_name": song.artistName,
-                                                  @"spotify_full_song_url": song.spotifyURL,
-                                                  @"spotify_preview_url": song.previewURL,
-                                                  @"type": MESSAGE_TYPE_SPOTIFY,
-                                                  @"seconds_to_fast_forward": song.secondsToFastForward,
-                                                  }
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"spotify_song_name": song.name,
+                                        @"spotify_song_id": song.spotifyID,
+                                        @"spotify_image_url": song.imageURL,
+                                        @"spotify_artist_name": song.artistName,
+                                        @"spotify_full_song_url": song.spotifyURL,
+                                        @"spotify_preview_url": song.previewURL,
+                                        @"type": MESSAGE_TYPE_SPOTIFY,
+                                        @"seconds_to_fast_forward": song.secondsToFastForward,
+                                        }];
+    if (song.albumName) {
+        dictionary[@"spotify_album_name"] = song.albumName;
+    } else { // TODO: Hack, back-end fails when album name isn't specified, so just specify a fake one.
+        dictionary[@"spotify_album_name"] = @"fake";
+    }
+    NSDictionary *params = [self paramsWithDict:dictionary
                                   andYapBuilder:builder];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
