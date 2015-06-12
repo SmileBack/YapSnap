@@ -746,7 +746,7 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void)didOriginateForwardFromYap:(YSYap *)yap
 {
-    [self performSegueWithIdentifier:@"Audio Capture With Yap" sender:@{@"yap": yap, @"action": @"reply"}];
+    [self performSegueWithIdentifier:@"Audio Capture With Yap" sender:@{@"yap": yap, @"action": @"forward"}];
 }
 
 - (void)didOriginateReplyFromYap:(YSYap *)yap
