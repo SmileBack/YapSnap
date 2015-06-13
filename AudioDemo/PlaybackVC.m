@@ -26,6 +26,10 @@
 @property (strong, nonatomic) IBOutlet UIImageView *albumImage;
 @property IBOutlet UIActivityIndicatorView* activityIndicator;
 
+
+@property (weak, nonatomic) IBOutlet UIButton *forwardButton;
+@property (weak, nonatomic) IBOutlet UIButton *replyButton;
+
 // nil means we don't know yet. YES/NO means the backend told us.
 @property (nonatomic, strong) NSNumber *isFromFriend;
 @end

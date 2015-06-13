@@ -29,18 +29,12 @@
 @property (strong, nonatomic) IBOutlet UIImageView *yapPhoto;
 @property (strong, nonatomic) IBOutlet UILabel *contactLabel;
 @property (strong, nonatomic) STKAudioPlayer* player;
-@property (nonatomic) CGFloat pitchShiftValue;
 @property (strong, nonatomic) IBOutlet UIButton *resetPhotoButton;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *balloonLeftConstraint;
 
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
-@property (strong, nonatomic) IBOutlet UIButton *balloonButton;
-@property (strong, nonatomic) IBOutlet UIImageView *balloonButtonImage;
 @property (strong, nonatomic) IBOutlet UIButton *cameraButton;
-@property (strong, nonatomic) IBOutlet UIImageView *cameraButtonImage;
-@property (nonatomic, strong) NSString *balloonCancelButtonTitle;
 
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 
@@ -50,9 +44,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
 
-
-- (IBAction)didTapAddTextButton;
-- (IBAction)didTapBalloonButton;
 - (IBAction)didTapCameraButton;
 - (IBAction)didTapResetPhotoButton;
 
@@ -112,8 +103,6 @@
     });
     
     
-    [self setBalloonLeftConstraint];
-    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapImageView)];
     [self.yapPhoto addGestureRecognizer:tapGesture];
     
@@ -150,6 +139,7 @@
     }
 }
 
+/*
 - (void) addEmbededCamera {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
     imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -165,92 +155,14 @@
     
     self.imagePicker = imagePicker;
 }
+*/
 
-- (void) setBalloonLeftConstraint {
-    if ([self.yapBuilder.messageType isEqual: @"VoiceMessage"]) {
-        //self.balloonButton.hidden = NO;
-        //self.balloonButtonImage.hidden = NO;
-        if (IS_IPHONE_4_SIZE) {
-            // Nothing necessary here
-        } else if (IS_IPHONE_5_SIZE) {
-            // Nothing necessary here
-        } else if (IS_IPHONE_6_SIZE) {
-            self.balloonLeftConstraint.constant = 78;
-        } else if (IS_IPHONE_6_PLUS_SIZE ) {
-            self.balloonLeftConstraint.constant = 94;
-        }
-        
-    } else if ([self.yapBuilder.messageType isEqual: @"SpotifyMessage"]) {
-        if (IS_IPHONE_4_SIZE) {
-            self.balloonLeftConstraint.constant = 16;
-        } else if (IS_IPHONE_5_SIZE) {
-            self.balloonLeftConstraint.constant = 16;
-        } else if (IS_IPHONE_6_SIZE) {
-            self.balloonLeftConstraint.constant = 43;
-        } else if (IS_IPHONE_6_PLUS_SIZE ) {
-            self.balloonLeftConstraint.constant = 59;
-        }
-    }
-}
 
-- (void) styleCustomizationButtons {
+/*
     self.balloonButton.layer.cornerRadius = 26;
     self.balloonButton.layer.borderWidth = 2;
     self.balloonButton.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    self.addTextToYapButton.layer.cornerRadius = 26;
-    self.addTextToYapButton.layer.borderWidth = 2;
-    self.addTextToYapButton.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    self.cameraButton.layer.cornerRadius = 26;
-    self.cameraButton.layer.borderWidth = 2;
-    self.cameraButton.layer.borderColor = [UIColor whiteColor].CGColor;
-}
-
-- (void) didTapBalloonButton
-{
-    if (self.pitchShiftValue == 0) {
-        self.balloonCancelButtonTitle = @"Cancel";
-    } else {
-        self.balloonCancelButtonTitle = @"Back to Normal";
-    }
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select a Voice Filter"
-                                                             delegate:self
-                                                    cancelButtonTitle:self.balloonCancelButtonTitle
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Helium", @"Chipmunk", @"Darth Vader", nil];
-    actionSheet.tag = 200;
-    [actionSheet showInView:self.view];
-    
-    if ([self.textView isFirstResponder]) {
-        [self.textView resignFirstResponder];
-    }
-    
-    [self reduceAlphaOfButtons];
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Balloon"];
-}
-
-- (void) playAudioWithPitch:(CGFloat)pitch {
-    NSArray *pathComponents = [NSArray arrayWithObjects:
-                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                               @"MyAudioMemo.m4a",
-                               nil];
-    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-    self.player.pitchShift = pitch;
-    [self.player playURL:outputFileURL];
-}
-
-- (void) resetProgressViewColor {
-    if (IS_IPHONE_5_SIZE) {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewRedNew.png"]];
-    } else if (IS_IPHONE_4_SIZE) {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewRedNew.png"]];
-    } else {
-        [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewRedNew.png"]];
-    }
-}
+*/
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -336,8 +248,6 @@
     self.continueButton.userInteractionEnabled = NO;
     self.yapBuilder.text = self.textView.text;
     self.yapBuilder.color = self.view.backgroundColor;
-    // To get pitch value in 'cent' units, multiply self.pitchShiftValue by STK_PITCHSHIFT_TRANSFORM
-    self.yapBuilder.pitchValueInCentUnits = [NSNumber numberWithFloat:(1000*self.pitchShiftValue)];
     
     if (self.yapBuilder.contacts.count > 0) {
         [self sendYap];
@@ -354,11 +264,6 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
-- (IBAction)didTapAddTextButton {
-    
-
-}
-
 - (IBAction)didTapCameraButton {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
@@ -371,8 +276,6 @@
     if ([self.textView isFirstResponder]) {
         [self.textView resignFirstResponder];
     }
-    
-    [self reduceAlphaOfButtons];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Add Camera Button"];
@@ -387,10 +290,16 @@
         
         if (!self.isForwardingYap && !self.isReplying) {
             if (self.textView.text.length == 0) {
-                [self updateAlphaOfButtons];
+                self.titleLabel.alpha = 1;
                 self.titleLabel.text = @"Add Message";
             } else {
-                self.titleLabel.text = @"";
+                [UIView animateWithDuration:.3
+                                      delay:0
+                                    options:UIViewAnimationOptionCurveEaseOut
+                                 animations:^{
+                                     self.titleLabel.alpha = 0;
+                                 }
+                                 completion:nil];
             }
         }
         
@@ -402,7 +311,6 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     NSLog(@"Textfield did begin editing");
-    [self reduceAlphaOfButtons];
 }
 
 #pragma mark - YSColorPickerDelegate
@@ -441,8 +349,6 @@
     self.yapBuilder.image = nil;
     self.resetPhotoButton.hidden = YES;
     self.yapPhoto.hidden = YES;
-    [self removeShadowFromTextView];
-    [self updateAlphaOfButtons];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Reset Photo Button"];
@@ -471,8 +377,6 @@
     //self.textView.userInteractionEnabled = NO;
     [self addShadowToTextView];
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-    [self updateAlphaOfButtons];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -511,46 +415,6 @@
     self.textView.layer.shadowRadius = 1.0f;
 }
 
-- (void) removeShadowFromTextView
-{
-    /*
-    self.textView.layer.shadowColor = [[UIColor clearColor] CGColor];
-    self.textView.layer.shadowOffset = CGSizeMake(0, 0);
-    self.textView.layer.shadowOpacity = 0;
-    self.textView.layer.shadowRadius = 0;
-     */
-}
-
-- (void) updateAlphaOfButtons {
-    if ((self.textView.text.length > 0) || self.yapPhoto.image != nil) {
-        [self reduceAlphaOfButtons];
-    } else {
-        [self restoreAlphaOfButtons];
-    }
-    
-}
-
-- (void) reduceAlphaOfButtons {
-    /*
-    self.cameraButton.alpha = 0.3;
-    self.addTextToYapButton.alpha = 0.3;
-    self.balloonButton.alpha = 0.3;
-    self.balloonButtonImage.alpha = 0.3;
-    self.cameraButtonImage.alpha = 0.3;
-     */
-}
-
-- (void) restoreAlphaOfButtons {
-    /*
-    self.cameraButton.alpha = 1;
-    self.addTextToYapButton.alpha = 1;
-    self.balloonButton.alpha = 1;
-    self.balloonButtonImage.alpha = 1;
-    self.cameraButtonImage.alpha = 1;
-    self.resetPhotoButton.alpha = 1;
-     */
-}
-
 #pragma mark - UIActionSheet method implementation
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -570,132 +434,8 @@
         
         } else if (buttonIndex == 2) {
             NSLog(@"Did tap cancel");
-            [self updateAlphaOfButtons];
-        }
-    } else if (actionSheet.tag == 200) {
-        if (buttonIndex == 0) {
-            if (self.isiPhone5Size) {
-                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone5.png"]];
-            } else if (self.isiPhone4Size) {
-                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone4.png"]];
-            } else {
-                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellow.png"]];
-            }
-            
-            float volume = [[AVAudioSession sharedInstance] outputVolume];
-            if (volume < 0.5) {
-                double delay = .2;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showPitchVolumeText:@"Playing Helium Voice..." andSubtitleText:@"Turn up the volume"];
-                });
-            } else {            
-                double delay = .1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Playing Helium Voice..."];
-                });
-            }
-            
-            self.pitchShiftValue = 1.0; // +1000
-            [self playAudioWithPitch:self.pitchShiftValue];
-            
-            self.balloonButton.layer.borderColor = HELIUM_PITCH_COLOR.CGColor;
-            self.balloonButton.layer.borderWidth = 3;
-            [self.balloonButtonImage setImage:[UIImage imageNamed:@"Balloon20.png"]];
-            
-            [self updateAlphaOfButtons];
-            
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Pitch Helium"];
-        } else if (buttonIndex == 1) {
-            if (self.isiPhone5Size) {
-                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone5.png"]];
-            } else if (self.isiPhone4Size) {
-                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone4.png"]];
-            } else {
-                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreen.png"]];
-            }
-            
-            float volume = [[AVAudioSession sharedInstance] outputVolume];
-            if (volume < 0.5) {
-                double delay = .1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showPitchVolumeText:@"Playing Chipmunk Voice..." andSubtitleText:@"Turn up the volume"];
-                });
-            } else {
-                double delay = .1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Playing Chipmunk Voice..."];
-                });
-            }
-            
-            self.pitchShiftValue = 0.5; // +500
-            [self playAudioWithPitch:self.pitchShiftValue];
-            
-            self.balloonButton.layer.borderColor = CHIPMUNK_PITCH_COLOR.CGColor;
-            self.balloonButton.layer.borderWidth = 3;
-            [self.balloonButtonImage setImage:[UIImage imageNamed:@"Chipmunk80.png"]];
-            
-            [self updateAlphaOfButtons];
-            
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Pitch Chipmunk"];
-        } else if (buttonIndex == 2) {
-            if (self.isiPhone5Size) {
-                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone5.png"]];
-            } else if (self.isiPhone4Size) {
-                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone4.png"]];
-            } else {
-                [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlue.png"]];
-            }
-            
-            float volume = [[AVAudioSession sharedInstance] outputVolume];
-            if (volume < 0.5) {
-                double delay = .1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showPitchVolumeText:@"Playing Darth Vader Voice..." andSubtitleText:@"Turn up the volume"];
-                });
-            } else {
-                double delay = .1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showBlueNotificationText:@"Playing Darth Vader Voice..."];
-                });
-            }
-            
-            self.pitchShiftValue = -0.4; // -400
-            [self playAudioWithPitch:self.pitchShiftValue];
-            
-            self.balloonButton.layer.borderColor = DARTH_VADER_PITCH_COLOR.CGColor;
-            self.balloonButton.layer.borderWidth = 3;
-            [self.balloonButtonImage setImage:[UIImage imageNamed:@"DarthVader10.png"]];
-            
-            [self updateAlphaOfButtons];
-            
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Pitch Darth Vader"];
-        } else if (buttonIndex == 3) {
-            NSLog(@"Did tap cancel");
-            
-            self.balloonButton.layer.borderColor = [UIColor whiteColor].CGColor;
-            self.balloonButton.layer.borderWidth = 2;
-            
-            [self updateAlphaOfButtons];
-            
-            if (self.pitchShiftValue != 0) {
-                [[YTNotifications sharedNotifications] showBlueNotificationText:@"Back to Normal"];
-                [self resetProgressViewColor];
-                [self.balloonButtonImage setImage:[UIImage imageNamed:@"Balloon20.png"]];
-                self.player.pitchShift = 0;
-                self.pitchShiftValue = 0;
-                [self.player stop];
-                Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                [mixpanel track:@"Tapped Pitch Normal"];
-            } else {
-                Mixpanel *mixpanel = [Mixpanel sharedInstance];
-                [mixpanel track:@"Tapped Pitch Cancel"];
-            }
         }
     }
-    
 }
 
 - (IBAction)leftButtonPressed:(id)sender
