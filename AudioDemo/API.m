@@ -290,9 +290,7 @@ static API *sharedAPI;
         } else {
             NSLog(@"Successfuly uploaded voice file to AWS");
         }
-        
-        NSLog(@"Pitch Value (in cent units) = %@", builder.pitchValueInCentUnits);
-        
+                
         NSDictionary *params = [weakSelf paramsWithDict:@{@"type": MESSAGE_TYPE_VOICE,
                                                           @"aws_recording_url": url,
                                                           @"aws_recording_etag": etag,

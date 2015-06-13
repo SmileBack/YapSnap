@@ -452,7 +452,7 @@ static NSString *CellIdentifier = @"Cell";
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Reply with Same Clip", @"Reply with New Clip", nil];
+                                                    otherButtonTitles:@"Reply with Same Clip", @"Select New Clip", nil];
     [actionSheet showInView:self.view];
     /*
     YSYap *yap = self.yaps[indexPath.row];

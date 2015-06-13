@@ -68,17 +68,6 @@ static YTNotifications *_sharedNotifications;
     [self showNotificationWithKey:text options:options];
 }
 
-- (void) showPitchVolumeText:(NSString *)text andSubtitleText:(NSString *)subtitleText
-{
-    NSDictionary *options = @{
-                              kCRToastTextKey: text,
-                              kCRToastSubtitleTextKey: subtitleText,
-                              kCRToastBackgroundColorKey: THEME_BACKGROUND_COLOR,
-                              };
-    
-    [self showNotificationWithKey:text options:options];
-}
-
 - (void) showBufferingText:(NSString *)text
 {
     NSDictionary *options = @{

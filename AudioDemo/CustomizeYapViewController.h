@@ -13,7 +13,6 @@
 @interface CustomizeYapViewController : UIViewController<YSColorPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) YapBuilder *yapBuilder;
-@property (weak, nonatomic) IBOutlet UISlider *pitchSlider;
 @property (assign, nonatomic) BOOL isForwardingYap;
 @property (assign, nonatomic) BOOL isReplying;
 

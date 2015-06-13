@@ -51,11 +51,13 @@
     
     self.titleLabel.text = @"";//[NSString stringWithFormat:@"%@", self.yap.displaySenderName];
     
+    /*
     if ([self.yap.type isEqual:@"VoiceMessage"]) {
         // To get pitch value in pitchShift unit, divide self.yap.pitchValueInCentUnits by STK_PITCHSHIFT_TRANSFORM
         self.player.pitchShift = self.yap.pitchValueInCentUnits.floatValue/1000;
         NSLog(@"Pitch Shift: %f", self.player.pitchShift);
     }
+     */
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
     
@@ -75,7 +77,7 @@
     self.textView.textContainer.maximumNumberOfLines = 5;
     self.textView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
     
-    self.view.backgroundColor = THEME_BACKGROUND_COLOR; //[UIColor colorWithRed:[self.yap.rgbColorComponents[0] floatValue]/255 green:[self.yap.rgbColorComponents[1] floatValue]/255 blue:[self.yap.rgbColorComponents[2] floatValue]/255 alpha:1];
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
     float volume = [[AVAudioSession sharedInstance] outputVolume];
     if (volume < 0.5) {
@@ -92,33 +94,6 @@
     [self addShadowToTextView];
     
     [self styleActionButtons];
-    
-    // Pitch possibilities: 1000, 500, 0, -400
-    if (self.yap.pitchValueInCentUnits.intValue > 750) {
-        if (self.isiPhone5Size) {
-            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone5.png"]];
-        } else if (self.isiPhone4Size) {
-            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellowiPhone4.png"]];
-        } else {
-            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewYellow.png"]];
-        }
-    } else if (self.yap.pitchValueInCentUnits.intValue < 750 && self.yap.pitchValueInCentUnits.intValue > 250) {
-        if (self.isiPhone5Size) {
-            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone5.png"]];
-        } else if (self.isiPhone4Size) {
-            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreeniPhone4.png"]];
-        } else {
-            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewGreen.png"]];
-        }
-    } else if (self.yap.pitchValueInCentUnits.intValue < -250) {
-        if (self.isiPhone5Size) {
-            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone5.png"]];
-        } else if (self.isiPhone4Size) {
-            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlueiPhone4.png"]];
-        } else {
-            [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlue.png"]];
-        }
-    }
 }
 
 - (void) styleActionButtons {
@@ -199,11 +174,6 @@
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:@"Use Same Clip", @"Select New Clip", nil];
     [actionSheet showInView:self.view];
-    
-    /*
-    [self dismissThis];
-    [self.yapCreatingDelegate didOriginateReplyFromYap:self.yap];
-     */
 }
 
 - (IBAction)didTapForward:(id)sender {
