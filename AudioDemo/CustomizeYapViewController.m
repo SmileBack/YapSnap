@@ -157,13 +157,6 @@
 }
 */
 
-
-/*
-    self.balloonButton.layer.cornerRadius = 26;
-    self.balloonButton.layer.borderWidth = 2;
-    self.balloonButton.layer.borderColor = [UIColor whiteColor].CGColor;
-*/
-
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

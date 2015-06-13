@@ -91,6 +91,8 @@
     
     [self addShadowToTextView];
     
+    [self styleActionButtons];
+    
     // Pitch possibilities: 1000, 500, 0, -400
     if (self.yap.pitchValueInCentUnits.intValue > 750) {
         if (self.isiPhone5Size) {
@@ -117,6 +119,16 @@
             [self.progressView setProgressImage:[UIImage imageNamed:@"ProgressViewLightBlue.png"]];
         }
     }
+}
+
+- (void) styleActionButtons {
+     self.replyButton.layer.cornerRadius = 4;
+     self.replyButton.layer.borderWidth = 1;
+     self.replyButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
+    
+    self.forwardButton.layer.cornerRadius = 4;
+    self.forwardButton.layer.borderWidth = 1;
+    self.forwardButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
 }
 
 - (void) playYapAudioAfterHandlingImage
