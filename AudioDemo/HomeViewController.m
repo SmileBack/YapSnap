@@ -19,7 +19,6 @@
     int currSeconds;
 }
 
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *recipientLabel;
 @property (nonatomic, strong) NSNumber *unopenedYapsCount;
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
@@ -195,6 +194,7 @@
                      animations:^{
                          self.topLeftButton.alpha = 1;
                          self.yapsPageButton.alpha = 1;
+                         self.recipientLabel.alpha = 1;
                      }
                      completion:nil];
 }
@@ -206,6 +206,7 @@
                      animations:^{
                          self.topLeftButton.alpha = 0;
                          self.yapsPageButton.alpha = 0;
+                         self.recipientLabel.alpha = 0;
                      }
                      completion:nil];
 }
@@ -304,12 +305,13 @@
 {
     if ([self isInReplyMode]) {
         self.yapsPageButton.hidden = YES;
-        UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
+        UIImage *buttonImage = [UIImage imageNamed:@"CancelImageWhite2.png"];
         [self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
         self.topLeftButton.alpha = 1;
         
-        self.recipientLabel.hidden = NO;
-        self.recipientLabel.text = [NSString stringWithFormat:@"For: %@", self.contactReplyingTo.name];
+        self.recipientLabel.alpha = 1;
+        NSString *contactReplyingToFirstName = [[self.contactReplyingTo.name componentsSeparatedByString:@" "] objectAtIndex:0];
+        self.recipientLabel.text = [NSString stringWithFormat:@"Reply to %@", contactReplyingToFirstName];
         
         NSLog(@"In reply mode");
     } else {
@@ -350,7 +352,7 @@
 - (IBAction)leftButtonPressed:(id)sender
 {
     if ([self isInReplyMode]) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:NO];
     } else {
         [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
     }
