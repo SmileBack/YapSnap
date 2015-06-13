@@ -47,8 +47,6 @@
                                                                             target:nil
                                                                             action:nil];
     [self setupNotifications];
-        
-    [self setupNavBarStuff];
     
     if (IS_IPHONE_4_SIZE) {
         self.recipientLabelConstraint.constant = 20;
@@ -178,6 +176,9 @@
     
     //Nav bar should not be transparent after finishing registration process
     self.navigationController.navigationBar.translucent = NO;
+    
+    [self setupNavBarStuff];
+    
     [self reloadUnopenedYapsCount];
     [self updateYapsButtonAnimation];
     
@@ -194,7 +195,9 @@
                      animations:^{
                          self.topLeftButton.alpha = 1;
                          self.yapsPageButton.alpha = 1;
-                         self.recipientLabel.alpha = 1;
+                         if ([self isInReplyMode]) {
+                             self.recipientLabel.alpha = 1;
+                         }
                      }
                      completion:nil];
 }
