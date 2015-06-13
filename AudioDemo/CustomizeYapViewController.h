@@ -14,6 +14,9 @@
 
 @property (nonatomic, strong) YapBuilder *yapBuilder;
 @property (weak, nonatomic) IBOutlet UISlider *pitchSlider;
+@property (assign, nonatomic) BOOL isForwardingYap;
+@property (assign, nonatomic) BOOL isReplying;
+
 
 - (IBAction)leftButtonPressed:(id)sender;
 

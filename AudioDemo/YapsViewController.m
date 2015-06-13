@@ -536,6 +536,12 @@ static NSString *CellIdentifier = @"Cell";
             YapBuilder* builder = [[YapBuilder alloc] initWithYap:yap sendingAction:action];
             CustomizeYapViewController* vc = segue.destinationViewController;
             vc.yapBuilder = builder;
+            
+            if (action == YTYapSendingActionForward) {
+                vc.isForwardingYap = YES;
+            } else {
+                vc.isReplying = YES;
+            }
         }
     }
 }

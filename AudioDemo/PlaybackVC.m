@@ -45,7 +45,7 @@
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
     
-    self.titleLabel.text = [NSString stringWithFormat:@"%@", self.yap.displaySenderName];
+    self.titleLabel.text = @"";//[NSString stringWithFormat:@"%@", self.yap.displaySenderName];
     
     if ([self.yap.type isEqual:@"VoiceMessage"]) {
         // To get pitch value in pitchShift unit, divide self.yap.pitchValueInCentUnits by STK_PITCHSHIFT_TRANSFORM

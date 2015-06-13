@@ -896,8 +896,8 @@
                                     <constraint firstAttribute="width" constant="36" id="s6r-GV-Fpx"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yD7-vZ-19N">
-                                <rect key="frame" x="60" y="11" width="200" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yD7-vZ-19N">
+                                <rect key="frame" x="60" y="9" width="200" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="Q18-sT-X2W"/>
                                     <constraint firstAttribute="width" constant="200" id="aYw-wu-fFp"/>
@@ -929,7 +929,7 @@
                             <constraint firstItem="C8u-j8-TJl" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="51" id="L5M-Fr-zX4"/>
                             <constraint firstAttribute="trailing" secondItem="ygq-ac-kFT" secondAttribute="trailing" id="Lq3-1h-fim"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KDf-Vb-ilr" secondAttribute="trailing" constant="-14" id="OhA-Zs-R2S"/>
-                            <constraint firstItem="yD7-vZ-19N" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="11" id="Po5-WW-irE"/>
+                            <constraint firstItem="yD7-vZ-19N" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="9" id="Po5-WW-irE"/>
                             <constraint firstItem="aiy-hB-M9w" firstAttribute="trailing" secondItem="ygq-ac-kFT" secondAttribute="trailing" id="RYw-Kd-Y1b"/>
                             <constraint firstItem="gWj-LF-pEZ" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" constant="5" id="RaP-vP-B4s"/>
                             <constraint firstItem="u6z-Sq-Wub" firstAttribute="centerX" secondItem="C8u-j8-TJl" secondAttribute="centerX" id="TJl-Tc-mK7"/>
@@ -1179,7 +1179,7 @@ in your phone's settings!</string>
                                     <constraint firstAttribute="height" constant="35" id="Fwf-ky-ND6"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YapTap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCt-ck-W3X">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCt-ck-W3X">
                                 <rect key="frame" x="50" y="27" width="220" height="30"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

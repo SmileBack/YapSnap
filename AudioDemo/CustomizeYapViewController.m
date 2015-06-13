@@ -91,7 +91,11 @@
         }
         self.contactLabel.numberOfLines = 2;
     } else {
-        self.contactLabel.text = @"Send Yap";
+        if (self.isForwardingYap) {
+            self.contactLabel.text = @"Forward Yap";
+        } else {
+            self.contactLabel.text = @"Send Yap";
+        }
     }
     
     double delay = 0.2;
@@ -126,21 +130,24 @@
         }];
     }
 
-    double delay3 = .8;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self didTapAddTextButton];
-    });
+    if (!self.isForwardingYap) {
+        double delay3 = .8;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.textView becomeFirstResponder];
+        });
+    }
     
     [self addShadowToTextView];
     
-    //imageView.image = [UIImage imageWithContentsOfURL:theURL];
-    
-    //[self styleCustomizationButtons];
-    
-    //[self addEmbededCamera];
-    
-    //UIImage *buttonImage = [UIImage imageNamed:@"WhiteBackArrow5.png"];
-    //[self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
+    if (self.isForwardingYap) {
+        self.titleLabel.text = @"Edit Message";
+    } else if (self.isReplying) {
+        PhoneContact *contact = self.yapBuilder.contacts.firstObject;
+        NSString *contactFirstName = [[contact.name componentsSeparatedByString:@" "] objectAtIndex:0];
+        self.titleLabel.text = [NSString stringWithFormat:@"Reply to %@", contactFirstName];
+    } else {
+        self.titleLabel.text = @"Add Message";
+    }
 }
 
 - (void) addEmbededCamera {
@@ -348,11 +355,8 @@
 }
 
 - (IBAction)didTapAddTextButton {
-    [self.textView becomeFirstResponder];
-    self.textView.hidden = NO;
     
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Add Text Button"];
+
 }
 
 - (IBAction)didTapCameraButton {
@@ -380,12 +384,14 @@
         [textView resignFirstResponder];
         
         self.textView.text = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        self.titleLabel.text = @"";
         
-        if (self.textView.text.length == 0) {
-            //self.textView.hidden = YES;
-            [self updateAlphaOfButtons];
-            self.titleLabel.text = @"Add Message";
+        if (!self.isForwardingYap && !self.isReplying) {
+            if (self.textView.text.length == 0) {
+                [self updateAlphaOfButtons];
+                self.titleLabel.text = @"Add Message";
+            } else {
+                self.titleLabel.text = @"";
+            }
         }
         
         return NO;
