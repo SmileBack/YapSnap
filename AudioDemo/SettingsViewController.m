@@ -176,7 +176,6 @@
                 Mixpanel *mixpanel = [Mixpanel sharedInstance];
                 [mixpanel track:@"Logged Out"];
             }];
-            [self dismissViewControllerAnimated:YES completion:nil]; // Once logout API call is implemented on the back end, it's probably better to put this line of code in the success response of the call
         }
     } else if ([CLEAR_YAPS isEqualToString:self.alertViewString]) {
         if (buttonIndex == 1) {

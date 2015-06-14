@@ -161,10 +161,17 @@
 
 #pragma mark - Actions
 
-- (IBAction)didTapStopButton:(id)sender {
+- (IBAction)didTapCancelButton:(id)sender {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Cancel PlayBack"];
     [self dismissThis];
+    
+    if (!self.didSeeDoubleTapBanner && self.yap.senderID.intValue != 1) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"Double Tap To Reply!"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_DOUBLE_TAP_BANNER];
+        });
+    }
 }
 
 - (IBAction)didTapReply:(id)sender {
@@ -210,11 +217,12 @@
 {
     [self dismissViewControllerAnimated:NO completion:nil];
     
-    if (!self.isFromFriend.boolValue) {
+    if (!self.isFromFriend.boolValue && self.playerAlreadyStartedPlayingForThisSong) {
         __weak YSYap *weakYap = self.yap;
         if (self.strangerCallback) {
             self.strangerCallback(weakYap);
         }
+        self.isFromFriend = [NSNumber numberWithInt:1]; // We are setting self.isFromFriend.boolValue to True so that the same code isn't triggered when user dismisses the page
     }
 }
 
@@ -229,6 +237,14 @@
     
     if (self.elapsedTime >= trackLength) {
         [self stop];
+        
+        if (!self.isFromFriend.boolValue && self.playerAlreadyStartedPlayingForThisSong) {
+            __weak YSYap *weakYap = self.yap;
+            if (self.strangerCallback) {
+                self.strangerCallback(weakYap);
+            }
+            self.isFromFriend = [NSNumber numberWithInt:1]; // We are setting self.isFromFriend.boolValue to True so that the same code isn't triggered when user dismisses the page
+        }
     }
 }
 
@@ -305,15 +321,6 @@
         self.timer = nil;
         [self.activityIndicator stopAnimating];
         [[NSNotificationCenter defaultCenter] postNotificationName:PLAYBACK_STOPPED_NOTIFICATION object:nil]; //Not currently used
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if (!self.didSeeDoubleTapBanner && self.yap.senderID.intValue != 1) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"Double Tap To Reply!"];
-                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_DOUBLE_TAP_BANNER];
-                });
-            }
-        });
         
         // set self.playerAlreadyStartedPlayingForThisSong to FALSE!
         self.playerAlreadyStartedPlayingForThisSong = NO;

@@ -26,6 +26,7 @@ typedef void (^StrangerCallback)(YSYap *yap);
 @property (nonatomic, strong) IBOutlet MPVolumeView *volumeView;
 @property (nonatomic, weak) id<YTYapCreatingDelegate> yapCreatingDelegate;
 @property (nonatomic, strong) StrangerCallback strangerCallback;
+// nil means we don't know yet. YES/NO means the backend told us.
 
 - (void) stop;
 @end

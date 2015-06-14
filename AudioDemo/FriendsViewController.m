@@ -102,7 +102,11 @@
     
     [self setupDoubleTap];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:FRIENDS_YAP_SENT_NOTIFICATION
+    //Notifications:
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+    [center addObserverForName:FRIENDS_YAP_SENT_NOTIFICATION
                                                       object:nil
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note) {

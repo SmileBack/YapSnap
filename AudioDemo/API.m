@@ -175,15 +175,14 @@ static API *sharedAPI;
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               callback(YES, nil);
-              [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT object:nil];
-              [YSUser wipeCurrentUserData];
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               callback(NO, error);
               NSLog(@"Error logging out: %@", error);
-              [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT object:nil];
-              [YSUser wipeCurrentUserData];
           }];
+    // Eventually stick this in the success response
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGOUT object:nil];
+    [YSUser wipeCurrentUserData];
 }
 
 - (void) clearYaps:(SuccessOrErrorCallback)callback

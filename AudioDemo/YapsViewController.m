@@ -239,6 +239,17 @@ static NSString *CellIdentifier = @"Cell";
                         weakSelf.pendingYaps = nil;
                         [weakSelf.tableView reloadData];
                     }];
+   /*
+    [center addObserverForName:NOTIFICATION_LOGOUT
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      double delay = 1;
+                                                      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                                          [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                                                      });
+                                                  }];
+    */
 }
 
 -(BOOL) internetIsNotReachable
@@ -505,7 +516,10 @@ static NSString *CellIdentifier = @"Cell";
         __weak YapsViewController *weakSelf = self;
         if (yap.senderID.intValue != 1) {
             vc.strangerCallback = ^(YSYap *yap) {
-                [weakSelf promptToAddFriend:yap];
+                double delay = 0.5;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [weakSelf promptToAddFriend:yap];
+                });
             };
         }
     } else if ([@"Reply Segue" isEqualToString:segue.identifier]) {

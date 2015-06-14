@@ -180,7 +180,7 @@ static const float TIMER_INTERVAL = .02;
                     }];
     
     [center addObserverForName:NOTIFICATION_LOGOUT object:nil queue:nil usingBlock:^ (NSNotification *note) {
-        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
     }];
 /*
     [center addObserverForName:UIApplicationWillResignActiveNotification
