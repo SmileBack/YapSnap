@@ -166,7 +166,7 @@
     [mixpanel track:@"Tapped Cancel PlayBack"];
     [self dismissThis];
     
-    if (!self.didSeeDoubleTapBanner && self.yap.senderID.intValue != 1) {
+    if (!self.didSeeDoubleTapBanner && self.yap.senderID.intValue != 1 && self.isFromFriend) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [[YTNotifications sharedNotifications] showNotificationText:@"Double Tap To Reply!"];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_DOUBLE_TAP_BANNER];
