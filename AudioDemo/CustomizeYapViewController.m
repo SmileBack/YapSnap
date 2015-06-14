@@ -139,24 +139,6 @@
     }
 }
 
-/*
-- (void) addEmbededCamera {
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
-    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    imagePicker.view.frame = CGRectMake(0, 72, [UIScreen mainScreen].bounds.size.width - 2, [UIScreen mainScreen].bounds.size.width -2);
-    
-    imagePicker.showsCameraControls = NO;
-    //imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-    imagePicker.delegate = self;
-    
-    [self addChildViewController:imagePicker];
-    [self.view addSubview:imagePicker.view];
-    [imagePicker didMoveToParentViewController:self];
-    
-    self.imagePicker = imagePicker;
-}
-*/
-
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -262,7 +244,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Take a Photo", @"Photo Library", nil];
+                                                    otherButtonTitles:@"Take a Photo", @"Upload a Photo", nil];
     actionSheet.tag = 100;
     [actionSheet showInView:self.view];
     
