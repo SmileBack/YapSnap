@@ -422,16 +422,29 @@
         
         trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.songVersionOneButton.frame = CGRectMake(0, carouselHeight-50, carouselHeight/2 - 1, 50);
-        [trackView.songVersionOneButton addTarget:self action:@selector(tappedSongVersionOneButton:) forControlEvents:UIControlEventTouchUpInside];
+        [trackView.songVersionOneButton addTarget:self action:@selector(tappedSongVersionOneButton:) forControlEvents:UIControlEventTouchDown];
         [trackView addSubview:trackView.songVersionOneButton];
+        
+        // Hack:
+        UITapGestureRecognizer *tapGestureButtonOne = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shortTappedSongVersionOneButton)];
+        tapGestureButtonOne.numberOfTapsRequired = 1;
+        tapGestureButtonOne.numberOfTouchesRequired = 1;
+        [trackView.songVersionOneButton addGestureRecognizer:tapGestureButtonOne];
+
         
         trackView.songVersionTwoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.songVersionTwoButton.frame = CGRectMake(carouselHeight/2 + 1, carouselHeight-50, carouselHeight/2 - 1, 50);
-        [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchUpInside];
+        [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchDown];
         [trackView addSubview:trackView.songVersionTwoButton];
         
-        // Keep Holding Label
+        // Hack:
+        UITapGestureRecognizer *tapGestureButtonTwo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shortTappedSongVersionTwoButton)];
+        tapGestureButtonTwo.numberOfTapsRequired = 1;
+        tapGestureButtonTwo.numberOfTouchesRequired = 1;
+        [trackView.songVersionTwoButton addGestureRecognizer:tapGestureButtonTwo];
 
+        
+        // Keep Holding Label
         trackView.bannerLabel = [[UILabel alloc]initWithFrame:
                                                CGRectMake(0, 0, carouselHeight, 42)];
         CALayer *bottomBorder = [CALayer layer];
@@ -568,14 +581,6 @@
         selectedTrack.secondsToFastForward = [NSNumber numberWithInt:0];
     }
     
-    [self showBannerWithText:@"Song Clip 1" temporary:YES];
-    
-    /*
-    if (!self.didTapSongVersionOneForFirstTime) {
-        [[YTNotifications sharedNotifications] showSongVersionText:@"Song Clip # 1"];
-    }
-     */
-    
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_ONE];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -608,17 +613,18 @@
         selectedTrack.secondsToFastForward = [NSNumber numberWithInt:17];
     }
     
-    [self showBannerWithText:@"Song Clip 2" temporary:YES];
-    /*
-    if (!self.didTapSongVersionTwoForFirstTime) {
-        [[YTNotifications sharedNotifications] showSongVersionText:@"Song Clip # 2"];
-    }
-    */
-    
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_TWO];
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Song Version Two"];
+}
+
+- (void) shortTappedSongVersionOneButton {
+    [self showBannerWithText:@"Song Clip 1" temporary:YES];
+}
+
+- (void) shortTappedSongVersionTwoButton {
+    [self showBannerWithText:@"Song Clip 2" temporary:YES];
 }
 
 - (void) confirmOpenInSpotify:(UIButton *)button

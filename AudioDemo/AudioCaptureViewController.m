@@ -390,13 +390,13 @@ static const float TIMER_INTERVAL = .02;
                 }
             });
         } else if (self.type == AudioCapTureTypeSpotify) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+ //           dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:LISTENED_TO_CLIP_NOTIFICATION object:nil];
                 self.bottomView.hidden = NO;
                 double delay = 0.2;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.continueButton startToPulsate];
-                });
+//                });
             });
         }
     }
