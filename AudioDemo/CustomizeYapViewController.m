@@ -84,6 +84,9 @@
     } else {
         if (self.isForwardingYap) {
             self.contactLabel.text = @"Forward Yap";
+            if (self.yapBuilder.imageAwsUrl && ![self.yapBuilder.imageAwsUrl isEqual: [NSNull null]]) {
+                self.resetPhotoButton.hidden = NO;
+            }
         } else {
             self.contactLabel.text = @"Send Yap";
         }
@@ -324,6 +327,9 @@
     self.yapBuilder.image = nil;
     self.resetPhotoButton.hidden = YES;
     self.yapPhoto.hidden = YES;
+    
+    self.yapBuilder.imageAwsEtag = nil;
+    self.yapBuilder.imageAwsUrl = nil;
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Reset Photo Button"];

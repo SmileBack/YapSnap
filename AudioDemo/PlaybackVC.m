@@ -148,10 +148,10 @@
     [super viewDidAppear:animated];
     
     [UIView animateWithDuration:.1
-                          delay:.6
+                          delay:.9
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         self.volumeView.alpha = .8;
+                         self.volumeView.alpha = .6;
                      }
                      completion:nil];
     

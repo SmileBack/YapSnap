@@ -54,9 +54,11 @@
             case YTYapSendingActionForward:
                 self.imageAwsUrl = yap.yapPhotoURL;
                 self.text = yap.text;
+                /*
                 if (![yap.yapPhotoURL isEqual:[NSNull null]]) {
                     self.image = [NSURL URLWithString:yap.yapPhotoURL];
                 }
+                 */
                 break;
             default:
                 break;
