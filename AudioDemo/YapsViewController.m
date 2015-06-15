@@ -459,11 +459,11 @@ static NSString *CellIdentifier = @"Cell";
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Double Tapped Row"];
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"How would you like to reply?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Reply with Same Clip", @"Select New Clip", nil];
+                                                    otherButtonTitles:@"Use Same Song", @"Select New Song", @"No Song. Just Voice", nil];
     [actionSheet showInView:self.view];
     /*
     YSYap *yap = self.yaps[indexPath.row];

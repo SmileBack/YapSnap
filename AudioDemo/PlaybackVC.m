@@ -191,7 +191,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Use Same Clip", @"Select New Clip", nil];
+                                                    otherButtonTitles:@"Use Same Song", @"Select New Song", @"No Song. Just Voice", nil];
     [actionSheet showInView:self.view];
 }
 
