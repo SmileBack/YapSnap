@@ -117,6 +117,7 @@
     __weak PlaybackVC *weakSelf = self;
     if (self.yap.yapPhotoURL && ![self.yap.yapPhotoURL isEqual: [NSNull null]]) {
         [self addShadowToTextView];
+        self.albumImage.hidden = YES;
         
         [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yap.yapPhotoURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (cacheType == SDImageCacheTypeDisk) {

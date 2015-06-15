@@ -33,7 +33,6 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
-@property (strong, nonatomic) IBOutlet UIButton *addTextToYapButton;
 @property (strong, nonatomic) IBOutlet UIButton *cameraButton;
 
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
@@ -86,6 +85,7 @@
             self.contactLabel.text = @"Forward Yap";
             if (self.yapBuilder.imageAwsUrl && ![self.yapBuilder.imageAwsUrl isEqual: [NSNull null]]) {
                 self.resetPhotoButton.hidden = NO;
+                self.albumImage.hidden = YES;
             }
         } else {
             self.contactLabel.text = @"Send Yap";
@@ -140,6 +140,10 @@
     } else {
         self.titleLabel.text = @"Add Message";
     }
+    
+    self.resetPhotoButton.layer.cornerRadius = 4;
+    self.resetPhotoButton.layer.borderWidth = 1;
+    self.resetPhotoButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -327,6 +331,7 @@
     self.yapBuilder.image = nil;
     self.resetPhotoButton.hidden = YES;
     self.yapPhoto.hidden = YES;
+    self.albumImage.hidden = NO;
     
     self.yapBuilder.imageAwsEtag = nil;
     self.yapBuilder.imageAwsUrl = nil;
@@ -344,6 +349,7 @@
     
     self.yapPhoto.hidden = NO;
     self.resetPhotoButton.hidden = NO;
+    self.albumImage.hidden = YES;
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Selected a Photo"];
