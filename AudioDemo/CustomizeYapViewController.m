@@ -105,10 +105,6 @@
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
     });
     
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didTapImageView)];
-    [self.yapPhoto addGestureRecognizer:tapGesture];
-    
     if (IS_IPHONE_4_SIZE) {
         self.bottomConstraint.constant = 0;
         self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:32];
@@ -144,6 +140,11 @@
     self.resetPhotoButton.layer.cornerRadius = 4;
     self.resetPhotoButton.layer.borderWidth = 1;
     self.resetPhotoButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
+    
+    self.yapPhoto.layer.cornerRadius = 4;
+    self.yapPhoto.layer.borderWidth = 1;
+    self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
+    self.yapPhoto.clipsToBounds = YES;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -383,15 +384,6 @@
 - (BOOL) didViewSpotifyAlert
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SPOTIFY_ALERT_KEY];
-}
-
-- (void) didTapImageView
-{
-    [self.resetPhotoButton setImage:[UIImage imageNamed:@"ResetButtonLarger.png"] forState:UIControlStateNormal];
-    double delay = .1;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.resetPhotoButton setImage:[UIImage imageNamed:@"ResetButton3.png"] forState:UIControlStateNormal];
-    });
 }
 
 - (void) addShadowToTextView
