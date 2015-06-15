@@ -12,6 +12,7 @@
 #import <AVFoundation/AVAudioSession.h>
 #import "YSRecordProgressView.h"
 #import "SpotifyAPI.h"
+#import "OpenInSpotifyAlertView.h"
 
 @interface PlaybackVC ()
 @property (strong, nonatomic) IBOutlet YSRecordProgressView *progressView;
@@ -32,6 +33,9 @@
 
 // nil means we don't know yet. YES/NO means the backend told us.
 @property (nonatomic, strong) NSNumber *isFromFriend;
+
+- (IBAction)didTapSpotifyButton;
+
 @end
 
 #define TIME_INTERVAL .01f
@@ -49,7 +53,7 @@
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
     
-    self.titleLabel.text = @"";//[NSString stringWithFormat:@"%@", self.yap.displaySenderName];
+    //self.titleLabel.text = [NSString stringWithFormat:@"%@", self.yap.displaySenderName];
     
     /*
     if ([self.yap.type isEqual:@"VoiceMessage"]) {
@@ -94,6 +98,8 @@
     [self addShadowToTextView];
     
     [self styleActionButtons];
+    
+    self.isFromFriend = [NSNumber numberWithInt:1]; // We are setting self.isFromFriend.boolValue to True so that friends popup doesn't come up if you press the X before back end response comes in. It'll get updated to the correct value once back end response comes in
 }
 
 - (void) styleActionButtons {
@@ -456,6 +462,14 @@
             NSLog(@"Did tap cancel");
         }
     
+}
+
+#pragma mark - Spotify Button
+
+- (IBAction) didTapSpotifyButton {
+    NSLog(@"Tapped Spotify Button");
+    OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithYap:self.yap];
+    [alert show];
 }
 
 

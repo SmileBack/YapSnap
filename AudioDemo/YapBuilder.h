@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, YTYapSendingAction) {
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) NSNumber *pitchValueInCentUnits;
+@property (strong, nonatomic) NSNumber *originSenderID;
 
 #pragma mark - Photo Stuff
 @property (nonatomic, strong) NSURL *image;

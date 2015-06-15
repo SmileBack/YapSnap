@@ -129,7 +129,7 @@
     [self addShadowToTextView];
     
     if (self.isForwardingYap) {
-        self.titleLabel.text = @"Edit Message";
+        self.titleLabel.text = @"Edit Yap & Forward";
     } else if (self.isReplying) {
         PhoneContact *contact = self.yapBuilder.contacts.firstObject;
         NSString *contactFirstName = [[contact.name componentsSeparatedByString:@" "] objectAtIndex:0];

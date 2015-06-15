@@ -195,6 +195,8 @@
 		788363A61AD79572001CBD1B /* OneNotSelectediPhone6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 788363A31AD79572001CBD1B /* OneNotSelectediPhone6@2x.png */; };
 		788480441B177E9D0016536F /* YSUninvitedContactInviter.m in Sources */ = {isa = PBXBuildFile; fileRef = 788480431B177E9D0016536F /* YSUninvitedContactInviter.m */; };
 		7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */; };
+		789123381B2E8F9800894201 /* SpotifyIconWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 789123371B2E8F9800894201 /* SpotifyIconWhite.png */; };
+		7891233A1B2E959000894201 /* SpotifyIconWhite2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789123391B2E959000894201 /* SpotifyIconWhite2.png */; };
 		78A2E84F1ACC65B000B5A404 /* PinkStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E84E1ACC65B000B5A404 /* PinkStar.png */; };
 		78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8511ACC671600B5A404 /* PinkStar1.png */; };
 		78A2E8551ACC671600B5A404 /* PinkStar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8521ACC671600B5A404 /* PinkStar2.png */; };
@@ -525,6 +527,8 @@
 		788480421B177E9D0016536F /* YSUninvitedContactInviter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSUninvitedContactInviter.h; sourceTree = "<group>"; };
 		788480431B177E9D0016536F /* YSUninvitedContactInviter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSUninvitedContactInviter.m; sourceTree = "<group>"; };
 		7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBackArrow5.png; sourceTree = "<group>"; };
+		789123371B2E8F9800894201 /* SpotifyIconWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyIconWhite.png; sourceTree = "<group>"; };
+		789123391B2E959000894201 /* SpotifyIconWhite2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyIconWhite2.png; sourceTree = "<group>"; };
 		78A2E84E1ACC65B000B5A404 /* PinkStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar.png; sourceTree = "<group>"; };
 		78A2E8511ACC671600B5A404 /* PinkStar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar1.png; sourceTree = "<group>"; };
 		78A2E8521ACC671600B5A404 /* PinkStar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar2.png; sourceTree = "<group>"; };
@@ -697,6 +701,8 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				789123371B2E8F9800894201 /* SpotifyIconWhite.png */,
+				789123391B2E959000894201 /* SpotifyIconWhite2.png */,
 				78C1C3091B26AC8700C6CBCA /* ResetButton80@2x.png */,
 				78C1C30B1B26AD2B00C6CBCA /* ResetButton90@2x.png */,
 				78C1C30D1B26AE3C00C6CBCA /* ResetButton100@2x.png */,
@@ -1711,6 +1717,7 @@
 				37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */,
 				787EC60B1ACA1B00000C5539 /* OldProgressViewLightBlueiPhone4@2x.png in Resources */,
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
+				789123381B2E8F9800894201 /* SpotifyIconWhite.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
 				78624BE71B03BA9100C8E049 /* GuidanceArrowLeft.png in Resources */,
 				787EC6071ACA12DB000C5539 /* OldProgressViewLightBlue@2x.png in Resources */,
@@ -1821,6 +1828,7 @@
 				7861928C1B0EA528007279E8 /* CartooniPhone6@2x.png in Resources */,
 				787EC6151ACA245E000C5539 /* OldProgressViewRed@3x.png in Resources */,
 				782D13531ACB9431007C8499 /* MicrophoneWhite30@3x.png in Resources */,
+				7891233A1B2E959000894201 /* SpotifyIconWhite2.png in Resources */,
 				787EC5F31AC9EC6A000C5539 /* OldProgressViewLightBlueiPhone5@2x.png in Resources */,
 				78ECF5621B293B3C0059C80B /* MicrophoneButton.png in Resources */,
 				78C1C30E1B26AE3C00C6CBCA /* ResetButton100@2x.png in Resources */,
