@@ -519,6 +519,11 @@
         OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithYap:self.yap];
         [alert show];
     } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
+        [self.timer invalidate];
+        [self.player stop];
+        self.playerAlreadyStartedPlayingForThisSong = NO;
+        [self.progressView setProgress:0];
+        [self.activityIndicator startAnimating];
         [self playYapAudio];
     }
 }
