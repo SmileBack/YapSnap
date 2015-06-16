@@ -29,12 +29,12 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
-@property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
+@property (weak, nonatomic) IBOutlet UIButton *topRightButton;
 
 // nil means we don't know yet. YES/NO means the backend told us.
 @property (nonatomic, strong) NSNumber *isFromFriend;
 
-- (IBAction)didTapSpotifyButton;
+- (IBAction)didTapTopRightButton;
 
 @end
 
@@ -101,9 +101,12 @@
     
     self.isFromFriend = [NSNumber numberWithInt:1]; // We are setting self.isFromFriend.boolValue to True so that friends popup doesn't come up if you press the X before back end response comes in. It'll get updated to the correct value once back end response comes in
     
-    if ([self.yap.type isEqual:@"VoiceMessage"]) {
-        self.forwardButton.hidden = YES;
-        self.spotifyButton.hidden = YES;
+    if ([self.yap.type isEqual:@"SpotifyMessage"]) {
+        UIImage *buttonImage = [UIImage imageNamed:@"SpotifyIconWhite2.png"];
+        [self.topRightButton setImage:buttonImage forState:UIControlStateNormal]; //self.spotifyButton.hidden = YES;
+    } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
+        UIImage *buttonImage = [UIImage imageNamed:@"ReplayIcon2.png"];
+        [self.topRightButton setImage:buttonImage forState:UIControlStateNormal];
     }
 }
 
@@ -510,10 +513,14 @@
 
 #pragma mark - Spotify Button
 
-- (IBAction) didTapSpotifyButton {
-    NSLog(@"Tapped Spotify Button");
-    OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithYap:self.yap];
-    [alert show];
+- (IBAction) didTapTopRightButton {
+    if ([self.yap.type isEqual:@"SpotifyMessage"]) {
+        NSLog(@"Tapped Top Right Button");
+        OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithYap:self.yap];
+        [alert show];
+    } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
+        [self playYapAudio];
+    }
 }
 
 

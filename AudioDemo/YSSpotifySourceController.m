@@ -484,6 +484,10 @@
     } else {
         trackView.imageView.image = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
     }
+    
+    trackView.imageView.layer.borderWidth = 2;
+    trackView.imageView.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
+    
     [trackView.imageView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.05]];
 
     // Needed so the Spotify button can work

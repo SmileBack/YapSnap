@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sYo-Oj-klg">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1214,11 +1213,11 @@ in your phone's settings!</string>
                                     <constraint firstAttribute="height" constant="40" id="eZC-rk-XtM"/>
                                     <constraint firstAttribute="width" constant="40" id="ypQ-an-HGh"/>
                                 </constraints>
-                                <state key="normal" image="SpotifyIconWhite2.png">
+                                <state key="normal" image="ReplayIcon.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapSpotifyButton" destination="Dgp-JD-d1e" eventType="touchUpInside" id="v7L-ez-KpH"/>
+                                    <action selector="didTapTopRightButton" destination="Dgp-JD-d1e" eventType="touchUpInside" id="C4i-4M-Gux"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1256,9 +1255,9 @@ in your phone's settings!</string>
                         <outlet property="forwardButton" destination="zaT-Tc-msp" id="ncB-bL-Alh"/>
                         <outlet property="progressView" destination="zM8-Va-aql" id="Oeq-db-IdL"/>
                         <outlet property="replyButton" destination="Cx1-jS-IBl" id="1Jc-br-Hny"/>
-                        <outlet property="spotifyButton" destination="gzM-5p-4ue" id="vrg-fh-6gK"/>
                         <outlet property="textView" destination="i6A-Iw-epG" id="5Gi-rN-03J"/>
                         <outlet property="titleLabel" destination="kCt-ck-W3X" id="vVP-Fu-VXU"/>
+                        <outlet property="topRightButton" destination="gzM-5p-4ue" id="eX4-N1-oOF"/>
                         <outlet property="volumeView" destination="7Kj-1X-Ut8" id="Bfa-tn-xSP"/>
                         <outlet property="yapPhoto" destination="cEy-3F-cQc" id="pna-2L-vFM"/>
                     </connections>
@@ -1761,9 +1760,9 @@ Type it here!</string>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
         <image name="PlusButtonWhite3.png" width="20" height="20"/>
         <image name="RecordButtonBlueBorder10.png" width="240" height="240"/>
+        <image name="ReplayIcon.png" width="100" height="100"/>
         <image name="ResetButton100.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
-        <image name="SpotifyIconWhite2.png" width="100" height="100"/>
         <image name="YapsButtonNoYaps.png" width="160" height="84"/>
         <image name="YellowStar.png" width="40" height="40"/>
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>
