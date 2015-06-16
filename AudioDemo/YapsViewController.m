@@ -24,6 +24,7 @@
 #import "AddFriendAlertView.h"
 #import "BlockFriendAlertView.h"
 #import "CustomizeYapViewController.h"
+#import "FriendsViewController.h"
 
 #define PENDING_YAPS_SECTION 0
 
@@ -648,7 +649,15 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 - (void)dismissViewController {
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    NSArray *vcs = self.navigationController.viewControllers;
+    BOOL isFriendsFlow = vcs && vcs.count > 1 && [vcs[0] isKindOfClass:[FriendsViewController class]];
+    if (isFriendsFlow) {
+        NSLog(@"Friends Flow");
+        [[NSNotificationCenter defaultCenter] postNotificationName:FRIENDS_YAP_SENT_NOTIFICATION object:nil];
+    } else {
+        NSLog(@"Not Friends Flow");
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
 }
 
 - (void) removeBlockedYap

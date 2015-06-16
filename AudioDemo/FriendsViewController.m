@@ -110,12 +110,12 @@
                                                       object:nil
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note) {
-                                                      [self dismissViewControllerAnimated:NO completion:^{
+                                                      [self dismissViewControllerAnimated:NO completion:nil/*^{
                                                           if (weakSelf.yapsSentCallback) {
                                                               weakSelf.yapsSentCallback();
                                                               weakSelf.yapsSentCallback = nil;
                                                           }
-                                                      }];
+                                                      }*/];
                                                   }];
     
     self.largeAddFriendsButton.layer.cornerRadius = 8;

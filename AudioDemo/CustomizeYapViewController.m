@@ -203,12 +203,6 @@
                     withCallback:^(BOOL success, NSError *error) {
                         if (success) {
                             [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
-                            double delay = 0.5;
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                if (isFriendsFlow) {
-                                    [[YTNotifications sharedNotifications] showNotificationText:@"Yap sent!"];
-                                }
-                            });
                         } else {
                             double delay = 0.5;
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -219,11 +213,8 @@
                     }];
         NSLog(@"Sent yaps call");
         
-        if (isFriendsFlow) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:FRIENDS_YAP_SENT_NOTIFICATION object:nil];
-        } else {
-            [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
-        }
+        [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
+        
         self.continueButton.userInteractionEnabled = YES;
     }
 }
