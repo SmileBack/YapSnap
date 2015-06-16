@@ -28,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *receiverLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
-//@property (nonatomic, strong) YapBuilder *yapBuilder;
+@property (nonatomic, strong) YapBuilder *yapBuilder;
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
@@ -246,11 +246,11 @@ static const float TIMER_INTERVAL = .02;
         CustomizeYapViewController *addTextVC = segue.destinationViewController;
 
         //Create yap object
-        YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
-        yapBuilder.duration = self.elapsedTime;
-        addTextVC.yapBuilder = yapBuilder;
+        self.yapBuilder = [self.audioSource getYapBuilder];
+        self.yapBuilder.duration = self.elapsedTime;
+        addTextVC.yapBuilder = self.yapBuilder;
         if (self.contactReplyingTo) {
-            yapBuilder.contacts = @[self.contactReplyingTo];
+            self.yapBuilder.contacts = @[self.contactReplyingTo];
         }
         
         self.recordProgressView.progress = 0.0;
@@ -261,27 +261,27 @@ static const float TIMER_INTERVAL = .02;
         ContactsViewController *vc = segue.destinationViewController;
         
         //Create yap object
-        YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
-        yapBuilder.duration = self.elapsedTime;
-        yapBuilder.text = @"";
-        yapBuilder.color = self.view.backgroundColor;
+        self.yapBuilder = [self.audioSource getYapBuilder];
+        self.yapBuilder.duration = self.elapsedTime;
+        self.yapBuilder.text = @"";
+        self.yapBuilder.color = self.view.backgroundColor;
         // To get pitch value in 'cent' units, multiply self.pitchShiftValue by STK_PITCHSHIFT_TRANSFORM
-        yapBuilder.pitchValueInCentUnits = [NSNumber numberWithFloat:0];
+        self.yapBuilder.pitchValueInCentUnits = [NSNumber numberWithFloat:0];
         
-        vc.builder = yapBuilder;
+        vc.builder = self.yapBuilder;
         
         if (self.contactReplyingTo) {
-            yapBuilder.contacts = @[self.contactReplyingTo];
+            self.yapBuilder.contacts = @[self.contactReplyingTo];
         }
     } else if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
         YapsViewController *yapsVC = segue.destinationViewController;
         yapsVC.comingFromContactsOrCustomizeYapPage = YES;
         
         
-        YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
-        yapBuilder.duration = self.elapsedTime;
+        self.yapBuilder = [self.audioSource getYapBuilder];
+        self.yapBuilder.duration = self.elapsedTime;
         if (self.contactReplyingTo) {
-            yapBuilder.contacts = @[self.contactReplyingTo];
+            self.yapBuilder.contacts = @[self.contactReplyingTo];
         }
     }
 }
@@ -381,17 +381,18 @@ static const float TIMER_INTERVAL = .02;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 if (self.contactReplyingTo) {
                     //Create yap object
-                    YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
-                    yapBuilder.duration = self.elapsedTime;
-                    yapBuilder.pitchValueInCentUnits = [NSNumber numberWithFloat:0];
-                    yapBuilder.color = self.view.backgroundColor;
+                    self.yapBuilder = [self.audioSource getYapBuilder];
+                    self.yapBuilder.duration = self.elapsedTime;
+                    self.yapBuilder.pitchValueInCentUnits = [NSNumber numberWithFloat:0];
+                    self.yapBuilder.color = self.view.backgroundColor;
+                    self.yapBuilder.contacts = @[self.contactReplyingTo];
 
                     NSLog(@"sendYapBuilder Triggered");
                     NSArray *pendingYaps =
-                    [[API sharedAPI] sendYapBuilder:yapBuilder
+                    [[API sharedAPI] sendYapBuilder:self.yapBuilder
                                        withCallback:^(BOOL success, NSError *error) {
                                            if (success) {
-                                               [[ContactManager sharedContactManager] sentYapTo:yapBuilder.contacts];
+                                               [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
                                            } else {
                                                NSLog(@"Error Sending Yap: %@", error);
                                                // uh oh spaghettios
