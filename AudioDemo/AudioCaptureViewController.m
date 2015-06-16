@@ -100,6 +100,7 @@ static const float TIMER_INTERVAL = .02;
     [super viewWillAppear:animated];
     
     self.recordProgressView.alpha = 0;
+    self.recordProgressView.progress = 0.0;
     
     if (self.type == AudioCaptureTypeMic) {
         self.titleString = @"Start Yappin'";
@@ -258,7 +259,6 @@ static const float TIMER_INTERVAL = .02;
             self.yapBuilder.contacts = @[self.contactReplyingTo];
         }
         
-        self.recordProgressView.progress = 0.0;
         self.elapsedTime = 0;
         
     //The following only applies to Voice Messages
