@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (nonatomic, strong) YapBuilder *yapBuilder;
+@property (weak, nonatomic) IBOutlet UILabel *bottomViewLabel;
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
@@ -74,8 +75,10 @@ static const float TIMER_INTERVAL = .02;
     
     if (self.type == AudioCaptureTypeMic) {
         [self switchToMicMode];
+        self.bottomViewLabel.text = @"Send Yap";
     } else {
         [self switchToSpotifyMode];
+        self.bottomViewLabel.text = @"Choose This Clip";
     }
     
     [self setupNotifications];
@@ -380,47 +383,14 @@ static const float TIMER_INTERVAL = .02;
         
         [self updateTitleLabel];
     } else {
-        // This delay is necessary to avoid apple's built in red nav bar to indicate phone is recording
-        if (self.type == AudioCaptureTypeMic) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (self.contactReplyingTo) {
-                    //Create yap object
-                    self.yapBuilder = [self.audioSource getYapBuilder];
-                    self.yapBuilder.duration = self.elapsedTime;
-                    self.yapBuilder.pitchValueInCentUnits = [NSNumber numberWithFloat:0];
-                    self.yapBuilder.color = self.view.backgroundColor;
-                    self.yapBuilder.contacts = @[self.contactReplyingTo];
-
-                    NSLog(@"sendYapBuilder Triggered");
-                    NSArray *pendingYaps =
-                    [[API sharedAPI] sendYapBuilder:self.yapBuilder
-                                       withCallback:^(BOOL success, NSError *error) {
-                                           if (success) {
-                                               [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
-                                           } else {
-                                               NSLog(@"Error Sending Yap: %@", error);
-                                               // uh oh spaghettios
-                                               // TODO: tell the user something went wrong
-                                           }
-                                       }];
-                    NSLog(@"Sent yaps call");
-                    
-                    [self performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
-                } else {
-                    [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
-                }
-            });
-        } else if (self.type == AudioCapTureTypeSpotify) {
- //           dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:LISTENED_TO_CLIP_NOTIFICATION object:nil];
-                self.bottomView.hidden = NO;
-                double delay = 0.2;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.continueButton startToPulsate];
-//                });
-            });
-        }
-        self.recordProgressView.trackTintColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LISTENED_TO_CLIP_NOTIFICATION object:nil];
+        self.bottomView.hidden = NO;
+        double delay = 0.2;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.continueButton startToPulsate];
+        });
+        
+        self.recordProgressView.trackTintColor = [UIColor colorWithWhite:0.85 alpha:1.0];
     }
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -442,7 +412,36 @@ static const float TIMER_INTERVAL = .02;
 
 #pragma mark - Bottom View
 - (IBAction) didTapNextButton {
-    [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+    if (self.type == AudioCapTureTypeSpotify) {
+        [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+    } else if (self.type == AudioCaptureTypeMic) {
+        if (self.contactReplyingTo) {
+            //Create yap object
+            self.yapBuilder = [self.audioSource getYapBuilder];
+            self.yapBuilder.duration = self.elapsedTime;
+            self.yapBuilder.pitchValueInCentUnits = [NSNumber numberWithFloat:0];
+            self.yapBuilder.color = self.view.backgroundColor;
+            self.yapBuilder.contacts = @[self.contactReplyingTo];
+            
+            NSLog(@"sendYapBuilder Triggered");
+            NSArray *pendingYaps =
+            [[API sharedAPI] sendYapBuilder:self.yapBuilder
+                               withCallback:^(BOOL success, NSError *error) {
+                                   if (success) {
+                                       [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
+                                   } else {
+                                       NSLog(@"Error Sending Yap: %@", error);
+                                       // uh oh spaghettios
+                                       // TODO: tell the user something went wrong
+                                   }
+                               }];
+            NSLog(@"Sent yaps call");
+            
+            [self performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
+        } else {
+            [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
+        }
+    }
 }
 
 - (IBAction) didTapCancelButton {

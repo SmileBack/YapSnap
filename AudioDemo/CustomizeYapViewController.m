@@ -146,7 +146,7 @@
     self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
     self.yapPhoto.clipsToBounds = YES;
     
-    self.progressView.trackTintColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+    self.progressView.trackTintColor = [UIColor colorWithWhite:0.85 alpha:1.0];
 }
 
 - (void) viewWillAppear:(BOOL)animated
