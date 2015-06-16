@@ -312,6 +312,8 @@ static const float TIMER_INTERVAL = .02;
 
 - (void)audioSourceControllerDidStartAudioCapture:(YSAudioSourceController *)controller {
     NSLog(@"Did Start Audio Capture");
+    
+    self.recordProgressView.trackTintColor = [UIColor whiteColor];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:DID_START_AUDIO_CAPTURE_NOTIFICATION object:nil];
     
@@ -418,7 +420,7 @@ static const float TIMER_INTERVAL = .02;
 //                });
             });
         }
-        self.recordProgressView.trackTintColor = [UIColor colorWithWhite:0.75 alpha:1.0];
+        self.recordProgressView.trackTintColor = [UIColor colorWithWhite:0.8 alpha:1.0];
     }
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
