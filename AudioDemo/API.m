@@ -290,13 +290,14 @@ static API *sharedAPI;
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
             callback(NO, error);
         } else {
-            NSLog(@"Successfuly uploaded voice file to AWS");
+            NSLog(@"Successfully uploaded voice file to AWS");
         }
                 
         NSDictionary *params = [weakSelf paramsWithDict:@{@"type": MESSAGE_TYPE_VOICE,
                                                           @"aws_recording_url": url,
                                                           @"aws_recording_etag": etag,
-                                                          @"pitch_value": builder.pitchValueInCentUnits}
+                                                          @"pitch_value": builder.pitchValueInCentUnits
+                                                          }
                                           andYapBuilder:builder];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

@@ -45,6 +45,8 @@
 
 @property (nonatomic, strong) NSString *titleString;
 
+@property (assign, nonatomic) BOOL replyWithVoice;
+
 - (IBAction)didTapSettingsButton;
 
 @end
@@ -536,6 +538,10 @@ static NSString *CellIdentifier = @"Cell";
             targetName = yap.senderName;
         }
         
+        // This tells Audio VC if it should initialize voice
+        audioVC.replyWithVoice = self.replyWithVoice;
+        self.replyWithVoice = NO;
+        
         PhoneContact *contact = [[ContactManager sharedContactManager] contactForPhoneNumber:targetPhone];
         if (contact) {
             audioVC.contactReplyingTo = contact;
@@ -785,6 +791,12 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void)didOriginateReplyFromYapNewClip:(YSYap *)yap
 {
+    [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
+}
+
+- (void)didOriginateReplyFromYapVoice:(YSYap *)yap
+{
+    self.replyWithVoice = YES;
     [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
 }
 

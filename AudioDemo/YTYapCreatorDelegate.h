@@ -24,6 +24,8 @@
 
 - (void)didOriginateReplyFromYapNewClip:(YSYap *)yap;
 
+- (void)didOriginateReplyFromYapVoice:(YSYap *)yap;
+
 - (void)didOriginateForwardFromYap:(YSYap *)yap;
 
 @end

@@ -465,6 +465,11 @@
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Tapped Reply (Different Clip)"];
         } else if (buttonIndex == 2) {
+            [self dismissThis];
+            [self.yapCreatingDelegate didOriginateReplyFromYapVoice:self.yap];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Reply (Same Clip)"];
+        } else {
             NSLog(@"Did tap cancel");
         }
     

@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *receiverLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
+//@property (nonatomic, strong) YapBuilder *yapBuilder;
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
@@ -78,6 +79,11 @@ static const float TIMER_INTERVAL = .02;
     }
     
     [self setupNotifications];
+    /*
+    if (self.replyWithVoice) {
+        NSLog(@"Reply With Voice");
+    }
+     */
     
     /*
     if (self.contactReplyingTo) {
@@ -270,6 +276,13 @@ static const float TIMER_INTERVAL = .02;
     } else if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
         YapsViewController *yapsVC = segue.destinationViewController;
         yapsVC.comingFromContactsOrCustomizeYapPage = YES;
+        
+        
+        YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
+        yapBuilder.duration = self.elapsedTime;
+        if (self.contactReplyingTo) {
+            yapBuilder.contacts = @[self.contactReplyingTo];
+        }
     }
 }
 
@@ -370,7 +383,10 @@ static const float TIMER_INTERVAL = .02;
                     //Create yap object
                     YapBuilder *yapBuilder = [self.audioSource getYapBuilder];
                     yapBuilder.duration = self.elapsedTime;
+                    yapBuilder.pitchValueInCentUnits = [NSNumber numberWithFloat:0];
+                    yapBuilder.color = self.view.backgroundColor;
 
+                    NSLog(@"sendYapBuilder Triggered");
                     NSArray *pendingYaps =
                     [[API sharedAPI] sendYapBuilder:yapBuilder
                                        withCallback:^(BOOL success, NSError *error) {

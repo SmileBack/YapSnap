@@ -238,13 +238,13 @@
 
 -(void) countdownTimerFired
 {
-    NSLog(@"countdownTimer fired");
-    NSLog(@"currMinute: %d; currSeconds: %d", currMinute, currSeconds);
+    //NSLog(@"countdownTimer fired");
+    //NSLog(@"currMinute: %d; currSeconds: %d", currMinute, currSeconds);
     if((currMinute>0 || currSeconds>=0) && currMinute>=0)
     {
         if(currSeconds>0)
         {
-            NSLog(@"currSeconds: %d", currSeconds);
+            //NSLog(@"currSeconds: %d", currSeconds);
             currSeconds-=1;
         }
         
@@ -383,7 +383,15 @@
     } else if ([@"Audio Record" isEqualToString:segue.identifier]) {
         AudioCaptureViewController* audio = segue.destinationViewController;
         if (sender) { // The presence of a sender means that there was a spotify genre specified
-            audio.type = AudioCapTureTypeSpotify;
+            audio.type = AudioCaptureTypeMic;
+            /*
+            if (self.replyWithVoice) {
+                audio.type = AudioCaptureTypeMic;
+            } else {
+                audio.type = AudioCapTureTypeSpotify;
+            }
+             */
+            
             audio.audioCaptureContext = @{
                                           AudioCaptureContextGenreName: sender
                                           };

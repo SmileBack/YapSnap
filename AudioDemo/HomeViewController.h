@@ -30,6 +30,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *topLeftButton;
 @property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;
 
+@property (assign, nonatomic) BOOL replyWithVoice;
+
 - (IBAction)didTapYapsPageButton;
 - (IBAction)leftButtonPressed:(id)sender;
 
