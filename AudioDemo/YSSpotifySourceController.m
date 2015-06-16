@@ -230,7 +230,7 @@
     [self.searchBox addTarget:self
                        action:@selector(textFieldDidChange:)
              forControlEvents:UIControlEventEditingChanged];
-    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
     self.searchBox.attributedPlaceholder = string;
     
     self.searchBox.layer.cornerRadius=2.0f;
@@ -320,7 +320,7 @@
     self.carousel.alpha = 0;
     [self hideResetButton];
     
-    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.2] }];
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
     self.searchBox.attributedPlaceholder = string;
     
     [self resetBottomBannerUI];
@@ -330,7 +330,7 @@
     NSLog(@"Textfield did end editing");
     [self setUserInteractionEnabled:YES];
     
-    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
     self.searchBox.attributedPlaceholder = string;
 }
 
@@ -994,7 +994,7 @@
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          //self.searchBox.alpha = 0;
-                         NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor clearColor] }];
+                         NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
                          self.searchBox.attributedPlaceholder = string;
                          
                          self.carousel.alpha = 0;
