@@ -87,7 +87,7 @@
 {
     [super viewDidAppear:animated];
     self.playerAlreadyStartedPlayingForThisSong = NO;
-    [self hideAlbumBanner];
+    [self hideAlbumBannerWithFadeAnimation:NO];
 }
 
 - (void) setupGestureRecognizers {
@@ -138,7 +138,7 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self hideAlbumBanner];
+                        [self hideAlbumBannerWithFadeAnimation:YES];
                     }];
 }
 
@@ -535,9 +535,19 @@
     }
 }
 
-- (void) hideAlbumBanner {
+- (void) hideAlbumBannerWithFadeAnimation:(BOOL)fadeAnimation {
     SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
-    trackView.bannerLabel.alpha = 0;
+    if (fadeAnimation) {
+        [UIView animateWithDuration:.2
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             trackView.bannerLabel.alpha = 0;
+                         }
+                         completion:nil];
+    } else {
+        trackView.bannerLabel.alpha = 0;
+    }
 }
 
 -(void)didLongPressCarousel:(UILongPressGestureRecognizer*)longPress {
@@ -629,7 +639,7 @@
 
 - (void) confirmOpenInSpotify:(UIButton *)button
 {
-    [self hideAlbumBanner];
+    [self hideAlbumBannerWithFadeAnimation:NO];
     
     if([self.searchBox isFirstResponder])
     {
