@@ -383,14 +383,12 @@
     } else if ([@"Audio Record" isEqualToString:segue.identifier]) {
         AudioCaptureViewController* audio = segue.destinationViewController;
         if (sender) { // The presence of a sender means that there was a spotify genre specified
-            audio.type = AudioCaptureTypeMic;
-            /*
+
             if (self.replyWithVoice) {
                 audio.type = AudioCaptureTypeMic;
             } else {
                 audio.type = AudioCapTureTypeSpotify;
             }
-             */
             
             audio.audioCaptureContext = @{
                                           AudioCaptureContextGenreName: sender

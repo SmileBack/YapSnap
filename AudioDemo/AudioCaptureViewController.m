@@ -105,6 +105,8 @@ static const float TIMER_INTERVAL = .02;
     }
     [self updateTitleLabel];
     self.bottomView.hidden = YES;
+    
+    self.recordProgressView.trackTintColor = [UIColor whiteColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -416,6 +418,7 @@ static const float TIMER_INTERVAL = .02;
 //                });
             });
         }
+        self.recordProgressView.trackTintColor = [UIColor colorWithWhite:0.75 alpha:1.0];
     }
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];

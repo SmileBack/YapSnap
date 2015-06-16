@@ -27,9 +27,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *albumImage;
 @property IBOutlet UIActivityIndicatorView* activityIndicator;
 
-
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
+@property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
 
 // nil means we don't know yet. YES/NO means the backend told us.
 @property (nonatomic, strong) NSNumber *isFromFriend;
@@ -65,7 +65,7 @@
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
     
-    [self playYapAudioAfterHandlingImage];
+    [self handleImageAndPlayAudio];
     
     self.titleLabel.alpha = 0;
     [self.activityIndicator startAnimating];
@@ -101,10 +101,10 @@
     
     self.isFromFriend = [NSNumber numberWithInt:1]; // We are setting self.isFromFriend.boolValue to True so that friends popup doesn't come up if you press the X before back end response comes in. It'll get updated to the correct value once back end response comes in
     
-    self.yapPhoto.layer.cornerRadius = 4;
-    self.yapPhoto.layer.borderWidth = 1;
-    self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
-    self.yapPhoto.clipsToBounds = YES;
+    if ([self.yap.type isEqual:@"VoiceMessage"]) {
+        self.forwardButton.hidden = YES;
+        self.spotifyButton.hidden = YES;
+    }
 }
 
 - (void) styleActionButtons {
@@ -117,12 +117,18 @@
     self.forwardButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
 }
 
-- (void) playYapAudioAfterHandlingImage
+- (void) handleImageAndPlayAudio
 {
     __weak PlaybackVC *weakSelf = self;
     if (self.yap.yapPhotoURL && ![self.yap.yapPhotoURL isEqual: [NSNull null]]) {
         [self addShadowToTextView];
         self.albumImage.hidden = YES;
+        
+        self.yapPhoto.layer.cornerRadius = 4;
+        self.yapPhoto.layer.borderWidth = 1;
+        self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
+        self.yapPhoto.clipsToBounds = YES;
+         
         
         [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yap.yapPhotoURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (cacheType == SDImageCacheTypeDisk) {
@@ -187,12 +193,23 @@
 }
 
 - (IBAction)didTapReply:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Use Same Song", @"Select New Song", @"No Song. Just Voice", nil];
-    [actionSheet showInView:self.view];
+    if ([self.yap.type isEqual:@"SpotifyMessage"]) {
+        UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"Use Same Song", @"Select New Song", @"No Song. Just Voice", nil];
+        actionSheetSpotify.tag = 100;
+        [actionSheetSpotify showInView:self.view];
+    } else {
+        UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"Reply With a Song", @"Reply With Voice", nil];
+        actionSheetVoice.tag = 200;
+        [actionSheetVoice showInView:self.view];
+    }
 }
 
 - (IBAction)didTapForward:(id)sender {
@@ -453,6 +470,7 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSLog(@"Tapped Action Sheet; Button Index: %ld", (long)buttonIndex);
     // Take a photo
+    if (actionSheet.tag == 100) {
         if (buttonIndex == 0) {
             [self dismissThis];
             [self.yapCreatingDelegate didOriginateReplyFromYapSameClip:self.yap];
@@ -468,11 +486,26 @@
             [self dismissThis];
             [self.yapCreatingDelegate didOriginateReplyFromYapVoice:self.yap];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply (Same Clip)"];
+            [mixpanel track:@"Tapped Reply (Voice)"];
         } else {
             NSLog(@"Did tap cancel");
         }
-    
+    } else if (actionSheet.tag == 200) {
+        if (buttonIndex == 0) {
+            [self dismissThis];
+            [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Reply (Different Clip)"];
+            // Upload a photo
+        } else if (buttonIndex == 1) {
+            [self dismissThis];
+            [self.yapCreatingDelegate didOriginateReplyFromYapVoice:self.yap];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Reply (Voice)"];
+        } else {
+            NSLog(@"Did tap cancel");
+        }
+    }
 }
 
 #pragma mark - Spotify Button
