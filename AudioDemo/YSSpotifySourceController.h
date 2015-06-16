@@ -24,7 +24,7 @@
 #define TAPPED_DICE_BUTTON_NOTIFICATION @"yaptap.TappedDiceButtonNotification"
 #define TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION @"yaptap.TappedAlbumCoverFirstTimeNotification5"
 #define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
-#define RESET_SPOTIFY_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
+#define RESET_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
 #define REMOVE_BOTTOM_BANNER_NOTIFICATION @"com.yapsnap.RemoveBottomBannerNotification"
 #define LISTENED_TO_CLIP_NOTIFICATION @"com.yapsnap.ListenedToClipNotification"
 

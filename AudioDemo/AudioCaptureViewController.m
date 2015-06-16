@@ -449,10 +449,11 @@ static const float TIMER_INTERVAL = .02;
 }
 
 - (void) resetSpotifyBannerUI {
-    [[NSNotificationCenter defaultCenter] postNotificationName:RESET_SPOTIFY_BANNER_UI object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI object:nil];
     self.bottomView.hidden = YES;
     self.recordProgressView.alpha = 0;
     [self.recordProgressView setProgress:0];
+    self.recordProgressView.trackTintColor = [UIColor whiteColor];
 }
 
 #pragma mark - Mode Changing

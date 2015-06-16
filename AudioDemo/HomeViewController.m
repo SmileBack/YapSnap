@@ -139,7 +139,7 @@
                         }
                     }];
     
-    [center addObserverForName:RESET_SPOTIFY_BANNER_UI
+    [center addObserverForName:RESET_BANNER_UI
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
@@ -203,13 +203,14 @@
 }
 
 - (void) hideTopButtons {
+    self.recipientLabel.alpha = 0;
+    
     [UIView animateWithDuration:.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          self.topLeftButton.alpha = 0;
                          self.yapsPageButton.alpha = 0;
-                         self.recipientLabel.alpha = 0;
                      }
                      completion:nil];
 }

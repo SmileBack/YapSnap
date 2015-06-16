@@ -16,6 +16,7 @@
 #define DID_SEE_RECORD_POPUP_KEY @"yaptap.DidSeeRecordPopupKey7"
 #define DISMISS_RECORD_POPUP @"DismissRecordPopup"
 #define HIDE_PROGRESS_VIEW_NOTIFICATION @"yaptap.HideProgressViewNotification"
+#define RESET_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
 
 @interface YSMicSourceController ()<EZMicrophoneDelegate>
 @property (nonatomic, strong) AVAudioPlayer *player;
@@ -105,7 +106,6 @@
                                               delay:0
                                             options:UIViewAnimationOptionCurveEaseOut
                                          animations:^{
-                                             // TODO: Show text view here
                                              self.sinusWaveView.alpha = 0;
                                              self.titleLabel.hidden = NO;
                                          }
@@ -119,6 +119,14 @@
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Dismiss Welcome Popup");
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                    }];
+    
+    [center addObserverForName:RESET_BANNER_UI
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        self.sinusWaveView.alpha = 0;
+                        self.titleLabel.hidden = NO;
                     }];
 }
 
@@ -252,6 +260,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             [self.audioCaptureDelegate audioSourceControllerdidFinishAudioCapture:self];
         }
     }
+    self.sinusWaveView.alpha = 0;
 }
 
 - (void) resetUI

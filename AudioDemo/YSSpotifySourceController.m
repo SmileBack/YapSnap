@@ -993,7 +993,7 @@
 }
 
 - (void) resetBottomBannerUI {
-    [[NSNotificationCenter defaultCenter] postNotificationName:RESET_SPOTIFY_BANNER_UI object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:REMOVE_BOTTOM_BANNER_NOTIFICATION object:nil];
 }
 
