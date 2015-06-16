@@ -320,7 +320,7 @@
     self.carousel.alpha = 0;
     [self hideResetButton];
     
-    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor clearColor] }];
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.2] }];
     self.searchBox.attributedPlaceholder = string;
     
     [self resetBottomBannerUI];
