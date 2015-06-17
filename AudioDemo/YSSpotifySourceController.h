@@ -27,6 +27,7 @@
 #define RESET_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
 #define REMOVE_BOTTOM_BANNER_NOTIFICATION @"com.yapsnap.RemoveBottomBannerNotification"
 #define LISTENED_TO_CLIP_NOTIFICATION @"com.yapsnap.ListenedToClipNotification"
+#define CANCELED_BOTTOM_BANNER_NOTIFICATION @"com.yapsnap.CanceledBottomBannerNotification"
 
 @property (nonatomic, strong) NSString *selectedGenre;
 

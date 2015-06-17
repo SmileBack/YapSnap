@@ -32,6 +32,7 @@
 @property (nonatomic, strong) NSDictionary *typeToGenreMap;
 @property (strong, nonatomic) UIButton *spotifyButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carouselHeightConstraint;
+@property (strong, nonatomic) IBOutlet UIButton *bottomButton;
 
 - (IBAction)didTapResetButton;
 //- (void) searchGenre:(NSString *)genre; TODO: Add this back!
@@ -81,6 +82,9 @@
         carouselHeight = 240; // 119; (238*100) *1.172  279*117
     }
     self.carouselHeightConstraint.constant = carouselHeight;
+//TODO: REMOVE
+    //self.carousel.layer.borderWidth = 2;
+    //self.carousel.layer.borderColor = [UIColor purpleColor].CGColor;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -88,6 +92,7 @@
     [super viewDidAppear:animated];
     self.playerAlreadyStartedPlayingForThisSong = NO;
     [self hideAlbumBannerWithFadeAnimation:NO];
+    self.bottomButton.hidden = NO;
 }
 
 - (void) setupGestureRecognizers {
@@ -139,6 +144,15 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self hideAlbumBannerWithFadeAnimation:YES];
+                        self.bottomButton.hidden = YES;
+                    }];
+    
+    [center addObserverForName:CANCELED_BOTTOM_BANNER_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self hideAlbumBannerWithFadeAnimation:YES];
+                        self.bottomButton.hidden = NO;
                     }];
 }
 
@@ -153,14 +167,6 @@
         }
     }
 }
-/*
-- (void) setBackgroundColorForSearchBox {
-    //Background text color
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.searchBox.text];
-    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.25] range:NSMakeRange(0, self.searchBox.text.length)];
-    self.searchBox.attributedText = attributedString;
-}
- */
 
 - (IBAction) didTapResetButton {
     [self resetUI];
@@ -345,19 +351,7 @@
     self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     [self.view endEditing:YES];
-    if ([self.searchBox.text length] == 0) {
-        NSLog(@"Searched Empty String");
-        if (alert) {
-            /*
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search Above"
-                                                            message:@"Type the name of an artist or song above!"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-             */
-        }
-    } else {
+    if ([self.searchBox.text length] > 0) {
         [self search:self.searchBox.text];
         //[self setBackgroundColorForSearchBox];
         [[API sharedAPI] sendSearchTerm:textField.text withCallback:^(BOOL success, NSError *error) {
@@ -380,6 +374,10 @@
 {
     YSTrack *track = self.songs[index];
     SpotifyTrackView *trackView;
+    
+    //TODO: Remove
+    trackView.layer.borderWidth = 2;
+    trackView.layer.borderColor = [UIColor orangeColor].CGColor;
 
     if (view && [view isKindOfClass:[SpotifyTrackView class]]) {
         trackView = (SpotifyTrackView *) view;
@@ -391,7 +389,7 @@
         [trackView addSubview:trackView.imageView];
         
         trackView.label = [[UILabel alloc]initWithFrame:
-                           CGRectMake(0, carouselHeight + 4 , carouselHeight, 25)];
+                           CGRectMake(0, carouselHeight +22 /*+ 4*/ , carouselHeight, 25)];
         [trackView addSubview:trackView.label];
          
         trackView.albumImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -415,14 +413,17 @@
                                                    CGRectMake(0, carouselHeight - 22, carouselHeight, 22)];
         } else {
             trackView.songVersionBackground = [[UIView alloc]initWithFrame:
-                                               CGRectMake(0, carouselHeight - 18, carouselHeight, 18)];
+                                               CGRectMake(0, carouselHeight/* - 18*/, carouselHeight, 18)];
         }
-        trackView.songVersionBackground.backgroundColor = THEME_BACKGROUND_COLOR;
         [trackView addSubview:trackView.songVersionBackground];
         
         trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionOneButton.frame = CGRectMake(0, carouselHeight-50, carouselHeight/2 - 1, 50);
+        trackView.songVersionOneButton.frame = CGRectMake(0, carouselHeight - 32/*-50*/, carouselHeight/2 - 1, 50);
         [trackView.songVersionOneButton addTarget:self action:@selector(tappedSongVersionOneButton:) forControlEvents:UIControlEventTouchDown];
+        //TODO: Remove
+        //trackView.songVersionOneButton.layer.borderWidth = 2;
+        //trackView.songVersionOneButton.layer.borderColor = [UIColor redColor].CGColor;
+        
         [trackView addSubview:trackView.songVersionOneButton];
         
         // Hack:
@@ -433,7 +434,7 @@
 
         
         trackView.songVersionTwoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionTwoButton.frame = CGRectMake(carouselHeight/2 + 1, carouselHeight-50, carouselHeight/2 - 1, 50);
+        trackView.songVersionTwoButton.frame = CGRectMake(carouselHeight/2 + 1, carouselHeight - 32 /*-50*/, carouselHeight/2 - 1, 50);
         [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchDown];
         [trackView addSubview:trackView.songVersionTwoButton];
         
@@ -446,9 +447,9 @@
         
         // Keep Holding Label
         trackView.bannerLabel = [[UILabel alloc]initWithFrame:
-                                               CGRectMake(0, 0, carouselHeight, 42)];
+                                               CGRectMake(2, 2, carouselHeight-4, 42)];
         CALayer *bottomBorder = [CALayer layer];
-        bottomBorder.frame = CGRectMake(0.0f, 41.0f, trackView.bannerLabel.frame.size.width, 1.0f);
+        bottomBorder.frame = CGRectMake(0.0f, 41.0f, trackView.bannerLabel.frame.size.width, 2.0f);
         bottomBorder.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8].CGColor;
         [trackView.bannerLabel.layer addSublayer:bottomBorder];
         
@@ -471,9 +472,6 @@
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
     }
     
-    //trackView.songVersionOneButton.hidden = YES;
-    //trackView.songVersionTwoButton.hidden = YES;
-    //trackView.songVersionBackground.hidden = YES;
     trackView.bannerLabel.alpha = 0;
     
     // Set seconds to fast forward to 0
@@ -502,20 +500,11 @@
     trackView.label.font = [UIFont fontWithName:@"Futura-Medium" size:size];
     
     [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
-//    [trackView.albumImageButton addTarget:self action:@selector(untappedAlbumImage:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside | UIControlEventTouchDragOutside | UIControlEventTouchCancel];
-//    [trackView.albumImageButton addTarget:self action:@selector(tappedAlbumImage:) forControlEvents:UIControlEventTouchDown];
 
     return trackView;
 }
 
 - (void)didTapCarousel:(UITapGestureRecognizer*)tap {
-    //CGRect frame = self.carousel.currentItemView.frame;
-    //CGPoint point = [tap locationInView:self.carousel];
-    // TODO: Figure out whether the point is within the album cover (not inclusive of the bottom buttons)
-    //if (CGRectContainsPoint(frame, point)) {
-        //[[YTNotifications sharedNotifications] showNotificationText:@"Hold Album To Play"];
-    //}
-    
     [self showBannerWithText:@"Hold To Play" temporary:YES];
 }
 
@@ -669,49 +658,6 @@
     }
 }
 
-/*
-- (void) tappedAlbumImage:(UIButton *)button
-{
-    [self startAudioCapture];
-}
-
-- (void) untappedAlbumImage:(UIButton *)button
-{
-    [self stopAudioCapture];
-    NSLog(@"Tapped Album Image");
-    
-    if ([self.searchBox isFirstResponder]) { // This case shouldn't be possible
-        [self.view endEditing:YES];
-    } else {
-        UIView *parent = button.superview;
-        if ([parent isKindOfClass:[SpotifyTrackView class]]) {
-            SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-            YSTrack *selectedTrack = nil;
-            for (YSTrack *track in self.songs) {
-                if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
-                    selectedTrack = track;
-                    break;
-                }
-            }
-            
-            if (!selectedTrack.songVersionButtonsAreShowing) {
-                trackView.songVersionOneButton.hidden = NO;
-                trackView.songVersionTwoButton.hidden = NO;
-                trackView.songVersionBackground.hidden = NO;
-                selectedTrack.songVersionButtonsAreShowing = YES;
-            } else {
-                trackView.songVersionOneButton.hidden = YES;
-                trackView.songVersionTwoButton.hidden = YES;
-                trackView.songVersionBackground.hidden = YES;
-                selectedTrack.songVersionButtonsAreShowing = NO;
-            }
-        }
-        
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_ALBUM_COVER];
-    }
-}
- */
-
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
     NSLog(@"Tapped carousel item"); //Carousel items are currently blocked by transparent album image button
@@ -830,6 +776,8 @@
         track.songVersionButtonsAreShowing = YES;
         
         [self showBannerWithText:@"Playing..." temporary:NO];
+        
+        self.bottomButton.hidden = NO;
     }
     
     if (state == STKAudioPlayerStateBuffering) {
@@ -1009,6 +957,7 @@
 - (void) resetBottomBannerUI {
     [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:REMOVE_BOTTOM_BANNER_NOTIFICATION object:nil];
+    self.bottomButton.hidden = NO;
 }
 
 #pragma mark - Control Center Stuff

@@ -59,10 +59,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OEq-Yl-zXl" userLabel="Explore Music Button">
-                                <rect key="frame" x="113" y="374" width="95" height="95"/>
+                                <rect key="frame" x="123" y="394" width="75" height="75"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="95" id="0se-cf-LK1"/>
-                                    <constraint firstAttribute="height" constant="95" id="QE5-19-Rv5"/>
+                                    <constraint firstAttribute="width" constant="75" id="0se-cf-LK1"/>
+                                    <constraint firstAttribute="height" constant="75" id="QE5-19-Rv5"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="DiceCircle4.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -102,6 +102,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="482"/>
                     <connections>
+                        <outlet property="bottomButton" destination="OEq-Yl-zXl" id="qst-lo-zQx"/>
                         <outlet property="carousel" destination="ZNs-R1-CJc" id="5vb-SQ-OO6"/>
                         <outlet property="carouselHeightConstraint" destination="hJg-gl-YKL" id="JNK-sm-bxz"/>
                         <outlet property="loadingIndicator" destination="iKi-hk-1A5" id="Kfk-Mv-9XA"/>

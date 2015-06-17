@@ -446,6 +446,7 @@ static const float TIMER_INTERVAL = .02;
 
 - (IBAction) didTapCancelButton {
     [self resetSpotifyBannerUI];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CANCELED_BOTTOM_BANNER_NOTIFICATION object:nil];
 }
 
 - (void) resetSpotifyBannerUI {
