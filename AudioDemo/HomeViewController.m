@@ -186,6 +186,7 @@
     
     self.topLeftButton.alpha = 1;
     self.yapsPageButton.alpha = 1;
+    self.pageLabel.alpha = 1;
 }
 
 - (void) showTopButtons {
