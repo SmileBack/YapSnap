@@ -19,11 +19,11 @@
     int currSeconds;
 }
 
-@property (nonatomic, strong) IBOutlet UILabel *recipientLabel;
+@property (nonatomic, strong) IBOutlet UILabel *pageLabel;
 @property (nonatomic, strong) NSNumber *unopenedYapsCount;
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
 @property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *recipientLabelConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *pageLabelConstraint;
 @property (strong, nonatomic) IBOutlet UILabel *countdownTimerLabel;
 @property IBOutlet UIActivityIndicatorView* activityIndicator;
 
@@ -49,11 +49,11 @@
     [self setupNotifications];
     
     if (IS_IPHONE_4_SIZE) {
-        self.recipientLabelConstraint.constant = 20;
+        self.pageLabelConstraint.constant = 20;
     } else if (IS_IPHONE_6_SIZE) {
-        self.recipientLabelConstraint.constant = 80;
+        self.pageLabelConstraint.constant = 80;
     } else if (IS_IPHONE_6_PLUS_SIZE) {
-        self.recipientLabelConstraint.constant = 100;
+        self.pageLabelConstraint.constant = 100;
     }
 }
 
@@ -195,15 +195,13 @@
                      animations:^{
                          self.topLeftButton.alpha = 1;
                          self.yapsPageButton.alpha = 1;
-                         if ([self isInReplyMode]) {
-                             self.recipientLabel.alpha = 1;
-                         }
+                         self.pageLabel.alpha = 1;
                      }
                      completion:nil];
 }
 
 - (void) hideTopButtons {
-    self.recipientLabel.alpha = 0;
+    self.pageLabel.alpha = 0;
     
     [UIView animateWithDuration:.3
                           delay:0
@@ -313,9 +311,9 @@
         [self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
         self.topLeftButton.alpha = 1;
         
-        self.recipientLabel.alpha = 1;
+        //self.pageLabel.alpha = 1;
         NSString *contactReplyingToFirstName = [[self.contactReplyingTo.name componentsSeparatedByString:@" "] objectAtIndex:0];
-        self.recipientLabel.text = [NSString stringWithFormat:@"Reply to %@", contactReplyingToFirstName];
+        self.pageLabel.text = [NSString stringWithFormat:@"Reply to %@", contactReplyingToFirstName];
         
         NSLog(@"In reply mode");
     } else {
