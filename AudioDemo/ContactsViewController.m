@@ -504,8 +504,6 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
-
-
 #pragma mark - Keyboard
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
@@ -602,6 +600,18 @@ static NSString *CellIdentifier = @"Cell";
                        }];
     
     [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
+    
+    
+    
+    /*
+     
+     NSArray *pendingYaps = [[API sharedAPI] sendYapBuilder:self.yapBuilder
+ 
+     [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
+    
+     
+     */
+
 }
 
 #pragma mark - UISearchDisplayDelegate

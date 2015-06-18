@@ -280,6 +280,8 @@ static const float TIMER_INTERVAL = .02;
         }
     } else if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
         YapsViewController *yapsVC = segue.destinationViewController;
+        NSArray *pendingYaps = sender;
+        yapsVC.pendingYaps = pendingYaps;
         yapsVC.comingFromContactsOrCustomizeYapPage = YES;
         
         

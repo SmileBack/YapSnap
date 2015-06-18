@@ -119,10 +119,17 @@
     }
 
     if (!self.isForwardingYap) {
-        double delay3 = .8;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.textView becomeFirstResponder];
-        });
+        if (self.isReplying) {
+            double delay3 = 1.0;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.textView becomeFirstResponder];
+            });
+        } else {
+            double delay3 = .8;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.textView becomeFirstResponder];
+            });
+        }
     }
     
     [self addShadowToTextView];
