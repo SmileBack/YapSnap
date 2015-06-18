@@ -95,9 +95,9 @@
 }
 
 - (void) setupGestureRecognizers {
-    //UITapGestureRecognizer *tappedSpotifyView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedSpotifyView)];
-    //tappedSpotifyView.numberOfTapsRequired = 1;
-    //[self.view addGestureRecognizer:tappedSpotifyView];
+    UITapGestureRecognizer *tappedSpotifyView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedSpotifyView)];
+    tappedSpotifyView.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tappedSpotifyView];
 }
 
 - (void) setupNotifications {
@@ -684,7 +684,7 @@
         //NSLog(@"Button Title: %@", buttonTitle);
         [self search:selectedTrack.artistName];
         self.searchBox.text = selectedTrack.artistName;
-        [UIView animateWithDuration:.1
+        /*[UIView animateWithDuration:.1
                               delay:0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
@@ -694,8 +694,7 @@
                              [self resetSearchBoxColor];
                              //self.searchBox.backgroundColor = THEME_DARK_BLUE_COLOR;
                          }];
-        
-        //[[YTNotifications sharedNotifications] showNotificationText:@"Searching Artist"];
+         */
     }
 }
 
