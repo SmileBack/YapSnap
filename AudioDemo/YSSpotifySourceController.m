@@ -406,17 +406,6 @@
         trackView.artistButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.artistButton.backgroundColor = THEME_DARK_BLUE_COLOR;
         [trackView.artistButton.titleLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:12]];
-        
-        NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:12]};
-        CGSize stringsize = [[NSString stringWithFormat:@"by %@", track.artistName] sizeWithAttributes:attributes];
-        if ((stringsize.width + 20) > carouselHeight) {
-            stringsize.width = carouselHeight-24;
-        }
-        [trackView.artistButton setFrame:CGRectMake((carouselHeight-stringsize.width-20)/2, carouselHeight - 100 /*+35*/, stringsize.width+20, stringsize.height + 8)];
-        //trackView.artistButton
-        
-        //[trackView.artistButton sizeToFit];
-        //[trackView.artistButton setTitleEdgeInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
         [trackView addSubview:trackView.artistButton];
         
         
@@ -512,6 +501,11 @@
     
     [trackView.artistButton addTarget:self action:@selector(tappedArtistButton:) forControlEvents:UIControlEventTouchUpInside];
     [trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
+    CGSize stringsize = [[NSString stringWithFormat:@"by %@", track.artistName] sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:12]}];
+    if ((stringsize.width + 20) > self.carouselHeightConstraint.constant) {
+        stringsize.width = self.carouselHeightConstraint.constant-24;
+    }
+    [trackView.artistButton setFrame:CGRectMake((self.carouselHeightConstraint.constant-stringsize.width-20)/2, self.carouselHeightConstraint.constant - 100 /*+35*/, stringsize.width+20, stringsize.height + 8)];
 
     return trackView;
 }
