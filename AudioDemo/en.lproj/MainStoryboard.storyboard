@@ -105,6 +105,7 @@
                         <outlet property="carousel" destination="ZNs-R1-CJc" id="5vb-SQ-OO6"/>
                         <outlet property="carouselHeightConstraint" destination="hJg-gl-YKL" id="JNK-sm-bxz"/>
                         <outlet property="loadingIndicator" destination="iKi-hk-1A5" id="Kfk-Mv-9XA"/>
+                        <outlet property="magnifyingGlassImageView" destination="cNC-jx-czs" id="JOM-R8-HF5"/>
                         <outlet property="resetButton" destination="oUD-ix-h4T" id="Gbn-6y-zbp"/>
                         <outlet property="searchBox" destination="6hl-m2-tvk" id="lF2-ss-GVa"/>
                     </connections>

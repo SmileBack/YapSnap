@@ -18,6 +18,7 @@
 #import "FBShimmeringView.h"
 #import "SpotifyArtistFactory.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "SearchArtistAlertView.h"
 
 @interface YSSpotifySourceController ()
 @property (nonatomic, strong) NSArray *songs;
@@ -34,10 +35,11 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carouselHeightConstraint;
 @property (strong, nonatomic) IBOutlet UIButton *bottomButton;
 @property (strong, nonatomic) UIButton *artistButton;
+@property (strong, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
+@property (nonatomic, strong) NSString *artistNameString;
 
 
 - (IBAction)didTapResetButton;
-//- (void) searchGenre:(NSString *)genre; TODO: Add this back!
 - (void) performRandomSearch;
 - (IBAction)didTapRandomButton:(id)sender;
 
@@ -188,6 +190,7 @@
     [self search:randomlySelectedArtist];
     [self showSearchBox];
     self.searchBox.text = randomlySelectedArtist;
+    [self updateVisibilityOfMagnifyingGlassAndResetButtons];
 }
 
 - (IBAction)didTapRandomButton:(id)sender {
@@ -248,6 +251,9 @@
 -(void)textFieldDidChange:(UITextField *)searchBox {
     if ([self.searchBox.text length] == 0) {
         NSLog(@"Empty String");
+        self.resetButton.alpha = 0;
+    } else {
+        [self updateVisibilityOfMagnifyingGlassAndResetButtons];
     }
 }
 
@@ -262,7 +268,6 @@
     self.carousel.alpha = 1;
     self.loadingIndicator.alpha = 1;
     [self.loadingIndicator startAnimating];
-    self.resetButton.alpha = .9;
     
     __weak YSSpotifySourceController *weakSelf = self;
     [[SpotifyAPI sharedApi] searchSongs:search withCallback:^(NSArray *songs, NSError *error) {
@@ -291,7 +296,6 @@
                 if (!self.didViewSpotifySongs) {
                     double delay = .7;
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        //[[YTNotifications sharedNotifications] showNotificationText:@"Find a Song"];
                         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_VIEW_SPOTIFY_SONGS];
                     });
                 }
@@ -322,7 +326,7 @@
     NSLog(@"Textfield did begin editing");
     self.carousel.scrollEnabled = NO;
     self.carousel.alpha = 0;
-    [self hideResetButton];
+    //[self hideResetButton];
     
     NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
     self.searchBox.attributedPlaceholder = string;
@@ -408,11 +412,6 @@
         [trackView.artistButton.titleLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:12]];
         [trackView addSubview:trackView.artistButton];
         
-        
-        //CGSize stringsize = [[NSString stringWithFormat:@"by %@", track.artistName] sizeWithAttributes:[UIFont fontWithName:@"Futura-Medium" size:12]];
-        //or whatever font you're using
-        //[button setFrame:CGRectMake(10,0,stringsize.width, stringsize.height)];
-        
         // SONG VERSION ONE BUTTON
         trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.songVersionOneButton.frame = CGRectMake(/*0*/5, carouselHeight /*- 32*/-55, carouselHeight/2 - 6/*-1*/, 50);
@@ -491,11 +490,6 @@
     trackView.songNameLabel.textAlignment = NSTextAlignmentCenter;
     CGFloat size = IS_IPHONE_4_SIZE ? 14 : 18;
     trackView.songNameLabel.font = [UIFont fontWithName:@"Futura-Medium" size:size];
-    
-    /*
-    CGFloat size2 = IS_IPHONE_4_SIZE ? 10 : 12;
-    trackView.artistNameLabel.font = [UIFont fontWithName:@"Futura-Medium" size:size2];
-     */
     
     [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -667,45 +661,39 @@
 - (void) tappedArtistButton:(UIButton *)button
 {
     NSLog(@"Tapped Artist Button");
-    UIView *parent = button.superview;
-    if ([parent isKindOfClass:[SpotifyTrackView class]]) {
-        SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-        YSTrack *selectedTrack = nil;
-        for (YSTrack *track in self.songs) {
-            if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
-                selectedTrack = track;
-                break;
+    if (!self.didViewSearchArtistPopup) {
+        UIView *parent = button.superview;
+        if ([parent isKindOfClass:[SpotifyTrackView class]]) {
+            SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
+            YSTrack *selectedTrack = nil;
+            for (YSTrack *track in self.songs) {
+                if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+                    selectedTrack = track;
+                    break;
+                }
             }
+            SearchArtistAlertView *alertView = [[SearchArtistAlertView alloc] initWithArtistName:selectedTrack.artistName andDelegate:self];
+            self.artistNameString = selectedTrack.artistName;
+            [alertView show];
         }
-        NSLog(@"Artist: %@", selectedTrack.artistName);
-        NSLog(@"Song: %@", selectedTrack.name);
-        // We're purposely using button title rather than selectedTrack.artistName due to occasional mismatch. However, we have to remove the "by" from the button title
-        //NSString *buttonTitle = [button.currentTitle substringFromIndex:3];
-        //NSLog(@"Button Title: %@", buttonTitle);
-        [self search:selectedTrack.artistName];
-        self.searchBox.text = selectedTrack.artistName;
-        /*[UIView animateWithDuration:.1
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             self.searchBox.backgroundColor = [UIColor colorWithRed:0.0/255.0 green:60.0/255.0 blue:150.0/255.0 alpha:1.0f];
-                         }
-                         completion:^(BOOL finished) {
-                             [self resetSearchBoxColor];
-                             //self.searchBox.backgroundColor = THEME_DARK_BLUE_COLOR;
-                         }];
-         */
+    } else {
+        UIView *parent = button.superview;
+        if ([parent isKindOfClass:[SpotifyTrackView class]]) {
+            SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
+            YSTrack *selectedTrack = nil;
+            for (YSTrack *track in self.songs) {
+                if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+                    selectedTrack = track;
+                    break;
+                }
+            }
+            NSLog(@"Artist: %@", selectedTrack.artistName);
+            NSLog(@"Song: %@", selectedTrack.name);
+            [self search:selectedTrack.artistName];
+            self.searchBox.text = selectedTrack.artistName;
+            [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+        }
     }
-}
-
-- (void) resetSearchBoxColor {
-    [UIView animateWithDuration:.4
-                          delay:.8
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.searchBox.backgroundColor = THEME_DARK_BLUE_COLOR;
-                     }
-                     completion:nil];
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
@@ -969,6 +957,11 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_VIEW_SPOTIFY_SONGS];
 }
 
+- (BOOL) didViewSearchArtistPopup
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_VIEW_SEARCH_ARTIST_POPUP];
+}
+
 - (void) showSearchBox
 {
     [UIView animateWithDuration:.1
@@ -1051,6 +1044,37 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+}
+
+- (void) updateVisibilityOfMagnifyingGlassAndResetButtons {
+    CGSize stringsize = [[NSString stringWithFormat:@"%@", self.searchBox.text] sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:18]}];
+    NSLog(@"STRING WIDTH %f", stringsize.width);
+    if (stringsize.width > 210) {
+        self.resetButton.alpha = 0;
+        self.magnifyingGlassImageView.hidden = YES;
+    } else {
+        [UIView animateWithDuration:.3
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.resetButton.alpha = 0.9;
+                         }
+                         completion:nil];
+        self.magnifyingGlassImageView.hidden = NO;
+    }
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([alertView isKindOfClass:[SearchArtistAlertView class]]) {
+        if (buttonIndex == 1) {
+            [self search:self.artistNameString];
+            self.searchBox.text = self.artistNameString;
+            [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_VIEW_SEARCH_ARTIST_POPUP];
+        }
+    }
 }
 
 @end

@@ -10,7 +10,7 @@
 #import <iCarousel/iCarousel.h>
 #import <StreamingKit/STKAudioPlayer.h>
 
-@interface YSSpotifySourceController : YSAudioSourceController<iCarouselDataSource, iCarouselDelegate, UITextFieldDelegate, STKAudioPlayerDelegate>
+@interface YSSpotifySourceController : YSAudioSourceController<iCarouselDataSource, iCarouselDelegate, UITextFieldDelegate, STKAudioPlayerDelegate, UIAlertViewDelegate>
 
 #define TAPPED_ALBUM_COVER @"yaptap.TappedAlbumCoverKey5"
 #define TAPPED_SONG_VERSION_ONE @"yaptap.TappedSongVersionOneKey"
@@ -28,6 +28,7 @@
 #define REMOVE_BOTTOM_BANNER_NOTIFICATION @"com.yapsnap.RemoveBottomBannerNotification"
 #define LISTENED_TO_CLIP_NOTIFICATION @"com.yapsnap.ListenedToClipNotification"
 #define CANCELED_BOTTOM_BANNER_NOTIFICATION @"com.yapsnap.CanceledBottomBannerNotification"
+#define DID_VIEW_SEARCH_ARTIST_POPUP @"com.yapsnap.DidViewSearchArtistPopup"
 
 @property (nonatomic, strong) NSString *selectedGenre;
 
