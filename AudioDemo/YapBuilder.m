@@ -39,7 +39,7 @@
         self.track.spotifyURL = yap.listenOnSpotifyURL;
         self.track.secondsToFastForward = yap.secondsToFastForward;
         
-        self.originYapID = yap.senderID;
+        self.originYapID = yap.yapID;
         
         switch (action) {
             case YTYapSendingActionReply:
