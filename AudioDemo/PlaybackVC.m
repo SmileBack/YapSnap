@@ -197,7 +197,7 @@
 
 - (IBAction)didTapReply:(id)sender {
     if ([self.yap.type isEqual:@"SpotifyMessage"]) {
-        UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:nil
+        UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"How would you like to reply?"
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil

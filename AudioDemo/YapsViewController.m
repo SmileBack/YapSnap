@@ -25,6 +25,7 @@
 #import "BlockFriendAlertView.h"
 #import "CustomizeYapViewController.h"
 #import "FriendsViewController.h"
+#import "ReplyActionSheet.h"
 
 #define PENDING_YAPS_SECTION 0
 
@@ -32,7 +33,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
-@property (nonatomic, strong) YSYap *yapToBlock; //Saved when the AlertView is shown
+@property (nonatomic, strong) YSYap *selectedYap; //Saved when the AlertView is shown
 @property (strong, nonatomic) IBOutlet UIView *pushEnabledView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
@@ -292,15 +293,15 @@ static NSString *CellIdentifier = @"Cell";
 #pragma mark - Add Friend flow
 - (void) promptToAddFriend:(YSYap *)yap
 {
-    self.yapToBlock = yap;
+    self.selectedYap = yap;
 
-    AddFriendAlertView *alertView = [[AddFriendAlertView alloc] initWithYap:self.yapToBlock andDelegate:self];
+    AddFriendAlertView *alertView = [[AddFriendAlertView alloc] initWithYap:self.selectedYap andDelegate:self];
     [alertView show];
 }
 
 - (void) promptToBlock
 {
-    BlockFriendAlertView *alertView = [[BlockFriendAlertView alloc] initWithYap:self.yapToBlock andDelegate:self];
+    BlockFriendAlertView *alertView = [[BlockFriendAlertView alloc] initWithYap:self.selectedYap andDelegate:self];
     [alertView show];
 }
 
@@ -462,12 +463,12 @@ static NSString *CellIdentifier = @"Cell";
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Double Tapped Row"];
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"How would you like to reply?"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Use Same Song", @"Select New Song", @"No Song. Just Voice", nil];
+    ReplyActionSheet *actionSheet = [[ReplyActionSheet alloc] initWithYap:self.selectedYap andDelegate:self];
     [actionSheet showInView:self.view];
+    
+    YSYap *yap = self.yaps[indexPath.row];
+    self.selectedYap = yap;
+    
     /*
     YSYap *yap = self.yaps[indexPath.row];
     [self didOriginateReplyFromYapSameClip:yap];
@@ -591,7 +592,7 @@ static NSString *CellIdentifier = @"Cell";
                                                             message:[NSString stringWithFormat:@"You will no longer receive messages from %@. This cannot be undone.", yap.displaySenderName]
                                                            delegate:self
                                                   cancelButtonTitle:@"Cancel" otherButtonTitles:@"Block", nil];
-        self.yapToBlock = yap;
+        self.selectedYap = yap;
 
         [alertView show];
     }
@@ -664,7 +665,7 @@ static NSString *CellIdentifier = @"Cell";
 {
     NSMutableArray *mutableYaps = [NSMutableArray arrayWithArray:self.yaps];
     [self.tableView beginUpdates];
-    NSUInteger index = [mutableYaps indexOfObject:self.yapToBlock];
+    NSUInteger index = [mutableYaps indexOfObject:self.selectedYap];
     [mutableYaps removeObjectAtIndex:index];
     [YapsCache sharedCache].yaps = mutableYaps;
 
@@ -679,28 +680,28 @@ static NSString *CellIdentifier = @"Cell";
     __weak YapsViewController *weakSelf = self;
     if ([alertView isKindOfClass:[AddFriendAlertView class]]) {
         if (buttonIndex == 1) {
-            [[API sharedAPI] confirmFriendFromYap:self.yapToBlock withCallback:^(BOOL success, NSError *error) {
+            [[API sharedAPI] confirmFriendFromYap:self.selectedYap withCallback:^(BOOL success, NSError *error) {
                 if (success) {
                     [[YTNotifications sharedNotifications] showNotificationText:@"You Have a New Friend!"];
                 }
             }];
-            self.yapToBlock = nil;
+            self.selectedYap = nil;
         } else {
             [self promptToBlock];
         }
     } else if ([alertView isKindOfClass:[BlockFriendAlertView class]]) {
         if (buttonIndex == 1) {
-            [[API sharedAPI] blockUserId:self.yapToBlock.senderID
+            [[API sharedAPI] blockUserId:self.selectedYap.senderID
                             withCallback:^(BOOL success, NSError *error) {
                                 if (success) {
-                                    NSString *text = [NSString stringWithFormat:@"%@ blocked", weakSelf.yapToBlock.displaySenderName];
+                                    NSString *text = [NSString stringWithFormat:@"%@ blocked", weakSelf.selectedYap.displaySenderName];
                                     [[YTNotifications sharedNotifications] showNotificationText:text];
                                     [self loadYaps];
                                 }
-                                weakSelf.yapToBlock = nil;
+                                weakSelf.selectedYap = nil;
                             }];
         } else {
-            self.yapToBlock = nil;
+            self.selectedYap = nil;
         }
     } else {
         if (buttonIndex == 1) {
@@ -709,7 +710,7 @@ static NSString *CellIdentifier = @"Cell";
             
             __weak YapsViewController *weakSelf = self;
             
-            [[API sharedAPI] blockUserId:self.yapToBlock.senderID
+            [[API sharedAPI] blockUserId:self.selectedYap.senderID
                             withCallback:^(BOOL success, NSError *error) {
                                 if (success) {
                                     NSLog(@"Blocking Worked");
@@ -816,18 +817,22 @@ static NSString *CellIdentifier = @"Cell";
     NSLog(@"Tapped Action Sheet; Button Index: %ld", (long)buttonIndex);
     // Take a photo
     if (buttonIndex == 0) {
-        //[self didOriginateReplyFromYapSameClip:self.yap];
+        [self didOriginateReplyFromYapSameClip:self.selectedYap];
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Tapped Reply (Same Clip)"];
         // Upload a photo
     } else if (buttonIndex == 1) {
-        //[self didOriginateReplyFromYapNewClip:self.yap];
+        [self didOriginateReplyFromYapNewClip:self.selectedYap];
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Tapped Reply (Different Clip)"];
     } else if (buttonIndex == 2) {
+        [self didOriginateReplyFromYapVoice:self.selectedYap];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Reply (Voice)"];
+    } else {
         NSLog(@"Did tap cancel");
     }
-    
+    self.selectedYap = nil;
 }
 
 @end

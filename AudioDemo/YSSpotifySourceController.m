@@ -499,7 +499,7 @@
     if ((stringsize.width + 20) > self.carouselHeightConstraint.constant) {
         stringsize.width = self.carouselHeightConstraint.constant-24;
     }
-    [trackView.artistButton setFrame:CGRectMake((self.carouselHeightConstraint.constant-stringsize.width-20)/2, self.carouselHeightConstraint.constant - 100 /*+35*/, stringsize.width+20, stringsize.height + 8)];
+    [trackView.artistButton setFrame:CGRectMake((self.carouselHeightConstraint.constant-stringsize.width-20)/2, self.carouselHeightConstraint.constant /*- 100*/ +35, stringsize.width+20, stringsize.height + 8)];
 
     return trackView;
 }

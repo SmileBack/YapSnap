@@ -69,6 +69,7 @@
 		78319A811ACD29A9000C3FD6 /* FeedbackMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78319A801ACD29A9000C3FD6 /* FeedbackMonitor.m */; };
 		783A1CBF1B17721D00B610B3 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 783A1CBE1B17721D00B610B3 /* UIAlertView+Blocks.m */; };
 		783CCF6D1B33431D00E3B5BF /* SearchArtistAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF6C1B33431D00E3B5BF /* SearchArtistAlertView.m */; };
+		783CCF701B3375A200E3B5BF /* ReplyActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF6F1B3375A200E3B5BF /* ReplyActionSheet.m */; };
 		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */; };
 		784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
@@ -393,6 +394,8 @@
 		783A1CBE1B17721D00B610B3 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		783CCF6B1B33431D00E3B5BF /* SearchArtistAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchArtistAlertView.h; sourceTree = "<group>"; };
 		783CCF6C1B33431D00E3B5BF /* SearchArtistAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchArtistAlertView.m; sourceTree = "<group>"; };
+		783CCF6E1B3375A200E3B5BF /* ReplyActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyActionSheet.h; sourceTree = "<group>"; };
+		783CCF6F1B3375A200E3B5BF /* ReplyActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyActionSheet.m; sourceTree = "<group>"; };
 		784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSRecordProgressView.h; sourceTree = "<group>"; };
 		784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecordProgressView.m; sourceTree = "<group>"; };
 		784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetImageButton.h; sourceTree = "<group>"; };
@@ -1584,6 +1587,8 @@
 				FCFCE4571AF5413D0094926E /* AddFriendAlertView.m */,
 				FCFCE45C1AF549C20094926E /* BlockFriendAlertView.h */,
 				FCFCE45D1AF549C20094926E /* BlockFriendAlertView.m */,
+				783CCF6E1B3375A200E3B5BF /* ReplyActionSheet.h */,
+				783CCF6F1B3375A200E3B5BF /* ReplyActionSheet.m */,
 				783CCF6B1B33431D00E3B5BF /* SearchArtistAlertView.h */,
 				783CCF6C1B33431D00E3B5BF /* SearchArtistAlertView.m */,
 			);
@@ -1943,6 +1948,7 @@
 				FCAA32901A8C2FD900FDCC78 /* UserCell.m in Sources */,
 				FC1E89BE1A4B9518007A8CDA /* PlaybackVC.m in Sources */,
 				787EC5E31AC9D0AD000C5539 /* JEProgressView.m in Sources */,
+				783CCF701B3375A200E3B5BF /* ReplyActionSheet.m in Sources */,
 				780D43291B0646770060DAED /* EZMicrophone.m in Sources */,
 				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,
 				FCEF99361A6D6B22000FDE4C /* CustomizeYapViewController.m in Sources */,
