@@ -25,7 +25,6 @@
 #import "BlockFriendAlertView.h"
 #import "CustomizeYapViewController.h"
 #import "FriendsViewController.h"
-#import "ReplyActionSheet.h"
 
 #define PENDING_YAPS_SECTION 0
 
@@ -457,23 +456,19 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 - (void) cellTappedTwiceAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"Double tap on: %@", indexPath);
-    
+{    
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Double Tapped Row"];
-    
-    ReplyActionSheet *actionSheet = [[ReplyActionSheet alloc] initWithYap:self.selectedYap andDelegate:self];
-    [actionSheet showInView:self.view];
     
     YSYap *yap = self.yaps[indexPath.row];
     self.selectedYap = yap;
     
-    /*
-    YSYap *yap = self.yaps[indexPath.row];
-    [self didOriginateReplyFromYapSameClip:yap];
-    //[self performSegueWithIdentifier:@"Reply Segue" sender:yap];
-     */
+    UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"How would you like to reply?"
+                                                                    delegate:self
+                                                           cancelButtonTitle:@"Cancel"
+                                                      destructiveButtonTitle:nil
+                                                           otherButtonTitles:@"Use Same Song", @"Select New Song", @"No Song. Just Voice", nil];
+    [actionSheetSpotify showInView:self.view];
 }
 
 - (void) cellLongPressedAtIndexPath:(NSIndexPath *)indexPath
