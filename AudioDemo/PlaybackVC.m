@@ -103,7 +103,7 @@
     
     if ([self.yap.type isEqual:@"SpotifyMessage"]) {
         UIImage *buttonImage = [UIImage imageNamed:@"SpotifyIconWhite2.png"];
-        [self.topRightButton setImage:buttonImage forState:UIControlStateNormal]; //self.spotifyButton.hidden = YES;
+        [self.topRightButton setImage:buttonImage forState:UIControlStateNormal];
     } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
         UIImage *buttonImage = [UIImage imageNamed:@"ReplayIcon2.png"];
         [self.topRightButton setImage:buttonImage forState:UIControlStateNormal];

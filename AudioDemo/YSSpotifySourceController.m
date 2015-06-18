@@ -33,6 +33,8 @@
 @property (strong, nonatomic) UIButton *spotifyButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carouselHeightConstraint;
 @property (strong, nonatomic) IBOutlet UIButton *bottomButton;
+@property (strong, nonatomic) UIButton *artistButton;
+
 
 - (IBAction)didTapResetButton;
 //- (void) searchGenre:(NSString *)genre; TODO: Add this back!
@@ -82,9 +84,6 @@
         carouselHeight = 240; // 119; (238*100) *1.172  279*117
     }
     self.carouselHeightConstraint.constant = carouselHeight;
-//TODO: REMOVE
-    //self.carousel.layer.borderWidth = 2;
-    //self.carousel.layer.borderColor = [UIColor purpleColor].CGColor;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -96,9 +95,9 @@
 }
 
 - (void) setupGestureRecognizers {
-    UITapGestureRecognizer *tappedSpotifyView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedSpotifyView)];
-    tappedSpotifyView.numberOfTapsRequired = 1;
-    [self.view addGestureRecognizer:tappedSpotifyView];
+    //UITapGestureRecognizer *tappedSpotifyView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedSpotifyView)];
+    //tappedSpotifyView.numberOfTapsRequired = 1;
+    //[self.view addGestureRecognizer:tappedSpotifyView];
 }
 
 - (void) setupNotifications {
@@ -159,7 +158,7 @@
 - (void)tappedSpotifyView {
     NSLog(@"Tapped Spotify View");
     if (self.searchBox.isFirstResponder) {
-        [self searchWithTextInTextField:self.searchBox withAlertWhenMissingSearchTerm:NO];
+        [self searchWithTextInTextField:self.searchBox];
     } else {
         // if carousel isn't showing
         if (self.carousel.alpha < 1) {
@@ -189,7 +188,6 @@
     [self search:randomlySelectedArtist];
     [self showSearchBox];
     self.searchBox.text = randomlySelectedArtist;
-    //[self setBackgroundColorForSearchBox];
 }
 
 - (IBAction)didTapRandomButton:(id)sender {
@@ -343,11 +341,11 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     //Remove extra space at end of string
-    [self searchWithTextInTextField:textField withAlertWhenMissingSearchTerm:YES];
+    [self searchWithTextInTextField:textField];
     return YES;
 }
 
-- (void)searchWithTextInTextField:(UITextField*)textField withAlertWhenMissingSearchTerm:(BOOL)alert {
+- (void)searchWithTextInTextField:(UITextField*)textField {
     self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     [self.view endEditing:YES];
@@ -374,78 +372,84 @@
 {
     YSTrack *track = self.songs[index];
     SpotifyTrackView *trackView;
-    
-    //TODO: Remove
-    trackView.layer.borderWidth = 2;
-    trackView.layer.borderColor = [UIColor orangeColor].CGColor;
 
     if (view && [view isKindOfClass:[SpotifyTrackView class]]) {
         trackView = (SpotifyTrackView *) view;
     } else {
+        // TRACKVIEW
         CGFloat carouselHeight = self.carouselHeightConstraint.constant;
         CGRect frame = CGRectMake(0, 0, carouselHeight, carouselHeight);
         trackView = [[SpotifyTrackView alloc] initWithFrame:frame];
+        
+        // ALBUM IMAGE
         trackView.imageView = [[UIImageView alloc] initWithFrame:frame];
         [trackView addSubview:trackView.imageView];
         
-        trackView.label = [[UILabel alloc]initWithFrame:
-                           CGRectMake(0, carouselHeight +22 /*+ 4*/ , carouselHeight, 25)];
-        [trackView addSubview:trackView.label];
-         
+        // SONG NAME LABEL
+        trackView.songNameLabel = [[UILabel alloc]initWithFrame:
+                           CGRectMake(0, carouselHeight + 6, carouselHeight, 25)];
+        [trackView addSubview:trackView.songNameLabel];
+        
+        // ALBUM BUTTON
         trackView.albumImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.albumImageButton.frame = CGRectMake(0, 0, carouselHeight, carouselHeight);
         [trackView.albumImageButton setImage:nil forState:UIControlStateNormal];
         [trackView addSubview:trackView.albumImageButton];
         
+        // SPOTIFY BUTTON
         trackView.spotifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.spotifyButton.frame = CGRectMake(carouselHeight-40, 5, 35, 35);
         [trackView.spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
         [trackView addSubview:trackView.spotifyButton];
         
-        //TODO: this is a hack
-        self.spotifyButton = trackView.spotifyButton;
+        // ARTIST BUTTON
+        trackView.artistButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        trackView.artistButton.backgroundColor = THEME_DARK_BLUE_COLOR;
+        [trackView.artistButton.titleLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:12]];
         
-        if (IS_IPHONE_6_PLUS_SIZE) {
-            trackView.songVersionBackground = [[UIView alloc]initWithFrame:
-                                           CGRectMake(0, carouselHeight-26, carouselHeight, 26)];
-        } else if (IS_IPHONE_6_SIZE) {
-            trackView.songVersionBackground = [[UIView alloc]initWithFrame:
-                                                   CGRectMake(0, carouselHeight - 22, carouselHeight, 22)];
-        } else {
-            trackView.songVersionBackground = [[UIView alloc]initWithFrame:
-                                               CGRectMake(0, carouselHeight/* - 18*/, carouselHeight, 18)];
+        NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:12]};
+        CGSize stringsize = [[NSString stringWithFormat:@"by %@", track.artistName] sizeWithAttributes:attributes];
+        if ((stringsize.width + 20) > carouselHeight) {
+            stringsize.width = carouselHeight-24;
         }
-        [trackView addSubview:trackView.songVersionBackground];
+        [trackView.artistButton setFrame:CGRectMake((carouselHeight-stringsize.width-20)/2, carouselHeight - 100 /*+35*/, stringsize.width+20, stringsize.height + 8)];
+        //trackView.artistButton
         
+        //[trackView.artistButton sizeToFit];
+        //[trackView.artistButton setTitleEdgeInsets:UIEdgeInsetsMake(2, 2, 2, 2)];
+        [trackView addSubview:trackView.artistButton];
+        
+        
+        //CGSize stringsize = [[NSString stringWithFormat:@"by %@", track.artistName] sizeWithAttributes:[UIFont fontWithName:@"Futura-Medium" size:12]];
+        //or whatever font you're using
+        //[button setFrame:CGRectMake(10,0,stringsize.width, stringsize.height)];
+        
+        // SONG VERSION ONE BUTTON
         trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionOneButton.frame = CGRectMake(0, carouselHeight - 32/*-50*/, carouselHeight/2 - 1, 50);
+        trackView.songVersionOneButton.frame = CGRectMake(/*0*/5, carouselHeight /*- 32*/-55, carouselHeight/2 - 6/*-1*/, 50);
         [trackView.songVersionOneButton addTarget:self action:@selector(tappedSongVersionOneButton:) forControlEvents:UIControlEventTouchDown];
-        //TODO: Remove
-        //trackView.songVersionOneButton.layer.borderWidth = 2;
-        //trackView.songVersionOneButton.layer.borderColor = [UIColor redColor].CGColor;
-        
         [trackView addSubview:trackView.songVersionOneButton];
         
-        // Hack:
+            // Hack:
         UITapGestureRecognizer *tapGestureButtonOne = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shortTappedSongVersionOneButton)];
         tapGestureButtonOne.numberOfTapsRequired = 1;
         tapGestureButtonOne.numberOfTouchesRequired = 1;
         [trackView.songVersionOneButton addGestureRecognizer:tapGestureButtonOne];
 
-        
+        // SONG VERSION TWO BUTTON
         trackView.songVersionTwoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.songVersionTwoButton.frame = CGRectMake(carouselHeight/2 + 1, carouselHeight - 32 /*-50*/, carouselHeight/2 - 1, 50);
+        trackView.songVersionTwoButton.frame = CGRectMake(carouselHeight/2 + 1, carouselHeight /*- 32 */-55, carouselHeight/2 - 6/*-1*/, 50);
         [trackView.songVersionTwoButton addTarget:self action:@selector(tappedSongVersionTwoButton:) forControlEvents:UIControlEventTouchDown];
         [trackView addSubview:trackView.songVersionTwoButton];
         
-        // Hack:
+            // Hack:
         UITapGestureRecognizer *tapGestureButtonTwo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shortTappedSongVersionTwoButton)];
         tapGestureButtonTwo.numberOfTapsRequired = 1;
         tapGestureButtonTwo.numberOfTouchesRequired = 1;
         [trackView.songVersionTwoButton addGestureRecognizer:tapGestureButtonTwo];
 
         
-        // Keep Holding Label
+        // ALBUM BANNER LABEL
         trackView.bannerLabel = [[UILabel alloc]initWithFrame:
                                                CGRectMake(2, 2, carouselHeight-4, 42)];
         CALayer *bottomBorder = [CALayer layer];
@@ -485,21 +489,29 @@
     
     trackView.imageView.layer.borderWidth = 2;
     trackView.imageView.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
-    
     [trackView.imageView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.05]];
 
     // Needed so the Spotify button can work
     trackView.spotifySongID = track.spotifyID;
     trackView.spotifyURL = track.spotifyURL;
     
-    trackView.label.textColor = [UIColor whiteColor];
-    trackView.label.backgroundColor = [UIColor clearColor];
-    trackView.label.text = track.name;
-    trackView.label.textAlignment = NSTextAlignmentCenter;
+    // SONG NAME LABEL
+    trackView.songNameLabel.textColor = [UIColor whiteColor];
+    trackView.songNameLabel.backgroundColor = [UIColor clearColor];
+    trackView.songNameLabel.text = track.name;
+    trackView.songNameLabel.textAlignment = NSTextAlignmentCenter;
     CGFloat size = IS_IPHONE_4_SIZE ? 14 : 18;
-    trackView.label.font = [UIFont fontWithName:@"Futura-Medium" size:size];
+    trackView.songNameLabel.font = [UIFont fontWithName:@"Futura-Medium" size:size];
+    
+    /*
+    CGFloat size2 = IS_IPHONE_4_SIZE ? 10 : 12;
+    trackView.artistNameLabel.font = [UIFont fontWithName:@"Futura-Medium" size:size2];
+     */
     
     [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [trackView.artistButton addTarget:self action:@selector(tappedArtistButton:) forControlEvents:UIControlEventTouchUpInside];
+    [trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
 
     return trackView;
 }
@@ -656,6 +668,51 @@
             [alert show];
         }
     }
+}
+
+- (void) tappedArtistButton:(UIButton *)button
+{
+    NSLog(@"Tapped Artist Button");
+    UIView *parent = button.superview;
+    if ([parent isKindOfClass:[SpotifyTrackView class]]) {
+        SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
+        YSTrack *selectedTrack = nil;
+        for (YSTrack *track in self.songs) {
+            if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+                selectedTrack = track;
+                break;
+            }
+        }
+        NSLog(@"Artist: %@", selectedTrack.artistName);
+        NSLog(@"Song: %@", selectedTrack.name);
+        // We're purposely using button title rather than selectedTrack.artistName due to occasional mismatch. However, we have to remove the "by" from the button title
+        //NSString *buttonTitle = [button.currentTitle substringFromIndex:3];
+        //NSLog(@"Button Title: %@", buttonTitle);
+        [self search:selectedTrack.artistName];
+        self.searchBox.text = selectedTrack.artistName;
+        [UIView animateWithDuration:.1
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.searchBox.backgroundColor = [UIColor colorWithRed:0.0/255.0 green:60.0/255.0 blue:150.0/255.0 alpha:1.0f];
+                         }
+                         completion:^(BOOL finished) {
+                             [self resetSearchBoxColor];
+                             //self.searchBox.backgroundColor = THEME_DARK_BLUE_COLOR;
+                         }];
+        
+        //[[YTNotifications sharedNotifications] showNotificationText:@"Searching Artist"];
+    }
+}
+
+- (void) resetSearchBoxColor {
+    [UIView animateWithDuration:.4
+                          delay:.8
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.searchBox.backgroundColor = THEME_DARK_BLUE_COLOR;
+                     }
+                     completion:nil];
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index

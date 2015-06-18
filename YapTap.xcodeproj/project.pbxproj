@@ -339,6 +339,7 @@
 		37E122E51A4011560073684D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		41ED5961C23D704BCAF364D2 /* libPods-YapTap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapTap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		780211611AAB8EE000A71889 /* FriendsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FriendsIcon@2x.png"; sourceTree = "<group>"; };
+		7803F2AC1B328DCA00F50238 /* futuratmed-italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "futuratmed-italic.ttf"; sourceTree = "<group>"; };
 		780D430A1B0646770060DAED /* AEFloatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEFloatConverter.h; sourceTree = "<group>"; };
 		780D430B1B0646770060DAED /* AEFloatConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEFloatConverter.m; sourceTree = "<group>"; };
 		780D430C1B0646770060DAED /* EZAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudio.h; sourceTree = "<group>"; };
@@ -819,6 +820,7 @@
 		37D413B219D217FF00021548 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				7803F2AC1B328DCA00F50238 /* futuratmed-italic.ttf */,
 				37D413B319D2180600021548 /* FuturaStd-Medium.ttf */,
 			);
 			name = Fonts;

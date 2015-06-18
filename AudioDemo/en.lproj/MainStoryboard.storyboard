@@ -21,8 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNs-R1-CJc" customClass="iCarousel">
-                                <rect key="frame" x="0.0" y="111" width="320" height="230"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="101" width="320" height="230"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="230" id="hJg-gl-YKL"/>
                                 </constraints>
@@ -86,7 +85,7 @@
                             <constraint firstItem="iKi-hk-1A5" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="175" id="7E1-ft-JPZ"/>
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" id="9zR-GB-wuh"/>
                             <constraint firstAttribute="trailing" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="15" id="BpS-sr-djQ"/>
-                            <constraint firstItem="ZNs-R1-CJc" firstAttribute="top" secondItem="oUD-ix-h4T" secondAttribute="bottom" constant="35" id="TF2-gT-f9w"/>
+                            <constraint firstItem="ZNs-R1-CJc" firstAttribute="top" secondItem="oUD-ix-h4T" secondAttribute="bottom" constant="25" id="TF2-gT-f9w"/>
                             <constraint firstItem="cNC-jx-czs" firstAttribute="top" secondItem="6hl-m2-tvk" secondAttribute="bottom" constant="-38" id="b19-u4-eF0"/>
                             <constraint firstAttribute="trailing" secondItem="ZNs-R1-CJc" secondAttribute="trailing" id="f6a-b0-12B"/>
                             <constraint firstItem="KEa-CH-3fd" firstAttribute="top" secondItem="OEq-Yl-zXl" secondAttribute="bottom" constant="13" id="jNb-uw-yLe"/>

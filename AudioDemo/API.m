@@ -78,7 +78,9 @@ static API *sharedAPI;
     params[@"duration"] = [NSNumber numberWithFloat:yapBuilder.duration];
     
     //TODO: Add this!
-    //params[@"origin_sender_id"] = yapBuilder.originSenderID;
+    if (yapBuilder.originYapID) {
+        params[@"origin_yap_id"] = yapBuilder.originYapID;
+    }
     
     // Send Color
     CGFloat red;

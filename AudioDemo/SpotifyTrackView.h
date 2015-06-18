@@ -14,7 +14,8 @@
 @property (nonatomic, strong) NSString *spotifyURL;
 
 @property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) UILabel *label;
+@property (nonatomic, strong) UILabel *songNameLabel;
+@property (nonatomic, strong) UIButton *artistButton;
 @property (nonatomic, strong) UIButton *spotifyButton;
 
 @property (nonatomic, strong) UIButton *songVersionOneButton;
