@@ -53,8 +53,6 @@
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
     
-    //self.titleLabel.text = [NSString stringWithFormat:@"%@", self.yap.displaySenderName];
-    
     /*
     if ([self.yap.type isEqual:@"VoiceMessage"]) {
         // To get pitch value in pitchShift unit, divide self.yap.pitchValueInCentUnits by STK_PITCHSHIFT_TRANSFORM
@@ -67,7 +65,6 @@
     
     [self handleImageAndPlayAudio];
     
-    self.titleLabel.alpha = 0;
     [self.activityIndicator startAnimating];
     
     self.textView.text = self.yap.text;
@@ -107,6 +104,21 @@
     } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
         UIImage *buttonImage = [UIImage imageNamed:@"ReplayIcon2.png"];
         [self.topRightButton setImage:buttonImage forState:UIControlStateNormal];
+    }
+
+    if (self.yap.sentByCurrentUser) {
+        self.replyButton.hidden = YES;
+        NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
+        self.titleLabel.text = [NSString stringWithFormat:@"Sent to %@", receiverFirstName];
+        if (self.yap.isFriendRequest) {
+            self.forwardButton.hidden = YES;
+        }
+    } else if (self.yap.receivedByCurrentUser) {
+        if (self.yap.isFriendRequest) {
+            self.forwardButton.hidden = YES;
+            NSString *senderFirstName = [[self.yap.displaySenderName componentsSeparatedByString:@" "] objectAtIndex:0];
+            [self.replyButton setTitle:[NSString stringWithFormat:@"Reply to %@", senderFirstName] forState:UIControlStateNormal];
+        }
     }
 }
 
@@ -235,13 +247,6 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self stop];
-                        /*
-                         [[API sharedAPI] updateYapStatus:self.yap toStatus:@"unopened" withCallback:^(BOOL success, NSError *error) {
-                         if (error) {
-                         
-                         }
-                         }];
-                         */
                     }];
 }
 
@@ -333,13 +338,14 @@
             [mixpanel track:@"Opened Yap"];
             [mixpanel.people increment:@"Opened Yap #" by:[NSNumber numberWithInt:1]];
             
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
-            
-            [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error, NSNumber *isFriend) {
-                if (success) {
-                    self.isFromFriend = isFriend;
-                }
-            }];
+            if (self.yap.receivedByCurrentUser) {
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
+                [[API sharedAPI] updateYapStatus:self.yap toStatus:@"opened" withCallback:^(BOOL success, NSError *error, NSNumber *isFriend) {
+                    if (success) {
+                        self.isFromFriend = isFriend;
+                    }
+                }];
+            }
             
             // set self.playerAlreadyStartedPlayingForThisSong to True!
             self.playerAlreadyStartedPlayingForThisSong = YES;
@@ -378,15 +384,6 @@
             [[YTNotifications sharedNotifications] showBufferingText:@"Buffering..."];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Buffering notification - PlayBack"];
-            
-            // In the following code we don't want to include songs where seeking occurs, since buffering will happen much more frequently
-            if ([self.yap.type isEqual:@"VoiceMessage"] || ([self.yap.type isEqual:@"SpotifyMessage"] && (self.yap.secondsToFastForward.intValue < 10))) {
-                [[API sharedAPI] updateYapStatus:self.yap toStatus:@"unopened" withCallback:^(BOOL success, NSError *error, NSNumber *isFriend) {
-                    if (error) {
-                        
-                    }
-                }];
-            }
         }
     }
     

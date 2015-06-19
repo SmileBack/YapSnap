@@ -393,11 +393,12 @@ static NSString *CellIdentifier = @"Cell";
     if (indexPath.section == 0) {
         return;
     }
-
+    
     YSYap *yap = self.yaps[indexPath.row];
     if (yap.receivedByCurrentUser) {
         if (yap.wasOpened) {
             YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            
             if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
                 cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:10];
             } else {
@@ -449,10 +450,21 @@ static NSString *CellIdentifier = @"Cell";
             [self.tableView reloadRowsAtIndexPaths:@[adjustedPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         });
     }
+/*
+    if ([self internetIsNotReachable]){
+        double delay = 0.1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+        });
+    } else {
+        YSYap *yap = self.yaps[indexPath.row];
+        [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
+    }
+*/
 }
 
 - (void) cellTappedTwiceAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Double Tapped Row"];
     

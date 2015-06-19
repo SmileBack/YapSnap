@@ -48,6 +48,8 @@
     yap.receiverID = dict[@"receiver_id"];
     yap.receiverName = dict[@"receiver_name"];
     yap.receiverPhone = dict[@"receiver_phone"];
+    
+    yap.notificationType = dict[@"notification_type"];
 
     return yap;
 }
@@ -166,6 +168,15 @@
 - (BOOL) receivedByCurrentUser
 {
     return [self.receiverID isEqualToNumber:[YSUser currentUser].userID];
+}
+
+- (BOOL) isFriendRequest
+{
+    if (![self.notificationType isEqual: [NSNull null]]) {
+        return [self.notificationType isEqualToString:@"friendship_request"];
+    } else {
+        return NO;
+    }
 }
 
 @end

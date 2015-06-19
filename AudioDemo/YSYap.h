@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSArray *rgbColorComponents;
 @property (nonatomic, strong) NSNumber *pitchValueInCentUnits;
 @property (nonatomic, strong) NSNumber *secondsToFastForward;
+@property (nonatomic, strong) NSString *notificationType;
 
 // Spotify stuff
 @property (strong, nonatomic) NSString *artist;
@@ -58,4 +59,6 @@
 - (BOOL) isSending;
 - (BOOL) sentByCurrentUser;
 - (BOOL) receivedByCurrentUser;
+- (BOOL) isFriendRequest;
+
 @end
