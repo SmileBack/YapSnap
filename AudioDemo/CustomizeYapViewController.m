@@ -148,7 +148,7 @@
     self.resetPhotoButton.layer.borderWidth = 1;
     self.resetPhotoButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
     
-    self.yapPhoto.layer.cornerRadius = 4;
+    //self.yapPhoto.layer.cornerRadius = 4;
     self.yapPhoto.layer.borderWidth = 1;
     self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
     self.yapPhoto.clipsToBounds = YES;

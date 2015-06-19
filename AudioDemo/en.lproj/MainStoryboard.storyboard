@@ -782,7 +782,7 @@
                                     <constraint firstAttribute="width" constant="300" id="kyu-ef-reZ"/>
                                 </constraints>
                             </imageView>
-                            <imageView hidden="YES" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-LF-pEZ" userLabel="Flashback Image">
+                            <imageView hidden="YES" alpha="0.60000000000000009" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-LF-pEZ" userLabel="Flashback Image">
                                 <rect key="frame" x="5" y="52" width="310" height="310"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gWj-LF-pEZ" secondAttribute="height" multiplier="1:1" id="Tos-Kb-190"/>
@@ -853,7 +853,7 @@
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vM0-Ja-t0y" userLabel="Reset Photo Button">
-                                <rect key="frame" x="80" y="320" width="160" height="30"/>
+                                <rect key="frame" x="80" y="377" width="160" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="Fdd-EP-Azz"/>
                                     <constraint firstAttribute="height" constant="30" id="mql-9U-Lys"/>
@@ -924,7 +924,7 @@
                             <constraint firstItem="5VO-Xh-MtL" firstAttribute="leading" secondItem="Yo4-ls-PqW" secondAttribute="leading" id="f2d-pZ-oy1"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="EyU-Er-gqZ" secondAttribute="bottom" constant="10" id="fBu-C8-GXW"/>
                             <constraint firstAttribute="trailing" secondItem="Yo4-ls-PqW" secondAttribute="trailing" constant="10" id="jDc-3I-w2v"/>
-                            <constraint firstItem="vM0-Ja-t0y" firstAttribute="top" secondItem="gWj-LF-pEZ" secondAttribute="bottom" constant="-42" id="lGz-ex-qwQ"/>
+                            <constraint firstItem="vM0-Ja-t0y" firstAttribute="top" secondItem="gWj-LF-pEZ" secondAttribute="bottom" constant="15" id="lGz-ex-qwQ"/>
                             <constraint firstItem="9XV-zO-GXP" firstAttribute="centerX" secondItem="54R-6y-Wab" secondAttribute="rightMargin" constant="-17" id="mW8-Gp-gvc"/>
                             <constraint firstItem="aiy-hB-M9w" firstAttribute="centerX" secondItem="5VO-Xh-MtL" secondAttribute="centerX" id="rqE-8C-pFa"/>
                             <constraint firstItem="aiy-hB-M9w" firstAttribute="leading" secondItem="ygq-ac-kFT" secondAttribute="leading" id="tIM-C1-Nx0"/>
@@ -1171,7 +1171,7 @@ in your phone's settings!</string>
                             <imageView userInteractionEnabled="NO" alpha="0.080000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oZS-3k-7XH" userLabel="Album Image">
                                 <rect key="frame" x="11" y="89" width="300" height="300"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-3F-cQc" userLabel="Flashback Image View">
+                            <imageView userInteractionEnabled="NO" alpha="0.60000000000000009" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-3F-cQc" userLabel="Flashback Image View">
                                 <rect key="frame" x="5" y="84" width="310" height="310"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cEy-3F-cQc" secondAttribute="height" multiplier="1:1" id="rvl-th-bpW"/>
