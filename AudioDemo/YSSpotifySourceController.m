@@ -37,6 +37,7 @@
 @property (strong, nonatomic) UIButton *artistButton;
 @property (strong, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
 @property (nonatomic, strong) NSString *artistNameString;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carouselYConstraint;
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapRandomButton:(id)sender;
@@ -84,6 +85,12 @@
         carouselHeight = 240; // 119; (238*100) *1.172  279*117
     }
     self.carouselHeightConstraint.constant = carouselHeight;
+    
+    if (IS_IPHONE_6_SIZE) {
+        self.carouselYConstraint.constant = 50;
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        self.carouselYConstraint.constant = 60;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

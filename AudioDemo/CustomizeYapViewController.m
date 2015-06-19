@@ -276,7 +276,7 @@
                 self.titleLabel.alpha = 1;
                 self.titleLabel.text = @"Add Message";
             } else {
-                [UIView animateWithDuration:.3
+                [UIView animateWithDuration:.2
                                       delay:0
                                     options:UIViewAnimationOptionCurveEaseOut
                                  animations:^{
