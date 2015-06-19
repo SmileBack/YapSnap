@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface YSUninvitedContactInviter : NSObject
+@interface YTUnregisteredUserSMSInviter : NSObject
 
-- (void)inviteUninvitedContactsFromYapsIfNeeded:(NSArray *)yaps
+- (void)promptSMSAlertIfRelevant:(NSArray *)yaps
                              fromViewController:(UIViewController *)viewController;
 
 @end

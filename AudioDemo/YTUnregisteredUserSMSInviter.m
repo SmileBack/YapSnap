@@ -6,20 +6,29 @@
 //  Copyright (c) 2015 Appcoda. All rights reserved.
 //
 
-#import "YSUninvitedContactInviter.h"
+#import "YTUnregisteredUserSMSInviter.h"
 #import "YSYap.h"
 #import "UIAlertView+Blocks.h"
 #import <MessageUI/MessageUI.h>
 
-@interface YSUninvitedContactInviter()<MFMessageComposeViewControllerDelegate>
+@interface YTUnregisteredUserSMSInviter()<MFMessageComposeViewControllerDelegate>
 
 @property (nonatomic, weak) UIViewController* viewController;
+@property BOOL smsAlertWasAlreadyPrompted;
+@property (nonatomic, weak) NSString* alertMessage;
 
 @end
 
-@implementation YSUninvitedContactInviter
+@implementation YTUnregisteredUserSMSInviter
 
-- (void)inviteUninvitedContactsFromYapsIfNeeded:(NSArray *)yaps
+- (id)init {
+    if (self = [super init]) {
+        self.smsAlertWasAlreadyPrompted = NO;
+    }
+    return self;
+}
+
+- (void)promptSMSAlertIfRelevant:(NSArray *)yaps
                              fromViewController:(UIViewController *)viewController {
     if (self.viewController != viewController) {
         self.viewController = viewController;
@@ -32,16 +41,33 @@
             }
         }
         
-        if (uninvitedNames.count > 0 && uninvitedContacts.count > 0) {
-            NSString* namesToInvite = uninvitedNames.count == 1 ? uninvitedNames.firstObject : [NSString stringWithFormat:@"%@ and %@ %@", uninvitedNames.firstObject, @(uninvitedNames.count - 1), uninvitedNames.count == 2 ? @"other" : @"others"];
+        if (uninvitedNames.count > 0 && uninvitedContacts.count > 0 && !self.smsAlertWasAlreadyPrompted) {
+            self.smsAlertWasAlreadyPrompted = YES;
             
-            [UIAlertView showWithTitle:@"Invite them to YapTap"
-                               message:[NSString stringWithFormat:@"Your yap was sent. Invite %@ to download the app so they can hear it.", namesToInvite]
-                     cancelButtonTitle:@"Skip" otherButtonTitles:@[@"Send Invite"]
+            NSString *firstNameOne = [[uninvitedNames.firstObject componentsSeparatedByString:@" "] objectAtIndex:0];
+            
+            if (uninvitedNames.count == 1) {
+                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have the app yet, but he/she will get your yap as soon as they download it!", firstNameOne];
+            } else if (uninvitedNames.count == 2) {
+                NSString *firstNameTwo = [[uninvitedNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
+                self.alertMessage = [NSString stringWithFormat:@"%@ and %@ don't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne, firstNameTwo];
+            } else if (uninvitedNames.count == 3){
+                NSString *firstNameTwo = [[uninvitedNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
+                NSString *firstNameThree = [[uninvitedNames[2] componentsSeparatedByString:@" "] objectAtIndex:0];
+                self.alertMessage = [NSString stringWithFormat:@"%@, %@, and %@ don't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne, firstNameTwo, firstNameThree];
+            } else {
+               self.alertMessage = [NSString stringWithFormat:@"%@ and a few others don't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne];
+            }
+            
+            [UIAlertView showWithTitle:@"Yap Sent!"
+                               message:self.alertMessage
+                     cancelButtonTitle:@"Skip" otherButtonTitles:@[@"Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   if (index != view.cancelButtonIndex) {
-                                      [self showSMS:@"Just sent you a message on YapTap, get the app to hear it: https://itunes.apple.com/gb/app/YapTap/id972004073"
+                                      [self showSMS:@"I sent you something on YapTap. Download the app to see it: https://itunes.apple.com/gb/app/YapTap/id972004073"
                                        toRecipients:uninvitedContacts];
+                                  } else {
+                                      self.smsAlertWasAlreadyPrompted = NO;
                                   }
                               }];
         }
@@ -85,6 +111,7 @@
             break;
     }
     
+    self.smsAlertWasAlreadyPrompted = NO;
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
 }
 

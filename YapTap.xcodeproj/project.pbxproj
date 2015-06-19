@@ -197,7 +197,7 @@
 		788363921AD78BB6001CBD1B /* TwoNotSelectediPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7883638E1AD78BB6001CBD1B /* TwoNotSelectediPhone4@2x.png */; };
 		788363A21AD79488001CBD1B /* TwoNotSelectediPhone6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 788363A11AD79488001CBD1B /* TwoNotSelectediPhone6@2x.png */; };
 		788363A61AD79572001CBD1B /* OneNotSelectediPhone6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 788363A31AD79572001CBD1B /* OneNotSelectediPhone6@2x.png */; };
-		788480441B177E9D0016536F /* YSUninvitedContactInviter.m in Sources */ = {isa = PBXBuildFile; fileRef = 788480431B177E9D0016536F /* YSUninvitedContactInviter.m */; };
+		788480441B177E9D0016536F /* YTUnregisteredUserSMSInviter.m in Sources */ = {isa = PBXBuildFile; fileRef = 788480431B177E9D0016536F /* YTUnregisteredUserSMSInviter.m */; };
 		7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */; };
 		789123381B2E8F9800894201 /* SpotifyIconWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 789123371B2E8F9800894201 /* SpotifyIconWhite.png */; };
 		7891233A1B2E959000894201 /* SpotifyIconWhite2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789123391B2E959000894201 /* SpotifyIconWhite2.png */; };
@@ -539,8 +539,8 @@
 		7883638E1AD78BB6001CBD1B /* TwoNotSelectediPhone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TwoNotSelectediPhone4@2x.png"; sourceTree = "<group>"; };
 		788363A11AD79488001CBD1B /* TwoNotSelectediPhone6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TwoNotSelectediPhone6@2x.png"; sourceTree = "<group>"; };
 		788363A31AD79572001CBD1B /* OneNotSelectediPhone6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OneNotSelectediPhone6@2x.png"; sourceTree = "<group>"; };
-		788480421B177E9D0016536F /* YSUninvitedContactInviter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSUninvitedContactInviter.h; sourceTree = "<group>"; };
-		788480431B177E9D0016536F /* YSUninvitedContactInviter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSUninvitedContactInviter.m; sourceTree = "<group>"; };
+		788480421B177E9D0016536F /* YTUnregisteredUserSMSInviter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTUnregisteredUserSMSInviter.h; sourceTree = "<group>"; };
+		788480431B177E9D0016536F /* YTUnregisteredUserSMSInviter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTUnregisteredUserSMSInviter.m; sourceTree = "<group>"; };
 		7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBackArrow5.png; sourceTree = "<group>"; };
 		789123371B2E8F9800894201 /* SpotifyIconWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyIconWhite.png; sourceTree = "<group>"; };
 		789123391B2E959000894201 /* SpotifyIconWhite2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyIconWhite2.png; sourceTree = "<group>"; };
@@ -806,7 +806,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		37695E7D19BBEE8500C22E13 /* Select Contacts Page */ = {
+		37695E7D19BBEE8500C22E13 /* Contacts Page */ = {
 			isa = PBXGroup;
 			children = (
 				3793FDF519BCF0DC00FBBBCE /* ContactSelectionCell.h */,
@@ -817,7 +817,7 @@
 				3793FDFA19BCF11E00FBBBCE /* UIViewController+Communication.h */,
 				3793FDFB19BCF11E00FBBBCE /* UIViewController+Communication.m */,
 			);
-			name = "Select Contacts Page";
+			name = "Contacts Page";
 			sourceTree = "<group>";
 		};
 		37BF0DE019E8FD1F0077B74F /* Yaps Page */ = {
@@ -1418,8 +1418,8 @@
 				FC52C1AF1A786F0F00D85FA8 /* RecentContact.m */,
 				FC029EA01A96BC190013B866 /* YSContact.h */,
 				FC029EA11A96BC190013B866 /* YSContact.m */,
-				788480421B177E9D0016536F /* YSUninvitedContactInviter.h */,
-				788480431B177E9D0016536F /* YSUninvitedContactInviter.m */,
+				788480421B177E9D0016536F /* YTUnregisteredUserSMSInviter.h */,
+				788480431B177E9D0016536F /* YTUnregisteredUserSMSInviter.m */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -1438,7 +1438,7 @@
 				FCEF993A1A6D6EF0000FDE4C /* Segues */,
 				784E35E91A659B8C0029AA01 /* Registration Screens */,
 				785393711AD9C47700C6BEA7 /* Playback */,
-				37695E7D19BBEE8500C22E13 /* Select Contacts Page */,
+				37695E7D19BBEE8500C22E13 /* Contacts Page */,
 				37BF0DE019E8FD1F0077B74F /* Yaps Page */,
 				7861926E1B09A904007279E8 /* Onboarding Popups */,
 			);
@@ -2015,7 +2015,7 @@
 				3793FDF819BCF0DC00FBBBCE /* ContactSelectionCell.m in Sources */,
 				7853936A1AD9C07C00C6BEA7 /* UIViewController+MJPopupViewController.m in Sources */,
 				78B252301AF0A2E400353711 /* FBShimmeringView.m in Sources */,
-				788480441B177E9D0016536F /* YSUninvitedContactInviter.m in Sources */,
+				788480441B177E9D0016536F /* YTUnregisteredUserSMSInviter.m in Sources */,
 				780D43241B0646770060DAED /* EZAudioFile.m in Sources */,
 				780D43231B0646770060DAED /* EZAudio.m in Sources */,
 				37D413BD19D21A1F00021548 /* BButton.m in Sources */,

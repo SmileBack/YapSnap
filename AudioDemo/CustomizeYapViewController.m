@@ -203,7 +203,6 @@
         __weak CustomizeYapViewController *weakSelf = self;
         
         NSArray *vcs = self.navigationController.viewControllers;
-        BOOL isFriendsFlow = vcs && vcs.count > 1 && [vcs[0] isKindOfClass:[FriendsViewController class]];
         
         NSArray *pendingYaps =
         [[API sharedAPI] sendYapBuilder:self.yapBuilder
