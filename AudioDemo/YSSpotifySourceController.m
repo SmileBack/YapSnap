@@ -19,8 +19,9 @@
 #import "SpotifyArtistFactory.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "SearchArtistAlertView.h"
+#import "YTSearchSuggestionsViewController.h"
 
-@interface YSSpotifySourceController ()
+@interface YSSpotifySourceController () <YTSearchSuggestionsViewControllerDelegate>
 @property (nonatomic, strong) NSArray *songs;
 @property (strong, nonatomic) IBOutlet UITextField *searchBox;
 @property (strong, nonatomic) IBOutlet iCarousel *carousel;
@@ -38,6 +39,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
 @property (nonatomic, strong) NSString *artistNameString;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carouselYConstraint;
+@property (strong, nonatomic) YTSearchSuggestionsViewController* searchSuggestionViewController;
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapRandomButton:(id)sender;
@@ -172,7 +174,7 @@
     
     NSLog(@"Randomly Selected Artist: %@", randomlySelectedArtist);
     
-    [self search:randomlySelectedArtist];
+    [self search:randomlySelectedArtist inCategory:nil];
     [self showSearchBox];
     self.searchBox.text = randomlySelectedArtist;
     [self updateVisibilityOfMagnifyingGlassAndResetButtons];
@@ -217,8 +219,7 @@
     [self.searchBox addTarget:self
                        action:@selector(textFieldDidChange:)
              forControlEvents:UIControlEventEditingChanged];
-    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
-    self.searchBox.attributedPlaceholder = string;
+    self.searchBox.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
     
     self.searchBox.layer.cornerRadius=2.0f;
     self.searchBox.layer.masksToBounds=YES;
@@ -237,7 +238,7 @@
     }
 }
 
-- (void) search:(NSString *)search
+- (void) search:(NSString *)search inCategory:(YTSpotifyCategory*)category
 {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Searched Songs"];
@@ -250,7 +251,7 @@
     [self.loadingIndicator startAnimating];
     
     __weak YSSpotifySourceController *weakSelf = self;
-    [[SpotifyAPI sharedApi] searchSongs:search withCallback:^(NSArray *songs, NSError *error) {
+    void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
         if (songs) {
             weakSelf.songs = songs;
             weakSelf.carousel.currentItemIndex = 0;
@@ -299,26 +300,47 @@
                 [mixpanel track:@"Spotify Error - search (other)"];
             }
         }
-    }];
+    };
+    
+    if (category) {
+        [[SpotifyAPI sharedApi] searchCategory:category withCallback:callback];
+    } else {
+        [[SpotifyAPI sharedApi] searchSongs:search withCallback:callback];
+    }
 }
+
+#pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     NSLog(@"Textfield did begin editing");
     self.carousel.scrollEnabled = NO;
     self.carousel.alpha = 0;
     
-    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
-    self.searchBox.attributedPlaceholder = string;
-    
     [self resetBottomBannerUI];
+    
+    self.searchSuggestionViewController = [[YTSearchSuggestionsViewController alloc] init];
+    self.searchSuggestionViewController.searchSuggestionsDelegate = self;
+    [self addChildViewController:self.searchSuggestionViewController];
+    [self.view addSubview:self.searchSuggestionViewController.view];
+    [self.searchSuggestionViewController didMoveToParentViewController:self];
+    [self.searchSuggestionViewController.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[view]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:@{@"view": self.searchSuggestionViewController.view}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[search][view]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:@{@"search": self.searchBox,
+                                                                                @"view": self.searchSuggestionViewController.view}]];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"Textfield did end editing");
     [self setUserInteractionEnabled:YES];
-    
-    NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
-    self.searchBox.attributedPlaceholder = string;
+    [self.searchSuggestionViewController.view removeFromSuperview];
+    [self.searchSuggestionViewController removeFromParentViewController];
+    self.searchSuggestionViewController = nil;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -330,10 +352,9 @@
 
 - (void)searchWithTextInTextField:(UITextField*)textField {
     self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
     [self.view endEditing:YES];
     if ([self.searchBox.text length] > 0) {
-        [self search:self.searchBox.text];
+        [self search:self.searchBox.text inCategory:nil];
         [[API sharedAPI] sendSearchTerm:textField.text withCallback:^(BOOL success, NSError *error) {
             if (success) {
                 NSLog(@"Sent search term metric");
@@ -342,6 +363,14 @@
             }
         }];
     }
+}
+
+#pragma mark - YTSearchSuggestionsViewControllerDelegate
+
+- (void)didSelectSearchSuggestion:(YTSpotifyCategory *)suggestion {
+    self.searchBox.text = suggestion.displayName;
+    [self.searchBox resignFirstResponder];
+    [self search:suggestion.displayName inCategory:suggestion];
 }
 
 #pragma mark - iCarousel Stuff
@@ -477,7 +506,7 @@
     if ((stringsize.width + 20) > self.carouselHeightConstraint.constant) {
         stringsize.width = self.carouselHeightConstraint.constant-24;
     }
-    [trackView.artistButton setFrame:CGRectMake((self.carouselHeightConstraint.constant-stringsize.width-20)/2, self.carouselHeightConstraint.constant /*- 100*/ +35, stringsize.width+20, stringsize.height + 8)];
+    [trackView.artistButton setFrame:CGRectMake((self.carouselHeightConstraint.constant-stringsize.width-20)/2, self.carouselHeightConstraint.constant - 100 /*+35*/, stringsize.width+20, stringsize.height + 8)];
 
     return trackView;
 }
@@ -667,7 +696,7 @@
             }
             NSLog(@"Artist: %@", selectedTrack.artistName);
             NSLog(@"Song: %@", selectedTrack.name);
-            [self search:selectedTrack.artistName];
+            [self search:selectedTrack.artistName inCategory:nil];
             self.searchBox.text = selectedTrack.artistName;
             [self updateVisibilityOfMagnifyingGlassAndResetButtons];
         }
@@ -977,38 +1006,6 @@
 }
 
 #pragma mark - Control Center Stuff
-- (NSDictionary *) typeToGenreMap
-{
-    if (!_typeToGenreMap) {
-        _typeToGenreMap = @{@"One": @"Top 100",
-                            @"Two": @"TV/Film",
-                            @"Three": @"Humor",
-                            @"Four": @"Hip Hop",
-                            @"Five": @"Pop",
-                            @"Six": @"EDM",
-                            @"Seven": @"Latin",
-                            @"Eight": @"Country",
-                            @"Nine": @"Rock"
-                            };
-    }
-    return _typeToGenreMap;
-}
-
-- (void)setSelectedGenre:(NSString *)selectedGenre
-{
-    _selectedGenre = selectedGenre;
-    if ([selectedGenre isEqual: @"Search"]) {
-        [self showSearchBox];
-        double delay = .3;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.searchBox becomeFirstResponder];
-        });
-    } else {
-        _selectedGenre = self.typeToGenreMap[selectedGenre];
-        if (!_selectedGenre) _selectedGenre = selectedGenre;
-        //[self searchGenre:self.selectedGenre]; TODO: UNCOMMENT
-    }
-}
 
 - (void) showRandomPickAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Here's a Random Artist"
@@ -1042,7 +1039,7 @@
 {
     if ([alertView isKindOfClass:[SearchArtistAlertView class]]) {
         if (buttonIndex == 1) {
-            [self search:self.artistNameString];
+            [self search:self.artistNameString inCategory:nil];
             self.searchBox.text = self.artistNameString;
             [self updateVisibilityOfMagnifyingGlassAndResetButtons];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_VIEW_SEARCH_ARTIST_POPUP];

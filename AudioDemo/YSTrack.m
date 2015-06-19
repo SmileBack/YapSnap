@@ -10,12 +10,16 @@
 
 @implementation YSTrack
 
-+ (NSArray *) tracksFromDictionaryArray:(NSArray *)itemDictionaries
++ (NSArray *) tracksFromDictionaryArray:(NSArray *)itemDictionaries inCategory:(BOOL)inCategory
 {
     NSMutableArray *tracks = [NSMutableArray arrayWithCapacity:itemDictionaries.count];
 
     for (NSDictionary *trackDictionary in itemDictionaries) {
-        [tracks addObject:[YSTrack trackFromDictionary:trackDictionary]];
+        if (inCategory) {
+            [tracks addObject:[YSTrack trackFromDictionary:trackDictionary[@"track"]]];
+        } else {
+            [tracks addObject:[YSTrack trackFromDictionary:trackDictionary]];
+        }
     }
     
     return tracks;

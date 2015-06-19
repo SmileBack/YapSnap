@@ -88,6 +88,34 @@ static SpotifyAPI *sharedInstance;
     }
 }
 
+- (void) searchCategory:(YTSpotifyCategory *)category withCallback:(SpotifySongCallback)callback {
+    NSString *url = category.spotifyURL.absoluteString;
+    
+    __weak SpotifyAPI *weakSelf = self;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [self setAuthorizationOnManager:manager];
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *response = responseObject;
+        NSArray *items = response[@"items"];
+        
+        NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:YES];
+        callback(songs, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (operation.response.statusCode == 401) {
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Spotify Error - search (401)"];
+            
+            weakSelf.tokenType = nil;
+            weakSelf.token = nil;
+            [weakSelf searchCategory:category withCallback:callback];
+            [weakSelf getAccessToken];
+        } else {
+            callback(nil, error);
+        }
+    }];
+}
+
 - (void) searchSongs:(NSString *)searchString withCallback:(SpotifySongCallback)callback
 {
     NSString *url = @"https://api.spotify.com/v1/search";
@@ -103,7 +131,7 @@ static SpotifyAPI *sharedInstance;
         NSDictionary *response = responseObject;
         NSArray *items = response[@"tracks"][@"items"];
 
-        NSArray *songs = [YSTrack tracksFromDictionaryArray:items];
+        NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
         callback(songs, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

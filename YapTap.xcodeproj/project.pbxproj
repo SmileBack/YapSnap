@@ -69,6 +69,9 @@
 		78319A811ACD29A9000C3FD6 /* FeedbackMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78319A801ACD29A9000C3FD6 /* FeedbackMonitor.m */; };
 		783A1CBF1B17721D00B610B3 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 783A1CBE1B17721D00B610B3 /* UIAlertView+Blocks.m */; };
 		783CCF6D1B33431D00E3B5BF /* SearchArtistAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF6C1B33431D00E3B5BF /* SearchArtistAlertView.m */; };
+		783CCF751B3461D800E3B5BF /* YTSearchSuggestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF741B3461D800E3B5BF /* YTSearchSuggestionsViewController.m */; };
+		783CCF781B3466A800E3B5BF /* YTRoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF771B3466A800E3B5BF /* YTRoundButton.m */; };
+		783CCF7B1B34741300E3B5BF /* YTSpotifyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF7A1B34741300E3B5BF /* YTSpotifyCategory.m */; };
 		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */; };
 		784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
@@ -393,6 +396,12 @@
 		783A1CBE1B17721D00B610B3 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		783CCF6B1B33431D00E3B5BF /* SearchArtistAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchArtistAlertView.h; sourceTree = "<group>"; };
 		783CCF6C1B33431D00E3B5BF /* SearchArtistAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchArtistAlertView.m; sourceTree = "<group>"; };
+		783CCF731B3461D800E3B5BF /* YTSearchSuggestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTSearchSuggestionsViewController.h; sourceTree = "<group>"; };
+		783CCF741B3461D800E3B5BF /* YTSearchSuggestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTSearchSuggestionsViewController.m; sourceTree = "<group>"; };
+		783CCF761B3466A800E3B5BF /* YTRoundButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTRoundButton.h; sourceTree = "<group>"; };
+		783CCF771B3466A800E3B5BF /* YTRoundButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTRoundButton.m; sourceTree = "<group>"; };
+		783CCF791B34741300E3B5BF /* YTSpotifyCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTSpotifyCategory.h; sourceTree = "<group>"; };
+		783CCF7A1B34741300E3B5BF /* YTSpotifyCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTSpotifyCategory.m; sourceTree = "<group>"; };
 		784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSRecordProgressView.h; sourceTree = "<group>"; };
 		784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecordProgressView.m; sourceTree = "<group>"; };
 		784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetImageButton.h; sourceTree = "<group>"; };
@@ -991,6 +1000,8 @@
 			children = (
 				FC0C1D471A45F79000B148AB /* YSSpotifySourceController.h */,
 				FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */,
+				783CCF731B3461D800E3B5BF /* YTSearchSuggestionsViewController.h */,
+				783CCF741B3461D800E3B5BF /* YTSearchSuggestionsViewController.m */,
 			);
 			name = "Spotify Page";
 			sourceTree = "<group>";
@@ -1527,6 +1538,8 @@
 				78A569A21A73227200818A17 /* YSColorPicker.m */,
 				784048091AB7334A00FE6D93 /* NextButton.h */,
 				7840480A1AB7334A00FE6D93 /* NextButton.m */,
+				783CCF761B3466A800E3B5BF /* YTRoundButton.h */,
+				783CCF771B3466A800E3B5BF /* YTRoundButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1620,6 +1633,8 @@
 			children = (
 				FCFCE4641AF568000094926E /* SpotifyArtistFactory.h */,
 				FCFCE4651AF568000094926E /* SpotifyArtistFactory.m */,
+				783CCF791B34741300E3B5BF /* YTSpotifyCategory.h */,
+				783CCF7A1B34741300E3B5BF /* YTSpotifyCategory.m */,
 			);
 			name = Spotify;
 			sourceTree = "<group>";
@@ -1954,6 +1969,7 @@
 				37D413CA19D22B5E00021548 /* EnterNameEmailViewController.m in Sources */,
 				3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */,
 				7857CABE1AFBB43300ADF999 /* HomeViewController.m in Sources */,
+				783CCF7B1B34741300E3B5BF /* YTSpotifyCategory.m in Sources */,
 				FC1A03701A7D775A00074E6A /* AmazonAPI.m in Sources */,
 				37D413C019D21A1F00021548 /* UIColor+BButton.m in Sources */,
 				FCAA32901A8C2FD900FDCC78 /* UserCell.m in Sources */,
@@ -1968,6 +1984,7 @@
 				FCFCE4661AF568000094926E /* SpotifyArtistFactory.m in Sources */,
 				FCFCE4541AF529030094926E /* AddFriendsBuilder.m in Sources */,
 				FCE234491AAB749E00C1EDB0 /* YTNotifications.m in Sources */,
+				783CCF781B3466A800E3B5BF /* YTRoundButton.m in Sources */,
 				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
@@ -1976,6 +1993,7 @@
 				FCEF99401A6D7BF2000FDE4C /* YapCell.m in Sources */,
 				FC029EA21A96BC190013B866 /* YSContact.m in Sources */,
 				FCFCE4581AF5413D0094926E /* AddFriendAlertView.m in Sources */,
+				783CCF751B3461D800E3B5BF /* YTSearchSuggestionsViewController.m in Sources */,
 				FC865CC11A9A7B2B003AFAFA /* UIViewController+ScreenSize.m in Sources */,
 				FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */,
 				FC0642D51A9D65D000E3D60F /* Environment.m in Sources */,

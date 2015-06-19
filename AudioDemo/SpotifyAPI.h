@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
+#import "YTSpotifyCategory.h"
 
 typedef void (^SpotifySongCallback)(NSArray* songs, NSError *error);
 
@@ -16,6 +17,8 @@ typedef void (^SpotifySongCallback)(NSArray* songs, NSError *error);
 + (SpotifyAPI *) sharedApi;
 
 - (void) searchSongs:(NSString *)searchString withCallback:(SpotifySongCallback)callback;
+
+- (void) searchCategory:(YTSpotifyCategory *)searchString withCallback:(SpotifySongCallback)callback;
 
 - (NSDictionary *) getAuthorizationHeaders;
 

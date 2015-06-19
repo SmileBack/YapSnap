@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSNumber *secondsToFastForward;
 @property (nonatomic) BOOL songVersionButtonsAreShowing;
 
-+ (NSArray *) tracksFromDictionaryArray:(NSArray *)itemDictionaries;
++ (NSArray *) tracksFromDictionaryArray:(NSArray *)itemDictionaries inCategory:(BOOL)inCategory;
 + (YSTrack *) trackFromDictionary:(NSDictionary *)trackDictionary;
 
 
