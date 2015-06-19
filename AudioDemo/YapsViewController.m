@@ -405,11 +405,7 @@ static NSString *CellIdentifier = @"Cell";
             }
             
             if (yap.wasOpened) {
-                //if (yap.wasOpenedOnce) {
-                    cell.createdTimeLabel.text = @"Double Tap to Reply. Hold to Replay.";
-                //} else if (yap.wasOpenedTwice) {
-                //    cell.createdTimeLabel.text = @"Double Tap to Reply";
-                //}
+                cell.createdTimeLabel.text = @"Double Tap to Reply. Hold to Replay.";
             }
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -477,32 +473,17 @@ static NSString *CellIdentifier = @"Cell";
     
     YSYap *yap = self.yaps[indexPath.row];
     
-    if (yap.receivedByCurrentUser) {
-        //if ([yap.status isEqual: @"opened2"]) {
-        //    [self alreadyReplayedYapAlert];
-        //} else {
-            if ([self internetIsNotReachable]){
-                double delay = 0.1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
-                });
-            } else {
-                [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
-            //}
-        }
-        
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Long Pressed Row"];
+    if ([self internetIsNotReachable]){
+        double delay = 0.1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+        });
+    } else {
+        [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
     }
-}
-
-- (void) alreadyReplayedYapAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Already Replayed"
-                                                    message:@"You can only replay a yap once."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles: nil];
-    [alert show];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Long Pressed Row"];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -513,7 +494,7 @@ static NSString *CellIdentifier = @"Cell";
         YSYap *yap = sender;
         vc.yap = yap;
         __weak YapsViewController *weakSelf = self;
-        if (yap.senderID.intValue != 1) {
+        if (yap.senderID.intValue != 1 && yap.receivedByCurrentUser) {
             vc.strangerCallback = ^(YSYap *yap) {
                 double delay = 0.5;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

@@ -15,7 +15,6 @@
 #define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
 #define DID_SEE_RECORD_POPUP_KEY @"yaptap.DidSeeRecordPopupKey7"
 #define DISMISS_RECORD_POPUP @"DismissRecordPopup"
-#define HIDE_PROGRESS_VIEW_NOTIFICATION @"yaptap.HideProgressViewNotification"
 #define RESET_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
 
 @interface YSMicSourceController ()<EZMicrophoneDelegate>
@@ -27,9 +26,6 @@
 @property (strong, nonatomic) RecordPopupViewController *recordPopupVC;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIButton *recordButton;
-@property (strong, nonatomic) IBOutlet UILabel *swipeDownLabel;
-
-- (IBAction)didSwipeToCancel;
 
 @end
 
@@ -57,7 +53,6 @@
     
     self.sinusWaveView.alpha = 0;
     self.titleLabel.hidden = NO;
-    self.swipeDownLabel.hidden = YES;
 }
 
 - (void) setSinusWaveConstraints {
@@ -110,7 +105,6 @@
                                              self.titleLabel.hidden = NO;
                                          }
                                          completion:nil];
-                        self.swipeDownLabel.hidden = YES;
                     }];
     
     [center addObserverForName:DISMISS_RECORD_POPUP
@@ -177,20 +171,6 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     [self stopAudioCapture];
 }
 
-- (IBAction)didSwipeToCancel {
-    if (self.recorder) {
-        [self.microphone stopFetchingAudio];
-        NSLog(@"DESTROY RECORDER");
-        [self.recorder closeAudioFile];
-        self.recorder = nil;
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION object:nil];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_VIEW_NOTIFICATION object:nil];
-    
-    self.swipeDownLabel.hidden = YES;
-}
-
 #pragma mark - Public API Methods
 - (BOOL) startAudioCapture
 {
@@ -226,9 +206,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 
             // TODO: Hide text label here
             self.sinusWaveView.alpha = 1;
-            
-            self.swipeDownLabel.hidden = NO;
-            
+                        
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Recorded Voice"];
             [mixpanel.people increment:@"Recorded Voice #" by:[NSNumber numberWithInt:1]];

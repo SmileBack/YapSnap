@@ -1686,8 +1686,6 @@ Type it here!</string>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didSwipeToCancel" destination="M44-X7-xcI" eventType="touchDragOutside" id="QPC-2G-izQ"/>
-                                    <action selector="didSwipeToCancel" destination="M44-X7-xcI" eventType="touchDragExit" id="dGq-Re-0cn"/>
                                     <action selector="didTapRecord:" destination="M44-X7-xcI" eventType="touchDown" id="vdq-4X-cpQ"/>
                                     <action selector="didUntapRecord:" destination="M44-X7-xcI" eventType="touchUpInside" id="hfY-ru-vcr"/>
                                 </connections>

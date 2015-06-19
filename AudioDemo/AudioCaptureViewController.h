@@ -14,13 +14,8 @@
 #import "OffsetImageButton.h"
 
 #define DISMISS_KEYBOARD_NOTIFICATION @"DismissKeyboardNotification"
-#define TAPPED_PROGRESS_BAR_NOTIFICATION @"TappedProgressBarNotification"
-#define TAPPED_DICE_BUTTON_NOTIFICATION @"yaptap.TappedDiceButtonNotification"
-#define TAPPED_ALBUM_COVER_FIRST_TIME_NOTIFICATION @"yaptap.TappedAlbumCoverFirstTimeNotification5"
 #define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
-#define DID_TAP_DICE_BUTTON @"yaptap.DidTapDiceButtonKey10"
 #define AUDIO_CAPTURE_DID_START_NOTIFICATION @"yaptap.AudioCaptureDidStartNotification"
-#define HIDE_PROGRESS_VIEW_NOTIFICATION @"yaptap.HideProgressViewNotification"
 #define LISTENED_TO_CLIP_NOTIFICATION @"com.yapsnap.ListenedToClipNotification"
 #define REMOVE_BOTTOM_BANNER_NOTIFICATION @"com.yapsnap.RemoveBottomBannerNotification"
 

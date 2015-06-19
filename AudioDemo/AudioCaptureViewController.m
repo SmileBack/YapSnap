@@ -33,7 +33,7 @@
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
-- (IBAction)didTapSwitchRecordSource:(id)sender;
+//- (IBAction)didTapSwitchRecordSource:(id)sender;
 - (IBAction)didTapNextButton;
 - (IBAction)didTapCancelButton;
 
@@ -124,15 +124,6 @@ static const float TIMER_INTERVAL = .02;
     [self.audioSource stopAudioCapture];
 }
 
-- (void) tappedProgressView {
-    NSLog(@"Tapped Progress Bar");
-    if (self.type == AudioCaptureTypeMic) {
-        [[YTNotifications sharedNotifications] showNotificationText:@"Hold Red Button"];
-    } else if (self.type == AudioCapTureTypeSpotify) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:TAPPED_PROGRESS_BAR_NOTIFICATION object:nil];
-    }
-}
-
 - (void) updateTitleLabel {
     CGRect frame = CGRectMake(40, 0, 160, 44);
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
@@ -154,25 +145,6 @@ static const float TIMER_INTERVAL = .02;
     [self.navigationItem setLeftBarButtonItem:cancelButton];
 }
 
-- (void)cancelPressed
-{
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Dismiss Audio Capture Modal"];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_KEYBOARD_NOTIFICATION object:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)diceButtonPressed
-{
-    NSLog(@"Tapped Right Button");
-    [[NSNotificationCenter defaultCenter] postNotificationName:TAPPED_DICE_BUTTON_NOTIFICATION object:nil];
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Dice Button"];
-    [mixpanel.people increment:@"Tapped Dice Button #" by:[NSNumber numberWithInt:1]];
-}
-
 -(BOOL) internetIsNotReachable
 {
     return ![AFNetworkReachabilityManager sharedManager].reachable;
@@ -183,13 +155,6 @@ static const float TIMER_INTERVAL = .02;
     __weak AudioCaptureViewController *weakSelf = self;
 
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-
-    [center addObserverForName:STOP_LOADING_SPINNER_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        //[self.recordProgressView.activityIndicator stopAnimating];
-                    }];
     
     [center addObserverForName:NOTIFICATION_LOGOUT object:nil queue:nil usingBlock:^ (NSNotification *note) {
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
@@ -205,23 +170,6 @@ static const float TIMER_INTERVAL = .02;
                         [self.audioSource stopAudioCapture];
                     }];
 */    
-    [center addObserverForName:HIDE_PROGRESS_VIEW_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        [audioProgressTimer invalidate];
-                        self.recordProgressView.alpha = 0;
-                        self.recordProgressView.progress = 0.0;
-                    }];
-    
-    [center addObserverForName:HIDE_PROGRESS_VIEW_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        [audioProgressTimer invalidate];
-                        self.recordProgressView.alpha = 0;
-                        self.recordProgressView.progress = 0.0;
-                    }];
     
     [center addObserverForName:REMOVE_BOTTOM_BANNER_NOTIFICATION
                         object:nil
@@ -293,11 +241,6 @@ static const float TIMER_INTERVAL = .02;
     }
 }
 
-- (BOOL) didTapDiceButtonForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_TAP_DICE_BUTTON];
-}
-
 #pragma mark - YSAudioSourceControllerDelegate
 
 - (void)audioSourceControllerWillStartAudioCapture:(YSAudioSourceController *)controller {
@@ -311,8 +254,6 @@ static const float TIMER_INTERVAL = .02;
                      completion:nil];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:WILL_START_AUDIO_CAPTURE_NOTIFICATION object:nil];
-
-    //[self.recordProgressView.activityIndicator startAnimating];
 }
 
 - (void)audioSourceControllerDidStartAudioCapture:(YSAudioSourceController *)controller {
@@ -323,7 +264,6 @@ static const float TIMER_INTERVAL = .02;
     [[NSNotificationCenter defaultCenter] postNotificationName:DID_START_AUDIO_CAPTURE_NOTIFICATION object:nil];
     
     self.recordProgressView.alpha = 1;
-    //[self.recordProgressView.activityIndicator stopAnimating];
     [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
     self.elapsedTime = 0;
     [self.recordProgressView setProgress:0];
@@ -353,7 +293,6 @@ static const float TIMER_INTERVAL = .02;
 - (void)audioSourceControllerdidFinishAudioCapture:(YSAudioSourceController *)controller {
     [audioProgressTimer invalidate];
     NSLog(@"Audio Progress Timer Invalidate 7");
-    //[self.recordProgressView.activityIndicator stopAnimating];
     [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
     
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
@@ -476,6 +415,7 @@ static const float TIMER_INTERVAL = .02;
     [self setRecordSourceViewController:micSource];
 }
 
+/*
 - (IBAction)didTapSwitchRecordSource:(id)sender {
     if (self.type == AudioCapTureTypeSpotify) {
         [self switchToMicMode];
@@ -483,7 +423,8 @@ static const float TIMER_INTERVAL = .02;
         [self switchToSpotifyMode];
     }
 }
-
+*/
+ 
 - (void) setRecordSourceViewController:(YSAudioSourceController *)to {
     NSAssert(to != nil, @"To controller cannot be nil");
     [self.audioSource removeFromParentViewController];

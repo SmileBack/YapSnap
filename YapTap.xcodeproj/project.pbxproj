@@ -986,6 +986,24 @@
 			name = "UIAlertView+Blocks";
 			sourceTree = "<group>";
 		};
+		783CCF711B33A4FE00E3B5BF /* Spotify Page */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C1D471A45F79000B148AB /* YSSpotifySourceController.h */,
+				FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */,
+			);
+			name = "Spotify Page";
+			sourceTree = "<group>";
+		};
+		783CCF721B33A50F00E3B5BF /* Mic Page */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C1D4A1A45F98500B148AB /* YSMicSourceController.h */,
+				FC0C1D4B1A45F98500B148AB /* YSMicSourceController.m */,
+			);
+			name = "Mic Page";
+			sourceTree = "<group>";
+		};
 		784E35E91A659B8C0029AA01 /* Registration Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -1398,6 +1416,9 @@
 		FC0C1D3F1A45EE5E00B148AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				784E35EA1A659BD00029AA01 /* Audio Capture */,
+				783CCF721B33A50F00E3B5BF /* Mic Page */,
+				783CCF711B33A4FE00E3B5BF /* Spotify Page */,
 				FCFCE45F1AF559B50094926E /* Home View Controller */,
 				785393721AD9C48B00C6BEA7 /* Customize Yap */,
 				FC3ECAE61A830482002678F6 /* Friends */,
@@ -1405,7 +1426,6 @@
 				FC52C1B11A787DA600D85FA8 /* Helpers */,
 				FCEF993A1A6D6EF0000FDE4C /* Segues */,
 				784E35E91A659B8C0029AA01 /* Registration Screens */,
-				784E35EA1A659BD00029AA01 /* Audio Capture */,
 				785393711AD9C47700C6BEA7 /* Playback */,
 				37695E7D19BBEE8500C22E13 /* Select Contacts Page */,
 				37BF0DE019E8FD1F0077B74F /* Yaps Page */,
@@ -1419,10 +1439,6 @@
 			children = (
 				FC0C1D441A45F41600B148AB /* YSAudioSourceController.h */,
 				FC0C1D451A45F41600B148AB /* YSAudioSourceController.m */,
-				FC0C1D471A45F79000B148AB /* YSSpotifySourceController.h */,
-				FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */,
-				FC0C1D4A1A45F98500B148AB /* YSMicSourceController.h */,
-				FC0C1D4B1A45F98500B148AB /* YSMicSourceController.m */,
 			);
 			name = "Audio Source";
 			sourceTree = "<group>";

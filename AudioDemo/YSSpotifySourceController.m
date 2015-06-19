@@ -38,9 +38,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
 @property (nonatomic, strong) NSString *artistNameString;
 
-
 - (IBAction)didTapResetButton;
-- (void) performRandomSearch;
 - (IBAction)didTapRandomButton:(id)sender;
 
 @end
@@ -111,28 +109,6 @@
                         [self.view endEditing:YES];
                     }];
     
-    [center addObserverForName:TAPPED_PROGRESS_BAR_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        [self.searchBox becomeFirstResponder];
-                        NSLog(@"Tapped Progress Bar");
-                    }];
-    
-    [center addObserverForName:TAPPED_DICE_BUTTON_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        [self performRandomSearch];
-                        if (!self.didTapDiceButtonForFirstTime) {
-                            double delay = .1;
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                [[YTNotifications sharedNotifications] showNotificationText:@"Rolling The Die..."];
-                                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_TAP_DICE_BUTTON];
-                            });
-                        }
-                    }];
-    
     [center addObserverForName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION
                         object:nil
                          queue:nil
@@ -178,7 +154,9 @@
     });
 }
 
-- (void) performRandomSearch { // TODO: Replace this function with the one below
+- (IBAction)didTapRandomButton:(id)sender {
+    [self resetBottomBannerUI];
+    
     [self.view endEditing:YES];
     
     self.artists = [SpotifyArtistFactory artistsForCategory:@"Random"]; // Pop is hardcoded!
@@ -191,11 +169,6 @@
     [self showSearchBox];
     self.searchBox.text = randomlySelectedArtist;
     [self updateVisibilityOfMagnifyingGlassAndResetButtons];
-}
-
-- (IBAction)didTapRandomButton:(id)sender {
-    [self resetBottomBannerUI];
-    [self performRandomSearch];
 }
 
 -(BOOL) internetIsNotReachable
@@ -326,7 +299,6 @@
     NSLog(@"Textfield did begin editing");
     self.carousel.scrollEnabled = NO;
     self.carousel.alpha = 0;
-    //[self hideResetButton];
     
     NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
     self.searchBox.attributedPlaceholder = string;
@@ -355,7 +327,6 @@
     [self.view endEditing:YES];
     if ([self.searchBox.text length] > 0) {
         [self search:self.searchBox.text];
-        //[self setBackgroundColorForSearchBox];
         [[API sharedAPI] sendSearchTerm:textField.text withCallback:^(BOOL success, NSError *error) {
             if (success) {
                 NSLog(@"Sent search term metric");
@@ -940,11 +911,6 @@
 - (BOOL) didOpenYapForFirstTime
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
-}
-
-- (BOOL) didTapDiceButtonForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_TAP_DICE_BUTTON];
 }
 
 - (BOOL) didScrollCarousel
