@@ -26,15 +26,19 @@
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *albumImage;
 @property IBOutlet UIActivityIndicatorView* activityIndicator;
+@property IBOutlet UIActivityIndicatorView* friendRequestActivityIndicator;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
 @property (weak, nonatomic) IBOutlet UIButton *topRightButton;
+@property (weak, nonatomic) IBOutlet UIButton *friendRequestButton;
 
 // nil means we don't know yet. YES/NO means the backend told us.
 @property (nonatomic, strong) NSNumber *isFromFriend;
 
 - (IBAction)didTapTopRightButton;
+- (IBAction)didTapFriendRequestButton;
 
 @end
 
@@ -50,16 +54,27 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Playback Page"];
     
+    if (self.yap.sentByCurrentUser) {
+        self.replyButton.hidden = YES;
+        NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
+        self.titleLabel.text = [NSString stringWithFormat:@"Sent to %@", receiverFirstName];
+        if (self.yap.isFriendRequest) {
+            self.forwardButton.hidden = YES; // we should just not show these yaps
+        }
+    } else if (self.yap.receivedByCurrentUser) {
+        if (self.yap.isFriendRequest) {
+            self.forwardButton.hidden = YES;
+            NSString *senderFirstName = [[self.yap.displaySenderName componentsSeparatedByString:@" "] objectAtIndex:0];
+            [self.replyButton setTitle:[NSString stringWithFormat:@"Send %@ a Yap", senderFirstName] forState:UIControlStateNormal];
+            NSLog(@"Yap status: %@", self.yap.status);
+            if ([self.yap.status isEqualToString:@"unopened"]) {
+                self.friendRequestButton.hidden = NO;
+            }
+        }
+    }
+    
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
-    
-    /*
-    if ([self.yap.type isEqual:@"VoiceMessage"]) {
-        // To get pitch value in pitchShift unit, divide self.yap.pitchValueInCentUnits by STK_PITCHSHIFT_TRANSFORM
-        self.player.pitchShift = self.yap.pitchValueInCentUnits.floatValue/1000;
-        NSLog(@"Pitch Shift: %f", self.player.pitchShift);
-    }
-     */
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
     
@@ -105,21 +120,6 @@
         UIImage *buttonImage = [UIImage imageNamed:@"ReplayIcon2.png"];
         [self.topRightButton setImage:buttonImage forState:UIControlStateNormal];
     }
-
-    if (self.yap.sentByCurrentUser) {
-        self.replyButton.hidden = YES;
-        NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
-        self.titleLabel.text = [NSString stringWithFormat:@"Sent to %@", receiverFirstName];
-        if (self.yap.isFriendRequest) {
-            self.forwardButton.hidden = YES;
-        }
-    } else if (self.yap.receivedByCurrentUser) {
-        if (self.yap.isFriendRequest) {
-            self.forwardButton.hidden = YES;
-            NSString *senderFirstName = [[self.yap.displaySenderName componentsSeparatedByString:@" "] objectAtIndex:0];
-            [self.replyButton setTitle:[NSString stringWithFormat:@"Reply to %@", senderFirstName] forState:UIControlStateNormal];
-        }
-    }
 }
 
 - (void) styleActionButtons {
@@ -130,6 +130,10 @@
     self.forwardButton.layer.cornerRadius = 4;
     self.forwardButton.layer.borderWidth = 1;
     self.forwardButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
+    
+    self.friendRequestButton.layer.cornerRadius = 4;
+    self.friendRequestButton.layer.borderWidth = 1;
+    self.friendRequestButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
 }
 
 - (void) handleImageAndPlayAudio
@@ -209,13 +213,23 @@
 
 - (IBAction)didTapReply:(id)sender {
     if ([self.yap.type isEqual:@"SpotifyMessage"]) {
-        UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"How would you like to reply?"
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"Cancel"
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"Use Same Song", @"Select New Song", @"No Song. Just Voice", nil];
-        actionSheetSpotify.tag = 100;
-        [actionSheetSpotify showInView:self.view];
+        if (self.yap.isFriendRequest && [self.yap.status isEqualToString:@"unopened"]) {
+            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Which song would you like for your yap?"
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"Cancel"
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:@"Use Same Song", @"Select New Song", @"No Song. Just Voice", nil];
+            actionSheetSpotify.tag = 100;
+            [actionSheetSpotify showInView:self.view];
+        } else {
+            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Which song would you like to reply with?"
+                                                                            delegate:self
+                                                                   cancelButtonTitle:@"Cancel"
+                                                              destructiveButtonTitle:nil
+                                                                   otherButtonTitles:@"Use Same Song", @"Select New Song", @"No Song. Just Voice", nil];
+            actionSheetSpotify.tag = 100;
+            [actionSheetSpotify showInView:self.view];
+        }
     } else {
         UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
@@ -274,7 +288,7 @@
     
     if (self.elapsedTime >= trackLength) {
         [self stop];
-        
+        /*
         if (!self.isFromFriend.boolValue && self.playerAlreadyStartedPlayingForThisSong) {
             __weak YSYap *weakYap = self.yap;
             if (self.strangerCallback) {
@@ -282,6 +296,7 @@
             }
             self.isFromFriend = [NSNumber numberWithInt:1]; // We are setting self.isFromFriend.boolValue to True so that the same code isn't triggered when user dismisses the page
         }
+         */
     }
 }
 
@@ -523,6 +538,32 @@
         [self.activityIndicator startAnimating];
         [self playYapAudio];
     }
+}
+
+#pragma mark - Friend Request Stuff Button
+
+- (void) didTapFriendRequestButton {
+    NSLog(@"Tapped Friend Request Button");
+    [self.friendRequestButton setTitle:@"" forState:UIControlStateNormal];
+    [self.friendRequestActivityIndicator startAnimating];
+    self.isFromFriend = [NSNumber numberWithInt:1];
+    
+    [[API sharedAPI] confirmFriendFromYap:self.yap withCallback:^(BOOL success, NSError *error) {
+        if (success) {
+            [self.friendRequestActivityIndicator stopAnimating];
+            self.friendRequestButton.hidden = YES;
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+                                                            message:[NSString stringWithFormat:@"You and %@ are friends. Now tap the button below and send them a yap!", self.yap.displaySenderName]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles: nil];
+            [alert show];
+        } else {
+            [self.friendRequestActivityIndicator stopAnimating];
+            [self.friendRequestButton setTitle:@"Accept Friend Request" forState:UIControlStateNormal];
+            [[YTNotifications sharedNotifications] showBlueNotificationText:@"Oops, Something Went Wrong!"];
+        }
+    }];
 }
 
 

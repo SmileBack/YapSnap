@@ -1168,7 +1168,7 @@ in your phone's settings!</string>
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjl-Kr-TQg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjl-Kr-TQg">
                                 <rect key="frame" x="-5" y="14" width="55" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="KhX-OI-Ekk"/>
@@ -1218,10 +1218,10 @@ in your phone's settings!</string>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="36"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vNe-98-kK7">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vNe-98-kK7">
                                 <rect key="frame" x="150" y="32" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zaT-Tc-msp">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zaT-Tc-msp">
                                 <rect key="frame" x="20" y="466" width="280" height="40"/>
                                 <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
@@ -1232,9 +1232,12 @@ in your phone's settings!</string>
                                     <action selector="didTapForward:" destination="Dgp-JD-d1e" eventType="touchUpInside" id="4hc-X1-Lhp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cx1-jS-IBl">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cx1-jS-IBl">
                                 <rect key="frame" x="20" y="415" width="280" height="40"/>
                                 <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="JL2-gi-Eck"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                 <state key="normal" title="Reply">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1244,7 +1247,7 @@ in your phone's settings!</string>
                                     <action selector="didTapReply:" destination="Dgp-JD-d1e" eventType="touchUpInside" id="mSq-Up-Tfj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzM-5p-4ue">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzM-5p-4ue">
                                 <rect key="frame" x="279" y="21" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="eZC-rk-XtM"/>
@@ -1257,32 +1260,65 @@ in your phone's settings!</string>
                                     <action selector="didTapTopRightButton" destination="Dgp-JD-d1e" eventType="touchUpInside" id="C4i-4M-Gux"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZw-Qu-kTZ">
+                                <rect key="frame" x="20" y="415" width="280" height="40"/>
+                                <color key="backgroundColor" red="0.14117647059999999" green="0.3921568627" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="5G6-Ce-rJd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                <state key="normal" title="Accept Friend Request">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapFriendRequestButton" destination="Dgp-JD-d1e" eventType="touchUpInside" id="kXh-Rt-yUl"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="PvF-Jb-cMD">
+                                <rect key="frame" x="150" y="425" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="2FD-4i-wy2"/>
+                                    <constraint firstAttribute="width" constant="20" id="XJl-OB-Sm3"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="zM8-Va-aql" secondAttribute="centerX" id="3Y6-WJ-eic"/>
-                            <constraint firstItem="kCt-ck-W3X" firstAttribute="top" secondItem="8Sd-XX-W3O" secondAttribute="topMargin" constant="27" id="6O2-R9-CQp"/>
-                            <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="cEy-3F-cQc" secondAttribute="centerX" id="7hJ-H1-Fu8"/>
-                            <constraint firstItem="kCt-ck-W3X" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="34" id="9Lz-D9-kbo"/>
+                            <constraint firstItem="gZw-Qu-kTZ" firstAttribute="top" secondItem="Cx1-jS-IBl" secondAttribute="top" id="0Tt-ap-HM2"/>
+                            <constraint firstItem="zaT-Tc-msp" firstAttribute="trailing" secondItem="Cx1-jS-IBl" secondAttribute="trailing" id="99h-iI-oPP"/>
+                            <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="vNe-98-kK7" secondAttribute="centerX" id="AqO-EP-cur"/>
+                            <constraint firstItem="7Kj-1X-Ut8" firstAttribute="top" secondItem="zaT-Tc-msp" secondAttribute="bottom" constant="27" id="B1D-hU-HCt"/>
                             <constraint firstItem="cEy-3F-cQc" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leading" constant="5" id="Emi-hf-nzj"/>
                             <constraint firstAttribute="trailing" secondItem="i6A-Iw-epG" secondAttribute="trailing" constant="10" id="H3g-GE-EDB"/>
                             <constraint firstItem="i6A-Iw-epG" firstAttribute="top" secondItem="cEy-3F-cQc" secondAttribute="bottom" constant="-271" id="J6H-0Q-2fH"/>
+                            <constraint firstItem="zM8-Va-aql" firstAttribute="top" secondItem="kCt-ck-W3X" secondAttribute="bottom" constant="7" id="KXG-Z5-mkl"/>
                             <constraint firstItem="Cjl-Kr-TQg" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="-21" id="KzG-iq-Oyq"/>
+                            <constraint firstItem="kCt-ck-W3X" firstAttribute="centerY" secondItem="vNe-98-kK7" secondAttribute="centerY" id="LY9-aY-7k8"/>
                             <constraint firstItem="zM8-Va-aql" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leading" id="M2C-Am-O1j"/>
-                            <constraint firstItem="zM8-Va-aql" firstAttribute="top" secondItem="kCt-ck-W3X" secondAttribute="bottom" constant="7" id="O45-jn-fO9"/>
+                            <constraint firstItem="zaT-Tc-msp" firstAttribute="leading" secondItem="Cx1-jS-IBl" secondAttribute="leading" id="Mw9-P3-UId"/>
+                            <constraint firstItem="PvF-Jb-cMD" firstAttribute="centerY" secondItem="gZw-Qu-kTZ" secondAttribute="centerY" id="N10-6L-NKv"/>
+                            <constraint firstItem="Cx1-jS-IBl" firstAttribute="top" secondItem="i6A-Iw-epG" secondAttribute="bottom" constant="21" id="NfD-2k-bSR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gzM-5p-4ue" secondAttribute="trailing" constant="-15" id="QZs-CB-nFD"/>
-                            <constraint firstItem="Cjl-Kr-TQg" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="-6" id="Vkv-ph-DAV"/>
+                            <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="cEy-3F-cQc" secondAttribute="centerX" id="S2b-Zu-3tc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gZw-Qu-kTZ" secondAttribute="trailing" constant="4" id="SHZ-5Z-h3T"/>
+                            <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="Cx1-jS-IBl" secondAttribute="centerX" id="Udf-81-s4X"/>
+                            <constraint firstItem="Cjl-Kr-TQg" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="14" id="Vkv-ph-DAV"/>
                             <constraint firstItem="zM8-Va-aql" firstAttribute="top" secondItem="8Sd-XX-W3O" secondAttribute="topMargin" constant="64" id="W1F-D8-YBk"/>
-                            <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="vNe-98-kK7" secondAttribute="centerX" id="YO8-QV-Ydi"/>
-                            <constraint firstItem="gzM-5p-4ue" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="1" id="ZST-ZG-aPy"/>
-                            <constraint firstItem="i6A-Iw-epG" firstAttribute="top" secondItem="zM8-Va-aql" secondAttribute="bottom" constant="51" id="ZbP-QP-A0y"/>
+                            <constraint firstItem="gzM-5p-4ue" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="21" id="ZST-ZG-aPy"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="i6A-Iw-epG" secondAttribute="bottom" constant="174" id="Zzs-2G-QdH"/>
+                            <constraint firstItem="gzM-5p-4ue" firstAttribute="leading" secondItem="kCt-ck-W3X" secondAttribute="trailing" constant="9" id="avB-tB-rnc"/>
+                            <constraint firstItem="zaT-Tc-msp" firstAttribute="top" secondItem="Cx1-jS-IBl" secondAttribute="bottom" constant="11" id="ay6-bw-I41"/>
                             <constraint firstAttribute="centerY" secondItem="cEy-3F-cQc" secondAttribute="centerY" constant="45" id="fLh-md-Agx"/>
-                            <constraint firstItem="vNe-98-kK7" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="12" id="iAn-hL-qNs"/>
+                            <constraint firstItem="vNe-98-kK7" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="32" id="iAn-hL-qNs"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="7Kj-1X-Ut8" secondAttribute="bottom" id="iBv-Gt-BbA"/>
                             <constraint firstAttribute="trailing" secondItem="cEy-3F-cQc" secondAttribute="trailing" constant="5" id="mr8-m3-Say"/>
+                            <constraint firstItem="gZw-Qu-kTZ" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="4" id="nDH-N4-qd0"/>
+                            <constraint firstItem="Cx1-jS-IBl" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="4" id="q7V-Ao-Anv"/>
                             <constraint firstItem="i6A-Iw-epG" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leading" constant="10" id="qTa-xT-cDF"/>
+                            <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="zM8-Va-aql" secondAttribute="centerX" id="qpF-z0-I0a"/>
                             <constraint firstAttribute="centerX" secondItem="7Kj-1X-Ut8" secondAttribute="centerX" id="uFa-25-Ngn"/>
+                            <constraint firstItem="PvF-Jb-cMD" firstAttribute="centerX" secondItem="gZw-Qu-kTZ" secondAttribute="centerX" id="xad-BW-NmJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xVH-kE-ZoD"/>
@@ -1290,6 +1326,8 @@ in your phone's settings!</string>
                         <outlet property="activityIndicator" destination="vNe-98-kK7" id="gDX-w8-0nN"/>
                         <outlet property="albumImage" destination="oZS-3k-7XH" id="2ei-fw-y0P"/>
                         <outlet property="forwardButton" destination="zaT-Tc-msp" id="ncB-bL-Alh"/>
+                        <outlet property="friendRequestActivityIndicator" destination="PvF-Jb-cMD" id="lKe-gV-g0F"/>
+                        <outlet property="friendRequestButton" destination="gZw-Qu-kTZ" id="tYI-eO-AnX"/>
                         <outlet property="progressView" destination="zM8-Va-aql" id="Oeq-db-IdL"/>
                         <outlet property="replyButton" destination="Cx1-jS-IBl" id="1Jc-br-Hny"/>
                         <outlet property="textView" destination="i6A-Iw-epG" id="5Gi-rN-03J"/>

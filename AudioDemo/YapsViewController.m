@@ -471,7 +471,7 @@ static NSString *CellIdentifier = @"Cell";
     YSYap *yap = self.yaps[indexPath.row];
     self.selectedYap = yap;
     
-    UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"How would you like to reply?"
+    UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Which song would you like to reply with?"
                                                                     delegate:self
                                                            cancelButtonTitle:@"Cancel"
                                                       destructiveButtonTitle:nil

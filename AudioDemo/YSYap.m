@@ -172,7 +172,7 @@
 
 - (BOOL) isFriendRequest
 {
-    if (![self.notificationType isEqual: [NSNull null]]) {
+    if (self.notificationType && ![self.notificationType isEqual: [NSNull null]]) {
         return [self.notificationType isEqualToString:@"friendship_request"];
     } else {
         return NO;
