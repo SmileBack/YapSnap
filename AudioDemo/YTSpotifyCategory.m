@@ -10,6 +10,7 @@
 
 @implementation YTSpotifyCategory
 
+/*
 - (id)initWithDisplayName:(NSString*)displayName spotifyURL:(NSString*)spotifiyURL {
     if (self = [super init]) {
         self.displayName = displayName;
@@ -17,7 +18,16 @@
     }
     return self;
 }
+*/
 
+- (id)initWithSpotifyURL:(NSString*)spotifiyURL {
+    if (self = [super init]) {
+        self.spotifyURL = [NSURL URLWithString:spotifiyURL];
+    }
+    return self;
+}
+
+/*
 + (NSArray*)defaultCategories {
     return @[[[YTSpotifyCategory alloc] initWithDisplayName:@"Pop"
                                                  spotifyURL:@"https://api.spotify.com/v1/users/spotify/playlists/5FJXhjdILmRA2z5bvz4nzf/tracks"],
@@ -33,5 +43,6 @@
                                                  spotifyURL:@"https://api.spotify.com/v1/users/spotify/playlists/76h0bH2KJhiBuLZqfvPp3K/tracks"],
              ];
 }
+*/
 
 @end

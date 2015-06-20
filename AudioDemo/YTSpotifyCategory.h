@@ -10,11 +10,13 @@
 
 @interface YTSpotifyCategory : NSObject
 
-@property (strong, nonatomic) NSString* displayName;
+//@property (strong, nonatomic) NSString* displayName;
 @property (strong, nonatomic) NSURL* spotifyURL;
 
-- (id)initWithDisplayName:(NSString*)displayName spotifyURL:(NSString*)spotifiyURL;
+//- (id)initWithDisplayName:(NSString*)displayName spotifyURL:(NSString*)spotifiyURL;
 
-+ (NSArray*)defaultCategories;
+- (id)initWithSpotifyURL:(NSString*)spotifiyURL;
+
+//+ (NSArray*)defaultCategories;
 
 @end

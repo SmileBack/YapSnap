@@ -19,9 +19,9 @@
 #import "SpotifyArtistFactory.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "SearchArtistAlertView.h"
-#import "YTSearchSuggestionsViewController.h"
+//#import "YTSearchSuggestionsViewController.h"
 
-@interface YSSpotifySourceController () <YTSearchSuggestionsViewControllerDelegate>
+@interface YSSpotifySourceController () /*<YTSearchSuggestionsViewControllerDelegate>*/
 @property (nonatomic, strong) NSArray *songs;
 @property (strong, nonatomic) IBOutlet UITextField *searchBox;
 @property (strong, nonatomic) IBOutlet iCarousel *carousel;
@@ -39,11 +39,20 @@
 @property (strong, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
 @property (nonatomic, strong) NSString *artistNameString;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carouselYConstraint;
-@property (strong, nonatomic) YTSearchSuggestionsViewController* searchSuggestionViewController;
-@property (strong, nonatomic) IBOutlet UIButton *artistButtonHack;
+//@property (strong, nonatomic) YTSearchSuggestionsViewController* searchSuggestionViewController;
+@property (strong, nonatomic) UIButton *artistButtonHack;
+@property (nonatomic, strong) NSString *lastShownPlaylist;
+@property (nonatomic, strong) NSString *playlistOne;
+@property (nonatomic, strong) NSString *playlistTwo;
+@property (nonatomic, strong) NSString *playlistThree;
+@property (nonatomic, strong) NSString *playlistFour;
+@property (nonatomic, strong) NSString *playlistFive;
+@property (nonatomic, strong) NSString *playlistSix;
+@property (nonatomic, strong) NSString *playlistSeven;
+@property (nonatomic, strong) NSString *playlistEight;
 
 - (IBAction)didTapResetButton;
-- (IBAction)didTapRandomButton:(id)sender;
+- (IBAction)didTapTopChartsButton:(id)sender;
 
 @end
 
@@ -172,26 +181,57 @@
     [self resetUI];
     double delay = .1;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self showSearchBox];
         [self.searchBox becomeFirstResponder];
     });
 }
 
-- (IBAction)didTapRandomButton:(id)sender {
+- (IBAction)didTapTopChartsButton:(id)sender {
     [self resetBottomBannerUI];
-    
     [self.view endEditing:YES];
-    
-    self.artists = [SpotifyArtistFactory artistsForCategory:@"Random"]; // Pop is hardcoded!
-    
-    NSString *randomlySelectedArtist = [self.artists objectAtIndex: arc4random() % [self.artists count]];
-    
-    NSLog(@"Randomly Selected Artist: %@", randomlySelectedArtist);
-    
-    [self search:randomlySelectedArtist inCategory:nil];
-    [self showSearchBox];
-    self.searchBox.text = randomlySelectedArtist;
     [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+    
+    self.playlistOne = @"One";
+    self.playlistTwo = @"Two";
+    self.playlistThree = @"Three";
+    self.playlistFour = @"Four";
+    self.playlistFive = @"Five";
+    self.playlistSix = @"Six";
+    self.playlistSeven = @"Seven";
+    
+    if (!self.lastShownPlaylist) {
+        NSLog(@"No last playlist");
+        [self retrieveTracksForPlaylist:self.playlistOne];
+        self.lastShownPlaylist = self.playlistOne;
+        self.searchBox.text = self.playlistOne;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistOne]) {
+        [self retrieveTracksForPlaylist:self.playlistTwo];
+        self.lastShownPlaylist = self.playlistTwo;
+        self.searchBox.text = self.playlistTwo;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistTwo]) {
+        [self retrieveTracksForPlaylist:self.playlistThree];
+        self.lastShownPlaylist = self.playlistThree;
+        self.searchBox.text = self.playlistThree;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistThree]) {
+        [self retrieveTracksForPlaylist:self.playlistFour];
+        self.lastShownPlaylist = self.playlistFour;
+        self.searchBox.text = self.playlistFour;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistFour]) {
+        [self retrieveTracksForPlaylist:self.playlistFive];
+        self.lastShownPlaylist = self.playlistFive;
+        self.searchBox.text = self.playlistFive;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistFive]) {
+        [self retrieveTracksForPlaylist:self.playlistSix];
+        self.lastShownPlaylist = self.playlistSix;
+        self.searchBox.text = self.playlistSix;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistSix]) {
+        [self retrieveTracksForPlaylist:self.playlistSeven];
+        self.lastShownPlaylist = self.playlistSeven;
+        self.searchBox.text = self.playlistSeven;
+    } else {
+        [self retrieveTracksForPlaylist:self.playlistOne];
+        self.lastShownPlaylist = self.playlistOne;
+        self.searchBox.text = self.playlistOne;
+    }
 }
 
 -(BOOL) internetIsNotReachable
@@ -252,7 +292,7 @@
     }
 }
 
-- (void) search:(NSString *)search inCategory:(YTSpotifyCategory*)category
+- (void) searchForTracksWithString:(NSString *)searchString
 {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Searched Songs"];
@@ -316,12 +356,76 @@
         }
     };
     
-    if (category) {
-        [[SpotifyAPI sharedApi] searchCategory:category withCallback:callback];
-    } else {
-        [[SpotifyAPI sharedApi] searchSongs:search withCallback:callback];
-    }
+    [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForSearchString:searchString withCallback:callback];
 }
+
+- (void) retrieveTracksForPlaylist:(NSString *)playlistName
+{
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Searched Songs"];
+    [mixpanel.people increment:@"Searched Songs #" by:[NSNumber numberWithInt:1]];
+    
+    self.songs = nil;
+    [self.carousel reloadData];
+    self.carousel.alpha = 1;
+    self.loadingIndicator.alpha = 1;
+    [self.loadingIndicator startAnimating];
+    
+    __weak YSSpotifySourceController *weakSelf = self;
+    void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
+        if (songs) {
+            weakSelf.songs = songs;
+            weakSelf.carousel.currentItemIndex = 0;
+            [weakSelf.carousel reloadData];
+            if (songs.count == 0) {
+                [self.loadingIndicator stopAnimating];
+                self.carousel.alpha = 0;
+                
+                NSLog(@"No Songs Returned For Search Query");
+                
+                double delay = 0.2;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
+                });
+                
+                double delay2 = 1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.searchBox becomeFirstResponder];
+                });
+            } else {
+                NSLog(@"Returned Songs Successfully");
+                [self.loadingIndicator stopAnimating];
+                if (!self.didViewSpotifySongs) {
+                    double delay = .7;
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_VIEW_SPOTIFY_SONGS];
+                    });
+                }
+            }
+        } else if (error) {
+            [self.loadingIndicator stopAnimating];
+            self.carousel.alpha = 0;
+            
+            if ([self internetIsNotReachable]) {
+                double delay = 0.1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+                });
+            } else {
+                NSLog(@"Error Returning Songs %@", error);
+                double delay = 0.1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong! Try Again."];
+                });
+                
+                [mixpanel track:@"Spotify Error - search (other)"];
+            }
+        }
+    };
+  
+    [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForPlaylist:@"test" withCallback:callback];
+}
+
 
 #pragma mark - UITextFieldDelegate
 
@@ -332,6 +436,7 @@
     
     [self resetBottomBannerUI];
     
+    /*
     self.searchSuggestionViewController = [[YTSearchSuggestionsViewController alloc] init];
     self.searchSuggestionViewController.searchSuggestionsDelegate = self;
     [self addChildViewController:self.searchSuggestionViewController];
@@ -347,14 +452,17 @@
                                                                       metrics:nil
                                                                         views:@{@"search": self.searchBox,
                                                                                 @"view": self.searchSuggestionViewController.view}]];
+     */
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"Textfield did end editing");
     [self setUserInteractionEnabled:YES];
+    /*
     [self.searchSuggestionViewController.view removeFromSuperview];
     [self.searchSuggestionViewController removeFromParentViewController];
     self.searchSuggestionViewController = nil;
+     */
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -368,7 +476,7 @@
     self.searchBox.text = [self.searchBox.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     [self.view endEditing:YES];
     if ([self.searchBox.text length] > 0) {
-        [self search:self.searchBox.text inCategory:nil];
+        [self searchForTracksWithString:self.searchBox.text];
         [[API sharedAPI] sendSearchTerm:textField.text withCallback:^(BOOL success, NSError *error) {
             if (success) {
                 NSLog(@"Sent search term metric");
@@ -379,6 +487,7 @@
     }
 }
 
+/*
 #pragma mark - YTSearchSuggestionsViewControllerDelegate
 
 - (void)didSelectSearchSuggestion:(YTSpotifyCategory *)suggestion {
@@ -386,6 +495,7 @@
     [self.searchBox resignFirstResponder];
     [self search:suggestion.displayName inCategory:suggestion];
 }
+*/
 
 #pragma mark - iCarousel Stuff
 - (NSInteger) numberOfItemsInCarousel:(iCarousel *)carousel
@@ -731,7 +841,7 @@
             break;
         }
     }
-    [self search:selectedTrack.artistName inCategory:nil];
+    [self searchForTracksWithString:selectedTrack.artistName];
     self.searchBox.text = selectedTrack.artistName;
     [self updateVisibilityOfMagnifyingGlassAndResetButtons];
 }
@@ -1020,17 +1130,6 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_VIEW_SEARCH_ARTIST_POPUP];
 }
 
-- (void) showSearchBox
-{
-    [UIView animateWithDuration:.1
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.searchBox.alpha = 1;
-                     }
-                     completion:nil];
-}
-
 - (void) hideResetButton {
     self.resetButton.alpha = 0;
 }
@@ -1042,7 +1141,6 @@
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         //self.searchBox.alpha = 0;
                          NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type a phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
                          self.searchBox.attributedPlaceholder = string;
                          
@@ -1095,7 +1193,7 @@
 {
     if ([alertView isKindOfClass:[SearchArtistAlertView class]]) {
         if (buttonIndex == 1) {
-            [self search:self.artistNameString inCategory:nil];
+            [self searchForTracksWithString:self.artistNameString];
             self.searchBox.text = self.artistNameString;
             [self updateVisibilityOfMagnifyingGlassAndResetButtons];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_VIEW_SEARCH_ARTIST_POPUP];

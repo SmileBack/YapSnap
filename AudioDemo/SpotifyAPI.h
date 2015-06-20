@@ -16,9 +16,13 @@ typedef void (^SpotifySongCallback)(NSArray* songs, NSError *error);
 
 + (SpotifyAPI *) sharedApi;
 
-- (void) searchSongs:(NSString *)searchString withCallback:(SpotifySongCallback)callback;
+//- (void) searchSongs:(NSString *)searchString withCallback:(SpotifySongCallback)callback;
 
-- (void) searchCategory:(YTSpotifyCategory *)searchString withCallback:(SpotifySongCallback)callback;
+- (void) retrieveTracksFromSpotifyForSearchString:(NSString *)playlistName withCallback:(SpotifySongCallback)callback;
+
+- (void) retrieveTracksFromSpotifyForPlaylist:(NSString *)playlistName withCallback:(SpotifySongCallback)callback;
+
+//- (void) searchCategory:(YTSpotifyCategory *)searchString withCallback:(SpotifySongCallback)callback;
 
 - (NSDictionary *) getAuthorizationHeaders;
 

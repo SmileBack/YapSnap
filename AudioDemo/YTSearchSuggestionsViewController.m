@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor clearColor];
-    
+    /*
     self.categories = [YTSpotifyCategory defaultCategories];
     self.buttons = [NSMutableArray arrayWithCapacity:self.categories.count];
     
@@ -83,6 +83,7 @@
                                                                         views:@{@"b4": self.buttons[3],
                                                                                 @"b5": self.buttons[4],
                                                                                 @"b6": self.buttons[5]}]];
+     */
 }
 
 #pragma mark - Actions
