@@ -122,6 +122,7 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
+                        NSLog(@"Spotify VC received threshold notification");
                         [self showBannerWithText:@"Keep Holding" temporary:YES];
                     }];
     
@@ -133,7 +134,7 @@
                         self.bottomButton.hidden = YES;
                     }];
     
-    [center addObserverForName:CANCELED_BOTTOM_BANNER_NOTIFICATION
+    [center addObserverForName:RESET_BANNER_UI
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {

@@ -95,6 +95,7 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
+                        NSLog(@"Home VC received threshold notification");
                         [self showTopButtons];
                         [countdownTimer invalidate];
                         [UIView animateWithDuration:.1

@@ -296,15 +296,8 @@ static const float TIMER_INTERVAL = .02;
     [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
     
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
+        NSLog(@"Didn't hit threshold");
         self.recordProgressView.progress = 0.0;
-        double delay = .1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if (self.type == AudioCapTureTypeSpotify) {
-                //[[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Play"];
-            } else {
-                //[[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding to Record"];
-            }
-        });
         
         [[NSNotificationCenter defaultCenter] postNotificationName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION object:nil];
         
@@ -316,14 +309,9 @@ static const float TIMER_INTERVAL = .02;
                          }
                          completion:nil];
         
-        if (self.type == AudioCaptureTypeMic) {
-            self.titleString = @"Start Yappin'";
-        } else if (self.type == AudioCapTureTypeSpotify) {
-            self.titleString = @"Find a Song";
-        }
-        
         [self updateTitleLabel];
     } else {
+        NSLog(@"Hit threshold");
         [[NSNotificationCenter defaultCenter] postNotificationName:LISTENED_TO_CLIP_NOTIFICATION object:nil];
         self.bottomView.hidden = NO;
         double delay = 0.2;
@@ -386,16 +374,13 @@ static const float TIMER_INTERVAL = .02;
 }
 
 - (IBAction) didTapCancelButton {
-    [self resetSpotifyBannerUI];
-    [[NSNotificationCenter defaultCenter] postNotificationName:CANCELED_BOTTOM_BANNER_NOTIFICATION object:nil];
-}
-
-- (void) resetSpotifyBannerUI {
-    [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI object:nil];
+    //[self resetSpotifyBannerUI];
+    self.elapsedTime = 0;
     self.bottomView.hidden = YES;
     self.recordProgressView.alpha = 0;
     [self.recordProgressView setProgress:0];
     self.recordProgressView.trackTintColor = [UIColor whiteColor];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI object:nil];
 }
 
 #pragma mark - Mode Changing
