@@ -40,6 +40,7 @@
 @property (nonatomic, strong) NSString *artistNameString;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carouselYConstraint;
 @property (strong, nonatomic) YTSearchSuggestionsViewController* searchSuggestionViewController;
+@property (strong, nonatomic) IBOutlet UIButton *artistButtonHack;
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapRandomButton:(id)sender;
@@ -93,6 +94,18 @@
     } else if (IS_IPHONE_6_PLUS_SIZE) {
         self.carouselYConstraint.constant = 60;
     }
+    
+    [self createArtistButtonHack];
+}
+
+- (void) createArtistButtonHack {
+    self.artistButtonHack = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.artistButtonHack addTarget:self
+               action:@selector(didTapArtistButtonHack)
+     forControlEvents:UIControlEventTouchUpInside];
+    self.artistButtonHack.frame = CGRectMake((self.view.bounds.size.width - self.carouselHeightConstraint.constant)/2, 340, self.carouselHeightConstraint.constant, 24.0);
+    //self.artistButtonHack.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:self.artistButtonHack];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -501,13 +514,17 @@
     
     [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
     
-    [trackView.artistButton addTarget:self action:@selector(tappedArtistButton:) forControlEvents:UIControlEventTouchUpInside];
+    //[trackView.artistButton addTarget:self action:@selector(tappedArtistButton:) forControlEvents:UIControlEventTouchUpInside];
     [trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
     CGSize stringsize = [[NSString stringWithFormat:@"by %@", track.artistName] sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:12]}];
+    
+   
+    
     if ((stringsize.width + 20) > self.carouselHeightConstraint.constant) {
         stringsize.width = self.carouselHeightConstraint.constant-24;
     }
-    [trackView.artistButton setFrame:CGRectMake((self.carouselHeightConstraint.constant-stringsize.width-20)/2, self.carouselHeightConstraint.constant - 100 /*+35*/, stringsize.width+20, stringsize.height + 8)];
+    [trackView.artistButton setFrame:CGRectMake((self.carouselHeightConstraint.constant-stringsize.width-20)/2, self.carouselHeightConstraint.constant + 35, stringsize.width+20, stringsize.height + 8)];
+    //Make sure the hack is the same size
 
     return trackView;
 }
@@ -665,7 +682,7 @@
         }
     }
 }
-
+/*
 - (void) tappedArtistButton:(UIButton *)button
 {
     NSLog(@"Tapped Artist Button");
@@ -702,6 +719,44 @@
             [self updateVisibilityOfMagnifyingGlassAndResetButtons];
         }
     }
+}
+*/
+- (void)didTapArtistButtonHack {
+    
+    SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
+    YSTrack *selectedTrack = nil;
+    for (YSTrack *track in self.songs) {
+        if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+            selectedTrack = track;
+            break;
+        }
+    }
+    [self search:selectedTrack.artistName inCategory:nil];
+    self.searchBox.text = selectedTrack.artistName;
+    [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+}
+
+- (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel {
+    NSLog(@"DidEndScrollingAnimation");
+    self.artistButtonHack.frame = CGRectMake((self.view.bounds.size.width - self.carouselHeightConstraint.constant)/2, 340, self.carouselHeightConstraint.constant, 24.0);
+    
+    //self.artistButtonHack.backgroundColor = [UIColor redColor];
+    
+    SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
+    YSTrack *selectedTrack = nil;
+    for (YSTrack *track in self.songs) {
+        if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+            selectedTrack = track;
+            break;
+        }
+    }
+    
+    CGSize stringsize = [[NSString stringWithFormat:@"by %@", selectedTrack.artistName] sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:12]}];
+    
+    if ((stringsize.width + 20) > self.carouselHeightConstraint.constant) {
+        stringsize.width = self.carouselHeightConstraint.constant-24;
+    }
+    [self.artistButtonHack setFrame:CGRectMake((self.view.bounds.size.width - (stringsize.width+20))/2, 336, stringsize.width+20, stringsize.height + 8)];
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
