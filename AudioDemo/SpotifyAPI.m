@@ -43,7 +43,7 @@ static SpotifyAPI *sharedInstance;
     [manager POST:@"https://accounts.spotify.com/api/token"
        parameters:@{@"grant_type": @"client_credentials"}
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSLog(@"Response: %@", responseObject);
+              //NSLog(@"Response: %@", responseObject);
               if ([responseObject isKindOfClass:[NSDictionary class]]) {
                   NSDictionary *response = responseObject;
                   weakSelf.tokenType = response[@"token_type"];
@@ -119,8 +119,20 @@ static SpotifyAPI *sharedInstance;
  */
 
 - (void) retrieveTracksFromSpotifyForPlaylist:(NSString *)playlistName withCallback:(SpotifySongCallback)callback {
-    if ([playlistName isEqualToString:@"test"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/5FJXhjdILmRA2z5bvz4nzf/tracks"; //category.spotifyURL.absoluteString;
+    if ([playlistName isEqualToString:@"One"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/5FJXhjdILmRA2z5bvz4nzf/tracks";
+    } else if ([playlistName isEqualToString:@"Two"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4dJHrPYVdKgaCE3Lxrv1MZ/tracks";
+    } else if ([playlistName isEqualToString:@"Three"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/3jtuOxsrTRAWvPPLvlW1VR/tracks";
+    } else if ([playlistName isEqualToString:@"Four"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/06KmJWiQhL0XiV6QQAHsmw/tracks";
+    } else if ([playlistName isEqualToString:@"Five"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/76h0bH2KJhiBuLZqfvPp3K/tracks";
+    } else if ([playlistName isEqualToString:@"Six"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/76h0bH2KJhiBuLZqfvPp3K/tracks";
+    } else if ([playlistName isEqualToString:@"Seven"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
     }
     
     __weak SpotifyAPI *weakSelf = self;
@@ -128,6 +140,7 @@ static SpotifyAPI *sharedInstance;
     [self setAuthorizationOnManager:manager];
     [manager GET:self.playlistURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *response = responseObject;
+        
         NSArray *items = response[@"items"];
         
         NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:YES];
@@ -162,7 +175,7 @@ static SpotifyAPI *sharedInstance;
     [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *response = responseObject;
         NSArray *items = response[@"tracks"][@"items"];
-
+        //NSLog(@"ITEMS: %@", items);
         NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
         callback(songs, nil);
         

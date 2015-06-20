@@ -199,7 +199,7 @@
     self.playlistSeven = @"Seven";
     
     if (!self.lastShownPlaylist) {
-        NSLog(@"No last playlist");
+        NSLog(@"playlist one: %@", self.playlistOne);
         [self retrieveTracksForPlaylist:self.playlistOne];
         self.lastShownPlaylist = self.playlistOne;
         self.searchBox.text = self.playlistOne;
@@ -224,9 +224,26 @@
         self.lastShownPlaylist = self.playlistSix;
         self.searchBox.text = self.playlistSix;
     } else if ([self.lastShownPlaylist isEqualToString:self.playlistSix]) {
-        [self retrieveTracksForPlaylist:self.playlistSeven];
-        self.lastShownPlaylist = self.playlistSeven;
-        self.searchBox.text = self.playlistSeven;
+      
+      
+        YSTrack *track = [YSTrack new];
+        
+        track.name = @"Home";
+        track.spotifyID = @"Home";
+        track.previewURL = @"Home";
+        track.artistName = @"Home";
+        track.artistName = @"Home";
+        track.spotifyURL = @"Home";
+        track.albumName = @"Home";
+        track.imageURL = @"Home";
+        track.secondsToFastForward = [NSNumber numberWithInt:10];
+
+        
+        self.songs = @[track];//[YSTrack tracksFromDictionaryArray:track inCategory:YES];
+        self.carousel.currentItemIndex = 0;
+        [self.carousel reloadData];
+        
+
     } else {
         [self retrieveTracksForPlaylist:self.playlistOne];
         self.lastShownPlaylist = self.playlistOne;
@@ -377,6 +394,7 @@
             weakSelf.songs = songs;
             weakSelf.carousel.currentItemIndex = 0;
             [weakSelf.carousel reloadData];
+            
             if (songs.count == 0) {
                 [self.loadingIndicator stopAnimating];
                 self.carousel.alpha = 0;
@@ -423,7 +441,7 @@
         }
     };
   
-    [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForPlaylist:@"test" withCallback:callback];
+    [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForPlaylist:playlistName withCallback:callback];
 }
 
 
@@ -745,6 +763,7 @@
         for (YSTrack *track in self.songs) {
             if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
                 selectedTrack = track;
+                NSLog(@"selected track: %@", selectedTrack);
                 break;
             }
         }

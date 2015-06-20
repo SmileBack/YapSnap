@@ -30,12 +30,12 @@
     YSTrack *track = [YSTrack new];
     
     track.name = trackDictionary[@"name"];
-    NSLog(@"Song: %@", track.name);
+    //NSLog(@"Song: %@", track.name);
     track.spotifyID = trackDictionary[@"id"];
     track.previewURL = trackDictionary[@"preview_url"];
 
     NSArray *artists = trackDictionary[@"artists"];
-    NSLog(@"artists: %@", artists);
+    //NSLog(@"artists: %@", artists);
     NSDictionary *artist = artists[0];
     track.artistName = artist[@"name"];
 
