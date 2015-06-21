@@ -83,7 +83,7 @@
         self.contactLabel.numberOfLines = 2;
     } else {
         if (self.isForwardingYap) {
-            self.contactLabel.text = @"Forward Yap";
+            self.contactLabel.text = @"Select Recipients";
             if (self.yapBuilder.imageAwsUrl && ![self.yapBuilder.imageAwsUrl isEqual: [NSNull null]]) {
                 self.resetPhotoButton.hidden = NO;
                 self.albumImage.hidden = YES;
