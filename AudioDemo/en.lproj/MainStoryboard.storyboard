@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sYo-Oj-klg">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -845,20 +846,6 @@
                                     <action selector="didTapNextButton:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="BbC-wH-EEb"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyU-Er-gqZ" userLabel="Cancel Button">
-                                <rect key="frame" x="8" y="434" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="SZA-Pg-xss"/>
-                                    <constraint firstAttribute="width" constant="60" id="uEX-V4-Me2"/>
-                                </constraints>
-                                <state key="normal" image="CancelImageWhite.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapBackButton:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="wda-sG-KAZ"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Yo4-ls-PqW">
                                 <rect key="frame" x="10" y="97" width="300" height="282"/>
                                 <constraints>
@@ -925,7 +912,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-Y6-ICb">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-Y6-ICb" userLabel="Cancel Button">
                                 <rect key="frame" x="3" y="17" width="44" height="44"/>
                                 <state key="normal" backgroundImage="CancelImageWhite2.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -935,6 +922,19 @@
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNC-9Z-jqK" userLabel="Add Recipients Button">
+                                <rect key="frame" x="3" y="434" width="65" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="AeO-V7-4py"/>
+                                    <constraint firstAttribute="height" constant="65" id="vl1-rz-9Wy"/>
+                                </constraints>
+                                <state key="normal" image="PlusButtonWhite3.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapAddRecipientsInDoubleTapToReplyFlow" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="PC3-fO-RSY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -942,6 +942,7 @@
                             <constraint firstAttribute="centerX" secondItem="vM0-Ja-t0y" secondAttribute="centerX" id="7hZ-EY-tmL"/>
                             <constraint firstItem="KDf-Vb-ilr" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" id="9cU-hC-jm3"/>
                             <constraint firstAttribute="centerX" secondItem="B2R-OB-er0" secondAttribute="centerX" id="Bck-GS-k44"/>
+                            <constraint firstItem="lNC-9Z-jqK" firstAttribute="top" secondItem="aiy-hB-M9w" secondAttribute="bottom" constant="-70" id="Cp2-ya-u2K"/>
                             <constraint firstAttribute="centerX" secondItem="yD7-vZ-19N" secondAttribute="centerX" id="IAx-iC-1H3"/>
                             <constraint firstAttribute="trailing" secondItem="ygq-ac-kFT" secondAttribute="trailing" id="Lq3-1h-fim"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KDf-Vb-ilr" secondAttribute="trailing" constant="-14" id="OhA-Zs-R2S"/>
@@ -949,13 +950,13 @@
                             <constraint firstItem="aiy-hB-M9w" firstAttribute="trailing" secondItem="ygq-ac-kFT" secondAttribute="trailing" id="RYw-Kd-Y1b"/>
                             <constraint firstItem="gWj-LF-pEZ" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" constant="5" id="RaP-vP-B4s"/>
                             <constraint firstItem="aiy-hB-M9w" firstAttribute="top" secondItem="B2R-OB-er0" secondAttribute="top" constant="-8" id="UMp-l3-lgP"/>
+                            <constraint firstItem="aiy-hB-M9w" firstAttribute="leading" secondItem="lNC-9Z-jqK" secondAttribute="trailing" constant="-68" id="UaT-Lx-ANu"/>
                             <constraint firstItem="Yo4-ls-PqW" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" constant="10" id="UnD-gZ-hhJ"/>
                             <constraint firstItem="9XV-zO-GXP" firstAttribute="centerY" secondItem="T1S-dg-Qvf" secondAttribute="top" constant="-37" id="X0t-yl-0Ze"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="aiy-hB-M9w" secondAttribute="bottom" id="XFC-Ai-LyX"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="top" secondItem="54R-6y-Wab" secondAttribute="topMargin" constant="64" id="Xvf-wH-6CH"/>
                             <constraint firstItem="Yo4-ls-PqW" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="25" id="YWI-cm-XFl"/>
                             <constraint firstItem="5VO-Xh-MtL" firstAttribute="leading" secondItem="Yo4-ls-PqW" secondAttribute="leading" id="f2d-pZ-oy1"/>
-                            <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="EyU-Er-gqZ" secondAttribute="bottom" constant="10" id="fBu-C8-GXW"/>
                             <constraint firstAttribute="trailing" secondItem="Yo4-ls-PqW" secondAttribute="trailing" constant="10" id="jDc-3I-w2v"/>
                             <constraint firstItem="vM0-Ja-t0y" firstAttribute="top" secondItem="gWj-LF-pEZ" secondAttribute="bottom" constant="-12" id="lGz-ex-qwQ"/>
                             <constraint firstItem="9XV-zO-GXP" firstAttribute="centerX" secondItem="54R-6y-Wab" secondAttribute="rightMargin" constant="-17" id="mW8-Gp-gvc"/>
@@ -964,13 +965,13 @@
                             <constraint firstItem="aiy-hB-M9w" firstAttribute="leading" secondItem="ygq-ac-kFT" secondAttribute="leading" id="tIM-C1-Nx0"/>
                             <constraint firstItem="5VO-Xh-MtL" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="12" id="tNh-9Q-Ui9"/>
                             <constraint firstAttribute="centerY" secondItem="gWj-LF-pEZ" secondAttribute="centerY" constant="18" id="tZe-q4-Vfa"/>
-                            <constraint firstItem="EyU-Er-gqZ" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="-8" id="tsJ-Fv-uDI"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="B2R-OB-er0" secondAttribute="bottom" constant="7" id="vNZ-Va-hqk"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" id="xUK-bi-lf5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M5r-U7-dCX"/>
                     <connections>
+                        <outlet property="addRecipientsButton" destination="lNC-9Z-jqK" id="4Nt-tg-Meh"/>
                         <outlet property="albumImage" destination="5VO-Xh-MtL" id="g9R-tW-q0a"/>
                         <outlet property="bottomConstraint" destination="vNZ-Va-hqk" id="Y4o-LV-ULS"/>
                         <outlet property="cameraButton" destination="KDf-Vb-ilr" id="pDy-7e-C88"/>
@@ -1846,8 +1847,8 @@ Type it here!</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="syO-tE-hvG"/>
-        <segue reference="0bM-75-hD3"/>
+        <segue reference="czb-n6-hbf"/>
         <segue reference="eDP-Ek-kdM"/>
+        <segue reference="0bM-75-hD3"/>
     </inferredMetricsTieBreakers>
 </document>

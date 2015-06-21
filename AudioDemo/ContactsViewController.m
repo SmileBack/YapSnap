@@ -107,6 +107,12 @@ static NSString *CellIdentifier = @"Cell";
     [self setupNotifications];
     
     [self.continueButton startToPulsate];
+    
+    if (self.builder.contacts.count > 0) {
+        [self.selectedContacts addObject:self.builder.contacts.firstObject];
+        [self showOrHideBottomView];
+        [self updateBottomViewText];
+    };
 }
 
 - (void)viewDidAppear:(BOOL)animated

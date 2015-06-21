@@ -31,20 +31,17 @@
 @property (strong, nonatomic) STKAudioPlayer* player;
 @property (strong, nonatomic) IBOutlet UIButton *resetPhotoButton;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
-
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (strong, nonatomic) IBOutlet UIButton *cameraButton;
-
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
-
 @property (weak, nonatomic) IBOutlet UIButton *topLeftButton;
-
 @property (weak, nonatomic) IBOutlet UIImageView *albumImage;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-
+@property (weak, nonatomic) IBOutlet UIButton *addRecipientsButton;
 
 - (IBAction)didTapCameraButton;
 - (IBAction)didTapResetPhotoButton;
+- (IBAction)didTapAddRecipientsInDoubleTapToReplyFlow;
 
 #define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
 
@@ -154,6 +151,10 @@
     self.yapPhoto.clipsToBounds = YES;
     
     self.progressView.trackTintColor = [UIColor colorWithWhite:0.85 alpha:1.0];
+    
+    if (self.yapBuilder.contacts.count > 0) {
+        self.addRecipientsButton.hidden = NO;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -202,8 +203,6 @@
     } else {
         __weak CustomizeYapViewController *weakSelf = self;
         
-        NSArray *vcs = self.navigationController.viewControllers;
-        
         NSArray *pendingYaps =
         [[API sharedAPI] sendYapBuilder:self.yapBuilder
                     withCallback:^(BOOL success, NSError *error) {
@@ -241,9 +240,11 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Continue On Customize Page"];
 }
-- (IBAction)didTapBackButton:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:NO];
+
+- (IBAction)didTapAddRecipientsInDoubleTapToReplyFlow {
+    self.yapBuilder.text = self.textView.text;
+    self.yapBuilder.color = self.view.backgroundColor;
+    [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
 }
 
 - (IBAction)didTapCameraButton {

@@ -55,8 +55,9 @@
     [mixpanel track:@"Viewed Playback Page"];
     
     if (self.yap.sentByCurrentUser) {
-        self.replyButton.hidden = YES;
+        //self.replyButton.hidden = YES;
         NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
+        [self.replyButton setTitle:[NSString stringWithFormat:@"Send %@ Another Yap", receiverFirstName] forState:UIControlStateNormal];
         self.titleLabel.text = [NSString stringWithFormat:@"Sent to %@", receiverFirstName];
         if (self.yap.isFriendRequest) {
             self.forwardButton.hidden = YES; // we should just not show these yaps
