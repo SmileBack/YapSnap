@@ -25,28 +25,28 @@
 #import "BlockFriendAlertView.h"
 #import "CustomizeYapViewController.h"
 #import "FriendsViewController.h"
+#import <MessageUI/MessageUI.h>
+
 
 #define PENDING_YAPS_SECTION 0
 
-@interface YapsViewController ()
+@interface YapsViewController () <MFMessageComposeViewControllerDelegate>
+
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
 @property (nonatomic, strong) YSYap *selectedYap; //Saved when the AlertView is shown
 @property (strong, nonatomic) IBOutlet UIView *pushEnabledView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
-
 @property (strong, nonatomic) UIImage *blueArrowFull;
 @property (strong, nonatomic) UIImage *blueArrowEmpty;
 @property (strong, nonatomic) UIImage *redSquareFull;
 @property (strong, nonatomic) UIImage *redSquareEmptyOpened;
-
 @property (nonatomic, readonly) NSArray *yaps;
 @property (nonatomic, strong) YSYap *addFriendYap;
-
 @property (nonatomic, strong) NSString *titleString;
-
 @property (assign, nonatomic) BOOL replyWithVoice;
+@property (strong, nonatomic) YTUnregisteredUserSMSInviter *unregisteredUserSMSInviter;
 
 - (IBAction)didTapSettingsButton;
 
@@ -62,6 +62,9 @@ static NSString *CellIdentifier = @"Cell";
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Yaps Page"];
+    
+    self.unregisteredUserSMSInviter = [[YTUnregisteredUserSMSInviter alloc] init];
+    self.unregisteredUserSMSInviter.delegate = self;
     
     self.dateFormatter = [[NSDateFormatter alloc] init];
     self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
@@ -229,6 +232,13 @@ static NSString *CellIdentifier = @"Cell";
                     usingBlock:^(NSNotification *note) {
                         weakSelf.pendingYaps = nil;
                         [weakSelf loadYaps];
+                        
+                        NSLog(@"Display invite popup");
+                        if ([note.userInfo[@"yaps"] isKindOfClass:[NSArray class]] && [MFMessageComposeViewController canSendText]) {
+                            NSArray* yaps = (NSArray*)note.userInfo[@"yaps"];
+                            [self.unregisteredUserSMSInviter promptSMSAlertForYapIfRelevant:yaps
+                                                                         fromViewController:self];
+                        }
                     }];
     
     [center addObserverForName:NOTIFICATION_YAP_SENDING_FAILED
@@ -821,6 +831,48 @@ static NSString *CellIdentifier = @"Cell";
         NSLog(@"Did tap cancel");
     }
     self.selectedYap = nil;
+}
+
+
+#pragma mark - SMS
+
+- (void)showSMS:(NSString *)message toRecipients:(NSArray *)recipients {
+    if(![MFMessageComposeViewController canSendText]) {
+        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [warningAlert show];
+        return;
+    }
+    
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.messageComposeDelegate = self;
+    [messageController setRecipients:recipients];
+    [messageController setBody:message];
+    
+    // Present message view controller on screen
+    [self presentViewController:messageController animated:YES completion:nil];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    switch (result) {
+        case MessageComposeResultCancelled:
+            break;
+            
+        case MessageComposeResultFailed:
+        {
+            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to send SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [warningAlert show];
+            break;
+        }
+            
+        case MessageComposeResultSent:
+            break;
+            
+        default:
+            break;
+    }
+    
+    //self.smsAlertWasAlreadyPrompted = NO;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

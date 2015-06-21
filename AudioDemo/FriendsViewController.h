@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YTUnregisteredUserSMSInviter.h"
 
 typedef void (^YapsSentCallback)();
 
-@interface FriendsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+@interface FriendsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, YTUnregisteredUserSMSInviterDelegate>
 
 @property (nonatomic, strong) YapsSentCallback yapsSentCallback;
+
+- (void)showSMS:(NSString *)message toRecipients:(NSArray *)recipients;
 
 @end

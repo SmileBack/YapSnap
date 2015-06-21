@@ -12,7 +12,7 @@
 #import "ContactsViewController.h"
 #import "AudioCaptureViewController.h"
 #import "ContactManager.h"
-
+#import <MessageUI/MessageUI.h>
 
 #define CELL_COLLAPSED @"Collapsed Cell"
 #define CELL_EXPANDED @"Expanded Cell"
@@ -21,7 +21,7 @@
 #define HEIGHT_EXPANDED 100.0f
 
 
-@interface FriendsViewController()
+@interface FriendsViewController() <MFMessageComposeViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *myTopFriends;
 @property (nonatomic, strong) NSArray *friends;
@@ -31,9 +31,9 @@
 @property (strong, nonatomic) UIActivityIndicatorView *loadingSpinner;
 @property (nonatomic, strong) NSString *friendOneLabelString;
 @property (strong, nonatomic) IBOutlet UIView *largeAddFriendsButton;
+@property (strong, nonatomic) YTUnregisteredUserSMSInviter *unregisteredUserSMSInviter;
 
 - (IBAction) didTapLargeAddFriendsButton;
-
 
 @end
 
@@ -44,6 +44,9 @@
         
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Friends Page"];
+    
+    self.unregisteredUserSMSInviter = [[YTUnregisteredUserSMSInviter alloc] init];
+    self.unregisteredUserSMSInviter.delegate = self;
 
     self.tableView.rowHeight = 50;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -102,21 +105,7 @@
     
     [self setupDoubleTap];
     
-    //Notifications:
-    
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    
-    [center addObserverForName:FRIENDS_YAP_SENT_NOTIFICATION
-                                                      object:nil
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *note) {
-                                                      [self dismissViewControllerAnimated:NO completion:nil/*^{
-                                                          if (weakSelf.yapsSentCallback) {
-                                                              weakSelf.yapsSentCallback();
-                                                              weakSelf.yapsSentCallback = nil;
-                                                          }
-                                                      }*/];
-                                                  }];
+    [self setupNotifications];
     
     self.largeAddFriendsButton.layer.cornerRadius = 8;
     self.largeAddFriendsButton.layer.borderWidth = 1;
@@ -129,6 +118,33 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+}
+
+- (void) setupNotifications {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+    [center addObserverForName:FRIENDS_YAP_SENT_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self dismissViewControllerAnimated:NO completion:nil/*^{
+                                                                              if (weakSelf.yapsSentCallback) {
+                                                                              weakSelf.yapsSentCallback();
+                                                                              weakSelf.yapsSentCallback = nil;
+                                                                              }
+                                                                              }*/];
+                    }];
+    
+     [center addObserverForName:NOTIFICATION_FRIEND_REQUEST_SENT
+                         object:nil
+                          queue:nil
+                     usingBlock:^(NSNotification *note) {
+                         NSLog(@"Display invite popup");
+                            if ([note.userInfo[@"yaps"] isKindOfClass:[NSArray class]] && [MFMessageComposeViewController canSendText]) {
+                                NSArray* yaps = (NSArray*)note.userInfo[@"yaps"];
+                                [self.unregisteredUserSMSInviter promptSMSAlertForFriendRequestIfRelevant:yaps fromViewController:self];
+                            }
+     }];
 }
 
 - (void) addCancelButton {
@@ -414,6 +430,47 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Add Friends Button (Large)"];
+}
+
+#pragma mark - SMS
+
+- (void)showSMS:(NSString *)message toRecipients:(NSArray *)recipients {
+    if(![MFMessageComposeViewController canSendText]) {
+        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [warningAlert show];
+        return;
+    }
+    
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.messageComposeDelegate = self;
+    [messageController setRecipients:recipients];
+    [messageController setBody:message];
+    
+    // Present message view controller on screen
+    [self presentViewController:messageController animated:YES completion:nil];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    switch (result) {
+        case MessageComposeResultCancelled:
+            break;
+            
+        case MessageComposeResultFailed:
+        {
+            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to send SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [warningAlert show];
+            break;
+        }
+            
+        case MessageComposeResultSent:
+            break;
+            
+        default:
+            break;
+    }
+    
+    //self.smsAlertWasAlreadyPrompted = NO;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

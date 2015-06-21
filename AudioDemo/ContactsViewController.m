@@ -16,10 +16,9 @@
 #import "ContactsPopupViewController.h"
 #import <MessageUI/MessageUI.h>
 #import "UIAlertView+Blocks.h"
-#import "YTUnregisteredUserSMSInviter.h"
 #import "NextButton.h"
 
-@interface ContactsViewController () <MFMessageComposeViewControllerDelegate, UIAlertViewDelegate>
+@interface ContactsViewController () <UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *contacts;
 @property (nonatomic, strong) NSArray *filteredContacts;
@@ -30,7 +29,6 @@
 @property (nonatomic, strong) NSArray *allLetters;
 @property (strong, nonatomic) IBOutlet UILabel *bottomViewLabel;
 @property (strong, nonatomic) ContactsPopupViewController *contactsPopupVC;
-@property (strong, nonatomic) YTUnregisteredUserSMSInviter *unregisteredUserSMSInviter;
 
 // Map of section letter to contacts:  A : [cont1, cont2]
 @property (nonatomic, strong) NSMutableDictionary *contactDict;
@@ -53,8 +51,6 @@ static NSString *CellIdentifier = @"Cell";
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Contacts Page"];
-    
-    self.unregisteredUserSMSInviter = [[YTUnregisteredUserSMSInviter alloc] init];
     
     self.bottomView.hidden = YES;
     
@@ -133,30 +129,6 @@ static NSString *CellIdentifier = @"Cell";
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Dismiss Welcome Popup");
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-                    }];
-    
-    [center addObserverForName:NOTIFICATION_YAP_SENT
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        NSLog(@"Display invite popup");
-                        if ([note.userInfo[@"yaps"] isKindOfClass:[NSArray class]] && [MFMessageComposeViewController canSendText]) {
-                                NSArray* yaps = (NSArray*)note.userInfo[@"yaps"];
-                                [self.unregisteredUserSMSInviter promptSMSAlertForYapIfRelevant:yaps
-                                                                               fromViewController:self];
-                        }
-                    }];
-    
-    [center addObserverForName:NOTIFICATION_FRIEND_REQUEST_SENT
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        NSLog(@"Display invite popup");
-                        if ([note.userInfo[@"yaps"] isKindOfClass:[NSArray class]] && [MFMessageComposeViewController canSendText]) {
-                            NSArray* yaps = (NSArray*)note.userInfo[@"yaps"];
-                            [self.unregisteredUserSMSInviter promptSMSAlertForFriendRequestIfRelevant:yaps
-                                                                   fromViewController:self];
-                        }
                     }];
 }
 

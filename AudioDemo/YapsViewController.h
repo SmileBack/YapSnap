@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "YTYapCreatorDelegate.h"
+#import "YTUnregisteredUserSMSInviter.h"
 
-@interface YapsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, YTYapCreatingDelegate, UIActionSheetDelegate>
+@interface YapsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, YTYapCreatingDelegate, UIActionSheetDelegate, YTUnregisteredUserSMSInviterDelegate>
 
 #define VIEWED_PUSH_NOTIFICATION_POPUP @"yaptap.ViewedPushNotificationPopup"
 #define VIEWED_FIRST_SENT_YAP_ALERT @"yaptap.ViewedFirstYapAlert"
@@ -19,5 +20,7 @@
 @property (nonatomic, strong) NSArray *pendingYaps;
 @property (assign, nonatomic) BOOL comingFromContactsOrCustomizeYapPage;
 @property (nonatomic, strong) NSNumber *unopenedYapsCount;
+
+- (void)showSMS:(NSString *)message toRecipients:(NSArray *)recipients;
 
 @end
