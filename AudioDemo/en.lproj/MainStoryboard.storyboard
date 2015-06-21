@@ -492,7 +492,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6ax-OF-ZYp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="R9f-jX-Qam">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Uk7-Dg-fop">
@@ -506,7 +506,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="W8t-1a-vba">
-                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="iTO-dn-ews" id="JfJ-lh-W15"/>
@@ -514,7 +514,7 @@
                                 </connections>
                             </tableView>
                             <view alpha="0.96999999999999997" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGC-QS-5qY">
-                                <rect key="frame" x="0.0" y="388" width="320" height="72"/>
+                                <rect key="frame" x="0.0" y="452" width="320" height="72"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6j-MM-95B" customClass="NextButton">
                                         <rect key="frame" x="266" y="16" width="44" height="44"/>
@@ -985,6 +985,7 @@
                         <outlet property="yapPhoto" destination="gWj-LF-pEZ" id="OPW-k4-otG"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="Contacts Segue" id="0bM-75-hD3"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsViewControllerSegue" id="czb-n6-hbf"/>
+                        <segue destination="iTO-dn-ews" kind="custom" identifier="Contacts Segue No Animation" customClass="NoAnimationPushSegue" id="rVt-9v-iFr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3i7-3r-yTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1849,6 +1850,6 @@ Type it here!</string>
         <segue reference="Enn-ka-dSJ"/>
         <segue reference="czb-n6-hbf"/>
         <segue reference="eDP-Ek-kdM"/>
-        <segue reference="0bM-75-hD3"/>
+        <segue reference="rVt-9v-iFr"/>
     </inferredMetricsTieBreakers>
 </document>

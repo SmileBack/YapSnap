@@ -114,6 +114,9 @@ static NSString *CellIdentifier = @"Cell";
         [self showOrHideBottomView];
         [self updateBottomViewText];
         [self updateTitleLabel];
+        
+        UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissViewControllerDuringDoubleTapToReplyFlow)];
+        [self.navigationItem setLeftBarButtonItem:cancel];
     };
 }
 
@@ -669,6 +672,10 @@ static NSString *CellIdentifier = @"Cell";
                                               otherButtonTitles:nil];
         [alert show];
     }
+}
+
+- (void) dismissViewControllerDuringDoubleTapToReplyFlow {
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 @end

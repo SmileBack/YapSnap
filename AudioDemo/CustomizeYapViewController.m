@@ -71,10 +71,14 @@
     
     if (self.yapBuilder.contacts.count > 0) {
         PhoneContact *contact = self.yapBuilder.contacts.firstObject;
-        if (IS_IPHONE_4_SIZE) {
-            self.contactLabel.text = [NSString stringWithFormat:@"To: %@", contact.name];
+        if (self.yapBuilder.contacts.count > 1) {
+            self.contactLabel.text = [NSString stringWithFormat:@"%lu Recipients", (unsigned long)self.yapBuilder.contacts.count];
         } else {
-            self.contactLabel.text = [NSString stringWithFormat:@"Send to\n%@", contact.name];
+            if (IS_IPHONE_4_SIZE) {
+                self.contactLabel.text = [NSString stringWithFormat:@"To: %@", contact.name];
+            } else {
+                self.contactLabel.text = [NSString stringWithFormat:@"Send to\n%@", contact.name];
+            }
         }
         self.contactLabel.numberOfLines = 2;
     } else {
@@ -183,7 +187,10 @@
     if ([@"Contacts Segue" isEqualToString:segue.identifier]) {
         ContactsViewController *vc = segue.destinationViewController;
         vc.builder = self.yapBuilder;
-    } else if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
+    }   else if ([@"Contacts Segue No Animation" isEqualToString:segue.identifier]) {
+        ContactsViewController *vc = segue.destinationViewController;
+        vc.builder = self.yapBuilder;
+    }   else if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
         YapsViewController *vc = segue.destinationViewController;
         vc.pendingYaps = sender;
         vc.comingFromContactsOrCustomizeYapPage = YES;
@@ -244,7 +251,9 @@
 - (IBAction)didTapAddRecipientsInDoubleTapToReplyFlow {
     self.yapBuilder.text = self.textView.text;
     self.yapBuilder.color = self.view.backgroundColor;
-    [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
+//    [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
+
+    [self performSegueWithIdentifier:@"Contacts Segue No Animation" sender:nil];
 }
 
 - (IBAction)didTapCameraButton {
