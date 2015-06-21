@@ -47,7 +47,7 @@
             NSString *firstNameOne = [[uninvitedNames.firstObject componentsSeparatedByString:@" "] objectAtIndex:0];
             
             if (uninvitedNames.count == 1) {
-                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have the app yet, but he/she will get your yap as soon as they download it!", firstNameOne];
+                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have the app yet, but he or she will get your yap as soon as they download it!", firstNameOne];
             } else if (uninvitedNames.count == 2) {
                 NSString *firstNameTwo = [[uninvitedNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
                 self.alertMessage = [NSString stringWithFormat:@"%@ and %@ don't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne, firstNameTwo];
@@ -64,7 +64,7 @@
                      cancelButtonTitle:@"Skip" otherButtonTitles:@[@"Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   if (index != view.cancelButtonIndex) {
-                                      [self showSMS:@"I sent you something on YapTap. Download the app to see it: https://itunes.apple.com/gb/app/YapTap/id972004073"
+                                      [self showSMS:@"I sent you something on YapTap. Download the app to check it out: https://itunes.apple.com/gb/app/YapTap/id972004073"
                                        toRecipients:uninvitedContacts];
                                   } else {
                                       self.smsAlertWasAlreadyPrompted = NO;
