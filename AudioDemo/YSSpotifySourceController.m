@@ -531,6 +531,11 @@
         
         // ALBUM IMAGE
         trackView.imageView = [[UIImageView alloc] initWithFrame:frame];
+        if (track.imageURL) {
+            [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.imageURL]];
+        } else {
+            trackView.imageView.image = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
+        }
         [trackView addSubview:trackView.imageView];
         
         // SONG NAME LABEL
@@ -554,8 +559,15 @@
         trackView.artistButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.artistButton.backgroundColor = THEME_DARK_BLUE_COLOR;
         [trackView.artistButton.titleLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:12]];
+        [trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
+        CGSize stringsize = [[NSString stringWithFormat:@"by %@", track.artistName] sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:12]}];
+        if ((stringsize.width + 20) > self.carouselHeightConstraint.constant) {
+            stringsize.width = self.carouselHeightConstraint.constant-24;
+        }
+        [trackView.artistButton setFrame:CGRectMake((self.carouselHeightConstraint.constant-stringsize.width-20)/2, self.carouselHeightConstraint.constant + 35, stringsize.width+20, stringsize.height + 8)];
+        //[trackView.artistButton addTarget:self action:@selector(tappedArtistButton:) forControlEvents:UIControlEventTouchUpInside];
         [trackView addSubview:trackView.artistButton];
-        
+
         // SONG VERSION ONE BUTTON
         trackView.songVersionOneButton = [UIButton buttonWithType:UIButtonTypeCustom];
         trackView.songVersionOneButton.frame = CGRectMake(/*0*/5, carouselHeight /*- 32*/-55, carouselHeight/2 - 6/*-1*/, 50);
@@ -594,6 +606,30 @@
         trackView.bannerLabel.textColor = [UIColor whiteColor];
         trackView.bannerLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
         [trackView addSubview:trackView.bannerLabel];
+        
+        trackView.bannerLabel.alpha = 0;
+        
+        // Set seconds to fast forward to 0
+        track.secondsToFastForward = [NSNumber numberWithInt:0];
+        
+        trackView.imageView.layer.borderWidth = 2;
+        trackView.imageView.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
+        [trackView.imageView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.05]];
+        
+        // Needed so the Spotify button can work
+        trackView.spotifySongID = track.spotifyID;
+        trackView.spotifyURL = track.spotifyURL;
+        
+        // SONG NAME LABEL
+        trackView.songNameLabel.textColor = [UIColor whiteColor];
+        trackView.songNameLabel.backgroundColor = [UIColor clearColor];
+        trackView.songNameLabel.text = track.name;
+        
+        trackView.songNameLabel.textAlignment = NSTextAlignmentCenter;
+        CGFloat size = IS_IPHONE_4_SIZE ? 14 : 18;
+        trackView.songNameLabel.font = [UIFont fontWithName:@"Futura-Medium" size:size];
+        
+        [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     // Set song version button selections
@@ -608,48 +644,6 @@
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
     }
     
-    trackView.bannerLabel.alpha = 0;
-    
-    // Set seconds to fast forward to 0
-    track.secondsToFastForward = [NSNumber numberWithInt:0];
-
-    if (track.imageURL) {
-        [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.imageURL]];
-    } else {
-        trackView.imageView.image = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
-    }
-    
-    trackView.imageView.layer.borderWidth = 2;
-    trackView.imageView.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
-    [trackView.imageView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.05]];
-
-    // Needed so the Spotify button can work
-    trackView.spotifySongID = track.spotifyID;
-    trackView.spotifyURL = track.spotifyURL;
-    
-    // SONG NAME LABEL
-    trackView.songNameLabel.textColor = [UIColor whiteColor];
-    trackView.songNameLabel.backgroundColor = [UIColor clearColor];
-    trackView.songNameLabel.text = track.name;
-
-    trackView.songNameLabel.textAlignment = NSTextAlignmentCenter;
-    CGFloat size = IS_IPHONE_4_SIZE ? 14 : 18;
-    trackView.songNameLabel.font = [UIFont fontWithName:@"Futura-Medium" size:size];
-    
-    [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
-    
-    //[trackView.artistButton addTarget:self action:@selector(tappedArtistButton:) forControlEvents:UIControlEventTouchUpInside];
-    [trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
-    CGSize stringsize = [[NSString stringWithFormat:@"by %@", track.artistName] sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:12]}];
-    
-   
-    
-    if ((stringsize.width + 20) > self.carouselHeightConstraint.constant) {
-        stringsize.width = self.carouselHeightConstraint.constant-24;
-    }
-    [trackView.artistButton setFrame:CGRectMake((self.carouselHeightConstraint.constant-stringsize.width-20)/2, self.carouselHeightConstraint.constant + 35, stringsize.width+20, stringsize.height + 8)];
-    //Make sure the hack is the same size
-
     return trackView;
 }
 

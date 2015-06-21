@@ -19,7 +19,7 @@
 #import "YTUnregisteredUserSMSInviter.h"
 #import "NextButton.h"
 
-@interface ContactsViewController () <UIAlertViewDelegate>
+@interface ContactsViewController () <MFMessageComposeViewControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *contacts;
 @property (nonatomic, strong) NSArray *filteredContacts;
