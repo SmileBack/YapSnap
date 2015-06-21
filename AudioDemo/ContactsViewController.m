@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSArray *allLetters;
 @property (strong, nonatomic) IBOutlet UILabel *bottomViewLabel;
 @property (strong, nonatomic) ContactsPopupViewController *contactsPopupVC;
+@property (strong, nonatomic) UILabel *titleLabel;
 
 // Map of section letter to contacts:  A : [cont1, cont2]
 @property (nonatomic, strong) NSMutableDictionary *contactDict;
@@ -55,17 +56,17 @@ static NSString *CellIdentifier = @"Cell";
     self.bottomView.hidden = YES;
     
     CGRect frame = CGRectMake(0, 0, 160, 44);
-    UILabel *label = [[UILabel alloc] initWithFrame:frame];
-    label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel = [[UILabel alloc] initWithFrame:frame];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
     if (self.builder.builderType == BuilderTypeAddFriends) {
-        label.text = @"Add Friends";
+        self.titleLabel.text = @"Add Friends";
     } else {
-        label.text = @"Send To...";
+        self.titleLabel.text = @"Send To...";
     }
-    self.navigationItem.titleView = label;
+    self.navigationItem.titleView = self.titleLabel;
     
     [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
     self.selectedContacts = [NSMutableArray new];
@@ -112,6 +113,7 @@ static NSString *CellIdentifier = @"Cell";
         [self.selectedContacts addObject:self.builder.contacts.firstObject];
         [self showOrHideBottomView];
         [self updateBottomViewText];
+        [self updateTitleLabel];
     };
 }
 
@@ -429,8 +431,8 @@ static NSString *CellIdentifier = @"Cell";
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
         [self showOrHideBottomView];
-        
         [self updateBottomViewText];
+        [self updateTitleLabel];
         
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Selected Contact for Friend Request"];
@@ -459,16 +461,25 @@ static NSString *CellIdentifier = @"Cell";
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         
         [self showOrHideBottomView];
-        
         [self updateBottomViewText];
+        [self updateTitleLabel];
         
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Selected Contact for Yap"];
     }
 }
 
-- (void) showOrHideBottomView
-{
+-( void) updateTitleLabel {
+    if (self.selectedContacts.count > 0) {
+        self.titleLabel.text = @"Add Recipients";
+        self.navigationItem.titleView = self.titleLabel;
+    } else {
+        self.titleLabel.text = @"Send to...";
+        self.navigationItem.titleView = self.titleLabel;
+    }
+}
+
+- (void) showOrHideBottomView {
     if (self.selectedContacts.count > 0) {
         self.bottomView.hidden = NO;
         [self.view bringSubviewToFront:self.bottomView];
@@ -477,8 +488,7 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
-- (void) updateBottomViewText
-{
+- (void) updateBottomViewText {
     if (self.builder.builderType == BuilderTypeYap) {
         if (self.selectedContacts.count == 1) {
             self.bottomViewLabel.text = [NSString stringWithFormat:@"%lu Recipient", (unsigned long)self.selectedContacts.count];
