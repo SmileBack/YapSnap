@@ -19,6 +19,7 @@
 #define NOTIFICATION_YAP_OPENED @"com.yapsnap.YapOpened"
 #define NOTIFICATION_YAP_SENT @"com.yaptap.YapSent"
 #define NOTIFICATION_YAP_SENDING_FAILED @"com.yaptap.YapSendingFailed"
+#define NOTIFICATION_FRIEND_REQUEST_SENT @"com.yaptap.FriendRequestSent"
 
 typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 typedef void (^YapsCallback)(NSArray *yaps, NSError *error);
@@ -43,7 +44,7 @@ typedef void (^IsFriendCallback)(BOOL success, NSError *error, NSNumber *isFrien
 - (void) getMeWithCallback:(UserCallback)callback;
 - (void) blockUserId:(NSNumber *)userId withCallback:(SuccessOrErrorCallback)callback;
 - (void) clearYaps:(SuccessOrErrorCallback)callback;
-- (void) addFriends:(AddFriendsBuilder *)addFriendsBuilder withCallback:(SuccessOrErrorCallback)callback;
+- (void) sendFriendRequests:(AddFriendsBuilder *)addFriendsBuilder withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmFriendFromYap:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback;
 - (void) sendSearchTerm:(NSString*)searchTerm withCallback:(SuccessOrErrorCallback)callback;
 

@@ -142,8 +142,20 @@ static NSString *CellIdentifier = @"Cell";
                         NSLog(@"Display invite popup");
                         if ([note.userInfo[@"yaps"] isKindOfClass:[NSArray class]] && [MFMessageComposeViewController canSendText]) {
                                 NSArray* yaps = (NSArray*)note.userInfo[@"yaps"];
-                                [self.unregisteredUserSMSInviter promptSMSAlertIfRelevant:yaps
+                                [self.unregisteredUserSMSInviter promptSMSAlertForYapIfRelevant:yaps
                                                                                fromViewController:self];
+                        }
+                    }];
+    
+    [center addObserverForName:NOTIFICATION_FRIEND_REQUEST_SENT
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Display invite popup");
+                        if ([note.userInfo[@"yaps"] isKindOfClass:[NSArray class]] && [MFMessageComposeViewController canSendText]) {
+                            NSArray* yaps = (NSArray*)note.userInfo[@"yaps"];
+                            [self.unregisteredUserSMSInviter promptSMSAlertForFriendRequestIfRelevant:yaps
+                                                                   fromViewController:self];
                         }
                     }];
 }
@@ -560,7 +572,7 @@ static NSString *CellIdentifier = @"Cell";
 
     AddFriendsBuilder *addFriendsBuilder = (AddFriendsBuilder *) self.builder;
     
-    [[API sharedAPI] addFriends:addFriendsBuilder
+    [[API sharedAPI] sendFriendRequests:addFriendsBuilder
                        withCallback:^(BOOL success, NSError *error) {
                            if (success) {
                                Mixpanel *mixpanel = [Mixpanel sharedInstance];

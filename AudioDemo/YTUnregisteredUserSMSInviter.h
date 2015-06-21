@@ -10,7 +10,10 @@
 
 @interface YTUnregisteredUserSMSInviter : NSObject
 
-- (void)promptSMSAlertIfRelevant:(NSArray *)yaps
+- (void)promptSMSAlertForYapIfRelevant:(NSArray *)yaps
                              fromViewController:(UIViewController *)viewController;
+
+- (void)promptSMSAlertForFriendRequestIfRelevant:(NSArray *)yaps
+                    fromViewController:(UIViewController *)viewController;
 
 @end

@@ -205,7 +205,7 @@ static API *sharedAPI;
           }];
 }
 
-- (void) addFriends:(AddFriendsBuilder *)addFriendsBuilder withCallback:(SuccessOrErrorCallback)callback
+- (void) sendFriendRequests:(AddFriendsBuilder *)addFriendsBuilder withCallback:(SuccessOrErrorCallback)callback
 {
     NSDictionary *params = @{@"recipients": addFriendsBuilder.contactsList};
 
@@ -215,6 +215,13 @@ static API *sharedAPI;
            success:^(AFHTTPRequestOperation *operation, id responseObject) {
                callback(YES, nil);
                NSLog(@"Added friends successfully");
+               NSLog(@"responseObject: %@", responseObject);
+               
+               if ([responseObject isKindOfClass:[NSArray class]]) {
+                   NSArray *yapDicts = responseObject;
+                   NSArray *yaps = [YSYap yapsWithArray:yapDicts];
+                   [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FRIEND_REQUEST_SENT object:nil userInfo:@{@"yaps": yaps}];
+               }
            }
            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                callback(NO, error);
@@ -359,9 +366,12 @@ static API *sharedAPI;
         [mixpanel track:@"Sent Yap - Song"];
         [mixpanel.people increment:@"Sent Yap - Song #" by:[NSNumber numberWithInt:1]];
         
-        NSArray *yapDicts = responseObject;
-        NSArray *yaps = [YSYap yapsWithArray:yapDicts];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENT object:nil userInfo:@{@"yaps": yaps}];
+        if ([responseObject isKindOfClass:[NSArray class]]) {
+            NSArray *yapDicts = responseObject;
+            NSArray *yaps = [YSYap yapsWithArray:yapDicts];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENT object:nil userInfo:@{@"yaps": yaps}];
+        }
+        
         callback(YES, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
@@ -382,7 +392,7 @@ static API *sharedAPI;
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSArray *yapDicts = responseObject; //Assuming it is an array
               NSArray *yaps = [YSYap yapsWithArray:yapDicts];
-              NSLog(@"Yaps: %@", responseObject);
+              //NSLog(@"Yaps: %@", responseObject);
               
               NSMutableArray *imagesToPrefetch = [NSMutableArray new];
               for (YSYap *yap in yaps) {
