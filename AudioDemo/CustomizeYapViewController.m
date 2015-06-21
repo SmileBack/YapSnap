@@ -70,17 +70,7 @@
     self.textView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
     
     if (self.yapBuilder.contacts.count > 0) {
-        PhoneContact *contact = self.yapBuilder.contacts.firstObject;
-        if (self.yapBuilder.contacts.count > 1) {
-            self.contactLabel.text = [NSString stringWithFormat:@"%lu Recipients", (unsigned long)self.yapBuilder.contacts.count];
-        } else {
-            if (IS_IPHONE_4_SIZE) {
-                self.contactLabel.text = [NSString stringWithFormat:@"To: %@", contact.name];
-            } else {
-                self.contactLabel.text = [NSString stringWithFormat:@"Send to\n%@", contact.name];
-            }
-        }
-        self.contactLabel.numberOfLines = 2;
+        [self updateBannerLabel];
     } else {
         if (self.isForwardingYap) {
             self.contactLabel.text = @"Select Recipients";
@@ -183,6 +173,20 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)updateBannerLabel {
+    PhoneContact *contact = self.yapBuilder.contacts.firstObject;
+    if (self.yapBuilder.contacts.count > 1) {
+        self.contactLabel.text = [NSString stringWithFormat:@"%lu Recipients", (unsigned long)self.yapBuilder.contacts.count];
+    } else {
+        if (IS_IPHONE_4_SIZE) {
+            self.contactLabel.text = [NSString stringWithFormat:@"To: %@", contact.name];
+        } else {
+            self.contactLabel.text = [NSString stringWithFormat:@"Send to\n%@", contact.name];
+        }
+    }
+    self.contactLabel.numberOfLines = 2;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([@"Contacts Segue" isEqualToString:segue.identifier]) {
         ContactsViewController *vc = segue.destinationViewController;
@@ -190,6 +194,7 @@
     }   else if ([@"Contacts Segue No Animation" isEqualToString:segue.identifier]) {
         ContactsViewController *vc = segue.destinationViewController;
         vc.builder = self.yapBuilder;
+        vc.delegate = self;
     }   else if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
         YapsViewController *vc = segue.destinationViewController;
         vc.pendingYaps = sender;
@@ -251,7 +256,6 @@
 - (IBAction)didTapAddRecipientsInDoubleTapToReplyFlow {
     self.yapBuilder.text = self.textView.text;
     self.yapBuilder.color = self.view.backgroundColor;
-//    [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
 
     [self performSegueWithIdentifier:@"Contacts Segue No Animation" sender:nil];
 }
@@ -429,6 +433,16 @@
 - (IBAction)leftButtonPressed:(id)sender
 {
     [self.navigationController popViewControllerAnimated:NO];
+}
+
+#pragma mark - ContactsViewControllerDelegate
+
+- (void) updateYapBuilderContacts:(NSArray *)contacts {
+    if (contacts.count > 0) {
+        self.yapBuilder.contacts = contacts;
+        [self updateBannerLabel];
+    }
+    [self.view endEditing:YES];
 }
 
 

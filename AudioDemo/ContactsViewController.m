@@ -22,7 +22,6 @@
 
 @property (nonatomic, strong) NSArray *contacts;
 @property (nonatomic, strong) NSArray *filteredContacts;
-@property (nonatomic, strong) NSMutableArray *selectedContacts;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet NextButton *continueButton;
@@ -369,6 +368,7 @@ static NSString *CellIdentifier = @"Cell";
         cell.typeLabel.text = contact.label;
         
         cell.selectionView.layer.cornerRadius = 8.0f;
+        
         cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
         cell.selectionView.layer.borderWidth = 1.0f;
         cell.selectionView.backgroundColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR : [UIColor clearColor];
@@ -431,7 +431,7 @@ static NSString *CellIdentifier = @"Cell";
             [self.selectedContacts addObject:contact];
         }
         
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 
         [self showOrHideBottomView];
         [self updateBottomViewText];
@@ -461,7 +461,7 @@ static NSString *CellIdentifier = @"Cell";
             [self.selectedContacts addObject:contact];
         }
         
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         
         [self showOrHideBottomView];
         [self updateBottomViewText];
@@ -607,12 +607,8 @@ static NSString *CellIdentifier = @"Cell";
     
     
     /*
-     
      NSArray *pendingYaps = [[API sharedAPI] sendYapBuilder:self.yapBuilder
- 
      [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
-    
-     
      */
 
 }
@@ -675,6 +671,7 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 - (void) dismissViewControllerDuringDoubleTapToReplyFlow {
+    [self.delegate updateYapBuilderContacts:self.selectedContacts];
     [self.navigationController popViewControllerAnimated:NO];
 }
 

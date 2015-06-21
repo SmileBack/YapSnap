@@ -47,6 +47,7 @@
 @property (nonatomic, strong) NSString *titleString;
 @property (assign, nonatomic) BOOL replyWithVoice;
 @property (strong, nonatomic) YTUnregisteredUserSMSInviter *unregisteredUserSMSInviter;
+@property BOOL smsAlertWasAlreadyPrompted;
 
 - (IBAction)didTapSettingsButton;
 
@@ -233,11 +234,14 @@ static NSString *CellIdentifier = @"Cell";
                         weakSelf.pendingYaps = nil;
                         [weakSelf loadYaps];
                         
-                        NSLog(@"Display invite popup");
-                        if ([note.userInfo[@"yaps"] isKindOfClass:[NSArray class]] && [MFMessageComposeViewController canSendText]) {
-                            NSArray* yaps = (NSArray*)note.userInfo[@"yaps"];
-                            [self.unregisteredUserSMSInviter promptSMSAlertForYapIfRelevant:yaps
-                                                                         fromViewController:self];
+                        if (!self.smsAlertWasAlreadyPrompted) {
+                            NSLog(@"Display invite popup");
+                            if ([note.userInfo[@"yaps"] isKindOfClass:[NSArray class]] && [MFMessageComposeViewController canSendText]) {
+                                NSArray* yaps = (NSArray*)note.userInfo[@"yaps"];
+                                [self.unregisteredUserSMSInviter promptSMSAlertForYapIfRelevant:yaps
+                                                                             fromViewController:self];
+                                self.smsAlertWasAlreadyPrompted = YES;
+                            }
                         }
                     }];
     
