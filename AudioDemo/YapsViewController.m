@@ -870,8 +870,6 @@ static NSString *CellIdentifier = @"Cell";
         default:
             break;
     }
-    
-    //self.smsAlertWasAlreadyPrompted = NO;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

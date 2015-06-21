@@ -468,8 +468,6 @@
         default:
             break;
     }
-    
-    //self.smsAlertWasAlreadyPrompted = NO;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

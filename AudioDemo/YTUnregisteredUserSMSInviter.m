@@ -1,5 +1,5 @@
 //
-//  YSUninvitedContactInviter.m
+//  YTUnregisteredUserSMSInviter.m
 //  YapTap
 //
 //  Created by Dan B on 5/28/15.
@@ -32,28 +32,28 @@
                              fromViewController:(UIViewController *)viewController {
     if (self.viewController != viewController) {
         self.viewController = viewController;
-        NSMutableArray* uninvitedContacts = [NSMutableArray arrayWithCapacity:yaps.count];
-        NSMutableArray* uninvitedNames = [NSMutableArray arrayWithCapacity:yaps.count];
+        NSMutableArray* unregisteredContacts = [NSMutableArray arrayWithCapacity:yaps.count];
+        NSMutableArray* unregisteredNames = [NSMutableArray arrayWithCapacity:yaps.count];
         for (YSYap* yap in yaps) {
             if ([yap.status isEqualToString:@"pending"]) {
-                [uninvitedContacts addObject:yap.receiverPhone];
-                [uninvitedNames addObject:yap.displayReceiverName];
+                [unregisteredContacts addObject:yap.receiverPhone];
+                [unregisteredNames addObject:yap.displayReceiverName];
             }
         }
         
-        if (uninvitedNames.count > 0 && uninvitedContacts.count > 0 && !self.smsAlertWasAlreadyPrompted) {
+        if (unregisteredNames.count > 0 && unregisteredContacts.count > 0 && !self.smsAlertWasAlreadyPrompted) {
             self.smsAlertWasAlreadyPrompted = YES;
             
-            NSString *firstNameOne = [[uninvitedNames.firstObject componentsSeparatedByString:@" "] objectAtIndex:0];
+            NSString *firstNameOne = [[unregisteredNames.firstObject componentsSeparatedByString:@" "] objectAtIndex:0];
             
-            if (uninvitedNames.count == 1) {
+            if (unregisteredNames.count == 1) {
                 self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have the app yet, but he/she will get your yap as soon as he/she downloads it!", firstNameOne];
-            } else if (uninvitedNames.count == 2) {
-                NSString *firstNameTwo = [[uninvitedNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
+            } else if (unregisteredNames.count == 2) {
+                NSString *firstNameTwo = [[unregisteredNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
                 self.alertMessage = [NSString stringWithFormat:@"%@ and %@ don't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne, firstNameTwo];
-            } else if (uninvitedNames.count == 3){
-                NSString *firstNameTwo = [[uninvitedNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
-                NSString *firstNameThree = [[uninvitedNames[2] componentsSeparatedByString:@" "] objectAtIndex:0];
+            } else if (unregisteredNames.count == 3){
+                NSString *firstNameTwo = [[unregisteredNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
+                NSString *firstNameThree = [[unregisteredNames[2] componentsSeparatedByString:@" "] objectAtIndex:0];
                 self.alertMessage = [NSString stringWithFormat:@"%@, %@, and %@ don't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne, firstNameTwo, firstNameThree];
             } else {
                self.alertMessage = [NSString stringWithFormat:@"%@ and a few others don't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne];
@@ -63,12 +63,14 @@
                                message:self.alertMessage
                      cancelButtonTitle:@"Skip" otherButtonTitles:@[@"Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
+                                  self.smsAlertWasAlreadyPrompted = NO;
                                   if (index != view.cancelButtonIndex) {
+                                      NSLog(@"Tapped Continue on SMS Prompt");
                                       [self.delegate showSMS:@"I sent you something on YapTap. Download the app to check it out: https://itunes.apple.com/gb/app/YapTap/id972004073"
-                                                toRecipients:uninvitedContacts];
+                                                toRecipients:unregisteredContacts];
                                       
                                   } else {
-                                      self.smsAlertWasAlreadyPrompted = NO;
+                                      NSLog(@"Tapped Skip on SMS Prompt");
                                   }
                               }];
         }
@@ -110,10 +112,12 @@
                                message:self.alertMessage
                      cancelButtonTitle:@"Skip" otherButtonTitles:@[@"Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
+                                  self.smsAlertWasAlreadyPrompted = NO;
                                   if (index != view.cancelButtonIndex) {
+                                      NSLog(@"Tapped Continue on SMS Prompt");
                                       [self.delegate showSMS:@"I sent you a friend request on YapTap. Download the app to accept it: https://itunes.apple.com/gb/app/YapTap/id972004073" toRecipients:unregisteredContacts];
                                   } else {
-                                      self.smsAlertWasAlreadyPrompted = NO;
+                                      NSLog(@"Tapped Skip on SMS Prompt");
                                   }
                               }];
         }
