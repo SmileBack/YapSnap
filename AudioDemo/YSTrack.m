@@ -16,9 +16,16 @@
 
     for (NSDictionary *trackDictionary in itemDictionaries) {
         if (inCategory) {
-            [tracks addObject:[YSTrack trackFromDictionary:trackDictionary[@"track"]]];
+            if (![trackDictionary[@"track"][@"preview_url"] isEqual: [NSNull null]]
+                && ![trackDictionary[@"track"][@"id"] isEqual: [NSNull null]]
+                && ![trackDictionary[@"track"][@"id"] isEqual: @"1DXNI5YQ9zCDLuBNi0sfJW"]
+                ) {
+                [tracks addObject:[YSTrack trackFromDictionary:trackDictionary[@"track"]]];
+            }
         } else {
-            [tracks addObject:[YSTrack trackFromDictionary:trackDictionary]];
+            if (![trackDictionary[@"preview_url"] isEqual: [NSNull null]]) {
+                [tracks addObject:[YSTrack trackFromDictionary:trackDictionary]];
+            }
         }
     }
     
@@ -30,12 +37,10 @@
     YSTrack *track = [YSTrack new];
     
     track.name = trackDictionary[@"name"];
-    //NSLog(@"Song: %@", track.name);
     track.spotifyID = trackDictionary[@"id"];
     track.previewURL = trackDictionary[@"preview_url"];
 
     NSArray *artists = trackDictionary[@"artists"];
-    //NSLog(@"artists: %@", artists);
     NSDictionary *artist = artists[0];
     track.artistName = artist[@"name"];
 
@@ -52,7 +57,7 @@
     }
     
     track.secondsToFastForward = trackDictionary[@"seconds_to_fast_forward"];
-
+    
     return track;
 }
 

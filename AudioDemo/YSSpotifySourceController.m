@@ -224,26 +224,21 @@
         self.lastShownPlaylist = self.playlistSix;
         self.searchBox.text = self.playlistSix;
     } else if ([self.lastShownPlaylist isEqualToString:self.playlistSix]) {
-      
-      
         YSTrack *track = [YSTrack new];
-        
         track.name = @"Home";
         track.spotifyID = @"Home";
         track.previewURL = @"Home";
         track.artistName = @"Home";
-        track.artistName = @"Home";
+        track.albumName = @"Home";
         track.spotifyURL = @"Home";
         track.albumName = @"Home";
         track.imageURL = @"Home";
-        track.secondsToFastForward = [NSNumber numberWithInt:10];
-
         
         self.songs = @[track];//[YSTrack tracksFromDictionaryArray:track inCategory:YES];
         self.carousel.currentItemIndex = 0;
         [self.carousel reloadData];
         
-
+        self.lastShownPlaylist = self.playlistSeven;
     } else {
         [self retrieveTracksForPlaylist:self.playlistOne];
         self.lastShownPlaylist = self.playlistOne;
@@ -636,6 +631,7 @@
     trackView.songNameLabel.textColor = [UIColor whiteColor];
     trackView.songNameLabel.backgroundColor = [UIColor clearColor];
     trackView.songNameLabel.text = track.name;
+
     trackView.songNameLabel.textAlignment = NSTextAlignmentCenter;
     CGFloat size = IS_IPHONE_4_SIZE ? 14 : 18;
     trackView.songNameLabel.font = [UIFont fontWithName:@"Futura-Medium" size:size];
