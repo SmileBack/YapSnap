@@ -82,18 +82,6 @@ static const float TIMER_INTERVAL = .02;
     }
     
     [self setupNotifications];
-    /*
-    if (self.replyWithVoice) {
-        NSLog(@"Reply With Voice");
-    }
-     */
-    
-    /*
-    if (self.contactReplyingTo) {
-        self.receiverLabel.hidden = NO;
-        self.receiverLabel.text = self.contactReplyingTo.name;
-    }
-     */
 }
 
 - (void) viewWillAppear:(BOOL)animated {

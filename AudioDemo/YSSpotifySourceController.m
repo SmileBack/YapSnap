@@ -16,7 +16,7 @@
 #import "AppDelegate.h"
 #import "FBShimmering.h"
 #import "FBShimmeringView.h"
-#import "SpotifyArtistFactory.h"
+#import "SpotifyTrackFactory.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "SearchArtistAlertView.h"
 #import "TopChartsPopupViewController.h"
@@ -30,7 +30,6 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 @property (strong, nonatomic) IBOutlet UIButton *resetButton;
-@property (nonatomic, strong) NSArray *artists;
 @property (nonatomic, strong) NSDictionary *typeToGenreMap;
 @property (strong, nonatomic) UIButton *spotifyButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carouselHeightConstraint;
@@ -42,6 +41,8 @@
 @property (strong, nonatomic) UIButton *artistButtonHack;
 @property (nonatomic, strong) NSString *lastShownPlaylist;
 @property (strong, nonatomic) TopChartsPopupViewController *topChartsPopupVC;
+@property (nonatomic, strong) NSArray *tracks;
+
 @property (nonatomic, strong) NSString *playlistOne;
 @property (nonatomic, strong) NSString *playlistTwo;
 @property (nonatomic, strong) NSString *playlistThree;
@@ -118,6 +119,8 @@
     }
     
     [self createArtistButtonHack];
+    
+    [self displaySuggestedSongs];
 }
 
 - (void) createArtistButtonHack {
@@ -360,6 +363,18 @@
      self.carousel.currentItemIndex = 0;
      [self.carousel reloadData];
      */
+}
+
+-(void) displaySuggestedSongs {
+    if (!self.tracks || self.tracks.count < 5) {
+        self.tracks = [SpotifyTrackFactory tracks];
+    }
+    
+    NSArray *randomlySelectedTrack = [self.tracks objectAtIndex: arc4random() % [self.tracks count]];
+    
+    self.songs = @[randomlySelectedTrack];
+    self.carousel.currentItemIndex = 0;
+    [self.carousel reloadData];
 }
 
 -(BOOL) internetIsNotReachable

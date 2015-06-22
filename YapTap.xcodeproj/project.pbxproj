@@ -72,6 +72,7 @@
 		783CCF751B3461D800E3B5BF /* YTSearchSuggestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF741B3461D800E3B5BF /* YTSearchSuggestionsViewController.m */; };
 		783CCF781B3466A800E3B5BF /* YTRoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF771B3466A800E3B5BF /* YTRoundButton.m */; };
 		783CCF7B1B34741300E3B5BF /* YTSpotifyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF7A1B34741300E3B5BF /* YTSpotifyCategory.m */; };
+		783CCF7E1B38CB9000E3B5BF /* SpotifyTrackFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF7D1B38CB9000E3B5BF /* SpotifyTrackFactory.m */; };
 		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */; };
 		784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
@@ -402,6 +403,8 @@
 		783CCF771B3466A800E3B5BF /* YTRoundButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTRoundButton.m; sourceTree = "<group>"; };
 		783CCF791B34741300E3B5BF /* YTSpotifyCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTSpotifyCategory.h; sourceTree = "<group>"; };
 		783CCF7A1B34741300E3B5BF /* YTSpotifyCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTSpotifyCategory.m; sourceTree = "<group>"; };
+		783CCF7C1B38CB9000E3B5BF /* SpotifyTrackFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrackFactory.h; sourceTree = "<group>"; };
+		783CCF7D1B38CB9000E3B5BF /* SpotifyTrackFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrackFactory.m; sourceTree = "<group>"; };
 		784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSRecordProgressView.h; sourceTree = "<group>"; };
 		784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecordProgressView.m; sourceTree = "<group>"; };
 		784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetImageButton.h; sourceTree = "<group>"; };
@@ -1633,6 +1636,8 @@
 			children = (
 				FCFCE4641AF568000094926E /* SpotifyArtistFactory.h */,
 				FCFCE4651AF568000094926E /* SpotifyArtistFactory.m */,
+				783CCF7C1B38CB9000E3B5BF /* SpotifyTrackFactory.h */,
+				783CCF7D1B38CB9000E3B5BF /* SpotifyTrackFactory.m */,
 				783CCF791B34741300E3B5BF /* YTSpotifyCategory.h */,
 				783CCF7A1B34741300E3B5BF /* YTSpotifyCategory.m */,
 			);
@@ -2004,6 +2009,7 @@
 				784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */,
 				FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */,
 				786192871B0A783B007279E8 /* TopChartsPopupViewController.m in Sources */,
+				783CCF7E1B38CB9000E3B5BF /* SpotifyTrackFactory.m in Sources */,
 				378191D419E59B4A006EF98F /* API.m in Sources */,
 				78319A811ACD29A9000C3FD6 /* FeedbackMonitor.m in Sources */,
 				783CCF6D1B33431D00E3B5BF /* SearchArtistAlertView.m in Sources */,
