@@ -45,9 +45,11 @@
             case YTYapSendingActionReply:
             {
                 YSContact *contact = [YSContact contactWithName:yap.senderName andPhoneNumber:yap.senderPhone];
+                
                 //contact.name = @"Test"; //yap.senderName;
                 //contact.phoneNumber = @"Test last name"; //yap.senderPhone;
                 //PhoneContact* phoneContact = [[ContactManager sharedContactManager] contactForPhoneNumber:yap.senderPhone];
+                
                 self.contacts = @[contact];
             }
                 break;
