@@ -32,6 +32,8 @@
 @property (nonatomic, strong) NSString *friendOneLabelString;
 @property (strong, nonatomic) IBOutlet UIView *largeAddFriendsButton;
 @property (strong, nonatomic) YTUnregisteredUserSMSInviter *unregisteredUserSMSInviter;
+@property (nonatomic, strong) YSUser *selectedFriend;
+@property (assign, nonatomic) BOOL replyWithVoice;
 
 - (IBAction) didTapLargeAddFriendsButton;
 
@@ -200,7 +202,17 @@
     }
     
     YSUser *friend = self.friends[indexPath.row];
+    self.selectedFriend = friend;
+    
+    UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"How would you like to yap %@?", friend.firstName]
+                                                                    delegate:self
+                                                           cancelButtonTitle:@"Cancel"
+                                                      destructiveButtonTitle:nil
+                                                           otherButtonTitles:@"With a Song", @"With Voice", nil];
 
+    [actionSheetSpotify showInView:self.view];
+
+    /*
     YSContact *contact;
     PhoneContact *phoneContact = [[ContactManager sharedContactManager] contactForPhoneNumber:friend.phone];
     if (phoneContact) {
@@ -210,6 +222,7 @@
     }
 
     [self performSegueWithIdentifier:@"Send Yap Segue" sender:contact];
+     */
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Double Tapped Row"];
@@ -416,6 +429,8 @@
         AudioCaptureViewController *vc = segue.destinationViewController;
         YSContact *contact = sender;
         vc.contactReplyingTo = contact;
+        vc.replyWithVoice = self.replyWithVoice;
+        self.replyWithVoice = NO;
     }
 }
 
@@ -484,6 +499,33 @@
             break;
     }
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIActionSheet method implementation
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"Tapped Action Sheet; Button Index: %ld", (long)buttonIndex);
+    YSContact *contact;
+    PhoneContact *phoneContact = [[ContactManager sharedContactManager] contactForPhoneNumber:self.selectedFriend.phone];
+    if (phoneContact) {
+        contact = phoneContact;
+    } else {
+        contact = [YSContact contactWithName:self.selectedFriend.displayNameNotFromContacts andPhoneNumber:self.selectedFriend.phone];
+    }
+    
+    if (buttonIndex == 0) {
+        [self performSegueWithIdentifier:@"Send Yap Segue" sender:contact];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Yap from Friends (Song)"];
+    } else if (buttonIndex == 1) {
+        self.replyWithVoice = YES;
+        [self performSegueWithIdentifier:@"Send Yap Segue" sender:contact];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Yap from Friends (Voice)"];
+    } else {
+        NSLog(@"Did tap cancel");
+    }
+    self.selectedFriend = nil;
 }
 
 @end

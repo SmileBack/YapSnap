@@ -11,7 +11,7 @@
 
 typedef void (^YapsSentCallback)();
 
-@interface FriendsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, YTUnregisteredUserSMSInviterDelegate>
+@interface FriendsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, YTUnregisteredUserSMSInviterDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) YapsSentCallback yapsSentCallback;
 

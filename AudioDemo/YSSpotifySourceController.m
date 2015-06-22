@@ -668,6 +668,7 @@
         trackView.bannerLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
         [trackView addSubview:trackView.bannerLabel];
         
+        // For Onboarding:
         if (!self.didPlaySongForFirstTime) {
             trackView.bannerLabel.alpha = 1;
             trackView.bannerLabel.text = @"Hold To Play";

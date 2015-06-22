@@ -826,12 +826,10 @@ static NSString *CellIdentifier = @"Cell";
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSLog(@"Tapped Action Sheet; Button Index: %ld", (long)buttonIndex);
-    // Take a photo
     if (buttonIndex == 0) {
         [self didOriginateReplyFromYapSameClip:self.selectedYap];
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Tapped Reply (Same Clip)"];
-        // Upload a photo
     } else if (buttonIndex == 1) {
         [self didOriginateReplyFromYapNewClip:self.selectedYap];
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
