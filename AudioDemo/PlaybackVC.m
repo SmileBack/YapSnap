@@ -57,12 +57,13 @@
     if (self.yap.sentByCurrentUser) {
         //self.replyButton.hidden = YES;
         NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
-        [self.replyButton setTitle:[NSString stringWithFormat:@"Send %@ Another Yap", receiverFirstName] forState:UIControlStateNormal];
         
         if ([self.yap.receiverPhone isEqualToString:@"+13245678910"] || [self.yap.receiverPhone isEqualToString:@"+13027865701"]) {
             self.titleLabel.text = @"Sent to YapTap Team";
+            [self.replyButton setTitle:@"Send Another Yap" forState:UIControlStateNormal];
         } else {
             self.titleLabel.text = [NSString stringWithFormat:@"Sent to %@", receiverFirstName];
+            [self.replyButton setTitle:[NSString stringWithFormat:@"Send %@ Another Yap", receiverFirstName] forState:UIControlStateNormal];
         }
         
         if (self.yap.isFriendRequest) {
