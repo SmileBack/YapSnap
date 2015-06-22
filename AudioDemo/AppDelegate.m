@@ -141,7 +141,7 @@
     [self increaseAppOpenedCount];
     [self.feedbackMonitor appOpened];
     
-    [SpotifyAPI sharedApi]; //Activate to get access token
+    [[SpotifyAPI sharedApi] getAccessToken]; //Activate to get access token
     
     NSLog(@"App Opened Count: %ld", (long)self.appOpenedCount);
 }

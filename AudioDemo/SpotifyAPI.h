@@ -26,4 +26,6 @@ typedef void (^SpotifySongCallback)(NSArray* songs, NSError *error);
 
 - (NSDictionary *) getAuthorizationHeaders;
 
+- (void) getAccessToken;
+
 @end
