@@ -30,7 +30,7 @@
 }
 
 - (IBAction) didTapCancelButton {
-    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_TOP_CHARTS_POPUP object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_TOP_CHARTS_POPUP_NOTIFICATION object:nil];
 }
 
 @end

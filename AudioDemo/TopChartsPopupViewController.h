@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define DISMISS_TOP_CHARTS_POPUP @"DismissTopChartsPopup"
+#define DISMISS_TOP_CHARTS_POPUP_NOTIFICATION @"DismissTopChartsPopup"
 
 @interface TopChartsPopupViewController : UIViewController
 

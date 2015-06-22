@@ -177,7 +177,7 @@
                         self.bottomButton.hidden = NO;
                     }];
     
-    [center addObserverForName:DISMISS_TOP_CHARTS_POPUP
+    [center addObserverForName:DISMISS_TOP_CHARTS_POPUP_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
@@ -456,12 +456,6 @@
             } else {
                 NSLog(@"Returned Songs Successfully");
                 [self.loadingIndicator stopAnimating];
-                if (!self.didViewSpotifySongs) {
-                    double delay = .7;
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_VIEW_SPOTIFY_SONGS];
-                    });
-                }
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];
@@ -520,12 +514,6 @@
             } else {
                 NSLog(@"Returned Songs Successfully");
                 [self.loadingIndicator stopAnimating];
-                if (!self.didViewSpotifySongs) {
-                    double delay = .7;
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_VIEW_SPOTIFY_SONGS];
-                    });
-                }
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];
@@ -680,7 +668,12 @@
         trackView.bannerLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
         [trackView addSubview:trackView.bannerLabel];
         
-        trackView.bannerLabel.alpha = 0;
+        if (!self.didPlaySongForFirstTime) {
+            trackView.bannerLabel.alpha = 1;
+            trackView.bannerLabel.text = @"Hold To Play";
+        } else {
+            trackView.bannerLabel.alpha = 0;
+        }
         
         trackView.imageView.layer.borderWidth = 2;
         trackView.imageView.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
@@ -802,8 +795,6 @@
         selectedTrack.secondsToFastForward = [NSNumber numberWithInt:0];
     }
     
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_ONE];
-    
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Song Version One"];
 }
@@ -834,9 +825,7 @@
         }
         selectedTrack.secondsToFastForward = [NSNumber numberWithInt:17];
     }
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TAPPED_SONG_VERSION_TWO];
-    
+        
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Song Version Two"];
 }
@@ -1035,6 +1024,8 @@
         [self showBannerWithText:@"Playing..." temporary:NO];
         
         self.bottomButton.hidden = NO;
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_PLAY_SONG_FOR_FIRST_TIME_KEY];
     }
     
     if (state == STKAudioPlayerStateBuffering) {
@@ -1146,39 +1137,14 @@
 
 #pragma mark - Setting NSDefaults
 
-- (BOOL) didTapSongVersionOneForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SONG_VERSION_ONE];
-}
-
-- (BOOL) didTapSongVersionTwoForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:TAPPED_SONG_VERSION_TWO];
-}
-
-- (BOOL) didOpenYapForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
-}
-
-- (BOOL) didScrollCarousel
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:SCROLLED_CAROUSEL];
-}
-
-- (BOOL) didViewSpotifySongs
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_VIEW_SPOTIFY_SONGS];
-}
-
-- (BOOL) didViewSearchArtistPopup
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_VIEW_SEARCH_ARTIST_POPUP];
-}
-
 - (BOOL) didSeeTopChartsPopup
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_TOP_CHARTS_POPUP_KEY];
+}
+
+- (BOOL) didPlaySongForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_PLAY_SONG_FOR_FIRST_TIME_KEY];
 }
 
 - (void) hideResetButton {
@@ -1257,7 +1223,6 @@
             [self searchForTracksWithString:self.artistNameString];
             self.searchBox.text = self.artistNameString;
             [self updateVisibilityOfMagnifyingGlassAndResetButtons];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_VIEW_SEARCH_ARTIST_POPUP];
         }
     }
 }
