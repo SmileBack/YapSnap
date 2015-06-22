@@ -225,6 +225,7 @@
         self.searchBox.text = self.playlistSix;
     } else if ([self.lastShownPlaylist isEqualToString:self.playlistSix]) {
         YSTrack *track = [YSTrack new];
+        
         track.name = @"Home";
         track.spotifyID = @"Home";
         track.previewURL = @"Home";

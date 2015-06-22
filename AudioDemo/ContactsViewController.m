@@ -108,8 +108,29 @@ static NSString *CellIdentifier = @"Cell";
     
     [self.continueButton startToPulsate];
     
+    // Convert YapBuilder contacts to phone contacts
     if (self.builder.contacts.count > 0) {
-        [self.selectedContacts addObject:self.builder.contacts.firstObject];
+        if (self.builder.contacts.count == 1) {
+            if (![self.builder.contacts[0] isKindOfClass:[PhoneContact class]]) {
+                YSContact *ysContact = self.builder.contacts[0];
+                NSString *ysContactPhone = ysContact.phoneNumber;
+                NSLog(@"ysContactPhone: %@", ysContactPhone);
+                
+                PhoneContact *phoneContact = [[ContactManager sharedContactManager] contactForPhoneNumber:ysContactPhone];
+                NSLog(@"phoneContactPhone: %@", phoneContact.phoneNumber);
+                
+                [self.selectedContacts addObject: phoneContact];
+            } else {
+                [self.selectedContacts addObject: self.builder.contacts[0]];
+            }
+        } else {
+            if (!self.builder.contacts) {
+                self.builder.contacts = @[ ];
+            }
+            NSArray *contactsArray = [self.selectedContacts arrayByAddingObjectsFromArray:self.builder.contacts];
+            self.selectedContacts = [NSMutableArray arrayWithArray:contactsArray];
+        }
+
         [self showOrHideBottomView];
         [self updateBottomViewText];
         [self updateTitleLabel];
@@ -129,6 +150,10 @@ static NSString *CellIdentifier = @"Cell";
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 }
 
 - (void) setupNotifications {
@@ -351,6 +376,11 @@ static NSString *CellIdentifier = @"Cell";
         
     } else {
         PhoneContact *contact;
+        
+        //NSLog(@"contact: %@", contact);
+        //NSLog(@"contact name: %@", contact.name);
+        //NSLog(@"contact phone: %@", contact.phoneNumber);
+        
         if (tableView == self.searchDisplayController.searchResultsTableView) {
             contact = self.filteredContacts[indexPath.row];
         } else if (indexPath.section == 0) {
@@ -369,13 +399,20 @@ static NSString *CellIdentifier = @"Cell";
         
         cell.selectionView.layer.cornerRadius = 8.0f;
         
+        NSArray *selectedContactsPhoneNumbers = [self.selectedContacts valueForKeyPath:@"phoneNumber"];
+        cell.selectionView.layer.borderColor = [selectedContactsPhoneNumbers containsObject:contact.phoneNumber] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
+        cell.selectionView.backgroundColor = [selectedContactsPhoneNumbers containsObject:contact.phoneNumber] ? THEME_RED_COLOR : [UIColor clearColor];
+        cell.nameLabel.font = [selectedContactsPhoneNumbers containsObject:contact.phoneNumber] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
+        
+        /*
         cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
-        cell.selectionView.layer.borderWidth = 1.0f;
         cell.selectionView.backgroundColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR : [UIColor clearColor];
+        cell.nameLabel.font = [self.selectedContacts containsObject:contact] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
+         */
+
+        cell.selectionView.layer.borderWidth = 1.0f;
         
         cell.backgroundColor = [UIColor whiteColor];
-        
-        cell.nameLabel.font = [self.selectedContacts containsObject:contact] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
         
         return cell;
     }
@@ -431,7 +468,7 @@ static NSString *CellIdentifier = @"Cell";
             [self.selectedContacts addObject:contact];
         }
         
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
         [self showOrHideBottomView];
         [self updateBottomViewText];
@@ -455,13 +492,29 @@ static NSString *CellIdentifier = @"Cell";
             }
         }
         
+        NSArray *selectedContactsPhoneNumbers = [self.selectedContacts valueForKeyPath:@"phoneNumber"];
+        if ([selectedContactsPhoneNumbers containsObject:contact.phoneNumber]) {
+            // locate object
+            NSInteger count = [self.selectedContacts count];
+            for (NSInteger index = (count - 1); index >= 0; index--) {
+                PhoneContact *phoneContact = self.selectedContacts[index];
+                if ([phoneContact.phoneNumber isEqualToString:contact.phoneNumber]) {
+                    [self.selectedContacts removeObject:phoneContact];
+                }
+            }
+        } else {
+            [self.selectedContacts addObject:contact];
+        }
+        
+        /*
         if ([self.selectedContacts containsObject:contact]) {
             [self.selectedContacts removeObject:contact];
         } else {
             [self.selectedContacts addObject:contact];
         }
+         */
         
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         [self showOrHideBottomView];
         [self updateBottomViewText];
