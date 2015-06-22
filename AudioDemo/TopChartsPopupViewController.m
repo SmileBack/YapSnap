@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 martinjuhasz.de. All rights reserved.
 //
 
-#import "SpotifyPopupViewController.h"
+#import "TopChartsPopupViewController.h"
 
-@implementation SpotifyPopupViewController
+@implementation TopChartsPopupViewController
 
 
 - (void)viewDidLoad
@@ -30,7 +30,7 @@
 }
 
 - (IBAction) didTapCancelButton {
-    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_SPOTIFY_POPUP object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_TOP_CHARTS_POPUP object:nil];
 }
 
 @end

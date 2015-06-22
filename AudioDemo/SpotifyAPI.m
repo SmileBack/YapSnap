@@ -157,7 +157,7 @@ static SpotifyAPI *sharedInstance;
     }
 */
     
-    
+
     if ([playlistName isEqualToString:@"Top 100 Tracks"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4hOKQuZbraPDIfaGbM3lKI/tracks";
         
@@ -182,6 +182,7 @@ static SpotifyAPI *sharedInstance;
     } else if ([playlistName isEqualToString:@"Seven"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
     }
+    
     
     __weak SpotifyAPI *weakSelf = self;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#define DISMISS_SPOTIFY_POPUP @"DismissSpotifyPopup"
+#define DISMISS_TOP_CHARTS_POPUP @"DismissTopChartsPopup"
 
-@interface SpotifyPopupViewController : UIViewController
+@interface TopChartsPopupViewController : UIViewController
 
 - (IBAction)didTapCancelButton;
 

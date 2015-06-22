@@ -19,9 +19,9 @@
 #import "SpotifyArtistFactory.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "SearchArtistAlertView.h"
-//#import "YTSearchSuggestionsViewController.h"
+#import "TopChartsPopupViewController.h"
 
-@interface YSSpotifySourceController () /*<YTSearchSuggestionsViewControllerDelegate>*/
+@interface YSSpotifySourceController ()
 @property (nonatomic, strong) NSArray *songs;
 @property (strong, nonatomic) IBOutlet UITextField *searchBox;
 @property (strong, nonatomic) IBOutlet iCarousel *carousel;
@@ -39,9 +39,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
 @property (nonatomic, strong) NSString *artistNameString;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carouselYConstraint;
-//@property (strong, nonatomic) YTSearchSuggestionsViewController* searchSuggestionViewController;
 @property (strong, nonatomic) UIButton *artistButtonHack;
 @property (nonatomic, strong) NSString *lastShownPlaylist;
+@property (strong, nonatomic) TopChartsPopupViewController *topChartsPopupVC;
 @property (nonatomic, strong) NSString *playlistOne;
 @property (nonatomic, strong) NSString *playlistTwo;
 @property (nonatomic, strong) NSString *playlistThree;
@@ -118,9 +118,6 @@
     }
     
     [self createArtistButtonHack];
-    
-    NSLog(@"Populate carousel");
-    [self didTapTopChartsButton];
 }
 
 - (void) createArtistButtonHack {
@@ -179,6 +176,14 @@
                         [self hideAlbumBannerWithFadeAnimation:YES];
                         self.bottomButton.hidden = NO;
                     }];
+    
+    [center addObserverForName:DISMISS_TOP_CHARTS_POPUP
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Dismiss Welcome Popup");
+                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                    }];
 }
 
 - (void)tappedSpotifyView {
@@ -202,6 +207,10 @@
 }
 
 - (IBAction)didTapTopChartsButton {
+    if (!self.didSeeTopChartsPopup) {
+        [self showTopChartsPopup];
+    }
+    
     [self resetBottomBannerUI];
     [self.view endEditing:YES];
     
@@ -222,7 +231,7 @@
     self.playlistSix = @"Six";
     self.playlistSeven = @"Seven";
     
-    /*
+/*
     self.playlistOne = @"Comedy New Releases";
     self.playlistTwo = @"Comedy Top Tracks";
     self.playlistThree = @"The Laugh List";
@@ -244,7 +253,7 @@
     self.playlistNineteen = @"Louis CK | Collected";
     self.playlistTwenty = @"[Family]";
     self.playlistTwentyOne = @"Comedy Top Trackss";
-     */
+*/
 }
 
 - (void) loadAppropriatePlaylist {
@@ -552,34 +561,11 @@
     self.carousel.alpha = 0;
     
     [self resetBottomBannerUI];
-    
-    /*
-    self.searchSuggestionViewController = [[YTSearchSuggestionsViewController alloc] init];
-    self.searchSuggestionViewController.searchSuggestionsDelegate = self;
-    [self addChildViewController:self.searchSuggestionViewController];
-    [self.view addSubview:self.searchSuggestionViewController.view];
-    [self.searchSuggestionViewController didMoveToParentViewController:self];
-    [self.searchSuggestionViewController.view setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[view]|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:@{@"view": self.searchSuggestionViewController.view}]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[search][view]|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:@{@"search": self.searchBox,
-                                                                                @"view": self.searchSuggestionViewController.view}]];
-     */
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSLog(@"Textfield did end editing");
     [self setUserInteractionEnabled:YES];
-    /*
-    [self.searchSuggestionViewController.view removeFromSuperview];
-    [self.searchSuggestionViewController removeFromParentViewController];
-    self.searchSuggestionViewController = nil;
-     */
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -603,16 +589,6 @@
         }];
     }
 }
-
-/*
-#pragma mark - YTSearchSuggestionsViewControllerDelegate
-
-- (void)didSelectSearchSuggestion:(YTSpotifyCategory *)suggestion {
-    self.searchBox.text = suggestion.displayName;
-    [self.searchBox resignFirstResponder];
-    [self search:suggestion.displayName inCategory:suggestion];
-}
-*/
 
 #pragma mark - iCarousel Stuff
 - (NSInteger) numberOfItemsInCarousel:(iCarousel *)carousel
@@ -900,45 +876,7 @@
         }
     }
 }
-/*
-- (void) tappedArtistButton:(UIButton *)button
-{
-    NSLog(@"Tapped Artist Button");
-    if (!self.didViewSearchArtistPopup) {
-        UIView *parent = button.superview;
-        if ([parent isKindOfClass:[SpotifyTrackView class]]) {
-            SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-            YSTrack *selectedTrack = nil;
-            for (YSTrack *track in self.songs) {
-                if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
-                    selectedTrack = track;
-                    break;
-                }
-            }
-            SearchArtistAlertView *alertView = [[SearchArtistAlertView alloc] initWithArtistName:selectedTrack.artistName andDelegate:self];
-            self.artistNameString = selectedTrack.artistName;
-            [alertView show];
-        }
-    } else {
-        UIView *parent = button.superview;
-        if ([parent isKindOfClass:[SpotifyTrackView class]]) {
-            SpotifyTrackView *trackView = (SpotifyTrackView *)parent;
-            YSTrack *selectedTrack = nil;
-            for (YSTrack *track in self.songs) {
-                if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
-                    selectedTrack = track;
-                    break;
-                }
-            }
-            NSLog(@"Artist: %@", selectedTrack.artistName);
-            NSLog(@"Song: %@", selectedTrack.name);
-            [self search:selectedTrack.artistName inCategory:nil];
-            self.searchBox.text = selectedTrack.artistName;
-            [self updateVisibilityOfMagnifyingGlassAndResetButtons];
-        }
-    }
-}
-*/
+
 - (void)didTapArtistButtonHack {
     
     SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
@@ -1238,6 +1176,11 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_VIEW_SEARCH_ARTIST_POPUP];
 }
 
+- (BOOL) didSeeTopChartsPopup
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_TOP_CHARTS_POPUP_KEY];
+}
+
 - (void) hideResetButton {
     self.resetButton.alpha = 0;
 }
@@ -1259,6 +1202,16 @@
                      completion:^(BOOL finished) {
                          self.searchBox.text = @"";
                      }];
+}
+
+- (void) showTopChartsPopup {
+    double delay = .1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.topChartsPopupVC = [[TopChartsPopupViewController alloc] initWithNibName:@"TopChartsPopupViewController" bundle:nil];
+        [self presentPopupViewController:self.topChartsPopupVC animationType:MJPopupViewAnimationFade];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_TOP_CHARTS_POPUP_KEY];
+    });
 }
 
 - (void) resetBottomBannerUI {

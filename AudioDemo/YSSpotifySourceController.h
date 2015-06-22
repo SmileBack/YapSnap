@@ -25,6 +25,8 @@
 #define LISTENED_TO_CLIP_NOTIFICATION @"com.yapsnap.ListenedToClipNotification"
 #define DID_VIEW_SEARCH_ARTIST_POPUP @"com.yapsnap.DidViewSearchArtistPopup"
 #define RESET_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
+#define DID_SEE_TOP_CHARTS_POPUP_KEY @"yaptap.DidSeeTopChartsPopupKey601"
+#define DISMISS_TOP_CHARTS_POPUP @"DismissTopChartsPopup"
 
 @property (nonatomic, strong) NSString *selectedGenre;
 
