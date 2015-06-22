@@ -214,20 +214,17 @@
 
 - (IBAction)didTapReply:(id)sender {
     if ([self.yap.type isEqual:@"SpotifyMessage"]) {
-        if (self.yap.isFriendRequest && [self.yap.status isEqualToString:@"unopened"]) {
-            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Which song would you like for your yap?"
-                                                                     delegate:self
-                                                            cancelButtonTitle:@"Cancel"
-                                                       destructiveButtonTitle:nil
-                                                            otherButtonTitles:@"Use Same Song", @"Select New Song", @"No Song. Just Voice", nil];
-            actionSheetSpotify.tag = 100;
-            [actionSheetSpotify showInView:self.view];
+        if (self.yap.isFriendRequest) {
+            [self dismissThis];
+            [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Replied in Friend Request"];
         } else {
-            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Which song would you like to reply with?"
+            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song or a new one?"
                                                                             delegate:self
                                                                    cancelButtonTitle:@"Cancel"
                                                               destructiveButtonTitle:nil
-                                                                   otherButtonTitles:@"Use Same Song", @"Select New Song", @"No Song. Just Voice", nil];
+                                                                   otherButtonTitles:@"Use Same Song", @"Choose a New Song", @"No Song. Just Voice", nil];
             actionSheetSpotify.tag = 100;
             [actionSheetSpotify showInView:self.view];
         }
