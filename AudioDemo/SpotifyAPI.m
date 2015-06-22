@@ -88,35 +88,6 @@ static SpotifyAPI *sharedInstance;
         [mixpanel track:@"Spotify - token doesn't exist for user"];
     }
 }
-/*
-- (void) searchCategory:(YTSpotifyCategory *)category withCallback:(SpotifySongCallback)callback {
-    NSString *url = category.spotifyURL.absoluteString;
-    
-    __weak SpotifyAPI *weakSelf = self;
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [self setAuthorizationOnManager:manager];
-    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *response = responseObject;
-        NSArray *items = response[@"items"];
-        
-        NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:YES];
-        callback(songs, nil);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (operation.response.statusCode == 401) {
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Spotify Error - search (401)"];
-            
-            weakSelf.tokenType = nil;
-            weakSelf.token = nil;
-            [weakSelf searchCategory:category withCallback:callback];
-            [weakSelf getAccessToken];
-        } else {
-            callback(nil, error);
-        }
-    }];
-}
- */
 
 - (void) retrieveTracksFromSpotifyForPlaylist:(NSString *)playlistName withCallback:(SpotifySongCallback)callback {
     if ([playlistName isEqualToString:@"One"]) {
@@ -151,10 +122,10 @@ static SpotifyAPI *sharedInstance;
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Spotify Error - search (401)"];
             
-            weakSelf.tokenType = nil;
-            weakSelf.token = nil;
+            //weakSelf.tokenType = nil;
+            //weakSelf.token = nil;
             [weakSelf retrieveTracksFromSpotifyForPlaylist:playlistName withCallback:callback];
-            [weakSelf getAccessToken];
+            //[weakSelf getAccessToken];
         } else {
             callback(nil, error);
         }
@@ -184,10 +155,10 @@ static SpotifyAPI *sharedInstance;
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Spotify Error - search (401)"];
             
-            weakSelf.tokenType = nil;
-            weakSelf.token = nil;
+            //weakSelf.tokenType = nil;
+            //weakSelf.token = nil;
             [weakSelf retrieveTracksFromSpotifyForSearchString:searchString withCallback:callback];
-            [weakSelf getAccessToken];
+            //[weakSelf getAccessToken];
          } else {
              callback(nil, error);
          }

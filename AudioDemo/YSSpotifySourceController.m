@@ -52,7 +52,7 @@
 @property (nonatomic, strong) NSString *playlistEight;
 
 - (IBAction)didTapResetButton;
-- (IBAction)didTapTopChartsButton:(id)sender;
+- (IBAction)didTapTopChartsButton;
 
 @end
 
@@ -64,7 +64,7 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Spotify Page"];
 
-    [SpotifyAPI sharedApi]; //Activate to get access token
+    //[SpotifyAPI sharedApi]; //Activate to get access token
     
     [self setupSearchBox];
     
@@ -105,6 +105,9 @@
     }
     
     [self createArtistButtonHack];
+    
+    NSLog(@"Populate carousel");
+    [self didTapTopChartsButton];
 }
 
 - (void) createArtistButtonHack {
@@ -185,7 +188,7 @@
     });
 }
 
-- (IBAction)didTapTopChartsButton:(id)sender {
+- (IBAction)didTapTopChartsButton {
     [self resetBottomBannerUI];
     [self.view endEditing:YES];
     [self updateVisibilityOfMagnifyingGlassAndResetButtons];
@@ -427,11 +430,12 @@
                 });
             } else {
                 NSLog(@"Error Returning Songs %@", error);
+                /*
                 double delay = 0.1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong! Try Again."];
                 });
-                
+                */
                 [mixpanel track:@"Spotify Error - search (other)"];
             }
         }
