@@ -47,7 +47,7 @@
 @property (nonatomic, strong) NSString *titleString;
 @property (assign, nonatomic) BOOL replyWithVoice;
 @property (strong, nonatomic) YTUnregisteredUserSMSInviter *unregisteredUserSMSInviter;
-@property BOOL smsAlertWasAlreadyPrompted;
+@property (assign, nonatomic) BOOL smsAlertWasAlreadyPrompted;
 
 - (IBAction)didTapSettingsButton;
 
@@ -234,9 +234,10 @@ static NSString *CellIdentifier = @"Cell";
                         weakSelf.pendingYaps = nil;
                         [weakSelf loadYaps];
                         
+                        NSLog(@"smsAlertWasAlreadyPrompted: %hhd", self.smsAlertWasAlreadyPrompted);
                         if (!self.smsAlertWasAlreadyPrompted) {
-                            NSLog(@"Display invite popup");
                             if ([note.userInfo[@"yaps"] isKindOfClass:[NSArray class]] && [MFMessageComposeViewController canSendText]) {
+                                NSLog(@"Display Invite Popup");
                                 NSArray* yaps = (NSArray*)note.userInfo[@"yaps"];
                                 [self.unregisteredUserSMSInviter promptSMSAlertForYapIfRelevant:yaps
                                                                              fromViewController:self];
@@ -792,22 +793,30 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void)didOriginateForwardFromYap:(YSYap *)yap
 {
+    //This is a hack to prevent multiple popups from showing
+    self.smsAlertWasAlreadyPrompted = YES;
     [self performSegueWithIdentifier:@"Audio Capture With Yap" sender:@{@"yap": yap, @"action": @"forward"}];
 }
 
 - (void)didOriginateReplyFromYapSameClip:(YSYap *)yap
 {
+    //This is a hack to prevent multiple popups from showing
+    self.smsAlertWasAlreadyPrompted = YES;
     [self performSegueWithIdentifier:@"Audio Capture With Yap" sender:@{@"yap": yap, @"action": @"reply"}];
 }
 
 
 - (void)didOriginateReplyFromYapNewClip:(YSYap *)yap
 {
+    //This is a hack to prevent multiple popups from showing
+    self.smsAlertWasAlreadyPrompted = YES;
     [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
 }
 
 - (void)didOriginateReplyFromYapVoice:(YSYap *)yap
 {
+    //This is a hack to prevent multiple popups from showing
+    self.smsAlertWasAlreadyPrompted = YES;
     self.replyWithVoice = YES;
     [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
 }
