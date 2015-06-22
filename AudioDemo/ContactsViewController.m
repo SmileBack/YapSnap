@@ -119,7 +119,11 @@ static NSString *CellIdentifier = @"Cell";
                 PhoneContact *phoneContact = [[ContactManager sharedContactManager] contactForPhoneNumber:ysContactPhone];
                 NSLog(@"phoneContactPhone: %@", phoneContact.phoneNumber);
                 
-                [self.selectedContacts addObject: phoneContact];
+                if (phoneContact) {
+                    [self.selectedContacts addObject: phoneContact];
+                } else {
+                    [self.selectedContacts addObject: self.builder.contacts[0]];
+                }
             } else {
                 [self.selectedContacts addObject: self.builder.contacts[0]];
             }

@@ -27,7 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *albumImage;
 @property IBOutlet UIActivityIndicatorView* activityIndicator;
 @property IBOutlet UIActivityIndicatorView* friendRequestActivityIndicator;
-
+@property (nonatomic) BOOL audioHasBegun;
 
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
@@ -58,7 +58,13 @@
         //self.replyButton.hidden = YES;
         NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
         [self.replyButton setTitle:[NSString stringWithFormat:@"Send %@ Another Yap", receiverFirstName] forState:UIControlStateNormal];
-        self.titleLabel.text = [NSString stringWithFormat:@"Sent to %@", receiverFirstName];
+        
+        if ([self.yap.receiverPhone isEqualToString:@"+13245678910"] || [self.yap.receiverPhone isEqualToString:@"+13027865701"]) {
+            self.titleLabel.text = @"Sent to YapTap Team";
+        } else {
+            self.titleLabel.text = [NSString stringWithFormat:@"Sent to %@", receiverFirstName];
+        }
+        
         if (self.yap.isFriendRequest) {
             self.forwardButton.hidden = YES; // we should just not show these yaps
         }
@@ -206,7 +212,7 @@
     
     if (!self.didSeeDoubleTapBanner && self.yap.senderID.intValue != 1 && self.isFromFriend) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:@"Double Tap To Reply!"];
+            //[[YTNotifications sharedNotifications] showNotificationText:@"Double Tap To Reply!"];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_DOUBLE_TAP_BANNER];
         });
     }
@@ -220,7 +226,7 @@
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Replied in Friend Request"];
         } else {
-            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song or a new one?"
+            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song, or a new one?"
                                                                             delegate:self
                                                                    cancelButtonTitle:@"Cancel"
                                                               destructiveButtonTitle:nil
@@ -266,7 +272,7 @@
 {
     [self dismissViewControllerAnimated:NO completion:nil];
     
-    if (!self.isFromFriend.boolValue && self.playerAlreadyStartedPlayingForThisSong) {
+    if (!self.isFromFriend.boolValue && self.audioHasBegun) {
         __weak YSYap *weakYap = self.yap;
         if (self.strangerCallback) {
             self.strangerCallback(weakYap);
@@ -363,6 +369,9 @@
             // set self.playerAlreadyStartedPlayingForThisSong to True!
             self.playerAlreadyStartedPlayingForThisSong = YES;
             NSLog(@"Set playerAlreadyStartedPlayingForThisSong to TRUE");
+            
+            // This is a hack so that if user cancels page before audio begins, they will not see the friend request popup
+            self.audioHasBegun = YES;
         }
     }
     

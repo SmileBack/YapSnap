@@ -130,7 +130,11 @@
     } else if (self.isReplying) {
         PhoneContact *contact = self.yapBuilder.contacts.firstObject;
         NSString *contactFirstName = [[contact.name componentsSeparatedByString:@" "] objectAtIndex:0];
-        self.titleLabel.text = [NSString stringWithFormat:@"Reply to %@", contactFirstName];
+        if ([contact.phoneNumber isEqualToString:@"+13245678910"] || [contact.phoneNumber isEqualToString:@"+13027865701"]) {
+            self.titleLabel.text = @"Reply to YapTap Team";
+        } else {
+            self.titleLabel.text = [NSString stringWithFormat:@"Reply to %@", contactFirstName];
+        }
     } else {
         self.titleLabel.text = @"Add Message";
     }
