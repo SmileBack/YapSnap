@@ -623,11 +623,6 @@ static NSString *CellIdentifier = @"Cell";
                                [mixpanel track:@"Sent Friend Request"];
                                
                                [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
-                               
-                               double delay = .3;
-                               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                   [self showFriendsSuccessAlert];
-                               });
                            } else {
                                // uh oh spaghettios
                                // TODO: tell the user something went wrong
@@ -700,27 +695,6 @@ static NSString *CellIdentifier = @"Cell";
 - (BOOL) didViewContactsOnboardingAlert
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_CONTACTS_ONBOARDING_ALERT_KEY];
-}
-
-- (void) showFriendsSuccessAlert
-{
-    if (self.selectedContacts.count == 1) {
-        YSContact *selectedContact = self.selectedContacts[0];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Friend Request Sent"
-                                                        message:[NSString stringWithFormat:@"%@ will be added to your friends once he/she accepts!", selectedContact.name]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Friend Requests Sent"
-                                                        message:@"They'll be added to your friends once they accept!"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
 }
 
 - (void) dismissViewControllerDuringDoubleTapToReplyFlow {

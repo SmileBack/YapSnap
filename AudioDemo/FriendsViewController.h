@@ -17,4 +17,6 @@ typedef void (^YapsSentCallback)();
 
 - (void)showSMS:(NSString *)message toRecipients:(NSArray *)recipients;
 
+- (void)showFriendsSuccessAlert;
+
 @end

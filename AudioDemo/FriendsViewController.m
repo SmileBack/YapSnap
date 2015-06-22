@@ -450,6 +450,21 @@
     [self presentViewController:messageController animated:YES completion:nil];
 }
 
+- (void) showFriendsSuccessAlert
+{
+    NSLog(@"Show Friends Success Alert");
+    
+    double delay = 0.3;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Friend Request Sent"
+                                                        message:@"They'll be added to your friends once they accept!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    });
+}
+
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
     switch (result) {
         case MessageComposeResultCancelled:

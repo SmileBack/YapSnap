@@ -120,6 +120,9 @@
                                       NSLog(@"Tapped Skip on SMS Prompt");
                                   }
                               }];
+        } else {
+            NSLog(@"Yaps Count: %lu", (unsigned long)yaps.count);
+            [self.delegate showFriendsSuccessAlert];
         }
     }
 }

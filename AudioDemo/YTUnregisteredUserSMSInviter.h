@@ -14,6 +14,9 @@
 
 @protocol YTUnregisteredUserSMSInviterDelegate <NSObject>
 - (void)showSMS:(NSString *)message toRecipients:(NSArray *)recipients;
+
+@optional
+- (void)showFriendsSuccessAlert;
 @end
 
 @interface YTUnregisteredUserSMSInviter : NSObject
