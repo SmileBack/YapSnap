@@ -50,6 +50,19 @@
 @property (nonatomic, strong) NSString *playlistSix;
 @property (nonatomic, strong) NSString *playlistSeven;
 @property (nonatomic, strong) NSString *playlistEight;
+@property (nonatomic, strong) NSString *playlistNine;
+@property (nonatomic, strong) NSString *playlistTen;
+@property (nonatomic, strong) NSString *playlistEleven;
+@property (nonatomic, strong) NSString *playlistTwelve;
+@property (nonatomic, strong) NSString *playlistThirteen;
+@property (nonatomic, strong) NSString *playlistFourteen;
+@property (nonatomic, strong) NSString *playlistFifteen;
+@property (nonatomic, strong) NSString *playlistSixteen;
+@property (nonatomic, strong) NSString *playlistSeventeen;
+@property (nonatomic, strong) NSString *playlistEighteen;
+@property (nonatomic, strong) NSString *playlistNineteen;
+@property (nonatomic, strong) NSString *playlistTwenty;
+@property (nonatomic, strong) NSString *playlistTwentyOne;
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapTopChartsButton;
@@ -191,63 +204,153 @@
 - (IBAction)didTapTopChartsButton {
     [self resetBottomBannerUI];
     [self.view endEditing:YES];
-    [self updateVisibilityOfMagnifyingGlassAndResetButtons];
     
-    self.playlistOne = @"One";
-    self.playlistTwo = @"Two";
-    self.playlistThree = @"Three";
-    self.playlistFour = @"Four";
+    [self declarePlaylists];
+    
+    [self loadAppropriatePlaylist];
+    
+    [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+}
+
+- (void) declarePlaylists {
+    
+    self.playlistOne = @"Top 100 Tracks";
+    self.playlistTwo = @"Today's Top Hits";
+    self.playlistThree = @"Top Viral Tracks";
+    self.playlistFour = @"New Music Tuesday";
     self.playlistFive = @"Five";
     self.playlistSix = @"Six";
     self.playlistSeven = @"Seven";
     
+    /*
+    self.playlistOne = @"Comedy New Releases";
+    self.playlistTwo = @"Comedy Top Tracks";
+    self.playlistThree = @"The Laugh List";
+    self.playlistFour = @"British Humour";
+    self.playlistFive = @"Quirck It";
+    self.playlistSix = @"Funny Things About Football";
+    self.playlistSeven = @"Monty Python Emporium";
+    self.playlistEight = @"Ladies Night";
+    self.playlistNine = @"20 Questions";
+    self.playlistTen = @"Animal Humor";
+    self.playlistEleven = @"Music Jokes";
+    self.playlistTwelve = @"Dating Issues";
+    self.playlistThirteen = @"Comedy Goes Country";
+    self.playlistFourteen = @"Unsolicited Advice";
+    self.playlistFifteen = @"Office Offensive";
+    self.playlistSixteen = @"Love & Marriage";
+    self.playlistSeventeen = @"The Interwebs";
+    self.playlistEighteen = @"Lights, Camera, Comedy!";
+    self.playlistNineteen = @"Louis CK | Collected";
+    self.playlistTwenty = @"[Family]";
+    self.playlistTwentyOne = @"Comedy Top Trackss";
+     */
+}
+
+- (void) loadAppropriatePlaylist {
     if (!self.lastShownPlaylist) {
-        NSLog(@"playlist one: %@", self.playlistOne);
         [self retrieveTracksForPlaylist:self.playlistOne];
         self.lastShownPlaylist = self.playlistOne;
         self.searchBox.text = self.playlistOne;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistOne]) {
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistOne] && self.playlistTwo) {
         [self retrieveTracksForPlaylist:self.playlistTwo];
         self.lastShownPlaylist = self.playlistTwo;
         self.searchBox.text = self.playlistTwo;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistTwo]) {
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistTwo] && self.playlistThree) {
         [self retrieveTracksForPlaylist:self.playlistThree];
         self.lastShownPlaylist = self.playlistThree;
         self.searchBox.text = self.playlistThree;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistThree]) {
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistThree] && self.playlistFour) {
         [self retrieveTracksForPlaylist:self.playlistFour];
         self.lastShownPlaylist = self.playlistFour;
         self.searchBox.text = self.playlistFour;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistFour]) {
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistFour] && self.playlistFive) {
         [self retrieveTracksForPlaylist:self.playlistFive];
         self.lastShownPlaylist = self.playlistFive;
         self.searchBox.text = self.playlistFive;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistFive]) {
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistFive] && self.playlistSix) {
         [self retrieveTracksForPlaylist:self.playlistSix];
         self.lastShownPlaylist = self.playlistSix;
         self.searchBox.text = self.playlistSix;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistSix]) {
-        YSTrack *track = [YSTrack new];
-        
-        track.name = @"Home";
-        track.spotifyID = @"Home";
-        track.previewURL = @"Home";
-        track.artistName = @"Home";
-        track.albumName = @"Home";
-        track.spotifyURL = @"Home";
-        track.albumName = @"Home";
-        track.imageURL = @"Home";
-        
-        self.songs = @[track];//[YSTrack tracksFromDictionaryArray:track inCategory:YES];
-        self.carousel.currentItemIndex = 0;
-        [self.carousel reloadData];
-        
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistSix] && self.playlistSeven) {
+        [self retrieveTracksForPlaylist:self.playlistSeven];
         self.lastShownPlaylist = self.playlistSeven;
-    } else {
+        self.searchBox.text = self.playlistSeven;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistSeven] && self.playlistEight) {
+        [self retrieveTracksForPlaylist:self.playlistEight];
+        self.lastShownPlaylist = self.playlistEight;
+        self.searchBox.text = self.playlistEight;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistEight] && self.playlistNine) {
+        [self retrieveTracksForPlaylist:self.playlistNine];
+        self.lastShownPlaylist = self.playlistNine;
+        self.searchBox.text = self.playlistNine;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistNine] && self.playlistTen) {
+        [self retrieveTracksForPlaylist:self.playlistTen];
+        self.lastShownPlaylist = self.playlistTen;
+        self.searchBox.text = self.playlistTen;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistTen] && self.playlistEleven) {
+        [self retrieveTracksForPlaylist:self.playlistEleven];
+        self.lastShownPlaylist = self.playlistEleven;
+        self.searchBox.text = self.playlistEleven;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistEleven] && self.playlistTwelve) {
+        [self retrieveTracksForPlaylist:self.playlistTwelve];
+        self.lastShownPlaylist = self.playlistTwelve;
+        self.searchBox.text = self.playlistTwelve;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistTwelve] && self.playlistThirteen) {
+        [self retrieveTracksForPlaylist:self.playlistThirteen];
+        self.lastShownPlaylist = self.playlistThirteen;
+        self.searchBox.text = self.playlistThirteen;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistThirteen] && self.playlistFourteen) {
+        [self retrieveTracksForPlaylist:self.playlistFourteen];
+        self.lastShownPlaylist = self.playlistFourteen;
+        self.searchBox.text = self.playlistFourteen;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistFourteen] && self.playlistFifteen) {
+        [self retrieveTracksForPlaylist:self.playlistFifteen];
+        self.lastShownPlaylist = self.playlistFifteen;
+        self.searchBox.text = self.playlistFifteen;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistFifteen] && self.playlistSixteen) {
+        [self retrieveTracksForPlaylist:self.playlistSixteen];
+        self.lastShownPlaylist = self.playlistSixteen;
+        self.searchBox.text = self.playlistSixteen;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistSixteen] && self.playlistSeventeen) {
+        [self retrieveTracksForPlaylist:self.playlistSeventeen];
+        self.lastShownPlaylist = self.playlistSeventeen;
+        self.searchBox.text = self.playlistSeventeen;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistSeventeen] && self.playlistEighteen) {
+        [self retrieveTracksForPlaylist:self.playlistEighteen];
+        self.lastShownPlaylist = self.playlistEighteen;
+        self.searchBox.text = self.playlistEighteen;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistEighteen] && self.playlistNineteen) {
+        [self retrieveTracksForPlaylist:self.playlistNineteen];
+        self.lastShownPlaylist = self.playlistNineteen;
+        self.searchBox.text = self.playlistNineteen;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistNineteen] && self.playlistTwenty) {
+        [self retrieveTracksForPlaylist:self.playlistTwenty];
+        self.lastShownPlaylist = self.playlistTwenty;
+        self.searchBox.text = self.playlistTwenty;
+    } else if ([self.lastShownPlaylist isEqualToString:self.playlistTwenty] && self.playlistTwentyOne) {
+        [self retrieveTracksForPlaylist:self.playlistTwentyOne];
+        self.lastShownPlaylist = self.playlistTwentyOne;
+        self.searchBox.text = self.playlistTwentyOne;
+    } else{
         [self retrieveTracksForPlaylist:self.playlistOne];
         self.lastShownPlaylist = self.playlistOne;
         self.searchBox.text = self.playlistOne;
     }
+    
+    /*
+     YSTrack *track = [YSTrack new];
+     track.name = @"Home";
+     track.spotifyID = @"Home";
+     track.previewURL = @"Home";
+     track.artistName = @"Home";
+     track.albumName = @"Home";
+     track.spotifyURL = @"Home";
+     track.imageURL = @"Home";
+     self.songs = @[track];//[YSTrack tracksFromDictionaryArray:track inCategory:YES];
+     self.carousel.currentItemIndex = 0;
+     [self.carousel reloadData];
+     */
 }
 
 -(BOOL) internetIsNotReachable
@@ -389,6 +492,7 @@
     
     __weak YSSpotifySourceController *weakSelf = self;
     void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
+        NSLog(@"Songs: %@", songs);
         if (songs) {
             weakSelf.songs = songs;
             weakSelf.carousel.currentItemIndex = 0;
@@ -403,11 +507,6 @@
                 double delay = 0.2;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
-                });
-                
-                double delay2 = 1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.searchBox becomeFirstResponder];
                 });
             } else {
                 NSLog(@"Returned Songs Successfully");

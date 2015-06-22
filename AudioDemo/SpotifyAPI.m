@@ -90,18 +90,95 @@ static SpotifyAPI *sharedInstance;
 }
 
 - (void) retrieveTracksFromSpotifyForPlaylist:(NSString *)playlistName withCallback:(SpotifySongCallback)callback {
-    if ([playlistName isEqualToString:@"One"]) {
+   
+/*
+    if ([playlistName isEqualToString:@"Comedy New Releases"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/2dspQtcF977JB0kbsVfjZd/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Comedy Top Tracks"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/1Hj7y9lWU96vYLPEom2qEw/tracks";
+        
+    } else if ([playlistName isEqualToString:@"The Laugh List"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/1gxinVbwRfBTm8u9Ilg2Qo/tracks";
+        
+    } else if ([playlistName isEqualToString:@"British Humor"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/3u4FZFuZc99oVibVNpWzrl/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Quirck It"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/5uSVaNDK1MqYaE5rTi0RVn/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Funny Things About Football"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4YSzEZkXyQD8Gx2z2OomVl/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Monty Python Emporium"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/2Twy4JGPNrfXj4tCfUyADN/tracks";
+    
+    } else if ([playlistName isEqualToString:@"Ladies Night"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/5cAjiZhOKpmiopQjEQwg3V/tracks";
+        
+    } else if ([playlistName isEqualToString:@"20 Questions"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/52VctsYfnswlvPrC09f9Eb/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Animal Humor"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4u4nF4ogvWJLCABAhBnz1I/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Music Jokes"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/2A35dmgrzELFaoCdhljKdF/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Dating Issues"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/23aBoyL0oNVuFc9B0SHBAW/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Comedy Goes Country"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/0GhKoiJHUKgggBXUxiKyow/tracks";
+    
+    } else if ([playlistName isEqualToString:@"Unsolicited Advice"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/5ubDpyt7Bsxn7Yxxi2khwC/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Office Offensive"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/7MWljdfpMPdchK0llbMz88/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Love & Marriage"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/51kEQ0ZG3REksX08cf3lzu/tracks";
+        
+    } else if ([playlistName isEqualToString:@"The Interwebs"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/1aR0iR9yZKCoToAlXo8Y8b/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Lights, Camera, Comedy!"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/3y6VsDt3U2gMrzalY1U5Qf/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Louis CK | Collected"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/2g1xDZGflQHIDyxQGQoUI7/tracks";
+        
+    } else if ([playlistName isEqualToString:@"[Family]"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/1JGLzVvhngik1Tbn9tNKRL/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Comedy Top Trackss"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/soundrop/playlists/4wnH0AlKv96zOHGBnUOL94/tracks";
+    }
+*/
+    
+    
+    if ([playlistName isEqualToString:@"Top 100 Tracks"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4hOKQuZbraPDIfaGbM3lKI/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Today's Top Hits"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/5FJXhjdILmRA2z5bvz4nzf/tracks";
-    } else if ([playlistName isEqualToString:@"Two"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4dJHrPYVdKgaCE3Lxrv1MZ/tracks";
-    } else if ([playlistName isEqualToString:@"Three"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/3jtuOxsrTRAWvPPLvlW1VR/tracks";
-    } else if ([playlistName isEqualToString:@"Four"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/06KmJWiQhL0XiV6QQAHsmw/tracks";
+        //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4dJHrPYVdKgaCE3Lxrv1MZ/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Top Viral Tracks"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4ldNPWkhPThHdq0FSxB0EZ/tracks";
+        //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/3jtuOxsrTRAWvPPLvlW1VR/tracks";
+        
+    } else if ([playlistName isEqualToString:@"New Music Tuesday"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/1yHZ5C3penaxRdWR7LRIOb/tracks";
+        //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/06KmJWiQhL0XiV6QQAHsmw/tracks";
+        
     } else if ([playlistName isEqualToString:@"Five"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/76h0bH2KJhiBuLZqfvPp3K/tracks";
+        
     } else if ([playlistName isEqualToString:@"Six"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/76h0bH2KJhiBuLZqfvPp3K/tracks";
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/3ZgmfR6lsnCwdffZUan8EA/tracks";
+        
     } else if ([playlistName isEqualToString:@"Seven"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
     }

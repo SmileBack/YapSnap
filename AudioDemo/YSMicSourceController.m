@@ -10,11 +10,8 @@
 #import <AudioToolbox/AudioToolbox.h> // IS THIS NECESSARY HERE? Added this for short sound feature. If not necessary, remove framework
 #import "EZAudio.h"
 #import "UIViewController+MJPopupViewController.h"
-#import "RecordPopupViewController.h"
 
 #define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
-#define DID_SEE_RECORD_POPUP_KEY @"yaptap.DidSeeRecordPopupKey7"
-#define DISMISS_RECORD_POPUP @"DismissRecordPopup"
 #define RESET_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
 
 @interface YSMicSourceController ()<EZMicrophoneDelegate>
@@ -23,7 +20,6 @@
 @property (nonatomic, strong) EZRecorder* recorder;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *sinusWaveTopConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *sinusWaveWidthConstraint;
-@property (strong, nonatomic) RecordPopupViewController *recordPopupVC;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIButton *recordButton;
 
@@ -40,10 +36,6 @@
     [self setupNotifications];
     [self setSinusWaveViewProperties];
     [self setSinusWaveConstraints];
-    
-    if (!self.didSeeRecordPopup) {
-        [self showRecordPopup];
-    }
     
     [self.recordButton setImage:[UIImage imageNamed:@"RecordButtonBlueBorder10Pressed.png"] forState:UIControlStateHighlighted];
 }
@@ -105,14 +97,6 @@
                                              self.titleLabel.hidden = NO;
                                          }
                                          completion:nil];
-                    }];
-    
-    [center addObserverForName:DISMISS_RECORD_POPUP
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        NSLog(@"Dismiss Welcome Popup");
-                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
     
     [center addObserverForName:RESET_BANNER_UI
@@ -250,22 +234,6 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
     [self.player stop];
     [self.player prepareToPlay];
-}
-
-#pragma mark - Onboarding Popup
-- (void) showRecordPopup {
-    double delay = .2;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.recordPopupVC = [[RecordPopupViewController alloc] initWithNibName:@"RecordPopupViewController" bundle:nil];
-        [self presentPopupViewController:self.recordPopupVC animationType:MJPopupViewAnimationFade];
-
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_RECORD_POPUP_KEY];
-    });
-}
-
-- (BOOL) didSeeRecordPopup
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_RECORD_POPUP_KEY];
 }
 
 @end
