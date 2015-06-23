@@ -136,7 +136,6 @@
 {
     [super viewDidAppear:animated];
     self.playerAlreadyStartedPlayingForThisSong = NO;
-    [self hideAlbumBannerWithFadeAnimation:NO];
     self.bottomButton.hidden = NO;
     
     if (self.songs.count < 1) {
@@ -774,6 +773,7 @@
         trackView.albumImageButton.hidden = YES;
         trackView.artistButton.hidden = YES;
         trackView.songNameLabel.hidden = YES;
+        trackView.bannerLabel.hidden = YES;
     }
     
     return trackView;
