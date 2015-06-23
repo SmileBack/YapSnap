@@ -138,6 +138,9 @@
     self.playerAlreadyStartedPlayingForThisSong = NO;
     self.bottomButton.hidden = NO;
     
+    if (!self.songs) {
+        self.carousel.alpha = 0;
+    }
     [self showSuggestedSongsIfNeeded];
 }
 
@@ -216,6 +219,9 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
+                        if (!self.songs) {
+                            self.carousel.alpha = 0;
+                        }
                         [self showSuggestedSongsIfNeeded];
                     }];
     
@@ -417,7 +423,7 @@
         self.songs = [onboardingTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
         self.carousel.currentItemIndex = 0;
         [self.carousel reloadData];
-        [UIView animateWithDuration:.2
+        [UIView animateWithDuration:.5
                               delay:0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
@@ -436,7 +442,7 @@
         self.songs = [shuffledSuggestedTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
         self.carousel.currentItemIndex = 0;
         [self.carousel reloadData];
-        [UIView animateWithDuration:.2
+        [UIView animateWithDuration:.5
                               delay:0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
