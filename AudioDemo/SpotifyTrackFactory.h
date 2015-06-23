@@ -13,6 +13,8 @@
 
 + (NSMutableArray *) tracks;
 
++ (NSMutableArray *) onboardingTracks;
+
 
 @end
 

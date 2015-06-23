@@ -194,6 +194,15 @@
                         NSLog(@"Dismiss Welcome Popup");
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
+    
+    [center addObserverForName:UIApplicationDidBecomeActiveNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        if (self.songs.count < 1) {
+                           [self displaySuggestedSongs];
+                        }
+                    }];
 }
 
 - (void)tappedSpotifyView {
@@ -218,18 +227,23 @@
 }
 
 - (IBAction)didTapTopChartsButton {
-    if (!self.didSeeTopChartsPopup) {
-        //[self showTopChartsPopup];
+    if (TRUE) { //(!self.didSeeTopChartsPopup) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Top Trending"
+                                                        message:@"Blah Blah"
+                                                       delegate:self
+                                              cancelButtonTitle:@"No, Thanks"
+                                              otherButtonTitles:@"Sure", nil];
+        [alert show];
+    } else {
+        [self resetBottomBannerUI];
+        [self.view endEditing:YES];
+        
+        [self declarePlaylists];
+        
+        [self loadAppropriatePlaylist];
+        
+        [self updateVisibilityOfMagnifyingGlassAndResetButtons];
     }
-    
-    [self resetBottomBannerUI];
-    [self.view endEditing:YES];
-    
-    [self declarePlaylists];
-    
-    [self loadAppropriatePlaylist];
-    
-    [self updateVisibilityOfMagnifyingGlassAndResetButtons];
 }
 
 - (void) declarePlaylists {
@@ -374,25 +388,39 @@
 }
 
 -(void) displaySuggestedSongs {
-    if (!self.tracks || self.tracks.count < 5) {
-        self.tracks = [SpotifyTrackFactory tracks];
-    }
-    
-    [self shuffleTracks];
-    NSArray *shuffledSuggestedTracks = @[self.tracks[0], self.tracks[1], self.tracks[2]];
-    
-    [self createExplainerTrack];
-    
-    self.songs = [shuffledSuggestedTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
-    self.carousel.currentItemIndex = 0;
-    [self.carousel reloadData];
-    [UIView animateWithDuration:.2
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.carousel.alpha = 1;
-                     }
-                     completion:nil];
+    if (!self.didPlaySongForFirstTime) {
+        NSArray *onboardingTracks = [SpotifyTrackFactory onboardingTracks];
+        [self createExplainerTrack];
+        self.songs = [onboardingTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
+        self.carousel.currentItemIndex = 0;
+        [self.carousel reloadData];
+        [UIView animateWithDuration:.2
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.carousel.alpha = 1;
+                         }
+                         completion:nil];
+    } else {
+        if (!self.tracks || self.tracks.count < 5) {
+            self.tracks = [SpotifyTrackFactory tracks];
+        }
+        [self shuffleTracks];
+        NSArray *shuffledSuggestedTracks = @[self.tracks[0], self.tracks[1], self.tracks[2]];
+        
+        [self createExplainerTrack];
+        
+        self.songs = [shuffledSuggestedTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
+        self.carousel.currentItemIndex = 0;
+        [self.carousel reloadData];
+        [UIView animateWithDuration:.2
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.carousel.alpha = 1;
+                         }
+                         completion:nil];
+        }
 }
 
 - (void) shuffleTracks {
@@ -771,6 +799,14 @@
         trackView.artistButton.hidden = YES;
         trackView.songNameLabel.hidden = YES;
         trackView.bannerLabel.hidden = YES;
+    } else {
+        trackView.spotifyButton.hidden = NO;
+        trackView.songVersionOneButton.hidden = NO;
+        trackView.songVersionTwoButton.hidden = NO;
+        trackView.albumImageButton.hidden = NO;
+        trackView.artistButton.hidden = NO;
+        trackView.songNameLabel.hidden = NO;
+        trackView.bannerLabel.hidden = NO;
     }
     
     // For Onboarding:
