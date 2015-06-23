@@ -41,7 +41,7 @@
 @property (strong, nonatomic) UIButton *artistButtonHack;
 @property (nonatomic, strong) NSString *lastShownPlaylist;
 @property (strong, nonatomic) TopChartsPopupViewController *topChartsPopupVC;
-@property (nonatomic, strong) NSArray *tracks;
+@property (nonatomic, strong) NSMutableArray *tracks;
 
 @property (nonatomic, strong) NSString *playlistOne;
 @property (nonatomic, strong) NSString *playlistTwo;
@@ -210,6 +210,8 @@
 }
 
 - (IBAction)didTapTopChartsButton {
+    [self displaySuggestedSongs];
+    /*
     if (!self.didSeeTopChartsPopup) {
         [self showTopChartsPopup];
     }
@@ -222,6 +224,7 @@
     [self loadAppropriatePlaylist];
     
     [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+     */
 }
 
 - (void) declarePlaylists {
@@ -370,11 +373,31 @@
         self.tracks = [SpotifyTrackFactory tracks];
     }
     
-    NSArray *randomlySelectedTrack = [self.tracks objectAtIndex: arc4random() % [self.tracks count]];
+    [self shuffleTracks];
+    NSArray *shuffledSuggestedTracks = @[self.tracks[0], self.tracks[1], self.tracks[2]];
     
-    self.songs = @[randomlySelectedTrack];
+    YSTrack *explainerTrack = [YSTrack new];
+    explainerTrack.name = @"";
+    explainerTrack.spotifyID = @"";
+    explainerTrack.previewURL = @"";
+    explainerTrack.artistName = @"";
+    explainerTrack.albumName = @"";
+    explainerTrack.spotifyURL = @"";
+    explainerTrack.imageURL = @"Home";
+    explainerTrack.isExplainerTrack = YES;
+    
+    self.songs = [shuffledSuggestedTracks arrayByAddingObjectsFromArray:@[explainerTrack]];
     self.carousel.currentItemIndex = 0;
     [self.carousel reloadData];
+}
+
+- (void) shuffleTracks {
+    NSUInteger count = [self.tracks count];
+    for (NSUInteger i = 0; i < count; ++i) {
+        NSInteger remainingCount = count - i;
+        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
+        [self.tracks exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
 }
 
 -(BOOL) internetIsNotReachable
@@ -727,6 +750,13 @@
         stringsize.width = self.carouselHeightConstraint.constant-24;
     }
     [trackView.artistButton setFrame:CGRectMake((self.carouselHeightConstraint.constant-stringsize.width-20)/2, self.carouselHeightConstraint.constant + 35, stringsize.width+20, stringsize.height + 8)];
+    
+    if (track.isExplainerTrack) {
+        trackView.spotifyButton.hidden = YES;
+        trackView.songVersionOneButton.hidden = YES;
+        trackView.songVersionTwoButton.hidden = YES;
+        trackView.albumImageButton.hidden = YES;
+    }
     
     return trackView;
 }

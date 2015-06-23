@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSString *spotifyURL;
 @property (nonatomic, strong) NSNumber *secondsToFastForward;
 @property (nonatomic) BOOL songVersionButtonsAreShowing;
+@property (nonatomic) BOOL isExplainerTrack;
 
 + (NSArray *) tracksFromDictionaryArray:(NSArray *)itemDictionaries inCategory:(BOOL)inCategory;
 + (YSTrack *) trackFromDictionary:(NSDictionary *)trackDictionary;

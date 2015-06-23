@@ -11,7 +11,7 @@
 
 @interface SpotifyTrackFactory : NSObject
 
-+ (NSArray *) tracks;
++ (NSMutableArray *) tracks;
 
 
 @end

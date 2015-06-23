@@ -10,7 +10,7 @@
 
 @implementation SpotifyTrackFactory
 
-+ (NSArray *) tracks {
++ (NSMutableArray *) tracks {
     YSTrack *track = [YSTrack new];
     track.name = @"1";
     track.spotifyID = @"Home";
@@ -64,8 +64,8 @@
     track6.albumName = @"Home";
     track6.spotifyURL = @"Home";
     track6.imageURL = @"Home";
-    
-    return @[track, track2, track3, track4, track5, track6];
+
+    return [NSMutableArray arrayWithObjects:track, track2, track3, track4, track5, track6, nil];
 }
 
 
