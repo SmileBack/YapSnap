@@ -220,6 +220,10 @@
     if (![YSUser currentUser].hasSessionToken) { // Force log in
         [self performSegueWithIdentifier:@"Login" sender:nil];
     }
+    
+    if (countdownTimer) {
+        [countdownTimer invalidate];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -245,7 +249,7 @@
     {
         if(currSeconds>0)
         {
-            //NSLog(@"currSeconds: %d", currSeconds);
+      //      NSLog(@"currSeconds: %d", currSeconds);
             currSeconds-=1;
         }
         

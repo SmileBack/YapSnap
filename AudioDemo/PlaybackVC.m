@@ -42,7 +42,7 @@
 
 @end
 
-#define TIME_INTERVAL .01f
+#define TIME_INTERVAL .05f
 
 @implementation PlaybackVC
 
@@ -282,7 +282,7 @@
     
     CGFloat trackLength = [self.yap.duration floatValue];
     CGFloat progress = self.elapsedTime / 12;
-    [self.progressView setProgress:progress];
+    [self.progressView setProgress:progress animated:YES];
     
     if (self.elapsedTime >= trackLength) {
         [self stop];

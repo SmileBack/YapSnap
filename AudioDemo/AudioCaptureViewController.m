@@ -42,7 +42,7 @@
 @implementation AudioCaptureViewController
 
 static const float MAX_CAPTURE_TIME = 12.0;
-static const float TIMER_INTERVAL = .02;
+static const float TIMER_INTERVAL = .05;//.02;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -172,16 +172,30 @@ static const float TIMER_INTERVAL = .02;
 - (void) updateProgress {
     self.elapsedTime += TIMER_INTERVAL;
     
-    [self.recordProgressView setProgress:(self.elapsedTime / MAX_CAPTURE_TIME)];
+    [self.recordProgressView setProgress:(self.elapsedTime / MAX_CAPTURE_TIME) animated:YES];
     
     // Added the minus .02 because otherwise the page would transition .02 seconds too early
     if (self.elapsedTime - .02 >= MAX_CAPTURE_TIME) {
         [audioProgressTimer invalidate];
         NSLog(@"Audio Progress Timer Invalidate 6");
         [self.audioSource stopAudioCapture];
-        
     }
 }
+
+/*
+ - (void) timerFired
+ {
+ self.elapsedTime += TIME_INTERVAL;
+ 
+ CGFloat trackLength = [self.yap.duration floatValue];
+ CGFloat progress = self.elapsedTime / 12;
+ [self.progressView setProgress:progress];
+ 
+ if (self.elapsedTime >= trackLength) {
+ [self stop];
+ }
+ }
+ */
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

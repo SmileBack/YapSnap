@@ -81,6 +81,7 @@
 		783CCF9C1B39220D00E3B5BF /* ChartIcon140.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCF9B1B39220D00E3B5BF /* ChartIcon140.png */; };
 		783CCF9E1B39227500E3B5BF /* ChartIcon150.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCF9D1B39227500E3B5BF /* ChartIcon150.png */; };
 		783CCFA01B39233000E3B5BF /* ChartIcon160.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCF9F1B39233000E3B5BF /* ChartIcon160.png */; };
+		783CCFA21B39241400E3B5BF /* ChartIcon170.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFA11B39241400E3B5BF /* ChartIcon170.png */; };
 		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */; };
 		784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
@@ -412,6 +413,7 @@
 		783CCF9B1B39220D00E3B5BF /* ChartIcon140.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChartIcon140.png; sourceTree = "<group>"; };
 		783CCF9D1B39227500E3B5BF /* ChartIcon150.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChartIcon150.png; sourceTree = "<group>"; };
 		783CCF9F1B39233000E3B5BF /* ChartIcon160.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChartIcon160.png; sourceTree = "<group>"; };
+		783CCFA11B39241400E3B5BF /* ChartIcon170.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChartIcon170.png; sourceTree = "<group>"; };
 		784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSRecordProgressView.h; sourceTree = "<group>"; };
 		784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecordProgressView.m; sourceTree = "<group>"; };
 		784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetImageButton.h; sourceTree = "<group>"; };
@@ -733,6 +735,7 @@
 				783CCF9B1B39220D00E3B5BF /* ChartIcon140.png */,
 				783CCF9D1B39227500E3B5BF /* ChartIcon150.png */,
 				783CCF991B39218D00E3B5BF /* ChartIcon120.png */,
+				783CCFA11B39241400E3B5BF /* ChartIcon170.png */,
 				78C1C2F71B2638E000C6CBCA /* WhiteDice100.png */,
 				78C1C2F91B263AFB00C6CBCA /* DiceCircle.png */,
 				78C1C2FB1B263BB700C6CBCA /* DiceCircle2.png */,
@@ -1803,6 +1806,7 @@
 				786E0BE31AFFEE8C00005D1D /* WhiteDownArrow2.png in Resources */,
 				78C1C30C1B26AD2B00C6CBCA /* ResetButton90@2x.png in Resources */,
 				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
+				783CCFA21B39241400E3B5BF /* ChartIcon170.png in Resources */,
 				78624C041B04F0C000C8E049 /* ProgressViewLightBlue@3x.png in Resources */,
 				786E0BE71B00755800005D1D /* Shuffle60.png in Resources */,
 				78439FC21AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png in Resources */,
