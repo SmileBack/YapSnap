@@ -138,14 +138,31 @@
     self.playerAlreadyStartedPlayingForThisSong = NO;
     self.bottomButton.hidden = NO;
     
-    if (self.songs.count < 1) {
-        [self displaySuggestedSongs];
-    }
+    [self showSuggestedSongsIfNeeded];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
     [self.view endEditing:YES];
+    [self resetSuggestedSongsIfNeeded];
+}
+
+- (void) showSuggestedSongsIfNeeded {
+    YSTrack *track6 = self.songs[5];
+    if (self.songs.count < 1 || track6.isExplainerTrack) {
+        [self displaySuggestedSongs];
+    }
+}
+
+- (void) resetSuggestedSongsIfNeeded {
+    YSTrack *track6 = self.songs[5];
+    if (self.songs.count < 1 || track6.isExplainerTrack) {
+        self.songs = nil;
+        [self.carousel reloadData];
+    }
 }
 
 - (void) setupGestureRecognizers {
@@ -195,13 +212,18 @@
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
     
-    [center addObserverForName:UIApplicationDidBecomeActiveNotification
+    [center addObserverForName:UIApplicationWillEnterForegroundNotification
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        if (self.songs.count < 1) {
-                           [self displaySuggestedSongs];
-                        }
+                        [self showSuggestedSongsIfNeeded];
+                    }];
+    
+    [center addObserverForName:UIApplicationDidEnterBackgroundNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self resetSuggestedSongsIfNeeded];
                     }];
 }
 
@@ -229,7 +251,7 @@
 - (IBAction)didTapTopChartsButton {
     if (FALSE) { //(!self.didSeeTopChartsPopup) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Top Trending"
-                                                        message:@"Blah Blah"
+                                                        message:@"Tapping this button "
                                                        delegate:self
                                               cancelButtonTitle:@"No, Thanks"
                                               otherButtonTitles:@"Sure", nil];
@@ -247,7 +269,7 @@
 }
 
 - (void) declarePlaylists {
-/*
+
     self.playlistOne = @"Top 100 Tracks"; // YES
     self.playlistTwo = @"Hits";
     self.playlistThree = @"Top Viral Tracks";
@@ -255,8 +277,8 @@
     self.playlistFive = @"Born in the 90's"; //YES
     self.playlistSix = @"Top TV"; // YES
     self.playlistSeven = @"Seven";
-*/
 
+    /*
     self.playlistOne = @"Comedy New Releases";
     self.playlistTwo = @"Comedy Top Tracks";
     self.playlistThree = @"The Laugh List";
@@ -278,6 +300,7 @@
     self.playlistNineteen = @"Louis CK | Collected";
     self.playlistTwenty = @"[Family]";
     self.playlistTwentyOne = @"Comedy Top Trackss";
+    */
 
 }
 

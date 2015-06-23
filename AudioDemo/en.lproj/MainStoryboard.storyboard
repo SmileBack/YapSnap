@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="width" constant="75" id="0se-cf-LK1"/>
                                     <constraint firstAttribute="height" constant="75" id="QE5-19-Rv5"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="ChartIcon170.png">
+                                <state key="normal" backgroundImage="TrendingIcon.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1828,7 +1828,6 @@ Type it here!</string>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite2.png" width="300" height="300"/>
         <image name="CancelImageWhite3.png" width="350" height="350"/>
-        <image name="ChartIcon170.png" width="256" height="256"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
@@ -1837,6 +1836,7 @@ Type it here!</string>
         <image name="ReplayIcon.png" width="100" height="100"/>
         <image name="ResetButton100.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
+        <image name="TrendingIcon.png" width="256" height="256"/>
         <image name="YapsButtonNoYaps.png" width="160" height="84"/>
         <image name="YellowStar.png" width="40" height="40"/>
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>

@@ -85,6 +85,7 @@
 		783CCFA41B39408A00E3B5BF /* ExplainerTrackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFA31B39408A00E3B5BF /* ExplainerTrackImage.png */; };
 		783CCFA61B39416000E3B5BF /* ExplainerTrackImage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFA51B39416000E3B5BF /* ExplainerTrackImage2.png */; };
 		783CCFA81B39441A00E3B5BF /* ExplainerTrackImage3.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFA71B39441A00E3B5BF /* ExplainerTrackImage3.png */; };
+		783CCFAA1B3A0AD800E3B5BF /* TrendingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFA91B3A0AD800E3B5BF /* TrendingIcon.png */; };
 		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */; };
 		784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
@@ -420,6 +421,7 @@
 		783CCFA31B39408A00E3B5BF /* ExplainerTrackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExplainerTrackImage.png; sourceTree = "<group>"; };
 		783CCFA51B39416000E3B5BF /* ExplainerTrackImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExplainerTrackImage2.png; sourceTree = "<group>"; };
 		783CCFA71B39441A00E3B5BF /* ExplainerTrackImage3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExplainerTrackImage3.png; sourceTree = "<group>"; };
+		783CCFA91B3A0AD800E3B5BF /* TrendingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrendingIcon.png; sourceTree = "<group>"; };
 		784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSRecordProgressView.h; sourceTree = "<group>"; };
 		784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecordProgressView.m; sourceTree = "<group>"; };
 		784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetImageButton.h; sourceTree = "<group>"; };
@@ -727,6 +729,7 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				783CCFA91B3A0AD800E3B5BF /* TrendingIcon.png */,
 				783CCFA31B39408A00E3B5BF /* ExplainerTrackImage.png */,
 				783CCF7F1B39129100E3B5BF /* ChartsIcon.png */,
 				783CCF811B3913BF00E3B5BF /* ChartsIcon2.png */,
@@ -1763,6 +1766,7 @@
 				78C1C3041B264CB400C6CBCA /* ProgressViewRedNew@3x.png in Resources */,
 				783CCFA61B39416000E3B5BF /* ExplainerTrackImage2.png in Resources */,
 				78624BF61B04EC6B00C8E049 /* ProgressViewYellow@2x.png in Resources */,
+				783CCFAA1B3A0AD800E3B5BF /* TrendingIcon.png in Resources */,
 				78B0B7621AEF3834001C074B /* Shuffle50.png in Resources */,
 				78439FC81AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png in Resources */,
 				786E0BEB1B0079AC00005D1D /* CartoonsLong5@2x.png in Resources */,
