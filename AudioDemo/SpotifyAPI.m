@@ -91,7 +91,6 @@ static SpotifyAPI *sharedInstance;
 
 - (void) retrieveTracksFromSpotifyForPlaylist:(NSString *)playlistName withCallback:(SpotifySongCallback)callback {
    
-/*
     if ([playlistName isEqualToString:@"Comedy New Releases"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/2dspQtcF977JB0kbsVfjZd/tracks";
         
@@ -155,9 +154,9 @@ static SpotifyAPI *sharedInstance;
     } else if ([playlistName isEqualToString:@"Comedy Top Trackss"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/soundrop/playlists/4wnH0AlKv96zOHGBnUOL94/tracks";
     }
-*/
-    
 
+    
+/*
     if ([playlistName isEqualToString:@"Top 100 Tracks"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4hOKQuZbraPDIfaGbM3lKI/tracks";
         
@@ -182,7 +181,7 @@ static SpotifyAPI *sharedInstance;
     } else if ([playlistName isEqualToString:@"Seven"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
     }
-    
+*/ 
     
     __weak SpotifyAPI *weakSelf = self;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

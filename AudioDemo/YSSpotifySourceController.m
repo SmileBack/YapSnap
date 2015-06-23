@@ -247,7 +247,7 @@
 }
 
 - (void) declarePlaylists {
-    
+/*
     self.playlistOne = @"Top 100 Tracks"; // YES
     self.playlistTwo = @"Hits";
     self.playlistThree = @"Top Viral Tracks";
@@ -255,8 +255,8 @@
     self.playlistFive = @"Born in the 90's"; //YES
     self.playlistSix = @"Top TV"; // YES
     self.playlistSeven = @"Seven";
-    
-/*
+*/
+
     self.playlistOne = @"Comedy New Releases";
     self.playlistTwo = @"Comedy Top Tracks";
     self.playlistThree = @"The Laugh List";
@@ -278,7 +278,7 @@
     self.playlistNineteen = @"Louis CK | Collected";
     self.playlistTwenty = @"[Family]";
     self.playlistTwentyOne = @"Comedy Top Trackss";
-*/
+
 }
 
 - (void) loadAppropriatePlaylist {
@@ -1007,6 +1007,8 @@
         stringsize.width = self.carouselHeightConstraint.constant-24;
     }
     [self.artistButtonHack setFrame:CGRectMake((self.view.bounds.size.width - (stringsize.width+20))/2, 336, stringsize.width+20, stringsize.height + 8)];
+    
+    [self resetBottomBannerUI];
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
