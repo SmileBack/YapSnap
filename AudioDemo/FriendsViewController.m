@@ -204,7 +204,7 @@
     YSUser *friend = self.friends[indexPath.row];
     self.selectedFriend = friend;
     
-    UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"How would you like to yap %@?", friend.firstName]
+    UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Send your yap with a song or with your voice?"
                                                                     delegate:self
                                                            cancelButtonTitle:@"Cancel"
                                                       destructiveButtonTitle:nil

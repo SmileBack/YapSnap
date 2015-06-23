@@ -282,7 +282,7 @@
     
     CGFloat trackLength = [self.yap.duration floatValue];
     CGFloat progress = self.elapsedTime / 12;
-    [self.progressView setProgress:progress animated:YES];
+    [self.progressView setProgress:progress];
     
     if (self.elapsedTime >= trackLength) {
         [self stop];

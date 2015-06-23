@@ -749,6 +749,10 @@
         trackView.imageView.image = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
     }
     
+    if (track.isExplainerTrack) {
+        trackView.imageView.image = [UIImage imageNamed:@"ExplainerTrackImage3.png"];
+    }
+    
     trackView.songNameLabel.text = track.name;
     trackView.spotifySongID = track.spotifyID;
     trackView.spotifyURL = track.spotifyURL;

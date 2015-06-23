@@ -172,7 +172,7 @@ static const float TIMER_INTERVAL = .05;//.02;
 - (void) updateProgress {
     self.elapsedTime += TIMER_INTERVAL;
     
-    [self.recordProgressView setProgress:(self.elapsedTime / MAX_CAPTURE_TIME) animated:YES];
+    [self.recordProgressView setProgress:(self.elapsedTime / MAX_CAPTURE_TIME)];
     
     // Added the minus .02 because otherwise the page would transition .02 seconds too early
     if (self.elapsedTime - .02 >= MAX_CAPTURE_TIME) {

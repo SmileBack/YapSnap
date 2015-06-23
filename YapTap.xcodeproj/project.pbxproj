@@ -82,6 +82,9 @@
 		783CCF9E1B39227500E3B5BF /* ChartIcon150.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCF9D1B39227500E3B5BF /* ChartIcon150.png */; };
 		783CCFA01B39233000E3B5BF /* ChartIcon160.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCF9F1B39233000E3B5BF /* ChartIcon160.png */; };
 		783CCFA21B39241400E3B5BF /* ChartIcon170.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFA11B39241400E3B5BF /* ChartIcon170.png */; };
+		783CCFA41B39408A00E3B5BF /* ExplainerTrackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFA31B39408A00E3B5BF /* ExplainerTrackImage.png */; };
+		783CCFA61B39416000E3B5BF /* ExplainerTrackImage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFA51B39416000E3B5BF /* ExplainerTrackImage2.png */; };
+		783CCFA81B39441A00E3B5BF /* ExplainerTrackImage3.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFA71B39441A00E3B5BF /* ExplainerTrackImage3.png */; };
 		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */; };
 		784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
@@ -414,6 +417,9 @@
 		783CCF9D1B39227500E3B5BF /* ChartIcon150.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChartIcon150.png; sourceTree = "<group>"; };
 		783CCF9F1B39233000E3B5BF /* ChartIcon160.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChartIcon160.png; sourceTree = "<group>"; };
 		783CCFA11B39241400E3B5BF /* ChartIcon170.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChartIcon170.png; sourceTree = "<group>"; };
+		783CCFA31B39408A00E3B5BF /* ExplainerTrackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExplainerTrackImage.png; sourceTree = "<group>"; };
+		783CCFA51B39416000E3B5BF /* ExplainerTrackImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExplainerTrackImage2.png; sourceTree = "<group>"; };
+		783CCFA71B39441A00E3B5BF /* ExplainerTrackImage3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExplainerTrackImage3.png; sourceTree = "<group>"; };
 		784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSRecordProgressView.h; sourceTree = "<group>"; };
 		784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecordProgressView.m; sourceTree = "<group>"; };
 		784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetImageButton.h; sourceTree = "<group>"; };
@@ -721,6 +727,7 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				783CCFA31B39408A00E3B5BF /* ExplainerTrackImage.png */,
 				783CCF7F1B39129100E3B5BF /* ChartsIcon.png */,
 				783CCF811B3913BF00E3B5BF /* ChartsIcon2.png */,
 				783CCF831B3914F300E3B5BF /* ChartsIcon3.png */,
@@ -783,6 +790,8 @@
 				78439FC71AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png */,
 				786192521B07EE2B007279E8 /* Chipmunk.png */,
 				78ECF55F1B2933A40059C80B /* MusicButton.png */,
+				783CCFA51B39416000E3B5BF /* ExplainerTrackImage2.png */,
+				783CCFA71B39441A00E3B5BF /* ExplainerTrackImage3.png */,
 				786BCB411ADC25A300BA3FDD /* Customize Page */,
 				78319A741ACCF878000C3FD6 /* Audio Capture Page */,
 				78319A731ACCF818000C3FD6 /* Spotify Page */,
@@ -1752,6 +1761,7 @@
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
 				786192821B0A4D5F007279E8 /* CancelPhotoButton200@2x.png in Resources */,
 				78C1C3041B264CB400C6CBCA /* ProgressViewRedNew@3x.png in Resources */,
+				783CCFA61B39416000E3B5BF /* ExplainerTrackImage2.png in Resources */,
 				78624BF61B04EC6B00C8E049 /* ProgressViewYellow@2x.png in Resources */,
 				78B0B7621AEF3834001C074B /* Shuffle50.png in Resources */,
 				78439FC81AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png in Resources */,
@@ -1810,6 +1820,7 @@
 				78624C041B04F0C000C8E049 /* ProgressViewLightBlue@3x.png in Resources */,
 				786E0BE71B00755800005D1D /* Shuffle60.png in Resources */,
 				78439FC21AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png in Resources */,
+				783CCFA81B39441A00E3B5BF /* ExplainerTrackImage3.png in Resources */,
 				78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */,
 				7861924D1B072077007279E8 /* WhiteCamera100.png in Resources */,
 				781904861AF287C100196DFF /* ResetButton60@2x.png in Resources */,
@@ -1841,6 +1852,7 @@
 				78439F901AE61528004CFB5F /* YapsIconReceivedUnopened4.png in Resources */,
 				78A2E8561ACC671600B5A404 /* PinkStar3.png in Resources */,
 				78A2E8661ACC822800B5A404 /* Balloon20.png in Resources */,
+				783CCFA41B39408A00E3B5BF /* ExplainerTrackImage.png in Resources */,
 				78C1C3081B264F6400C6CBCA /* ProgressViewRedNew@2x.png in Resources */,
 				78624C061B04F0CE00C8E049 /* ProgressViewRed@3x.png in Resources */,
 				78C1C2FC1B263BB700C6CBCA /* DiceCircle2.png in Resources */,

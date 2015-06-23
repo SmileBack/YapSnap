@@ -1170,7 +1170,7 @@ in your phone's settings!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjl-Kr-TQg">
-                                <rect key="frame" x="-5" y="14" width="55" height="55"/>
+                                <rect key="frame" x="-5" y="-6" width="55" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="KhX-OI-Ekk"/>
                                     <constraint firstAttribute="width" constant="55" id="fTy-Te-696"/>
@@ -1192,7 +1192,7 @@ in your phone's settings!</string>
                                 </constraints>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCt-ck-W3X">
-                                <rect key="frame" x="50" y="27" width="220" height="30"/>
+                                <rect key="frame" x="50" y="-17" width="220" height="75"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1220,7 +1220,7 @@ in your phone's settings!</string>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vNe-98-kK7">
-                                <rect key="frame" x="150" y="32" width="20" height="20"/>
+                                <rect key="frame" x="150" y="10" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zaT-Tc-msp">
                                 <rect key="frame" x="20" y="466" width="280" height="40"/>
@@ -1249,7 +1249,7 @@ in your phone's settings!</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzM-5p-4ue">
-                                <rect key="frame" x="279" y="21" width="40" height="40"/>
+                                <rect key="frame" x="279" y="0.0" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="eZC-rk-XtM"/>
                                     <constraint firstAttribute="width" constant="40" id="ypQ-an-HGh"/>
@@ -1293,7 +1293,7 @@ in your phone's settings!</string>
                             <constraint firstItem="cEy-3F-cQc" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leading" constant="5" id="Emi-hf-nzj"/>
                             <constraint firstAttribute="trailing" secondItem="i6A-Iw-epG" secondAttribute="trailing" constant="10" id="H3g-GE-EDB"/>
                             <constraint firstItem="i6A-Iw-epG" firstAttribute="top" secondItem="cEy-3F-cQc" secondAttribute="bottom" constant="-271" id="J6H-0Q-2fH"/>
-                            <constraint firstItem="zM8-Va-aql" firstAttribute="top" secondItem="kCt-ck-W3X" secondAttribute="bottom" constant="7" id="KXG-Z5-mkl"/>
+                            <constraint firstItem="zM8-Va-aql" firstAttribute="top" secondItem="kCt-ck-W3X" secondAttribute="bottom" constant="6" id="KXG-Z5-mkl"/>
                             <constraint firstItem="Cjl-Kr-TQg" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="-21" id="KzG-iq-Oyq"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="centerY" secondItem="vNe-98-kK7" secondAttribute="centerY" id="LY9-aY-7k8"/>
                             <constraint firstItem="zM8-Va-aql" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leading" id="M2C-Am-O1j"/>
@@ -1304,14 +1304,14 @@ in your phone's settings!</string>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="cEy-3F-cQc" secondAttribute="centerX" id="S2b-Zu-3tc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gZw-Qu-kTZ" secondAttribute="trailing" constant="4" id="SHZ-5Z-h3T"/>
                             <constraint firstItem="kCt-ck-W3X" firstAttribute="centerX" secondItem="Cx1-jS-IBl" secondAttribute="centerX" id="Udf-81-s4X"/>
-                            <constraint firstItem="Cjl-Kr-TQg" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="14" id="Vkv-ph-DAV"/>
+                            <constraint firstItem="Cjl-Kr-TQg" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="-6" id="Vkv-ph-DAV"/>
                             <constraint firstItem="zM8-Va-aql" firstAttribute="top" secondItem="8Sd-XX-W3O" secondAttribute="topMargin" constant="64" id="W1F-D8-YBk"/>
-                            <constraint firstItem="gzM-5p-4ue" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="21" id="ZST-ZG-aPy"/>
+                            <constraint firstItem="gzM-5p-4ue" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" id="ZST-ZG-aPy"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="i6A-Iw-epG" secondAttribute="bottom" constant="174" id="Zzs-2G-QdH"/>
                             <constraint firstItem="gzM-5p-4ue" firstAttribute="leading" secondItem="kCt-ck-W3X" secondAttribute="trailing" constant="9" id="avB-tB-rnc"/>
                             <constraint firstItem="zaT-Tc-msp" firstAttribute="top" secondItem="Cx1-jS-IBl" secondAttribute="bottom" constant="11" id="ay6-bw-I41"/>
                             <constraint firstAttribute="centerY" secondItem="cEy-3F-cQc" secondAttribute="centerY" constant="45" id="fLh-md-Agx"/>
-                            <constraint firstItem="vNe-98-kK7" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="32" id="iAn-hL-qNs"/>
+                            <constraint firstItem="vNe-98-kK7" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="10" id="iAn-hL-qNs"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="7Kj-1X-Ut8" secondAttribute="bottom" id="iBv-Gt-BbA"/>
                             <constraint firstAttribute="trailing" secondItem="cEy-3F-cQc" secondAttribute="trailing" constant="5" id="mr8-m3-Say"/>
                             <constraint firstItem="gZw-Qu-kTZ" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="4" id="nDH-N4-qd0"/>
