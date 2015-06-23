@@ -204,11 +204,11 @@
     YSUser *friend = self.friends[indexPath.row];
     self.selectedFriend = friend;
     
-    UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Send your yap with a song or with your voice?"
+    UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Send %@ a song yap or a voice yap?", friend.firstName]
                                                                     delegate:self
                                                            cancelButtonTitle:@"Cancel"
                                                       destructiveButtonTitle:nil
-                                                           otherButtonTitles:@"With a Song", @"With Voice", nil];
+                                                           otherButtonTitles:@"Send a Song Yap", @"Send a Voice Yap", nil];
 
     [actionSheetSpotify showInView:self.view];
 
