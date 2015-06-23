@@ -1007,7 +1007,9 @@
         stringsize.width = self.carouselHeightConstraint.constant-24;
     }
     [self.artistButtonHack setFrame:CGRectMake((self.view.bounds.size.width - (stringsize.width+20))/2, 336, stringsize.width+20, stringsize.height + 8)];
-    
+}
+
+- (void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel {
     [self resetBottomBannerUI];
 }
 
