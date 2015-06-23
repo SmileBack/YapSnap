@@ -227,7 +227,7 @@
 }
 
 - (IBAction)didTapTopChartsButton {
-    if (TRUE) { //(!self.didSeeTopChartsPopup) {
+    if (FALSE) { //(!self.didSeeTopChartsPopup) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Top Trending"
                                                         message:@"Blah Blah"
                                                        delegate:self
@@ -248,12 +248,12 @@
 
 - (void) declarePlaylists {
     
-    self.playlistOne = @"Top 100 Tracks";
-    self.playlistTwo = @"Today's Top Hits";
+    self.playlistOne = @"Top 100 Tracks"; // YES
+    self.playlistTwo = @"Hits";
     self.playlistThree = @"Top Viral Tracks";
-    self.playlistFour = @"New Music Tuesday";
-    self.playlistFive = @"Five";
-    self.playlistSix = @"Six";
+    self.playlistFour = @"90s Ultimate Hits"; //YES
+    self.playlistFive = @"Born in the 90's"; //YES
+    self.playlistSix = @"Top TV"; // YES
     self.playlistSeven = @"Seven";
     
 /*
@@ -406,7 +406,7 @@
             self.tracks = [SpotifyTrackFactory tracks];
         }
         [self shuffleTracks];
-        NSArray *shuffledSuggestedTracks = @[self.tracks[0], self.tracks[1], self.tracks[2]];
+        NSArray *shuffledSuggestedTracks = @[self.tracks[0], self.tracks[1], self.tracks[2], self.tracks[3], self.tracks[4]];
         
         [self createExplainerTrack];
         

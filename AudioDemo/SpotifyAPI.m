@@ -161,7 +161,7 @@ static SpotifyAPI *sharedInstance;
     if ([playlistName isEqualToString:@"Top 100 Tracks"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4hOKQuZbraPDIfaGbM3lKI/tracks";
         
-    } else if ([playlistName isEqualToString:@"Today's Top Hits"]) {
+    } else if ([playlistName isEqualToString:@"Hits"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/5FJXhjdILmRA2z5bvz4nzf/tracks";
         //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4dJHrPYVdKgaCE3Lxrv1MZ/tracks";
         
@@ -169,15 +169,15 @@ static SpotifyAPI *sharedInstance;
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4ldNPWkhPThHdq0FSxB0EZ/tracks";
         //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/3jtuOxsrTRAWvPPLvlW1VR/tracks";
         
-    } else if ([playlistName isEqualToString:@"New Music Tuesday"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/1yHZ5C3penaxRdWR7LRIOb/tracks";
+    } else if ([playlistName isEqualToString:@"90s Ultimate Hits"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/filtr/playlists/0rZJqZmX61rQ4xMkmEWQar/tracks";
         //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/06KmJWiQhL0XiV6QQAHsmw/tracks";
         
-    } else if ([playlistName isEqualToString:@"Five"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/76h0bH2KJhiBuLZqfvPp3K/tracks";
+    } else if ([playlistName isEqualToString:@"Born in the 90's"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4NDUPAZZ1LBw9wvTOq1Mm2/tracks";
         
-    } else if ([playlistName isEqualToString:@"Six"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/3ZgmfR6lsnCwdffZUan8EA/tracks";
+    } else if ([playlistName isEqualToString:@"Top TV"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
         
     } else if ([playlistName isEqualToString:@"Seven"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
