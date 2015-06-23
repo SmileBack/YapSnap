@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="width" constant="75" id="0se-cf-LK1"/>
                                     <constraint firstAttribute="height" constant="75" id="QE5-19-Rv5"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="DiceCircle4.png">
+                                <state key="normal" backgroundImage="ChartIcon160.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1828,7 +1828,7 @@ Type it here!</string>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite2.png" width="300" height="300"/>
         <image name="CancelImageWhite3.png" width="350" height="350"/>
-        <image name="DiceCircle4.png" width="256" height="256"/>
+        <image name="ChartIcon160.png" width="256" height="256"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>

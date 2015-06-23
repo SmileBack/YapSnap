@@ -218,7 +218,7 @@
 
 - (IBAction)didTapTopChartsButton {
     if (!self.didSeeTopChartsPopup) {
-        [self showTopChartsPopup];
+        //[self showTopChartsPopup];
     }
     
     [self resetBottomBannerUI];
