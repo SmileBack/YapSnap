@@ -44,23 +44,18 @@
         switch (action) {
             case YTYapSendingActionReply:
             {
-                YSContact *contact = [YSContact contactWithName:yap.senderName andPhoneNumber:yap.senderPhone];
-                
-                //contact.name = @"Test"; //yap.senderName;
-                //contact.phoneNumber = @"Test last name"; //yap.senderPhone;
-                //PhoneContact* phoneContact = [[ContactManager sharedContactManager] contactForPhoneNumber:yap.senderPhone];
-                
-                self.contacts = @[contact];
+                if (yap.sentByCurrentUser) {
+                    YSContact *contact = [YSContact contactWithName:yap.displayReceiverName andPhoneNumber:yap.receiverPhone];
+                    self.contacts = @[contact];
+                } else {
+                    YSContact *contact = [YSContact contactWithName:yap.displaySenderName andPhoneNumber:yap.senderPhone];
+                    self.contacts = @[contact];
+                }
             }
                 break;
             case YTYapSendingActionForward:
                 self.imageAwsUrl = yap.yapPhotoURL;
                 self.text = yap.text;
-                /*
-                if (![yap.yapPhotoURL isEqual:[NSNull null]]) {
-                    self.image = [NSURL URLWithString:yap.yapPhotoURL];
-                }
-                 */
                 break;
             default:
                 break;

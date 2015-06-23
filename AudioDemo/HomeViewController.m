@@ -315,8 +315,6 @@
         
         //self.pageLabel.alpha = 1;
         NSString *contactReplyingToFirstName = [[self.contactReplyingTo.name componentsSeparatedByString:@" "] objectAtIndex:0];
-        self.pageLabel.text = [NSString stringWithFormat:@"Reply to %@", contactReplyingToFirstName];
-        
         if ([self.contactReplyingTo.phoneNumber isEqualToString:@"+13245678910"] || [self.contactReplyingTo.phoneNumber isEqualToString:@"+13027865701"]) {
             self.pageLabel.text = @"Reply to YapTap Team";
         } else {
