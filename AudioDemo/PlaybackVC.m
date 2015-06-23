@@ -224,7 +224,7 @@
                                                                             delegate:self
                                                                    cancelButtonTitle:@"Cancel"
                                                               destructiveButtonTitle:nil
-                                                                   otherButtonTitles:@"Use Same Song", @"Choose a New Song", @"No Song. Just Voice", nil];
+                                                                   otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
             actionSheetSpotify.tag = 100;
             [actionSheetSpotify showInView:self.view];
         }

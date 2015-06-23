@@ -490,7 +490,7 @@ static NSString *CellIdentifier = @"Cell";
                                                                     delegate:self
                                                            cancelButtonTitle:@"Cancel"
                                                       destructiveButtonTitle:nil
-                                                           otherButtonTitles:@"Use Same Song", @"Choose a New Song", @"No Song. Just Voice", nil];
+                                                           otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
     [actionSheetSpotify showInView:self.view];
 }
 

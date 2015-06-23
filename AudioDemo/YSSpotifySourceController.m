@@ -42,6 +42,7 @@
 @property (nonatomic, strong) NSString *lastShownPlaylist;
 @property (strong, nonatomic) TopChartsPopupViewController *topChartsPopupVC;
 @property (nonatomic, strong) NSMutableArray *tracks;
+@property (nonatomic, strong) YSTrack *explainerTrack;
 
 @property (nonatomic, strong) NSString *playlistOne;
 @property (nonatomic, strong) NSString *playlistTwo;
@@ -119,8 +120,6 @@
     }
     
     [self createArtistButtonHack];
-    
-    [self displaySuggestedSongs];
 }
 
 - (void) createArtistButtonHack {
@@ -139,6 +138,15 @@
     self.playerAlreadyStartedPlayingForThisSong = NO;
     [self hideAlbumBannerWithFadeAnimation:NO];
     self.bottomButton.hidden = NO;
+    
+    if (self.songs.count < 1) {
+        [self displaySuggestedSongs];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.view endEditing:YES];
 }
 
 - (void) setupGestureRecognizers {
@@ -210,8 +218,6 @@
 }
 
 - (IBAction)didTapTopChartsButton {
-    [self displaySuggestedSongs];
-    /*
     if (!self.didSeeTopChartsPopup) {
         [self showTopChartsPopup];
     }
@@ -224,7 +230,6 @@
     [self loadAppropriatePlaylist];
     
     [self updateVisibilityOfMagnifyingGlassAndResetButtons];
-     */
 }
 
 - (void) declarePlaylists {
@@ -376,19 +381,18 @@
     [self shuffleTracks];
     NSArray *shuffledSuggestedTracks = @[self.tracks[0], self.tracks[1], self.tracks[2]];
     
-    YSTrack *explainerTrack = [YSTrack new];
-    explainerTrack.name = @"";
-    explainerTrack.spotifyID = @"";
-    explainerTrack.previewURL = @"";
-    explainerTrack.artistName = @"";
-    explainerTrack.albumName = @"";
-    explainerTrack.spotifyURL = @"";
-    explainerTrack.imageURL = @"Home";
-    explainerTrack.isExplainerTrack = YES;
+    [self createExplainerTrack];
     
-    self.songs = [shuffledSuggestedTracks arrayByAddingObjectsFromArray:@[explainerTrack]];
+    self.songs = [shuffledSuggestedTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
     self.carousel.currentItemIndex = 0;
     [self.carousel reloadData];
+    [UIView animateWithDuration:.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.carousel.alpha = 1;
+                     }
+                     completion:nil];
 }
 
 - (void) shuffleTracks {
@@ -397,6 +401,20 @@
         NSInteger remainingCount = count - i;
         NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
         [self.tracks exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
+}
+
+-(void)createExplainerTrack {
+    if (!self.explainerTrack) {
+        self.explainerTrack = [YSTrack new];
+        self.explainerTrack.name = @"";
+        self.explainerTrack.spotifyID = @"";
+        self.explainerTrack.previewURL = @"";
+        self.explainerTrack.artistName = @"";
+        self.explainerTrack.albumName = @"";
+        self.explainerTrack.spotifyURL = @"";
+        self.explainerTrack.imageURL = @"Home";
+        self.explainerTrack.isExplainerTrack = YES;
     }
 }
 
@@ -478,7 +496,6 @@
             [weakSelf.carousel reloadData];
             if (songs.count == 0) {
                 [self.loadingIndicator stopAnimating];
-                self.carousel.alpha = 0;
                 
                 NSLog(@"No Songs Returned For Search Query");
                 
@@ -486,18 +503,18 @@
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
                 });
-                
+                /*
                 double delay2 = 1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.searchBox becomeFirstResponder];
                 });
+                 */
             } else {
                 NSLog(@"Returned Songs Successfully");
                 [self.loadingIndicator stopAnimating];
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];
-            self.carousel.alpha = 0;
             
             if ([self internetIsNotReachable]) {
                 double delay = 0.1;
@@ -541,7 +558,6 @@
             
             if (songs.count == 0) {
                 [self.loadingIndicator stopAnimating];
-                self.carousel.alpha = 0;
                 
                 NSLog(@"No Songs Returned For Search Query");
                 
@@ -555,7 +571,6 @@
             }
         } else if (error) {
             [self.loadingIndicator stopAnimating];
-            self.carousel.alpha = 0;
             
             if ([self internetIsNotReachable]) {
                 double delay = 0.1;
@@ -585,6 +600,7 @@
     NSLog(@"Textfield did begin editing");
     self.carousel.scrollEnabled = NO;
     self.carousel.alpha = 0;
+    self.songs = nil;
     
     [self resetBottomBannerUI];
 }
@@ -756,6 +772,8 @@
         trackView.songVersionOneButton.hidden = YES;
         trackView.songVersionTwoButton.hidden = YES;
         trackView.albumImageButton.hidden = YES;
+        trackView.artistButton.hidden = YES;
+        trackView.songNameLabel.hidden = YES;
     }
     
     return trackView;
@@ -1198,8 +1216,6 @@
 }
 
 - (void) resetUI {
-    self.songs = nil;
-
     [UIView animateWithDuration:.05
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -1207,7 +1223,6 @@
                          NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type any phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
                          self.searchBox.attributedPlaceholder = string;
                          
-                         self.carousel.alpha = 0;
                          [self hideResetButton];
                          self.loadingIndicator.alpha = 0;
                      }
