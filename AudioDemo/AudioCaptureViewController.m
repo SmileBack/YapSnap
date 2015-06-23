@@ -179,6 +179,7 @@ static const float TIMER_INTERVAL = .02;
         [audioProgressTimer invalidate];
         NSLog(@"Audio Progress Timer Invalidate 6");
         [self.audioSource stopAudioCapture];
+        
     }
 }
 

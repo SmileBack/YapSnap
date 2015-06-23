@@ -721,14 +721,6 @@
         trackView.bannerLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
         [trackView addSubview:trackView.bannerLabel];
         
-        // For Onboarding:
-        if (!self.didPlaySongForFirstTime) {
-            trackView.bannerLabel.alpha = 1;
-            trackView.bannerLabel.text = @"Hold To Play";
-        } else {
-            trackView.bannerLabel.alpha = 0;
-        }
-        
         trackView.imageView.layer.borderWidth = 2;
         trackView.imageView.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
         [trackView.imageView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.05]];
@@ -774,6 +766,14 @@
         trackView.artistButton.hidden = YES;
         trackView.songNameLabel.hidden = YES;
         trackView.bannerLabel.hidden = YES;
+    }
+    
+    // For Onboarding:
+    if (!self.didPlaySongForFirstTime) {
+        trackView.bannerLabel.alpha = 1;
+        trackView.bannerLabel.text = @"Hold To Play";
+    } else {
+        trackView.bannerLabel.alpha = 0;
     }
     
     return trackView;
