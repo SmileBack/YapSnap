@@ -91,29 +91,33 @@ static SpotifyAPI *sharedInstance;
 
 - (void) retrieveTracksFromSpotifyForPlaylist:(NSString *)playlistName withCallback:(SpotifySongCallback)callback
 {
-    if ([playlistName isEqualToString:@"Top 100 Tracks"]) {
+    if ([playlistName isEqualToString:@"Trending"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4hOKQuZbraPDIfaGbM3lKI/tracks";
         
-    } else if ([playlistName isEqualToString:@"Top Humor"]) {
+    } else if ([playlistName isEqualToString:@"Funny"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/5FJXhjdILmRA2z5bvz4nzf/tracks";
-        //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4dJHrPYVdKgaCE3Lxrv1MZ/tracks";
         
-    } else if ([playlistName isEqualToString:@"Top Viral Tracks"]) {
+    } else if ([playlistName isEqualToString:@"Nostalgic"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4ldNPWkhPThHdq0FSxB0EZ/tracks";
-        //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/3jtuOxsrTRAWvPPLvlW1VR/tracks";
         
-    } else if ([playlistName isEqualToString:@"90s Ultimate Hits"]) {
+    } else if ([playlistName isEqualToString:@"Happy"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/filtr/playlists/0rZJqZmX61rQ4xMkmEWQar/tracks";
-        //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/06KmJWiQhL0XiV6QQAHsmw/tracks";
         
-    } else if ([playlistName isEqualToString:@"Born in the 90's"]) {
+    } else if ([playlistName isEqualToString:@"Flirty"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4NDUPAZZ1LBw9wvTOq1Mm2/tracks";
         
-    } else if ([playlistName isEqualToString:@"Top TV"]) {
+    } else if ([playlistName isEqualToString:@"Party"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
         
-    } else if ([playlistName isEqualToString:@"Top Soundtracks"]) {
+    } else if ([playlistName isEqualToString:@"?????"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
+    
+    } else if ([playlistName isEqualToString:@"?????"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
+        
+    } else if ([playlistName isEqualToString:@"?????"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
+    
     } else {
         self.playlistURL = @"Error";
         NSLog(@"Error");
