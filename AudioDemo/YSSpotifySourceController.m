@@ -235,6 +235,11 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self resetSuggestedSongsIfNeeded];
+                        if (self.categoryView.hidden == NO) {
+                            // Hide Category View
+                            self.categoryView.hidden = YES;
+                            [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+                        }
                     }];
 }
 

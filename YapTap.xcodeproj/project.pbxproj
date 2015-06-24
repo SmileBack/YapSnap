@@ -1452,8 +1452,8 @@
 			isa = PBXGroup;
 			children = (
 				784E35EA1A659BD00029AA01 /* Audio Capture */,
-				783CCF721B33A50F00E3B5BF /* Mic Page */,
 				783CCF711B33A4FE00E3B5BF /* Spotify Page */,
+				783CCF721B33A50F00E3B5BF /* Mic Page */,
 				FCFCE45F1AF559B50094926E /* Home View Controller */,
 				785393721AD9C48B00C6BEA7 /* Customize Yap */,
 				FC3ECAE61A830482002678F6 /* Friends */,
