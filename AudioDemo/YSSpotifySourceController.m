@@ -43,31 +43,32 @@
 @property (strong, nonatomic) TopChartsPopupViewController *topChartsPopupVC;
 @property (nonatomic, strong) NSMutableArray *tracks;
 @property (nonatomic, strong) YSTrack *explainerTrack;
-
-@property (nonatomic, strong) NSString *playlistOne;
-@property (nonatomic, strong) NSString *playlistTwo;
-@property (nonatomic, strong) NSString *playlistThree;
-@property (nonatomic, strong) NSString *playlistFour;
-@property (nonatomic, strong) NSString *playlistFive;
-@property (nonatomic, strong) NSString *playlistSix;
-@property (nonatomic, strong) NSString *playlistSeven;
-@property (nonatomic, strong) NSString *playlistEight;
-@property (nonatomic, strong) NSString *playlistNine;
-@property (nonatomic, strong) NSString *playlistTen;
-@property (nonatomic, strong) NSString *playlistEleven;
-@property (nonatomic, strong) NSString *playlistTwelve;
-@property (nonatomic, strong) NSString *playlistThirteen;
-@property (nonatomic, strong) NSString *playlistFourteen;
-@property (nonatomic, strong) NSString *playlistFifteen;
-@property (nonatomic, strong) NSString *playlistSixteen;
-@property (nonatomic, strong) NSString *playlistSeventeen;
-@property (nonatomic, strong) NSString *playlistEighteen;
-@property (nonatomic, strong) NSString *playlistNineteen;
-@property (nonatomic, strong) NSString *playlistTwenty;
-@property (nonatomic, strong) NSString *playlistTwentyOne;
+@property (strong, nonatomic) IBOutlet UIView *categoryView;
 
 - (IBAction)didTapResetButton;
-- (IBAction)didTapTopChartsButton;
+- (IBAction)didTapCategoryModeButton;
+
+// tapCategoryButton
+@property (strong, nonatomic) IBOutlet UIButton *categoryButtonOne;
+@property (strong, nonatomic) IBOutlet UIButton *categoryButtonTwo;
+@property (strong, nonatomic) IBOutlet UIButton *categoryButtonThree;
+@property (strong, nonatomic) IBOutlet UIButton *categoryButtonFour;
+@property (strong, nonatomic) IBOutlet UIButton *categoryButtonFive;
+@property (strong, nonatomic) IBOutlet UIButton *categoryButtonSix;
+@property (strong, nonatomic) IBOutlet UIButton *categoryButtonSeven;
+@property (strong, nonatomic) IBOutlet UIButton *categoryButtonEight;
+@property (strong, nonatomic) IBOutlet UIButton *categoryButtonNine;
+
+// didTapCategoryButton
+- (IBAction)didTapCategoryButtonOne;
+- (IBAction)didTapCategoryButtonTwo;
+- (IBAction)didTapCategoryButtonThree;
+- (IBAction)didTapCategoryButtonFour;
+- (IBAction)didTapCategoryButtonFive;
+- (IBAction)didTapCategoryButtonSix;
+- (IBAction)didTapCategoryButtonSeven;
+- (IBAction)didTapCategoryButtonEight;
+- (IBAction)didTapCategoryButtonNine;
 
 @end
 
@@ -120,6 +121,10 @@
     }
     
     [self createArtistButtonHack];
+    
+    self.categoryView.backgroundColor = THEME_BACKGROUND_COLOR;
+    
+    [self styleCategoryButtons];
 }
 
 - (void) createArtistButtonHack {
@@ -146,10 +151,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self.view endEditing:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [self.view endEditing:YES];
     [self resetSuggestedSongsIfNeeded];
 }
 
@@ -254,167 +259,140 @@
     });
 }
 
-- (IBAction)didTapTopChartsButton {
-    if (!self.didSeeTopChartsPopup) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Top Trending Lists"
-                                                        message:@"To see other lists, keeping tapping."
-                                                       delegate:self
-                                              cancelButtonTitle:@"Skip"
-                                              otherButtonTitles:@"Continue", nil];
-        [alert show];
-    } else {
-        [self resetBottomBannerUI];
-        [self.view endEditing:YES];
-        
-        [self declarePlaylists];
-        
-        [self loadAppropriatePlaylist];
-        
-        [self updateVisibilityOfMagnifyingGlassAndResetButtons];
-    }
-}
+#pragma mark - Search box stuff
 
-- (void) declarePlaylists {
-
-    self.playlistOne = @"Top 100 Tracks"; // YES
-    self.playlistTwo = @"Top Humor";
-    self.playlistThree = @"Top Viral Tracks";
-    self.playlistFour = @"90s Ultimate Hits"; //YES
-    self.playlistFive = @"Born in the 90's"; //YES
-    self.playlistSix = @"Top TV"; // YES
-    self.playlistSeven = @"Top Soundtracks";
-
-    /*
-    self.playlistOne = @"Comedy New Releases";
-    self.playlistTwo = @"Comedy Top Tracks";
-    self.playlistThree = @"The Laugh List";
-    self.playlistFour = @"British Humour";
-    self.playlistFive = @"Quirck It";
-    self.playlistSix = @"Funny Things About Football";
-    self.playlistSeven = @"Monty Python Emporium";
-    self.playlistEight = @"Ladies Night";
-    self.playlistNine = @"20 Questions";
-    self.playlistTen = @"Animal Humor";
-    self.playlistEleven = @"Music Jokes";
-    self.playlistTwelve = @"Dating Issues";
-    self.playlistThirteen = @"Comedy Goes Country";
-    self.playlistFourteen = @"Unsolicited Advice";
-    self.playlistFifteen = @"Office Offensive";
-    self.playlistSixteen = @"Love & Marriage";
-    self.playlistSeventeen = @"The Interwebs";
-    self.playlistEighteen = @"Lights, Camera, Comedy!";
-    self.playlistNineteen = @"Louis CK | Collected";
-    self.playlistTwenty = @"[Family]";
-    self.playlistTwentyOne = @"Comedy Top Trackss";
-    */
-
-}
-
-- (void) loadAppropriatePlaylist {
-    if (!self.lastShownPlaylist) {
-        [self retrieveTracksForPlaylist:self.playlistOne];
-        self.lastShownPlaylist = self.playlistOne;
-        self.searchBox.text = self.playlistOne;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistOne] && self.playlistTwo) {
-        [self retrieveTracksForPlaylist:self.playlistTwo];
-        self.lastShownPlaylist = self.playlistTwo;
-        self.searchBox.text = self.playlistTwo;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistTwo] && self.playlistThree) {
-        [self retrieveTracksForPlaylist:self.playlistThree];
-        self.lastShownPlaylist = self.playlistThree;
-        self.searchBox.text = self.playlistThree;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistThree] && self.playlistFour) {
-        [self retrieveTracksForPlaylist:self.playlistFour];
-        self.lastShownPlaylist = self.playlistFour;
-        self.searchBox.text = self.playlistFour;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistFour] && self.playlistFive) {
-        [self retrieveTracksForPlaylist:self.playlistFive];
-        self.lastShownPlaylist = self.playlistFive;
-        self.searchBox.text = self.playlistFive;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistFive] && self.playlistSix) {
-        [self retrieveTracksForPlaylist:self.playlistSix];
-        self.lastShownPlaylist = self.playlistSix;
-        self.searchBox.text = self.playlistSix;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistSix] && self.playlistSeven) {
-        [self retrieveTracksForPlaylist:self.playlistSeven];
-        self.lastShownPlaylist = self.playlistSeven;
-        self.searchBox.text = self.playlistSeven;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistSeven] && self.playlistEight) {
-        [self retrieveTracksForPlaylist:self.playlistEight];
-        self.lastShownPlaylist = self.playlistEight;
-        self.searchBox.text = self.playlistEight;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistEight] && self.playlistNine) {
-        [self retrieveTracksForPlaylist:self.playlistNine];
-        self.lastShownPlaylist = self.playlistNine;
-        self.searchBox.text = self.playlistNine;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistNine] && self.playlistTen) {
-        [self retrieveTracksForPlaylist:self.playlistTen];
-        self.lastShownPlaylist = self.playlistTen;
-        self.searchBox.text = self.playlistTen;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistTen] && self.playlistEleven) {
-        [self retrieveTracksForPlaylist:self.playlistEleven];
-        self.lastShownPlaylist = self.playlistEleven;
-        self.searchBox.text = self.playlistEleven;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistEleven] && self.playlistTwelve) {
-        [self retrieveTracksForPlaylist:self.playlistTwelve];
-        self.lastShownPlaylist = self.playlistTwelve;
-        self.searchBox.text = self.playlistTwelve;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistTwelve] && self.playlistThirteen) {
-        [self retrieveTracksForPlaylist:self.playlistThirteen];
-        self.lastShownPlaylist = self.playlistThirteen;
-        self.searchBox.text = self.playlistThirteen;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistThirteen] && self.playlistFourteen) {
-        [self retrieveTracksForPlaylist:self.playlistFourteen];
-        self.lastShownPlaylist = self.playlistFourteen;
-        self.searchBox.text = self.playlistFourteen;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistFourteen] && self.playlistFifteen) {
-        [self retrieveTracksForPlaylist:self.playlistFifteen];
-        self.lastShownPlaylist = self.playlistFifteen;
-        self.searchBox.text = self.playlistFifteen;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistFifteen] && self.playlistSixteen) {
-        [self retrieveTracksForPlaylist:self.playlistSixteen];
-        self.lastShownPlaylist = self.playlistSixteen;
-        self.searchBox.text = self.playlistSixteen;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistSixteen] && self.playlistSeventeen) {
-        [self retrieveTracksForPlaylist:self.playlistSeventeen];
-        self.lastShownPlaylist = self.playlistSeventeen;
-        self.searchBox.text = self.playlistSeventeen;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistSeventeen] && self.playlistEighteen) {
-        [self retrieveTracksForPlaylist:self.playlistEighteen];
-        self.lastShownPlaylist = self.playlistEighteen;
-        self.searchBox.text = self.playlistEighteen;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistEighteen] && self.playlistNineteen) {
-        [self retrieveTracksForPlaylist:self.playlistNineteen];
-        self.lastShownPlaylist = self.playlistNineteen;
-        self.searchBox.text = self.playlistNineteen;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistNineteen] && self.playlistTwenty) {
-        [self retrieveTracksForPlaylist:self.playlistTwenty];
-        self.lastShownPlaylist = self.playlistTwenty;
-        self.searchBox.text = self.playlistTwenty;
-    } else if ([self.lastShownPlaylist isEqualToString:self.playlistTwenty] && self.playlistTwentyOne) {
-        [self retrieveTracksForPlaylist:self.playlistTwentyOne];
-        self.lastShownPlaylist = self.playlistTwentyOne;
-        self.searchBox.text = self.playlistTwentyOne;
-    } else{
-        [self retrieveTracksForPlaylist:self.playlistOne];
-        self.lastShownPlaylist = self.playlistOne;
-        self.searchBox.text = self.playlistOne;
-    }
+-(void) styleCategoryButtons {
+    self.categoryButtonOne.layer.cornerRadius = self.categoryButtonOne.bounds.size.height/2;
+    self.categoryButtonOne.layer.borderWidth = 1;
+    self.categoryButtonOne.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    /*
-     YSTrack *track = [YSTrack new];
-     track.name = @"Home";
-     track.spotifyID = @"Home";
-     track.previewURL = @"Home";
-     track.artistName = @"Home";
-     track.albumName = @"Home";
-     track.spotifyURL = @"Home";
-     track.imageURL = @"Home";
-     self.songs = @[track];//[YSTrack tracksFromDictionaryArray:track inCategory:YES];
-     self.carousel.currentItemIndex = 0;
-     [self.carousel reloadData];
-     */
+    self.categoryButtonTwo.layer.cornerRadius = self.categoryButtonTwo.bounds.size.height/2;
+    self.categoryButtonTwo.layer.borderWidth = 1;
+    self.categoryButtonTwo.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.categoryButtonThree.layer.cornerRadius = self.categoryButtonThree.bounds.size.height/2;
+    self.categoryButtonThree.layer.borderWidth = 1;
+    self.categoryButtonThree.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.categoryButtonFour.layer.cornerRadius = self.categoryButtonFour.bounds.size.height/2;
+    self.categoryButtonFour.layer.borderWidth = 1;
+    self.categoryButtonFour.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.categoryButtonFive.layer.cornerRadius = self.categoryButtonFive.bounds.size.height/2;
+    self.categoryButtonFive.layer.borderWidth = 1;
+    self.categoryButtonFive.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.categoryButtonSix.layer.cornerRadius = self.categoryButtonSix.bounds.size.height/2;
+    self.categoryButtonSix.layer.borderWidth = 1;
+    self.categoryButtonSix.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.categoryButtonSeven.layer.cornerRadius = self.categoryButtonSeven.bounds.size.height/2;
+    self.categoryButtonSeven.layer.borderWidth = 1;
+    self.categoryButtonSeven.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.categoryButtonEight.layer.cornerRadius = self.categoryButtonEight.bounds.size.height/2;
+    self.categoryButtonEight.layer.borderWidth = 1;
+    self.categoryButtonEight.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.categoryButtonNine.layer.cornerRadius = self.categoryButtonNine.bounds.size.height/2;
+    self.categoryButtonNine.layer.borderWidth = 1;
+    self.categoryButtonNine.layer.borderColor = [UIColor whiteColor].CGColor;
 }
+
+-(IBAction) didTapCategoryModeButton {
+    [self switchCategoryMode];
+}
+
+-(void) switchCategoryMode {
+    if (self.categoryView.hidden == YES) {
+        self.categoryView.hidden = NO;
+        [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryBackButtonImage.png"] forState:UIControlStateNormal];
+    } else {
+        self.categoryView.hidden = YES;
+        [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+    }
+}
+
+
+
+-(IBAction) didTapCategoryButtonOne {
+    [self retrieveTracksForPlaylist:@"Top Humor"];
+    self.categoryView.hidden = YES;
+    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+}
+
+-(IBAction) didTapCategoryButtonTwo {
+    [self retrieveTracksForPlaylist:@"Top Humor"];
+    self.categoryView.hidden = YES;
+    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+}
+
+-(IBAction) didTapCategoryButtonThree {
+    [self retrieveTracksForPlaylist:@"Top Humor"];
+    self.categoryView.hidden = YES;
+    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+}
+
+-(IBAction) didTapCategoryButtonFour {
+    [self retrieveTracksForPlaylist:@"Top Humor"];
+    self.categoryView.hidden = YES;
+    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+}
+
+-(IBAction) didTapCategoryButtonFive {
+    [self retrieveTracksForPlaylist:@"Top Humor"];
+    self.categoryView.hidden = YES;
+    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+}
+
+-(IBAction) didTapCategoryButtonSix {
+    [self retrieveTracksForPlaylist:@"Top Humor"];
+    self.categoryView.hidden = YES;
+    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+}
+
+-(IBAction) didTapCategoryButtonSeven {
+    [self retrieveTracksForPlaylist:@"Top Humor"];
+    self.categoryView.hidden = YES;
+    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+}
+
+-(IBAction) didTapCategoryButtonEight {
+    [self retrieveTracksForPlaylist:@"Top Humor"];
+    self.categoryView.hidden = YES;
+    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+}
+
+-(IBAction) didTapCategoryButtonNine {
+    [self retrieveTracksForPlaylist:@"Top Humor"];
+    self.categoryView.hidden = YES;
+    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+}
+
+/*
+COMEDY PLAYLISTS
+     self.playlistOne = @"Comedy New Releases";
+     self.playlistTwo = @"Comedy Top Tracks";
+     self.playlistThree = @"The Laugh List";
+     self.playlistFour = @"British Humour";
+     self.playlistFive = @"Quirck It";
+     self.playlistSix = @"Funny Things About Football";
+     self.playlistSeven = @"Monty Python Emporium";
+     self.playlistEight = @"Ladies Night";
+     self.playlistNine = @"20 Questions";
+     self.playlistTen = @"Animal Humor";
+     self.playlistEleven = @"Music Jokes";
+     self.playlistTwelve = @"Dating Issues";
+     self.playlistThirteen = @"Comedy Goes Country";
+     self.playlistFourteen = @"Unsolicited Advice";
+     self.playlistFifteen = @"Office Offensive";
+     self.playlistSixteen = @"Love & Marriage";
+     self.playlistSeventeen = @"The Interwebs";
+     self.playlistEighteen = @"Lights, Camera, Comedy!";
+     self.playlistNineteen = @"Louis CK | Collected";
+     self.playlistTwenty = @"[Family]";
+     self.playlistTwentyOne = @"Comedy Top Trackss";
+*/
 
 -(void) displaySuggestedSongs {
     if (!self.didPlaySongForFirstTime) {
@@ -658,8 +636,12 @@
     self.carousel.scrollEnabled = NO;
     self.carousel.alpha = 0;
     self.songs = nil;
-    
+
     [self resetBottomBannerUI];
+    
+    if (self.categoryView.hidden == NO) {
+        [self switchCategoryMode];
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -1305,6 +1287,7 @@
                      }];
 }
 
+/*
 - (void) showTopChartsPopup {
     double delay = .1;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -1314,22 +1297,12 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_TOP_CHARTS_POPUP_KEY];
     });
 }
+*/
 
 - (void) resetBottomBannerUI {
     [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:REMOVE_BOTTOM_BANNER_NOTIFICATION object:nil];
     self.bottomButton.hidden = NO;
-}
-
-#pragma mark - Control Center Stuff
-
-- (void) showRandomPickAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Here's a Random Artist"
-                                                    message:@"Tap the shuffle button to explore\nmore artists."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
 }
 
 - (void) updateVisibilityOfMagnifyingGlassAndResetButtons {
@@ -1347,20 +1320,6 @@
                          }
                          completion:nil];
         self.magnifyingGlassImageView.hidden = NO;
-    }
-}
-
-#pragma mark - UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_TOP_CHARTS_POPUP_KEY];
-        [self didTapTopChartsButton];
-        /*
-        [self searchForTracksWithString:self.artistNameString];
-        self.searchBox.text = self.artistNameString;
-        [self updateVisibilityOfMagnifyingGlassAndResetButtons];
-         */
     }
 }
 

@@ -86,6 +86,9 @@
 		783CCFA61B39416000E3B5BF /* ExplainerTrackImage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFA51B39416000E3B5BF /* ExplainerTrackImage2.png */; };
 		783CCFA81B39441A00E3B5BF /* ExplainerTrackImage3.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFA71B39441A00E3B5BF /* ExplainerTrackImage3.png */; };
 		783CCFAA1B3A0AD800E3B5BF /* TrendingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFA91B3A0AD800E3B5BF /* TrendingIcon.png */; };
+		783CCFB01B3A6D2F00E3B5BF /* CategoryButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFAF1B3A6D2F00E3B5BF /* CategoryButton.png */; };
+		783CCFB21B3A6DEE00E3B5BF /* CategoryButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFB11B3A6DEE00E3B5BF /* CategoryButtonImage.png */; };
+		783CCFB41B3A6F2E00E3B5BF /* CategoryBackButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFB31B3A6F2E00E3B5BF /* CategoryBackButtonImage.png */; };
 		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */; };
 		784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
@@ -422,6 +425,9 @@
 		783CCFA51B39416000E3B5BF /* ExplainerTrackImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExplainerTrackImage2.png; sourceTree = "<group>"; };
 		783CCFA71B39441A00E3B5BF /* ExplainerTrackImage3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExplainerTrackImage3.png; sourceTree = "<group>"; };
 		783CCFA91B3A0AD800E3B5BF /* TrendingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrendingIcon.png; sourceTree = "<group>"; };
+		783CCFAF1B3A6D2F00E3B5BF /* CategoryButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CategoryButton.png; sourceTree = "<group>"; };
+		783CCFB11B3A6DEE00E3B5BF /* CategoryButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CategoryButtonImage.png; sourceTree = "<group>"; };
+		783CCFB31B3A6F2E00E3B5BF /* CategoryBackButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CategoryBackButtonImage.png; sourceTree = "<group>"; };
 		784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSRecordProgressView.h; sourceTree = "<group>"; };
 		784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecordProgressView.m; sourceTree = "<group>"; };
 		784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetImageButton.h; sourceTree = "<group>"; };
@@ -729,6 +735,9 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				783CCFAF1B3A6D2F00E3B5BF /* CategoryButton.png */,
+				783CCFB31B3A6F2E00E3B5BF /* CategoryBackButtonImage.png */,
+				783CCFB11B3A6DEE00E3B5BF /* CategoryButtonImage.png */,
 				783CCFA91B3A0AD800E3B5BF /* TrendingIcon.png */,
 				783CCFA31B39408A00E3B5BF /* ExplainerTrackImage.png */,
 				783CCF7F1B39129100E3B5BF /* ChartsIcon.png */,
@@ -1766,6 +1775,7 @@
 				78C1C3041B264CB400C6CBCA /* ProgressViewRedNew@3x.png in Resources */,
 				783CCFA61B39416000E3B5BF /* ExplainerTrackImage2.png in Resources */,
 				78624BF61B04EC6B00C8E049 /* ProgressViewYellow@2x.png in Resources */,
+				783CCFB21B3A6DEE00E3B5BF /* CategoryButtonImage.png in Resources */,
 				783CCFAA1B3A0AD800E3B5BF /* TrendingIcon.png in Resources */,
 				78B0B7621AEF3834001C074B /* Shuffle50.png in Resources */,
 				78439FC81AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png in Resources */,
@@ -1782,6 +1792,7 @@
 				78624BE71B03BA9100C8E049 /* GuidanceArrowLeft.png in Resources */,
 				78C584A61B30A98500B5AA5C /* ReplayIcon2.png in Resources */,
 				787EC6071ACA12DB000C5539 /* OldProgressViewLightBlue@2x.png in Resources */,
+				783CCFB41B3A6F2E00E3B5BF /* CategoryBackButtonImage.png in Resources */,
 				78439F881AE5C6A1004CFB5F /* SmallMusicIcon2.png in Resources */,
 				788363901AD78BB6001CBD1B /* OneNotSelectediPhone4@2x.png in Resources */,
 				7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */,
@@ -1822,6 +1833,7 @@
 				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
 				783CCFA21B39241400E3B5BF /* ChartIcon170.png in Resources */,
 				78624C041B04F0C000C8E049 /* ProgressViewLightBlue@3x.png in Resources */,
+				783CCFB01B3A6D2F00E3B5BF /* CategoryButton.png in Resources */,
 				786E0BE71B00755800005D1D /* Shuffle60.png in Resources */,
 				78439FC21AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png in Resources */,
 				783CCFA81B39441A00E3B5BF /* ExplainerTrackImage3.png in Resources */,

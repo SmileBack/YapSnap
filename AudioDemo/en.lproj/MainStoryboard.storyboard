@@ -63,12 +63,12 @@
                                     <constraint firstAttribute="width" constant="75" id="0se-cf-LK1"/>
                                     <constraint firstAttribute="height" constant="75" id="QE5-19-Rv5"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="TrendingIcon.png">
+                                <state key="normal" backgroundImage="CategoryButtonImage.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapTopChartsButton" destination="jNN-gb-fip" eventType="touchUpInside" id="mJB-xw-pAW"/>
+                                    <action selector="didTapCategoryModeButton" destination="jNN-gb-fip" eventType="touchUpInside" id="pYX-va-XJY"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MagnifyingGlass.png" translatesAutoresizingMaskIntoConstraints="NO" id="cNC-jx-czs" userLabel="Magnifying Glass">
@@ -78,6 +78,120 @@
                                     <constraint firstAttribute="width" constant="20" id="Th0-UA-cmq"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R1O-6v-Usj" userLabel="Category View">
+                                <rect key="frame" x="0.0" y="93" width="320" height="293"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8m-7k-566" userLabel="Button 1">
+                                        <rect key="frame" x="22" y="8" width="80" height="80"/>
+                                        <color key="backgroundColor" red="0.108335585" green="0.77454084769999998" blue="1" alpha="0.95999999999999996" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <state key="normal" title="Trending">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCategoryButtonOne" destination="jNN-gb-fip" eventType="touchUpInside" id="9PQ-TJ-Dth"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6Y-Ju-vMc" userLabel="Button 2">
+                                        <rect key="frame" x="120" y="8" width="80" height="80"/>
+                                        <color key="backgroundColor" red="0.108335585" green="0.77454084769999998" blue="1" alpha="0.95999999999999996" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <state key="normal" title="Funny">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCategoryButtonTwo" destination="jNN-gb-fip" eventType="touchUpInside" id="sUD-pf-a4C"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XkH-qN-qjZ" userLabel="Button 3">
+                                        <rect key="frame" x="218" y="8" width="80" height="80"/>
+                                        <color key="backgroundColor" red="0.108335585" green="0.77454084769999998" blue="1" alpha="0.95999999999999996" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <state key="normal" title="Nostalgic">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCategoryButtonThree" destination="jNN-gb-fip" eventType="touchUpInside" id="7Jy-6s-oDk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CvP-LC-4CJ" userLabel="Button 4">
+                                        <rect key="frame" x="22" y="100" width="80" height="80"/>
+                                        <color key="backgroundColor" red="0.108335585" green="0.77454084769999998" blue="1" alpha="0.95999999999999996" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <state key="normal" title="Happy">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCategoryButtonFour" destination="jNN-gb-fip" eventType="touchUpInside" id="m6v-X9-XIY"/>
+                                        </connections>
+                                    </button>
+                                    <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XeH-1z-kfV" userLabel="Button 5">
+                                        <rect key="frame" x="120" y="100" width="80" height="80"/>
+                                        <color key="backgroundColor" red="0.108335585" green="0.77454084769999998" blue="1" alpha="0.95999999999999996" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <state key="normal" title="Flirty">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCategoryButtonFive" destination="jNN-gb-fip" eventType="touchUpInside" id="cQt-2E-uYS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKF-Mv-IAq" userLabel="Button 6">
+                                        <rect key="frame" x="218" y="100" width="80" height="80"/>
+                                        <color key="backgroundColor" red="0.108335585" green="0.77454084769999998" blue="1" alpha="0.95999999999999996" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <state key="normal" title="Party">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCategoryButtonSix" destination="jNN-gb-fip" eventType="touchUpInside" id="Dmz-H5-6Mv"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihX-61-Gi8" userLabel="Button 7">
+                                        <rect key="frame" x="22" y="192" width="80" height="80"/>
+                                        <color key="backgroundColor" red="0.108335585" green="0.77454084769999998" blue="1" alpha="0.95999999999999996" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCategoryButtonSeven" destination="jNN-gb-fip" eventType="touchUpInside" id="dJf-hD-2kM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAh-Nm-dEw" userLabel="Button 8">
+                                        <rect key="frame" x="120" y="192" width="80" height="80"/>
+                                        <color key="backgroundColor" red="0.108335585" green="0.77454084769999998" blue="1" alpha="0.95999999999999996" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCategoryButtonEight" destination="jNN-gb-fip" eventType="touchUpInside" id="TyO-IA-yRd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXF-B5-w6N" userLabel="Button 9">
+                                        <rect key="frame" x="218" y="192" width="80" height="80"/>
+                                        <color key="backgroundColor" red="0.108335585" green="0.77454084769999998" blue="1" alpha="0.95999999999999996" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCategoryButtonNine" destination="jNN-gb-fip" eventType="touchUpInside" id="7vG-5P-YeF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.21830097379999999" blue="0.44227100019999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -105,6 +219,16 @@
                         <outlet property="carousel" destination="ZNs-R1-CJc" id="5vb-SQ-OO6"/>
                         <outlet property="carouselHeightConstraint" destination="hJg-gl-YKL" id="JNK-sm-bxz"/>
                         <outlet property="carouselYConstraint" destination="TF2-gT-f9w" id="iMy-Ii-0qQ"/>
+                        <outlet property="categoryButtonEight" destination="iAh-Nm-dEw" id="uqb-xA-rZO"/>
+                        <outlet property="categoryButtonFive" destination="XeH-1z-kfV" id="Igo-LS-Zbb"/>
+                        <outlet property="categoryButtonFour" destination="CvP-LC-4CJ" id="zvQ-nF-o5j"/>
+                        <outlet property="categoryButtonNine" destination="MXF-B5-w6N" id="yfa-zz-kr4"/>
+                        <outlet property="categoryButtonOne" destination="b8m-7k-566" id="Wlw-eY-E3r"/>
+                        <outlet property="categoryButtonSeven" destination="ihX-61-Gi8" id="rlx-u0-DKW"/>
+                        <outlet property="categoryButtonSix" destination="kKF-Mv-IAq" id="ER2-hc-Zdh"/>
+                        <outlet property="categoryButtonThree" destination="XkH-qN-qjZ" id="NzP-wW-rgM"/>
+                        <outlet property="categoryButtonTwo" destination="f6Y-Ju-vMc" id="Qp3-hv-aKf"/>
+                        <outlet property="categoryView" destination="R1O-6v-Usj" id="15x-C9-Ezb"/>
                         <outlet property="loadingIndicator" destination="iKi-hk-1A5" id="Kfk-Mv-9XA"/>
                         <outlet property="magnifyingGlassImageView" destination="cNC-jx-czs" id="JOM-R8-HF5"/>
                         <outlet property="resetButton" destination="oUD-ix-h4T" id="Gbn-6y-zbp"/>
@@ -1828,6 +1952,7 @@ Type it here!</string>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite2.png" width="300" height="300"/>
         <image name="CancelImageWhite3.png" width="350" height="350"/>
+        <image name="CategoryButtonImage.png" width="256" height="256"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
@@ -1836,7 +1961,6 @@ Type it here!</string>
         <image name="ReplayIcon.png" width="100" height="100"/>
         <image name="ResetButton100.png" width="32" height="32"/>
         <image name="SettingsIconWhite8.png" width="33" height="37"/>
-        <image name="TrendingIcon.png" width="256" height="256"/>
         <image name="YapsButtonNoYaps.png" width="160" height="84"/>
         <image name="YellowStar.png" width="40" height="40"/>
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>
