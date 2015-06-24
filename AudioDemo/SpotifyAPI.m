@@ -161,7 +161,7 @@ static SpotifyAPI *sharedInstance;
     if ([playlistName isEqualToString:@"Top 100 Tracks"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4hOKQuZbraPDIfaGbM3lKI/tracks";
         
-    } else if ([playlistName isEqualToString:@"Hits"]) {
+    } else if ([playlistName isEqualToString:@"Top Humor"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/5FJXhjdILmRA2z5bvz4nzf/tracks";
         //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4dJHrPYVdKgaCE3Lxrv1MZ/tracks";
         
@@ -179,7 +179,7 @@ static SpotifyAPI *sharedInstance;
     } else if ([playlistName isEqualToString:@"Top TV"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
         
-    } else if ([playlistName isEqualToString:@"Seven"]) {
+    } else if ([playlistName isEqualToString:@"Top Soundtracks"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
     }
     

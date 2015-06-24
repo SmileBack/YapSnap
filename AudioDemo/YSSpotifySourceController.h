@@ -20,7 +20,7 @@
 #define REMOVE_BOTTOM_BANNER_NOTIFICATION @"com.yapsnap.RemoveBottomBannerNotification"
 #define LISTENED_TO_CLIP_NOTIFICATION @"com.yapsnap.ListenedToClipNotification"
 #define RESET_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
-#define DID_SEE_TOP_CHARTS_POPUP_KEY @"yaptap.DidSeeTopChartsPopupKey601"
+#define DID_SEE_TOP_CHARTS_POPUP_KEY @"yaptap.DidSeeTopChartsPopupKey602"
 #define DISMISS_TOP_CHARTS_POPUP_NOTIFICATION @"DismissTopChartsPopup"
 #define DID_PLAY_SONG_FOR_FIRST_TIME_KEY @"yaptap.DidPlaySongForFirstTimeKey"
 

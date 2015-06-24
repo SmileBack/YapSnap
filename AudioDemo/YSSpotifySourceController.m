@@ -203,7 +203,7 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self hideAlbumBannerWithFadeAnimation:YES];
+                        //[self hideAlbumBannerWithFadeAnimation:YES];
                         self.bottomButton.hidden = NO;
                     }];
     
@@ -255,12 +255,12 @@
 }
 
 - (IBAction)didTapTopChartsButton {
-    if (FALSE) { //(!self.didSeeTopChartsPopup) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Top Trending"
-                                                        message:@"Tapping this button "
+    if (!self.didSeeTopChartsPopup) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Top Trending Lists"
+                                                        message:@"To see other lists, keeping tapping."
                                                        delegate:self
-                                              cancelButtonTitle:@"No, Thanks"
-                                              otherButtonTitles:@"Sure", nil];
+                                              cancelButtonTitle:@"Skip"
+                                              otherButtonTitles:@"Continue", nil];
         [alert show];
     } else {
         [self resetBottomBannerUI];
@@ -277,12 +277,12 @@
 - (void) declarePlaylists {
 
     self.playlistOne = @"Top 100 Tracks"; // YES
-    self.playlistTwo = @"Hits";
+    self.playlistTwo = @"Top Humor";
     self.playlistThree = @"Top Viral Tracks";
     self.playlistFour = @"90s Ultimate Hits"; //YES
     self.playlistFive = @"Born in the 90's"; //YES
     self.playlistSix = @"Top TV"; // YES
-    self.playlistSeven = @"Seven";
+    self.playlistSeven = @"Top Soundtracks";
 
     /*
     self.playlistOne = @"Comedy New Releases";
@@ -1039,7 +1039,7 @@
 }
 
 - (void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel {
-    [self resetBottomBannerUI];
+    //[self resetBottomBannerUI];
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
@@ -1353,12 +1353,14 @@
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if ([alertView isKindOfClass:[SearchArtistAlertView class]]) {
-        if (buttonIndex == 1) {
-            [self searchForTracksWithString:self.artistNameString];
-            self.searchBox.text = self.artistNameString;
-            [self updateVisibilityOfMagnifyingGlassAndResetButtons];
-        }
+    if (buttonIndex == 1) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_TOP_CHARTS_POPUP_KEY];
+        [self didTapTopChartsButton];
+        /*
+        [self searchForTracksWithString:self.artistNameString];
+        self.searchBox.text = self.artistNameString;
+        [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+         */
     }
 }
 
