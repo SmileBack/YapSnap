@@ -651,4 +651,27 @@ static API *sharedAPI;
          }];
 }
 
+#pragma mark - Retrieve Onboarding Tracks
+
+- (void) retrieveOnboardingTracks:(OnboardingTracksCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:[self urlForEndpoint:@"audio_messages"]
+      parameters:[self paramsWithDict:@{}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSDictionary *response = responseObject;
+             NSLog(@"Response Object: %@", responseObject);
+             NSArray *items = response[@"items"];
+             
+             NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:YES];
+             callback(songs, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             
+             [self processFailedOperation:operation];
+             callback(NO, error);
+         }];
+}
+
 @end

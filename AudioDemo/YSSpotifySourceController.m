@@ -325,15 +325,16 @@
 
 -(IBAction) didTapCategoryButtonOne {
     NSString *playlistOne = @"Trending";
-    [self retrieveTracksForPlaylist:playlistOne];
+    [self retrieveTracksForCategory:playlistOne];
     self.searchBox.text = playlistOne;
+    self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
 -(IBAction) didTapCategoryButtonTwo {
     NSString *playlistTwo = @"Funny";
-    [self retrieveTracksForPlaylist:playlistTwo];
+    [self retrieveTracksForCategory:playlistTwo];
     self.searchBox.text = playlistTwo;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
@@ -341,7 +342,7 @@
 
 -(IBAction) didTapCategoryButtonThree {
     NSString *playlistThree = @"Nostalgic";
-    [self retrieveTracksForPlaylist:playlistThree];
+    [self retrieveTracksForCategory:playlistThree];
     self.searchBox.text = playlistThree;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
@@ -349,7 +350,7 @@
 
 -(IBAction) didTapCategoryButtonFour {
     NSString *playlistFour = @"Happy";
-    [self retrieveTracksForPlaylist:playlistFour];
+    [self retrieveTracksForCategory:playlistFour];
     self.searchBox.text = playlistFour;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
@@ -357,7 +358,7 @@
 
 -(IBAction) didTapCategoryButtonFive {
     NSString *playlistFive = @"Flirty";
-    [self retrieveTracksForPlaylist:playlistFive];
+    [self retrieveTracksForCategory:playlistFive];
     self.searchBox.text = playlistFive;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
@@ -365,7 +366,7 @@
 
 -(IBAction) didTapCategoryButtonSix {
     NSString *playlistSix = @"Party";
-    [self retrieveTracksForPlaylist:playlistSix];
+    [self retrieveTracksForCategory:playlistSix];
     self.searchBox.text = playlistSix;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
@@ -373,7 +374,7 @@
 
 -(IBAction) didTapCategoryButtonSeven {
     NSString *playlistSeven = @"Seven";
-    [self retrieveTracksForPlaylist:playlistSeven];
+    [self retrieveTracksForCategory:playlistSeven];
     self.searchBox.text = playlistSeven;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
@@ -381,7 +382,7 @@
 
 -(IBAction) didTapCategoryButtonEight {
     NSString *playlistEight = @"Eight";
-    [self retrieveTracksForPlaylist:playlistEight];
+    [self retrieveTracksForCategory:playlistEight];
     self.searchBox.text = playlistEight;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
@@ -389,7 +390,7 @@
 
 -(IBAction) didTapCategoryButtonNine {
     NSString *playlistNine = @"Nine";
-    [self retrieveTracksForPlaylist:playlistNine];
+    [self retrieveTracksForCategory:playlistNine];
     self.searchBox.text = playlistNine;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
@@ -402,7 +403,7 @@
         self.songs = [onboardingTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
         self.carousel.currentItemIndex = 0;
         [self.carousel reloadData];
-        [UIView animateWithDuration:.5
+        [UIView animateWithDuration:.4
                               delay:0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
@@ -421,7 +422,7 @@
         self.songs = [shuffledSuggestedTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
         self.carousel.currentItemIndex = 0;
         [self.carousel reloadData];
-        [UIView animateWithDuration:.5
+        [UIView animateWithDuration:.4
                               delay:0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
@@ -512,6 +513,17 @@
     }
 }
 
+- (void) displayFiveOnboardingTracks {
+    // Make API call, get the response here
+    [[API sharedAPI] retrieveOnboardingTracks:^(NSArray *songs, NSError *error) {
+        if (songs) {
+            NSLog(@"Onboarding Tracks: %@", songs);
+        }
+    }];
+
+    
+}
+
 - (void) searchForTracksWithString:(NSString *)searchString
 {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -567,7 +579,7 @@
     [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForSearchString:searchString withCallback:callback];
 }
 
-- (void) retrieveTracksForPlaylist:(NSString *)playlistName
+- (void) retrieveTracksForCategory:(NSString *)playlistName
 {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Searched Songs"];

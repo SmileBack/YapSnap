@@ -27,6 +27,8 @@ typedef void (^YapCountCallback)(NSNumber *count, NSError *error);
 typedef void (^UserCallback)(YSUser *user, NSError *error);
 typedef void (^FriendsCallback)(NSArray *friends, NSError *error);
 typedef void (^IsFriendCallback)(BOOL success, NSError *error, NSNumber *isFriend);
+typedef void (^OnboardingTracksCallback)(NSArray *songs, NSError *error);
+
 
 @interface API : NSObject
 
@@ -47,6 +49,7 @@ typedef void (^IsFriendCallback)(BOOL success, NSError *error, NSNumber *isFrien
 - (void) sendFriendRequests:(AddFriendsBuilder *)addFriendsBuilder withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmFriendFromYap:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback;
 - (void) sendSearchTerm:(NSString*)searchTerm withCallback:(SuccessOrErrorCallback)callback;
+- (void) retrieveOnboardingTracks:(OnboardingTracksCallback)callback;
 
 # pragma mark - Updating of User Data
 - (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback;

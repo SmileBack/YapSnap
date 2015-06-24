@@ -47,7 +47,7 @@
             NSString *firstNameOne = [[unregisteredNames.firstObject componentsSeparatedByString:@" "] objectAtIndex:0];
             
             if (unregisteredNames.count == 1) {
-                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have the app yet, but he/she will get your yap as soon as he/she downloads it!", firstNameOne];
+                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne];
             } else if (unregisteredNames.count == 2) {
                 NSString *firstNameTwo = [[unregisteredNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
                 self.alertMessage = [NSString stringWithFormat:@"%@ and %@ don't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne, firstNameTwo];
@@ -96,7 +96,7 @@
             NSString *firstNameOne = [[unregisteredNames.firstObject componentsSeparatedByString:@" "] objectAtIndex:0];
             
             if (unregisteredNames.count == 1) {
-                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have the app yet, but he/she will get your friend request as soon as he/she downloads it!", firstNameOne];
+                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have the app yet, but they will get your friend request as soon as they download it!", firstNameOne];
             } else if (unregisteredNames.count == 2) {
                 NSString *firstNameTwo = [[unregisteredNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
                 self.alertMessage = [NSString stringWithFormat:@"%@ and %@ don't have the app yet, but they'll get your friend request as soon as they download it!", firstNameOne, firstNameTwo];
