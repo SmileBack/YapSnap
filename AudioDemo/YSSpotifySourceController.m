@@ -305,94 +305,89 @@
 
 -(void) switchCategoryMode {
     if (self.categoryView.hidden == YES) {
+        // Show Category View
         self.categoryView.hidden = NO;
         [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryBackButtonImage.png"] forState:UIControlStateNormal];
+        self.searchBox.text = @"";
+        [self hideResetButton];
     } else {
+        // Hide Category View
         self.categoryView.hidden = YES;
         [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
     }
 }
 
-
-
 -(IBAction) didTapCategoryButtonOne {
-    [self retrieveTracksForPlaylist:@"Top Humor"];
+    NSString *playlistOne = @"Trending";
+    [self retrieveTracksForPlaylist:playlistOne];
+    self.searchBox.text = playlistOne;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
 -(IBAction) didTapCategoryButtonTwo {
-    [self retrieveTracksForPlaylist:@"Top Humor"];
+    NSString *playlistTwo = @"Funny";
+    [self retrieveTracksForPlaylist:playlistTwo];
+    self.searchBox.text = playlistTwo;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
 -(IBAction) didTapCategoryButtonThree {
-    [self retrieveTracksForPlaylist:@"Top Humor"];
+    NSString *playlistThree = @"Nostalgic";
+    [self retrieveTracksForPlaylist:playlistThree];
+    self.searchBox.text = playlistThree;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
 -(IBAction) didTapCategoryButtonFour {
-    [self retrieveTracksForPlaylist:@"Top Humor"];
+    NSString *playlistFour = @"Happy";
+    [self retrieveTracksForPlaylist:playlistFour];
+    self.searchBox.text = playlistFour;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
 -(IBAction) didTapCategoryButtonFive {
-    [self retrieveTracksForPlaylist:@"Top Humor"];
+    NSString *playlistFive = @"Flirty";
+    [self retrieveTracksForPlaylist:playlistFive];
+    self.searchBox.text = playlistFive;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
 -(IBAction) didTapCategoryButtonSix {
-    [self retrieveTracksForPlaylist:@"Top Humor"];
+    NSString *playlistSix = @"Party";
+    [self retrieveTracksForPlaylist:playlistSix];
+    self.searchBox.text = playlistSix;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
 -(IBAction) didTapCategoryButtonSeven {
-    [self retrieveTracksForPlaylist:@"Top Humor"];
+    NSString *playlistSeven = @"Seven";
+    [self retrieveTracksForPlaylist:playlistSeven];
+    self.searchBox.text = playlistSeven;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
 -(IBAction) didTapCategoryButtonEight {
-    [self retrieveTracksForPlaylist:@"Top Humor"];
+    NSString *playlistEight = @"Eight";
+    [self retrieveTracksForPlaylist:playlistEight];
+    self.searchBox.text = playlistEight;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
 -(IBAction) didTapCategoryButtonNine {
-    [self retrieveTracksForPlaylist:@"Top Humor"];
+    NSString *playlistNine = @"Nine";
+    [self retrieveTracksForPlaylist:playlistNine];
+    self.searchBox.text = playlistNine;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
-
-/*
-COMEDY PLAYLISTS
-     self.playlistOne = @"Comedy New Releases";
-     self.playlistTwo = @"Comedy Top Tracks";
-     self.playlistThree = @"The Laugh List";
-     self.playlistFour = @"British Humour";
-     self.playlistFive = @"Quirck It";
-     self.playlistSix = @"Funny Things About Football";
-     self.playlistSeven = @"Monty Python Emporium";
-     self.playlistEight = @"Ladies Night";
-     self.playlistNine = @"20 Questions";
-     self.playlistTen = @"Animal Humor";
-     self.playlistEleven = @"Music Jokes";
-     self.playlistTwelve = @"Dating Issues";
-     self.playlistThirteen = @"Comedy Goes Country";
-     self.playlistFourteen = @"Unsolicited Advice";
-     self.playlistFifteen = @"Office Offensive";
-     self.playlistSixteen = @"Love & Marriage";
-     self.playlistSeventeen = @"The Interwebs";
-     self.playlistEighteen = @"Lights, Camera, Comedy!";
-     self.playlistNineteen = @"Louis CK | Collected";
-     self.playlistTwenty = @"[Family]";
-     self.playlistTwentyOne = @"Comedy Top Trackss";
-*/
 
 -(void) displaySuggestedSongs {
     if (!self.didPlaySongForFirstTime) {

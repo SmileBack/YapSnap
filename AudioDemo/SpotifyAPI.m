@@ -89,7 +89,60 @@ static SpotifyAPI *sharedInstance;
     }
 }
 
-- (void) retrieveTracksFromSpotifyForPlaylist:(NSString *)playlistName withCallback:(SpotifySongCallback)callback {
+- (void) retrieveTracksFromSpotifyForPlaylist:(NSString *)playlistName withCallback:(SpotifySongCallback)callback
+{
+    if ([playlistName isEqualToString:@"Top 100 Tracks"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4hOKQuZbraPDIfaGbM3lKI/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Top Humor"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/5FJXhjdILmRA2z5bvz4nzf/tracks";
+        //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4dJHrPYVdKgaCE3Lxrv1MZ/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Top Viral Tracks"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4ldNPWkhPThHdq0FSxB0EZ/tracks";
+        //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/3jtuOxsrTRAWvPPLvlW1VR/tracks";
+        
+    } else if ([playlistName isEqualToString:@"90s Ultimate Hits"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/filtr/playlists/0rZJqZmX61rQ4xMkmEWQar/tracks";
+        //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/06KmJWiQhL0XiV6QQAHsmw/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Born in the 90's"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4NDUPAZZ1LBw9wvTOq1Mm2/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Top TV"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
+        
+    } else if ([playlistName isEqualToString:@"Top Soundtracks"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
+    } else {
+        self.playlistURL = @"Error";
+        NSLog(@"Error");
+    }
+    
+    __weak SpotifyAPI *weakSelf = self;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [self setAuthorizationOnManager:manager];
+    [manager GET:self.playlistURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *response = responseObject;
+        
+        NSArray *items = response[@"items"];
+        
+        NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:YES];
+        callback(songs, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (operation.response.statusCode == 401) {
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Spotify Error - search (401)"];
+            
+            //weakSelf.tokenType = nil;
+            //weakSelf.token = nil;
+            [weakSelf retrieveTracksFromSpotifyForPlaylist:playlistName withCallback:callback];
+            //[weakSelf getAccessToken];
+        } else {
+            callback(nil, error);
+        }
+    }];
    
     /*
     if ([playlistName isEqualToString:@"Comedy New Releases"]) {
@@ -155,58 +208,30 @@ static SpotifyAPI *sharedInstance;
     } else if ([playlistName isEqualToString:@"Comedy Top Trackss"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/soundrop/playlists/4wnH0AlKv96zOHGBnUOL94/tracks";
     }
+     
+     COMEDY PLAYLISTS
+     self.playlistOne = @"Comedy New Releases";
+     self.playlistTwo = @"Comedy Top Tracks";
+     self.playlistThree = @"The Laugh List";
+     self.playlistFour = @"British Humour";
+     self.playlistFive = @"Quirck It";
+     self.playlistSix = @"Funny Things About Football";
+     self.playlistSeven = @"Monty Python Emporium";
+     self.playlistEight = @"Ladies Night";
+     self.playlistNine = @"20 Questions";
+     self.playlistTen = @"Animal Humor";
+     self.playlistEleven = @"Music Jokes";
+     self.playlistTwelve = @"Dating Issues";
+     self.playlistThirteen = @"Comedy Goes Country";
+     self.playlistFourteen = @"Unsolicited Advice";
+     self.playlistFifteen = @"Office Offensive";
+     self.playlistSixteen = @"Love & Marriage";
+     self.playlistSeventeen = @"The Interwebs";
+     self.playlistEighteen = @"Lights, Camera, Comedy!";
+     self.playlistNineteen = @"Louis CK | Collected";
+     self.playlistTwenty = @"[Family]";
+     self.playlistTwentyOne = @"Comedy Top Trackss";
      */
-    
-
-    if ([playlistName isEqualToString:@"Top 100 Tracks"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4hOKQuZbraPDIfaGbM3lKI/tracks";
-        
-    } else if ([playlistName isEqualToString:@"Top Humor"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/5FJXhjdILmRA2z5bvz4nzf/tracks";
-        //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4dJHrPYVdKgaCE3Lxrv1MZ/tracks";
-        
-    } else if ([playlistName isEqualToString:@"Top Viral Tracks"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4ldNPWkhPThHdq0FSxB0EZ/tracks";
-        //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/3jtuOxsrTRAWvPPLvlW1VR/tracks";
-        
-    } else if ([playlistName isEqualToString:@"90s Ultimate Hits"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/filtr/playlists/0rZJqZmX61rQ4xMkmEWQar/tracks";
-        //self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/06KmJWiQhL0XiV6QQAHsmw/tracks";
-        
-    } else if ([playlistName isEqualToString:@"Born in the 90's"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4NDUPAZZ1LBw9wvTOq1Mm2/tracks";
-        
-    } else if ([playlistName isEqualToString:@"Top TV"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
-        
-    } else if ([playlistName isEqualToString:@"Top Soundtracks"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
-    }
-    
-    __weak SpotifyAPI *weakSelf = self;
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [self setAuthorizationOnManager:manager];
-    [manager GET:self.playlistURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *response = responseObject;
-        
-        NSArray *items = response[@"items"];
-        
-        NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:YES];
-        callback(songs, nil);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (operation.response.statusCode == 401) {
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Spotify Error - search (401)"];
-            
-            //weakSelf.tokenType = nil;
-            //weakSelf.token = nil;
-            [weakSelf retrieveTracksFromSpotifyForPlaylist:playlistName withCallback:callback];
-            //[weakSelf getAccessToken];
-        } else {
-            callback(nil, error);
-        }
-    }];
 }
 
 - (void) retrieveTracksFromSpotifyForSearchString:(NSString *)searchString withCallback:(SpotifySongCallback)callback

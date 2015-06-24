@@ -78,7 +78,7 @@
                                     <constraint firstAttribute="width" constant="20" id="Th0-UA-cmq"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R1O-6v-Usj" userLabel="Category View">
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R1O-6v-Usj" userLabel="Category View">
                                 <rect key="frame" x="0.0" y="93" width="320" height="293"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8m-7k-566" userLabel="Button 1">
