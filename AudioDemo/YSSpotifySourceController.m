@@ -240,6 +240,7 @@
                             self.categoryView.hidden = YES;
                             [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
                         }
+                        [self.view endEditing:YES];
                     }];
 }
 

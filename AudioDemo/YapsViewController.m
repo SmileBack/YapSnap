@@ -89,7 +89,7 @@ static NSString *CellIdentifier = @"Cell";
     if (self.comingFromContactsOrCustomizeYapPage) {
         UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissViewController)];
         [self.navigationItem setLeftBarButtonItem:cancel];
-        [self showFirstYapAlert];
+        //[self showFirstYapAlert];
     }
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
@@ -876,12 +876,25 @@ static NSString *CellIdentifier = @"Cell";
         }
             
         case MessageComposeResultSent:
+            [self showSMSSentSuccessfullyPopup];
             break;
             
         default:
             break;
     }
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)showSMSSentSuccessfullyPopup {
+    double delay = 0.5;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message Sent!"
+                                                        message:@"They'll get your yap as soon as they register."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    });
 }
 
 @end

@@ -493,12 +493,25 @@
         }
             
         case MessageComposeResultSent:
+            [self showSMSSentSuccessfullyPopup];
             break;
             
         default:
             break;
     }
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)showSMSSentSuccessfullyPopup {
+    double delay = 0.5;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message Sent!"
+                                                        message:@"They'll get your friend request as soon as they register."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    });
 }
 
 #pragma mark - UIActionSheet method implementation

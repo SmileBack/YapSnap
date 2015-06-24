@@ -131,52 +131,6 @@
 }
 
 + (NSMutableArray *) onboardingTracks {
-    /*
-    YSTrack *track = [YSTrack new];
-    track.name = @"yo 1";
-    track.spotifyID = @"Home";
-    track.previewURL = @"Home";
-    track.artistName = @"Home";
-    track.albumName = @"Home";
-    track.spotifyURL = @"Home";
-    track.imageURL = @"Home";
-    
-    YSTrack *track2 = [YSTrack new];
-    track2.name = @"yo 2";
-    track2.spotifyID = @"Home";
-    track2.previewURL = @"Home";
-    track2.artistName = @"Home";
-    track2.albumName = @"Home";
-    track2.spotifyURL = @"Home";
-    track2.imageURL = @"Home";
-    
-    YSTrack *track3 = [YSTrack new];
-    track3.name = @"yo 3";
-    track3.spotifyID = @"Home";
-    track3.previewURL = @"Home";
-    track3.artistName = @"Home";
-    track3.albumName = @"Home";
-    track3.spotifyURL = @"Home";
-    track3.imageURL = @"Home";
-    
-    YSTrack *track4 = [YSTrack new];
-    track4.name = @"4";
-    track4.spotifyID = @"Home";
-    track4.previewURL = @"Home";
-    track4.artistName = @"Home";
-    track4.albumName = @"Home";
-    track4.spotifyURL = @"Home";
-    track4.imageURL = @"Home";
-    
-    YSTrack *track5 = [YSTrack new];
-    track5.name = @"5";
-    track5.spotifyID = @"Home";
-    track5.previewURL = @"Home";
-    track5.artistName = @"Home";
-    track5.albumName = @"Home";
-    track5.spotifyURL = @"Home";
-    track5.imageURL = @"Home";
-     */
     
     YSTrack *track = [YSTrack new];
     track.name = @"I Don't Fuck With You";
@@ -226,8 +180,6 @@
     track5.albumName = @"Backstreet Boys";
     track5.spotifyURL = @"https://open.spotify.com/track/5WTxbyWTpoqhdxEN2szOnl";
     track5.imageURL = @"https://i.scdn.co/image/91d62ebe855ad57ff570ae029ad22f57d82667bb";
-    
-    
     
     return [NSMutableArray arrayWithObjects:track, track2, track3, track4, track5, nil];
 }
