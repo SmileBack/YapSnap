@@ -41,7 +41,7 @@
 @property (strong, nonatomic) UIButton *artistButtonHack;
 @property (nonatomic, strong) NSString *lastShownPlaylist;
 @property (strong, nonatomic) TopChartsPopupViewController *topChartsPopupVC;
-@property (nonatomic, strong) NSMutableArray *tracks;
+@property (nonatomic, strong) NSMutableArray *fillerTracks;
 @property (nonatomic, strong) YSTrack *explainerTrack;
 @property (strong, nonatomic) IBOutlet UIView *categoryView;
 
@@ -60,15 +60,15 @@
 @property (strong, nonatomic) IBOutlet UIButton *categoryButtonNine;
 
 // didTapCategoryButton
-- (IBAction)didTapCategoryButtonOne;
-- (IBAction)didTapCategoryButtonTwo;
-- (IBAction)didTapCategoryButtonThree;
-- (IBAction)didTapCategoryButtonFour;
-- (IBAction)didTapCategoryButtonFive;
-- (IBAction)didTapCategoryButtonSix;
-- (IBAction)didTapCategoryButtonSeven;
-- (IBAction)didTapCategoryButtonEight;
-- (IBAction)didTapCategoryButtonNine;
+- (IBAction)didTapCategoryButtonOne:(UIButton*)button;
+- (IBAction)didTapCategoryButtonTwo:(UIButton*)button;
+- (IBAction)didTapCategoryButtonThree:(UIButton*)button;
+- (IBAction)didTapCategoryButtonFour:(UIButton*)button;
+- (IBAction)didTapCategoryButtonFive:(UIButton*)button;
+- (IBAction)didTapCategoryButtonSix:(UIButton*)button;
+- (IBAction)didTapCategoryButtonSeven:(UIButton*)button;
+- (IBAction)didTapCategoryButtonEight:(UIButton*)button;
+- (IBAction)didTapCategoryButtonNine:(UIButton*)button;
 
 @end
 
@@ -161,7 +161,7 @@
 - (void) showSuggestedSongsIfNeeded {
     YSTrack *track6 = self.songs[5];
     if (self.songs.count < 1 || track6.isExplainerTrack) {
-        [self displaySuggestedSongs];
+        [self displayFiveFillerTracks];
     }
 }
 
@@ -323,99 +323,105 @@
     }
 }
 
--(IBAction) didTapCategoryButtonOne {
-    NSString *playlistOne = @"Trending";
-    [self retrieveTracksForCategory:playlistOne];
-    self.searchBox.text = playlistOne;
+-(void) didTapCategoryButtonOne:(UIButton *)button {
+    [self displayTracksForCategory:@"onboarding_tracks"];
+    self.searchBox.text = button.titleLabel.text;
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
--(IBAction) didTapCategoryButtonTwo {
-    NSString *playlistTwo = @"Funny";
-    [self retrieveTracksForCategory:playlistTwo];
-    self.searchBox.text = playlistTwo;
+-(void) didTapCategoryButtonTwo:(UIButton *)button {
+    [self displayTracksForCategory:@"onboarding_tracks"];
+    self.searchBox.text = button.titleLabel.text;
+    self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
--(IBAction) didTapCategoryButtonThree {
-    NSString *playlistThree = @"Nostalgic";
-    [self retrieveTracksForCategory:playlistThree];
-    self.searchBox.text = playlistThree;
+-(void) didTapCategoryButtonThree:(UIButton *)button {
+    [self displayTracksForCategory:@"onboarding_tracks"];
+    self.searchBox.text = button.titleLabel.text;
+    self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
--(IBAction) didTapCategoryButtonFour {
-    NSString *playlistFour = @"Happy";
-    [self retrieveTracksForCategory:playlistFour];
-    self.searchBox.text = playlistFour;
+-(void) didTapCategoryButtonFour:(UIButton *)button {
+    [self displayTracksForCategory:@"onboarding_tracks"];
+    self.searchBox.text = button.titleLabel.text;
+    self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
--(IBAction) didTapCategoryButtonFive {
-    NSString *playlistFive = @"Flirty";
-    [self retrieveTracksForCategory:playlistFive];
-    self.searchBox.text = playlistFive;
+-(void) didTapCategoryButtonFive:(UIButton *)button {
+    [self displayTracksForCategory:@"onboarding_tracks"];
+    self.searchBox.text = button.titleLabel.text;
+    self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
--(IBAction) didTapCategoryButtonSix {
-    NSString *playlistSix = @"Party";
-    [self retrieveTracksForCategory:playlistSix];
-    self.searchBox.text = playlistSix;
+-(void) didTapCategoryButtonSix:(UIButton *)button {
+    [self displayTracksForCategory:@"onboarding_tracks"];
+    self.searchBox.text = button.titleLabel.text;
+    self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
--(IBAction) didTapCategoryButtonSeven {
-    NSString *playlistSeven = @"Seven";
-    [self retrieveTracksForCategory:playlistSeven];
-    self.searchBox.text = playlistSeven;
+-(void) didTapCategoryButtonSeven:(UIButton *)button {
+    [self displayTracksForCategory:@"onboarding_tracks"];
+    self.searchBox.text = button.titleLabel.text;
+    self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
--(IBAction) didTapCategoryButtonEight {
-    NSString *playlistEight = @"Eight";
-    [self retrieveTracksForCategory:playlistEight];
-    self.searchBox.text = playlistEight;
+-(void) didTapCategoryButtonEight:(UIButton *)button {
+    [self displayTracksForCategory:@"onboarding_tracks"];
+    self.searchBox.text = button.titleLabel.text;
+    self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
--(IBAction) didTapCategoryButtonNine {
-    NSString *playlistNine = @"Nine";
-    [self retrieveTracksForCategory:playlistNine];
-    self.searchBox.text = playlistNine;
+-(void) didTapCategoryButtonNine:(UIButton *)button {
+    [self displayTracksForCategory:@"onboarding_tracks"];
+    self.searchBox.text = button.titleLabel.text;
+    self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
--(void) displaySuggestedSongs {
-    if (!self.didPlaySongForFirstTime) {
-        NSArray *onboardingTracks = [SpotifyTrackFactory onboardingTracks];
-        [self createExplainerTrack];
-        self.songs = [onboardingTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
-        self.carousel.currentItemIndex = 0;
-        [self.carousel reloadData];
-        [UIView animateWithDuration:.4
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             self.carousel.alpha = 1;
-                         }
-                         completion:nil];
-    } else {
-        if (!self.tracks || self.tracks.count < 5) {
-            self.tracks = [SpotifyTrackFactory tracks];
+- (void) displayTracksForCategory:(NSString *)category
+{
+    self.carousel.alpha = 1;
+    self.loadingIndicator.alpha = 1;
+    [self.loadingIndicator startAnimating];
+    
+    [[API sharedAPI] retrieveTracksForCategory:category withCallback:^(NSArray *songs, NSError *error) {
+        if (songs) {
+            NSArray *onboardingTracks = songs;
+            [self createExplainerTrack];
+            self.songs = [onboardingTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
+            self.carousel.currentItemIndex = 0;
+            [self.carousel reloadData];
+            [self.loadingIndicator stopAnimating];
         }
-        [self shuffleTracks];
-        NSArray *shuffledSuggestedTracks = @[self.tracks[0], self.tracks[1], self.tracks[2], self.tracks[3], self.tracks[4]];
+    }];
+}
+
+-(void) displayFiveFillerTracks {
+    if (!self.didPlaySongForFirstTime) {
+        [self displayTracksForCategory:@"onboarding_tracks"];
+    } else {
+        if (!self.fillerTracks || self.fillerTracks.count < 5) {
+            self.fillerTracks = [SpotifyTrackFactory tracks];
+        }
+        [self shuffleTracks:self.fillerTracks];
+        NSArray *shuffledSuggestedTracks = @[self.fillerTracks[0], self.fillerTracks[1], self.fillerTracks[2], self.fillerTracks[3], self.fillerTracks[4]];
         
         [self createExplainerTrack];
         
@@ -429,16 +435,75 @@
                              self.carousel.alpha = 1;
                          }
                          completion:nil];
-        }
+    }
 }
 
-- (void) shuffleTracks {
-    NSUInteger count = [self.tracks count];
+- (void) shuffleTracks:(NSMutableArray *)tracks {
+    NSUInteger count = [tracks count];
     for (NSUInteger i = 0; i < count; ++i) {
         NSInteger remainingCount = count - i;
         NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
-        [self.tracks exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+        [tracks exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
     }
+}
+
+- (void) searchForTracksWithString:(NSString *)searchString
+{
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Searched Songs"];
+    [mixpanel.people increment:@"Searched Songs #" by:[NSNumber numberWithInt:1]];
+    
+    self.songs = nil;
+    [self.carousel reloadData];
+    self.carousel.alpha = 1;
+    self.loadingIndicator.alpha = 1;
+    [self.loadingIndicator startAnimating];
+    
+    __weak YSSpotifySourceController *weakSelf = self;
+    void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
+        NSLog(@"Songs: %@", songs);
+        YSTrack *trackOne = songs[0];
+        NSLog(@"Track name: %@", trackOne.name);
+        
+        if (songs) {
+            weakSelf.songs = songs;
+            weakSelf.carousel.currentItemIndex = 0;
+            [weakSelf.carousel reloadData];
+            if (songs.count == 0) {
+                [self.loadingIndicator stopAnimating];
+                
+                NSLog(@"No Songs Returned For Search Query");
+                
+                double delay = 0.2;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
+                });
+                
+            } else {
+                NSLog(@"Returned Songs Successfully");
+                [self.loadingIndicator stopAnimating];
+            }
+        } else if (error) {
+            [self.loadingIndicator stopAnimating];
+            
+            if ([self internetIsNotReachable]) {
+                double delay = 0.1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+                });
+            } else {
+                NSLog(@"Error Returning Songs %@", error);
+                double delay = 0.1;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong! Try Again."];
+                });
+                
+                [mixpanel track:@"Spotify Error - search (other)"];
+            }
+        }
+    };
+    
+    [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForSearchString:searchString withCallback:callback];
 }
 
 -(void)createExplainerTrack {
@@ -512,130 +577,6 @@
         [self updateVisibilityOfMagnifyingGlassAndResetButtons];
     }
 }
-
-- (void) displayFiveOnboardingTracks {
-    // Make API call, get the response here
-    [[API sharedAPI] retrieveOnboardingTracks:^(NSArray *songs, NSError *error) {
-        if (songs) {
-            NSLog(@"Onboarding Tracks: %@", songs);
-        }
-    }];
-
-    
-}
-
-- (void) searchForTracksWithString:(NSString *)searchString
-{
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Searched Songs"];
-    [mixpanel.people increment:@"Searched Songs #" by:[NSNumber numberWithInt:1]];
-    
-    self.songs = nil;
-    [self.carousel reloadData];
-    self.carousel.alpha = 1;
-    self.loadingIndicator.alpha = 1;
-    [self.loadingIndicator startAnimating];
-    
-    __weak YSSpotifySourceController *weakSelf = self;
-    void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
-        if (songs) {
-            weakSelf.songs = songs;
-            weakSelf.carousel.currentItemIndex = 0;
-            [weakSelf.carousel reloadData];
-            if (songs.count == 0) {
-                [self.loadingIndicator stopAnimating];
-                
-                NSLog(@"No Songs Returned For Search Query");
-                
-                double delay = 0.2;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
-                });
-                
-            } else {
-                NSLog(@"Returned Songs Successfully");
-                [self.loadingIndicator stopAnimating];
-            }
-        } else if (error) {
-            [self.loadingIndicator stopAnimating];
-            
-            if ([self internetIsNotReachable]) {
-                double delay = 0.1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
-                });
-            } else {
-                NSLog(@"Error Returning Songs %@", error);
-                double delay = 0.1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong! Try Again."];
-                });
-                
-                [mixpanel track:@"Spotify Error - search (other)"];
-            }
-        }
-    };
-    
-    [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForSearchString:searchString withCallback:callback];
-}
-
-- (void) retrieveTracksForCategory:(NSString *)playlistName
-{
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Searched Songs"];
-    [mixpanel.people increment:@"Searched Songs #" by:[NSNumber numberWithInt:1]];
-    
-    self.songs = nil;
-    [self.carousel reloadData];
-    self.carousel.alpha = 1;
-    self.loadingIndicator.alpha = 1;
-    [self.loadingIndicator startAnimating];
-    
-    __weak YSSpotifySourceController *weakSelf = self;
-    void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
-        NSLog(@"Songs: %@", songs);
-        if (songs) {
-            weakSelf.songs = songs;
-            weakSelf.carousel.currentItemIndex = 0;
-            [weakSelf.carousel reloadData];
-            
-            if (songs.count == 0) {
-                [self.loadingIndicator stopAnimating];
-                
-                NSLog(@"No Songs Returned For Search Query");
-                
-                double delay = 0.2;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
-                });
-            } else {
-                NSLog(@"Returned Songs Successfully");
-                [self.loadingIndicator stopAnimating];
-            }
-        } else if (error) {
-            [self.loadingIndicator stopAnimating];
-            
-            if ([self internetIsNotReachable]) {
-                double delay = 0.1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
-                });
-            } else {
-                NSLog(@"Error Returning Songs %@", error);
-                /*
-                double delay = 0.1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Something Went Wrong! Try Again."];
-                });
-                */
-                [mixpanel track:@"Spotify Error - search (other)"];
-            }
-        }
-    };
-  
-    [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForPlaylist:playlistName withCallback:callback];
-}
-
 
 #pragma mark - UITextFieldDelegate
 
@@ -1330,5 +1271,59 @@
         self.magnifyingGlassImageView.hidden = NO;
     }
 }
+
+/*
+ - (void) retrieveTracksForCategory:(NSString *)playlistName
+ {
+ Mixpanel *mixpanel = [Mixpanel sharedInstance];
+ [mixpanel track:@"Searched Songs"];
+ [mixpanel.people increment:@"Searched Songs #" by:[NSNumber numberWithInt:1]];
+ 
+ self.songs = nil;
+ [self.carousel reloadData];
+ self.carousel.alpha = 1;
+ self.loadingIndicator.alpha = 1;
+ [self.loadingIndicator startAnimating];
+ 
+ __weak YSSpotifySourceController *weakSelf = self;
+ void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
+ NSLog(@"Songs: %@", songs);
+ if (songs) {
+ weakSelf.songs = songs;
+ weakSelf.carousel.currentItemIndex = 0;
+ [weakSelf.carousel reloadData];
+ 
+ if (songs.count == 0) {
+ [self.loadingIndicator stopAnimating];
+ 
+ NSLog(@"No Songs Returned For Search Query");
+ 
+ double delay = 0.2;
+ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+ [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
+ });
+ } else {
+ NSLog(@"Returned Songs Successfully");
+ [self.loadingIndicator stopAnimating];
+ }
+ } else if (error) {
+ [self.loadingIndicator stopAnimating];
+ 
+ if ([self internetIsNotReachable]) {
+ double delay = 0.1;
+ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+ [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+ });
+ } else {
+ NSLog(@"Error Returning Songs %@", error);
+ 
+ [mixpanel track:@"Spotify Error - search (other)"];
+ }
+ }
+ };
+ 
+ [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForPlaylist:playlistName withCallback:callback];
+ }
+ */
 
 @end

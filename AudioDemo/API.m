@@ -202,6 +202,8 @@ static API *sharedAPI;
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               callback(NO, error);
               NSLog(@"Error clearing yaps: %@", error);
+              
+              [self processFailedOperation:operation];
           }];
 }
 
@@ -226,6 +228,8 @@ static API *sharedAPI;
            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                callback(NO, error);
                NSLog(@"Error adding friends: %@", error);
+               
+               [self processFailedOperation:operation];
            }];
 }
 
@@ -261,6 +265,7 @@ static API *sharedAPI;
                 NSLog(@"Error uploading photo to amazon! %@", error);
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
                 callback(NO, error);
+                
             } else {
                 yapBuilder.imageAwsUrl = url;
                 yapBuilder.imageAwsEtag = etag;
@@ -377,6 +382,8 @@ static API *sharedAPI;
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"API Error - sendSongYap"];
+        
+        [self processFailedOperation:operation];
         
         callback(NO, error);
         NSLog(@"Error: %@", error);
@@ -535,6 +542,7 @@ static API *sharedAPI;
              Mixpanel *mixpanel = [Mixpanel sharedInstance];
              [mixpanel track:@"API Error - friends"];
              
+             [self processFailedOperation:operation];
              NSLog(@"Friends Error: %@", error);
              callback(nil, error);
          }];
@@ -561,6 +569,8 @@ static API *sharedAPI;
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              Mixpanel *mixpanel = [Mixpanel sharedInstance];
              [mixpanel track:@"API Error - topFriends"];
+             
+             [self processFailedOperation:operation];
              
              NSLog(@"Top Friends Error: %@", error);
              callback(nil, error);
@@ -651,20 +661,20 @@ static API *sharedAPI;
          }];
 }
 
-#pragma mark - Retrieve Onboarding Tracks
+#pragma mark - Retrieve Tracks
 
-- (void) retrieveOnboardingTracks:(OnboardingTracksCallback)callback
+- (void) retrieveTracksForCategory:(NSString*)category withCallback:(OnboardingTracksCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:[self urlForEndpoint:@"audio_messages"]
+    [manager GET:[self urlForEndpoint:@"/spotify/onboarding_songs"]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSDictionary *response = responseObject;
              NSLog(@"Response Object: %@", responseObject);
-             NSArray *items = response[@"items"];
+             NSArray *items = response[@"tracks"][@"items"];
              
-             NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:YES];
+             NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
              callback(songs, nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -673,5 +683,27 @@ static API *sharedAPI;
              callback(NO, error);
          }];
 }
+/*
+- (void) retrieveOnboardingTracks:(OnboardingTracksCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:[self urlForEndpoint:@"/onboarding_songs"]
+      parameters:[self paramsWithDict:@{}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSDictionary *response = responseObject;
+             NSLog(@"Response Object: %@", responseObject);
+             NSArray *items = response[@"tracks"][@"items"];
+             
+             NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
+             callback(songs, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             
+             [self processFailedOperation:operation];
+             callback(NO, error);
+         }];
+}
+ */
 
 @end

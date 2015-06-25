@@ -248,14 +248,13 @@ static SpotifyAPI *sharedInstance;
     
     __weak SpotifyAPI *weakSelf = self;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [self setAuthorizationOnManager:manager];
+    [self setAuthorizationOnManager:manager];//!!!
     [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *response = responseObject;
         NSLog(@"Response Object: %@", responseObject);
-
         NSArray *items = response[@"tracks"][@"items"];
         NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
-        callback(songs, nil);
+        callback(songs, nil);   
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (operation.response.statusCode == 401) {
@@ -271,6 +270,24 @@ static SpotifyAPI *sharedInstance;
          }
     }];
 }
+
+
+
+/* JSON FORMAT
+ NSError *error;
+ NSData *jsonData = [NSJSONSerialization dataWithJSONObject:response
+ options:(NSJSONWritingOptions)    (YES ? NSJSONWritingPrettyPrinted : 0)
+ error:&error];
+ 
+ if (! jsonData) {
+ NSLog(@"bv_jsonStringWithPrettyPrint: error: %@", error.localizedDescription);
+ NSString *json = @"{}";
+ NSLog(@"json: %@", json);
+ } else {
+ NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+ NSLog(@"json: %@", json);
+ }
+ */
 
 
 @end

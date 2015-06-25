@@ -66,7 +66,7 @@
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index != view.cancelButtonIndex) {
                                       NSLog(@"Tapped Continue on SMS Prompt");
-                                      [self.delegate showSMS:@"I sent you something cool on YapTap. Download the app to check it out: https://itunes.apple.com/gb/app/YapTap/id972004073"
+                                      [self.delegate showSMS:@"I sent you something cool on YapTap. Download the app to check it out: www.yaptapapp.com/download"
                                                 toRecipients:unregisteredContacts];
                                       
                                   } else {
@@ -115,7 +115,7 @@
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index != view.cancelButtonIndex) {
                                       NSLog(@"Tapped Continue on SMS Prompt");
-                                      [self.delegate showSMS:@"I sent you a friend request on YapTap. Download the app to accept it: https://itunes.apple.com/gb/app/YapTap/id972004073" toRecipients:unregisteredContacts];
+                                      [self.delegate showSMS:@"I sent you a friend request on YapTap. Download the app to accept it: www.yaptapapp.com/download" toRecipients:unregisteredContacts];
                                   } else {
                                       NSLog(@"Tapped Skip on SMS Prompt");
                                   }

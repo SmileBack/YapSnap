@@ -49,7 +49,7 @@ typedef void (^OnboardingTracksCallback)(NSArray *songs, NSError *error);
 - (void) sendFriendRequests:(AddFriendsBuilder *)addFriendsBuilder withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmFriendFromYap:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback;
 - (void) sendSearchTerm:(NSString*)searchTerm withCallback:(SuccessOrErrorCallback)callback;
-- (void) retrieveOnboardingTracks:(OnboardingTracksCallback)callback;
+- (void) retrieveTracksForCategory:(NSString*)category withCallback:(OnboardingTracksCallback)callback;
 
 # pragma mark - Updating of User Data
 - (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback;
