@@ -158,6 +158,8 @@
     self.playerAlreadyStartedPlayingForThisSong = NO;
     self.bottomButton.hidden = NO;
     
+    //if (!self.songs || self.songs.count < 1 || self.songs[5])
+    [self retrieveAndLoadTracksForCategory:self.trackGroupPool];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -402,16 +404,16 @@
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
-    [self retrieveTracksForCategory:trackGroup];
+    [self retrieveAndLoadTracksForCategory:trackGroup];
 }
 
-- (void) retrieveTracksForCategory:(YTTrackGroup *)trackGroup
+- (void) retrieveAndLoadTracksForCategory:(YTTrackGroup *)trackGroup
 {
     [self.loadingIndicator startAnimating];
 
     if (trackGroup.songs) {
         self.songs = trackGroup.songs;
-        [self loadSongsInCarouselWithShuffle:YES];
+        [self loadSongsForCategory:trackGroup];
     } else {
         [[API sharedAPI] retrieveTracksForCategory:trackGroup withCallback:^(NSArray *songs, NSError *error) {
             if (songs) {
@@ -444,15 +446,20 @@
         [self createExplainerTrack];
     }
     
-    if (trackGroup != self.trackGroupOnboarding) {
-        NSArray *shuffledSongs = [self shuffleTracks:[NSMutableArray arrayWithArray:self.songs]];
-        if (trackGroup == self.trackGroupPool) {
-            //self.songs = @[self.trackGroupPool[0]];
-        } else {
-            self.songs = [shuffledSongs arrayByAddingObjectsFromArray:@[self.explainerTrack]];
-        }
-    } else {
+    if (trackGroup == self.trackGroupOnboarding) {
         self.songs = [self.songs arrayByAddingObjectsFromArray:@[self.explainerTrack]];
+    } else {
+        
+        // Shuffle all
+        NSArray *shuffledSongs = [self shuffleTracks:[NSMutableArray arrayWithArray:self.songs]];
+        
+        if (trackGroup == self.trackGroupPool) {
+            // Only take first five
+            NSArray *firstFiveTracks = @[shuffledSongs[0], shuffledSongs[1], shuffledSongs[2]];//, shuffledSongs[3], shuffledSongs[4]];
+            self.songs = [firstFiveTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
+        } else {
+            self.songs = shuffledSongs;
+        }
     }
     
     [self.loadingIndicator stopAnimating];
