@@ -485,13 +485,45 @@ static NSString *CellIdentifier = @"Cell";
     
     YSYap *yap = self.yaps[indexPath.row];
     self.selectedYap = yap;
+    NSString *receiverFirstName = [[self.selectedYap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
     
-    UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song, or a new one?"
-                                                                    delegate:self
-                                                           cancelButtonTitle:@"Cancel"
-                                                      destructiveButtonTitle:nil
-                                                           otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
-    [actionSheetSpotify showInView:self.view];
+    if ([yap.type isEqual:@"SpotifyMessage"]) {
+        if (yap.receivedByCurrentUser) {
+            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song, or a new one?"
+                                                                            delegate:self
+                                                                   cancelButtonTitle:@"Cancel"
+                                                              destructiveButtonTitle:nil
+                                                                   otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
+            actionSheetSpotify.tag = 100;
+            [actionSheetSpotify showInView:self.view];
+        } else {
+            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Send %@ a yap with the same song, or a new one?", receiverFirstName]
+                                                                            delegate:self
+                                                                   cancelButtonTitle:@"Cancel"
+                                                              destructiveButtonTitle:nil
+                                                                   otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
+            actionSheetSpotify.tag = 100;
+            [actionSheetSpotify showInView:self.view];
+        }
+    } else if ([yap.type isEqual:@"VoiceMessage"]) {
+        if (yap.receivedByCurrentUser) {
+            UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:@"Reply with a song yap or a voice yap?"
+                                                                          delegate:self
+                                                                 cancelButtonTitle:@"Cancel"
+                                                            destructiveButtonTitle:nil
+                                                                 otherButtonTitles:@"Reply With a Song", @"Reply With Voice", nil];
+            actionSheetVoice.tag = 200;
+            [actionSheetVoice showInView:self.view];
+        } else {
+            UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Send %@ a song yap or a voice yap?", receiverFirstName]
+                                                                          delegate:self
+                                                                 cancelButtonTitle:@"Cancel"
+                                                            destructiveButtonTitle:nil
+                                                                 otherButtonTitles:@"Send a Song Yap", @"Send a Voice Yap", nil];
+            actionSheetVoice.tag = 200;
+            [actionSheetVoice showInView:self.view];
+        }
+    }
 }
 
 - (void) cellLongPressedAtIndexPath:(NSIndexPath *)indexPath
@@ -826,20 +858,34 @@ static NSString *CellIdentifier = @"Cell";
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSLog(@"Tapped Action Sheet; Button Index: %ld", (long)buttonIndex);
-    if (buttonIndex == 0) {
-        [self didOriginateReplyFromYapSameClip:self.selectedYap];
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Tapped Reply (Same Clip)"];
-    } else if (buttonIndex == 1) {
-        [self didOriginateReplyFromYapNewClip:self.selectedYap];
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Tapped Reply (Different Clip)"];
-    } else if (buttonIndex == 2) {
-        [self didOriginateReplyFromYapVoice:self.selectedYap];
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Tapped Reply (Voice)"];
-    } else {
-        NSLog(@"Did tap cancel");
+    if (actionSheet.tag == 100) {
+        if (buttonIndex == 0) {
+            [self didOriginateReplyFromYapSameClip:self.selectedYap];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Reply (Same Clip)"];
+        } else if (buttonIndex == 1) {
+            [self didOriginateReplyFromYapNewClip:self.selectedYap];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Reply (Different Clip)"];
+        } else if (buttonIndex == 2) {
+            [self didOriginateReplyFromYapVoice:self.selectedYap];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Reply (Voice)"];
+        } else {
+            NSLog(@"Did tap cancel");
+        }
+    } else if (actionSheet.tag == 200) {
+        if (buttonIndex == 0) {
+            [self didOriginateReplyFromYapNewClip:self.selectedYap];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Reply (Different Clip)"];
+        } else if (buttonIndex == 1) {
+            [self didOriginateReplyFromYapVoice:self.selectedYap];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Reply (Voice)"];
+        } else {
+            NSLog(@"Did tap cancel");
+        }
     }
     self.selectedYap = nil;
 }

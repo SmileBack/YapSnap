@@ -229,7 +229,7 @@
             [actionSheetSpotify showInView:self.view];
         }
     } else {
-        UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:nil
+        UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:@"Reply with a song yap or a voice yap"
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
