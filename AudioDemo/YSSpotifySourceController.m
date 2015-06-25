@@ -158,8 +158,9 @@
     self.playerAlreadyStartedPlayingForThisSong = NO;
     self.bottomButton.hidden = NO;
     
-    //if (!self.songs || self.songs.count < 1 || self.songs[5])
-    [self retrieveAndLoadTracksForCategory:self.trackGroupPool];
+    if ([self shouldLoadSongsFromPool]) {
+        [self retrieveAndLoadTracksForCategory:self.trackGroupPool];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -212,6 +213,15 @@
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Dismiss Welcome Popup");
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                    }];
+    
+    [center addObserverForName:UIApplicationWillEnterForegroundNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        if ([self shouldLoadSongsFromPool]) {
+                            [self retrieveAndLoadTracksForCategory:self.trackGroupPool];
+                        }
                     }];
     
     [center addObserverForName:UIApplicationDidEnterBackgroundNotification
@@ -437,6 +447,15 @@
         self.explainerTrack.albumName = @"";
         self.explainerTrack.spotifyURL = @"";
         self.explainerTrack.isExplainerTrack = YES;
+    }
+}
+
+-(BOOL) shouldLoadSongsFromPool {
+    YSTrack *track6 = self.songs[5];
+    if (!self.songs || self.songs.count < 1 || track6.isExplainerTrack) {
+        return YES;
+    } else {
+        return NO;
     }
 }
 
