@@ -219,6 +219,9 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
+                        if (!self.songs) {
+                            self.carousel.alpha = 0;
+                        }
                         if ([self shouldLoadSongsFromPool]) {
                             [self retrieveAndLoadTracksForCategory:self.trackGroupPool];
                         }
@@ -228,7 +231,6 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        //[self resetSuggestedSongsIfNeeded];
                         if (self.categoryView.hidden == NO) {
                             // Hide Category View
                             self.categoryView.hidden = YES;
@@ -451,7 +453,7 @@
 }
 
 -(BOOL) shouldLoadSongsFromPool {
-    YSTrack *track6 = self.songs[5];
+    YSTrack *track6 = [self.songs lastObject];
     if (!self.songs || self.songs.count < 1 || track6.isExplainerTrack) {
         return YES;
     } else {
