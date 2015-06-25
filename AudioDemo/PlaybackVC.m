@@ -233,7 +233,7 @@
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"Reply With a Song", @"Reply With Voice", nil];
+                                                        otherButtonTitles:@"Send a Song Yap", @"Send a Voice Yap", nil];
         actionSheetVoice.tag = 200;
         [actionSheetVoice showInView:self.view];
     }

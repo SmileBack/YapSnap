@@ -663,7 +663,7 @@ static API *sharedAPI;
 
 #pragma mark - Retrieve Tracks
 
-- (void) retrieveTracksForCategory:(NSString*)category withCallback:(OnboardingTracksCallback)callback
+- (void) retrieveTracksForCategory:(YTTrackGroup*)category withCallback:(OnboardingTracksCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     

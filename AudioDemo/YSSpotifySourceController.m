@@ -20,6 +20,7 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "SearchArtistAlertView.h"
 #import "TopChartsPopupViewController.h"
+#import "YTTrackGroup.h"
 
 @interface YSSpotifySourceController ()
 @property (nonatomic, strong) NSArray *songs;
@@ -44,6 +45,18 @@
 @property (nonatomic, strong) NSMutableArray *tracks;
 @property (nonatomic, strong) YSTrack *explainerTrack;
 @property (strong, nonatomic) IBOutlet UIView *categoryView;
+
+@property (strong, nonatomic) YTTrackGroup *trackGroupCategoryOne;
+@property (strong, nonatomic) YTTrackGroup *trackGroupCategoryTwo;
+@property (strong, nonatomic) YTTrackGroup *trackGroupCategoryThree;
+@property (strong, nonatomic) YTTrackGroup *trackGroupCategoryFour;
+@property (strong, nonatomic) YTTrackGroup *trackGroupCategoryFive;
+@property (strong, nonatomic) YTTrackGroup *trackGroupCategorySix;
+@property (strong, nonatomic) YTTrackGroup *trackGroupCategorySeven;
+@property (strong, nonatomic) YTTrackGroup *trackGroupCategoryEight;
+@property (strong, nonatomic) YTTrackGroup *trackGroupCategoryNine;
+@property (strong, nonatomic) YTTrackGroup *trackGroupOnboarding;
+@property (strong, nonatomic) YTTrackGroup *trackGroupFiller;
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapCategoryModeButton;
@@ -70,6 +83,23 @@
 - (IBAction)didTapCategoryButtonEight:(UIButton*)button;
 - (IBAction)didTapCategoryButtonNine:(UIButton*)button;
 
+
+
+// songs from back end
+/*
+@property (nonatomic, strong) NSMutableArray *onboardingSongs;
+@property (nonatomic, strong) NSMutableArray *fillerSongs;
+@property (nonatomic, strong) NSMutableArray *trendingSongs;
+@property (nonatomic, strong) NSMutableArray *nostalgicSongs;
+@property (nonatomic, strong) NSMutableArray *funnySongs;
+@property (nonatomic, strong) NSMutableArray *happySongs;
+@property (nonatomic, strong) NSMutableArray *flirtatiousSongs;
+@property (nonatomic, strong) NSMutableArray *partySongs;
+@property (nonatomic, strong) NSMutableArray *gloomySongs;
+@property (nonatomic, strong) NSMutableArray *angrySongs;
+@property (nonatomic, strong) NSMutableArray *motivatedSongs;
+*/
+ 
 @end
 
 @implementation YSSpotifySourceController
@@ -146,7 +176,8 @@
     if (!self.songs) {
         self.carousel.alpha = 0;
     }
-    [self showSuggestedSongsIfNeeded];
+    // to do: add condition here
+    [self displayTracksForCategory:self.trackGroupOnboarding];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -155,22 +186,7 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [self resetSuggestedSongsIfNeeded];
-}
-
-- (void) showSuggestedSongsIfNeeded {
-    YSTrack *track6 = self.songs[5];
-    if (self.songs.count < 1 || track6.isExplainerTrack) {
-        [self displayFiveRandomTracks];
-    }
-}
-
-- (void) resetSuggestedSongsIfNeeded {
-    YSTrack *track6 = self.songs[5];
-    if (self.songs.count < 1 || track6.isExplainerTrack) {
-        self.songs = nil;
-        [self.carousel reloadData];
-    }
+    //[self resetSuggestedSongsIfNeeded];
 }
 
 - (void) setupGestureRecognizers {
@@ -227,14 +243,15 @@
                         if (!self.songs) {
                             self.carousel.alpha = 0;
                         }
-                        [self showSuggestedSongsIfNeeded];
+                        //To do: add condition here
+                        [self displayTracksForCategory:self.trackGroupFiller];
                     }];
     
     [center addObserverForName:UIApplicationDidEnterBackgroundNotification
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self resetSuggestedSongsIfNeeded];
+                        //[self resetSuggestedSongsIfNeeded];
                         if (self.categoryView.hidden == NO) {
                             // Hide Category View
                             self.categoryView.hidden = YES;
@@ -265,7 +282,7 @@
     });
 }
 
-#pragma mark - Search box stuff
+#pragma mark - Category Stuff
 
 -(void) styleCategoryButtons {
     self.categoryButtonOne.layer.cornerRadius = self.categoryButtonOne.bounds.size.height/2;
@@ -324,7 +341,7 @@
 }
 
 -(void) didTapCategoryButtonOne:(UIButton *)button {
-    [self displayTracksForCategory:@"onboarding_tracks"];
+    [self displayTracksForCategory:self.trackGroupCategoryOne];
     self.searchBox.text = button.titleLabel.text;
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
@@ -332,7 +349,7 @@
 }
 
 -(void) didTapCategoryButtonTwo:(UIButton *)button {
-    [self displayTracksForCategory:@"onboarding_tracks"];
+    [self displayTracksForCategory:self.trackGroupCategoryTwo];
     self.searchBox.text = button.titleLabel.text;
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
@@ -340,7 +357,7 @@
 }
 
 -(void) didTapCategoryButtonThree:(UIButton *)button {
-    [self displayTracksForCategory:@"onboarding_tracks"];
+    [self displayTracksForCategory:self.trackGroupCategoryThree];
     self.searchBox.text = button.titleLabel.text;
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
@@ -348,7 +365,7 @@
 }
 
 -(void) didTapCategoryButtonFour:(UIButton *)button {
-    [self displayTracksForCategory:@"onboarding_tracks"];
+    [self displayTracksForCategory:self.trackGroupCategoryFour];
     self.searchBox.text = button.titleLabel.text;
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
@@ -356,7 +373,7 @@
 }
 
 -(void) didTapCategoryButtonFive:(UIButton *)button {
-    [self displayTracksForCategory:@"onboarding_tracks"];
+    [self displayTracksForCategory:self.trackGroupCategoryFive];
     self.searchBox.text = button.titleLabel.text;
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
@@ -364,7 +381,7 @@
 }
 
 -(void) didTapCategoryButtonSix:(UIButton *)button {
-    [self displayTracksForCategory:@"onboarding_tracks"];
+    [self displayTracksForCategory:self.trackGroupCategorySix];
     self.searchBox.text = button.titleLabel.text;
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
@@ -372,7 +389,7 @@
 }
 
 -(void) didTapCategoryButtonSeven:(UIButton *)button {
-    [self displayTracksForCategory:@"onboarding_tracks"];
+    [self displayTracksForCategory:self.trackGroupCategorySeven];
     self.searchBox.text = button.titleLabel.text;
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
@@ -380,7 +397,7 @@
 }
 
 -(void) didTapCategoryButtonEight:(UIButton *)button {
-    [self displayTracksForCategory:@"onboarding_tracks"];
+    [self displayTracksForCategory:self.trackGroupCategoryEight];
     self.searchBox.text = button.titleLabel.text;
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
@@ -388,55 +405,74 @@
 }
 
 -(void) didTapCategoryButtonNine:(UIButton *)button {
-    [self displayTracksForCategory:@"onboarding_tracks"];
+    [self displayTracksForCategory:self.trackGroupCategoryNine];
     self.searchBox.text = button.titleLabel.text;
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
 }
 
--(void) displayFiveRandomTracks {
-    if (!self.didPlaySongForFirstTime) {
-        [self displayTracksForCategory:@"onboarding_tracks"];
+- (BOOL) songsAreAlreadyPresentForCategory:(YTTrackGroup *)category {
+    if (category.songs) {
+        return YES;
     } else {
-        if (!self.tracks || self.tracks.count < 5) {
-            self.tracks = [SpotifyTrackFactory tracks];
-        }
-        [self shuffleTracks];
-        NSArray *shuffledSuggestedTracks = @[self.tracks[0], self.tracks[1], self.tracks[2], self.tracks[3], self.tracks[4]];
-        
-        [self createExplainerTrack];
-        
-        self.songs = [shuffledSuggestedTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
-        self.carousel.currentItemIndex = 0;
-        [self.carousel reloadData];
-        [UIView animateWithDuration:.4
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             self.carousel.alpha = 1;
-                         }
-                         completion:nil];
-        }
+        return NO;
+    }
 }
 
-- (void) displayTracksForCategory:(NSString *)category
+- (void) displayTracksForCategory:(YTTrackGroup *)category
 {
-    self.carousel.alpha = 1;
-    self.loadingIndicator.alpha = 1;
-    [self.loadingIndicator startAnimating];
-    
-    [[API sharedAPI] retrieveTracksForCategory:category withCallback:^(NSArray *songs, NSError *error) {
-        if (songs) {
-            NSArray *onboardingTracks = songs;
-            [self createExplainerTrack];
-            self.songs = [onboardingTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
-            self.carousel.currentItemIndex = 0;
-            [self.carousel reloadData];
-            [self.loadingIndicator stopAnimating];
-        }
-    }];
+    // TO DO: don't make API call if not necessary
+    if ([self songsAreAlreadyPresentForCategory:category]) {
+        NSLog(@"Track group already has its songs");
+    } else {
+        [[API sharedAPI] retrieveTracksForCategory:category withCallback:^(NSArray *songs, NSError *error) {
+            if (songs) {
+                if (!self.explainerTrack) {
+                    [self createExplainerTrack];
+                }
+                
+                category.songs = songs;
+                self.songs = [category.songs arrayByAddingObjectsFromArray:@[self.explainerTrack]];
+                [self loadSongsInCarousel];
+            }
+        }];
+    }
 }
+
+-(void)createExplainerTrack {
+    if (!self.explainerTrack) {
+        self.explainerTrack = [YSTrack new];
+        self.explainerTrack.name = @"";
+        self.explainerTrack.spotifyID = @"";
+        self.explainerTrack.previewURL = @"";
+        self.explainerTrack.artistName = @"";
+        self.explainerTrack.albumName = @"";
+        self.explainerTrack.spotifyURL = @"";
+        self.explainerTrack.imageURL = @"Home";
+        self.explainerTrack.isExplainerTrack = YES;
+    }
+}
+
+- (NSMutableArray*) shuffleTracks:(NSMutableArray *)tracks {
+    NSUInteger count = [tracks count];
+    for (NSUInteger i = 0; i < count; ++i) {
+        NSInteger remainingCount = count - i;
+        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
+        [tracks exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
+    
+    return tracks;
+}
+
+- (void) loadSongsInCarousel {
+    self.carousel.currentItemIndex = 0;
+    [self.carousel reloadData];
+    [self.loadingIndicator stopAnimating];
+    self.carousel.alpha = 1;
+}
+
+#pragma mark - Spotify Search
 
 - (void) searchForTracksWithString:(NSString *)searchString
 {
@@ -497,6 +533,8 @@
     [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForSearchString:searchString withCallback:callback];
 }
 
+
+/*
 - (void) retrieveTracksForCategory:(NSString *)playlistName
 {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -547,29 +585,8 @@
     
     [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForPlaylist:playlistName withCallback:callback];
 }
+*/
 
-- (void) shuffleTracks {
-    NSUInteger count = [self.tracks count];
-    for (NSUInteger i = 0; i < count; ++i) {
-        NSInteger remainingCount = count - i;
-        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
-        [self.tracks exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
-    }
-}
-
--(void)createExplainerTrack {
-    if (!self.explainerTrack) {
-        self.explainerTrack = [YSTrack new];
-        self.explainerTrack.name = @"";
-        self.explainerTrack.spotifyID = @"";
-        self.explainerTrack.previewURL = @"";
-        self.explainerTrack.artistName = @"";
-        self.explainerTrack.albumName = @"";
-        self.explainerTrack.spotifyURL = @"";
-        self.explainerTrack.imageURL = @"Home";
-        self.explainerTrack.isExplainerTrack = YES;
-    }
-}
 
 -(BOOL) internetIsNotReachable
 {
@@ -1257,11 +1274,6 @@
 
 #pragma mark - Setting NSDefaults
 
-- (BOOL) didSeeTopChartsPopup
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_TOP_CHARTS_POPUP_KEY];
-}
-
 - (BOOL) didPlaySongForFirstTime
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_PLAY_SONG_FOR_FIRST_TIME_KEY];
@@ -1286,18 +1298,6 @@
                          self.searchBox.text = @"";
                      }];
 }
-
-/*
-- (void) showTopChartsPopup {
-    double delay = .1;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.topChartsPopupVC = [[TopChartsPopupViewController alloc] initWithNibName:@"TopChartsPopupViewController" bundle:nil];
-        [self presentPopupViewController:self.topChartsPopupVC animationType:MJPopupViewAnimationFade];
-        
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_TOP_CHARTS_POPUP_KEY];
-    });
-}
-*/
 
 - (void) resetBottomBannerUI {
     [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI object:nil];

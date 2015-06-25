@@ -13,6 +13,8 @@
 #import "YSUser.h"
 #import "YapBuilder.h"
 #import "AddFriendsBuilder.h"
+#import "YTTrackGroup.h"
+
 
 #define NOTIFICATION_INVALID_SESSION @"com.yapsnap.InvalidSessionNotification"
 #define NOTIFICATION_LOGOUT @"com.yapsnap.LogoutNotification"
@@ -49,7 +51,7 @@ typedef void (^OnboardingTracksCallback)(NSArray *songs, NSError *error);
 - (void) sendFriendRequests:(AddFriendsBuilder *)addFriendsBuilder withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmFriendFromYap:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback;
 - (void) sendSearchTerm:(NSString*)searchTerm withCallback:(SuccessOrErrorCallback)callback;
-- (void) retrieveTracksForCategory:(NSString*)category withCallback:(OnboardingTracksCallback)callback;
+- (void) retrieveTracksForCategory:(YTTrackGroup*)category withCallback:(OnboardingTracksCallback)callback;
 
 # pragma mark - Updating of User Data
 - (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback;

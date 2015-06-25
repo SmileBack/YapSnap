@@ -487,8 +487,8 @@ static NSString *CellIdentifier = @"Cell";
     self.selectedYap = yap;
     NSString *receiverFirstName = [[self.selectedYap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
     
-    if ([yap.type isEqual:@"SpotifyMessage"]) {
-        if (yap.receivedByCurrentUser) {
+    if (yap.receivedByCurrentUser) {
+        if ([yap.type isEqual:@"SpotifyMessage"]) {
             UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song, or a new one?"
                                                                             delegate:self
                                                                    cancelButtonTitle:@"Cancel"
@@ -497,6 +497,16 @@ static NSString *CellIdentifier = @"Cell";
             actionSheetSpotify.tag = 100;
             [actionSheetSpotify showInView:self.view];
         } else {
+            UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:@"Reply with a song yap or a voice yap?"
+                                                                          delegate:self
+                                                                 cancelButtonTitle:@"Cancel"
+                                                            destructiveButtonTitle:nil
+                                                                 otherButtonTitles:@"Send a Song Yap", @"Send a Voice Yap", nil];
+            actionSheetVoice.tag = 200;
+            [actionSheetVoice showInView:self.view];
+        }
+    } else {
+        if ([yap.type isEqual:@"SpotifyMessage"]) {
             UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Send %@ a yap with the same song, or a new one?", receiverFirstName]
                                                                             delegate:self
                                                                    cancelButtonTitle:@"Cancel"
@@ -504,16 +514,6 @@ static NSString *CellIdentifier = @"Cell";
                                                                    otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
             actionSheetSpotify.tag = 100;
             [actionSheetSpotify showInView:self.view];
-        }
-    } else if ([yap.type isEqual:@"VoiceMessage"]) {
-        if (yap.receivedByCurrentUser) {
-            UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:@"Reply with a song yap or a voice yap?"
-                                                                          delegate:self
-                                                                 cancelButtonTitle:@"Cancel"
-                                                            destructiveButtonTitle:nil
-                                                                 otherButtonTitles:@"Reply With a Song", @"Reply With Voice", nil];
-            actionSheetVoice.tag = 200;
-            [actionSheetVoice showInView:self.view];
         } else {
             UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Send %@ a song yap or a voice yap?", receiverFirstName]
                                                                           delegate:self
@@ -525,6 +525,7 @@ static NSString *CellIdentifier = @"Cell";
         }
     }
 }
+
 
 - (void) cellLongPressedAtIndexPath:(NSIndexPath *)indexPath
 {

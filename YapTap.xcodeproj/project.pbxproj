@@ -89,6 +89,7 @@
 		783CCFB01B3A6D2F00E3B5BF /* CategoryButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFAF1B3A6D2F00E3B5BF /* CategoryButton.png */; };
 		783CCFB21B3A6DEE00E3B5BF /* CategoryButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFB11B3A6DEE00E3B5BF /* CategoryButtonImage.png */; };
 		783CCFB41B3A6F2E00E3B5BF /* CategoryBackButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFB31B3A6F2E00E3B5BF /* CategoryBackButtonImage.png */; };
+		783CCFB71B3C8AE300E3B5BF /* YTTrackGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCFB61B3C8AE300E3B5BF /* YTTrackGroup.m */; };
 		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */; };
 		784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
@@ -428,6 +429,8 @@
 		783CCFAF1B3A6D2F00E3B5BF /* CategoryButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CategoryButton.png; sourceTree = "<group>"; };
 		783CCFB11B3A6DEE00E3B5BF /* CategoryButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CategoryButtonImage.png; sourceTree = "<group>"; };
 		783CCFB31B3A6F2E00E3B5BF /* CategoryBackButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CategoryBackButtonImage.png; sourceTree = "<group>"; };
+		783CCFB51B3C8AE300E3B5BF /* YTTrackGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTTrackGroup.h; sourceTree = "<group>"; };
+		783CCFB61B3C8AE300E3B5BF /* YTTrackGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTTrackGroup.m; sourceTree = "<group>"; };
 		784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSRecordProgressView.h; sourceTree = "<group>"; };
 		784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecordProgressView.m; sourceTree = "<group>"; };
 		784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetImageButton.h; sourceTree = "<group>"; };
@@ -1538,6 +1541,8 @@
 				FC0595831A6D87AE00FCCED2 /* Contacts */,
 				FC80F3CF1A3CC6BD00F7ABD0 /* YSTrack.h */,
 				FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */,
+				783CCFB51B3C8AE300E3B5BF /* YTTrackGroup.h */,
+				783CCFB61B3C8AE300E3B5BF /* YTTrackGroup.m */,
 				FC1E89B91A4B8E94007A8CDA /* YSYap.h */,
 				FC1E89BA1A4B8E94007A8CDA /* YSYap.m */,
 				FCBB96FD1A7D4C97003D5F24 /* YSUser.h */,
@@ -1991,6 +1996,7 @@
 				FC3ECAE91A830496002678F6 /* FriendsViewController.m in Sources */,
 				37D413BE19D21A1F00021548 /* NSString+FontAwesome.m in Sources */,
 				786192741B09A942007279E8 /* RecordPopupViewController.m in Sources */,
+				783CCFB71B3C8AE300E3B5BF /* YTTrackGroup.m in Sources */,
 				F44B0C4F16DA404700E6CD88 /* main.m in Sources */,
 				FC52C1B41A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m in Sources */,
 				FC52C1B01A786F0F00D85FA8 /* RecentContact.m in Sources */,
