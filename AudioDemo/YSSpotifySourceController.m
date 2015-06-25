@@ -157,6 +157,7 @@
     [super viewDidAppear:animated];
     self.playerAlreadyStartedPlayingForThisSong = NO;
     self.bottomButton.hidden = NO;
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -342,8 +343,6 @@
 }
 
 -(IBAction) didTapCategoryModeButton {
-    
-    //[self displayTracksForCategory:self.trackGroupCategoryOne];
     [self switchCategoryMode];
 }
 
@@ -403,10 +402,10 @@
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
-    [self displayTracksForCategory:trackGroup];
+    [self retrieveTracksForCategory:trackGroup];
 }
 
-- (void) displayTracksForCategory:(YTTrackGroup *)trackGroup
+- (void) retrieveTracksForCategory:(YTTrackGroup *)trackGroup
 {
     [self.loadingIndicator startAnimating];
 
@@ -418,7 +417,7 @@
             if (songs) {
                 trackGroup.songs = songs;
                 self.songs = trackGroup.songs;
-                [self loadSongsInCarouselWithShuffle:YES];
+                [self loadSongsForCategory:trackGroup];
             } else {
                 NSLog(@"Something went wrong");
             }
@@ -439,15 +438,19 @@
     }
 }
 
-- (void) loadSongsInCarouselWithShuffle:(BOOL)shuffle
+- (void) loadSongsForCategory:(YTTrackGroup *)trackGroup
 { 
     if (!self.explainerTrack) {
         [self createExplainerTrack];
     }
     
-    if (shuffle) {
+    if (trackGroup != self.trackGroupOnboarding) {
         NSArray *shuffledSongs = [self shuffleTracks:[NSMutableArray arrayWithArray:self.songs]];
-        self.songs = [shuffledSongs arrayByAddingObjectsFromArray:@[self.explainerTrack]];
+        if (trackGroup == self.trackGroupPool) {
+            //self.songs = @[self.trackGroupPool[0]];
+        } else {
+            self.songs = [shuffledSongs arrayByAddingObjectsFromArray:@[self.explainerTrack]];
+        }
     } else {
         self.songs = [self.songs arrayByAddingObjectsFromArray:@[self.explainerTrack]];
     }
@@ -529,61 +532,6 @@
     
     [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForSearchString:searchString withCallback:callback];
 }
-
-
-/*
-- (void) retrieveTracksForCategory:(NSString *)playlistName
-{
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Searched Songs"];
-    [mixpanel.people increment:@"Searched Songs #" by:[NSNumber numberWithInt:1]];
-    
-    self.songs = nil;
-    [self.carousel reloadData];
-    self.carousel.alpha = 1;
-    self.loadingIndicator.alpha = 1;
-    [self.loadingIndicator startAnimating];
-    
-    __weak YSSpotifySourceController *weakSelf = self;
-    void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
-        NSLog(@"Songs: %@", songs);
-        if (songs) {
-            weakSelf.songs = songs;
-            weakSelf.carousel.currentItemIndex = 0;
-            [weakSelf.carousel reloadData];
-            
-            if (songs.count == 0) {
-                [self.loadingIndicator stopAnimating];
-                
-                NSLog(@"No Songs Returned For Search Query");
-                
-                double delay = 0.2;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
-                });
-            } else {
-                NSLog(@"Returned Songs Successfully");
-                [self.loadingIndicator stopAnimating];
-            }
-        } else if (error) {
-            [self.loadingIndicator stopAnimating];
-            
-            if ([self internetIsNotReachable]) {
-                double delay = 0.1;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
-                });
-            } else {
-                NSLog(@"Error Returning Songs %@", error);
-                [mixpanel track:@"Spotify Error - search (other)"];
-            }
-        }
-    };
-    
-    [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForPlaylist:playlistName withCallback:callback];
-}
-*/
-
 
 -(BOOL) internetIsNotReachable
 {
@@ -1319,5 +1267,58 @@
         self.magnifyingGlassImageView.hidden = NO;
     }
 }
+
+/*
+ - (void) retrieveTracksForCategory:(NSString *)playlistName
+ {
+ Mixpanel *mixpanel = [Mixpanel sharedInstance];
+ [mixpanel track:@"Searched Songs"];
+ [mixpanel.people increment:@"Searched Songs #" by:[NSNumber numberWithInt:1]];
+ 
+ self.songs = nil;
+ [self.carousel reloadData];
+ self.carousel.alpha = 1;
+ self.loadingIndicator.alpha = 1;
+ [self.loadingIndicator startAnimating];
+ 
+ __weak YSSpotifySourceController *weakSelf = self;
+ void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
+ NSLog(@"Songs: %@", songs);
+ if (songs) {
+ weakSelf.songs = songs;
+ weakSelf.carousel.currentItemIndex = 0;
+ [weakSelf.carousel reloadData];
+ 
+ if (songs.count == 0) {
+ [self.loadingIndicator stopAnimating];
+ 
+ NSLog(@"No Songs Returned For Search Query");
+ 
+ double delay = 0.2;
+ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+ [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New Search."];
+ });
+ } else {
+ NSLog(@"Returned Songs Successfully");
+ [self.loadingIndicator stopAnimating];
+ }
+ } else if (error) {
+ [self.loadingIndicator stopAnimating];
+ 
+ if ([self internetIsNotReachable]) {
+ double delay = 0.1;
+ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+ [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+ });
+ } else {
+ NSLog(@"Error Returning Songs %@", error);
+ [mixpanel track:@"Spotify Error - search (other)"];
+ }
+ }
+ };
+ 
+ [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForPlaylist:playlistName withCallback:callback];
+ }
+ */
 
 @end
