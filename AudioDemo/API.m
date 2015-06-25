@@ -682,6 +682,7 @@ static API *sharedAPI;
              [self processFailedOperation:operation];
              callback(NO, error);
          }];
+        NSLog(@"category in API.m: %@", category);
 }
 /*
 - (void) retrieveOnboardingTracks:(OnboardingTracksCallback)callback

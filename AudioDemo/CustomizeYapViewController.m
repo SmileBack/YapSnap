@@ -151,7 +151,7 @@
     self.progressView.trackTintColor = [UIColor colorWithWhite:0.85 alpha:1.0];
     
     if (self.yapBuilder.contacts.count > 0) {
-        //self.addRecipientsButton.hidden = NO;
+        self.addRecipientsButton.hidden = NO;
     }
 }
 

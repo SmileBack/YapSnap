@@ -56,7 +56,7 @@
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryEight;
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryNine;
 @property (strong, nonatomic) YTTrackGroup *trackGroupOnboarding;
-@property (strong, nonatomic) YTTrackGroup *trackGroupFiller;
+@property (strong, nonatomic) YTTrackGroup *trackGroupPool;
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapCategoryModeButton;
@@ -82,23 +82,6 @@
 - (IBAction)didTapCategoryButtonSeven:(UIButton*)button;
 - (IBAction)didTapCategoryButtonEight:(UIButton*)button;
 - (IBAction)didTapCategoryButtonNine:(UIButton*)button;
-
-
-
-// songs from back end
-/*
-@property (nonatomic, strong) NSMutableArray *onboardingSongs;
-@property (nonatomic, strong) NSMutableArray *fillerSongs;
-@property (nonatomic, strong) NSMutableArray *trendingSongs;
-@property (nonatomic, strong) NSMutableArray *nostalgicSongs;
-@property (nonatomic, strong) NSMutableArray *funnySongs;
-@property (nonatomic, strong) NSMutableArray *happySongs;
-@property (nonatomic, strong) NSMutableArray *flirtatiousSongs;
-@property (nonatomic, strong) NSMutableArray *partySongs;
-@property (nonatomic, strong) NSMutableArray *gloomySongs;
-@property (nonatomic, strong) NSMutableArray *angrySongs;
-@property (nonatomic, strong) NSMutableArray *motivatedSongs;
-*/
  
 @end
 
@@ -154,7 +137,9 @@
     
     self.categoryView.backgroundColor = THEME_BACKGROUND_COLOR;
     
-    [self styleCategoryButtons];
+    [self createTrackGroups];
+    
+    [self setupCategoryButtons];
 }
 
 - (void) createArtistButtonHack {
@@ -172,21 +157,11 @@
     [super viewDidAppear:animated];
     self.playerAlreadyStartedPlayingForThisSong = NO;
     self.bottomButton.hidden = NO;
-    
-    if (!self.songs) {
-        self.carousel.alpha = 0;
-    }
-    // to do: add condition here
-    [self displayTracksForCategory:self.trackGroupOnboarding];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.view endEditing:YES];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    //[self resetSuggestedSongsIfNeeded];
 }
 
 - (void) setupGestureRecognizers {
@@ -236,17 +211,6 @@
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
     
-    [center addObserverForName:UIApplicationWillEnterForegroundNotification
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        if (!self.songs) {
-                            self.carousel.alpha = 0;
-                        }
-                        //To do: add condition here
-                        [self displayTracksForCategory:self.trackGroupFiller];
-                    }];
-    
     [center addObserverForName:UIApplicationDidEnterBackgroundNotification
                         object:nil
                          queue:nil
@@ -282,47 +246,104 @@
     });
 }
 
-#pragma mark - Category Stuff
+#pragma mark - Track Category Stuff
 
--(void) styleCategoryButtons {
+- (void) createTrackGroups {
+    self.trackGroupCategoryOne = [YTTrackGroup new];
+    self.trackGroupCategoryOne.name = @"Trending";
+    self.trackGroupCategoryOne.apiString = @"trending";
+    
+    self.trackGroupCategoryTwo = [YTTrackGroup new];
+    self.trackGroupCategoryTwo.name = @"Nostalgic";
+    self.trackGroupCategoryThree.apiString = @"nostalgic_tracks";
+    
+    self.trackGroupCategoryThree = [YTTrackGroup new];
+    self.trackGroupCategoryThree.name = @"Funny";
+    self.trackGroupCategoryThree.apiString = @"funny_tracks";
+    
+    self.trackGroupCategoryFour = [YTTrackGroup new];
+    self.trackGroupCategoryFour.name = @"Party";
+    self.trackGroupCategoryFour.apiString = @"party_tracks";
+    
+    self.trackGroupCategoryFive = [YTTrackGroup new];
+    self.trackGroupCategoryFive.name = @"Happy";
+    self.trackGroupCategoryFive.apiString = @"happy_tracks";
+    
+    self.trackGroupCategorySix = [YTTrackGroup new];
+    self.trackGroupCategorySix.name = @"Flirtatious";
+    self.trackGroupCategorySix.apiString = @"flirtatious_tracks";
+    
+    self.trackGroupCategorySeven = [YTTrackGroup new];
+    self.trackGroupCategorySeven.name = @"Gloomy";
+    self.trackGroupCategorySeven.apiString = @"gloomy_tracks";
+    
+    self.trackGroupCategoryEight = [YTTrackGroup new];
+    self.trackGroupCategoryEight.name = @"Angry";
+    self.trackGroupCategoryEight.apiString = @"angry_tracks";
+    
+    self.trackGroupCategoryNine = [YTTrackGroup new];
+    self.trackGroupCategoryNine.name = @"Motivated";
+    self.trackGroupCategoryNine.apiString = @"onboarding_tracks";
+    
+    self.trackGroupOnboarding = [YTTrackGroup new];
+    self.trackGroupOnboarding.name = @"Onboarding";
+    self.trackGroupOnboarding.apiString = @"onboarding_tracks";
+    
+    self.trackGroupPool = [YTTrackGroup new];
+    self.trackGroupPool.name = @"Pool";
+    self.trackGroupPool.apiString = @"pool_tracks";
+}
+
+-(void) setupCategoryButtons {
     self.categoryButtonOne.layer.cornerRadius = self.categoryButtonOne.bounds.size.height/2;
     self.categoryButtonOne.layer.borderWidth = 1;
     self.categoryButtonOne.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self.categoryButtonOne setTitle:self.trackGroupCategoryOne.name forState:UIControlStateNormal];
     
     self.categoryButtonTwo.layer.cornerRadius = self.categoryButtonTwo.bounds.size.height/2;
     self.categoryButtonTwo.layer.borderWidth = 1;
     self.categoryButtonTwo.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self.categoryButtonTwo setTitle:self.trackGroupCategoryTwo.name forState:UIControlStateNormal];
     
     self.categoryButtonThree.layer.cornerRadius = self.categoryButtonThree.bounds.size.height/2;
     self.categoryButtonThree.layer.borderWidth = 1;
     self.categoryButtonThree.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self.categoryButtonThree setTitle:self.trackGroupCategoryThree.name forState:UIControlStateNormal];
     
     self.categoryButtonFour.layer.cornerRadius = self.categoryButtonFour.bounds.size.height/2;
     self.categoryButtonFour.layer.borderWidth = 1;
     self.categoryButtonFour.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self.categoryButtonFour setTitle:self.trackGroupCategoryFour.name forState:UIControlStateNormal];
     
     self.categoryButtonFive.layer.cornerRadius = self.categoryButtonFive.bounds.size.height/2;
     self.categoryButtonFive.layer.borderWidth = 1;
     self.categoryButtonFive.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self.categoryButtonFive setTitle:self.trackGroupCategoryFive.name forState:UIControlStateNormal];
     
     self.categoryButtonSix.layer.cornerRadius = self.categoryButtonSix.bounds.size.height/2;
     self.categoryButtonSix.layer.borderWidth = 1;
     self.categoryButtonSix.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self.categoryButtonSix setTitle:self.trackGroupCategorySix.name forState:UIControlStateNormal];
     
     self.categoryButtonSeven.layer.cornerRadius = self.categoryButtonSeven.bounds.size.height/2;
     self.categoryButtonSeven.layer.borderWidth = 1;
     self.categoryButtonSeven.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self.categoryButtonSeven setTitle:self.trackGroupCategorySeven.name forState:UIControlStateNormal];
     
     self.categoryButtonEight.layer.cornerRadius = self.categoryButtonEight.bounds.size.height/2;
     self.categoryButtonEight.layer.borderWidth = 1;
     self.categoryButtonEight.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self.categoryButtonEight setTitle:self.trackGroupCategoryEight.name forState:UIControlStateNormal];
     
     self.categoryButtonNine.layer.cornerRadius = self.categoryButtonNine.bounds.size.height/2;
     self.categoryButtonNine.layer.borderWidth = 1;
     self.categoryButtonNine.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self.categoryButtonNine setTitle:self.trackGroupCategoryNine.name forState:UIControlStateNormal];
 }
 
 -(IBAction) didTapCategoryModeButton {
+    
+    //[self displayTracksForCategory:self.trackGroupCategoryOne];
     [self switchCategoryMode];
 }
 
@@ -341,100 +362,65 @@
 }
 
 -(void) didTapCategoryButtonOne:(UIButton *)button {
-    [self displayTracksForCategory:self.trackGroupCategoryOne];
-    self.searchBox.text = button.titleLabel.text;
-    self.resetButton.alpha = 1;
-    self.categoryView.hidden = YES;
-    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryOne];
 }
 
 -(void) didTapCategoryButtonTwo:(UIButton *)button {
-    [self displayTracksForCategory:self.trackGroupCategoryTwo];
-    self.searchBox.text = button.titleLabel.text;
-    self.resetButton.alpha = 1;
-    self.categoryView.hidden = YES;
-    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryTwo];
 }
 
 -(void) didTapCategoryButtonThree:(UIButton *)button {
-    [self displayTracksForCategory:self.trackGroupCategoryThree];
-    self.searchBox.text = button.titleLabel.text;
-    self.resetButton.alpha = 1;
-    self.categoryView.hidden = YES;
-    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryThree];
 }
 
 -(void) didTapCategoryButtonFour:(UIButton *)button {
-    [self displayTracksForCategory:self.trackGroupCategoryFour];
-    self.searchBox.text = button.titleLabel.text;
-    self.resetButton.alpha = 1;
-    self.categoryView.hidden = YES;
-    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryFour];
 }
 
 -(void) didTapCategoryButtonFive:(UIButton *)button {
-    [self displayTracksForCategory:self.trackGroupCategoryFive];
-    self.searchBox.text = button.titleLabel.text;
-    self.resetButton.alpha = 1;
-    self.categoryView.hidden = YES;
-    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryFive];
 }
 
 -(void) didTapCategoryButtonSix:(UIButton *)button {
-    [self displayTracksForCategory:self.trackGroupCategorySix];
-    self.searchBox.text = button.titleLabel.text;
-    self.resetButton.alpha = 1;
-    self.categoryView.hidden = YES;
-    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategorySix];
 }
 
 -(void) didTapCategoryButtonSeven:(UIButton *)button {
-    [self displayTracksForCategory:self.trackGroupCategorySeven];
-    self.searchBox.text = button.titleLabel.text;
-    self.resetButton.alpha = 1;
-    self.categoryView.hidden = YES;
-    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategorySeven];
 }
 
 -(void) didTapCategoryButtonEight:(UIButton *)button {
-    [self displayTracksForCategory:self.trackGroupCategoryEight];
-    self.searchBox.text = button.titleLabel.text;
-    self.resetButton.alpha = 1;
-    self.categoryView.hidden = YES;
-    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryEight];
 }
 
 -(void) didTapCategoryButtonNine:(UIButton *)button {
-    [self displayTracksForCategory:self.trackGroupCategoryNine];
-    self.searchBox.text = button.titleLabel.text;
+    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryNine];
+}
+
+- (void) tappedCategoryButtonForTrackGroup:(YTTrackGroup*)trackGroup {
+    self.carousel.alpha = 0;
+    self.searchBox.text = trackGroup.name;
     self.resetButton.alpha = 1;
     self.categoryView.hidden = YES;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+    [self displayTracksForCategory:trackGroup];
 }
 
-- (BOOL) songsAreAlreadyPresentForCategory:(YTTrackGroup *)category {
-    if (category.songs) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-- (void) displayTracksForCategory:(YTTrackGroup *)category
+- (void) displayTracksForCategory:(YTTrackGroup *)trackGroup
 {
-    // TO DO: don't make API call if not necessary
-    if ([self songsAreAlreadyPresentForCategory:category]) {
-        NSLog(@"Track group already has its songs");
+    [self.loadingIndicator startAnimating];
+
+    if (trackGroup.songs) {
+        self.songs = trackGroup.songs;
+        [self loadSongsInCarouselWithShuffle:YES];
     } else {
-        [[API sharedAPI] retrieveTracksForCategory:category withCallback:^(NSArray *songs, NSError *error) {
+        [[API sharedAPI] retrieveTracksForCategory:trackGroup withCallback:^(NSArray *songs, NSError *error) {
             if (songs) {
-                if (!self.explainerTrack) {
-                    [self createExplainerTrack];
-                }
-                
-                category.songs = songs;
-                self.songs = [category.songs arrayByAddingObjectsFromArray:@[self.explainerTrack]];
-                [self loadSongsInCarousel];
+                trackGroup.songs = songs;
+                self.songs = trackGroup.songs;
+                [self loadSongsInCarouselWithShuffle:YES];
+            } else {
+                NSLog(@"Something went wrong");
             }
         }];
     }
@@ -449,9 +435,27 @@
         self.explainerTrack.artistName = @"";
         self.explainerTrack.albumName = @"";
         self.explainerTrack.spotifyURL = @"";
-        self.explainerTrack.imageURL = @"Home";
         self.explainerTrack.isExplainerTrack = YES;
     }
+}
+
+- (void) loadSongsInCarouselWithShuffle:(BOOL)shuffle
+{ 
+    if (!self.explainerTrack) {
+        [self createExplainerTrack];
+    }
+    
+    if (shuffle) {
+        NSArray *shuffledSongs = [self shuffleTracks:[NSMutableArray arrayWithArray:self.songs]];
+        self.songs = [shuffledSongs arrayByAddingObjectsFromArray:@[self.explainerTrack]];
+    } else {
+        self.songs = [self.songs arrayByAddingObjectsFromArray:@[self.explainerTrack]];
+    }
+    
+    [self.loadingIndicator stopAnimating];
+    self.carousel.currentItemIndex = 0;
+    [self.carousel reloadData];
+    self.carousel.alpha = 1;
 }
 
 - (NSMutableArray*) shuffleTracks:(NSMutableArray *)tracks {
@@ -463,13 +467,6 @@
     }
     
     return tracks;
-}
-
-- (void) loadSongsInCarousel {
-    self.carousel.currentItemIndex = 0;
-    [self.carousel reloadData];
-    [self.loadingIndicator stopAnimating];
-    self.carousel.alpha = 1;
 }
 
 #pragma mark - Spotify Search

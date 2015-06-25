@@ -11,7 +11,7 @@
 @interface YTTrackGroup : NSObject
 
 @property (nonatomic, strong) NSString *apiString;
-@property (nonatomic, strong) NSString *categoryName;
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray *songs;
 
 @end
