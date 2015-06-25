@@ -438,15 +438,6 @@
     }
 }
 
-- (void) shuffleTracks:(NSMutableArray *)tracks {
-    NSUInteger count = [tracks count];
-    for (NSUInteger i = 0; i < count; ++i) {
-        NSInteger remainingCount = count - i;
-        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
-        [tracks exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
-    }
-}
-
 - (void) searchForTracksWithString:(NSString *)searchString
 {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -506,6 +497,15 @@
     [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForSearchString:searchString withCallback:callback];
 }
 
+- (void) shuffleTracks:(NSMutableArray *)tracks {
+    NSUInteger count = [tracks count];
+    for (NSUInteger i = 0; i < count; ++i) {
+        NSInteger remainingCount = count - i;
+        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
+        [tracks exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
+}
+
 -(void)createExplainerTrack {
     if (!self.explainerTrack) {
         self.explainerTrack = [YSTrack new];
@@ -515,7 +515,6 @@
         self.explainerTrack.artistName = @"";
         self.explainerTrack.albumName = @"";
         self.explainerTrack.spotifyURL = @"";
-        self.explainerTrack.imageURL = @"Home";
         self.explainerTrack.isExplainerTrack = YES;
     }
 }

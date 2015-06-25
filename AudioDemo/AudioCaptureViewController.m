@@ -33,7 +33,6 @@
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
-//- (IBAction)didTapSwitchRecordSource:(id)sender;
 - (IBAction)didTapNextButton;
 - (IBAction)didTapCancelButton;
 
