@@ -1025,7 +1025,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9XV-zO-GXP" customClass="NextButton">
-                                <rect key="frame" x="264" y="400" width="46" height="46"/>
+                                <rect key="frame" x="264" y="464" width="46" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="Vfc-07-yYR"/>
                                     <constraint firstAttribute="height" constant="46" id="fME-FA-i3s"/>
@@ -1104,10 +1104,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-Y6-ICb" userLabel="Cancel Button">
-                                <rect key="frame" x="3" y="17" width="44" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-Y6-ICb" userLabel="Cancel Button">
+                                <rect key="frame" x="3" y="-1" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="aun-Jp-xYE"/>
+                                    <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
+                                </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="7E1AD9B2-5EB9-4FEF-A5A5-F3260B809C24"/>
+                                <state key="normal" backgroundImage="430CE099-B4B5-4FC6-9DC3-B25BD683332B"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1143,8 +1147,10 @@
                             <constraint firstAttribute="centerX" secondItem="B2R-OB-er0" secondAttribute="centerX" id="Bck-GS-k44"/>
                             <constraint firstItem="lNC-9Z-jqK" firstAttribute="top" secondItem="aiy-hB-M9w" secondAttribute="bottom" constant="-70" id="Cp2-ya-u2K"/>
                             <constraint firstAttribute="centerX" secondItem="yD7-vZ-19N" secondAttribute="centerX" id="IAx-iC-1H3"/>
+                            <constraint firstItem="TCV-Y6-ICb" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="-13" id="KH1-Ef-ZE9"/>
                             <constraint firstAttribute="trailing" secondItem="ygq-ac-kFT" secondAttribute="trailing" id="Lq3-1h-fim"/>
                             <constraint firstAttribute="centerX" secondItem="KUG-Uw-gQP" secondAttribute="centerX" id="O8b-kf-BdZ"/>
+                            <constraint firstItem="TCV-Y6-ICb" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="-1" id="OA9-m0-EMk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KDf-Vb-ilr" secondAttribute="trailing" constant="-14" id="OhA-Zs-R2S"/>
                             <constraint firstItem="yD7-vZ-19N" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="9" id="Po5-WW-irE"/>
                             <constraint firstItem="aiy-hB-M9w" firstAttribute="trailing" secondItem="ygq-ac-kFT" secondAttribute="trailing" id="RYw-Kd-Y1b"/>
@@ -1152,7 +1158,7 @@
                             <constraint firstItem="aiy-hB-M9w" firstAttribute="top" secondItem="B2R-OB-er0" secondAttribute="top" constant="-8" id="UMp-l3-lgP"/>
                             <constraint firstItem="aiy-hB-M9w" firstAttribute="leading" secondItem="lNC-9Z-jqK" secondAttribute="trailing" constant="-68" id="UaT-Lx-ANu"/>
                             <constraint firstItem="Yo4-ls-PqW" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" constant="10" id="UnD-gZ-hhJ"/>
-                            <constraint firstItem="9XV-zO-GXP" firstAttribute="centerY" secondItem="T1S-dg-Qvf" secondAttribute="top" constant="-101" id="X0t-yl-0Ze"/>
+                            <constraint firstItem="9XV-zO-GXP" firstAttribute="centerY" secondItem="T1S-dg-Qvf" secondAttribute="top" constant="-37" id="X0t-yl-0Ze"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="aiy-hB-M9w" secondAttribute="bottom" id="XFC-Ai-LyX"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="top" secondItem="54R-6y-Wab" secondAttribute="topMargin" constant="64" id="Xvf-wH-6CH"/>
                             <constraint firstItem="Yo4-ls-PqW" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="25" id="YWI-cm-XFl"/>
@@ -2031,7 +2037,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="7E1AD9B2-5EB9-4FEF-A5A5-F3260B809C24" width="300" height="300">
+        <image name="430CE099-B4B5-4FC6-9DC3-B25BD683332B" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
