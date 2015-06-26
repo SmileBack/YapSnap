@@ -159,13 +159,22 @@
     self.bottomButton.hidden = NO;
     
     if ([self shouldLoadSongsFromPool]) {
-        [self retrieveAndLoadTracksForCategory:self.trackGroupPool];
+        if (!self.didPlaySongForFirstTime) {
+            [self retrieveAndLoadTracksForCategory:self.trackGroupOnboarding];
+        } else {
+            [self retrieveAndLoadTracksForCategory:self.trackGroupPool];
+        }
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.view endEditing:YES];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:(BOOL)animated];
+    [self resetSuggestedSongsIfNeeded];
 }
 
 - (void) setupGestureRecognizers {
@@ -222,8 +231,13 @@
                         if (!self.songs) {
                             self.carousel.alpha = 0;
                         }
+
                         if ([self shouldLoadSongsFromPool]) {
-                            [self retrieveAndLoadTracksForCategory:self.trackGroupPool];
+                            if (!self.didPlaySongForFirstTime) {
+                                [self retrieveAndLoadTracksForCategory:self.trackGroupOnboarding];
+                            } else {
+                                [self retrieveAndLoadTracksForCategory:self.trackGroupPool];
+                            }
                         }
                     }];
     
@@ -237,6 +251,7 @@
                             [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
                         }
                         [self.view endEditing:YES];
+                        [self resetSuggestedSongsIfNeeded];
                     }];
 }
 
@@ -452,15 +467,6 @@
     }
 }
 
--(BOOL) shouldLoadSongsFromPool {
-    YSTrack *track6 = [self.songs lastObject];
-    if (!self.songs || self.songs.count < 1 || track6.isExplainerTrack) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
 - (void) loadSongsForCategory:(YTTrackGroup *)trackGroup
 { 
     if (!self.explainerTrack) {
@@ -498,6 +504,23 @@
     }
     
     return tracks;
+}
+
+-(BOOL) shouldLoadSongsFromPool {
+    YSTrack *lastTrack = [self.songs lastObject];
+    if (!self.songs || self.songs.count < 1 || lastTrack.isExplainerTrack) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (void) resetSuggestedSongsIfNeeded {
+    YSTrack *lastTrack = [self.songs lastObject];
+    if (self.songs.count < 1 || lastTrack.isExplainerTrack) {
+        self.songs = nil;
+        [self.carousel reloadData];
+    }
 }
 
 #pragma mark - Spotify Search
