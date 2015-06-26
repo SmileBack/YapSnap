@@ -196,6 +196,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             [mixpanel.people increment:@"Recorded Voice #" by:[NSNumber numberWithInt:1]];
         }
         else {
+            self.titleLabel.hidden = NO;
             NSLog(@"Microphone permission denied");
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mic Permission Disabled"
                                                             message:@"You disabled mic permission. To send a voice yap, go to your phone's Settings, click Privacy, and enable Microphone."

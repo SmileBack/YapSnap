@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *albumImage;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addRecipientsButton;
+@property (strong, nonatomic) IBOutlet UILabel *albumLabel;
 
 - (IBAction)didTapCameraButton;
 - (IBAction)didTapResetPhotoButton;
@@ -71,11 +72,7 @@
     if (self.yapBuilder.contacts.count > 0) {
         [self updateBannerLabel];
         self.addRecipientsButton.hidden = NO;
-        [self.topLeftButton setImage:[UIImage imageNamed:@"CancelImageWhite2.png"] forState:UIControlStateNormal];
-        [self.topLeftButton setImage:[UIImage imageNamed:@"CancelImageWhite2.png"] forState:UIControlStateHighlighted];
     } else {
-        [self.topLeftButton setImage:[UIImage imageNamed:@"LeftArrow500.png"] forState:UIControlStateNormal];
-        [self.topLeftButton setImage:[UIImage imageNamed:@"LeftArrow500.png"] forState:UIControlStateHighlighted];
         if (self.isForwardingYap) {
             self.contactLabel.text = @"Select Recipients";
             if (self.yapBuilder.imageAwsUrl && ![self.yapBuilder.imageAwsUrl isEqual: [NSNull null]]) {
@@ -85,6 +82,14 @@
         } else {
             self.contactLabel.text = @"Send Yap";
         }
+    }
+    
+    if (self.isReplying || self.isForwardingYap) {
+        [self.topLeftButton setImage:[UIImage imageNamed:@"CancelImageWhite2.png"] forState:UIControlStateNormal];
+        [self.topLeftButton setImage:[UIImage imageNamed:@"CancelImageWhite2.png"] forState:UIControlStateHighlighted];
+    } else {
+        [self.topLeftButton setImage:[UIImage imageNamed:@"LeftArrow500.png"] forState:UIControlStateNormal];
+        [self.topLeftButton setImage:[UIImage imageNamed:@"LeftArrow500.png"] forState:UIControlStateHighlighted];
     }
     
     double delay = 0.2;
@@ -153,6 +158,16 @@
     self.yapPhoto.clipsToBounds = YES;
     
     self.progressView.trackTintColor = [UIColor colorWithWhite:0.85 alpha:1.0];
+    
+    if ([self.yapBuilder.messageType isEqual:@"SpotifyMessage"]) {
+        self.albumLabel.text = [NSString stringWithFormat:@"%@, by %@", self.yapBuilder.track.name, self.yapBuilder.track.artistName];
+    } else {
+        self.albumLabel.hidden = YES;
+    }
+    
+    if (self.isForwardingYap && [self.yapBuilder.messageType isEqualToString:@"VoiceMessage"]) {
+        [self.albumImage setImage:[UIImage imageNamed:@"YapTapCartoonLarge2.png"]];
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -433,7 +448,7 @@
 
 - (IBAction)leftButtonPressed:(id)sender
 {
-    if (self.yapBuilder.contacts.count > 0) {
+    if (self.isReplying || self.isForwardingYap) {
         [self.navigationController popViewControllerAnimated:NO];
     } else {
         [self.navigationController popViewControllerAnimated:YES];

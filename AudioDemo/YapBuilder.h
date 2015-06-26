@@ -29,6 +29,8 @@ typedef NS_ENUM(NSUInteger, YTYapSendingAction) {
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) NSNumber *pitchValueInCentUnits;
 @property (strong, nonatomic) NSNumber *originYapID;
+@property (strong, nonatomic) NSString *awsVoiceURL;
+@property (strong, nonatomic) NSString *awsVoiceEtag;
 
 #pragma mark - Photo Stuff
 @property (nonatomic, strong) NSURL *image;

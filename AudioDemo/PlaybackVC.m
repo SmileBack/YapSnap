@@ -28,6 +28,7 @@
 @property IBOutlet UIActivityIndicatorView* activityIndicator;
 @property IBOutlet UIActivityIndicatorView* friendRequestActivityIndicator;
 @property (nonatomic) BOOL audioHasBegun;
+@property (strong, nonatomic) IBOutlet UILabel *albumLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
@@ -62,7 +63,7 @@
             self.titleLabel.text = @"Sent to YapTap Team";
             [self.replyButton setTitle:@"Send Another Yap" forState:UIControlStateNormal];
         } else {
-            self.titleLabel.text = [NSString stringWithFormat:@"Sent to %@", receiverFirstName];
+            //self.titleLabel.text = [NSString stringWithFormat:@"Sent to %@", receiverFirstName];
             [self.replyButton setTitle:[NSString stringWithFormat:@"Send %@ Another Yap", receiverFirstName] forState:UIControlStateNormal];
         }
         
@@ -129,6 +130,12 @@
     } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
         UIImage *buttonImage = [UIImage imageNamed:@"ReplayIcon2.png"];
         [self.topRightButton setImage:buttonImage forState:UIControlStateNormal];
+    }
+    
+    if ([self.yap.type isEqual:@"SpotifyMessage"]) {
+        self.albumLabel.text = [NSString stringWithFormat:@"%@, by %@", self.yap.songName, self.yap.artist];
+    } else {
+        self.albumLabel.text = [NSString stringWithFormat:@"by %@", self.yap.senderName];
     }
 }
 

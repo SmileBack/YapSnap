@@ -297,25 +297,61 @@ static API *sharedAPI;
     
     __weak API *weakSelf = self;
     
-    [[AmazonAPI sharedAPI] uploadYap:outputFileURL withCallback:^(NSString *url, NSString *etag, NSError *error) {
-        if (error) {
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"AWS Error - uploadYap"];
-            
-            NSLog(@"Error uploading voice file to amazon! %@", error);
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
-            callback(NO, error);
-        } else {
-            NSLog(@"Successfully uploaded voice file to AWS");
-        }
+    if (!builder.awsVoiceURL || [builder.awsVoiceURL length] == 0) {
+        [[AmazonAPI sharedAPI] uploadYap:outputFileURL withCallback:^(NSString *url, NSString *etag, NSError *error) {
+            if (error) {
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"AWS Error - uploadYap"];
                 
+                NSLog(@"Error uploading voice file to amazon! %@", error);
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
+                callback(NO, error);
+            } else {
+                NSLog(@"Successfully uploaded voice file to AWS");
+            }
+                    
+            NSDictionary *params = [weakSelf paramsWithDict:@{@"type": MESSAGE_TYPE_VOICE,
+                                                              @"aws_recording_url": url,
+                                                              @"aws_recording_etag": etag,
+                                                              @"pitch_value": builder.pitchValueInCentUnits
+                                                              }
+                                              andYapBuilder:builder];
+            
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            [manager POST:[weakSelf urlForEndpoint:@"audio_messages"]
+               parameters:params
+                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                      Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                      [mixpanel track:@"Sent Yap - Voice"];
+                      [mixpanel.people increment:@"Sent Yap - Voice #" by:[NSNumber numberWithInt:1]];
+                      
+                      if ([responseObject isKindOfClass:[NSArray class]]) {
+                          NSArray *yapDicts = responseObject;
+                          NSArray *yaps = [YSYap yapsWithArray:yapDicts];
+                          [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENT object:nil userInfo:@{@"yaps": yaps}];
+                      }
+                      callback(YES, nil);
+                  }
+                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                      Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                      [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
+                      [mixpanel track:@"API Error - sendVoiceYap"];
+                      
+                      [self processFailedOperation:operation];
+                      
+                      NSLog(@"Error: %@", error);
+                      callback(NO, error);
+                  }];
+            
+        }];
+    } else {
+        // THIS GETS TRIGGERED WHEN FORWARDING OF A VOICE YAP OCCURS
         NSDictionary *params = [weakSelf paramsWithDict:@{@"type": MESSAGE_TYPE_VOICE,
-                                                          @"aws_recording_url": url,
-                                                          @"aws_recording_etag": etag,
+                                                          @"aws_recording_url": builder.awsVoiceURL,
+                                                          @"aws_recording_etag": @"forwarded_yap",
                                                           @"pitch_value": builder.pitchValueInCentUnits
                                                           }
                                           andYapBuilder:builder];
-        
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:[weakSelf urlForEndpoint:@"audio_messages"]
            parameters:params
@@ -341,8 +377,7 @@ static API *sharedAPI;
                   NSLog(@"Error: %@", error);
                   callback(NO, error);
               }];
-        
-    }];
+    }
 }
 
 - (void) sendSongYap:(YapBuilder *)builder withCallback:(SuccessOrErrorCallback)callback
