@@ -333,8 +333,25 @@ static NSString *CellIdentifier = @"Cell";
     
     [cell.albumImageView.layer setBorderColor: [[UIColor darkGrayColor] CGColor]];
     [cell.albumImageView.layer setBorderWidth: 0.5];
+    /*
+    if ((([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened)) || ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.sentByCurrentUser)) {
+        cell.goToSpotifyView.alpha = 1;
+        YSSpotifyTapGestureRecognizer *singleFingerTap =
+        [[YSSpotifyTapGestureRecognizer alloc] initWithTarget:self
+                                                       action:@selector(handleSpotifyTap:)];
+        singleFingerTap.yap = yap;
+        [cell.goToSpotifyView addGestureRecognizer:singleFingerTap];
+        [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
+        cell.spotifyBottomImageView.hidden = NO;
+    } else if ((([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.receivedByCurrentUser && yap.wasOpened)) || ([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.sentByCurrentUser)) {
+        [cell.albumImageView setImage:[UIImage imageNamed:@"YapTapCartoonIcon.png"]];
+        cell.spotifyBottomImageView.hidden = YES;
+    } else {
+        cell.goToSpotifyView.hidden = YES;
+    }
+     */
     
-    // SPOTIFY
+    
     if (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened) || ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.sentByCurrentUser)) {
         cell.goToSpotifyView.alpha = 1;
         YSSpotifyTapGestureRecognizer *singleFingerTap =
@@ -344,12 +361,12 @@ static NSString *CellIdentifier = @"Cell";
         [cell.goToSpotifyView addGestureRecognizer:singleFingerTap];
         
         [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
-        cell.spotifyImageView.hidden = NO;
-    } else {
-        if (!yap.isSending) {
+        cell.spotifyBottomImageView.hidden = NO;
+    } else if (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened) || ([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.sentByCurrentUser)) {
             [cell.albumImageView setImage:[UIImage imageNamed:@"YapTapCartoonIcon.png"]];
-            cell.spotifyImageView.hidden = YES;
-        }
+            cell.spotifyBottomImageView.hidden = YES;
+    } else {
+        cell.goToSpotifyView.hidden = YES;
     }
 
     // DID SEND YAP

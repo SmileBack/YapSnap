@@ -708,7 +708,8 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:[self urlForEndpoint:@"/spotify/onboarding_songs"]
+    NSString *url = [NSString stringWithFormat:@"/spotify/%@", category.apiString];
+    [manager GET:[self urlForEndpoint:url]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSDictionary *response = responseObject;

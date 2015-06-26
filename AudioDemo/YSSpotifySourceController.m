@@ -303,11 +303,11 @@
 - (void) createTrackGroups {
     self.trackGroupCategoryOne = [YTTrackGroup new];
     self.trackGroupCategoryOne.name = @"Trending";
-    self.trackGroupCategoryOne.apiString = @"trending";
+    self.trackGroupCategoryOne.apiString = @"trending_tracks";
     
     self.trackGroupCategoryTwo = [YTTrackGroup new];
     self.trackGroupCategoryTwo.name = @"Nostalgic";
-    self.trackGroupCategoryThree.apiString = @"nostalgic_tracks";
+    self.trackGroupCategoryTwo.apiString = @"nostalgic_tracks";
     
     self.trackGroupCategoryThree = [YTTrackGroup new];
     self.trackGroupCategoryThree.name = @"Funny";
@@ -335,7 +335,7 @@
     
     self.trackGroupCategoryNine = [YTTrackGroup new];
     self.trackGroupCategoryNine.name = @"Motivated";
-    self.trackGroupCategoryNine.apiString = @"onboarding_tracks";
+    self.trackGroupCategoryNine.apiString = @"motivated_tracks";
     
     self.trackGroupOnboarding = [YTTrackGroup new];
     self.trackGroupOnboarding.name = @"Onboarding";
@@ -506,7 +506,7 @@
         
         if (trackGroup == self.trackGroupPool) {
             // Only take first five
-            NSArray *firstFiveTracks = @[shuffledSongs[0], shuffledSongs[1], shuffledSongs[2]];//, shuffledSongs[3], shuffledSongs[4]];
+            NSArray *firstFiveTracks = @[shuffledSongs[0]];//, shuffledSongs[1], shuffledSongs[2], shuffledSongs[3], shuffledSongs[4]];
             self.songs = [firstFiveTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
         } else {
             self.songs = shuffledSongs;
@@ -1234,6 +1234,7 @@
         double delay = 0.1;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
+            [self hideAlbumBannerWithFadeAnimation:YES];
         });
         return NO;
     } else if (self.songs.count == 0) {
