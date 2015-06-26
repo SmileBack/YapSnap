@@ -247,6 +247,8 @@ static API *sharedAPI;
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               callback(NO, error);
               NSLog(@"Error confirming friend: %@", error);
+              
+              [self processFailedOperation:operation];
           }];
 }
 
@@ -333,6 +335,8 @@ static API *sharedAPI;
                   Mixpanel *mixpanel = [Mixpanel sharedInstance];
                   [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_YAP_SENDING_FAILED object:nil];
                   [mixpanel track:@"API Error - sendVoiceYap"];
+                  
+                  [self processFailedOperation:operation];
                   
                   NSLog(@"Error: %@", error);
                   callback(NO, error);
@@ -684,27 +688,6 @@ static API *sharedAPI;
          }];
         NSLog(@"category in API.m: %@", category);
 }
-/*
-- (void) retrieveOnboardingTracks:(OnboardingTracksCallback)callback
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    [manager GET:[self urlForEndpoint:@"/onboarding_songs"]
-      parameters:[self paramsWithDict:@{}]
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSDictionary *response = responseObject;
-             NSLog(@"Response Object: %@", responseObject);
-             NSArray *items = response[@"tracks"][@"items"];
-             
-             NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
-             callback(songs, nil);
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             
-             [self processFailedOperation:operation];
-             callback(NO, error);
-         }];
-}
- */
+
 
 @end
