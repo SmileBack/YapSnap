@@ -164,7 +164,7 @@
     /*
     self.artistButtonHack.frame = CGRectMake((self.view.bounds.size.width - self.carouselHeightConstraint.constant)/2, 340, self.carouselHeightConstraint.constant, 24.0);
      */
-    self.artistButtonHack.backgroundColor = [UIColor yellowColor];
+    //self.artistButtonHack.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:self.artistButtonHack];
 }
 
@@ -172,7 +172,6 @@
 {
     [super viewDidAppear:animated];
     self.playerAlreadyStartedPlayingForThisSong = NO;
-    self.bottomButton.hidden = NO;
     
     if ([self shouldLoadSongsFromPool]) {
         if (!self.didPlaySongForFirstTime) {
@@ -182,6 +181,13 @@
         }
     }
 }
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.bottomButton.hidden = NO;
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
