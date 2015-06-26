@@ -112,6 +112,7 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [countdownTimer invalidate];
+                        self.countdownTimerLabel.alpha = 0;
                     }];
     
     [center addObserverForName:DID_START_AUDIO_CAPTURE_NOTIFICATION

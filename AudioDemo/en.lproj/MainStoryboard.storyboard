@@ -1062,7 +1062,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-Y6-ICb" userLabel="Cancel Button">
                                 <rect key="frame" x="3" y="17" width="44" height="44"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="7A47F1E8-462E-463C-B16E-ACB6C88267D8"/>
+                                <state key="normal" backgroundImage="4664F426-D950-4F84-8F24-9D0461285A1F"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1927,7 +1927,7 @@ Type it here!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhM-aB-1Ig" customClass="ZLSinusWaveView">
-                                <rect key="frame" x="90" y="57" width="140" height="50"/>
+                                <rect key="frame" x="90" y="34" width="140" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="WtW-rl-Q0N"/>
@@ -1935,7 +1935,7 @@ Type it here!</string>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold To Record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBw-T1-TKI">
-                                <rect key="frame" x="10" y="49" width="300" height="45"/>
+                                <rect key="frame" x="10" y="26" width="300" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="drV-WT-d93"/>
                                     <constraint firstAttribute="width" constant="300" id="sPQ-iH-cNY"/>
@@ -1945,7 +1945,7 @@ Type it here!</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qEp-ck-gGb">
-                                <rect key="frame" x="70" y="139" width="180" height="180"/>
+                                <rect key="frame" x="70" y="116" width="180" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="D6e-Fi-F21"/>
                                     <constraint firstAttribute="height" constant="180" id="nES-Nt-wzN"/>
@@ -1962,12 +1962,12 @@ Type it here!</string>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="qEp-ck-gGb" firstAttribute="top" secondItem="e15-6z-nCE" secondAttribute="bottom" constant="119" id="5Jg-QN-TbQ"/>
+                            <constraint firstItem="qEp-ck-gGb" firstAttribute="top" secondItem="JBw-T1-TKI" secondAttribute="bottom" constant="45" id="LOq-qY-Oaa"/>
                             <constraint firstAttribute="centerX" secondItem="qEp-ck-gGb" secondAttribute="centerX" id="Xhn-lf-1IP"/>
                             <constraint firstAttribute="centerX" secondItem="vhM-aB-1Ig" secondAttribute="centerX" id="avT-Vj-hHE"/>
                             <constraint firstAttribute="centerX" secondItem="JBw-T1-TKI" secondAttribute="centerX" id="bln-xn-5AN"/>
-                            <constraint firstItem="JBw-T1-TKI" firstAttribute="top" secondItem="e15-6z-nCE" secondAttribute="bottom" constant="29" id="uiM-f6-9Ir"/>
-                            <constraint firstItem="vhM-aB-1Ig" firstAttribute="top" secondItem="e15-6z-nCE" secondAttribute="bottom" constant="37" id="wrs-Y5-MvS"/>
+                            <constraint firstAttribute="centerY" secondItem="qEp-ck-gGb" secondAttribute="centerY" constant="35" id="orL-xZ-pAV"/>
+                            <constraint firstItem="qEp-ck-gGb" firstAttribute="top" secondItem="vhM-aB-1Ig" secondAttribute="bottom" constant="32" id="qpR-xZ-coE"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -1975,7 +1975,6 @@ Type it here!</string>
                     <size key="freeformSize" width="320" height="482"/>
                     <connections>
                         <outlet property="recordButton" destination="qEp-ck-gGb" id="dOA-fm-Lif"/>
-                        <outlet property="sinusWaveTopConstraint" destination="wrs-Y5-MvS" id="nJd-7d-lvS"/>
                         <outlet property="sinusWaveView" destination="vhM-aB-1Ig" id="1Yb-5F-fNy"/>
                         <outlet property="sinusWaveWidthConstraint" destination="bXe-DU-6SA" id="TTG-rb-Uhl"/>
                         <outlet property="titleLabel" destination="JBw-T1-TKI" id="eC7-2T-UBo"/>
@@ -2022,7 +2021,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="7A47F1E8-462E-463C-B16E-ACB6C88267D8" width="300" height="300">
+        <image name="4664F426-D950-4F84-8F24-9D0461285A1F" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
