@@ -32,13 +32,16 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
-@property (weak, nonatomic) IBOutlet UIButton *topRightButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *replayButton;
+@property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
 @property (weak, nonatomic) IBOutlet UIButton *friendRequestButton;
 
 // nil means we don't know yet. YES/NO means the backend told us.
 @property (nonatomic, strong) NSNumber *isFromFriend;
 
-- (IBAction)didTapTopRightButton;
+- (IBAction)didTapReplayButton;
+- (IBAction)didTapSpotifyButton;
 - (IBAction)didTapFriendRequestButton;
 
 @end
@@ -63,7 +66,6 @@
             self.titleLabel.text = @"Sent to YapTap Team";
             [self.replyButton setTitle:@"Send Another Yap" forState:UIControlStateNormal];
         } else {
-            //self.titleLabel.text = [NSString stringWithFormat:@"Sent to %@", receiverFirstName];
             [self.replyButton setTitle:[NSString stringWithFormat:@"Send %@ Another Yap", receiverFirstName] forState:UIControlStateNormal];
         }
         
@@ -125,15 +127,8 @@
     self.isFromFriend = [NSNumber numberWithInt:1]; // We are setting self.isFromFriend.boolValue to True so that friends popup doesn't come up if you press the X before back end response comes in. It'll get updated to the correct value once back end response comes in
     
     if ([self.yap.type isEqual:@"SpotifyMessage"]) {
-        UIImage *buttonImage = [UIImage imageNamed:@"SpotifyIconWhite2.png"];
-        [self.topRightButton setImage:buttonImage forState:UIControlStateNormal];
-    } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
-        UIImage *buttonImage = [UIImage imageNamed:@"ReplayIcon2.png"];
-        [self.topRightButton setImage:buttonImage forState:UIControlStateNormal];
-    }
-    
-    if ([self.yap.type isEqual:@"SpotifyMessage"]) {
         self.albumLabel.text = [NSString stringWithFormat:@"%@, by %@", self.yap.songName, self.yap.artist];
+        self.spotifyButton.hidden = NO;
     } else {
         self.albumLabel.text = [NSString stringWithFormat:@"by %@", self.yap.senderName];
     }
@@ -265,34 +260,6 @@
             [actionSheetVoice showInView:self.view];
         }
     }
-    
-    
-    /*
-    if ([self.yap.type isEqual:@"SpotifyMessage"]) {
-        if (self.yap.isFriendRequest) {
-            [self dismissThis];
-            [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Replied in Friend Request"];
-        } else {
-            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song, or a new one?"
-                                                                            delegate:self
-                                                                   cancelButtonTitle:@"Cancel"
-                                                              destructiveButtonTitle:nil
-                                                                   otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
-            actionSheetSpotify.tag = 100;
-            [actionSheetSpotify showInView:self.view];
-        }
-    } else {
-        UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:@"Reply with a song yap or a voice yap"
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"Cancel"
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"Send a Song Yap", @"Send a Voice Yap", nil];
-        actionSheetVoice.tag = 200;
-        [actionSheetVoice showInView:self.view];
-    }
-     */
 }
 
 - (IBAction)didTapForward:(id)sender {
@@ -573,19 +540,22 @@
 
 #pragma mark - Spotify Button
 
-- (IBAction) didTapTopRightButton {
-    if ([self.yap.type isEqual:@"SpotifyMessage"]) {
-        NSLog(@"Tapped Top Right Button");
-        OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithYap:self.yap];
-        [alert show];
-    } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
-        [self.timer invalidate];
-        [self.player stop];
-        self.playerAlreadyStartedPlayingForThisSong = NO;
-        [self.progressView setProgress:0];
-        [self.activityIndicator startAnimating];
+- (IBAction) didTapReplayButton {
+    [self.timer invalidate];
+    [self.player stop];
+    self.playerAlreadyStartedPlayingForThisSong = NO;
+    [self.progressView setProgress:0];
+    [self.activityIndicator startAnimating];
+    double delay = 0.1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self playYapAudio];
-    }
+    });
+}
+
+- (IBAction) didTapSpotifyButton {
+    NSLog(@"Tapped Top Right Button");
+    OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithYap:self.yap];
+    [alert show];
 }
 
 #pragma mark - Friend Request Stuff Button
