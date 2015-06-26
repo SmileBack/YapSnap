@@ -238,7 +238,6 @@
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" constant="15" id="0rA-ZM-LMs"/>
-                            <constraint firstItem="iKi-hk-1A5" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="175" id="7E1-ft-JPZ"/>
                             <constraint firstItem="ZNs-R1-CJc" firstAttribute="leading" secondItem="B8N-jO-1bl" secondAttribute="leading" id="9zR-GB-wuh"/>
                             <constraint firstAttribute="width" secondItem="R1O-6v-Usj" secondAttribute="width" id="BFg-4T-5J0"/>
                             <constraint firstAttribute="trailing" secondItem="6hl-m2-tvk" secondAttribute="trailing" constant="15" id="BpS-sr-djQ"/>
@@ -247,6 +246,7 @@
                             <constraint firstAttribute="centerX" secondItem="R1O-6v-Usj" secondAttribute="centerX" id="XrB-rW-lpE"/>
                             <constraint firstItem="cNC-jx-czs" firstAttribute="top" secondItem="6hl-m2-tvk" secondAttribute="bottom" constant="-38" id="b19-u4-eF0"/>
                             <constraint firstAttribute="trailing" secondItem="ZNs-R1-CJc" secondAttribute="trailing" id="f6a-b0-12B"/>
+                            <constraint firstItem="iKi-hk-1A5" firstAttribute="centerY" secondItem="ZNs-R1-CJc" secondAttribute="centerY" constant="-2.5" id="hsE-l0-Z7s"/>
                             <constraint firstItem="KEa-CH-3fd" firstAttribute="top" secondItem="OEq-Yl-zXl" secondAttribute="bottom" constant="13" id="jNb-uw-yLe"/>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="top" secondItem="O41-vg-0Lg" secondAttribute="bottom" constant="10" id="mMM-JG-YVP"/>
                             <constraint firstItem="6hl-m2-tvk" firstAttribute="leading" secondItem="cNC-jx-czs" secondAttribute="trailing" constant="-33" id="mNY-Ee-4nt"/>
@@ -1107,7 +1107,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-Y6-ICb" userLabel="Cancel Button">
                                 <rect key="frame" x="3" y="17" width="44" height="44"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="2919A35D-876E-4D49-B4D3-3E825B8AB5B8"/>
+                                <state key="normal" backgroundImage="A4CC14A0-D88D-40B3-9DFB-1F557A25C48C"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -2031,7 +2031,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="2919A35D-876E-4D49-B4D3-3E825B8AB5B8" width="300" height="300">
+        <image name="A4CC14A0-D88D-40B3-9DFB-1F557A25C48C" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
