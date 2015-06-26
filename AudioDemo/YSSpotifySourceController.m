@@ -398,10 +398,12 @@
         [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryBackButtonImage.png"] forState:UIControlStateNormal];
         self.searchBox.text = @"";
         [self hideResetButton];
+        self.artistButtonHack.hidden = YES;
     } else {
         // Hide Category View
         self.categoryView.alpha = 0;
         [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+        self.artistButtonHack.hidden = NO;
     }
 }
 
@@ -1013,17 +1015,21 @@
 
 - (void)didTapArtistButtonHack {
     
-    SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
-    YSTrack *selectedTrack = nil;
-    for (YSTrack *track in self.songs) {
-        if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
-            selectedTrack = track;
-            break;
+    if (self.songs && self.songs.count > 0 && self.carousel.alpha == 1) {
+        SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
+        YSTrack *selectedTrack = nil;
+        for (YSTrack *track in self.songs) {
+            if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+                selectedTrack = track;
+                break;
+            }
+        }
+        if (selectedTrack && !selectedTrack.isExplainerTrack) {
+            [self searchForTracksWithString:selectedTrack.artistName];
+            self.searchBox.text = selectedTrack.artistName;
+            [self updateVisibilityOfMagnifyingGlassAndResetButtons];
         }
     }
-    [self searchForTracksWithString:selectedTrack.artistName];
-    self.searchBox.text = selectedTrack.artistName;
-    [self updateVisibilityOfMagnifyingGlassAndResetButtons];
 }
 
 - (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel {
