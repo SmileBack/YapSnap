@@ -133,7 +133,7 @@
     
     [self createArtistButtonHack];
     
-    self.categoryView.backgroundColor = THEME_BACKGROUND_COLOR;
+    self.categoryView.backgroundColor = THEME_RED_COLOR;//THEME_BACKGROUND_COLOR;
     
     [self createTrackGroups];
     
