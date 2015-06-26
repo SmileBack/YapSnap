@@ -245,9 +245,9 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        if (self.categoryView.hidden == NO) {
+                        if (self.categoryView.alpha == 1) {
                             // Hide Category View
-                            self.categoryView.hidden = YES;
+                            self.categoryView.alpha = 0;
                             [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
                         }
                         [self.view endEditing:YES];
@@ -376,15 +376,15 @@
 }
 
 -(void) switchCategoryMode {
-    if (self.categoryView.hidden == YES) {
+    if (self.categoryView.alpha == 0) {
         // Show Category View
-        self.categoryView.hidden = NO;
+        self.categoryView.alpha = 1;
         [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryBackButtonImage.png"] forState:UIControlStateNormal];
         self.searchBox.text = @"";
         [self hideResetButton];
     } else {
         // Hide Category View
-        self.categoryView.hidden = YES;
+        self.categoryView.alpha = 0;
         [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
     }
 }
@@ -429,7 +429,7 @@
     self.carousel.alpha = 0;
     self.searchBox.text = trackGroup.name;
     self.resetButton.alpha = 1;
-    self.categoryView.hidden = YES;
+    self.categoryView.alpha = 0;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
     [self retrieveAndLoadTracksForCategory:trackGroup];
 }
@@ -652,7 +652,7 @@
 
     [self resetBottomBannerUI];
     
-    if (self.categoryView.hidden == NO) {
+    if (self.categoryView.alpha == 1) {
         [self switchCategoryMode];
     }
 }
