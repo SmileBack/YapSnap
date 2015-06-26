@@ -638,9 +638,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="W8t-1a-vba">
                                 <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="480" id="oSv-Aa-qbL"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="iTO-dn-ews" id="JfJ-lh-W15"/>
                                     <outlet property="delegate" destination="iTO-dn-ews" id="Zzo-B4-V6S"/>
@@ -1068,7 +1065,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-Y6-ICb" userLabel="Cancel Button">
                                 <rect key="frame" x="3" y="17" width="44" height="44"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="147BB0C0-7678-4ED4-A3E2-75E576C8F6F9"/>
+                                <state key="normal" backgroundImage="94012E57-9998-4078-A503-44EE213E93D2"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1992,7 +1989,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="147BB0C0-7678-4ED4-A3E2-75E576C8F6F9" width="300" height="300">
+        <image name="94012E57-9998-4078-A503-44EE213E93D2" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8090,8 +8087,8 @@ A
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Enn-ka-dSJ"/>
-        <segue reference="Ny4-zR-Cgq"/>
-        <segue reference="eDP-Ek-kdM"/>
+        <segue reference="syO-tE-hvG"/>
         <segue reference="vIm-eD-gkR"/>
+        <segue reference="eDP-Ek-kdM"/>
     </inferredMetricsTieBreakers>
 </document>

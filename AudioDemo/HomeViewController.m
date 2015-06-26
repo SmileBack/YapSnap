@@ -112,7 +112,13 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [countdownTimer invalidate];
-                        self.countdownTimerLabel.alpha = 0;
+                        [UIView animateWithDuration:.2
+                                              delay:0
+                                            options:UIViewAnimationOptionCurveEaseOut
+                                         animations:^{
+                                             self.countdownTimerLabel.alpha = 0;
+                                         }
+                                         completion:nil];
                     }];
     
     [center addObserverForName:DID_START_AUDIO_CAPTURE_NOTIFICATION
