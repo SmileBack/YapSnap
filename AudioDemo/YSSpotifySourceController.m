@@ -14,8 +14,6 @@
 #import "OpenInSpotifyAlertView.h"
 #import <AVFoundation/AVAudioSession.h>
 #import "AppDelegate.h"
-#import "FBShimmering.h"
-#import "FBShimmeringView.h"
 #import "SpotifyTrackFactory.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "SearchArtistAlertView.h"

@@ -343,12 +343,12 @@ static NSString *CellIdentifier = @"Cell";
     
     cell.createdTimeLabel.font = [UIFont systemFontOfSize:11];
     
+    [cell.albumImageView.layer setBorderColor: [[UIColor darkGrayColor] CGColor]];
+    [cell.albumImageView.layer setBorderWidth: 0.5];
     
     // SPOTIFY
-    if (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened) || ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.sentByCurrentUser))
-    {
+    if (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened) || ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.sentByCurrentUser)) {
         cell.goToSpotifyView.alpha = 1;
-        //Add gesture recognizer
         YSSpotifyTapGestureRecognizer *singleFingerTap =
         [[YSSpotifyTapGestureRecognizer alloc] initWithTarget:self
                                                        action:@selector(handleSpotifyTap:)];
@@ -356,10 +356,10 @@ static NSString *CellIdentifier = @"Cell";
         [cell.goToSpotifyView addGestureRecognizer:singleFingerTap];
         
         [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
-        [cell.albumImageView.layer setBorderColor: [[UIColor darkGrayColor] CGColor]];
-        [cell.albumImageView.layer setBorderWidth: 0.5];
+        cell.spotifyImageView.hidden = NO;
     } else {
-        cell.goToSpotifyView.alpha = 0;
+        [cell.albumImageView setImage:[UIImage imageNamed:@"YapTapCartoonIcon.png"]];
+        cell.spotifyImageView.hidden = YES;
     }
 
     // DID SEND YAP

@@ -1039,7 +1039,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-Y6-ICb" userLabel="Cancel Button">
                                 <rect key="frame" x="3" y="17" width="44" height="44"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="C52E3415-5FEA-4F7D-9932-1A024B6CF7AB"/>
+                                <state key="normal" backgroundImage="6A544AEB-8266-4A99-8B98-A83DD95E4A91"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1157,7 +1157,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="listen_on_spotify-black2.png" translatesAutoresizingMaskIntoConstraints="NO" id="pzR-Ra-Cuh" userLabel="Listen">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="listen_on_spotify-black2.png" translatesAutoresizingMaskIntoConstraints="NO" id="pzR-Ra-Cuh" userLabel="Listen on Spotify Image">
                                                             <rect key="frame" x="0.0" y="52" width="74" height="22"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -1216,6 +1216,7 @@
                                             <outlet property="icon" destination="AyM-nu-slZ" id="6er-f3-9Mn"/>
                                             <outlet property="nameLabel" destination="RDh-aC-ePB" id="9v3-Ul-pfO"/>
                                             <outlet property="spinner" destination="hRV-v1-F3T" id="OVg-zY-BkH"/>
+                                            <outlet property="spotifyImageView" destination="pzR-Ra-Cuh" id="WFT-4d-xgo"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1329,7 +1330,7 @@ in your phone's settings!</string>
                             <imageView userInteractionEnabled="NO" alpha="0.080000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oZS-3k-7XH" userLabel="Album Image">
                                 <rect key="frame" x="11" y="89" width="300" height="300"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.60000000000000009" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-3F-cQc" userLabel="Flashback Image View">
+                            <imageView userInteractionEnabled="NO" alpha="0.65000000000000013" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-3F-cQc" userLabel="Flashback Image View">
                                 <rect key="frame" x="5" y="84" width="310" height="310"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cEy-3F-cQc" secondAttribute="height" multiplier="1:1" id="rvl-th-bpW"/>
@@ -1945,8 +1946,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="C52E3415-5FEA-4F7D-9932-1A024B6CF7AB" width="300" height="300">
+        <image name="6A544AEB-8266-4A99-8B98-A83DD95E4A91" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8019,6 +8019,7 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
+        <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="CameraIcon20.png" width="150" height="150"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite3.png" width="350" height="350"/>
@@ -8041,9 +8042,9 @@ A
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eDP-Ek-kdM"/>
-        <segue reference="Q0Z-rg-Tpo"/>
-        <segue reference="rVt-9v-iFr"/>
+        <segue reference="Enn-ka-dSJ"/>
         <segue reference="czb-n6-hbf"/>
+        <segue reference="RZ7-m8-cys"/>
+        <segue reference="rVt-9v-iFr"/>
     </inferredMetricsTieBreakers>
 </document>

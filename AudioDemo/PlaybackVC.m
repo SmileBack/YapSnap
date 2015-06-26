@@ -113,6 +113,8 @@
     }
     if ([self.yap.type isEqual:@"SpotifyMessage"] && self.yap.imageURL) {
         [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yap.imageURL]];
+    } else {
+        [self.albumImage setImage:[UIImage imageNamed:@"YapTapCartoonLarge2.png"]];
     }
     
     [self addShadowToTextView];

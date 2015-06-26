@@ -16,4 +16,5 @@
 @property (strong, nonatomic) IBOutlet UIImageView *albumImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *icon;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (strong, nonatomic) IBOutlet UIImageView *spotifyImageView;
 @end
