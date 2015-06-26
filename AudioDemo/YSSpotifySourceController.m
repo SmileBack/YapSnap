@@ -146,7 +146,7 @@
                action:@selector(didTapArtistButtonHack)
      forControlEvents:UIControlEventTouchUpInside];
     self.artistButtonHack.frame = CGRectMake((self.view.bounds.size.width - self.carouselHeightConstraint.constant)/2, 340, self.carouselHeightConstraint.constant, 24.0);
-    //self.artistButtonHack.backgroundColor = [UIColor yellowColor];
+    self.artistButtonHack.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:self.artistButtonHack];
 }
 

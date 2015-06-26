@@ -180,7 +180,7 @@ static NSString *CellIdentifier = @"Cell";
     } else if (IS_IPHONE_6_SIZE) {
         self.continueButtonRightConstraint.constant = -150;
     } else if (IS_IPHONE_6_PLUS_SIZE) {
-        
+        self.continueButtonRightConstraint.constant = -170;
     }
 }
 

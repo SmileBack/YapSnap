@@ -234,7 +234,6 @@ static NSString *CellIdentifier = @"Cell";
                         weakSelf.pendingYaps = nil;
                         [weakSelf loadYaps];
                         
-                        NSLog(@"smsAlertWasAlreadyPrompted: %hhd", self.smsAlertWasAlreadyPrompted);
                         if (!self.smsAlertWasAlreadyPrompted) {
                             if ([note.userInfo[@"yaps"] isKindOfClass:[NSArray class]] && [MFMessageComposeViewController canSendText]) {
                                 NSLog(@"Display Invite Popup");
@@ -257,17 +256,6 @@ static NSString *CellIdentifier = @"Cell";
                         weakSelf.pendingYaps = nil;
                         [weakSelf.tableView reloadData];
                     }];
-   /*
-    [center addObserverForName:NOTIFICATION_LOGOUT
-                                                      object:nil
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *note) {
-                                                      double delay = 1;
-                                                      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                                          [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-                                                      });
-                                                  }];
-    */
 }
 
 -(BOOL) internetIsNotReachable
@@ -358,8 +346,10 @@ static NSString *CellIdentifier = @"Cell";
         [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
         cell.spotifyImageView.hidden = NO;
     } else {
-        [cell.albumImageView setImage:[UIImage imageNamed:@"YapTapCartoonIcon.png"]];
-        cell.spotifyImageView.hidden = YES;
+        if (!yap.isSending) {
+            [cell.albumImageView setImage:[UIImage imageNamed:@"YapTapCartoonIcon.png"]];
+            cell.spotifyImageView.hidden = YES;
+        }
     }
 
     // DID SEND YAP
@@ -390,14 +380,6 @@ static NSString *CellIdentifier = @"Cell";
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
             }
         }
-    }
-    
-    if (yap.isSending) {
-        //cell.icon.hidden = YES;
-        //[cell.spinner startAnimating];
-    } else {
-        cell.icon.hidden = NO;
-        //[cell.spinner stopAnimating];
     }
     
     return cell;
@@ -465,17 +447,6 @@ static NSString *CellIdentifier = @"Cell";
             [self.tableView reloadRowsAtIndexPaths:@[adjustedPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         });
     }
-/*
-    if ([self internetIsNotReachable]){
-        double delay = 0.1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:@"No Internet Connection!"];
-        });
-    } else {
-        YSYap *yap = self.yaps[indexPath.row];
-        [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
-    }
-*/
 }
 
 - (void) cellTappedTwiceAtIndexPath:(NSIndexPath *)indexPath
