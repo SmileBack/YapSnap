@@ -43,6 +43,10 @@
 @property (nonatomic, strong) NSMutableArray *tracks;
 @property (nonatomic, strong) YSTrack *explainerTrack;
 @property (strong, nonatomic) IBOutlet UIView *categoryView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryButtonFiveBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryButtonFiveWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryViewBottomConstraint;
+
 
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryOne;
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryTwo;
@@ -113,17 +117,8 @@
     tap.cancelsTouchesInView = NO;
     [self.carousel addGestureRecognizer:tap];
     [self.carousel addGestureRecognizer:longPress];
-    CGFloat carouselHeight = 0.0;
-    if (IS_IPHONE_4_SIZE) {
-        carouselHeight = 140; // 69; 138*100
-    } else if (IS_IPHONE_5_SIZE) {
-        carouselHeight = 200; // 99; 198*100
-    } else if (IS_IPHONE_6_PLUS_SIZE) {
-        carouselHeight = 290; // 144; (288*100) *1.5
-    } else {
-        carouselHeight = 240; // 119; (238*100) *1.172  279*117
-    }
-    self.carouselHeightConstraint.constant = carouselHeight;
+    
+    [self setupConstraints];
     
     if (IS_IPHONE_6_SIZE) {
         self.carouselYConstraint.constant = 50;
@@ -133,11 +128,32 @@
     
     [self createArtistButtonHack];
     
-    self.categoryView.backgroundColor = THEME_RED_COLOR;//THEME_BACKGROUND_COLOR;
+    self.categoryView.backgroundColor = THEME_BACKGROUND_COLOR;
     
     [self createTrackGroups];
     
     [self setupCategoryButtons];
+}
+
+- (void) setupConstraints {
+    CGFloat carouselHeight = 0.0;
+    if (IS_IPHONE_4_SIZE) {
+        carouselHeight = 140; // 69; 138*100
+    } else if (IS_IPHONE_5_SIZE) {
+        carouselHeight = 200; // 99; 198*100
+        self.categoryButtonFiveBottomConstraint.constant = 120;
+        self.categoryButtonFiveWidthConstraint.constant = 80;
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        carouselHeight = 290; // 144; (288*100) *1.5
+        self.categoryViewBottomConstraint.constant = 150;
+        self.categoryButtonFiveBottomConstraint.constant = 140;
+        self.categoryButtonFiveWidthConstraint.constant = 105;
+    } else {
+        carouselHeight = 240; // 119; (238*100) *1.172  279*117
+        self.categoryButtonFiveBottomConstraint.constant = 160;
+        self.categoryButtonFiveWidthConstraint.constant = 95;
+    }
+    self.carouselHeightConstraint.constant = carouselHeight;
 }
 
 - (void) createArtistButtonHack {
@@ -323,47 +339,47 @@
 }
 
 -(void) setupCategoryButtons {
-    self.categoryButtonOne.layer.cornerRadius = self.categoryButtonOne.bounds.size.height/2;
+    self.categoryButtonOne.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonOne.layer.borderWidth = 1;
     self.categoryButtonOne.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.categoryButtonOne setTitle:self.trackGroupCategoryOne.name forState:UIControlStateNormal];
     
-    self.categoryButtonTwo.layer.cornerRadius = self.categoryButtonTwo.bounds.size.height/2;
+    self.categoryButtonTwo.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonTwo.layer.borderWidth = 1;
     self.categoryButtonTwo.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.categoryButtonTwo setTitle:self.trackGroupCategoryTwo.name forState:UIControlStateNormal];
     
-    self.categoryButtonThree.layer.cornerRadius = self.categoryButtonThree.bounds.size.height/2;
+    self.categoryButtonThree.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonThree.layer.borderWidth = 1;
     self.categoryButtonThree.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.categoryButtonThree setTitle:self.trackGroupCategoryThree.name forState:UIControlStateNormal];
     
-    self.categoryButtonFour.layer.cornerRadius = self.categoryButtonFour.bounds.size.height/2;
+    self.categoryButtonFour.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonFour.layer.borderWidth = 1;
     self.categoryButtonFour.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.categoryButtonFour setTitle:self.trackGroupCategoryFour.name forState:UIControlStateNormal];
     
-    self.categoryButtonFive.layer.cornerRadius = self.categoryButtonFive.bounds.size.height/2;
+    self.categoryButtonFive.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonFive.layer.borderWidth = 1;
     self.categoryButtonFive.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.categoryButtonFive setTitle:self.trackGroupCategoryFive.name forState:UIControlStateNormal];
     
-    self.categoryButtonSix.layer.cornerRadius = self.categoryButtonSix.bounds.size.height/2;
+    self.categoryButtonSix.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonSix.layer.borderWidth = 1;
     self.categoryButtonSix.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.categoryButtonSix setTitle:self.trackGroupCategorySix.name forState:UIControlStateNormal];
     
-    self.categoryButtonSeven.layer.cornerRadius = self.categoryButtonSeven.bounds.size.height/2;
+    self.categoryButtonSeven.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonSeven.layer.borderWidth = 1;
     self.categoryButtonSeven.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.categoryButtonSeven setTitle:self.trackGroupCategorySeven.name forState:UIControlStateNormal];
     
-    self.categoryButtonEight.layer.cornerRadius = self.categoryButtonEight.bounds.size.height/2;
+    self.categoryButtonEight.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonEight.layer.borderWidth = 1;
     self.categoryButtonEight.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.categoryButtonEight setTitle:self.trackGroupCategoryEight.name forState:UIControlStateNormal];
     
-    self.categoryButtonNine.layer.cornerRadius = self.categoryButtonNine.bounds.size.height/2;
+    self.categoryButtonNine.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonNine.layer.borderWidth = 1;
     self.categoryButtonNine.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.categoryButtonNine setTitle:self.trackGroupCategoryNine.name forState:UIControlStateNormal];
