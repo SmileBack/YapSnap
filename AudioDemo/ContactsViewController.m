@@ -29,6 +29,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *bottomViewLabel;
 @property (strong, nonatomic) ContactsPopupViewController *contactsPopupVC;
 @property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *continueButtonRightConstraint;
 
 // Map of section letter to contacts:  A : [cont1, cont2]
 @property (nonatomic, strong) NSMutableDictionary *contactDict;
@@ -142,6 +143,8 @@ static NSString *CellIdentifier = @"Cell";
         UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissViewControllerDuringDoubleTapToReplyFlow)];
         [self.navigationItem setLeftBarButtonItem:cancel];
     };
+    
+    [self setupConstraints];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -169,6 +172,16 @@ static NSString *CellIdentifier = @"Cell";
                         NSLog(@"Dismiss Welcome Popup");
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
+}
+
+- (void) setupConstraints {
+    if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
+        self.continueButtonRightConstraint.constant = -128;
+    } else if (IS_IPHONE_6_SIZE) {
+        self.continueButtonRightConstraint.constant = -150;
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        
+    }
 }
 
 - (void) addCancelButton {
