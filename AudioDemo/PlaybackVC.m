@@ -213,6 +213,52 @@
 }
 
 - (IBAction)didTapReply:(id)sender {
+        
+    if (self.yap.isFriendRequest) {
+        [self dismissThis];
+        [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Replied in Friend Request"];
+    } else if (self.yap.receivedByCurrentUser) {
+        if ([self.yap.type isEqual:@"SpotifyMessage"]) {
+            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song, or a new one?"
+                                                                            delegate:self
+                                                                   cancelButtonTitle:@"Cancel"
+                                                              destructiveButtonTitle:nil
+                                                                   otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
+            actionSheetSpotify.tag = 100;
+            [actionSheetSpotify showInView:self.view];
+        } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
+            UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:@"Reply with a song yap or a voice yap"
+                                                                          delegate:self
+                                                                 cancelButtonTitle:@"Cancel"
+                                                            destructiveButtonTitle:nil
+                                                                 otherButtonTitles:@"Send a Song Yap", @"Send a Voice Yap", nil];
+            actionSheetVoice.tag = 200;
+            [actionSheetVoice showInView:self.view];
+        }
+    } else {
+        if ([self.yap.type isEqual:@"SpotifyMessage"]) {
+            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Use the same song, or a new one?"
+                                                                            delegate:self
+                                                                   cancelButtonTitle:@"Cancel"
+                                                              destructiveButtonTitle:nil
+                                                                   otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
+            actionSheetSpotify.tag = 100;
+            [actionSheetSpotify showInView:self.view];
+        } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
+            UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:@"Send a song yap or a voice yap?"
+                                                                          delegate:self
+                                                                 cancelButtonTitle:@"Cancel"
+                                                            destructiveButtonTitle:nil
+                                                                 otherButtonTitles:@"Send a Song Yap", @"Send a Voice Yap", nil];
+            actionSheetVoice.tag = 200;
+            [actionSheetVoice showInView:self.view];
+        }
+    }
+    
+    
+    /*
     if ([self.yap.type isEqual:@"SpotifyMessage"]) {
         if (self.yap.isFriendRequest) {
             [self dismissThis];
@@ -237,6 +283,7 @@
         actionSheetVoice.tag = 200;
         [actionSheetVoice showInView:self.view];
     }
+     */
 }
 
 - (IBAction)didTapForward:(id)sender {
