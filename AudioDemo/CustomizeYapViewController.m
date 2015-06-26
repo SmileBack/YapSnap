@@ -24,7 +24,6 @@
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet YSRecordProgressView *progressView;
-//@property (weak, nonatomic) IBOutlet YSColorPicker *colorPicker;
 @property (strong, nonatomic) UIView *progressViewRemainder;
 @property (strong, nonatomic) IBOutlet UIImageView *yapPhoto;
 @property (strong, nonatomic) IBOutlet UILabel *contactLabel;
@@ -71,7 +70,12 @@
     
     if (self.yapBuilder.contacts.count > 0) {
         [self updateBannerLabel];
+        self.addRecipientsButton.hidden = NO;
+        [self.topLeftButton setImage:[UIImage imageNamed:@"CancelImageWhite2.png"] forState:UIControlStateNormal];
+        [self.topLeftButton setImage:[UIImage imageNamed:@"CancelImageWhite2.png"] forState:UIControlStateHighlighted];
     } else {
+        [self.topLeftButton setImage:[UIImage imageNamed:@"LeftArrow500.png"] forState:UIControlStateNormal];
+        [self.topLeftButton setImage:[UIImage imageNamed:@"LeftArrow500.png"] forState:UIControlStateHighlighted];
         if (self.isForwardingYap) {
             self.contactLabel.text = @"Select Recipients";
             if (self.yapBuilder.imageAwsUrl && ![self.yapBuilder.imageAwsUrl isEqual: [NSNull null]]) {
@@ -149,10 +153,6 @@
     self.yapPhoto.clipsToBounds = YES;
     
     self.progressView.trackTintColor = [UIColor colorWithWhite:0.85 alpha:1.0];
-    
-    if (self.yapBuilder.contacts.count > 0) {
-        self.addRecipientsButton.hidden = NO;
-    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -381,12 +381,8 @@
 
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
-    if ((!self.didViewTextAlert) && ([self.textView.text length] == 0)) {
-        double delay = .7;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showBlueNotificationText:@"Tap Photo To Add Text!"];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_TEXT_ALERT_KEY];
-        });
+    if ([self.textView.text length] == 0) {
+        self.titleLabel.text = @"Add Text";
     }
 }
 
@@ -437,7 +433,11 @@
 
 - (IBAction)leftButtonPressed:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:NO];
+    if (self.yapBuilder.contacts.count > 0) {
+        [self.navigationController popViewControllerAnimated:NO];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - ContactsViewControllerDelegate

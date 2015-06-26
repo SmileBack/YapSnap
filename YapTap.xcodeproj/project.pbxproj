@@ -90,6 +90,10 @@
 		783CCFB21B3A6DEE00E3B5BF /* CategoryButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFB11B3A6DEE00E3B5BF /* CategoryButtonImage.png */; };
 		783CCFB41B3A6F2E00E3B5BF /* CategoryBackButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFB31B3A6F2E00E3B5BF /* CategoryBackButtonImage.png */; };
 		783CCFB71B3C8AE300E3B5BF /* YTTrackGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCFB61B3C8AE300E3B5BF /* YTTrackGroup.m */; };
+		783CCFB91B3CF03000E3B5BF /* LeftArrowImage100.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFB81B3CF03000E3B5BF /* LeftArrowImage100.png */; };
+		783CCFBB1B3CF0E500E3B5BF /* LeftArrow300.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFBA1B3CF0E500E3B5BF /* LeftArrow300.png */; };
+		783CCFBD1B3CF16200E3B5BF /* LeftArrow400.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFBC1B3CF16200E3B5BF /* LeftArrow400.png */; };
+		783CCFBF1B3CF1D100E3B5BF /* LeftArrow500.png in Resources */ = {isa = PBXBuildFile; fileRef = 783CCFBE1B3CF1D100E3B5BF /* LeftArrow500.png */; };
 		784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */; };
 		784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */; };
 		784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44B0C5A16DA404700E6CD88 /* MainStoryboard.storyboard */; };
@@ -121,7 +125,7 @@
 		7854B0691AF8523100A02DF9 /* ControlCenterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0681AF8523100A02DF9 /* ControlCenterButton@2x.png */; };
 		7854B06B1AF8535500A02DF9 /* ControlCenterButton2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B06A1AF8535500A02DF9 /* ControlCenterButton2@2x.png */; };
 		7854B06D1AF85BC900A02DF9 /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B06C1AF85BC900A02DF9 /* LeftArrow.png */; };
-		7854B06F1AF86B1000A02DF9 /* LeftArrow10.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B06E1AF86B1000A02DF9 /* LeftArrow10.png */; };
+		7854B06F1AF86B1000A02DF9 /* LeftArrow10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B06E1AF86B1000A02DF9 /* LeftArrow10@2x.png */; };
 		7854B0711AF88C1900A02DF9 /* LeftArrow30.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0701AF88C1900A02DF9 /* LeftArrow30.png */; };
 		7854B0731AF88CCF00A02DF9 /* LeftArrow50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0721AF88CCF00A02DF9 /* LeftArrow50.png */; };
 		7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */; };
@@ -431,6 +435,10 @@
 		783CCFB31B3A6F2E00E3B5BF /* CategoryBackButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CategoryBackButtonImage.png; sourceTree = "<group>"; };
 		783CCFB51B3C8AE300E3B5BF /* YTTrackGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTTrackGroup.h; sourceTree = "<group>"; };
 		783CCFB61B3C8AE300E3B5BF /* YTTrackGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTTrackGroup.m; sourceTree = "<group>"; };
+		783CCFB81B3CF03000E3B5BF /* LeftArrowImage100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrowImage100.png; sourceTree = "<group>"; };
+		783CCFBA1B3CF0E500E3B5BF /* LeftArrow300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow300.png; sourceTree = "<group>"; };
+		783CCFBC1B3CF16200E3B5BF /* LeftArrow400.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow400.png; sourceTree = "<group>"; };
+		783CCFBE1B3CF1D100E3B5BF /* LeftArrow500.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow500.png; sourceTree = "<group>"; };
 		784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSRecordProgressView.h; sourceTree = "<group>"; };
 		784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecordProgressView.m; sourceTree = "<group>"; };
 		784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetImageButton.h; sourceTree = "<group>"; };
@@ -467,7 +475,7 @@
 		7854B0681AF8523100A02DF9 /* ControlCenterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ControlCenterButton@2x.png"; sourceTree = "<group>"; };
 		7854B06A1AF8535500A02DF9 /* ControlCenterButton2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ControlCenterButton2@2x.png"; sourceTree = "<group>"; };
 		7854B06C1AF85BC900A02DF9 /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow.png; sourceTree = "<group>"; };
-		7854B06E1AF86B1000A02DF9 /* LeftArrow10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow10.png; sourceTree = "<group>"; };
+		7854B06E1AF86B1000A02DF9 /* LeftArrow10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LeftArrow10@2x.png"; sourceTree = "<group>"; };
 		7854B0701AF88C1900A02DF9 /* LeftArrow30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow30.png; sourceTree = "<group>"; };
 		7854B0721AF88CCF00A02DF9 /* LeftArrow50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow50.png; sourceTree = "<group>"; };
 		7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow60.png; sourceTree = "<group>"; };
@@ -781,11 +789,15 @@
 				7867C1C91B01A64D0050632F /* CancelImageWhite3.png */,
 				7867C1C51B01808D0050632F /* GiftButton.png */,
 				786E0BE41B0019AE00005D1D /* PlusButtonWhite3@2x.png */,
-				7854B06E1AF86B1000A02DF9 /* LeftArrow10.png */,
+				7854B06E1AF86B1000A02DF9 /* LeftArrow10@2x.png */,
 				7854B0701AF88C1900A02DF9 /* LeftArrow30.png */,
 				7854B0721AF88CCF00A02DF9 /* LeftArrow50.png */,
 				7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */,
 				7854B06C1AF85BC900A02DF9 /* LeftArrow.png */,
+				783CCFBA1B3CF0E500E3B5BF /* LeftArrow300.png */,
+				783CCFBC1B3CF16200E3B5BF /* LeftArrow400.png */,
+				783CCFBE1B3CF1D100E3B5BF /* LeftArrow500.png */,
+				783CCFB81B3CF03000E3B5BF /* LeftArrowImage100.png */,
 				7854B0681AF8523100A02DF9 /* ControlCenterButton@2x.png */,
 				7854B06A1AF8535500A02DF9 /* ControlCenterButton2@2x.png */,
 				7854B0661AF75EF500A02DF9 /* CartoonsLong4.png */,
@@ -1749,6 +1761,7 @@
 				37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */,
 				782D134F1ACB8F17007C8499 /* MicrophoneWhite30@2x.png in Resources */,
 				78B252261AF0238800353711 /* MagnifyingGlass.png in Resources */,
+				783CCFBB1B3CF0E500E3B5BF /* LeftArrow300.png in Resources */,
 				787EC6171ACA245E000C5539 /* OldProgressViewRediPhone5@2x.png in Resources */,
 				78ECF55C1B2930F70059C80B /* MegaphoneButton.png in Resources */,
 				7854B06B1AF8535500A02DF9 /* ControlCenterButton2@2x.png in Resources */,
@@ -1810,11 +1823,12 @@
 				78A2E84F1ACC65B000B5A404 /* PinkStar.png in Resources */,
 				788363A61AD79572001CBD1B /* OneNotSelectediPhone6@2x.png in Resources */,
 				786192731B09A942007279E8 /* RecordPopupViewController.xib in Resources */,
+				783CCFBF1B3CF1D100E3B5BF /* LeftArrow500.png in Resources */,
 				78624BE41B03189000C8E049 /* Dice7@2x.png in Resources */,
 				781904881AF288C100196DFF /* ResetButton70@2x.png in Resources */,
 				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
 				78624BF81B04ED4100C8E049 /* ProgressViewYellowiPhone5@2x.png in Resources */,
-				7854B06F1AF86B1000A02DF9 /* LeftArrow10.png in Resources */,
+				7854B06F1AF86B1000A02DF9 /* LeftArrow10@2x.png in Resources */,
 				78439FBF1AE77145004CFB5F /* SongVersionOneSelected@2x.png in Resources */,
 				7854B0711AF88C1900A02DF9 /* LeftArrow30.png in Resources */,
 				7867C1C81B01A58E0050632F /* CancelImageWhite2.png in Resources */,
@@ -1869,6 +1883,7 @@
 				78ECF5601B2933A40059C80B /* MusicButton.png in Resources */,
 				78439FB01AE6EF46004CFB5F /* OpenGift700.png in Resources */,
 				7883637B1AD781C3001CBD1B /* OneNotSelected@2x.png in Resources */,
+				783CCFB91B3CF03000E3B5BF /* LeftArrowImage100.png in Resources */,
 				7854B06D1AF85BC900A02DF9 /* LeftArrow.png in Resources */,
 				78439F901AE61528004CFB5F /* YapsIconReceivedUnopened4.png in Resources */,
 				78A2E8561ACC671600B5A404 /* PinkStar3.png in Resources */,
@@ -1912,6 +1927,7 @@
 				7891233A1B2E959000894201 /* SpotifyIconWhite2.png in Resources */,
 				787EC5F31AC9EC6A000C5539 /* OldProgressViewLightBlueiPhone5@2x.png in Resources */,
 				78ECF5621B293B3C0059C80B /* MicrophoneButton.png in Resources */,
+				783CCFBD1B3CF16200E3B5BF /* LeftArrow400.png in Resources */,
 				78C1C30E1B26AE3C00C6CBCA /* ResetButton100@2x.png in Resources */,
 				78A2E86A1ACC840000B5A404 /* BalloonLightBlue20.png in Resources */,
 				78624BF01B04EABB00C8E049 /* ProgressViewRed@2x.png in Resources */,
