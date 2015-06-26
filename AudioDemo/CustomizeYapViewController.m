@@ -43,7 +43,7 @@
 - (IBAction)didTapResetPhotoButton;
 - (IBAction)didTapAddRecipientsInDoubleTapToReplyFlow;
 
-#define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
+#define VIEWED_TEXT_ALERT_KEY @"yaptap.ViewedTextAlertKey"
 
 @end
 
@@ -379,9 +379,15 @@
     NSURL *url = [[NSURL alloc] initFileURLWithPath:path];
     self.yapBuilder.image = url;
 
-    //self.textView.userInteractionEnabled = NO;
-    [self addShadowToTextView];
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    if ((!self.didViewTextAlert) && ([self.textView.text length] == 0)) {
+        double delay = .7;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showBlueNotificationText:@"Tap Photo To Add Text!"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_TEXT_ALERT_KEY];
+        });
+    }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -393,14 +399,9 @@
 
 #pragma mark - Spotify Alert Methods
 
-- (void) viewedSpotifyAlert
+- (BOOL) didViewTextAlert
 {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_SPOTIFY_ALERT_KEY];
-}
-
-- (BOOL) didViewSpotifyAlert
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SPOTIFY_ALERT_KEY];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_TEXT_ALERT_KEY];
 }
 
 - (void) addShadowToTextView
