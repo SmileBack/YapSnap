@@ -352,6 +352,8 @@ static API *sharedAPI;
                                                           @"pitch_value": builder.pitchValueInCentUnits
                                                           }
                                           andYapBuilder:builder];
+        
+        // TODO: THIS CAN BE CLEANED UP. IT IS IDENTICAL TO CODE ABOVE!!!
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:[weakSelf urlForEndpoint:@"audio_messages"]
            parameters:params
