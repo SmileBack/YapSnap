@@ -68,6 +68,7 @@
 		78319A7F1ACD0290000C3FD6 /* MicModeButtonIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78319A7E1ACD0290000C3FD6 /* MicModeButtonIcon@3x.png */; };
 		78319A811ACD29A9000C3FD6 /* FeedbackMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78319A801ACD29A9000C3FD6 /* FeedbackMonitor.m */; };
 		783A1CBF1B17721D00B610B3 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 783A1CBE1B17721D00B610B3 /* UIAlertView+Blocks.m */; };
+		783C54CC1B3E18F2009E9848 /* AddRecipientsIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 783C54CB1B3E18F2009E9848 /* AddRecipientsIcon2.png */; };
 		783CCF6D1B33431D00E3B5BF /* SearchArtistAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF6C1B33431D00E3B5BF /* SearchArtistAlertView.m */; };
 		783CCF751B3461D800E3B5BF /* YTSearchSuggestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF741B3461D800E3B5BF /* YTSearchSuggestionsViewController.m */; };
 		783CCF781B3466A800E3B5BF /* YTRoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF771B3466A800E3B5BF /* YTRoundButton.m */; };
@@ -409,6 +410,7 @@
 		78319A821ACD29AF000C3FD6 /* FeedbackMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedbackMonitor.h; sourceTree = "<group>"; };
 		783A1CBD1B17721D00B610B3 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		783A1CBE1B17721D00B610B3 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
+		783C54CB1B3E18F2009E9848 /* AddRecipientsIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddRecipientsIcon2.png; sourceTree = "<group>"; };
 		783CCF6B1B33431D00E3B5BF /* SearchArtistAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchArtistAlertView.h; sourceTree = "<group>"; };
 		783CCF6C1B33431D00E3B5BF /* SearchArtistAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchArtistAlertView.m; sourceTree = "<group>"; };
 		783CCF731B3461D800E3B5BF /* YTSearchSuggestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTSearchSuggestionsViewController.h; sourceTree = "<group>"; };
@@ -750,6 +752,7 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				783C54CB1B3E18F2009E9848 /* AddRecipientsIcon2.png */,
 				783CCFAF1B3A6D2F00E3B5BF /* CategoryButton.png */,
 				783CCFB31B3A6F2E00E3B5BF /* CategoryBackButtonImage.png */,
 				783CCFB11B3A6DEE00E3B5BF /* CategoryButtonImage.png */,
@@ -1888,6 +1891,7 @@
 				781904801AF1E2A300196DFF /* ResetButton30@2x.png in Resources */,
 				787EC5F91ACA0477000C5539 /* Balloon10.png in Resources */,
 				784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */,
+				783C54CC1B3E18F2009E9848 /* AddRecipientsIcon2.png in Resources */,
 				78ECF5601B2933A40059C80B /* MusicButton.png in Resources */,
 				78439FB01AE6EF46004CFB5F /* OpenGift700.png in Resources */,
 				7883637B1AD781C3001CBD1B /* OneNotSelected@2x.png in Resources */,
