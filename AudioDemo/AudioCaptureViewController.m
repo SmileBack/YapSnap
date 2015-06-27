@@ -30,6 +30,7 @@
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (nonatomic, strong) YapBuilder *yapBuilder;
 @property (weak, nonatomic) IBOutlet UILabel *bottomViewLabel;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *continueButtonRightConstraint;
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
@@ -81,6 +82,10 @@ static const float TIMER_INTERVAL = .05;//.02;
     }
     
     [self setupNotifications];
+    
+    [self setupConstraints];
+    
+    [self.continueButton startToPulsate];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -109,6 +114,16 @@ static const float TIMER_INTERVAL = .05;//.02;
     }
     
     [self.audioSource stopAudioCapture];
+}
+
+- (void) setupConstraints {
+    if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
+        self.continueButtonRightConstraint.constant = -128;
+    } else if (IS_IPHONE_6_SIZE) {
+        self.continueButtonRightConstraint.constant = -150;
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        self.continueButtonRightConstraint.constant = -170;
+    }
 }
 
 - (void) updateTitleLabel {
@@ -316,10 +331,12 @@ static const float TIMER_INTERVAL = .05;//.02;
         NSLog(@"Hit threshold");
         [[NSNotificationCenter defaultCenter] postNotificationName:LISTENED_TO_CLIP_NOTIFICATION object:nil];
         self.bottomView.hidden = NO;
+        /*
         double delay = 0.2;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.continueButton startToPulsate];
         });
+         */
         
         self.recordProgressView.trackTintColor = [UIColor colorWithWhite:0.85 alpha:1.0];
     }

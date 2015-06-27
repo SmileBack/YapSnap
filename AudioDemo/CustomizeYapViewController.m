@@ -108,6 +108,8 @@
     if (IS_IPHONE_4_SIZE) {
         self.bottomConstraint.constant = 0;
         self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:32];
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:46];
     }
     
     [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.track.imageURL]];
