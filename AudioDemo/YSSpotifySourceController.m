@@ -122,12 +122,6 @@
     
     [self setupConstraints];
     
-    if (IS_IPHONE_6_SIZE) {
-        self.carouselYConstraint.constant = 50;
-    } else if (IS_IPHONE_6_PLUS_SIZE) {
-        self.carouselYConstraint.constant = 60;
-    }
-    
     [self createArtistButtonHack];
     
     self.categoryView.backgroundColor = THEME_BACKGROUND_COLOR;
@@ -141,6 +135,9 @@
     CGFloat carouselHeight = 0.0;
     if (IS_IPHONE_4_SIZE) {
         carouselHeight = 140; // 69; 138*100
+        //self.categoryButtonFiveBottomConstraint.constant = 120;
+        self.categoryButtonFiveWidthConstraint.constant = 75;
+        self.categoryModeButtonWidthConstraint.constant = 60;
     } else if (IS_IPHONE_5_SIZE) {
         carouselHeight = 200; // 99; 198*100
         self.categoryButtonFiveBottomConstraint.constant = 120;
@@ -157,6 +154,12 @@
         self.categoryButtonFiveWidthConstraint.constant = 95;
     }
     self.carouselHeightConstraint.constant = carouselHeight;
+    
+    if (IS_IPHONE_6_SIZE) {
+        self.carouselYConstraint.constant = 50;
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        self.carouselYConstraint.constant = 60;
+    }
 }
 
 - (void) createArtistButtonHack {
