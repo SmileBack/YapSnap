@@ -480,7 +480,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YapTap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Anj-hb-c5X">
                                 <rect key="frame" x="59" y="31" width="200" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="LZf-Eu-29h"/>
+                                    <constraint firstAttribute="height" constant="25" id="LZf-Eu-29h"/>
                                     <constraint firstAttribute="width" constant="200" id="bqj-n4-AnX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
@@ -490,10 +490,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="bu6-tv-7de" firstAttribute="top" secondItem="Anj-hb-c5X" secondAttribute="top" id="2Yd-zD-eIW"/>
+                            <constraint firstItem="bu6-tv-7de" firstAttribute="top" secondItem="Anj-hb-c5X" secondAttribute="top" constant="1" id="2Yd-zD-eIW"/>
                             <constraint firstAttribute="centerX" secondItem="Anj-hb-c5X" secondAttribute="centerX" constant="1" id="5kY-yA-Lek"/>
                             <constraint firstAttribute="trailing" secondItem="G6A-aa-MWL" secondAttribute="trailing" id="DSE-ck-un7"/>
-                            <constraint firstItem="Anj-hb-c5X" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" constant="12" id="K9w-iV-WLj"/>
+                            <constraint firstItem="Anj-hb-c5X" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" constant="11" id="K9w-iV-WLj"/>
                             <constraint firstItem="3Zb-ew-nuF" firstAttribute="centerX" secondItem="bu6-tv-7de" secondAttribute="centerX" id="KLR-Md-Rlg"/>
                             <constraint firstAttribute="centerX" secondItem="3Zb-ew-nuF" secondAttribute="centerX" id="MaP-0P-HZc"/>
                             <constraint firstItem="yjE-ev-SsG" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="-12" id="XlW-Zw-JQv"/>
@@ -959,7 +959,7 @@
                         <outlet property="largeAddFriendsButton" destination="Joe-p3-743" id="ohW-cF-LfU"/>
                         <outlet property="tableView" destination="jGg-FF-Oxq" id="XAx-Qp-6mJ"/>
                         <segue destination="Zdf-1T-TJC" kind="modal" identifier="Contacts Segue" id="c26-Bf-LAT"/>
-                        <segue destination="2" kind="push" identifier="Send Yap Segue" id="Q0Z-rg-Tpo"/>
+                        <segue destination="2" kind="custom" identifier="Send Yap Segue" customClass="NoAnimationPushSegue" id="Q0Z-rg-Tpo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dqY-2D-Jm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1112,7 +1112,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="14530D8E-E829-40CB-A91B-E40265BC8D63"/>
+                                <state key="normal" backgroundImage="DA5E074E-E66E-49E8-B905-DE28AB109393"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1374,7 +1374,7 @@ in your phone's settings!</string>
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjl-Kr-TQg" userLabel="Cancel Button">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjl-Kr-TQg" userLabel="Cancel Button">
                                 <rect key="frame" x="-5" y="-6" width="55" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="KhX-OI-Ekk"/>
@@ -1430,7 +1430,7 @@ in your phone's settings!</string>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="34"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vNe-98-kK7">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vNe-98-kK7">
                                 <rect key="frame" x="150" y="30" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="0tx-9x-s1h"/>
@@ -1466,7 +1466,7 @@ in your phone's settings!</string>
                                     <action selector="didTapReply:" destination="Dgp-JD-d1e" eventType="touchUpInside" id="mSq-Up-Tfj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzM-5p-4ue" userLabel="Replay Button">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzM-5p-4ue" userLabel="Replay Button">
                                 <rect key="frame" x="279" y="0.0" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="eZC-rk-XtM"/>
@@ -1510,7 +1510,7 @@ in your phone's settings!</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JrI-Br-Kpk" userLabel="Spotify Button">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JrI-Br-Kpk" userLabel="Spotify Button">
                                 <rect key="frame" x="239" y="0.0" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="RDO-iM-Kdv"/>
@@ -1535,6 +1535,7 @@ in your phone's settings!</string>
                             <constraint firstItem="JrI-Br-Kpk" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" id="KXQ-th-W8z"/>
                             <constraint firstItem="Cjl-Kr-TQg" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="-21" id="KzG-iq-Oyq"/>
                             <constraint firstItem="adb-GP-urO" firstAttribute="trailing" secondItem="8Sd-XX-W3O" secondAttribute="trailingMargin" id="LDr-B4-rJN"/>
+                            <constraint firstItem="vNe-98-kK7" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="10" id="LHt-IK-h9x"/>
                             <constraint firstItem="zM8-Va-aql" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leading" id="M2C-Am-O1j"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JrI-Br-Kpk" secondAttribute="trailing" constant="25" id="MfL-ng-uQH"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="Cx1-jS-IBl" secondAttribute="bottom" constant="113" id="Mtr-1N-w1g"/>
@@ -2043,7 +2044,13 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="14530D8E-E829-40CB-A91B-E40265BC8D63" width="300" height="300">
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
+        <image name="CameraIcon20.png" width="150" height="150"/>
+        <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="CancelImageWhite3.png" width="350" height="350"/>
+        <image name="CategoryButtonImage.png" width="256" height="256"/>
+        <image name="DA5E074E-E66E-49E8-B905-DE28AB109393" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8116,12 +8123,6 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="CameraIcon20.png" width="150" height="150"/>
-        <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="CancelImageWhite3.png" width="350" height="350"/>
-        <image name="CategoryButtonImage.png" width="256" height="256"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
@@ -8141,8 +8142,8 @@ A
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Q0Z-rg-Tpo"/>
         <segue reference="AEp-MY-7pq"/>
-        <segue reference="Enn-ka-dSJ"/>
         <segue reference="eDP-Ek-kdM"/>
         <segue reference="rVt-9v-iFr"/>
     </inferredMetricsTieBreakers>
