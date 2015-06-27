@@ -46,6 +46,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryButtonFiveBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryButtonFiveWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryViewBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryModeButtonWidthConstraint;
+@property (nonatomic) CGFloat maxStringSizeWidth;
 
 
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryOne;
@@ -148,6 +150,7 @@
         self.categoryViewBottomConstraint.constant = 150;
         self.categoryButtonFiveBottomConstraint.constant = 140;
         self.categoryButtonFiveWidthConstraint.constant = 105;
+        self.categoryModeButtonWidthConstraint.constant = 80;
     } else {
         carouselHeight = 240; // 119; (238*100) *1.172  279*117
         self.categoryButtonFiveBottomConstraint.constant = 160;
@@ -330,11 +333,11 @@
     self.trackGroupCategorySeven.apiString = @"gloomy_tracks";
     
     self.trackGroupCategoryEight = [YTTrackGroup new];
-    self.trackGroupCategoryEight.name = @"Angry";
-    self.trackGroupCategoryEight.apiString = @"angry_tracks";
+    self.trackGroupCategoryEight.name = @"Furious";
+    self.trackGroupCategoryEight.apiString = @"furious_tracks";
     
     self.trackGroupCategoryNine = [YTTrackGroup new];
-    self.trackGroupCategoryNine.name = @"Motivated";
+    self.trackGroupCategoryNine.name = @"Inspirational";
     self.trackGroupCategoryNine.apiString = @"motivated_tracks";
     
     self.trackGroupOnboarding = [YTTrackGroup new];
@@ -343,7 +346,8 @@
     
     self.trackGroupPool = [YTTrackGroup new];
     self.trackGroupPool.name = @"Pool";
-    self.trackGroupPool.apiString = @"pool_tracks";
+    //self.trackGroupPool.apiString = @"pool_tracks"; TODO: Before submission
+    self.trackGroupPool.apiString = @"onboarding_songs";
 }
 
 -(void) setupCategoryButtons {
@@ -528,6 +532,7 @@
         
         if (trackGroup == self.trackGroupPool) {
             // Only take first five
+            // TODO: before submission
             NSArray *firstFiveTracks = @[shuffledSongs[0]];//, shuffledSongs[1], shuffledSongs[2], shuffledSongs[3], shuffledSongs[4]];
             self.songs = [firstFiveTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
         } else {
@@ -1355,8 +1360,17 @@
 
 - (void) updateVisibilityOfMagnifyingGlassAndResetButtons {
     CGSize stringsize = [[NSString stringWithFormat:@"%@", self.searchBox.text] sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:18]}];
-    NSLog(@"STRING WIDTH %f", stringsize.width);
-    if (stringsize.width > 210) {
+    //NSLog(@"STRING WIDTH %f", stringsize.width);
+    
+    if (IS_IPHONE_6_SIZE) {
+        self.maxStringSizeWidth = 290;
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        self.maxStringSizeWidth = 260;
+    } else {
+        self.maxStringSizeWidth = 210;
+    }
+    
+    if (stringsize.width > self.maxStringSizeWidth) {
         self.resetButton.alpha = 0;
         self.magnifyingGlassImageView.hidden = YES;
     } else {
