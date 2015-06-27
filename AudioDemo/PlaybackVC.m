@@ -133,6 +133,17 @@
     } else {
         self.albumLabel.text = [NSString stringWithFormat:@"by %@", self.yap.senderName];
     }
+    
+    if (IS_IPHONE_4_SIZE) {
+        self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:32];
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:45];
+        //self.textViewHeightConstraint.constant = 320;
+    } else if (IS_IPHONE_6_SIZE) {
+        self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:40];
+    } else if (IS_IPHONE_5_SIZE) {
+        self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:34];
+    }
 }
 
 - (void) styleActionButtons {

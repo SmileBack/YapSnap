@@ -38,6 +38,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addRecipientsButton;
 @property (strong, nonatomic) IBOutlet UILabel *albumLabel;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
 
 - (IBAction)didTapCameraButton;
 - (IBAction)didTapResetPhotoButton;
@@ -109,7 +110,12 @@
         self.bottomConstraint.constant = 0;
         self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:32];
     } else if (IS_IPHONE_6_PLUS_SIZE) {
-        self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:46];
+        self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:45];
+        self.textViewHeightConstraint.constant = 320;
+    } else if (IS_IPHONE_6_SIZE) {
+        self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:40];
+    } else if (IS_IPHONE_5_SIZE) {
+        self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:34];
     }
     
     [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.track.imageURL]];
