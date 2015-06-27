@@ -405,48 +405,70 @@
         self.searchBox.text = @"";
         [self hideResetButton];
         self.artistButtonHack.hidden = YES;
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Category Mode Button (Show)"];
     } else {
         // Hide Category View
         self.categoryView.alpha = 0;
         [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
         self.artistButtonHack.hidden = NO;
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Category Mode Button (Hide)"];
     }
 }
 
 -(void) didTapCategoryButtonOne:(UIButton *)button {
     [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryOne];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Category One Button"];
 }
 
 -(void) didTapCategoryButtonTwo:(UIButton *)button {
     [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryTwo];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Category Two Button"];
 }
 
 -(void) didTapCategoryButtonThree:(UIButton *)button {
     [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryThree];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Category Three Button"];
 }
 
 -(void) didTapCategoryButtonFour:(UIButton *)button {
     [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryFour];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Category Four Button"];
 }
 
 -(void) didTapCategoryButtonFive:(UIButton *)button {
     [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryFive];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Category Five Button"];
 }
 
 -(void) didTapCategoryButtonSix:(UIButton *)button {
     [self tappedCategoryButtonForTrackGroup:self.trackGroupCategorySix];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Category Six Button"];
 }
 
 -(void) didTapCategoryButtonSeven:(UIButton *)button {
     [self tappedCategoryButtonForTrackGroup:self.trackGroupCategorySeven];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Category Seven Button"];
 }
 
 -(void) didTapCategoryButtonEight:(UIButton *)button {
     [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryEight];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Category Eight Button"];
 }
 
 -(void) didTapCategoryButtonNine:(UIButton *)button {
     [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryNine];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Category Nine Button"];
 }
 
 - (void) tappedCategoryButtonForTrackGroup:(YTTrackGroup*)trackGroup {
@@ -563,10 +585,6 @@
     
     __weak YSSpotifySourceController *weakSelf = self;
     void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
-        NSLog(@"Songs: %@", songs);
-        YSTrack *trackOne = songs[0];
-        NSLog(@"Track name: %@", trackOne.name);
-        
         if (songs) {
             weakSelf.songs = songs;
             weakSelf.carousel.currentItemIndex = 0;
@@ -1034,6 +1052,8 @@
             [self searchForTracksWithString:selectedTrack.artistName];
             self.searchBox.text = selectedTrack.artistName;
             [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Tapped Artist Hack Button"];
         }
     }
 }

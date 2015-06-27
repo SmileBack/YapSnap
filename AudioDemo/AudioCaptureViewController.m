@@ -345,6 +345,8 @@ static const float TIMER_INTERVAL = .05;//.02;
 - (IBAction) didTapNextButton {
     if (self.type == AudioCapTureTypeSpotify) {
         [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Choose Clip"];
     } else if (self.type == AudioCaptureTypeMic) {
         if (self.contactReplyingTo) {
             //Create yap object
@@ -383,6 +385,8 @@ static const float TIMER_INTERVAL = .05;//.02;
     [self.recordProgressView setProgress:0];
     self.recordProgressView.trackTintColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI object:nil];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Cancel Clip"];
 }
 
 #pragma mark - Mode Changing

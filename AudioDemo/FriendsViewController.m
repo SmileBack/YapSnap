@@ -483,6 +483,7 @@
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
     switch (result) {
         case MessageComposeResultCancelled:
+            [self recordCanceledYap];
             break;
             
         case MessageComposeResultFailed:
@@ -512,6 +513,8 @@
                                               otherButtonTitles: nil];
         [alert show];
     });
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Sent SMS (Friend Request)"];
 }
 
 #pragma mark - UIActionSheet method implementation
@@ -539,6 +542,11 @@
         NSLog(@"Did tap cancel");
     }
     self.selectedFriend = nil;
+}
+
+-(void)recordCanceledYap {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Canceled SMS (Yap)"];
 }
 
 @end

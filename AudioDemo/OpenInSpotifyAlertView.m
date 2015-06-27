@@ -54,14 +54,16 @@
 {
     if (buttonIndex == 1) {
         [self openInSpotify];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Yes On Spotify Popup"];
+    } else {
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Skip On Spotify Popup"];
     }
 }
 
 - (void) openInSpotify
-{
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Opened Song in Spotify"];
-    
+{    
     NSString *url = [NSString stringWithFormat:@"spotify://track/%@", self.spotifyID];
     BOOL success = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     if (!success) {

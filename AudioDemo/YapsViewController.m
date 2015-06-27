@@ -671,6 +671,9 @@ static NSString *CellIdentifier = @"Cell";
     NSLog(@"Tapped go to spotify view for yap: %@", yap.playbackURL);
     OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithYap:yap];
     [alert show];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Spotify Button (Yaps Page)"];
 }
 
 - (void)dismissViewController {
@@ -851,29 +854,33 @@ static NSString *CellIdentifier = @"Cell";
         if (buttonIndex == 0) {
             [self didOriginateReplyFromYapSameClip:self.selectedYap];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply (Same Clip)"];
+            [mixpanel track:@"Tapped Reply to Song from Yaps (Same Clip)"];
         } else if (buttonIndex == 1) {
             [self didOriginateReplyFromYapNewClip:self.selectedYap];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply (Different Clip)"];
+            [mixpanel track:@"Tapped Reply to Song from Yaps (Different Clip)"];
         } else if (buttonIndex == 2) {
             [self didOriginateReplyFromYapVoice:self.selectedYap];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply (Voice)"];
+            [mixpanel track:@"Tapped Reply to Song from Yaps (Voice)"];
         } else {
             NSLog(@"Did tap cancel");
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Canceled Reply to Song from Yaps"];
         }
     } else if (actionSheet.tag == 200) {
         if (buttonIndex == 0) {
             [self didOriginateReplyFromYapNewClip:self.selectedYap];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply (Different Clip)"];
+            [mixpanel track:@"Tapped Reply to Voice from Yaps (Songs)"];
         } else if (buttonIndex == 1) {
             [self didOriginateReplyFromYapVoice:self.selectedYap];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply (Voice)"];
+            [mixpanel track:@"Tapped Reply to Voice from Yaps (Voice)"];
         } else {
             NSLog(@"Did tap cancel");
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Canceled Reply to Voice from Yaps"];
         }
     }
     self.selectedYap = nil;
@@ -901,6 +908,7 @@ static NSString *CellIdentifier = @"Cell";
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
     switch (result) {
         case MessageComposeResultCancelled:
+            [self recordCanceledYap];
             break;
             
         case MessageComposeResultFailed:
@@ -930,6 +938,13 @@ static NSString *CellIdentifier = @"Cell";
                                               otherButtonTitles: nil];
         [alert show];
     });
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Sent SMS (Yap)"];
+}
+
+-(void)recordCanceledYap {
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Canceled SMS (Yap)"];
 }
 
 @end

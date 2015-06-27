@@ -61,16 +61,19 @@
             
             [UIAlertView showWithTitle:@"Yap Sent!"
                                message:self.alertMessage
-                     cancelButtonTitle:@"Skip" otherButtonTitles:@[@"Tell Them"]
+                     cancelButtonTitle:@"Nah" otherButtonTitles:@[@"Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index != view.cancelButtonIndex) {
                                       NSLog(@"Tapped Continue on SMS Prompt");
-                                      [self.delegate showSMS:@"I sent you something cool on YapTap. Download the app to check it out: www.yaptapapp.com/download"
+                                      [self.delegate showSMS:@"Hey I sent you something cool on YapTap! You should be getting a message from them about it"
                                                 toRecipients:unregisteredContacts];
                                       
+                                      Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                      [mixpanel track:@"Yes to SMS (Yap)"];
                                   } else {
-                                      NSLog(@"Tapped Skip on SMS Prompt");
+                                      Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                      [mixpanel track:@"Skipped SMS (Yap)"];
                                   }
                               }];
         }
@@ -110,14 +113,18 @@
             
             [UIAlertView showWithTitle:@"Friend Request Sent!"
                                message:self.alertMessage
-                     cancelButtonTitle:@"Skip" otherButtonTitles:@[@"Tell Them"]
+                     cancelButtonTitle:@"Nah" otherButtonTitles:@[@"Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index != view.cancelButtonIndex) {
                                       NSLog(@"Tapped Continue on SMS Prompt");
-                                      [self.delegate showSMS:@"I sent you a friend request on YapTap. Download the app to accept it: www.yaptapapp.com/download" toRecipients:unregisteredContacts];
+                                      [self.delegate showSMS:@"Hey I sent you a friend request on YapTap! You should be getting a message from them about it" toRecipients:unregisteredContacts];
+                                      
+                                      Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                      [mixpanel track:@"Yes to SMS (Friend Request)"];
                                   } else {
-                                      NSLog(@"Tapped Skip on SMS Prompt");
+                                      Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                      [mixpanel track:@"Skipped SMS (Friend Request)"];
                                   }
                               }];
         } else {

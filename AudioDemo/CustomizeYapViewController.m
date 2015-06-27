@@ -277,6 +277,9 @@
     self.yapBuilder.color = self.view.backgroundColor;
 
     [self performSegueWithIdentifier:@"Contacts Segue No Animation" sender:nil];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Add Recipients Button"];
 }
 
 - (IBAction)didTapCameraButton {

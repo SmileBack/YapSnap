@@ -76,6 +76,7 @@
         if (self.yap.isFriendRequest) {
             self.forwardButton.hidden = YES;
             NSString *senderFirstName = [[self.yap.displaySenderName componentsSeparatedByString:@" "] objectAtIndex:0];
+            self.replyButton.backgroundColor = THEME_RED_COLOR;
             [self.replyButton setTitle:[NSString stringWithFormat:@"Send %@ a Yap", senderFirstName] forState:UIControlStateNormal];
             NSLog(@"Yap status: %@", self.yap.status);
             if ([self.yap.status isEqualToString:@"unopened"]) {
@@ -222,7 +223,7 @@
         [self dismissThis];
         [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Replied in Friend Request"];
+        [mixpanel track:@"Sent Yap From Friend Request"];
     } else if (self.yap.receivedByCurrentUser) {
         if ([self.yap.type isEqual:@"SpotifyMessage"]) {
             UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song, or a new one?"
@@ -260,11 +261,15 @@
             [actionSheetVoice showInView:self.view];
         }
     }
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Reply (from Playback)"];
 }
 
 - (IBAction)didTapForward:(id)sender {
     [self dismissThis];
     [self.yapCreatingDelegate didOriginateForwardFromYap:self.yap];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Forward (from Playback)"];
 }
 
 - (void) stop
@@ -505,35 +510,39 @@
             [self dismissThis];
             [self.yapCreatingDelegate didOriginateReplyFromYapSameClip:self.yap];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply (Same Clip)"];
+            [mixpanel track:@"Tapped Reply to Song from Playback (Same Clip)"];
             // Upload a photo
         } else if (buttonIndex == 1) {
             [self dismissThis];
             [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply (Different Clip)"];
+            [mixpanel track:@"Tapped Reply to Song from Playback (Different Clip)"];
         } else if (buttonIndex == 2) {
             [self dismissThis];
             [self.yapCreatingDelegate didOriginateReplyFromYapVoice:self.yap];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply (Voice)"];
+            [mixpanel track:@"Tapped Reply to Song from Playback (Voice)"];
         } else {
             NSLog(@"Did tap cancel");
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Canceled Reply to Song from Playback"];
         }
     } else if (actionSheet.tag == 200) {
         if (buttonIndex == 0) {
             [self dismissThis];
             [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply (Different Clip)"];
+            [mixpanel track:@"Tapped Reply to Voice from Playback (Songs)"];
             // Upload a photo
         } else if (buttonIndex == 1) {
             [self dismissThis];
             [self.yapCreatingDelegate didOriginateReplyFromYapVoice:self.yap];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply (Voice)"];
+            [mixpanel track:@"Tapped Reply to Voice from Playback (Voice)"];
         } else {
             NSLog(@"Did tap cancel");
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Canceled Reply to Voice from Playback"];
         }
     }
 }
@@ -550,12 +559,17 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self playYapAudio];
     });
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Replay Button"];
 }
 
 - (IBAction) didTapSpotifyButton {
-    NSLog(@"Tapped Top Right Button");
     OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithYap:self.yap];
     [alert show];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Spotify Button (Playback Page)"];
 }
 
 #pragma mark - Friend Request Stuff Button
@@ -582,6 +596,9 @@
             [[YTNotifications sharedNotifications] showBlueNotificationText:@"Oops, Something Went Wrong!"];
         }
     }];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Accept Friend Request"];
 }
 
 
