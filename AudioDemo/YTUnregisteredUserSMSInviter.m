@@ -61,10 +61,10 @@
             
             [UIAlertView showWithTitle:@"Yap Sent!"
                                message:self.alertMessage
-                     cancelButtonTitle:@"Don't Tell Them" otherButtonTitles:@[@"Tell Them"]
+                     cancelButtonTitle:@"Tell Them" otherButtonTitles:@[@"Don't Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   self.smsAlertWasAlreadyPrompted = NO;
-                                  if (index != view.cancelButtonIndex) {
+                                  if (index == view.cancelButtonIndex) {
                                       NSLog(@"Tapped Continue on SMS Prompt");
                                       [self.delegate showSMS:@"Hey I sent you something cool on YapTap! You'll be getting a message from them about it"
                                                 toRecipients:unregisteredContacts];
@@ -113,10 +113,10 @@
             
             [UIAlertView showWithTitle:@"Friend Request Sent!"
                                message:self.alertMessage
-                     cancelButtonTitle:@"Don't Tell Them" otherButtonTitles:@[@"Tell Them"]
+                     cancelButtonTitle:@"Tell Them" otherButtonTitles:@[@"Don't Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   self.smsAlertWasAlreadyPrompted = NO;
-                                  if (index != view.cancelButtonIndex) {
+                                  if (index == view.cancelButtonIndex) {
                                       NSLog(@"Tapped Continue on SMS Prompt");
                                       [self.delegate showSMS:@"Hey I sent you a friend request on YapTap! You'll be getting a message from them about it" toRecipients:unregisteredContacts];
                                       
