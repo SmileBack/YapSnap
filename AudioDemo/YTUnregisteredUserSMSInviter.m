@@ -47,21 +47,21 @@
             NSString *firstNameOne = [[unregisteredNames.firstObject componentsSeparatedByString:@" "] objectAtIndex:0];
             
             if (unregisteredNames.count == 1) {
-                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne];
+                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have YapTap yet, but they'll get your yap as soon as they download it!", firstNameOne];
             } else if (unregisteredNames.count == 2) {
                 NSString *firstNameTwo = [[unregisteredNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
-                self.alertMessage = [NSString stringWithFormat:@"%@ and %@ don't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne, firstNameTwo];
+                self.alertMessage = [NSString stringWithFormat:@"%@ and %@ don't have YapTap yet, but they'll get your yap as soon as they download it!", firstNameOne, firstNameTwo];
             } else if (unregisteredNames.count == 3){
                 NSString *firstNameTwo = [[unregisteredNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
                 NSString *firstNameThree = [[unregisteredNames[2] componentsSeparatedByString:@" "] objectAtIndex:0];
-                self.alertMessage = [NSString stringWithFormat:@"%@, %@, and %@ don't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne, firstNameTwo, firstNameThree];
+                self.alertMessage = [NSString stringWithFormat:@"%@, %@, and %@ don't have YapTap yet, but they'll get your yap as soon as they download it!", firstNameOne, firstNameTwo, firstNameThree];
             } else {
-               self.alertMessage = [NSString stringWithFormat:@"%@ and a few others don't have the app yet, but they'll get your yap as soon as they download it!", firstNameOne];
+               self.alertMessage = [NSString stringWithFormat:@"%@ and a few others don't have YapTap yet, but they'll get your yap as soon as they download it!", firstNameOne];
             }
             
             [UIAlertView showWithTitle:@"Yap Sent!"
                                message:self.alertMessage
-                     cancelButtonTitle:@"Nah" otherButtonTitles:@[@"Tell Them"]
+                     cancelButtonTitle:@"Don't Tell Them" otherButtonTitles:@[@"Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index != view.cancelButtonIndex) {
@@ -99,21 +99,21 @@
             NSString *firstNameOne = [[unregisteredNames.firstObject componentsSeparatedByString:@" "] objectAtIndex:0];
             
             if (unregisteredNames.count == 1) {
-                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have the app yet, but they will get your friend request as soon as they download it!", firstNameOne];
+                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have YapTap yet, but they will get your friend request as soon as they download it!", firstNameOne];
             } else if (unregisteredNames.count == 2) {
                 NSString *firstNameTwo = [[unregisteredNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
-                self.alertMessage = [NSString stringWithFormat:@"%@ and %@ don't have the app yet, but they'll get your friend request as soon as they download it!", firstNameOne, firstNameTwo];
+                self.alertMessage = [NSString stringWithFormat:@"%@ and %@ don't have YapTap yet, but they'll get your friend request as soon as they download it!", firstNameOne, firstNameTwo];
             } else if (unregisteredNames.count == 3){
                 NSString *firstNameTwo = [[unregisteredNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
                 NSString *firstNameThree = [[unregisteredNames[2] componentsSeparatedByString:@" "] objectAtIndex:0];
-                self.alertMessage = [NSString stringWithFormat:@"%@, %@, and %@ don't have the app yet, but they'll get your friend request as soon as they download it!", firstNameOne, firstNameTwo, firstNameThree];
+                self.alertMessage = [NSString stringWithFormat:@"%@, %@, and %@ don't have YapTap yet, but they'll get your friend request as soon as they download it!", firstNameOne, firstNameTwo, firstNameThree];
             } else {
-                self.alertMessage = [NSString stringWithFormat:@"%@ and a few others don't have the app yet, but they'll get your friend request as soon as they download it!", firstNameOne];
+                self.alertMessage = [NSString stringWithFormat:@"%@ and a few others don't have YapTap yet, but they'll get your friend request as soon as they download it!", firstNameOne];
             }
             
             [UIAlertView showWithTitle:@"Friend Request Sent!"
                                message:self.alertMessage
-                     cancelButtonTitle:@"Nah" otherButtonTitles:@[@"Tell Them"]
+                     cancelButtonTitle:@"Don't Tell Them" otherButtonTitles:@[@"Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index != view.cancelButtonIndex) {
