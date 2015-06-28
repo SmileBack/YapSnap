@@ -350,8 +350,9 @@
     
     self.trackGroupPool = [YTTrackGroup new];
     self.trackGroupPool.name = @"Pool";
-    //self.trackGroupPool.apiString = @"pool_tracks"; TODO: Before submission
-    self.trackGroupPool.apiString = @"onboarding_songs";
+    self.trackGroupPool.apiString = @"pool_tracks";
+    
+    //self.trackGroupPool.apiString = @"onboarding_songs";
 }
 
 -(void) setupCategoryButtons {
