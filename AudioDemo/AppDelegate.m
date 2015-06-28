@@ -155,6 +155,7 @@
 
 // Delegation methods
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
+    NSLog(@"Device Token: %@", devToken);
     [[YSPushManager sharedPushManager] registeredWithDeviceToken:devToken];
 }
 

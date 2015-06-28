@@ -34,6 +34,8 @@
 @property (strong, nonatomic) YTUnregisteredUserSMSInviter *unregisteredUserSMSInviter;
 @property (nonatomic, strong) YSUser *selectedFriend;
 @property (assign, nonatomic) BOOL replyWithVoice;
+@property (assign, nonatomic) BOOL smsAlertWasAlreadyPrompted;
+
 
 - (IBAction) didTapLargeAddFriendsButton;
 
@@ -120,6 +122,17 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    
+    //This is part of a hack to prevent multiple popups from showing
+    self.smsAlertWasAlreadyPrompted = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    //This is a hack to prevent multiple popups from showing
+    self.smsAlertWasAlreadyPrompted = YES;
 }
 
 - (void) setupNotifications {
@@ -142,10 +155,13 @@
                           queue:nil
                      usingBlock:^(NSNotification *note) {
                          NSLog(@"Display invite popup");
+                            
+                         if (!self.smsAlertWasAlreadyPrompted) {
                             if ([note.userInfo[@"yaps"] isKindOfClass:[NSArray class]] && [MFMessageComposeViewController canSendText]) {
                                 NSArray* yaps = (NSArray*)note.userInfo[@"yaps"];
                                 [self.unregisteredUserSMSInviter promptSMSAlertForFriendRequestIfRelevant:yaps fromViewController:self];
                             }
+                         }
      }];
 }
 
@@ -471,6 +487,9 @@
     
     double delay = 0.3;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //This is a hack to prevent multiple popups from showing
+        self.smsAlertWasAlreadyPrompted = NO;
+        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Friend Request Sent"
                                                         message:@"They'll be added to your friends once they accept!"
                                                        delegate:nil
@@ -500,6 +519,8 @@
         default:
             break;
     }
+    //This is a hack to prevent multiple popups from showing
+    self.smsAlertWasAlreadyPrompted = NO;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

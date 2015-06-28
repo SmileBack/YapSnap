@@ -11,7 +11,7 @@
 #import "UIAlertView+Blocks.h"
 #import <MessageUI/MessageUI.h>
 
-@interface YTUnregisteredUserSMSInviter()<MFMessageComposeViewControllerDelegate>
+@interface YTUnregisteredUserSMSInviter()
 
 @property (nonatomic, weak) UIViewController* viewController;
 @property BOOL smsAlertWasAlreadyPrompted;
@@ -61,12 +61,12 @@
             
             [UIAlertView showWithTitle:@"Yap Sent!"
                                message:self.alertMessage
-                     cancelButtonTitle:@"Tell Them" otherButtonTitles:@[@"Don't Tell Them"]
+                     cancelButtonTitle:@"Tell Them About It" otherButtonTitles:@[@"Don't Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index == view.cancelButtonIndex) {
                                       NSLog(@"Tapped Continue on SMS Prompt");
-                                      [self.delegate showSMS:@"Hey I sent you something cool on YapTap! You'll be getting a message from them about it"
+                                      [self.delegate showSMS:@"Hey I sent you something cool on YapTap! You should be getting a message from them about it"
                                                 toRecipients:unregisteredContacts];
                                       
                                       Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -99,7 +99,7 @@
             NSString *firstNameOne = [[unregisteredNames.firstObject componentsSeparatedByString:@" "] objectAtIndex:0];
             
             if (unregisteredNames.count == 1) {
-                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have YapTap yet, but they will get your friend request as soon as they download it!", firstNameOne];
+                self.alertMessage = [NSString stringWithFormat:@"%@ doesn't have YapTap yet, but they'll get your friend request as soon as they download it!", firstNameOne];
             } else if (unregisteredNames.count == 2) {
                 NSString *firstNameTwo = [[unregisteredNames[1] componentsSeparatedByString:@" "] objectAtIndex:0];
                 self.alertMessage = [NSString stringWithFormat:@"%@ and %@ don't have YapTap yet, but they'll get your friend request as soon as they download it!", firstNameOne, firstNameTwo];
@@ -113,12 +113,12 @@
             
             [UIAlertView showWithTitle:@"Friend Request Sent!"
                                message:self.alertMessage
-                     cancelButtonTitle:@"Tell Them" otherButtonTitles:@[@"Don't Tell Them"]
+                     cancelButtonTitle:@"Tell Them About It" otherButtonTitles:@[@"Don't Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index == view.cancelButtonIndex) {
                                       NSLog(@"Tapped Continue on SMS Prompt");
-                                      [self.delegate showSMS:@"Hey I sent you a friend request on YapTap! You'll be getting a message from them about it" toRecipients:unregisteredContacts];
+                                      [self.delegate showSMS:@"Hey I sent you a friend request on YapTap! You should be getting a message from them about it" toRecipients:unregisteredContacts];
                                       
                                       Mixpanel *mixpanel = [Mixpanel sharedInstance];
                                       [mixpanel track:@"Yes to SMS (Friend Request)"];

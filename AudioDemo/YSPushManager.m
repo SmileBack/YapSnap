@@ -35,14 +35,10 @@ static YSPushManager *_sharedPushManager;
 - (void) refresh
 {
     BOOL enabled;
-    if (IS_IOS_8) {
-        UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
-        UIUserNotificationType types = settings.types;
-        enabled = types && types != UIUserNotificationTypeNone;
-    } else {
-        UIRemoteNotificationType types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-        enabled = types && types != UIRemoteNotificationTypeNone;
-    }
+    // This is only applicable after iOS8
+    UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    UIUserNotificationType types = settings.types;
+    enabled = types && types != UIUserNotificationTypeNone;
 
     self.pushEnabled = enabled;
 }
@@ -50,6 +46,26 @@ static YSPushManager *_sharedPushManager;
 - (void) registerForNotifications
 {
     UIApplication *application = [UIApplication sharedApplication];
+    
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)])
+    {
+        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                        UIUserNotificationTypeBadge |
+                                                        UIUserNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    }
+    else
+    {
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeAlert |
+                                                         UIRemoteNotificationTypeSound)];
+    }
+    
+    //Before:
+    /*
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
                                                                                              |UIRemoteNotificationTypeSound
@@ -59,15 +75,7 @@ static YSPushManager *_sharedPushManager;
         UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
         [application registerForRemoteNotificationTypes:myTypes];
     }
-
-//    UIUserNotificationType types = UIUserNotificationTypeBadge |
-//    UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-//    
-//    UIUserNotificationSettings *mySettings =
-//    [UIUserNotificationSettings settingsForTypes:types categories:nil];
-//    
-//    UIApplication *app = [UIApplication sharedApplication];
-//    [app registerUserNotificationSettings:mySettings];
+    */
 }
 
 - (void) registeredWithDeviceToken:(NSData *)token

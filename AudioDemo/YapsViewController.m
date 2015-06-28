@@ -136,6 +136,9 @@ static NSString *CellIdentifier = @"Cell";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    //This is part of a hack to prevent multiple popups from showing
+    self.smsAlertWasAlreadyPrompted = NO;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -144,6 +147,14 @@ static NSString *CellIdentifier = @"Cell";
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     
     self.settingsButton.enabled = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    //This is a hack to prevent multiple popups from showing
+    self.smsAlertWasAlreadyPrompted = YES;
 }
 
 - (void) updateTitleLabel {
