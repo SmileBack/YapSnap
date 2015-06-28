@@ -333,47 +333,29 @@ static NSString *CellIdentifier = @"Cell";
     
     [cell.albumImageView.layer setBorderColor: [[UIColor darkGrayColor] CGColor]];
     [cell.albumImageView.layer setBorderWidth: 0.5];
-    /*
-    if ((([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened)) || ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.sentByCurrentUser)) {
-        cell.goToSpotifyView.alpha = 1;
+    
+    if (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.sentByCurrentUser) || ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened)) {
+        cell.goToSpotifyView.hidden = NO;
         YSSpotifyTapGestureRecognizer *singleFingerTap =
         [[YSSpotifyTapGestureRecognizer alloc] initWithTarget:self
                                                        action:@selector(handleSpotifyTap:)];
         singleFingerTap.yap = yap;
         [cell.goToSpotifyView addGestureRecognizer:singleFingerTap];
-        [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
+        if (cell.albumImageView) {
+            [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
+        }
+        NSLog(@"Yap Type: %@", yap.type);
         cell.spotifyBottomImageView.hidden = NO;
-    } else if ((([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.receivedByCurrentUser && yap.wasOpened)) || ([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.sentByCurrentUser)) {
+    } else if (([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.sentByCurrentUser) || ([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.receivedByCurrentUser && yap.wasOpened)) {
+        cell.goToSpotifyView.hidden = NO;
+        NSLog(@"Yap Type: %@", yap.type);
         [cell.albumImageView setImage:[UIImage imageNamed:@"YapTapCartoonIcon.png"]];
         cell.spotifyBottomImageView.hidden = YES;
     } else {
         cell.goToSpotifyView.hidden = YES;
     }
-     */
     
-    
-    if (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened) || ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.sentByCurrentUser)) {
-        cell.goToSpotifyView.alpha = 1;
-        YSSpotifyTapGestureRecognizer *singleFingerTap =
-        [[YSSpotifyTapGestureRecognizer alloc] initWithTarget:self
-                                                       action:@selector(handleSpotifyTap:)];
-        singleFingerTap.yap = yap;
-        [cell.goToSpotifyView addGestureRecognizer:singleFingerTap];
-        
-        [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
-        cell.spotifyBottomImageView.hidden = NO;
-    } else {
-        cell.goToSpotifyView.hidden = YES;
-    }
-    
-    /*
-    else if (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened) || ([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.sentByCurrentUser)) {
-            [cell.albumImageView setImage:[UIImage imageNamed:@"YapTapCartoonIcon.png"]];
-            cell.spotifyBottomImageView.hidden = YES;
-    } else {
-        cell.goToSpotifyView.hidden = YES;
-    }
-     */
+    NSLog(@"Time: %@", [self.dateFormatter stringFromDate:yap.createdAt]);
 
     // DID SEND YAP
     if (yap.receivedByCurrentUser) {

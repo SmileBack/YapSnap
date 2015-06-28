@@ -277,6 +277,7 @@
                             // Hide Category View
                             self.categoryView.alpha = 0;
                             [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+                            self.artistButtonHack.hidden = NO;
                         }
                         [self.view endEditing:YES];
                         [self resetSuggestedSongsIfNeeded];
