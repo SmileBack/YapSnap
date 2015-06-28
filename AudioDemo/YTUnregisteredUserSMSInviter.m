@@ -61,7 +61,7 @@
             
             [UIAlertView showWithTitle:@"Yap Sent!"
                                message:self.alertMessage
-                     cancelButtonTitle:@"Tell Them About It" otherButtonTitles:@[@"Don't Tell Them"]
+                     cancelButtonTitle:@"Tell Them" otherButtonTitles:@[@"Don't Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index == view.cancelButtonIndex) {
@@ -113,7 +113,7 @@
             
             [UIAlertView showWithTitle:@"Friend Request Sent!"
                                message:self.alertMessage
-                     cancelButtonTitle:@"Tell Them About It" otherButtonTitles:@[@"Don't Tell Them"]
+                     cancelButtonTitle:@"Tell Them" otherButtonTitles:@[@"Don't Tell Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index == view.cancelButtonIndex) {

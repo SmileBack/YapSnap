@@ -23,6 +23,7 @@
 #define DID_SEE_TOP_CHARTS_POPUP_KEY @"yaptap.DidSeeTopChartsPopupKey602"
 #define DISMISS_TOP_CHARTS_POPUP_NOTIFICATION @"DismissTopChartsPopup"
 #define DID_PLAY_SONG_FOR_FIRST_TIME_KEY @"yaptap.DidPlaySongForFirstTimeKey"
+#define DID_TAP_ARTIST_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.DidTapArtistButtonForFirstTimeKey"
 
 @property (nonatomic, strong) NSString *selectedGenre;
 

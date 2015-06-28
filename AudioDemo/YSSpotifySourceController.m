@@ -538,8 +538,7 @@
         
         if (trackGroup == self.trackGroupPool) {
             // Only take first five
-            // TODO: before submission
-            NSArray *firstFiveTracks = @[shuffledSongs[0]];//, shuffledSongs[1], shuffledSongs[2], shuffledSongs[3], shuffledSongs[4]];
+            NSArray *firstFiveTracks = @[shuffledSongs[0], shuffledSongs[1], shuffledSongs[2], shuffledSongs[3], shuffledSongs[4]];
             self.songs = [firstFiveTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
         } else {
             self.songs = shuffledSongs;
@@ -1059,12 +1058,22 @@
                 break;
             }
         }
+
         if (selectedTrack && !selectedTrack.isExplainerTrack) {
-            [self searchForTracksWithString:selectedTrack.artistName];
-            self.searchBox.text = selectedTrack.artistName;
-            [self updateVisibilityOfMagnifyingGlassAndResetButtons];
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Artist Hack Button"];
+            if (!self.tappedArtistButtonForFirstTime) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%@", selectedTrack.artistName]
+                                                                    message:@"Tap an artist's name to see their top songs!"
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"Skip" otherButtonTitles:@"Continue", nil];
+                [alertView show];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_TAP_ARTIST_BUTTON_FOR_FIRST_TIME_KEY];
+            } else {
+                [self searchForTracksWithString:selectedTrack.artistName];
+                self.searchBox.text = selectedTrack.artistName;
+                [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+                Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                [mixpanel track:@"Tapped Artist Hack Button"];
+            }
         }
     }
 }
@@ -1338,6 +1347,11 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_PLAY_SONG_FOR_FIRST_TIME_KEY];
 }
 
+- (BOOL) tappedArtistButtonForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_TAP_ARTIST_BUTTON_FOR_FIRST_TIME_KEY];
+}
+
 - (void) hideResetButton {
     self.resetButton.alpha = 0;
 }
@@ -1388,6 +1402,27 @@
                          }
                          completion:nil];
         self.magnifyingGlassImageView.hidden = NO;
+    }
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
+        YSTrack *selectedTrack = nil;
+        for (YSTrack *track in self.songs) {
+            if ([track.spotifyID isEqualToString:trackView.spotifySongID]) {
+                selectedTrack = track;
+                break;
+            }
+        }
+        
+        [self searchForTracksWithString:selectedTrack.artistName];
+        self.searchBox.text = selectedTrack.artistName;
+        [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Artist Hack Button"];
     }
 }
 

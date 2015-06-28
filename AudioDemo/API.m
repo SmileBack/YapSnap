@@ -77,7 +77,6 @@ static API *sharedAPI;
     
     params[@"duration"] = [NSNumber numberWithFloat:yapBuilder.duration];
     
-    //TODO: Add this!
     if (yapBuilder.originYapID) {
         params[@"origin_yap_id"] = yapBuilder.originYapID;
     }
