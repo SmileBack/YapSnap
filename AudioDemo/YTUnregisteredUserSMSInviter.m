@@ -61,12 +61,12 @@
             
             [UIAlertView showWithTitle:@"Yap Sent!"
                                message:self.alertMessage
-                     cancelButtonTitle:@"Tell Them" otherButtonTitles:@[@"Don't Tell Them"]
+                     cancelButtonTitle:@"Tell Them" otherButtonTitles:@[@"I've Already Told Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index == view.cancelButtonIndex) {
                                       NSLog(@"Tapped Continue on SMS Prompt");
-                                      [self.delegate showSMS:@"Hey I sent you something cool on YapTap! You should be getting a message from them about it"
+                                      [self.delegate showSMS:@"Hey I sent you something cool on YapTap! You should be getting a message from them with a link to the app"
                                                 toRecipients:unregisteredContacts];
                                       
                                       Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -113,12 +113,12 @@
             
             [UIAlertView showWithTitle:@"Friend Request Sent!"
                                message:self.alertMessage
-                     cancelButtonTitle:@"Tell Them" otherButtonTitles:@[@"Don't Tell Them"]
+                     cancelButtonTitle:@"Tell Them" otherButtonTitles:@[@"I've Already Told Them"]
                               tapBlock:^(UIAlertView* view, NSInteger index) {
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index == view.cancelButtonIndex) {
                                       NSLog(@"Tapped Continue on SMS Prompt");
-                                      [self.delegate showSMS:@"Hey I sent you a friend request on YapTap! You should be getting a message from them about it" toRecipients:unregisteredContacts];
+                                      [self.delegate showSMS:@"Hey I sent you a friend request on YapTap! You should be getting a message from them with a link to the app" toRecipients:unregisteredContacts];
                                       
                                       Mixpanel *mixpanel = [Mixpanel sharedInstance];
                                       [mixpanel track:@"Yes to SMS (Friend Request)"];
