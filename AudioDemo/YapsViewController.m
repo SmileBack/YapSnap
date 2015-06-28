@@ -344,19 +344,15 @@ static NSString *CellIdentifier = @"Cell";
         if (cell.albumImageView) {
             [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
         }
-        NSLog(@"Yap Type: %@", yap.type);
         cell.spotifyBottomImageView.hidden = NO;
     } else if (([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.sentByCurrentUser) || ([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.receivedByCurrentUser && yap.wasOpened)) {
         cell.goToSpotifyView.hidden = NO;
-        NSLog(@"Yap Type: %@", yap.type);
         [cell.albumImageView setImage:[UIImage imageNamed:@"YapTapCartoonIcon.png"]];
         cell.spotifyBottomImageView.hidden = YES;
     } else {
         cell.goToSpotifyView.hidden = YES;
     }
     
-    NSLog(@"Time: %@", [self.dateFormatter stringFromDate:yap.createdAt]);
-
     // DID SEND YAP
     if (yap.receivedByCurrentUser) {
         cell.nameLabel.text = yap.displaySenderName;
