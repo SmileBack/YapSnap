@@ -321,28 +321,28 @@
     self.trackGroupCategoryThree.apiString = @"funny_tracks";
     
     self.trackGroupCategoryFour = [YTTrackGroup new];
-    self.trackGroupCategoryFour.name = @"Party";
-    self.trackGroupCategoryFour.apiString = @"party_tracks";
+    self.trackGroupCategoryFour.name = @"Happy";
+    self.trackGroupCategoryFour.apiString = @"happy_tracks";
     
     self.trackGroupCategoryFive = [YTTrackGroup new];
-    self.trackGroupCategoryFive.name = @"Happy";
-    self.trackGroupCategoryFive.apiString = @"happy_tracks";
+    self.trackGroupCategoryFive.name = @"Flirtatious";
+    self.trackGroupCategoryFive.apiString = @"flirtatious_tracks";
     
     self.trackGroupCategorySix = [YTTrackGroup new];
-    self.trackGroupCategorySix.name = @"Flirtatious";
-    self.trackGroupCategorySix.apiString = @"flirtatious_tracks";
+    self.trackGroupCategorySix.name = @"Inspiring";
+    self.trackGroupCategorySix.apiString = @"inspiring_tracks";
     
     self.trackGroupCategorySeven = [YTTrackGroup new];
-    self.trackGroupCategorySeven.name = @"Gloomy";
-    self.trackGroupCategorySeven.apiString = @"gloomy_tracks";
+    self.trackGroupCategorySeven.name = @"Romantic";
+    self.trackGroupCategorySeven.apiString = @"romantic_tracks";
     
     self.trackGroupCategoryEight = [YTTrackGroup new];
-    self.trackGroupCategoryEight.name = @"Furious";
-    self.trackGroupCategoryEight.apiString = @"furious_tracks";
+    self.trackGroupCategoryEight.name = @"Party";
+    self.trackGroupCategoryEight.apiString = @"party_tracks";
     
     self.trackGroupCategoryNine = [YTTrackGroup new];
-    self.trackGroupCategoryNine.name = @"Inspirational";
-    self.trackGroupCategoryNine.apiString = @"motivated_tracks";
+    self.trackGroupCategoryNine.name = @"Gloomy";
+    self.trackGroupCategoryNine.apiString = @"gloomy_tracks";
     
     self.trackGroupOnboarding = [YTTrackGroup new];
     self.trackGroupOnboarding.name = @"Onboarding";
