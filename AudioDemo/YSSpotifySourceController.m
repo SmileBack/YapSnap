@@ -356,12 +356,12 @@
     self.trackGroupOnboarding = [YTTrackGroup new];
     self.trackGroupOnboarding.name = @"Onboarding";
     self.trackGroupOnboarding.apiString = @"onboarding_tracks";
+    self.trackGroupOnboarding.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupPool = [YTTrackGroup new];
     self.trackGroupPool.name = @"Pool";
     self.trackGroupPool.apiString = @"pool_tracks";
-    
-    //self.trackGroupPool.apiString = @"onboarding_songs";
+    self.trackGroupPool.apiString = @"onboarding_songs"; // TODO: Remove
 }
 
 -(void) setupCategoryButtons {
@@ -906,7 +906,11 @@
 }
 
 - (void)didTapCarousel:(UITapGestureRecognizer*)tap {
-    [self showBannerWithText:@"Hold To Play" temporary:YES];
+    if (self.didPlaySongForFirstTime) {
+        [self showBannerWithText:@"Hold To Play" temporary:YES];
+    } else {
+        [self showBannerWithText:@"Keep Holding" temporary:NO];
+    }
 }
 
 - (void) showBannerWithText:(NSString*)text temporary:(BOOL)temporary {
