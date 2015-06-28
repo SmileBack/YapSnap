@@ -485,6 +485,7 @@
     self.categoryView.alpha = 0;
     [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
     [self retrieveAndLoadTracksForCategory:trackGroup];
+    self.artistButtonHack.hidden = NO;
 }
 
 - (void) retrieveAndLoadTracksForCategory:(YTTrackGroup *)trackGroup

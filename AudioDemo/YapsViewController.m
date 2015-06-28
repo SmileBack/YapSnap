@@ -219,7 +219,7 @@ static NSString *CellIdentifier = @"Cell";
                             }
                         }
                     }];
-
+    
     [center addObserverForName:NEW_YAP_NOTIFICATION
                         object:nil
                          queue:nil
@@ -362,12 +362,18 @@ static NSString *CellIdentifier = @"Cell";
         
         [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
         cell.spotifyBottomImageView.hidden = NO;
-    } else if (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened) || ([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.sentByCurrentUser)) {
+    } else {
+        cell.goToSpotifyView.hidden = YES;
+    }
+    
+    /*
+    else if (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened) || ([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.sentByCurrentUser)) {
             [cell.albumImageView setImage:[UIImage imageNamed:@"YapTapCartoonIcon.png"]];
             cell.spotifyBottomImageView.hidden = YES;
     } else {
         cell.goToSpotifyView.hidden = YES;
     }
+     */
 
     // DID SEND YAP
     if (yap.receivedByCurrentUser) {
@@ -397,6 +403,14 @@ static NSString *CellIdentifier = @"Cell";
                 cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@  |  Delivered" , [self.dateFormatter stringFromDate:yap.createdAt]];
             }
         }
+    }
+    
+    if (yap.isSending) {
+        //cell.icon.hidden = YES;
+        //[cell.spinner startAnimating];
+    } else {
+        cell.icon.hidden = NO;
+        //[cell.spinner stopAnimating];
     }
     
     return cell;
@@ -946,5 +960,8 @@ static NSString *CellIdentifier = @"Cell";
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Canceled SMS (Yap)"];
 }
+
+
+
 
 @end
