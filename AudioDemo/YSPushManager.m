@@ -57,13 +57,13 @@ static YSPushManager *_sharedPushManager;
         [application registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
     }
-    else
+/*    else
     {
         [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                                          UIRemoteNotificationTypeAlert |
                                                          UIRemoteNotificationTypeSound)];
     }
-    
+ */
     //Before:
     /*
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {

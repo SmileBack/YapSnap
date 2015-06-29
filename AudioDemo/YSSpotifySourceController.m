@@ -310,58 +310,58 @@
 - (void) createTrackGroups {
     self.trackGroupCategoryOne = [YTTrackGroup new];
     self.trackGroupCategoryOne.name = @"Trending";
-    self.trackGroupCategoryOne.apiString = @"trending_tracks";
+    //self.trackGroupCategoryOne.apiString = @"trending_tracks";
     self.trackGroupCategoryOne.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategoryTwo = [YTTrackGroup new];
     self.trackGroupCategoryTwo.name = @"Nostalgic";
     self.trackGroupCategoryTwo.apiString = @"nostalgic_tracks";
-    self.trackGroupCategoryTwo.apiString = @"onboarding_songs"; // TODO: Remove
+    //self.trackGroupCategoryTwo.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategoryThree = [YTTrackGroup new];
     self.trackGroupCategoryThree.name = @"Funny";
     self.trackGroupCategoryThree.apiString = @"funny_tracks";
-    self.trackGroupCategoryThree.apiString = @"onboarding_songs"; // TODO: Remove
+    //self.trackGroupCategoryThree.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategoryFour = [YTTrackGroup new];
     self.trackGroupCategoryFour.name = @"Happy";
     self.trackGroupCategoryFour.apiString = @"happy_tracks";
-    self.trackGroupCategoryFour.apiString = @"onboarding_songs"; // TODO: Remove
+    //self.trackGroupCategoryFour.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategoryFive = [YTTrackGroup new];
     self.trackGroupCategoryFive.name = @"Flirtatious";
     self.trackGroupCategoryFive.apiString = @"flirtatious_tracks";
-    self.trackGroupCategoryFive.apiString = @"onboarding_songs"; // TODO: Remove
+    //self.trackGroupCategoryFive.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategorySix = [YTTrackGroup new];
     self.trackGroupCategorySix.name = @"Inspiring";
     self.trackGroupCategorySix.apiString = @"inspiring_tracks";
-    self.trackGroupCategorySix.apiString = @"onboarding_songs"; // TODO: Remove
+    //self.trackGroupCategorySix.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategorySeven = [YTTrackGroup new];
     self.trackGroupCategorySeven.name = @"Romantic";
     self.trackGroupCategorySeven.apiString = @"romantic_tracks";
-    self.trackGroupCategorySeven.apiString = @"onboarding_songs"; // TODO: Remove
+    //self.trackGroupCategorySeven.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategoryEight = [YTTrackGroup new];
     self.trackGroupCategoryEight.name = @"Party";
     self.trackGroupCategoryEight.apiString = @"party_tracks";
-    self.trackGroupCategoryEight.apiString = @"onboarding_songs"; // TODO: Remove
+    //self.trackGroupCategoryEight.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategoryNine = [YTTrackGroup new];
     self.trackGroupCategoryNine.name = @"Gloomy";
     self.trackGroupCategoryNine.apiString = @"gloomy_tracks";
-    self.trackGroupCategoryNine.apiString = @"onboarding_songs"; // TODO: Remove
+    //self.trackGroupCategoryNine.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupOnboarding = [YTTrackGroup new];
     self.trackGroupOnboarding.name = @"Onboarding";
     self.trackGroupOnboarding.apiString = @"onboarding_tracks";
-    self.trackGroupOnboarding.apiString = @"onboarding_songs"; // TODO: Remove
+    //self.trackGroupOnboarding.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupPool = [YTTrackGroup new];
     self.trackGroupPool.name = @"Pool";
     self.trackGroupPool.apiString = @"pool_tracks";
-    self.trackGroupPool.apiString = @"onboarding_songs"; // TODO: Remove
+    //self.trackGroupPool.apiString = @"onboarding_songs"; // TODO: Remove
 }
 
 -(void) setupCategoryButtons {

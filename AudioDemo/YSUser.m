@@ -57,11 +57,11 @@ static YSUser *currentUser;
 
 - (BOOL) isUserInfoComplete
 {
-    BOOL emailIncomplete = [self stringIsIncomplete:self.email];
+    //BOOL emailIncomplete = [self stringIsIncomplete:self.email];
     BOOL firstNameIncomplete = [self stringIsIncomplete:self.firstName];
     BOOL lastNameIncomplete = [self stringIsIncomplete:self.lastName];
     
-    return !(emailIncomplete || firstNameIncomplete || lastNameIncomplete);
+    return !(firstNameIncomplete || lastNameIncomplete);
 }
 
 - (BOOL) hasSessionToken
