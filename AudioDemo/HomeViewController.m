@@ -12,6 +12,7 @@
 #import "API.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "AudioCaptureViewController.h"
+#import "YSPushManager.h"
 
 @interface HomeViewController () {
     NSTimer *countdownTimer;
@@ -58,13 +59,15 @@
 }
 
 - (void) setupNotifications {
+    __weak HomeViewController *weakSelf = self;
+    
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserverForName:SHOW_FEEDBACK_PAGE
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Show Feedback Page");
-                        [self showFeedbackEmailViewControllerWithCompletion:^{
+                        [weakSelf showFeedbackEmailViewControllerWithCompletion:^{
                         }];
                     }];
     
@@ -73,7 +76,7 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Dismiss Welcome Popup");
-                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                        [weakSelf dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
     
     [center addObserverForName:AUDIO_CAPTURE_DID_START_NOTIFICATION
@@ -81,14 +84,14 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         NSLog(@"Audio Capture Did Start");
-                        [self showAndStartTimer];
+                        [weakSelf showAndStartTimer];
                     }];
     
     [center addObserverForName:STOP_LOADING_SPINNER_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self.activityIndicator stopAnimating];
+                        [weakSelf.activityIndicator stopAnimating];
                     }];
     
     [center addObserverForName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION
@@ -102,7 +105,7 @@
                                               delay:0
                                             options:UIViewAnimationOptionCurveEaseOut
                                          animations:^{
-                                             self.countdownTimerLabel.alpha = 0;
+                                             weakSelf.countdownTimerLabel.alpha = 0;
                                          }
                                          completion:nil];
                     }];
@@ -116,7 +119,7 @@
                                               delay:0
                                             options:UIViewAnimationOptionCurveEaseOut
                                          animations:^{
-                                             self.countdownTimerLabel.alpha = 0;
+                                             weakSelf.countdownTimerLabel.alpha = 0;
                                          }
                                          completion:nil];
                     }];
@@ -125,25 +128,25 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self hideTopButtons];
-                        self.countdownTimerLabel.alpha = 0;
+                        [weakSelf hideTopButtons];
+                        weakSelf.countdownTimerLabel.alpha = 0;
                     }];
     
     [center addObserverForName:WILL_START_AUDIO_CAPTURE_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        self.countdownTimerLabel.alpha = 0;
-                        [self.activityIndicator startAnimating];
-                        [self hideTopButtons];
+                        weakSelf.countdownTimerLabel.alpha = 0;
+                        [weakSelf.activityIndicator startAnimating];
+                        [weakSelf hideTopButtons];
                     }];
     
     [center addObserverForName:COMPLETED_REGISTRATION_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        if (!self.didSeeWelcomePopup) {
-                            [self showWelcomePopup];
+                        if (!weakSelf.didSeeWelcomePopup) {
+                            [weakSelf showWelcomePopup];
                         }
                     }];
     
@@ -151,11 +154,10 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [self showTopButtons];
-                        self.countdownTimerLabel.alpha = 0;
+                        [weakSelf showTopButtons];
+                        weakSelf.countdownTimerLabel.alpha = 0;
                     }];
     
-    __weak HomeViewController *weakSelf = self;
     [center addObserverForName:UIApplicationDidBecomeActiveNotification
                         object:nil
                          queue:nil
@@ -169,6 +171,24 @@
                                                   usingBlock:^(NSNotification *note) {
                                                       [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                                                   }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:NEW_FRIEND_NOTIFICATION
+                                                      object:nil
+                                                       queue:[NSOperationQueue currentQueue]
+                                                  usingBlock:^(NSNotification *note) {
+                                                      if (weakSelf.navigationController.topViewController == weakSelf) {
+                                                          [weakSelf performSegueWithIdentifier:@"Friends Segue" sender:nil];
+                                                      }
+                                                  }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:NEW_YAP_NOTIFICATION
+                                                      object:nil
+                                                       queue:[NSOperationQueue currentQueue]
+                                                  usingBlock:^(NSNotification *note) {
+                                                      if (weakSelf.navigationController.topViewController == weakSelf) {
+                                                          [weakSelf performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:nil];
+                                                      }
+                                                  }];
+    
 }
 
 - (void)dealloc

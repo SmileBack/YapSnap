@@ -61,8 +61,7 @@
 {
     NSDictionary *remoteInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     if (remoteInfo && [remoteInfo isKindOfClass:[NSDictionary class]] && remoteInfo.count > 0) {
-        // TODO do something with launch options.  For example:
-        //   NSNumber *smileGameID = remoteInfo[@"smile_game_id"];
+        [[YSPushManager sharedPushManager] receivedNotification:remoteInfo inAppState:[UIApplication sharedApplication].applicationState];
     }
 }
 

@@ -12,8 +12,12 @@
 
 #define IS_IOS_8  ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] != NSOrderedAscending)
 
-
 @interface YSPushManager()
+
+// A little funky, but we basically want to 'replay' received notifications that we get once the app becomes active
+// and view controllers that listen to notifications can respond to them appropriately
+@property NSMutableSet *deferredNotifications;
+@property BOOL applicationIsActive;
 
 @end
 
@@ -30,6 +34,25 @@ static YSPushManager *_sharedPushManager;
     }
 
     return _sharedPushManager;
+}
+
+- (id)init {
+    if (self = [super init]) {
+        self.deferredNotifications = [NSMutableSet set];
+        self.applicationIsActive = NO;
+        __weak YSPushManager *weakSelf = self;
+        [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidBecomeActiveNotification
+                                                          object:nil
+                                                           queue:[NSOperationQueue currentQueue]
+                                                      usingBlock:^(NSNotification *note) {
+                                                          weakSelf.applicationIsActive = YES;
+                                                          for (NSDictionary* notification in weakSelf.deferredNotifications) {
+                                                              [weakSelf receivedNotification:notification inAppState:UIApplicationStateInactive];
+                                                          }
+                                                          [weakSelf.deferredNotifications removeAllObjects];
+                                                      }];
+    }
+    return self;
 }
 
 - (void) refresh
@@ -104,21 +127,22 @@ static YSPushManager *_sharedPushManager;
 #pragma mark - Receiving Notifications
 - (void) receivedANewYapInBackground:(BOOL)inBackground
 {
-    if (!inBackground) {
+    [[YapsCache sharedCache] loadYapsWithCallback:nil];
+    if (inBackground) {
         [[NSNotificationCenter defaultCenter] postNotificationName:NEW_YAP_NOTIFICATION object:[NSNumber numberWithBool:inBackground]];
+    } else {
         double delay = 0.5;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [[YTNotifications sharedNotifications] showNotificationText:@"You've Received a New Yap!"];
         });
-    } else {
-        [[YapsCache sharedCache] loadYapsWithCallback:nil];
     }
 }
 
 - (void) receivedANewFriendInBackground:(BOOL)inBackground
 {
-    if (!inBackground) {
+    if (inBackground) {
         [[NSNotificationCenter defaultCenter] postNotificationName:NEW_FRIEND_NOTIFICATION object:[NSNumber numberWithBool:inBackground]];
+    } else {
         double delay = 0.5;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [[YTNotifications sharedNotifications] showNotificationText:@"You Just Made a New Friend!"];
@@ -128,12 +152,16 @@ static YSPushManager *_sharedPushManager;
 
 - (void) receivedNotification:(NSDictionary *)notification inAppState:(UIApplicationState)state
 {
-    BOOL backgroundNotification = state == UIApplicationStateInactive;
-    
-    if ([notification[@"type"] isEqual: @"new_yap"]) {
-        [self receivedANewYapInBackground:backgroundNotification];
-    } else if ([notification[@"type"] isEqual: @"new_friend"]) {
-        [self receivedANewFriendInBackground:backgroundNotification];
+    if (self.applicationIsActive) {
+        BOOL backgroundNotification = state == UIApplicationStateInactive;
+        
+        if ([notification[@"type"] isEqual: @"new_yap"]) {
+            [self receivedANewYapInBackground:backgroundNotification];
+        } else if ([notification[@"type"] isEqual: @"new_friend"]) {
+            [self receivedANewFriendInBackground:backgroundNotification];
+        }
+    } else {
+        [self.deferredNotifications addObject:notification];
     }
 }
 
