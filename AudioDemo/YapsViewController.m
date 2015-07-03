@@ -210,7 +210,6 @@ static NSString *CellIdentifier = @"Cell";
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        //[self popToBaseAudioCaptureController:NO];
                         [self dismissViewController];
                     }];
     

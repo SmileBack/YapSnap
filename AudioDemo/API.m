@@ -707,13 +707,16 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
+    //NSString *url = @"/spotify_songs";
     NSString *url = [NSString stringWithFormat:@"/spotify/%@", category.apiString];
     [manager GET:[self urlForEndpoint:url]
-      parameters:[self paramsWithDict:@{}]
+      //parameters:[self paramsWithDict:@{@"category": @"onboarding_tracks"}]
+        parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSDictionary *response = responseObject;
-             NSLog(@"Response Object: %@", responseObject);
+             //NSLog(@"Response Object: %@", responseObject);
              NSArray *items = response[@"tracks"][@"items"];
+             NSLog(@"Items: %@", items);
              
              NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
              callback(songs, nil);
@@ -726,5 +729,33 @@ static API *sharedAPI;
         NSLog(@"category in API.m: %@", category);
 }
 
+
+/*
+- (void) retrieveTracksForCategory:(YTTrackGroup*)category withCallback:(OnboardingTracksCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    NSString *url = @"/spotify_songs";
+    [manager GET:[self urlForEndpoint:url]
+     parameters:[self paramsWithDict:@{@"category": @"onboarding_tracks"}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSDictionary *response = responseObject;
+             NSLog(@"Response Object: %@", responseObject);
+             //NSArray *items = response[@"tracks"][@"items"];
+             
+             NSArray *items = [response objectForKey:0];
+             NSLog(@"Items: %@", items);
+             
+             NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
+             callback(songs, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             
+             [self processFailedOperation:operation];
+             callback(NO, error);
+         }];
+    NSLog(@"category in API.m: %@", category);
+}
+*/
 
 @end

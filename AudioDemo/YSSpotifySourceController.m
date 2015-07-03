@@ -311,7 +311,7 @@
     self.trackGroupCategoryOne = [YTTrackGroup new];
     self.trackGroupCategoryOne.name = @"Trending";
     //self.trackGroupCategoryOne.apiString = @"trending_tracks";
-    self.trackGroupCategoryOne.apiString = @"onboarding_songs"; // TODO: Remove
+    self.trackGroupCategoryOne.apiString = @"onboarding_tracks"; // TODO: Remove
     
     self.trackGroupCategoryTwo = [YTTrackGroup new];
     self.trackGroupCategoryTwo.name = @"Nostalgic";
@@ -355,13 +355,13 @@
     
     self.trackGroupOnboarding = [YTTrackGroup new];
     self.trackGroupOnboarding.name = @"Onboarding";
-    self.trackGroupOnboarding.apiString = @"onboarding_tracks";
-    //self.trackGroupOnboarding.apiString = @"onboarding_songs"; // TODO: Remove
+    //self.trackGroupOnboarding.apiString = @"onboarding_tracks";
+    self.trackGroupOnboarding.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupPool = [YTTrackGroup new];
     self.trackGroupPool.name = @"Pool";
-    self.trackGroupPool.apiString = @"pool_tracks";
-    //self.trackGroupPool.apiString = @"onboarding_songs"; // TODO: Remove
+    //self.trackGroupPool.apiString = @"pool_tracks";
+    self.trackGroupPool.apiString = @"onboarding_songs"; // TODO: Remove
 }
 
 -(void) setupCategoryButtons {
@@ -547,7 +547,7 @@
         
         if (trackGroup == self.trackGroupPool) {
             // Only take first five
-            NSArray *firstFiveTracks = @[shuffledSongs[0], shuffledSongs[1], shuffledSongs[2], shuffledSongs[3], shuffledSongs[4]];
+            NSArray *firstFiveTracks = @[shuffledSongs[0], shuffledSongs[1], shuffledSongs[2]];//, shuffledSongs[3], shuffledSongs[4]];
             self.songs = [firstFiveTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
         } else {
             self.songs = shuffledSongs;
