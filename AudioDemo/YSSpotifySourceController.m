@@ -47,7 +47,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryModeButtonWidthConstraint;
 @property (nonatomic) CGFloat maxStringSizeWidth;
 
-
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryOne;
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryTwo;
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryThree;
@@ -59,9 +58,6 @@
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryNine;
 @property (strong, nonatomic) YTTrackGroup *trackGroupOnboarding;
 @property (strong, nonatomic) YTTrackGroup *trackGroupPool;
-
-- (IBAction)didTapResetButton;
-- (IBAction)didTapCategoryModeButton;
 
 // tapCategoryButton
 @property (strong, nonatomic) IBOutlet UIButton *categoryButtonOne;
@@ -84,6 +80,9 @@
 - (IBAction)didTapCategoryButtonSeven:(UIButton*)button;
 - (IBAction)didTapCategoryButtonEight:(UIButton*)button;
 - (IBAction)didTapCategoryButtonNine:(UIButton*)button;
+
+- (IBAction)didTapResetButton;
+- (IBAction)didTapCategoryModeButton;
  
 @end
 
