@@ -273,35 +273,6 @@ static NSString *CellIdentifier = @"Cell";
     return ![AFNetworkReachabilityManager sharedManager].reachable;
 }
 
-- (void) showFirstYapAlert {
-    if (self.pendingYaps.count > 0) {
-        YSYap* yap = self.pendingYaps[0];
-        double delay = 0.5;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            if (!self.didViewFirstSentYapAlert) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congrats!"
-                                                                message:[NSString stringWithFormat:@"You just sent your first yap! We'll add %@ to your friends list after they open it.", yap.displayReceiverName]
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles: nil];
-                [alert show];
-                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_FIRST_SENT_YAP_ALERT];
-            }
-        });
-    }
-}
-
-- (void) showWelcomeYapBanner {
-    if (!self.didSeeWelcomeYapBanner) {
-        double delay = .5;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:@"Tap Our Yap!"];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_WELCOME_YAP_BANNER];
-        });
-    }
-}
-
 #pragma mark - Add Friend flow
 - (void) promptToAddFriend:(YSYap *)yap
 {
@@ -793,16 +764,6 @@ static NSString *CellIdentifier = @"Cell";
 - (BOOL) didViewNotificationAlert
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_PUSH_NOTIFICATION_POPUP];
-}
-
-- (BOOL) didViewFirstSentYapAlert
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_FIRST_SENT_YAP_ALERT];
-}
-
-- (BOOL) didSeeWelcomeYapBanner
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_YAP_BANNER];
 }
 
 - (BOOL) didOpenYapForFirstTime

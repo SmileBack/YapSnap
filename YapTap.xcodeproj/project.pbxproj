@@ -149,8 +149,8 @@
 		7861927E1B0A4AD8007279E8 /* CancelImageButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861927D1B0A4AD8007279E8 /* CancelImageButton@2x.png */; };
 		786192801B0A4CB0007279E8 /* CancelPhotoButton100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861927F1B0A4CB0007279E8 /* CancelPhotoButton100@2x.png */; };
 		786192821B0A4D5F007279E8 /* CancelPhotoButton200@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192811B0A4D5F007279E8 /* CancelPhotoButton200@2x.png */; };
-		786192871B0A783B007279E8 /* TopChartsPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192851B0A783B007279E8 /* TopChartsPopupViewController.m */; };
-		786192881B0A783B007279E8 /* TopChartsPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192861B0A783B007279E8 /* TopChartsPopupViewController.xib */; };
+		786192871B0A783B007279E8 /* ForwardingPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192851B0A783B007279E8 /* ForwardingPopupViewController.m */; };
+		786192881B0A783B007279E8 /* ForwardingPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192861B0A783B007279E8 /* ForwardingPopupViewController.xib */; };
 		7861928A1B0E77D4007279E8 /* CartoonsLong5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192891B0E77D4007279E8 /* CartoonsLong5@3x.png */; };
 		7861928C1B0EA528007279E8 /* CartooniPhone6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861928B1B0EA528007279E8 /* CartooniPhone6@2x.png */; };
 		78624BE41B03189000C8E049 /* Dice7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78624BE31B03189000C8E049 /* Dice7@2x.png */; };
@@ -505,9 +505,9 @@
 		7861927D1B0A4AD8007279E8 /* CancelImageButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelImageButton@2x.png"; sourceTree = "<group>"; };
 		7861927F1B0A4CB0007279E8 /* CancelPhotoButton100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelPhotoButton100@2x.png"; sourceTree = "<group>"; };
 		786192811B0A4D5F007279E8 /* CancelPhotoButton200@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelPhotoButton200@2x.png"; sourceTree = "<group>"; };
-		786192841B0A783B007279E8 /* TopChartsPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopChartsPopupViewController.h; sourceTree = "<group>"; };
-		786192851B0A783B007279E8 /* TopChartsPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopChartsPopupViewController.m; sourceTree = "<group>"; };
-		786192861B0A783B007279E8 /* TopChartsPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopChartsPopupViewController.xib; sourceTree = "<group>"; };
+		786192841B0A783B007279E8 /* ForwardingPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardingPopupViewController.h; sourceTree = "<group>"; };
+		786192851B0A783B007279E8 /* ForwardingPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardingPopupViewController.m; sourceTree = "<group>"; };
+		786192861B0A783B007279E8 /* ForwardingPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForwardingPopupViewController.xib; sourceTree = "<group>"; };
 		786192891B0E77D4007279E8 /* CartoonsLong5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CartoonsLong5@3x.png"; sourceTree = "<group>"; };
 		7861928B1B0EA528007279E8 /* CartooniPhone6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CartooniPhone6@2x.png"; sourceTree = "<group>"; };
 		78624BE31B03189000C8E049 /* Dice7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dice7@2x.png"; sourceTree = "<group>"; };
@@ -1148,7 +1148,7 @@
 		7861926E1B09A904007279E8 /* Onboarding Popups */ = {
 			isa = PBXGroup;
 			children = (
-				786192831B0A77F5007279E8 /* Top Charts Popup */,
+				786192831B0A77F5007279E8 /* Forwarding Popup */,
 				7861926F1B09A913007279E8 /* Record Popup */,
 				785393701AD9C17C00C6BEA7 /* Welcome Popup */,
 				786192751B09B597007279E8 /* Contacts Popup */,
@@ -1176,14 +1176,14 @@
 			name = "Contacts Popup";
 			sourceTree = "<group>";
 		};
-		786192831B0A77F5007279E8 /* Top Charts Popup */ = {
+		786192831B0A77F5007279E8 /* Forwarding Popup */ = {
 			isa = PBXGroup;
 			children = (
-				786192841B0A783B007279E8 /* TopChartsPopupViewController.h */,
-				786192851B0A783B007279E8 /* TopChartsPopupViewController.m */,
-				786192861B0A783B007279E8 /* TopChartsPopupViewController.xib */,
+				786192841B0A783B007279E8 /* ForwardingPopupViewController.h */,
+				786192851B0A783B007279E8 /* ForwardingPopupViewController.m */,
+				786192861B0A783B007279E8 /* ForwardingPopupViewController.xib */,
 			);
-			name = "Top Charts Popup";
+			name = "Forwarding Popup";
 			sourceTree = "<group>";
 		};
 		786BCB411ADC25A300BA3FDD /* Customize Page */ = {
@@ -1751,7 +1751,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				787EC6031ACA09B8000C5539 /* BalloonGreen10.png in Resources */,
-				786192881B0A783B007279E8 /* TopChartsPopupViewController.xib in Resources */,
+				786192881B0A783B007279E8 /* ForwardingPopupViewController.xib in Resources */,
 				782D13981ACC59E6007C8499 /* YapsButtonNoYaps.png in Resources */,
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
 				786192471B06BA5B007279E8 /* MegaphoneWhite.png in Resources */,
@@ -2070,7 +2070,7 @@
 				78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */,
 				784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */,
 				FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */,
-				786192871B0A783B007279E8 /* TopChartsPopupViewController.m in Sources */,
+				786192871B0A783B007279E8 /* ForwardingPopupViewController.m in Sources */,
 				783CCF7E1B38CB9000E3B5BF /* SpotifyTrackFactory.m in Sources */,
 				378191D419E59B4A006EF98F /* API.m in Sources */,
 				78319A811ACD29A9000C3FD6 /* FeedbackMonitor.m in Sources */,

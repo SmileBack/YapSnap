@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 martinjuhasz.de. All rights reserved.
 //
 
-#import "TopChartsPopupViewController.h"
+#import "ForwardingPopupViewController.h"
 
-@implementation TopChartsPopupViewController
+@implementation ForwardingPopupViewController
 
 
 - (void)viewDidLoad
@@ -30,7 +30,7 @@
 }
 
 - (IBAction) didTapCancelButton {
-    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_TOP_CHARTS_POPUP_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_FORWARDING_POPUP_NOTIFICATION object:nil];
 }
 
 @end

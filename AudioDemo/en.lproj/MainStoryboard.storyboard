@@ -565,11 +565,11 @@
                         <viewControllerLayoutGuide type="bottom" id="A6g-AH-ZMj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="c1P-cc-dab">
-                        <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Wxt-ug-3oL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="UAQ-RV-UHx" detailTextLabel="SV5-KU-VEE" style="IBUITableViewCellStyleValue1" id="PxL-ic-pkM">
@@ -627,7 +627,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6DQ-z1-9tf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zdM-Wx-iIj">
-                        <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="hBL-8E-dV6">
@@ -1000,7 +1000,7 @@
                                     <constraint firstAttribute="width" secondItem="5VO-Xh-MtL" secondAttribute="height" multiplier="1:1" id="CtS-ku-lnQ"/>
                                 </constraints>
                             </imageView>
-                            <imageView hidden="YES" alpha="0.59999999999999998" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-LF-pEZ" userLabel="Flashback Image">
+                            <imageView hidden="YES" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-LF-pEZ" userLabel="Flashback Image">
                                 <rect key="frame" x="5" y="84" width="310" height="310"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gWj-LF-pEZ" secondAttribute="height" multiplier="1:1" id="lTJ-dK-FYV"/>
@@ -1112,7 +1112,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="FAB562E6-286C-4239-BE49-EECC6727CCD0"/>
+                                <state key="normal" backgroundImage="A280BDBE-F70F-470A-AA55-3F2E6B5B510A"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1211,11 +1211,11 @@
                         <viewControllerLayoutGuide type="bottom" id="0Hh-Gz-1X0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="c1Z-FI-M5X">
-                        <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hWh-h3-qO7">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="90" id="S8N-yP-ZE0" customClass="YapCell">
@@ -1308,7 +1308,7 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrU-oT-SXF">
-                                <rect key="frame" x="0.0" y="467" width="320" height="57"/>
+                                <rect key="frame" x="0.0" y="403" width="320" height="57"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQC-FA-zIG">
                                         <rect key="frame" x="30" y="9" width="260" height="40"/>
@@ -1409,7 +1409,7 @@ in your phone's settings!</string>
                                     <constraint firstAttribute="height" constant="8" id="FKH-qP-4Tv"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-3F-cQc" userLabel="Flashback Image View">
+                            <imageView userInteractionEnabled="NO" alpha="0.49999999999999994" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-3F-cQc" userLabel="Flashback Image View">
                                 <rect key="frame" x="5" y="84" width="310" height="310"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cEy-3F-cQc" secondAttribute="height" multiplier="1:1" id="Zi0-q2-GBO"/>
@@ -2044,13 +2044,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="CameraIcon20.png" width="150" height="150"/>
-        <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="CancelImageWhite3.png" width="350" height="350"/>
-        <image name="CategoryButtonImage.png" width="256" height="256"/>
-        <image name="FAB562E6-286C-4239-BE49-EECC6727CCD0" width="300" height="300">
+        <image name="A280BDBE-F70F-470A-AA55-3F2E6B5B510A" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8123,6 +8117,12 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
+        <image name="CameraIcon20.png" width="150" height="150"/>
+        <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="CancelImageWhite3.png" width="350" height="350"/>
+        <image name="CategoryButtonImage.png" width="256" height="256"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
@@ -8144,7 +8144,7 @@ A
     <inferredMetricsTieBreakers>
         <segue reference="Q0Z-rg-Tpo"/>
         <segue reference="eDP-Ek-kdM"/>
+        <segue reference="czb-n6-hbf"/>
         <segue reference="rVt-9v-iFr"/>
-        <segue reference="syO-tE-hvG"/>
     </inferredMetricsTieBreakers>
 </document>

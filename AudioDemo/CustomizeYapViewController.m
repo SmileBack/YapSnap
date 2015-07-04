@@ -19,6 +19,8 @@
 #import <AVFoundation/AVAudioSession.h>
 #import "FriendsViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "ForwardingPopupViewController.h"
+#import "UIViewController+MJPopupViewController.h"
 
 @interface CustomizeYapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -39,12 +41,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *addRecipientsButton;
 @property (strong, nonatomic) IBOutlet UILabel *albumLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
+@property (strong, nonatomic) ForwardingPopupViewController *forwardingPopupVC;
 
 - (IBAction)didTapCameraButton;
 - (IBAction)didTapResetPhotoButton;
 - (IBAction)didTapAddRecipientsInDoubleTapToReplyFlow;
 
-#define VIEWED_TEXT_ALERT_KEY @"yaptap.ViewedTextAlertKey"
+#define VIEWED_FORWARDING_POPUP_KEY @"yaptap.ViewedForwardingPopup"
 
 @end
 
@@ -57,6 +60,8 @@
     [mixpanel track:@"Viewed Customize Page"];
     
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    
+    [self setupNotifications];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                              style:UIBarButtonItemStylePlain
@@ -80,6 +85,12 @@
                 self.resetPhotoButton.hidden = NO;
                 self.albumImage.hidden = YES;
             }
+            double delay = 0.5;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (!self.didViewForwardingPopup) {
+                    [self showForwardingPopup];;
+                }
+            });
         } else {
             self.contactLabel.text = @"Send Yap";
         }
@@ -156,14 +167,14 @@
         self.titleLabel.text = @"Add Message";
     }
     
-    self.resetPhotoButton.layer.cornerRadius = 4;
-    self.resetPhotoButton.layer.borderWidth = 1;
-    self.resetPhotoButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
+    //self.resetPhotoButton.layer.cornerRadius = 4;
+    //self.resetPhotoButton.layer.borderWidth = 1;
+    //self.resetPhotoButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
     
     //self.yapPhoto.layer.cornerRadius = 4;
-    self.yapPhoto.layer.borderWidth = 1;
-    self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
-    self.yapPhoto.clipsToBounds = YES;
+    //self.yapPhoto.layer.borderWidth = 1;
+    //self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
+    //self.yapPhoto.clipsToBounds = YES;
     
     self.progressView.trackTintColor = [UIColor colorWithWhite:0.85 alpha:1.0];
     
@@ -177,6 +188,18 @@
         [self.albumImage setImage:[UIImage imageNamed:@"YapTapCartoonLarge2.png"]];
     }
 }
+
+- (void) setupNotifications {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:DISMISS_FORWARDING_POPUP_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Dismiss Welcome Popup");
+                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                    }];
+}
+
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -198,6 +221,13 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Forwarding Popup
+- (void) showForwardingPopup {
+    self.forwardingPopupVC = [[ForwardingPopupViewController alloc] initWithNibName:@"ForwardingPopupViewController" bundle:nil];
+    [self presentPopupViewController:self.forwardingPopupVC animationType:MJPopupViewAnimationFade];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_FORWARDING_POPUP_KEY];
 }
 
 - (void)updateBannerLabel {
@@ -232,6 +262,11 @@
 -(BOOL) internetIsNotReachable
 {
     return ![AFNetworkReachabilityManager sharedManager].reachable;
+}
+
+- (BOOL) didViewForwardingPopup
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_FORWARDING_POPUP_KEY];
 }
 
 - (void) sendYap
@@ -417,13 +452,6 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Canceled Choosing Photo"];
-}
-
-#pragma mark - Spotify Alert Methods
-
-- (BOOL) didViewTextAlert
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_TEXT_ALERT_KEY];
 }
 
 - (void) addShadowToTextView

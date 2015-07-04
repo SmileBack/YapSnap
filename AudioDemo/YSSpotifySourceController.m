@@ -17,7 +17,6 @@
 #import "SpotifyTrackFactory.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "SearchArtistAlertView.h"
-#import "TopChartsPopupViewController.h"
 #import "YTTrackGroup.h"
 
 @interface YSSpotifySourceController ()
@@ -39,7 +38,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carouselYConstraint;
 @property (strong, nonatomic) UIButton *artistButtonHack;
 @property (nonatomic, strong) NSString *lastShownPlaylist;
-@property (strong, nonatomic) TopChartsPopupViewController *topChartsPopupVC;
 @property (nonatomic, strong) NSMutableArray *tracks;
 @property (nonatomic, strong) YSTrack *explainerTrack;
 @property (strong, nonatomic) IBOutlet UIView *categoryView;
@@ -242,14 +240,6 @@
                     usingBlock:^(NSNotification *note) {
                         //[self hideAlbumBannerWithFadeAnimation:YES];
                         self.bottomButton.hidden = NO;
-                    }];
-    
-    [center addObserverForName:DISMISS_TOP_CHARTS_POPUP_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        NSLog(@"Dismiss Welcome Popup");
-                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
     
     [center addObserverForName:UIApplicationWillEnterForegroundNotification

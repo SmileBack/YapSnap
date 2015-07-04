@@ -167,9 +167,9 @@
         [self addShadowToTextView];
         self.albumImage.hidden = YES;
         
-        self.yapPhoto.layer.borderWidth = 1;
-        self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
-        self.yapPhoto.clipsToBounds = YES;
+        //self.yapPhoto.layer.borderWidth = 1;
+        //self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
+        //self.yapPhoto.clipsToBounds = YES;
          
         
         [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yap.yapPhotoURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -495,11 +495,6 @@
 -(void) audioPlayer:(STKAudioPlayer*)audioPlayer didCancelQueuedItems:(NSArray*)queuedItems
 {
     NSLog(@"Did cancel queued items: %@", queuedItems);
-}
-
-- (BOOL) didSeeDoubleTapBanner
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_DOUBLE_TAP_BANNER];
 }
 
 - (void) addShadowToTextView

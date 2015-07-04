@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#define DISMISS_TOP_CHARTS_POPUP_NOTIFICATION @"DismissTopChartsPopup"
+#define DISMISS_FORWARDING_POPUP_NOTIFICATION @"DismissForwardingPopup"
 
-@interface TopChartsPopupViewController : UIViewController
+@interface ForwardingPopupViewController : UIViewController
 
 - (IBAction)didTapCancelButton;
 

@@ -36,7 +36,6 @@
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *keyboardVerticalSpace;
 
-#define VIEWED_SPOTIFY_ALERT_KEY @"yaptap.ViewedSpotifyAlert"
 #define VIEWED_CONTACTS_ONBOARDING_ALERT_KEY @"yaptap.ViewedContactsOnboardingAlertKey4"
 
 @end
@@ -690,6 +689,7 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 #pragma mark - UISearchBarDelegate
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     NSPredicate *firstNamePredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[cd] %@", searchText];
@@ -698,16 +698,6 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 #pragma mark - Spotify Alert Methods
-
-- (void) viewedSpotifyAlert
-{
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_SPOTIFY_ALERT_KEY];
-}
-
-- (BOOL) didViewSpotifyAlert
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_SPOTIFY_ALERT_KEY];
-}
 
 - (BOOL) didViewContactsOnboardingAlert
 {
