@@ -49,6 +49,8 @@
 
 - (void) viewWillDisappear:(BOOL)animated
 {
+    self.textField.text = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
     NSLog(@"About to disappear!");
     UIViewController *vc = [self.navigationController.viewControllers lastObject];
     if ([vc isKindOfClass:[SettingsViewController class]]) {
@@ -109,19 +111,6 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:checkString];
 }
-
-#pragma mark - Buttons
-- (IBAction)cancelPressed:(UIBarButtonItem *)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (IBAction)savePressed:(UIBarButtonItem *)sender
-{
-    // TODO CHECK IF EMPTY AND SHOW ALERT VIEW
-    // TODO SHOW A HUD WHILE SAVING
-}
-
 
 
 @end
