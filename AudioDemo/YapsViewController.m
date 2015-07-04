@@ -247,6 +247,13 @@ static NSString *CellIdentifier = @"Cell";
                         [weakSelf loadYaps];
     }];
     
+    [center addObserverForName:CLEARED_YAPS_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [weakSelf loadYaps];
+                    }];
+    
     [center addObserverForName:NOTIFICATION_YAP_SENT
                         object:nil
                          queue:nil

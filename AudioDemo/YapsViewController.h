@@ -15,6 +15,7 @@
 #define VIEWED_PUSH_NOTIFICATION_POPUP @"yaptap.ViewedPushNotificationPopup"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
 #define DID_DISMISS_AFTER_SENDING_YAP @"DidDismissAfterSendingYap"
+#define CLEARED_YAPS_NOTIFICATION @"com.yaptap.ClearedYapsNotification"
 
 @property (nonatomic, strong) NSArray *pendingYaps;
 @property (assign, nonatomic) BOOL comingFromContactsOrCustomizeYapPage;

@@ -15,6 +15,7 @@
 #define LOGOUT @"logout"
 #define CLEAR_YAPS @"clear_yaps"
 #define DOWNLOAD_SPOTIFY @"download_spotify"
+#define CLEARED_YAPS_NOTIFICATION @"com.yaptap.ClearedYapsNotification"
 
 @interface SettingsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -183,10 +184,11 @@
                 if (success) {
                     NSLog(@"Cleared yaps successfully");
                     [[YapsCache sharedCache] loadYapsWithCallback:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CLEARED_YAPS_NOTIFICATION object:nil];
                     
                     double delay = .1;
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [[YTNotifications sharedNotifications] showNotificationText:@"Yaps Have Been Cleared!"];
+                        [[YTNotifications sharedNotifications] showNotificationText:@"Yaps Cleared!"];
                     });
 
                     Mixpanel *mixpanel = [Mixpanel sharedInstance];
