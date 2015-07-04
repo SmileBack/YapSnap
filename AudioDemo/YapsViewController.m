@@ -36,7 +36,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSDateFormatter* dateFormatter;
 @property (nonatomic, strong) YSYap *selectedYap; //Saved when the AlertView is shown
-@property (strong, nonatomic) IBOutlet UIView *pushEnabledView;
+@property (strong, nonatomic) IBOutlet UIView *pushNotificationsView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 @property (strong, nonatomic) UIImage *blueArrowFull;
 @property (strong, nonatomic) UIImage *blueArrowEmpty;
@@ -108,17 +108,18 @@ static NSString *CellIdentifier = @"Cell";
     [self setupTableViewGestureRecognizers];
     
     if (![YSPushManager sharedPushManager].pushEnabled) {
-        self.pushEnabledView.hidden = NO;
+        self.pushNotificationsView.hidden = NO;
        
         if (!self.didViewNotificationAlert) {
             if (self.unopenedYapsCount.intValue > 0 && ([AppDelegate sharedDelegate].appOpenedCount > 2)) {
                 double delay = 0.5;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Turn on Notifications"
-                                                                    message:@"To avoid missing out on yaps from friends, turn on notifications for YapTap in your phone's settings."
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"OK"
-                                                          otherButtonTitles: nil];
+                                                                    message:@"To avoid missing out on yaps from friends, turn on notifications in your phone's settings."
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"No thanks"
+                                                          otherButtonTitles:@"Continue", nil];
+                    alert.tag = 100;
                     [alert show];
                     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_PUSH_NOTIFICATION_POPUP];
                 });
@@ -129,6 +130,9 @@ static NSString *CellIdentifier = @"Cell";
     if (!self.didOpenYapForFirstTime) {
         self.navigationItem.rightBarButtonItem = nil;
     }
+    
+    UITapGestureRecognizer *tappedPushNotificationsView=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goToPhoneSettings)];
+    [self.pushNotificationsView addGestureRecognizer:tappedPushNotificationsView];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
@@ -155,6 +159,12 @@ static NSString *CellIdentifier = @"Cell";
 
     //This is a hack to prevent multiple popups from showing
     self.smsAlertWasAlreadyPrompted = YES;
+}
+
+- (void) goToPhoneSettings {
+    NSLog(@"Take users to phone settings");
+    NSURL *appSettings = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    [[UIApplication sharedApplication] openURL:appSettings];
 }
 
 - (void) updateTitleLabel {
@@ -585,7 +595,7 @@ static NSString *CellIdentifier = @"Cell";
                                                            delegate:self
                                                   cancelButtonTitle:@"Cancel" otherButtonTitles:@"Block", nil];
         self.selectedYap = yap;
-
+        alertView.tag = 200;
         [alertView show];
     }
 }
@@ -656,6 +666,7 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
+/*
 - (void) removeBlockedYap
 {
     NSMutableArray *mutableYaps = [NSMutableArray arrayWithArray:self.yaps];
@@ -668,6 +679,7 @@ static NSString *CellIdentifier = @"Cell";
                           withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView endUpdates];
 }
+*/
 
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -698,7 +710,7 @@ static NSString *CellIdentifier = @"Cell";
         } else {
             self.selectedYap = nil;
         }
-    } else {
+    } else if (alertView.tag == 200) {
         if (buttonIndex == 1) {
             // If user confirms blocking do this:
             NSLog(@"User confirms blocking");
@@ -709,7 +721,9 @@ static NSString *CellIdentifier = @"Cell";
                             withCallback:^(BOOL success, NSError *error) {
                                 if (success) {
                                     NSLog(@"Blocking Worked");
-                                    [weakSelf removeBlockedYap];
+                                    NSString *text = [NSString stringWithFormat:@"%@ blocked", weakSelf.selectedYap.displaySenderName];
+                                    [[YTNotifications sharedNotifications] showNotificationText:text];
+                                    [self loadYaps];
                                 } else {
                                     NSLog(@"Error blocking! %@", error);
                                     double delay = 0.5;
@@ -719,6 +733,10 @@ static NSString *CellIdentifier = @"Cell";
                                 }
                             }];
         }
+    } else if (alertView.tag == 100) {
+         if (buttonIndex == 1) {
+             [self goToPhoneSettings];
+         }
     }
 }
 
