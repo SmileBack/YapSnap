@@ -94,6 +94,10 @@
 {
     self.emailTextField.text = [self.emailTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
+    self.firstNameTextField.text = [self.firstNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    self.lastNameTextField.text = [self.lastNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
     if ([self.firstNameTextField.text length] < 2) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your name"
                                                         message:@"Please enter your name."
@@ -101,6 +105,7 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
+    
     } else if ([self.lastNameTextField.text length] < 1) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your name"
                                                         message:@"Please enter your last name."
@@ -108,15 +113,15 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-    } /*
-        else if (![self NSStringIsValidEmail:self.emailTextField.text]) {
+    
+    } else if ([self.emailTextField.text length] > 0 && ![self NSStringIsValidEmail:self.emailTextField.text]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Enter your email"
-                                                        message:@"Please enter a valid email. We will never send you spam."
+                                                        message:@"Please enter a valid email. We will never spam you."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-    } */
+    }
         else {
         [self disableContinueButton];
         
