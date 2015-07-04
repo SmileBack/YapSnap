@@ -128,8 +128,26 @@ static SpotifyAPI *sharedInstance;
     [self setAuthorizationOnManager:manager];
     [manager GET:self.playlistURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *response = responseObject;
-        NSLog(@"Response Object: %@", responseObject);
+        //NSLog(@"Response Object: %@", responseObject);
         NSArray *items = response[@"items"];
+        
+        
+        
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:response
+                                                           options:(NSJSONWritingOptions)    (YES ? NSJSONWritingPrettyPrinted : 0)
+                                                             error:&error];
+        
+        if (!jsonData) {
+            NSLog(@"bv_jsonStringWithPrettyPrint: error: %@", error.localizedDescription);
+            NSString *json = @"{}";
+            NSLog(@"json: %@", json);
+        } else {
+            NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            NSLog(@"json: %@", json);
+        }
+        
+        
         
         NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:YES];
         callback(songs, nil);

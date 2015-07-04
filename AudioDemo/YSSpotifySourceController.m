@@ -310,58 +310,47 @@
 - (void) createTrackGroups {
     self.trackGroupCategoryOne = [YTTrackGroup new];
     self.trackGroupCategoryOne.name = @"Trending";
-    //self.trackGroupCategoryOne.apiString = @"trending_tracks";
-    self.trackGroupCategoryOne.apiString = @"onboarding_tracks"; // TODO: Remove
+    self.trackGroupCategoryOne.apiString = @"pool_tracks";//@"trending_tracks";
     
     self.trackGroupCategoryTwo = [YTTrackGroup new];
     self.trackGroupCategoryTwo.name = @"Nostalgic";
     self.trackGroupCategoryTwo.apiString = @"nostalgic_tracks";
-    //self.trackGroupCategoryTwo.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategoryThree = [YTTrackGroup new];
     self.trackGroupCategoryThree.name = @"Funny";
     self.trackGroupCategoryThree.apiString = @"funny_tracks";
-    //self.trackGroupCategoryThree.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategoryFour = [YTTrackGroup new];
     self.trackGroupCategoryFour.name = @"Happy";
     self.trackGroupCategoryFour.apiString = @"happy_tracks";
-    //self.trackGroupCategoryFour.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategoryFive = [YTTrackGroup new];
     self.trackGroupCategoryFive.name = @"Flirtatious";
     self.trackGroupCategoryFive.apiString = @"flirtatious_tracks";
-    //self.trackGroupCategoryFive.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategorySix = [YTTrackGroup new];
     self.trackGroupCategorySix.name = @"Inspiring";
     self.trackGroupCategorySix.apiString = @"inspiring_tracks";
-    //self.trackGroupCategorySix.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategorySeven = [YTTrackGroup new];
     self.trackGroupCategorySeven.name = @"Romantic";
     self.trackGroupCategorySeven.apiString = @"romantic_tracks";
-    //self.trackGroupCategorySeven.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategoryEight = [YTTrackGroup new];
     self.trackGroupCategoryEight.name = @"Party";
     self.trackGroupCategoryEight.apiString = @"party_tracks";
-    //self.trackGroupCategoryEight.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupCategoryNine = [YTTrackGroup new];
     self.trackGroupCategoryNine.name = @"Gloomy";
     self.trackGroupCategoryNine.apiString = @"gloomy_tracks";
-    //self.trackGroupCategoryNine.apiString = @"onboarding_songs"; // TODO: Remove
     
     self.trackGroupOnboarding = [YTTrackGroup new];
     self.trackGroupOnboarding.name = @"Onboarding";
-    //self.trackGroupOnboarding.apiString = @"onboarding_tracks";
-    self.trackGroupOnboarding.apiString = @"onboarding_songs"; // TODO: Remove
+    self.trackGroupOnboarding.apiString = @"onboarding_tracks";
     
     self.trackGroupPool = [YTTrackGroup new];
     self.trackGroupPool.name = @"Pool";
-    //self.trackGroupPool.apiString = @"pool_tracks";
-    self.trackGroupPool.apiString = @"onboarding_songs"; // TODO: Remove
+    self.trackGroupPool.apiString = @"pool_tracks";
 }
 
 -(void) setupCategoryButtons {
@@ -413,6 +402,8 @@
 
 -(IBAction) didTapCategoryModeButton {
     [self switchCategoryMode];
+    
+    //[self retrieveTracksForCategory:@"Trending"];
 }
 
 -(void) switchCategoryMode {
@@ -547,7 +538,7 @@
         
         if (trackGroup == self.trackGroupPool) {
             // Only take first five
-            NSArray *firstFiveTracks = @[shuffledSongs[0], shuffledSongs[1], shuffledSongs[2]];//, shuffledSongs[3], shuffledSongs[4]];
+            NSArray *firstFiveTracks = @[shuffledSongs[0], shuffledSongs[1], shuffledSongs[2], shuffledSongs[3], shuffledSongs[4]];
             self.songs = [firstFiveTracks arrayByAddingObjectsFromArray:@[self.explainerTrack]];
         } else {
             self.songs = shuffledSongs;
@@ -1454,7 +1445,7 @@
  
  __weak YSSpotifySourceController *weakSelf = self;
  void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
- NSLog(@"Songs: %@", songs);
+ //NSLog(@"Songs: %@", songs);
  if (songs) {
  weakSelf.songs = songs;
  weakSelf.carousel.currentItemIndex = 0;
@@ -1490,6 +1481,6 @@
  
  [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForPlaylist:playlistName withCallback:callback];
  }
- */
+*/
 
 @end

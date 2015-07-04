@@ -448,12 +448,7 @@ static NSString *CellIdentifier = @"Cell";
             cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@ opened your yap", yap.displayReceiverName];
         } else if (!yap.wasOpened) {
             if (yap.isPending) {
-                // The following if statement is due to spacing issues caused by the album image
-                if ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY]) {
-                    cell.createdTimeLabel.text = @"Will be delivered once they join!";
-                } else {
-                    cell.createdTimeLabel.text = [NSString stringWithFormat:@"Will be delivered once %@ joins!",  yap.displayReceiverName];
-                }
+                cell.createdTimeLabel.text = @"It'll be delivered once they join!";
             } else if (yap.isSending) {
                 NSLog(@"Tapped cell with status of isSending");
             } else {

@@ -707,14 +707,12 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    //NSString *url = @"/spotify_songs";
     NSString *url = [NSString stringWithFormat:@"/spotify/%@", category.apiString];
     [manager GET:[self urlForEndpoint:url]
-      //parameters:[self paramsWithDict:@{@"category": @"onboarding_tracks"}]
         parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSDictionary *response = responseObject;
-             //NSLog(@"Response Object: %@", responseObject);
+             NSLog(@"Response Object: %@", responseObject);
              NSArray *items = response[@"tracks"][@"items"];
              NSLog(@"Items: %@", items);
              
@@ -739,14 +737,13 @@ static API *sharedAPI;
     [manager GET:[self urlForEndpoint:url]
      parameters:[self paramsWithDict:@{@"category": @"onboarding_tracks"}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSDictionary *response = responseObject;
-             NSLog(@"Response Object: %@", responseObject);
-             //NSArray *items = response[@"tracks"][@"items"];
+             NSArray *songs = nil;
+             if ([responseObject isKindOfClass:[NSArray class]]) {
+                 NSArray *response = responseObject;
+                 NSLog(@"Items: %@", response);
+                 songs = [YSTrack tracksFromDictionaryArray:response inCategory:NO];
+             }
              
-             NSArray *items = [response objectForKey:0];
-             NSLog(@"Items: %@", items);
-             
-             NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
              callback(songs, nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -756,6 +753,6 @@ static API *sharedAPI;
          }];
     NSLog(@"category in API.m: %@", category);
 }
-*/
+ */
 
 @end
