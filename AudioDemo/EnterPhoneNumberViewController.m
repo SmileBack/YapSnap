@@ -62,11 +62,6 @@
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
     [self.textField.formatter setDefaultOutputPattern:@"(###) ###-####"];
     
-    double delay = 0.6;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.textField becomeFirstResponder];
-    });
-    
     self.phoneNumberChecker = [[PhoneNumberChecker alloc] init];
     
     [self makeNavBarTransparent];
@@ -94,6 +89,11 @@
 {
     [super viewDidAppear:animated];
     self.continueButton.userInteractionEnabled = YES;
+    
+    double delay = 0.6;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.textField becomeFirstResponder];
+    });
 }
 
 - (void)makeNavBarTransparent
@@ -124,23 +124,13 @@
         return;
     }
     
-    /*
-    if (![self.phoneNumberChecker isPhoneNumberValid:self.textField.text]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Number not valid"
-                                                        message:@"Please enter a valid number."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        
-    } */
-    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Number"
                                                     message:[NSString stringWithFormat:@"Is your mobile number %@?", self.textField.text]
                                                    delegate:self
                                           cancelButtonTitle:@"No"
                                           otherButtonTitles:@"Yes", nil];
     [alert show];
+    [self.view endEditing:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -178,6 +168,8 @@
                 }
             }];
         }
+    } else {
+        [self.textField becomeFirstResponder];
     }
 }
 
