@@ -97,26 +97,23 @@ static SpotifyAPI *sharedInstance;
     } else if ([playlistName isEqualToString:@"Funny"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/5FJXhjdILmRA2z5bvz4nzf/tracks";
         
-    } else if ([playlistName isEqualToString:@"Nostalgic"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4ldNPWkhPThHdq0FSxB0EZ/tracks";
+    } else if ([playlistName isEqualToString:@"Nostalgic"]) { // 90's
+        self.playlistURL = @"https://api.spotify.com/v1/users/filtr/playlists/0rZJqZmX61rQ4xMkmEWQar/tracks";
         
     } else if ([playlistName isEqualToString:@"Happy"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/filtr/playlists/0rZJqZmX61rQ4xMkmEWQar/tracks";
+        self.playlistURL = @"https://api.spotify.com/v1/users/topsify/playlists/6Qf2sXTjlH3HH30Ijo6AUp/tracks";
         
     } else if ([playlistName isEqualToString:@"Flirty"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/4NDUPAZZ1LBw9wvTOq1Mm2/tracks";
         
-    } else if ([playlistName isEqualToString:@"Party"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
+    } else if ([playlistName isEqualToString:@"Party"]) { // top party hits
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/7EgQxhOKSUKlMIpmxxdyFq/tracks";
         
-    } else if ([playlistName isEqualToString:@"?????"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
+    } else if ([playlistName isEqualToString:@"Gloomy"]) {
+        self.playlistURL = @"https://api.spotify.com/v1/users/sanik007/playlists/7ABD15iASBIpPP5uJ5awvq/tracks";
     
-    } else if ([playlistName isEqualToString:@"?????"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
-        
-    } else if ([playlistName isEqualToString:@"?????"]) {
-        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/63zow2qCS9wMsRJAMffMwP/tracks";
+    } else if ([playlistName isEqualToString:@"Inspiring"]) { // psyched
+        self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/1vfys0yYhZEyJ9yvnULyM2/tracks";
     
     } else {
         self.playlistURL = @"Error";
@@ -269,7 +266,7 @@ static SpotifyAPI *sharedInstance;
     [self setAuthorizationOnManager:manager];//!!!
     [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *response = responseObject;
-        NSLog(@"Response Object: %@", responseObject);
+        //NSLog(@"Response Object: %@", responseObject);
         NSArray *items = response[@"tracks"][@"items"];
         NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
         callback(songs, nil);   

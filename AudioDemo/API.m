@@ -712,9 +712,9 @@ static API *sharedAPI;
         parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSDictionary *response = responseObject;
-             NSLog(@"Response Object: %@", responseObject);
+             //NSLog(@"Response Object: %@", responseObject);
              NSArray *items = response[@"tracks"][@"items"];
-             NSLog(@"Items: %@", items);
+             //NSLog(@"Items: %@", items);
              
              NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
              callback(songs, nil);

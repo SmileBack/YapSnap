@@ -390,9 +390,9 @@
 }
 
 -(IBAction) didTapCategoryModeButton {
-    [self switchCategoryMode];
+    //[self switchCategoryMode];
     
-    //[self retrieveTracksForCategory:@"Trending"];
+    [self retrieveTracksForCategory:@"Happy"];
 }
 
 -(void) switchCategoryMode {
@@ -1419,7 +1419,7 @@
     }
 }
 
-/*
+
  - (void) retrieveTracksForCategory:(NSString *)playlistName
  {
  Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -1470,6 +1470,6 @@
  
  [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForPlaylist:playlistName withCallback:callback];
  }
-*/
+
 
 @end
