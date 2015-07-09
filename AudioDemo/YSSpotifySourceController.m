@@ -390,9 +390,9 @@
 }
 
 -(IBAction) didTapCategoryModeButton {
-    //[self switchCategoryMode];
+    [self switchCategoryMode];
     
-    [self retrieveTracksForCategory:@"Happy"];
+    //[self retrieveTracksForCategory:@"Happy"];
 }
 
 -(void) switchCategoryMode {
