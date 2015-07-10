@@ -127,10 +127,6 @@ static NSString *CellIdentifier = @"Cell";
         }
     }
     
-    if (!self.didOpenYapForFirstTime) {
-        self.navigationItem.rightBarButtonItem = nil;
-    }
-    
     UITapGestureRecognizer *tappedPushNotificationsView=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goToPhoneSettings)];
     [self.pushNotificationsView addGestureRecognizer:tappedPushNotificationsView];
     
