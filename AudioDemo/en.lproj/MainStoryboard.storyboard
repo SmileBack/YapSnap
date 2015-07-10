@@ -1112,7 +1112,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="C5F1C325-7183-470F-A2E6-BA3BACA99013"/>
+                                <state key="normal" backgroundImage="A5232298-54A4-45B6-93D4-9D71F30E1E20"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1372,7 +1372,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjl-Kr-TQg" userLabel="Cancel Button">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjl-Kr-TQg" userLabel="Cancel Button">
                                 <rect key="frame" x="-5" y="-6" width="55" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="KhX-OI-Ekk"/>
@@ -1428,7 +1428,7 @@
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="34"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vNe-98-kK7">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vNe-98-kK7">
                                 <rect key="frame" x="150" y="12" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="0tx-9x-s1h"/>
@@ -1464,7 +1464,7 @@
                                     <action selector="didTapReply:" destination="Dgp-JD-d1e" eventType="touchUpInside" id="mSq-Up-Tfj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzM-5p-4ue" userLabel="Replay Button">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzM-5p-4ue" userLabel="Replay Button">
                                 <rect key="frame" x="279" y="0.0" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="eZC-rk-XtM"/>
@@ -1508,7 +1508,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JrI-Br-Kpk" userLabel="Spotify Button">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JrI-Br-Kpk" userLabel="Spotify Button">
                                 <rect key="frame" x="239" y="0.0" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="RDO-iM-Kdv"/>
@@ -2042,9 +2042,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="C5F1C325-7183-470F-A2E6-BA3BACA99013" width="300" height="300">
+        <image name="A5232298-54A4-45B6-93D4-9D71F30E1E20" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8117,6 +8115,8 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="CameraIcon20.png" width="150" height="150"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite3.png" width="350" height="350"/>
