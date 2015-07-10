@@ -19,6 +19,8 @@
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic) CGFloat elapsedTime;
+@property (nonatomic) CGFloat trackLength;
+@property (nonatomic) CGFloat progressViewRemainderWidth;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) UIView *progressViewRemainder;
 @property (strong, nonatomic) IBOutlet UIImageView *yapPhoto;
@@ -318,11 +320,15 @@
 {
     self.elapsedTime += TIME_INTERVAL;
     
-    CGFloat trackLength = 12; //[self.yap.duration floatValue]; // DEFAULT TO 12 SECONDS
+    if ([self.yap.type isEqual:@"SpotifyMessage"]) {
+        self.trackLength = 12; // DEFAULT TO 12 SECONDS
+    } else {
+        self.trackLength = [self.yap.duration floatValue];
+    }
     CGFloat progress = self.elapsedTime / 12;
     [self.progressView setProgress:progress];
     
-    if (self.elapsedTime >= trackLength) {
+    if (self.elapsedTime >= self.trackLength) {
         [self stop];
     }
 }
@@ -355,10 +361,14 @@
                              }
                              completion:nil];
             
-            // DEFAULT TO 12 SECONDS
-            //CGFloat width = self.view.frame.size.width;
-            //CGFloat progressViewRemainderWidth = (12 - [self.yap.duration floatValue]) * width/12;
-            CGFloat progressViewRemainderWidth = 0;
+            
+            if ([self.yap.type isEqual:@"SpotifyMessage"]) {
+                // DEFAULT TO 12 SECONDS
+                self.progressViewRemainderWidth = 0;
+            } else {
+                CGFloat width = self.view.frame.size.width;
+                self.progressViewRemainderWidth = (12 - [self.yap.duration floatValue]) * width/12;
+            }
             
             self.progressViewRemainder = [[UIView alloc] init];
             [self.view addSubview:self.progressViewRemainder];
@@ -367,7 +377,7 @@
             [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:-1.0]];
             [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
             [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.5]];
-            [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:progressViewRemainderWidth]];
+            [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.progressViewRemainderWidth]];
             self.progressViewRemainder.backgroundColor = [UIColor lightGrayColor];
             self.progressViewRemainder.alpha = 0;
             

@@ -300,18 +300,20 @@ static const float TIMER_INTERVAL = .05;//.02;
                              self.recordProgressView.alpha = 0;
                          }
                          completion:nil];
+        if (self.type == AudioCaptureTypeMic) {
+            double delay = .1;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[YTNotifications sharedNotifications] showNotificationText:@"Keep Holding"];
+            });
+        }
     } else {
         NSLog(@"Hit threshold");
         [[NSNotificationCenter defaultCenter] postNotificationName:LISTENED_TO_CLIP_NOTIFICATION object:nil];
         self.bottomView.hidden = NO;
-        /*
-        double delay = 0.2;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.continueButton startToPulsate];
-        });
-         */
         
-        self.recordProgressView.progress = 1.0; // DEFAULT EVERY YAP TO 12 SECONDS
+        if (self.type == AudioCapTureTypeSpotify) {
+            self.recordProgressView.progress = 1.0; // DEFAULT EVERY YAP TO 12 SECONDS
+        }
         self.recordProgressView.trackTintColor = [UIColor colorWithWhite:0.85 alpha:1.0];
     }
     
