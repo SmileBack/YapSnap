@@ -68,7 +68,7 @@
                                                                             target:nil
                                                                             action:nil];
     
-    self.progressView.progress = self.yapBuilder.duration/12;
+    self.progressView.progress = 1.0; //self.yapBuilder.duration/12; DEFAULTING TO 12 SECONDS
     
     self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textView.delegate = self;
@@ -152,6 +152,8 @@
     }
     
     [self addShadowToTextView];
+    
+    self.titleLabel.textColor = THEME_SECONDARY_COLOR;
     
     if (self.isForwardingYap) {
         self.titleLabel.text = @"Edit Yap & Forward";

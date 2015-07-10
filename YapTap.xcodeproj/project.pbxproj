@@ -117,6 +117,12 @@
 		78439FC21AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FBE1AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png */; };
 		78439FC61AE9A330004CFB5F /* PlusButtonWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FC51AE9A330004CFB5F /* PlusButtonWhite@2x.png */; };
 		78439FC81AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FC71AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png */; };
+		7845D49D1B4F6ED800BEE05E /* TrendingRibbon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7845D49C1B4F6ED800BEE05E /* TrendingRibbon.png */; };
+		7845D49F1B4F716600BEE05E /* TrendingRibbon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7845D49E1B4F716600BEE05E /* TrendingRibbon2.png */; };
+		7845D4A11B4F720100BEE05E /* TrendingRibbon3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7845D4A01B4F720100BEE05E /* TrendingRibbon3.png */; };
+		7845D4A31B4F729E00BEE05E /* TrendingRibbon4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7845D4A21B4F729E00BEE05E /* TrendingRibbon4.png */; };
+		7845D4A51B4F738C00BEE05E /* TrendingRibbon5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7845D4A41B4F738C00BEE05E /* TrendingRibbon5.png */; };
+		7845D4A71B4F745400BEE05E /* TrendingRibbon6.png in Resources */ = {isa = PBXBuildFile; fileRef = 7845D4A61B4F745400BEE05E /* TrendingRibbon6.png */; };
 		784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E01A6253CE0084894D /* MusicIcon@2x.png */; };
 		784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67F01A626F7B0084894D /* ProgressViewNotches5.png */; };
 		784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */; };
@@ -467,6 +473,12 @@
 		78439FBE1AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SongVersionOneSelectediPhone6@2x.png"; sourceTree = "<group>"; };
 		78439FC51AE9A330004CFB5F /* PlusButtonWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlusButtonWhite@2x.png"; sourceTree = "<group>"; };
 		78439FC71AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlusButtonWhite2@2x.png"; sourceTree = "<group>"; };
+		7845D49C1B4F6ED800BEE05E /* TrendingRibbon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrendingRibbon.png; sourceTree = "<group>"; };
+		7845D49E1B4F716600BEE05E /* TrendingRibbon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrendingRibbon2.png; sourceTree = "<group>"; };
+		7845D4A01B4F720100BEE05E /* TrendingRibbon3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrendingRibbon3.png; sourceTree = "<group>"; };
+		7845D4A21B4F729E00BEE05E /* TrendingRibbon4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrendingRibbon4.png; sourceTree = "<group>"; };
+		7845D4A41B4F738C00BEE05E /* TrendingRibbon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrendingRibbon5.png; sourceTree = "<group>"; };
+		7845D4A61B4F745400BEE05E /* TrendingRibbon6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrendingRibbon6.png; sourceTree = "<group>"; };
 		784C67E01A6253CE0084894D /* MusicIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIcon@2x.png"; sourceTree = "<group>"; };
 		784C67F01A626F7B0084894D /* ProgressViewNotches5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewNotches5.png; sourceTree = "<group>"; };
 		784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum@2x.png"; sourceTree = "<group>"; };
@@ -828,6 +840,12 @@
 				783CCFA71B39441A00E3B5BF /* ExplainerTrackImage3.png */,
 				783CCFC01B3CF41300E3B5BF /* YapTapCartoonIcon.png */,
 				783CCFC41B3CF94300E3B5BF /* YapTapCartoonLarge2.png */,
+				7845D49C1B4F6ED800BEE05E /* TrendingRibbon.png */,
+				7845D49E1B4F716600BEE05E /* TrendingRibbon2.png */,
+				7845D4A01B4F720100BEE05E /* TrendingRibbon3.png */,
+				7845D4A21B4F729E00BEE05E /* TrendingRibbon4.png */,
+				7845D4A41B4F738C00BEE05E /* TrendingRibbon5.png */,
+				7845D4A61B4F745400BEE05E /* TrendingRibbon6.png */,
 				786BCB411ADC25A300BA3FDD /* Customize Page */,
 				78319A741ACCF878000C3FD6 /* Audio Capture Page */,
 				78319A731ACCF818000C3FD6 /* Spotify Page */,
@@ -1766,6 +1784,7 @@
 				78439FB71AE76EEB004CFB5F /* SongVersionTwoSelectediPhone6@2x.png in Resources */,
 				3753AF8919E9A4D000B6391D /* Microphone_White2.png in Resources */,
 				786192651B086236007279E8 /* ProgressViewYellowiPhone4@2x.png in Resources */,
+				7845D4A31B4F729E00BEE05E /* TrendingRibbon4.png in Resources */,
 				782D13A41ACC6274007C8499 /* YapsIconReceivedUnopened2.png in Resources */,
 				37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */,
 				782D134F1ACB8F17007C8499 /* MicrophoneWhite30@2x.png in Resources */,
@@ -1779,6 +1798,7 @@
 				786192631B086202007279E8 /* ProgressViewRediPhone4@2x.png in Resources */,
 				78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */,
 				783CCF8A1B39186700E3B5BF /* ChartsIcon5.png in Resources */,
+				7845D49F1B4F716600BEE05E /* TrendingRibbon2.png in Resources */,
 				F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */,
 				78624BE81B03BA9100C8E049 /* GuidanceArrowRight.png in Resources */,
 				3793FDF919BCF0DC00FBBBCE /* ContactSelectionCell.xib in Resources */,
@@ -1813,6 +1833,7 @@
 				787EC5EF1AC9EB16000C5539 /* OldProgressViewYellow@3x.png in Resources */,
 				37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */,
 				787EC60B1ACA1B00000C5539 /* OldProgressViewLightBlueiPhone4@2x.png in Resources */,
+				7845D4A11B4F720100BEE05E /* TrendingRibbon3.png in Resources */,
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
 				789123381B2E8F9800894201 /* SpotifyIconWhite.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
@@ -1863,8 +1884,10 @@
 				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
 				783CCFA21B39241400E3B5BF /* ChartIcon170.png in Resources */,
 				78624C041B04F0C000C8E049 /* ProgressViewLightBlue@3x.png in Resources */,
+				7845D4A51B4F738C00BEE05E /* TrendingRibbon5.png in Resources */,
 				783CCFB01B3A6D2F00E3B5BF /* CategoryButton.png in Resources */,
 				786E0BE71B00755800005D1D /* Shuffle60.png in Resources */,
+				7845D49D1B4F6ED800BEE05E /* TrendingRibbon.png in Resources */,
 				78439FC21AE77145004CFB5F /* SongVersionOneSelectediPhone6@2x.png in Resources */,
 				783CCFA81B39441A00E3B5BF /* ExplainerTrackImage3.png in Resources */,
 				78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */,
@@ -1896,6 +1919,7 @@
 				78439FB01AE6EF46004CFB5F /* OpenGift700.png in Resources */,
 				7883637B1AD781C3001CBD1B /* OneNotSelected@2x.png in Resources */,
 				783CCFB91B3CF03000E3B5BF /* LeftArrowImage100.png in Resources */,
+				7845D4A71B4F745400BEE05E /* TrendingRibbon6.png in Resources */,
 				7854B06D1AF85BC900A02DF9 /* LeftArrow.png in Resources */,
 				78439F901AE61528004CFB5F /* YapsIconReceivedUnopened4.png in Resources */,
 				78A2E8561ACC671600B5A404 /* PinkStar3.png in Resources */,

@@ -27,4 +27,6 @@
 
 @property (nonatomic, strong) UILabel *bannerLabel;
 
+@property (nonatomic, strong) UIImageView *ribbonImageView;
+
 @end

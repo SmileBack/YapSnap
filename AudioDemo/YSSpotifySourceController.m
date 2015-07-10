@@ -46,6 +46,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryViewBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryModeButtonWidthConstraint;
 @property (nonatomic) CGFloat maxStringSizeWidth;
+@property (nonatomic) BOOL isShowingFillerTracks;
 
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryOne;
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryTwo;
@@ -122,6 +123,9 @@
     [self createArtistButtonHack];
     
     self.categoryView.backgroundColor = THEME_BACKGROUND_COLOR;
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    self.searchBox.backgroundColor = THEME_BACKGROUND_COLOR;
+    self.artistButton.titleLabel.textColor = THEME_SECONDARY_COLOR;
     
     [self createTrackGroups];
     
@@ -167,7 +171,6 @@
     /*
     self.artistButtonHack.frame = CGRectMake((self.view.bounds.size.width - self.carouselHeightConstraint.constant)/2, 340, self.carouselHeightConstraint.constant, 24.0);
      */
-    //self.artistButtonHack.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:self.artistButtonHack];
 }
 
@@ -345,47 +348,65 @@
 -(void) setupCategoryButtons {
     self.categoryButtonOne.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonOne.layer.borderWidth = 1;
-    self.categoryButtonOne.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.categoryButtonOne.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
+    self.categoryButtonOne.backgroundColor = THEME_BACKGROUND_COLOR;
+    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonOne setTitle:self.trackGroupCategoryOne.name forState:UIControlStateNormal];
     
     self.categoryButtonTwo.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonTwo.layer.borderWidth = 1;
-    self.categoryButtonTwo.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.categoryButtonTwo.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
+    self.categoryButtonTwo.backgroundColor = THEME_BACKGROUND_COLOR;
+    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonTwo setTitle:self.trackGroupCategoryTwo.name forState:UIControlStateNormal];
     
     self.categoryButtonThree.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonThree.layer.borderWidth = 1;
-    self.categoryButtonThree.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.categoryButtonThree.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
+    self.categoryButtonThree.backgroundColor = THEME_BACKGROUND_COLOR;
+    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonThree setTitle:self.trackGroupCategoryThree.name forState:UIControlStateNormal];
     
     self.categoryButtonFour.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonFour.layer.borderWidth = 1;
-    self.categoryButtonFour.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.categoryButtonFour.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
+    self.categoryButtonFour.backgroundColor = THEME_BACKGROUND_COLOR;
+    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonFour setTitle:self.trackGroupCategoryFour.name forState:UIControlStateNormal];
     
     self.categoryButtonFive.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonFive.layer.borderWidth = 1;
-    self.categoryButtonFive.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.categoryButtonFive.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
+    self.categoryButtonFive.backgroundColor = THEME_BACKGROUND_COLOR;
+    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonFive setTitle:self.trackGroupCategoryFive.name forState:UIControlStateNormal];
     
     self.categoryButtonSix.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonSix.layer.borderWidth = 1;
-    self.categoryButtonSix.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.categoryButtonSix.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
+    self.categoryButtonSix.backgroundColor = THEME_BACKGROUND_COLOR;
+    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonSix setTitle:self.trackGroupCategorySix.name forState:UIControlStateNormal];
     
     self.categoryButtonSeven.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonSeven.layer.borderWidth = 1;
-    self.categoryButtonSeven.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.categoryButtonSeven.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
+    self.categoryButtonSeven.backgroundColor = THEME_BACKGROUND_COLOR;
+    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonSeven setTitle:self.trackGroupCategorySeven.name forState:UIControlStateNormal];
     
     self.categoryButtonEight.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonEight.layer.borderWidth = 1;
-    self.categoryButtonEight.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.categoryButtonEight.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
+    self.categoryButtonEight.backgroundColor = THEME_BACKGROUND_COLOR;
+    self.categoryButtonEight.titleLabel.textColor = THEME_SECONDARY_COLOR;
     [self.categoryButtonEight setTitle:self.trackGroupCategoryEight.name forState:UIControlStateNormal];
     
     self.categoryButtonNine.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonNine.layer.borderWidth = 1;
-    self.categoryButtonNine.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.categoryButtonNine.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
+    self.categoryButtonNine.backgroundColor = THEME_BACKGROUND_COLOR;
+    self.categoryButtonNine.titleLabel.textColor = THEME_SECONDARY_COLOR;
     [self.categoryButtonNine setTitle:self.trackGroupCategoryNine.name forState:UIControlStateNormal];
 }
 
@@ -482,6 +503,12 @@
 - (void) retrieveAndLoadTracksForCategory:(YTTrackGroup *)trackGroup
 {
     [self.loadingIndicator startAnimating];
+    
+    if (trackGroup == self.trackGroupOnboarding || trackGroup == self.trackGroupPool) {
+        self.isShowingFillerTracks = YES;
+    } else {
+        self.isShowingFillerTracks = NO;
+    }
 
     if (trackGroup.songs) {
         self.songs = trackGroup.songs;
@@ -585,6 +612,7 @@
     __weak YSSpotifySourceController *weakSelf = self;
     void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
         if (songs) {
+            self.isShowingFillerTracks = NO;
             weakSelf.songs = songs;
             weakSelf.carousel.currentItemIndex = 0;
             [weakSelf.carousel reloadData];
@@ -658,17 +686,19 @@
 - (void) setupSearchBox
 {
     self.searchBox.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    [self.searchBox setTintColor:[UIColor whiteColor]];
+    self.searchBox.textColor = THEME_SECONDARY_COLOR;
+    [self.searchBox setTintColor:THEME_SECONDARY_COLOR];
     self.searchBox.font = [UIFont fontWithName:@"Futura-Medium" size:18];
     self.searchBox.delegate = self;
     [self.searchBox addTarget:self
                        action:@selector(textFieldDidChange:)
              forControlEvents:UIControlEventEditingChanged];
     self.searchBox.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Type any phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
+    //self.searchBox.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Type any phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor lightGrayColor] }];
     
-    self.searchBox.layer.cornerRadius=2.0f;
+    self.searchBox.layer.cornerRadius= 1.0f;
     self.searchBox.layer.masksToBounds=YES;
-    self.searchBox.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.7]CGColor];
+    self.searchBox.layer.borderColor=[UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
     self.searchBox.layer.borderWidth= 1.0f;
 }
 
@@ -722,6 +752,14 @@
                 NSLog(@"Failed to send search term metric");
             }
         }];
+    } else {
+        if ([self shouldLoadSongsFromPool]) {
+            if (!self.didPlaySongForFirstTime) {
+                [self retrieveAndLoadTracksForCategory:self.trackGroupOnboarding];
+            } else {
+                [self retrieveAndLoadTracksForCategory:self.trackGroupPool];
+            }
+        }
     }
 }
 
@@ -751,7 +789,7 @@
         // SONG NAME LABEL
         trackView.songNameLabel = [[UILabel alloc]initWithFrame:
                            CGRectMake(0, carouselHeight + 6, carouselHeight, 25)];
-        trackView.songNameLabel.textColor = [UIColor whiteColor];
+        trackView.songNameLabel.textColor = THEME_SECONDARY_COLOR;
         trackView.songNameLabel.backgroundColor = [UIColor clearColor];
         trackView.songNameLabel.textAlignment = NSTextAlignmentCenter;
         CGFloat size = IS_IPHONE_4_SIZE ? 14 : 18;
@@ -772,8 +810,8 @@
         
         // ARTIST BUTTON
         trackView.artistButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        trackView.artistButton.backgroundColor = THEME_DARK_BLUE_COLOR;
         [trackView.artistButton.titleLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:14]];
+        trackView.artistButton.backgroundColor = THEME_DARK_BLUE_COLOR;
         [trackView addSubview:trackView.artistButton];
 
         // SONG VERSION ONE BUTTON
@@ -800,23 +838,32 @@
         tapGestureButtonTwo.numberOfTouchesRequired = 1;
         [trackView.songVersionTwoButton addGestureRecognizer:tapGestureButtonTwo];
 
+        // RIBBON IMAGE
+        trackView.ribbonImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 110, 110)];
+        trackView.ribbonImageView.image = [UIImage imageNamed:@"TrendingRibbon6.png"];
+        [trackView addSubview:trackView.ribbonImageView];
         
         // ALBUM BANNER LABEL
         trackView.bannerLabel = [[UILabel alloc]initWithFrame:
-                                               CGRectMake(2, 2, carouselHeight-4, 42)];
+                                               CGRectMake(0, 0, carouselHeight, 42)];
+        /*
         CALayer *bottomBorder = [CALayer layer];
         bottomBorder.frame = CGRectMake(0.0f, 41.0f, trackView.bannerLabel.frame.size.width, 2.0f);
-        bottomBorder.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8].CGColor;
+        bottomBorder.backgroundColor = [THEME_SECONDARY_COLOR CGColor];
         [trackView.bannerLabel.layer addSublayer:bottomBorder];
+         */
         
         trackView.bannerLabel.backgroundColor = THEME_RED_COLOR;
         trackView.bannerLabel.textAlignment = NSTextAlignmentCenter;
         trackView.bannerLabel.textColor = [UIColor whiteColor];
         trackView.bannerLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+        trackView.bannerLabel.layer.borderWidth = 2;
+        trackView.bannerLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+        
         [trackView addSubview:trackView.bannerLabel];
         
         trackView.imageView.layer.borderWidth = 2;
-        trackView.imageView.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
+        trackView.imageView.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
         [trackView.imageView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.05]];
         
         [trackView.spotifyButton addTarget:self action:@selector(confirmOpenInSpotify:) forControlEvents:UIControlEventTouchUpInside];
@@ -850,6 +897,7 @@
     trackView.spotifySongID = track.spotifyID;
     trackView.spotifyURL = track.spotifyURL;
     [trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
+    [trackView.artistButton setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     CGSize stringsize = [[NSString stringWithFormat:@"by %@", track.artistName] sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:14]}];
     if ((stringsize.width + 20) > self.carouselHeightConstraint.constant) {
         stringsize.width = self.carouselHeightConstraint.constant-24;
@@ -864,6 +912,7 @@
         trackView.artistButton.hidden = YES;
         trackView.songNameLabel.hidden = YES;
         trackView.bannerLabel.hidden = YES;
+        trackView.ribbonImageView.hidden = YES;
     } else {
         trackView.spotifyButton.hidden = NO;
         trackView.songVersionOneButton.hidden = NO;
@@ -872,12 +921,17 @@
         trackView.artistButton.hidden = NO;
         trackView.songNameLabel.hidden = NO;
         trackView.bannerLabel.hidden = NO;
+        if (self.isShowingFillerTracks) {
+            trackView.ribbonImageView.hidden = NO;
+        } else {
+            trackView.ribbonImageView.hidden = YES;
+        }
     }
     
     // For Onboarding:
     if (!self.didPlaySongForFirstTime) {
         trackView.bannerLabel.alpha = 1;
-        trackView.bannerLabel.text = @"Hold To Play";
+        trackView.bannerLabel.text = @"Hold To Preview";
     } else {
         trackView.bannerLabel.alpha = 0;
     }
@@ -887,7 +941,7 @@
 
 - (void)didTapCarousel:(UITapGestureRecognizer*)tap {
     if (self.didPlaySongForFirstTime) {
-        [self showBannerWithText:@"Hold To Play" temporary:YES];
+        [self showBannerWithText:@"Hold To Preview" temporary:YES];
     } else {
         [self showBannerWithText:@"Keep Holding" temporary:NO];
     }
@@ -897,6 +951,7 @@
     SpotifyTrackView* trackView = (SpotifyTrackView*)[self.carousel itemViewAtIndex:self.carousel.currentItemIndex];
     trackView.bannerLabel.text = text;
     trackView.bannerLabel.alpha = 1;
+    trackView.ribbonImageView.alpha = 0;
     
     if (temporary) {
         // Hide Label shortly after showing it
@@ -907,6 +962,7 @@
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^{
                                  trackView.bannerLabel.alpha = 0;
+                                 trackView.ribbonImageView.alpha = 1;
                              }
                              completion:nil];
         });
@@ -921,6 +977,7 @@
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              trackView.bannerLabel.alpha = 0;
+                             trackView.ribbonImageView.alpha = 1;
                          }
                          completion:nil];
     } else {
@@ -1355,6 +1412,7 @@
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type any phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
+                         //NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"Type any phrase or song" attributes:@{ NSForegroundColorAttributeName : [UIColor lightGrayColor] }];
                          self.searchBox.attributedPlaceholder = string;
                          
                          [self hideResetButton];
@@ -1419,7 +1477,7 @@
     }
 }
 
-
+/*
  - (void) retrieveTracksForCategory:(NSString *)playlistName
  {
  Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -1470,6 +1528,7 @@
  
  [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForPlaylist:playlistName withCallback:callback];
  }
+ */
 
 
 @end

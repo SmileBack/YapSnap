@@ -56,6 +56,9 @@
     } else if (IS_IPHONE_6_PLUS_SIZE) {
         self.pageLabelConstraint.constant = 100;
     }
+    
+    self.pageLabel.textColor = THEME_SECONDARY_COLOR;
+    self.countdownTimerLabel.textColor = THEME_SECONDARY_COLOR;
 }
 
 - (void) setupNotifications {

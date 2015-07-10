@@ -22,7 +22,6 @@
 }
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 @property (nonatomic) float elapsedTime;
-@property (nonatomic, strong) NSString *titleString;
 @property (strong, nonatomic) UIImage *diceImage;
 @property (weak, nonatomic) IBOutlet UIButton *switchButton;
 @property (weak, nonatomic) IBOutlet UILabel *receiverLabel;
@@ -94,12 +93,6 @@ static const float TIMER_INTERVAL = .05;//.02;
     self.recordProgressView.alpha = 0;
     self.recordProgressView.progress = 0.0;
     
-    if (self.type == AudioCaptureTypeMic) {
-        self.titleString = @"Start Yappin'";
-    } else if (self.type == AudioCapTureTypeSpotify) {
-        self.titleString = @"Find a Song";
-    }
-    [self updateTitleLabel];
     self.bottomView.hidden = YES;
     
     self.recordProgressView.trackTintColor = [UIColor whiteColor];
@@ -124,17 +117,6 @@ static const float TIMER_INTERVAL = .05;//.02;
     } else if (IS_IPHONE_6_PLUS_SIZE) {
         self.continueButtonRightConstraint.constant = -170;
     }
-}
-
-- (void) updateTitleLabel {
-    CGRect frame = CGRectMake(40, 0, 160, 44);
-    UILabel *label = [[UILabel alloc] initWithFrame:frame];
-    label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = self.titleString;
-    self.navigationItem.titleView = label;
 }
 
 - (void) addCancelButton {
@@ -295,13 +277,6 @@ static const float TIMER_INTERVAL = .05;//.02;
                                                          repeats:YES];
     NSLog(@"Start Audio Progress Timer!");
     
-    if (self.type == AudioCaptureTypeMic) {
-        self.titleString = @"Recording...";
-    } else {
-        self.titleString = @"Playing...";
-    }
-    [self updateTitleLabel];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
     
     self.bottomView.hidden = YES;
@@ -325,8 +300,6 @@ static const float TIMER_INTERVAL = .05;//.02;
                              self.recordProgressView.alpha = 0;
                          }
                          completion:nil];
-        
-        [self updateTitleLabel];
     } else {
         NSLog(@"Hit threshold");
         [[NSNotificationCenter defaultCenter] postNotificationName:LISTENED_TO_CLIP_NOTIFICATION object:nil];
@@ -338,6 +311,7 @@ static const float TIMER_INTERVAL = .05;//.02;
         });
          */
         
+        self.recordProgressView.progress = 1.0; // DEFAULT EVERY YAP TO 12 SECONDS
         self.recordProgressView.trackTintColor = [UIColor colorWithWhite:0.85 alpha:1.0];
     }
     
