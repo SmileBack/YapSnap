@@ -549,7 +549,19 @@
         }
     };
     
-    [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForSearchString:searchString withCallback:callback];
+    NSLog(@"Search String: -%@-", searchString);
+    NSLog(@"TrackGroupCategoryTwo Name: -%@-", self.trackGroupCategoryTwo.name);
+    if ([searchString isEqualToString:self.trackGroupCategoryOne.name]) {
+        [self retrieveAndLoadTracksForCategory:self.trackGroupCategoryOne];
+    } else if ([searchString isEqualToString:self.trackGroupCategoryTwo.name]) {
+        [self retrieveAndLoadTracksForCategory:self.trackGroupCategoryTwo];
+    } else if ([searchString isEqualToString:self.trackGroupCategoryThree.name]) {
+        [self retrieveAndLoadTracksForCategory:self.trackGroupCategoryThree];
+    } else if ([searchString isEqualToString:self.trackGroupCategoryFour.name]) {
+        [self retrieveAndLoadTracksForCategory:self.trackGroupCategoryFour];
+    } else {
+        [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForSearchString:searchString withCallback:callback];
+    }
 }
 
 -(BOOL) internetIsNotReachable
