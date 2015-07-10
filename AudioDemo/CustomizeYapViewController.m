@@ -70,6 +70,11 @@
     
     self.progressView.progress = 1.0; //self.yapBuilder.duration/12; DEFAULTING TO 12 SECONDS
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTextView:)];
+    tap.delegate = self;
+    tap.cancelsTouchesInView = NO;
+    
+    [self.textView addGestureRecognizer:tap];
     self.textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     self.textView.delegate = self;
     self.textView.textContainer.maximumNumberOfLines = 5;
@@ -300,6 +305,12 @@
     }
 }
 
+- (void)didTapTextView:(UITapGestureRecognizer *)tap {
+    if (self.textView.text.length == 0 && self.textView.isFirstResponder) {
+        [self.textView resignFirstResponder];
+    }
+}
+
 - (IBAction)didTapNextButton:(UIButton *)sender
 {
     self.continueButton.userInteractionEnabled = NO;
@@ -374,6 +385,12 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     NSLog(@"Textfield did begin editing");
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return self.textView.isFirstResponder;
 }
 
 #pragma mark - YSColorPickerDelegate
