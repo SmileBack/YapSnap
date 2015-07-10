@@ -41,8 +41,6 @@
 @property (nonatomic, strong) NSMutableArray *tracks;
 @property (nonatomic, strong) YSTrack *explainerTrack;
 @property (strong, nonatomic) IBOutlet UIView *categoryView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryButtonFiveBottomConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryButtonFiveWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryViewBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryModeButtonWidthConstraint;
 @property (nonatomic) CGFloat maxStringSizeWidth;
@@ -52,11 +50,6 @@
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryTwo;
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryThree;
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryFour;
-@property (strong, nonatomic) YTTrackGroup *trackGroupCategoryFive;
-@property (strong, nonatomic) YTTrackGroup *trackGroupCategorySix;
-@property (strong, nonatomic) YTTrackGroup *trackGroupCategorySeven;
-@property (strong, nonatomic) YTTrackGroup *trackGroupCategoryEight;
-@property (strong, nonatomic) YTTrackGroup *trackGroupCategoryNine;
 @property (strong, nonatomic) YTTrackGroup *trackGroupOnboarding;
 @property (strong, nonatomic) YTTrackGroup *trackGroupPool;
 
@@ -65,22 +58,12 @@
 @property (strong, nonatomic) IBOutlet UIButton *categoryButtonTwo;
 @property (strong, nonatomic) IBOutlet UIButton *categoryButtonThree;
 @property (strong, nonatomic) IBOutlet UIButton *categoryButtonFour;
-@property (strong, nonatomic) IBOutlet UIButton *categoryButtonFive;
-@property (strong, nonatomic) IBOutlet UIButton *categoryButtonSix;
-@property (strong, nonatomic) IBOutlet UIButton *categoryButtonSeven;
-@property (strong, nonatomic) IBOutlet UIButton *categoryButtonEight;
-@property (strong, nonatomic) IBOutlet UIButton *categoryButtonNine;
 
 // didTapCategoryButton
 - (IBAction)didTapCategoryButtonOne:(UIButton*)button;
 - (IBAction)didTapCategoryButtonTwo:(UIButton*)button;
 - (IBAction)didTapCategoryButtonThree:(UIButton*)button;
 - (IBAction)didTapCategoryButtonFour:(UIButton*)button;
-- (IBAction)didTapCategoryButtonFive:(UIButton*)button;
-- (IBAction)didTapCategoryButtonSix:(UIButton*)button;
-- (IBAction)didTapCategoryButtonSeven:(UIButton*)button;
-- (IBAction)didTapCategoryButtonEight:(UIButton*)button;
-- (IBAction)didTapCategoryButtonNine:(UIButton*)button;
 
 - (IBAction)didTapResetButton;
 - (IBAction)didTapCategoryModeButton;
@@ -134,25 +117,26 @@
 
 - (void) setupConstraints {
     CGFloat carouselHeight = 0.0;
+
     if (IS_IPHONE_4_SIZE) {
         carouselHeight = 140; // 69; 138*100
         //self.categoryButtonFiveBottomConstraint.constant = 120;
-        self.categoryButtonFiveWidthConstraint.constant = 75;
-        self.categoryModeButtonWidthConstraint.constant = 60;
+//        self.categoryButtonFiveWidthConstraint.constant = 75;
+//        self.categoryModeButtonWidthConstraint.constant = 60;
     } else if (IS_IPHONE_5_SIZE) {
         carouselHeight = 200; // 99; 198*100
-        self.categoryButtonFiveBottomConstraint.constant = 120;
-        self.categoryButtonFiveWidthConstraint.constant = 80;
+//        self.categoryButtonFiveBottomConstraint.constant = 120;
+//        self.categoryButtonFiveWidthConstraint.constant = 80;
     } else if (IS_IPHONE_6_PLUS_SIZE) {
         carouselHeight = 290; // 144; (288*100) *1.5
-        self.categoryViewBottomConstraint.constant = 150;
-        self.categoryButtonFiveBottomConstraint.constant = 140;
-        self.categoryButtonFiveWidthConstraint.constant = 105;
-        self.categoryModeButtonWidthConstraint.constant = 80;
+//        self.categoryViewBottomConstraint.constant = 150;
+//        self.categoryButtonFiveBottomConstraint.constant = 140;
+//        self.categoryButtonFiveWidthConstraint.constant = 105;
+//        self.categoryModeButtonWidthConstraint.constant = 80;
     } else {
         carouselHeight = 240; // 119; (238*100) *1.172  279*117
-        self.categoryButtonFiveBottomConstraint.constant = 160;
-        self.categoryButtonFiveWidthConstraint.constant = 95;
+//        self.categoryButtonFiveBottomConstraint.constant = 160;
+//       self.categoryButtonFiveWidthConstraint.constant = 95;
     }
     self.carouselHeightConstraint.constant = carouselHeight;
     
@@ -301,8 +285,8 @@
 
 - (void) createTrackGroups {
     self.trackGroupCategoryOne = [YTTrackGroup new];
-    self.trackGroupCategoryOne.name = @"Trending";
-    self.trackGroupCategoryOne.apiString = @"pool_tracks";//@"trending_tracks";
+    self.trackGroupCategoryOne.name = @"Popular";
+    self.trackGroupCategoryOne.apiString = @"trending_tracks";
     
     self.trackGroupCategoryTwo = [YTTrackGroup new];
     self.trackGroupCategoryTwo.name = @"Nostalgic";
@@ -313,28 +297,8 @@
     self.trackGroupCategoryThree.apiString = @"funny_tracks";
     
     self.trackGroupCategoryFour = [YTTrackGroup new];
-    self.trackGroupCategoryFour.name = @"Happy";
-    self.trackGroupCategoryFour.apiString = @"happy_tracks";
-    
-    self.trackGroupCategoryFive = [YTTrackGroup new];
-    self.trackGroupCategoryFive.name = @"Flirtatious";
-    self.trackGroupCategoryFive.apiString = @"flirtatious_tracks";
-    
-    self.trackGroupCategorySix = [YTTrackGroup new];
-    self.trackGroupCategorySix.name = @"Inspiring";
-    self.trackGroupCategorySix.apiString = @"inspiring_tracks";
-    
-    self.trackGroupCategorySeven = [YTTrackGroup new];
-    self.trackGroupCategorySeven.name = @"Romantic";
-    self.trackGroupCategorySeven.apiString = @"romantic_tracks";
-    
-    self.trackGroupCategoryEight = [YTTrackGroup new];
-    self.trackGroupCategoryEight.name = @"Party";
-    self.trackGroupCategoryEight.apiString = @"party_tracks";
-    
-    self.trackGroupCategoryNine = [YTTrackGroup new];
-    self.trackGroupCategoryNine.name = @"Gloomy";
-    self.trackGroupCategoryNine.apiString = @"gloomy_tracks";
+    self.trackGroupCategoryFour.name = @"Flirtatious";
+    self.trackGroupCategoryFour.apiString = @"flirtatious_tracks";
     
     self.trackGroupOnboarding = [YTTrackGroup new];
     self.trackGroupOnboarding.name = @"Onboarding";
@@ -346,68 +310,33 @@
 }
 
 -(void) setupCategoryButtons {
-    self.categoryButtonOne.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonOne.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonOne.layer.borderWidth = 1;
     self.categoryButtonOne.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
     self.categoryButtonOne.backgroundColor = THEME_BACKGROUND_COLOR;
     [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonOne setTitle:self.trackGroupCategoryOne.name forState:UIControlStateNormal];
     
-    self.categoryButtonTwo.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonTwo.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonTwo.layer.borderWidth = 1;
     self.categoryButtonTwo.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
     self.categoryButtonTwo.backgroundColor = THEME_BACKGROUND_COLOR;
     [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonTwo setTitle:self.trackGroupCategoryTwo.name forState:UIControlStateNormal];
     
-    self.categoryButtonThree.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonThree.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonThree.layer.borderWidth = 1;
     self.categoryButtonThree.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
     self.categoryButtonThree.backgroundColor = THEME_BACKGROUND_COLOR;
     [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonThree setTitle:self.trackGroupCategoryThree.name forState:UIControlStateNormal];
     
-    self.categoryButtonFour.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonFour.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonFour.layer.borderWidth = 1;
     self.categoryButtonFour.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
     self.categoryButtonFour.backgroundColor = THEME_BACKGROUND_COLOR;
     [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonFour setTitle:self.trackGroupCategoryFour.name forState:UIControlStateNormal];
-    
-    self.categoryButtonFive.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
-    self.categoryButtonFive.layer.borderWidth = 1;
-    self.categoryButtonFive.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
-    self.categoryButtonFive.backgroundColor = THEME_BACKGROUND_COLOR;
-    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
-    [self.categoryButtonFive setTitle:self.trackGroupCategoryFive.name forState:UIControlStateNormal];
-    
-    self.categoryButtonSix.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
-    self.categoryButtonSix.layer.borderWidth = 1;
-    self.categoryButtonSix.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
-    self.categoryButtonSix.backgroundColor = THEME_BACKGROUND_COLOR;
-    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
-    [self.categoryButtonSix setTitle:self.trackGroupCategorySix.name forState:UIControlStateNormal];
-    
-    self.categoryButtonSeven.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
-    self.categoryButtonSeven.layer.borderWidth = 1;
-    self.categoryButtonSeven.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
-    self.categoryButtonSeven.backgroundColor = THEME_BACKGROUND_COLOR;
-    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
-    [self.categoryButtonSeven setTitle:self.trackGroupCategorySeven.name forState:UIControlStateNormal];
-    
-    self.categoryButtonEight.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
-    self.categoryButtonEight.layer.borderWidth = 1;
-    self.categoryButtonEight.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
-    self.categoryButtonEight.backgroundColor = THEME_BACKGROUND_COLOR;
-    self.categoryButtonEight.titleLabel.textColor = THEME_SECONDARY_COLOR;
-    [self.categoryButtonEight setTitle:self.trackGroupCategoryEight.name forState:UIControlStateNormal];
-    
-    self.categoryButtonNine.layer.cornerRadius = self.categoryButtonFiveWidthConstraint.constant/2;
-    self.categoryButtonNine.layer.borderWidth = 1;
-    self.categoryButtonNine.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
-    self.categoryButtonNine.backgroundColor = THEME_BACKGROUND_COLOR;
-    self.categoryButtonNine.titleLabel.textColor = THEME_SECONDARY_COLOR;
-    [self.categoryButtonNine setTitle:self.trackGroupCategoryNine.name forState:UIControlStateNormal];
 }
 
 -(IBAction) didTapCategoryModeButton {
@@ -458,36 +387,6 @@
     [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryFour];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Category Four Button"];
-}
-
--(void) didTapCategoryButtonFive:(UIButton *)button {
-    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryFive];
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Category Five Button"];
-}
-
--(void) didTapCategoryButtonSix:(UIButton *)button {
-    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategorySix];
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Category Six Button"];
-}
-
--(void) didTapCategoryButtonSeven:(UIButton *)button {
-    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategorySeven];
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Category Seven Button"];
-}
-
--(void) didTapCategoryButtonEight:(UIButton *)button {
-    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryEight];
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Category Eight Button"];
-}
-
--(void) didTapCategoryButtonNine:(UIButton *)button {
-    [self tappedCategoryButtonForTrackGroup:self.trackGroupCategoryNine];
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Category Nine Button"];
 }
 
 - (void) tappedCategoryButtonForTrackGroup:(YTTrackGroup*)trackGroup {
