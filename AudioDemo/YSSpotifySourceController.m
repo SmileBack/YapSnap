@@ -44,7 +44,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryViewBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryModeButtonWidthConstraint;
 @property (nonatomic) CGFloat maxStringSizeWidth;
-@property (nonatomic) BOOL isShowingFillerTracks;
+@property (nonatomic) BOOL isShowingTrackGroupPool;
 
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryOne;
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryTwo;
@@ -285,20 +285,20 @@
 
 - (void) createTrackGroups {
     self.trackGroupCategoryOne = [YTTrackGroup new];
-    self.trackGroupCategoryOne.name = @"Nostalgic";
-    self.trackGroupCategoryOne.apiString = @"nostalgic_tracks";
+    self.trackGroupCategoryOne.name = @"Popular";
+    self.trackGroupCategoryOne.apiString = @"trending_tracks";
     
     self.trackGroupCategoryTwo = [YTTrackGroup new];
     self.trackGroupCategoryTwo.name = @"Funny";
     self.trackGroupCategoryTwo.apiString = @"funny_tracks";
     
     self.trackGroupCategoryThree = [YTTrackGroup new];
-    self.trackGroupCategoryThree.name = @"Flirtatious";
-    self.trackGroupCategoryThree.apiString = @"flirtatious_tracks";
+    self.trackGroupCategoryThree.name = @"Nostalgic";
+    self.trackGroupCategoryThree.apiString = @"nostalgic_tracks";
     
     self.trackGroupCategoryFour = [YTTrackGroup new];
-    self.trackGroupCategoryFour.name = @"Popular";
-    self.trackGroupCategoryFour.apiString = @"trending_tracks";
+    self.trackGroupCategoryFour.name = @"Flirtatious";
+    self.trackGroupCategoryFour.apiString = @"flirtatious_tracks";
     
     self.trackGroupOnboarding = [YTTrackGroup new];
     self.trackGroupOnboarding.name = @"Onboarding";
@@ -403,10 +403,10 @@
 {
     [self.loadingIndicator startAnimating];
     
-    if (trackGroup == self.trackGroupOnboarding || trackGroup == self.trackGroupPool) {
-        self.isShowingFillerTracks = YES;
+    if (trackGroup == self.trackGroupPool) {
+        self.isShowingTrackGroupPool = YES;
     } else {
-        self.isShowingFillerTracks = NO;
+        self.isShowingTrackGroupPool = NO;
     }
 
     if (trackGroup.songs) {
@@ -511,7 +511,7 @@
     __weak YSSpotifySourceController *weakSelf = self;
     void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
         if (songs) {
-            self.isShowingFillerTracks = NO;
+            self.isShowingTrackGroupPool = NO;
             weakSelf.songs = songs;
             weakSelf.carousel.currentItemIndex = 0;
             [weakSelf.carousel reloadData];
@@ -832,7 +832,7 @@
         trackView.artistButton.hidden = NO;
         trackView.songNameLabel.hidden = NO;
         trackView.bannerLabel.hidden = NO;
-        if (self.isShowingFillerTracks) {
+        if (self.isShowingTrackGroupPool) {
             trackView.ribbonImageView.hidden = NO;
         } else {
             trackView.ribbonImageView.hidden = YES;

@@ -10,29 +10,31 @@
 
 @implementation YSTrack
 
-+ (NSArray *) tracksFromDictionaryArray:(NSArray *)itemDictionaries inCategory:(BOOL)inCategory
+
+// FROM SPOTIFY BACKEND
++ (NSArray *) tracksFromSpotifyDictionaryArray:(NSArray *)itemDictionaries inCategory:(BOOL)inCategory
 {
     NSMutableArray *tracks = [NSMutableArray arrayWithCapacity:itemDictionaries.count];
 
     for (NSDictionary *trackDictionary in itemDictionaries) {
-        if (inCategory) {
-            if (![trackDictionary[@"track"][@"preview_url"] isEqual: [NSNull null]]
-                && ![trackDictionary[@"track"][@"id"] isEqual: [NSNull null]]
-                && ![trackDictionary[@"track"][@"id"] isEqual: @"1DXNI5YQ9zCDLuBNi0sfJW"]
-                ) {
-                [tracks addObject:[YSTrack trackFromDictionary:trackDictionary[@"track"]]];
-            }
-        } else {
+//        if (inCategory) {
+//            if (![trackDictionary[@"track"][@"preview_url"] isEqual: [NSNull null]]
+//                && ![trackDictionary[@"track"][@"id"] isEqual: [NSNull null]]
+//                && ![trackDictionary[@"track"][@"id"] isEqual: @"1DXNI5YQ9zCDLuBNi0sfJW"]
+//                ) {
+//                [tracks addObject:[YSTrack trackFromSpotifyDictionary:trackDictionary[@"track"]]];
+//            }
+//        } else {
             if (![trackDictionary[@"preview_url"] isEqual: [NSNull null]]) {
-                [tracks addObject:[YSTrack trackFromDictionary:trackDictionary]];
+                [tracks addObject:[YSTrack trackFromSpotifyDictionary:trackDictionary]];
             }
-        }
+//        }
     }
     
     return tracks;
 }
 
-+ (YSTrack *) trackFromDictionary:(NSDictionary *)trackDictionary
++ (YSTrack *) trackFromSpotifyDictionary:(NSDictionary *)trackDictionary
 {
     YSTrack *track = [YSTrack new];
     
@@ -57,6 +59,39 @@
     }
     
     track.secondsToFastForward = trackDictionary[@"seconds_to_fast_forward"];
+    
+    return track;
+}
+
+
+
+// FROM YAPTAP BACKEND
++ (NSArray *) tracksFromYapTapDictionaryArray:(NSArray *)itemDictionaries inCategory:(BOOL)inCategory
+{
+    NSMutableArray *tracks = [NSMutableArray arrayWithCapacity:itemDictionaries.count];
+    
+    for (NSDictionary *trackDictionary in itemDictionaries) {
+        if (![trackDictionary[@"preview_url"] isEqual: [NSNull null]]) {
+            [tracks addObject:[YSTrack trackFromYapTapDictionary:trackDictionary]];
+        }
+    }
+    
+    return tracks;
+}
+
++ (YSTrack *) trackFromYapTapDictionary:(NSDictionary *)trackDictionary
+{
+    YSTrack *track = [YSTrack new];
+    
+    track.name = trackDictionary[@"spotify_song_name"];
+    track.spotifyID = trackDictionary[@"spotify_song_id"];
+    track.previewURL = trackDictionary[@"spotify_preview_url"];
+    track.artistName = trackDictionary[@"spotify_artist_name"];
+    track.spotifyURL = trackDictionary[@"spotify_full_song_url"];
+    track.albumName = trackDictionary[@"spotify_album_name"];
+    track.imageURL = trackDictionary[@"spotify_image_url"];
+    
+//    track.secondsToFastForward = trackDictionary[@"seconds_to_fast_forward"];
     
     return track;
 }

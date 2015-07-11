@@ -89,6 +89,7 @@ static SpotifyAPI *sharedInstance;
     }
 }
 
+/*
 - (void) retrieveTracksFromSpotifyForPlaylist:(NSString *)playlistName withCallback:(SpotifySongCallback)callback
 {
     if ([playlistName isEqualToString:@"Trending"]) {
@@ -146,7 +147,7 @@ static SpotifyAPI *sharedInstance;
         
         
         
-        NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:YES];
+        NSArray *songs = [YSTrack tracksFromSpotifyDictionaryArray:items inCategory:YES];
         callback(songs, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -163,7 +164,7 @@ static SpotifyAPI *sharedInstance;
         }
     }];
    
-    /*
+    
     if ([playlistName isEqualToString:@"Comedy New Releases"]) {
         self.playlistURL = @"https://api.spotify.com/v1/users/spotify/playlists/2dspQtcF977JB0kbsVfjZd/tracks";
         
@@ -250,8 +251,9 @@ static SpotifyAPI *sharedInstance;
      self.playlistNineteen = @"Louis CK | Collected";
      self.playlistTwenty = @"[Family]";
      self.playlistTwentyOne = @"Comedy Top Trackss";
-     */
+ 
 }
+*/
 
 - (void) retrieveTracksFromSpotifyForSearchString:(NSString *)searchString withCallback:(SpotifySongCallback)callback
 {
@@ -268,7 +270,7 @@ static SpotifyAPI *sharedInstance;
         NSDictionary *response = responseObject;
         //NSLog(@"Response Object: %@", responseObject);
         NSArray *items = response[@"tracks"][@"items"];
-        NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
+        NSArray *songs = [YSTrack tracksFromSpotifyDictionaryArray:items inCategory:NO];
         callback(songs, nil);   
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

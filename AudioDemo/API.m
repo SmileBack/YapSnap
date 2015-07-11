@@ -702,7 +702,7 @@ static API *sharedAPI;
 }
 
 #pragma mark - Retrieve Tracks
-
+/*
 - (void) retrieveTracksForCategory:(YTTrackGroup*)category withCallback:(OnboardingTracksCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -714,9 +714,9 @@ static API *sharedAPI;
              NSDictionary *response = responseObject;
              //NSLog(@"Response Object: %@", responseObject);
              NSArray *items = response[@"tracks"][@"items"];
-             //NSLog(@"Items: %@", items);
+             NSLog(@"Items: %@", items);
              
-             NSArray *songs = [YSTrack tracksFromDictionaryArray:items inCategory:NO];
+             NSArray *songs = [YSTrack tracksFromSpotifyDictionaryArray:items inCategory:NO];
              callback(songs, nil);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -726,22 +726,22 @@ static API *sharedAPI;
          }];
         NSLog(@"category in API.m: %@", category);
 }
+*/
 
 
-/*
 - (void) retrieveTracksForCategory:(YTTrackGroup*)category withCallback:(OnboardingTracksCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     NSString *url = @"/spotify_songs";
     [manager GET:[self urlForEndpoint:url]
-     parameters:[self paramsWithDict:@{@"category": @"onboarding_tracks"}]
+     parameters:[self paramsWithDict:@{@"category": category.apiString}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSArray *songs = nil;
              if ([responseObject isKindOfClass:[NSArray class]]) {
                  NSArray *response = responseObject;
                  NSLog(@"Items: %@", response);
-                 songs = [YSTrack tracksFromDictionaryArray:response inCategory:NO];
+                 songs = [YSTrack tracksFromYapTapDictionaryArray:response inCategory:NO];
              }
              
              callback(songs, nil);
@@ -753,6 +753,5 @@ static API *sharedAPI;
          }];
     NSLog(@"category in API.m: %@", category);
 }
- */
 
 @end

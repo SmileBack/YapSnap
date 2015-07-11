@@ -21,8 +21,9 @@
 @property (nonatomic) BOOL songVersionButtonsAreShowing;
 @property (nonatomic) BOOL isExplainerTrack;
 
-+ (NSArray *) tracksFromDictionaryArray:(NSArray *)itemDictionaries inCategory:(BOOL)inCategory;
-+ (YSTrack *) trackFromDictionary:(NSDictionary *)trackDictionary;
++ (NSArray *) tracksFromSpotifyDictionaryArray:(NSArray *)itemDictionaries inCategory:(BOOL)inCategory;
+//+ (YSTrack *) trackFromSpotifyDictionary:(NSDictionary *)trackDictionary;
++ (NSArray *) tracksFromYapTapDictionaryArray:(NSArray *)itemDictionaries inCategory:(BOOL)inCategory;
 
 
 @end
