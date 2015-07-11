@@ -191,7 +191,13 @@
                                                           [weakSelf performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:nil];
                                                       }
                                                   }];
-    
+ 
+    [[NSNotificationCenter defaultCenter] addObserverForName:RELOAD_YAPS_COUNT_NOTIFICATION
+                                                      object:nil
+                                                       queue:[NSOperationQueue currentQueue]
+                                                  usingBlock:^(NSNotification *note) {
+                                                          [weakSelf reloadUnopenedYapsCount];
+                                                  }];
 }
 
 - (void)dealloc

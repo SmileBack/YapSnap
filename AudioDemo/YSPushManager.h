@@ -10,6 +10,7 @@
 
 #define NEW_YAP_NOTIFICATION @"com.yaptap.NewYapNotification"
 #define NEW_FRIEND_NOTIFICATION @"com.yaptap.NewFriendNotification"
+#define RELOAD_YAPS_COUNT_NOTIFICATION @"com.yaptap.ReloadYapsCountNotification"
 
 @interface YSPushManager : NSObject
 

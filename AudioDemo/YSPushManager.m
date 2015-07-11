@@ -134,6 +134,7 @@ static YSPushManager *_sharedPushManager;
         double delay = 0.5;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [[YTNotifications sharedNotifications] showNotificationText:@"You've Received a New Yap!"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:RELOAD_YAPS_COUNT_NOTIFICATION object:nil];
         });
     }
 }

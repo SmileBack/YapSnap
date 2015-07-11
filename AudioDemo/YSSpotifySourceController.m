@@ -252,7 +252,7 @@
                         if (self.categoryView.alpha == 1) {
                             // Hide Category View
                             self.categoryView.alpha = 0;
-                            [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+                            [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImageNew2.png"] forState:UIControlStateNormal];
                             self.artistButtonHack.hidden = NO;
                         }
                         [self.view endEditing:YES];
@@ -285,20 +285,20 @@
 
 - (void) createTrackGroups {
     self.trackGroupCategoryOne = [YTTrackGroup new];
-    self.trackGroupCategoryOne.name = @"Popular";
-    self.trackGroupCategoryOne.apiString = @"trending_tracks";
+    self.trackGroupCategoryOne.name = @"Nostalgic";
+    self.trackGroupCategoryOne.apiString = @"nostalgic_tracks";
     
     self.trackGroupCategoryTwo = [YTTrackGroup new];
-    self.trackGroupCategoryTwo.name = @"Nostalgic";
-    self.trackGroupCategoryTwo.apiString = @"nostalgic_tracks";
+    self.trackGroupCategoryTwo.name = @"Funny";
+    self.trackGroupCategoryTwo.apiString = @"funny_tracks";
     
     self.trackGroupCategoryThree = [YTTrackGroup new];
-    self.trackGroupCategoryThree.name = @"Funny";
-    self.trackGroupCategoryThree.apiString = @"funny_tracks";
+    self.trackGroupCategoryThree.name = @"Flirtatious";
+    self.trackGroupCategoryThree.apiString = @"flirtatious_tracks";
     
     self.trackGroupCategoryFour = [YTTrackGroup new];
-    self.trackGroupCategoryFour.name = @"Flirtatious";
-    self.trackGroupCategoryFour.apiString = @"flirtatious_tracks";
+    self.trackGroupCategoryFour.name = @"Popular";
+    self.trackGroupCategoryFour.apiString = @"trending_tracks";
     
     self.trackGroupOnboarding = [YTTrackGroup new];
     self.trackGroupOnboarding.name = @"Onboarding";
@@ -310,32 +310,32 @@
 }
 
 -(void) setupCategoryButtons {
-    self.categoryButtonOne.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonOne.layer.cornerRadius = 30; //self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonOne.layer.borderWidth = 1;
     self.categoryButtonOne.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
-    self.categoryButtonOne.backgroundColor = THEME_BACKGROUND_COLOR;
-    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
+    self.categoryButtonOne.backgroundColor = THEME_SECONDARY_COLOR; //THEME_BACKGROUND_COLOR;
+    [self.categoryButtonOne setTitleColor: THEME_BACKGROUND_COLOR forState:UIControlStateNormal]; //THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonOne setTitle:self.trackGroupCategoryOne.name forState:UIControlStateNormal];
     
-    self.categoryButtonTwo.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonTwo.layer.cornerRadius = 30; //self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonTwo.layer.borderWidth = 1;
     self.categoryButtonTwo.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
-    self.categoryButtonTwo.backgroundColor = THEME_BACKGROUND_COLOR;
-    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
+    self.categoryButtonTwo.backgroundColor = THEME_SECONDARY_COLOR; //THEME_BACKGROUND_COLOR;THEME_BACKGROUND_COLOR;
+    [self.categoryButtonTwo setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal]; //THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonTwo setTitle:self.trackGroupCategoryTwo.name forState:UIControlStateNormal];
     
-    self.categoryButtonThree.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonThree.layer.cornerRadius = 30; //self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonThree.layer.borderWidth = 1;
     self.categoryButtonThree.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
-    self.categoryButtonThree.backgroundColor = THEME_BACKGROUND_COLOR;
-    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
+    self.categoryButtonThree.backgroundColor = THEME_SECONDARY_COLOR; //THEME_BACKGROUND_COLOR;
+    [self.categoryButtonThree setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal]; //THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonThree setTitle:self.trackGroupCategoryThree.name forState:UIControlStateNormal];
     
-    self.categoryButtonFour.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonFour.layer.cornerRadius = 30; //self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonFour.layer.borderWidth = 1;
     self.categoryButtonFour.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
-    self.categoryButtonFour.backgroundColor = THEME_BACKGROUND_COLOR;
-    [self.categoryButtonOne setTitleColor:THEME_SECONDARY_COLOR forState:UIControlStateNormal];
+    self.categoryButtonFour.backgroundColor = THEME_SECONDARY_COLOR; //THEME_BACKGROUND_COLOR;
+    [self.categoryButtonFour setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal]; //THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonFour setTitle:self.trackGroupCategoryFour.name forState:UIControlStateNormal];
 }
 
@@ -358,7 +358,7 @@
     } else {
         // Hide Category View
         self.categoryView.alpha = 0;
-        [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+        [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImageNew2.png"] forState:UIControlStateNormal];
         self.artistButtonHack.hidden = NO;
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Tapped Category Mode Button (Hide)"];
@@ -394,7 +394,7 @@
     self.searchBox.text = trackGroup.name;
     self.resetButton.alpha = 1;
     self.categoryView.alpha = 0;
-    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage.png"] forState:UIControlStateNormal];
+    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImageNew2.png"] forState:UIControlStateNormal];
     [self retrieveAndLoadTracksForCategory:trackGroup];
     self.artistButtonHack.hidden = NO;
 }

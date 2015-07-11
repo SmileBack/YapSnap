@@ -123,6 +123,8 @@
 		7845D4A31B4F729E00BEE05E /* TrendingRibbon4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7845D4A21B4F729E00BEE05E /* TrendingRibbon4.png */; };
 		7845D4A51B4F738C00BEE05E /* TrendingRibbon5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7845D4A41B4F738C00BEE05E /* TrendingRibbon5.png */; };
 		7845D4A71B4F745400BEE05E /* TrendingRibbon6.png in Resources */ = {isa = PBXBuildFile; fileRef = 7845D4A61B4F745400BEE05E /* TrendingRibbon6.png */; };
+		7845D4A91B5187D000BEE05E /* CategoryButtonImageNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 7845D4A81B5187D000BEE05E /* CategoryButtonImageNew.png */; };
+		7845D4AB1B5188B000BEE05E /* CategoryButtonImageNew2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7845D4AA1B5188B000BEE05E /* CategoryButtonImageNew2.png */; };
 		784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67E01A6253CE0084894D /* MusicIcon@2x.png */; };
 		784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784C67F01A626F7B0084894D /* ProgressViewNotches5.png */; };
 		784E35EE1A659DB40029AA01 /* ColorPickerSpectrum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */; };
@@ -479,6 +481,8 @@
 		7845D4A21B4F729E00BEE05E /* TrendingRibbon4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrendingRibbon4.png; sourceTree = "<group>"; };
 		7845D4A41B4F738C00BEE05E /* TrendingRibbon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrendingRibbon5.png; sourceTree = "<group>"; };
 		7845D4A61B4F745400BEE05E /* TrendingRibbon6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrendingRibbon6.png; sourceTree = "<group>"; };
+		7845D4A81B5187D000BEE05E /* CategoryButtonImageNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CategoryButtonImageNew.png; sourceTree = "<group>"; };
+		7845D4AA1B5188B000BEE05E /* CategoryButtonImageNew2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CategoryButtonImageNew2.png; sourceTree = "<group>"; };
 		784C67E01A6253CE0084894D /* MusicIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicIcon@2x.png"; sourceTree = "<group>"; };
 		784C67F01A626F7B0084894D /* ProgressViewNotches5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProgressViewNotches5.png; sourceTree = "<group>"; };
 		784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ColorPickerSpectrum@2x.png"; sourceTree = "<group>"; };
@@ -846,6 +850,8 @@
 				7845D4A21B4F729E00BEE05E /* TrendingRibbon4.png */,
 				7845D4A41B4F738C00BEE05E /* TrendingRibbon5.png */,
 				7845D4A61B4F745400BEE05E /* TrendingRibbon6.png */,
+				7845D4A81B5187D000BEE05E /* CategoryButtonImageNew.png */,
+				7845D4AA1B5188B000BEE05E /* CategoryButtonImageNew2.png */,
 				786BCB411ADC25A300BA3FDD /* Customize Page */,
 				78319A741ACCF878000C3FD6 /* Audio Capture Page */,
 				78319A731ACCF818000C3FD6 /* Spotify Page */,
@@ -1824,6 +1830,7 @@
 				78624BF61B04EC6B00C8E049 /* ProgressViewYellow@2x.png in Resources */,
 				783CCFB21B3A6DEE00E3B5BF /* CategoryButtonImage.png in Resources */,
 				783CCFAA1B3A0AD800E3B5BF /* TrendingIcon.png in Resources */,
+				7845D4A91B5187D000BEE05E /* CategoryButtonImageNew.png in Resources */,
 				78B0B7621AEF3834001C074B /* Shuffle50.png in Resources */,
 				78439FC81AE9A3C6004CFB5F /* PlusButtonWhite2@2x.png in Resources */,
 				786E0BEB1B0079AC00005D1D /* CartoonsLong5@2x.png in Resources */,
@@ -1954,6 +1961,7 @@
 				782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */,
 				786192801B0A4CB0007279E8 /* CancelPhotoButton100@2x.png in Resources */,
 				781904841AF1F27700196DFF /* YapsButtonNoYaps5.png in Resources */,
+				7845D4AB1B5188B000BEE05E /* CategoryButtonImageNew2.png in Resources */,
 				7867C1CA1B01A64D0050632F /* CancelImageWhite3.png in Resources */,
 				7861928C1B0EA528007279E8 /* CartooniPhone6@2x.png in Resources */,
 				787EC6151ACA245E000C5539 /* OldProgressViewRed@3x.png in Resources */,
