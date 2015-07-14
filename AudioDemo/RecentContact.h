@@ -10,7 +10,8 @@
 
 @interface RecentContact : NSObject<NSCoding>
 
-@property (nonatomic, strong) NSNumber *contactID;
+@property (nonatomic, strong) NSNumber *contactID; // Deprecated
+@property (nonatomic, strong) NSString *phoneNumber;
 @property (nonatomic, strong) NSDate *contactTime;
 
 @end
