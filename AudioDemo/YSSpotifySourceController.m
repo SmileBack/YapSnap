@@ -286,19 +286,19 @@
 
 - (void) createTrackGroups {
     self.trackGroupCategoryOne = [YTTrackGroup new];
-    self.trackGroupCategoryOne.name = MPTweakValue(@"Category1", @"Popular");
+    self.trackGroupCategoryOne.name = @"Popular"; //MPTweakValue(@"Category1", @"Popular");
     self.trackGroupCategoryOne.apiString = @"trending_tracks";
     
     self.trackGroupCategoryTwo = [YTTrackGroup new];
-    self.trackGroupCategoryTwo.name = MPTweakValue(@"Category2", @"Funny");
+    self.trackGroupCategoryTwo.name = @"Funny"; //MPTweakValue(@"Category2", @"Funny");
     self.trackGroupCategoryTwo.apiString = @"funny_tracks";
     
     self.trackGroupCategoryThree = [YTTrackGroup new];
-    self.trackGroupCategoryThree.name = MPTweakValue(@"Category3", @"Nostalgic");
+    self.trackGroupCategoryThree.name = @"Nostalgic"; //MPTweakValue(@"Category3", @"Nostalgic");
     self.trackGroupCategoryThree.apiString = @"nostalgic_tracks";
     
     self.trackGroupCategoryFour = [YTTrackGroup new];
-    self.trackGroupCategoryFour.name = MPTweakValue(@"Category4", @"Flirtatious");
+    self.trackGroupCategoryFour.name = @"Flirtatious"; //MPTweakValue(@"Category4", @"Flirtatious");
     self.trackGroupCategoryFour.apiString = @"flirtatious_tracks";
     
     self.trackGroupOnboarding = [YTTrackGroup new];
@@ -311,28 +311,28 @@
 }
 
 -(void) setupCategoryButtons {
-    self.categoryButtonOne.layer.cornerRadius = 30; //self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonOne.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonOne.layer.borderWidth = 1;
     self.categoryButtonOne.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
     self.categoryButtonOne.backgroundColor = THEME_SECONDARY_COLOR; //THEME_BACKGROUND_COLOR;
     [self.categoryButtonOne setTitleColor: THEME_BACKGROUND_COLOR forState:UIControlStateNormal]; //THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonOne setTitle:self.trackGroupCategoryOne.name forState:UIControlStateNormal];
     
-    self.categoryButtonTwo.layer.cornerRadius = 30; //self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonTwo.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonTwo.layer.borderWidth = 1;
     self.categoryButtonTwo.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
     self.categoryButtonTwo.backgroundColor = THEME_SECONDARY_COLOR; //THEME_BACKGROUND_COLOR;THEME_BACKGROUND_COLOR;
     [self.categoryButtonTwo setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal]; //THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonTwo setTitle:self.trackGroupCategoryTwo.name forState:UIControlStateNormal];
     
-    self.categoryButtonThree.layer.cornerRadius = 30; //self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonThree.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonThree.layer.borderWidth = 1;
     self.categoryButtonThree.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
     self.categoryButtonThree.backgroundColor = THEME_SECONDARY_COLOR; //THEME_BACKGROUND_COLOR;
     [self.categoryButtonThree setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal]; //THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonThree setTitle:self.trackGroupCategoryThree.name forState:UIControlStateNormal];
     
-    self.categoryButtonFour.layer.cornerRadius = 30; //self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonFour.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
     self.categoryButtonFour.layer.borderWidth = 1;
     self.categoryButtonFour.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
     self.categoryButtonFour.backgroundColor = THEME_SECONDARY_COLOR; //THEME_BACKGROUND_COLOR;
