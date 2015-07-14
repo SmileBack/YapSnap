@@ -136,7 +136,6 @@ typedef void(^STKFrameFilter)(UInt32 channelsPerFrame, UInt32 bytesPerFrame, UIn
 /// Gets or sets the volume (ranges 0 - 1.0).
 /// On iOS the STKAudioPlayerOptionEnableMultichannelMixer option must be enabled for volume to work.
 @property (readwrite) Float32 volume;
-@property (readwrite) Float32 pitchShift;
 /// Gets or sets the player muted state
 @property (readwrite) BOOL muted;
 /// Gets the current item duration in seconds
@@ -170,8 +169,6 @@ typedef void(^STKFrameFilter)(UInt32 channelsPerFrame, UInt32 bytesPerFrame, UIn
 /// URLs with unrecognised schemes will return nil.
 +(STKDataSource*) dataSourceFromURL:(NSURL*)url;
 
-+(STKDataSource*) dataSourceFromURL:(NSURL*)url andHeaders:(NSDictionary *)headers;
-
 /// Initializes a new STKAudioPlayer with the default options
 -(id) init;
 
@@ -181,10 +178,6 @@ typedef void(^STKFrameFilter)(UInt32 channelsPerFrame, UInt32 bytesPerFrame, UIn
 /// Plays an item from the given URL string (all pending queued items are removed).
 /// The NSString is used as the queue item ID
 -(void) play:(NSString*)urlString;
-
-/// Plays an item from the given URL string (all pending queued items are removed).
-/// The NSString is used as the queue item ID
--(void) play:(NSString*)urlString withHeaders:(NSDictionary *)headers;
 
 /// Plays an item from the given URL (all pending queued items are removed)
 -(void) play:(NSString*)urlString withQueueItemID:(NSObject*)queueItemId;

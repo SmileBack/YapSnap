@@ -51,8 +51,6 @@
 #define kOutputBus 0
 #define kInputBus 1
 
-#define STK_PITCHSHIFT_TRANSFORM 1000
-
 #define STK_DBMIN (-60)
 #define STK_DBOFFSET (-74.0)
 #define STK_LOWPASSFILTERTIMESLICE (0.0005)
@@ -172,7 +170,6 @@ static UInt32 maxFramesPerSlice = 4096;
 
 static AudioComponentDescription mixerDescription;
 static AudioComponentDescription nbandUnitDescription;
-static AudioComponentDescription pitchUnitDescription;
 static AudioComponentDescription outputUnitDescription;
 static AudioComponentDescription convertUnitDescription;
 static AudioStreamBasicDescription canonicalAudioStreamBasicDescription;
@@ -186,7 +183,6 @@ static AudioStreamBasicDescription canonicalAudioStreamBasicDescription;
     STKAudioPlayerInternalState internalState;
 	
 	Float32 volume;
-    Float32 pitchShift; // -1.0 to 1.0
 	Float32 peakPowerDb[2];
 	Float32 averagePowerDb[2];
 	
@@ -200,19 +196,15 @@ static AudioStreamBasicDescription canonicalAudioStreamBasicDescription;
 	AUGraph audioGraph;
     AUNode eqNode;
 	AUNode mixerNode;
-    AUNode pitchNode;
     AUNode outputNode;
 	
 	AUNode eqInputNode;
 	AUNode eqOutputNode;
 	AUNode mixerInputNode;
 	AUNode mixerOutputNode;
-    AUNode pitchInputNode;
-    AUNode pitchOutputNode;
 	
     AudioComponentInstance eqUnit;
 	AudioComponentInstance mixerUnit;
-    AudioComponentInstance pitchUnit;
 	AudioComponentInstance outputUnit;
 		
     UInt32 eqBandCount;
@@ -344,14 +336,6 @@ static void AudioFileStreamPacketsProc(void* clientData, UInt32 numberBytes, UIn
 		.componentSubType = kAudioUnitSubType_NBandEQ,
 		.componentManufacturer=kAudioUnitManufacturer_Apple
 	};
-    
-    pitchUnitDescription = (AudioComponentDescription)
-    {
-        .componentType = kAudioUnitType_FormatConverter,
-        .componentSubType = kAudioUnitSubType_NewTimePitch,
-//        .componentSubType = kAudioUnitSubType_Varispeed,
-        .componentManufacturer = kAudioUnitManufacturer_Apple
-    };
 }
 -(STKAudioPlayerOptions) options
 {
@@ -628,12 +612,8 @@ static void AudioFileStreamPacketsProc(void* clientData, UInt32 numberBytes, UIn
 	}
 #endif
 }
-+(STKDataSource*) dataSourceFromURL:(NSURL*)url
-{
-    return [STKAudioPlayer dataSourceFromURL:url andHeaders:nil];
-}
 
-+(STKDataSource*) dataSourceFromURL:(NSURL*)url andHeaders:(NSDictionary *) headers
++(STKDataSource*) dataSourceFromURL:(NSURL*)url
 {
     STKDataSource* retval = nil;
     
@@ -643,11 +623,7 @@ static void AudioFileStreamPacketsProc(void* clientData, UInt32 numberBytes, UIn
     }
     else if ([url.scheme caseInsensitiveCompare:@"http"] == NSOrderedSame || [url.scheme caseInsensitiveCompare:@"https"] == NSOrderedSame)
     {
-        if (headers) {
-            retval = [[STKAutoRecoveringHTTPDataSource alloc] initWithHTTPDataSource:[[STKHTTPDataSource alloc] initWithURL:url]];
-        } else {
-            retval = [[STKAutoRecoveringHTTPDataSource alloc] initWithHTTPDataSource:[[STKHTTPDataSource alloc] initWithURL:url httpRequestHeaders:headers]];
-        }
+        retval = [[STKAutoRecoveringHTTPDataSource alloc] initWithHTTPDataSource:[[STKHTTPDataSource alloc] initWithURL:url]];
     }
     
     return retval;
@@ -696,34 +672,17 @@ static void AudioFileStreamPacketsProc(void* clientData, UInt32 numberBytes, UIn
 
 -(void) play:(NSString*)urlString
 {
-    [self play:urlString withQueueItemID:urlString];
-}
-
--(void) play:(NSString*)urlString withHeaders:(NSDictionary *)headers
-{
-    [self play:urlString withQueueItemID:urlString andHeaders:headers];
+	[self play:urlString withQueueItemID:urlString];
 }
 
 -(void) play:(NSString*)urlString withQueueItemID:(NSObject*)queueItemId
 {
     NSURL* url = [NSURL URLWithString:urlString];
     
-    [self setDataSource:[STKAudioPlayer dataSourceFromURL:url] withQueueItemId:queueItemId];
-}
-
--(void) play:(NSString*)urlString withQueueItemID:(NSObject*)queueItemId andHeaders:(NSDictionary *)headers
-{
-    NSURL* url = [NSURL URLWithString:urlString];
-    
-	[self setDataSource:[STKAudioPlayer dataSourceFromURL:url andHeaders:headers] withQueueItemId:queueItemId];
+	[self setDataSource:[STKAudioPlayer dataSourceFromURL:url] withQueueItemId:queueItemId];
 }
 
 -(void) playURL:(NSURL*)url
-{
-    [self playURL:url withQueueItemID:url];
-}
-
--(void) playURL:(NSURL*)url withHeaders:(NSDictionary *)headers
 {
 	[self playURL:url withQueueItemID:url];
 }
@@ -1990,23 +1949,6 @@ static BOOL GetHardwareCodecClassDesc(UInt32 formatId, AudioClassDescription* cl
     CHECK_STATUS_AND_RETURN(AudioUnitSetProperty(outputUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, kOutputBus, &canonicalAudioStreamBasicDescription, sizeof(canonicalAudioStreamBasicDescription)));
 }
 
-- (void)createPitchUnit
-{
-    
-    OSStatus status;
-
-    // TODO: add option for enabling pitch
-//    if (!self.options.enableVolumeMixer)
-//    {
-//        return;
-//    }
-    
-    CHECK_STATUS_AND_RETURN(AUGraphAddNode(audioGraph, &pitchUnitDescription, &pitchNode));
-    CHECK_STATUS_AND_RETURN(AUGraphNodeInfo(audioGraph, pitchNode, &pitchUnitDescription, &pitchUnit));
-    CHECK_STATUS_AND_RETURN(AudioUnitSetProperty(pitchUnit, kAudioUnitProperty_MaximumFramesPerSlice, kAudioUnitScope_Global, 0, &maxFramesPerSlice, sizeof(maxFramesPerSlice)));
-    CHECK_STATUS_AND_RETURN(AudioUnitSetParameter(pitchUnit, kNewTimePitchParam_Rate, kAudioUnitScope_Global, 0, 1, 0))
-}
-
 -(void) createMixerUnit
 {
 	OSStatus status;
@@ -2041,6 +1983,7 @@ static BOOL GetHardwareCodecClassDesc(UInt32 formatId, AudioClassDescription* cl
     {
 		return;
 	}
+	
 	CHECK_STATUS_AND_RETURN(AUGraphAddNode(audioGraph, &nbandUnitDescription, &eqNode));
 	CHECK_STATUS_AND_RETURN(AUGraphNodeInfo(audioGraph, eqNode, NULL, &eqUnit));
 	CHECK_STATUS_AND_RETURN(AudioUnitSetProperty(eqUnit, kAudioUnitProperty_MaximumFramesPerSlice, kAudioUnitScope_Global, 0, &maxFramesPerSlice, sizeof(maxFramesPerSlice)));
@@ -2164,7 +2107,6 @@ static BOOL GetHardwareCodecClassDesc(UInt32 formatId, AudioClassDescription* cl
 	
 	[self createEqUnit];
 	[self createMixerUnit];
-    [self createPitchUnit];
 	[self createOutputUnit];
     
     [self connectGraph];
@@ -2172,7 +2114,6 @@ static BOOL GetHardwareCodecClassDesc(UInt32 formatId, AudioClassDescription* cl
 	CHECK_STATUS_AND_RETURN(AUGraphInitialize(audioGraph));
 	
 	self.volume = self->volume;
-    self.pitchShift = self->pitchShift;
 }
 
 -(void) connectGraph
@@ -2213,12 +2154,6 @@ static BOOL GetHardwareCodecClassDesc(UInt32 formatId, AudioClassDescription* cl
     {
         [nodes addObject:@(mixerNode)];
         [units addObject:[NSValue valueWithPointer:mixerUnit]];
-    }
-    
-    if (pitchNode)
-    {
-        [nodes addObject:@(pitchNode)];
-        [units addObject:[NSValue valueWithPointer:pitchUnit]];
     }
 	
     if (outputNode)
@@ -3207,22 +3142,6 @@ static OSStatus OutputRenderCallback(void* inRefCon, AudioUnitRenderActionFlags*
 		AudioUnitSetParameter(outputUnit, kHALOutputParam_Volume, kAudioUnitScope_Output, kOutputBus, self->volume, 0);
 	}
 #endif
-}
-
-- (void)setPitchShift:(Float32)value
-{
-    //NSLog(@"%f", value);
-    self->pitchShift = value;
-    if (self->pitchNode)
-    {
-        NSInteger adjustedPitch = STK_PITCHSHIFT_TRANSFORM * pitchShift;
-        AudioUnitSetParameter(pitchUnit, kNewTimePitchParam_Pitch, kAudioUnitScope_Global, 0, adjustedPitch, 0);
-    }
-}
-
-- (Float32) pitchShift
-{
-    return self->pitchShift;
 }
 
 -(Float32) volume

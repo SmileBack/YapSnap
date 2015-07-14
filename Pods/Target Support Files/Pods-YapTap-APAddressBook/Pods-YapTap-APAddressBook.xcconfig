@@ -1,0 +1,1 @@
+PODS_YAPTAP_APADDRESSBOOK_OTHER_LDFLAGS = -framework "AddressBook"

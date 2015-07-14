@@ -48,6 +48,18 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
+// APAddressBook
+#define COCOAPODS_POD_AVAILABLE_APAddressBook
+#define COCOAPODS_VERSION_MAJOR_APAddressBook 0
+#define COCOAPODS_VERSION_MINOR_APAddressBook 1
+#define COCOAPODS_VERSION_PATCH_APAddressBook 11
+
+// APAddressBook/Core
+#define COCOAPODS_POD_AVAILABLE_APAddressBook_Core
+#define COCOAPODS_VERSION_MAJOR_APAddressBook_Core 0
+#define COCOAPODS_VERSION_MINOR_APAddressBook_Core 1
+#define COCOAPODS_VERSION_PATCH_APAddressBook_Core 11
+
 // AWSiOSSDKv2
 #define COCOAPODS_POD_AVAILABLE_AWSiOSSDKv2
 #define COCOAPODS_VERSION_MAJOR_AWSiOSSDKv2 2
@@ -162,6 +174,12 @@
 #define COCOAPODS_VERSION_MINOR_GZIP 0
 #define COCOAPODS_VERSION_PATCH_GZIP 3
 
+// MJPopupViewController
+#define COCOAPODS_POD_AVAILABLE_MJPopupViewController
+#define COCOAPODS_VERSION_MAJOR_MJPopupViewController 0
+#define COCOAPODS_VERSION_MINOR_MJPopupViewController 4
+#define COCOAPODS_VERSION_PATCH_MJPopupViewController 0
+
 // Mantle
 #define COCOAPODS_POD_AVAILABLE_Mantle
 #define COCOAPODS_VERSION_MAJOR_Mantle 1
@@ -221,6 +239,12 @@
 #define COCOAPODS_VERSION_MAJOR_TMCache 1
 #define COCOAPODS_VERSION_MINOR_TMCache 2
 #define COCOAPODS_VERSION_PATCH_TMCache 3
+
+// UIAlertView+Blocks
+#define COCOAPODS_POD_AVAILABLE_UIAlertView_Blocks
+#define COCOAPODS_VERSION_MAJOR_UIAlertView_Blocks 0
+#define COCOAPODS_VERSION_MINOR_UIAlertView_Blocks 9
+#define COCOAPODS_VERSION_PATCH_UIAlertView_Blocks 0
 
 // UICKeyChainStore
 #define COCOAPODS_POD_AVAILABLE_UICKeyChainStore

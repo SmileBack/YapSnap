@@ -15,5 +15,6 @@ target "YapTap" do
   pod 'Mixpanel'
   pod 'UIAlertView+Blocks'
   pod 'MJPopupViewController', '~> 0.4'
+  pod 'APAddressBook', '~> 0.1.11'
 end
 
