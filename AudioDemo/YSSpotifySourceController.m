@@ -47,6 +47,10 @@
 @property (nonatomic) CGFloat maxStringSizeWidth;
 @property (nonatomic) BOOL isShowingTrackGroupPool;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryButtonsYConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryButtonsXConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryButtonsWidthConstraint;
+
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryOne;
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryTwo;
 @property (strong, nonatomic) YTTrackGroup *trackGroupCategoryThree;
@@ -121,23 +125,28 @@
 
     if (IS_IPHONE_4_SIZE) {
         carouselHeight = 140; // 69; 138*100
-        //self.categoryButtonFiveBottomConstraint.constant = 120;
-//        self.categoryButtonFiveWidthConstraint.constant = 75;
-//        self.categoryModeButtonWidthConstraint.constant = 60;
+        self.categoryButtonsWidthConstraint.constant = 110;
+        self.categoryButtonsYConstraint.constant = 32;
+        self.categoryButtonsXConstraint.constant = 40; // hardcoded
+        self.categoryViewBottomConstraint.constant = 90;
     } else if (IS_IPHONE_5_SIZE) {
         carouselHeight = 200; // 99; 198*100
-//        self.categoryButtonFiveBottomConstraint.constant = 120;
-//        self.categoryButtonFiveWidthConstraint.constant = 80;
+        self.categoryButtonsWidthConstraint.constant = 120;
+        self.categoryButtonsYConstraint.constant = 22;
+        self.categoryButtonsXConstraint.constant = 30; // hardcoded
+        self.categoryViewBottomConstraint.constant = 95;
     } else if (IS_IPHONE_6_PLUS_SIZE) {
         carouselHeight = 290; // 144; (288*100) *1.5
-//        self.categoryViewBottomConstraint.constant = 150;
-//        self.categoryButtonFiveBottomConstraint.constant = 140;
-//        self.categoryButtonFiveWidthConstraint.constant = 105;
-//        self.categoryModeButtonWidthConstraint.constant = 80;
+        self.categoryButtonsWidthConstraint.constant = 155;
+        self.categoryButtonsYConstraint.constant = 70;
+        self.categoryButtonsXConstraint.constant = 42; // hardcoded
+        self.categoryViewBottomConstraint.constant = 100;
     } else {
         carouselHeight = 240; // 119; (238*100) *1.172  279*117
-//        self.categoryButtonFiveBottomConstraint.constant = 160;
-//       self.categoryButtonFiveWidthConstraint.constant = 95;
+        self.categoryButtonsWidthConstraint.constant = 140;
+        self.categoryButtonsYConstraint.constant = 55;
+        self.categoryButtonsXConstraint.constant =  37; // hardcoded
+        self.categoryViewBottomConstraint.constant = 95;
     }
     self.carouselHeightConstraint.constant = carouselHeight;
     
@@ -311,28 +320,28 @@
 }
 
 -(void) setupCategoryButtons {
-    self.categoryButtonOne.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonOne.layer.cornerRadius = self.categoryButtonsWidthConstraint.constant/2;
     self.categoryButtonOne.layer.borderWidth = 1;
     self.categoryButtonOne.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
     self.categoryButtonOne.backgroundColor = THEME_SECONDARY_COLOR; //THEME_BACKGROUND_COLOR;
     [self.categoryButtonOne setTitleColor: THEME_BACKGROUND_COLOR forState:UIControlStateNormal]; //THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonOne setTitle:self.trackGroupCategoryOne.name forState:UIControlStateNormal];
     
-    self.categoryButtonTwo.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonTwo.layer.cornerRadius = self.categoryButtonsWidthConstraint.constant/2;
     self.categoryButtonTwo.layer.borderWidth = 1;
     self.categoryButtonTwo.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
     self.categoryButtonTwo.backgroundColor = THEME_SECONDARY_COLOR; //THEME_BACKGROUND_COLOR;THEME_BACKGROUND_COLOR;
     [self.categoryButtonTwo setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal]; //THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonTwo setTitle:self.trackGroupCategoryTwo.name forState:UIControlStateNormal];
     
-    self.categoryButtonThree.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonThree.layer.cornerRadius = self.categoryButtonsWidthConstraint.constant/2;
     self.categoryButtonThree.layer.borderWidth = 1;
     self.categoryButtonThree.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
     self.categoryButtonThree.backgroundColor = THEME_SECONDARY_COLOR; //THEME_BACKGROUND_COLOR;
     [self.categoryButtonThree setTitleColor:THEME_BACKGROUND_COLOR forState:UIControlStateNormal]; //THEME_SECONDARY_COLOR forState:UIControlStateNormal];
     [self.categoryButtonThree setTitle:self.trackGroupCategoryThree.name forState:UIControlStateNormal];
     
-    self.categoryButtonFour.layer.cornerRadius = 60; //self.categoryButtonFiveWidthConstraint.constant/2;
+    self.categoryButtonFour.layer.cornerRadius = self.categoryButtonsWidthConstraint.constant/2;
     self.categoryButtonFour.layer.borderWidth = 1;
     self.categoryButtonFour.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
     self.categoryButtonFour.backgroundColor = THEME_SECONDARY_COLOR; //THEME_BACKGROUND_COLOR;
