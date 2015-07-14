@@ -142,7 +142,6 @@
 		7854B0731AF88CCF00A02DF9 /* LeftArrow50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0721AF88CCF00A02DF9 /* LeftArrow50.png */; };
 		7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */; };
 		7857CABE1AFBB43300ADF999 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857CABD1AFBB43300ADF999 /* HomeViewController.m */; };
-		786192471B06BA5B007279E8 /* MegaphoneWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192461B06BA5B007279E8 /* MegaphoneWhite.png */; };
 		7861924D1B072077007279E8 /* WhiteCamera100.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861924C1B072077007279E8 /* WhiteCamera100.png */; };
 		786192531B07EE2B007279E8 /* Chipmunk.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192521B07EE2B007279E8 /* Chipmunk.png */; };
 		786192631B086202007279E8 /* ProgressViewRediPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192621B086202007279E8 /* ProgressViewRediPhone4@2x.png */; };
@@ -1781,7 +1780,6 @@
 				786192881B0A783B007279E8 /* ForwardingPopupViewController.xib in Resources */,
 				782D13981ACC59E6007C8499 /* YapsButtonNoYaps.png in Resources */,
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
-				786192471B06BA5B007279E8 /* MegaphoneWhite.png in Resources */,
 				78319A7D1ACD0111000C3FD6 /* MicModeButtonIcon@2x.png in Resources */,
 				781904821AF1E3CE00196DFF /* ResetButton40@2x.png in Resources */,
 				7861926B1B099B2E007279E8 /* megaphone_shutterstock3.png in Resources */,
