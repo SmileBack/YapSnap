@@ -91,7 +91,7 @@
     track.albumName = trackDictionary[@"spotify_album_name"];
     track.imageURL = trackDictionary[@"spotify_image_url"];
     
-//    track.secondsToFastForward = trackDictionary[@"seconds_to_fast_forward"];
+    track.secondsToFastForward = trackDictionary[@"seconds_to_fast_forward"];
     
     return track;
 }

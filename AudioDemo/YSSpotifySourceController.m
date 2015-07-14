@@ -793,8 +793,12 @@
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
     }
     
-    track.secondsToFastForward = [NSNumber numberWithInt:0];
-    
+    if (track.secondsToFastForward.intValue > 1) {
+        NSLog(@"Backend is giving us this info");
+    } else {
+        track.secondsToFastForward = [NSNumber numberWithInt:0];
+    }
+        
     if (track.imageURL) {
         [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.imageURL]];
     } else {
