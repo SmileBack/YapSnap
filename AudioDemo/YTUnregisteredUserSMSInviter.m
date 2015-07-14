@@ -10,6 +10,8 @@
 #import "YSYap.h"
 #import "UIAlertView+Blocks.h"
 #import <MessageUI/MessageUI.h>
+#import "Mixpanel/MPTweakInline.h"
+
 
 @interface YTUnregisteredUserSMSInviter()
 
@@ -58,6 +60,8 @@
             } else {
                self.alertMessage = [NSString stringWithFormat:@"%@ and a few others don't have YapTap yet, but they'll get your yap as soon as they download it!", firstNameOne];
             }
+            
+            //NSString *cancelButtonTitle = MPTweakBind(self, alertMessage, @"label text", @"Hello World");
             
             [UIAlertView showWithTitle:@"Yap Sent!"
                                message:self.alertMessage

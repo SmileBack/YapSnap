@@ -18,6 +18,7 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "SearchArtistAlertView.h"
 #import "YTTrackGroup.h"
+#import "Mixpanel/MPTweakInline.h"
 
 @interface YSSpotifySourceController ()
 @property (nonatomic, strong) NSArray *songs;
@@ -104,10 +105,10 @@
     [self setupConstraints];
     
     [self createArtistButtonHack];
-    
-    self.categoryView.backgroundColor = THEME_BACKGROUND_COLOR;
+
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
-    self.searchBox.backgroundColor = THEME_BACKGROUND_COLOR;
+    self.categoryView.backgroundColor = THEME_BACKGROUND_COLOR;
+    self.searchBox.backgroundColor = THEME_DARK_BLUE_COLOR;
     self.artistButton.titleLabel.textColor = THEME_SECONDARY_COLOR;
     
     [self createTrackGroups];
@@ -252,7 +253,7 @@
                         if (self.categoryView.alpha == 1) {
                             // Hide Category View
                             self.categoryView.alpha = 0;
-                            [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImageNew2.png"] forState:UIControlStateNormal];
+                            [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage10.png"] forState:UIControlStateNormal];
                             self.artistButtonHack.hidden = NO;
                         }
                         [self.view endEditing:YES];
@@ -285,19 +286,19 @@
 
 - (void) createTrackGroups {
     self.trackGroupCategoryOne = [YTTrackGroup new];
-    self.trackGroupCategoryOne.name = @"Popular";
+    self.trackGroupCategoryOne.name = MPTweakValue(@"Category1", @"Popular");
     self.trackGroupCategoryOne.apiString = @"trending_tracks";
     
     self.trackGroupCategoryTwo = [YTTrackGroup new];
-    self.trackGroupCategoryTwo.name = @"Funny";
+    self.trackGroupCategoryTwo.name = MPTweakValue(@"Category2", @"Funny");
     self.trackGroupCategoryTwo.apiString = @"funny_tracks";
     
     self.trackGroupCategoryThree = [YTTrackGroup new];
-    self.trackGroupCategoryThree.name = @"Nostalgic";
+    self.trackGroupCategoryThree.name = MPTweakValue(@"Category3", @"Nostalgic");
     self.trackGroupCategoryThree.apiString = @"nostalgic_tracks";
     
     self.trackGroupCategoryFour = [YTTrackGroup new];
-    self.trackGroupCategoryFour.name = @"Flirtatious";
+    self.trackGroupCategoryFour.name = MPTweakValue(@"Category4", @"Flirtatious");
     self.trackGroupCategoryFour.apiString = @"flirtatious_tracks";
     
     self.trackGroupOnboarding = [YTTrackGroup new];
@@ -358,7 +359,7 @@
     } else {
         // Hide Category View
         self.categoryView.alpha = 0;
-        [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImageNew2.png"] forState:UIControlStateNormal];
+        [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage10.png"] forState:UIControlStateNormal];
         self.artistButtonHack.hidden = NO;
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Tapped Category Mode Button (Hide)"];
@@ -394,7 +395,7 @@
     self.searchBox.text = trackGroup.name;
     self.resetButton.alpha = 1;
     self.categoryView.alpha = 0;
-    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImageNew2.png"] forState:UIControlStateNormal];
+    [self.bottomButton setBackgroundImage:[UIImage imageNamed:@"CategoryButtonImage10.png"] forState:UIControlStateNormal];
     [self retrieveAndLoadTracksForCategory:trackGroup];
     self.artistButtonHack.hidden = NO;
 }
