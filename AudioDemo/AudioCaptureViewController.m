@@ -22,7 +22,6 @@
 }
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 @property (nonatomic) float elapsedTime;
-@property (strong, nonatomic) UIImage *diceImage;
 @property (weak, nonatomic) IBOutlet UIButton *switchButton;
 @property (weak, nonatomic) IBOutlet UILabel *receiverLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -371,7 +370,6 @@ static const float TIMER_INTERVAL = .05;//.02;
 }
 
 - (IBAction) didTapCancelButton {
-    //[self resetSpotifyBannerUI];
     self.elapsedTime = 0;
     self.bottomView.hidden = YES;
     self.recordProgressView.alpha = 0;
@@ -398,16 +396,6 @@ static const float TIMER_INTERVAL = .05;//.02;
     YSMicSourceController *micSource = [self.storyboard instantiateViewControllerWithIdentifier:@"MicSourceController"];
     [self setRecordSourceViewController:micSource];
 }
-
-/*
-- (IBAction)didTapSwitchRecordSource:(id)sender {
-    if (self.type == AudioCapTureTypeSpotify) {
-        [self switchToMicMode];
-    } else {
-        [self switchToSpotifyMode];
-    }
-}
-*/
  
 - (void) setRecordSourceViewController:(YSAudioSourceController *)to {
     NSAssert(to != nil, @"To controller cannot be nil");

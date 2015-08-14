@@ -14,7 +14,7 @@
 #import "AudioCaptureViewController.h"
 #import "YSPushManager.h"
 
-@interface HomeViewController () {
+@interface HomeViewController ()<UITextFieldDelegate> {
     NSTimer *countdownTimer;
     int currMinute;
     int currSeconds;
@@ -27,7 +27,9 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *pageLabelConstraint;
 @property (strong, nonatomic) IBOutlet UILabel *countdownTimerLabel;
 @property IBOutlet UIActivityIndicatorView* activityIndicator;
-
+@property (weak, nonatomic) IBOutlet UITextField *searchBar;
+@property (strong, nonatomic) IBOutlet UIButton *resetButton;
+@property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
 
 @end
 
@@ -48,7 +50,7 @@
                                                                             target:nil
                                                                             action:nil];
     [self setupNotifications];
-    
+    [self setupSearchBox];
     if (IS_IPHONE_4_SIZE) {
         self.pageLabelConstraint.constant = 20;
     } else if (IS_IPHONE_6_SIZE) {
@@ -60,6 +62,100 @@
     self.pageLabel.textColor = THEME_SECONDARY_COLOR;
     self.countdownTimerLabel.textColor = THEME_SECONDARY_COLOR;
 }
+
+-(void)textFieldDidChange:(UITextField *)searchBox {
+    if ([self.searchBar.text length] == 0) {
+        NSLog(@"Empty String");
+        self.resetButton.alpha = 0;
+    } else {
+        [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+    }
+}
+
+#pragma mark - Search box stuff
+- (void) setupSearchBox
+{
+    self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.searchBar.textColor = THEME_SECONDARY_COLOR;
+    self.searchBar.backgroundColor = THEME_DARK_BLUE_COLOR;
+    [self.searchBar setTintColor:THEME_SECONDARY_COLOR];
+    self.searchBar.font = [UIFont fontWithName:@"Futura-Medium" size:15];
+    self.searchBar.delegate = self;
+    [self.searchBar addTarget:self
+                       action:@selector(textFieldDidChange:)
+             forControlEvents:UIControlEventEditingChanged];
+    self.searchBar.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search YapTap" attributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35] }];
+    self.searchBar.layer.cornerRadius= 1.0f;
+    self.searchBar.layer.masksToBounds = YES;
+    self.searchBar.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
+    self.searchBar.layer.borderWidth= 1.0f;
+}
+
+- (void) updateVisibilityOfMagnifyingGlassAndResetButtons {
+    CGSize stringsize = [[NSString stringWithFormat:@"%@", self.searchBar.text] sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Futura-Medium" size:18]}];
+    CGFloat maxStringSizeWidth = 170;
+    if (IS_IPHONE_6_SIZE) {
+        maxStringSizeWidth = 220;
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        maxStringSizeWidth = 260;
+    }
+    
+    if (stringsize.width > maxStringSizeWidth) {
+        self.resetButton.alpha = 0;
+        self.magnifyingGlassImageView.hidden = YES;
+    } else {
+        [UIView animateWithDuration:.3
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.resetButton.alpha = 0.9;
+                         }
+                         completion:nil];
+        self.magnifyingGlassImageView.hidden = NO;
+    }
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    NSLog(@"Textfield did begin editing");
+    // RUDD TODO:
+//    self.songs = nil;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    //Remove extra space at end of string
+    [self searchWithTextInTextField:textField];
+    return YES;
+}
+
+- (void)searchWithTextInTextField:(UITextField*)textField {
+    self.searchBar.text = [self.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    [self.view endEditing:YES];
+    if ([self.searchBar.text length] > 0) {
+        // RUDD TODO:
+//        [self searchForTracksWithString:self.searchBar.text];
+        [[API sharedAPI] sendSearchTerm:textField.text withCallback:^(BOOL success, NSError *error) {
+            if (success) {
+                NSLog(@"Sent search term metric");
+            } else {
+                NSLog(@"Failed to send search term metric");
+            }
+        }];
+    }
+}
+
+
+
+- (IBAction) didTapResetButton {
+    double delay = .1;
+    self.searchBar.text = nil;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.searchBar becomeFirstResponder];
+    });
+}
+
 
 - (void) setupNotifications {
     __weak HomeViewController *weakSelf = self;

@@ -7,10 +7,9 @@
 //
 
 #import "YSAudioSourceController.h"
-#import <iCarousel/iCarousel.h>
 #import <StreamingKit/STKAudioPlayer.h>
 
-@interface YSSpotifySourceController : YSAudioSourceController<iCarouselDataSource, iCarouselDelegate, UITextFieldDelegate, STKAudioPlayerDelegate, UIAlertViewDelegate>
+@interface YSSpotifySourceController : YSAudioSourceController<UITextFieldDelegate, STKAudioPlayerDelegate, UIAlertViewDelegate>
 
 #define TAPPED_ALBUM_COVER @"yaptap.TappedAlbumCoverKey5"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
@@ -22,7 +21,5 @@
 #define RESET_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
 #define DID_PLAY_SONG_FOR_FIRST_TIME_KEY @"yaptap.DidPlaySongForFirstTimeKey"
 #define DID_TAP_ARTIST_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.DidTapArtistButtonForFirstTimeKey"
-
-@property (nonatomic, strong) NSString *selectedGenre;
 
 @end
