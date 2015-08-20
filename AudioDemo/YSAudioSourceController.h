@@ -43,7 +43,7 @@
 - (void) stopAudioCapture;
 
 - (void) startPlayback;
-- (void) stopPlayback;
+- (void) cancelPlayingAudio;
 
 - (void) resetUI;
 

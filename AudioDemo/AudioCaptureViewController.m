@@ -256,7 +256,6 @@ static const float TIMER_INTERVAL = .05;//.02;
 
 - (void)audioSourceControllerDidStartAudioCapture:(YSAudioSourceController *)controller {
     NSLog(@"Did Start Audio Capture");
-    
     self.recordProgressView.trackTintColor = [UIColor whiteColor];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:DID_START_AUDIO_CAPTURE_NOTIFICATION object:nil];
@@ -278,20 +277,17 @@ static const float TIMER_INTERVAL = .05;//.02;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION object:nil];
     
-    self.bottomView.hidden = YES;
+    self.bottomView.hidden = NO;
 }
 
 - (void)audioSourceControllerdidFinishAudioCapture:(YSAudioSourceController *)controller {
     [audioProgressTimer invalidate];
-    NSLog(@"Audio Progress Timer Invalidate 7");
     [[NSNotificationCenter defaultCenter] postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION object:nil];
     
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
         NSLog(@"Didn't hit threshold");
         self.recordProgressView.progress = 0.0;
-        
         [[NSNotificationCenter defaultCenter] postNotificationName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION object:nil];
-        
         [UIView animateWithDuration:.1
                               delay:0
                             options:UIViewAnimationOptionCurveEaseOut
@@ -308,7 +304,6 @@ static const float TIMER_INTERVAL = .05;//.02;
     } else {
         NSLog(@"Hit threshold");
         [[NSNotificationCenter defaultCenter] postNotificationName:LISTENED_TO_CLIP_NOTIFICATION object:nil];
-        self.bottomView.hidden = NO;
         
         if (self.type == AudioCapTureTypeSpotify) {
             self.recordProgressView.progress = 1.0; // DEFAULT EVERY YAP TO 12 SECONDS
@@ -370,6 +365,7 @@ static const float TIMER_INTERVAL = .05;//.02;
 }
 
 - (IBAction) didTapCancelButton {
+    [self.audioSource cancelPlayingAudio];
     self.elapsedTime = 0;
     self.bottomView.hidden = YES;
     self.recordProgressView.alpha = 0;

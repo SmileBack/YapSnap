@@ -46,6 +46,6 @@
 }
 
 - (void) startPlayback{}
-- (void) stopPlayback{}
+- (void) cancelPlayingAudio{}
 
 @end

@@ -80,14 +80,23 @@
 - (void)playSongAtIndexPath:(NSIndexPath *)indexPath withOffsetStartTime:(NSUInteger)offset {
     [self.collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
     YSTrack *selectedTrack = self.songs[indexPath.row];
-    selectedTrack.secondsToFastForward = [NSNumber numberWithInt:offset];
+    selectedTrack.secondsToFastForward = [NSNumber numberWithUnsignedInteger:offset];
     [self startAudioCapture];
 }
 
 #pragma mark - YSSongCollectionViewDataSourceDelegate
 
 - (void)songCollectionDataSource:(YSSongCollectionViewDataSource *)dataSource didTapSongAtIndexPath:(NSIndexPath *)indexPath {
-    [self playSongAtIndexPath:indexPath withOffsetStartTime:0];
+    if ([indexPath isEqual:self.collectionView.indexPathsForSelectedItems.firstObject]) {
+        if (self.player.state == STKAudioPlayerStatePlaying) {
+            [self.player pause];
+        } else {
+            [self startAudioCapture];
+        }
+        
+    } else {
+        [self playSongAtIndexPath:indexPath withOffsetStartTime:0];
+    }
 }
 
 - (void)songCollectionDataSource:(YSSongCollectionViewDataSource *)dataSource didTapArtistAtIndexPath:(NSIndexPath *)indexPath {
@@ -327,7 +336,7 @@
         NSLog(@"state == STKAudioPlayerStateBuffering");
         if (self.playerAlreadyStartedPlayingForThisSong) {
             NSLog(@"Buffering for second time!");
-            [[YTNotifications sharedNotifications] showBufferingText:@"Buffering (keep holding)"];
+            [[YTNotifications sharedNotifications] showBufferingText:@"Buffering"];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Buffering notification - Spotify"];
         }
@@ -414,10 +423,20 @@
     }
 }
 
-- (void) stopAudioCapture
-{
+- (void)cancelPlayingAudio {
+    [self stopPlayback];
+    for (NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
+        [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    }
+}
+
+- (void)stopPlayback {
+    [self.player stop];
+}
+
+- (void) stopAudioCapture {
     if ((self.player.state & STKAudioPlayerStateRunning) != 0) {
-        [self.player stop];
+        [self stopPlayback];
         if ([self.audioCaptureDelegate respondsToSelector:@selector(audioSourceControllerdidFinishAudioCapture:)]) {
             [self.audioCaptureDelegate audioSourceControllerdidFinishAudioCapture:self];
         }
