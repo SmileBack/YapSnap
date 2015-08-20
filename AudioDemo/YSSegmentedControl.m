@@ -120,7 +120,7 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
             label.text = item.title;
             label.font = [UIFont fontWithName:@"Futura-Medium" size:15];
             label.textAlignment = NSTextAlignmentCenter;
-            label.textColor = [UIColor colorWithRed:23/255.0 green:104/255.0 blue:222/255.0 alpha:1.0];
+            label.textColor = [UIColor colorWithRed:31/255.0 green:65/255.0 blue:102/255.0 alpha:1.0];
             view = label;
         }
         
@@ -165,7 +165,7 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
         
         if ([oldView isKindOfClass:[UILabel class]]) {
             UILabel *label = (UILabel *)oldView;
-            label.textColor = [UIColor colorWithRed:23/255.0 green:104/255.0 blue:222/255.0 alpha:1.0];
+            label.textColor = [UIColor colorWithRed:31/255.0 green:65/255.0 blue:102/255.0 alpha:1.0];
         }
         
         self.currentlyEnabledView = [self viewWithTag:YSSegmentedControl_ViewTagOffset + segment];
@@ -235,7 +235,11 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
 }
 
 - (void)didChangeControl {
-    [self scrollRectToVisible:self.control.currentlyEnabledView.frame animated:YES];
+    CGRect frame = self.control.currentlyEnabledView.frame;
+    CGFloat offset = 100;
+    frame.size.width = frame.size.width + offset;
+    frame.origin.x = frame.origin.x - (offset/2);
+    [self scrollRectToVisible:frame animated:YES];
 }
 
 @end
