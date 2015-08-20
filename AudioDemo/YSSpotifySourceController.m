@@ -77,11 +77,17 @@
 //    }
 }
 
+- (void)playSongAtIndexPath:(NSIndexPath *)indexPath withOffsetStartTime:(NSUInteger)offset {
+    [self.collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    YSTrack *selectedTrack = self.songs[indexPath.row];
+    selectedTrack.secondsToFastForward = [NSNumber numberWithInt:offset];
+    [self startAudioCapture];
+}
+
 #pragma mark - YSSongCollectionViewDataSourceDelegate
 
 - (void)songCollectionDataSource:(YSSongCollectionViewDataSource *)dataSource didTapSongAtIndexPath:(NSIndexPath *)indexPath {
-    [self.collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-    [self startAudioCapture];
+    [self playSongAtIndexPath:indexPath withOffsetStartTime:0];
 }
 
 - (void)songCollectionDataSource:(YSSongCollectionViewDataSource *)dataSource didTapArtistAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,9 +108,7 @@
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
     }
     
-    YSTrack *selectedTrack = self.songs[indexPath.row];
-    selectedTrack.secondsToFastForward = [NSNumber numberWithInt:0];
-    
+    [self playSongAtIndexPath:indexPath withOffsetStartTime:0];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Song Version One"];
 }
@@ -123,9 +127,7 @@
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"SongVersionTwoSelected.png"] forState:UIControlStateNormal];
     }
     
-    YSTrack *selectedTrack = self.songs[indexPath.row];
-    selectedTrack.secondsToFastForward = [NSNumber numberWithInt:17];
-    
+    [self playSongAtIndexPath:indexPath withOffsetStartTime:17];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Song Version Two"];
 }
