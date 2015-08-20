@@ -112,6 +112,15 @@ static const float TIMER_INTERVAL = .05; //.02;
     self.bottomView.hidden = YES;
     
     self.recordProgressView.trackTintColor = [UIColor whiteColor];
+    
+    if (!self.categorySelectorView.items) {
+        NSArray *categories = self.audioSource.availableCategories;
+        NSMutableArray *items = [NSMutableArray arrayWithCapacity:categories.count];
+        for (YTTrackGroup *group in categories) {
+            [items addObject:[YSSegmentedControlItem itemWithTitle:group.name]];
+        }
+        self.categorySelectorView.items = items;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -255,6 +264,7 @@ static const float TIMER_INTERVAL = .05; //.02;
 #pragma mark - Actions
 
 - (IBAction)segmentedControlDidChanage:(id)sender {
+    [self.audioSource cancelPlayingAudio];
     [self.audioSource didSelectCategory:[self.audioSource availableCategories][self.categorySelectorView.selectedSegmentIndex]];
 }
 
@@ -377,6 +387,16 @@ static const float TIMER_INTERVAL = .05; //.02;
     NSLog(@"Audio Progress Timer Invalidate 3");
 }
 
+- (void)audioSourceControllerdidCancelAudioCapture:(YSAudioSourceController *)controller {
+    self.elapsedTime = 0;
+    self.bottomView.hidden = YES;
+    self.recordProgressView.alpha = 0;
+    [self.recordProgressView setProgress:0];
+    self.recordProgressView.trackTintColor = [UIColor whiteColor];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI
+                                                        object:nil];
+}
+
 #pragma mark - Audio Capture Search
 
 - (void)clearSearchResults {
@@ -427,13 +447,6 @@ static const float TIMER_INTERVAL = .05; //.02;
 
 - (IBAction)didTapCancelButton {
     [self.audioSource cancelPlayingAudio];
-    self.elapsedTime = 0;
-    self.bottomView.hidden = YES;
-    self.recordProgressView.alpha = 0;
-    [self.recordProgressView setProgress:0];
-    self.recordProgressView.trackTintColor = [UIColor whiteColor];
-    [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI
-                                                        object:nil];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Cancel Clip"];
 }

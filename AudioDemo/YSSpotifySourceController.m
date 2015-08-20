@@ -67,7 +67,6 @@
     
     [self.collectionView registerClass:[SpotifyTrackCollectionViewCell class]
             forCellWithReuseIdentifier:@"track"];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -85,6 +84,12 @@
     selectedTrack.secondsToFastForward =
         [NSNumber numberWithUnsignedInteger:offset];
     [self startAudioCapture];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    for (NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
+        [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    }
 }
 
 #pragma mark - YSSongCollectionViewDataSourceDelegate
@@ -523,25 +528,34 @@
 }
 
 - (void)cancelPlayingAudio {
-    [self stopPlayback];
+    [self stopAudioCaptureFromCancel:YES];
     for (NSIndexPath *indexPath in self.collectionView
              .indexPathsForSelectedItems) {
         [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
     }
 }
 
-- (void)stopPlayback {
-    [self.player stop];
+- (void)stopAudioCapture {
+    [self stopAudioCaptureFromCancel:NO];
 }
 
-- (void)stopAudioCapture {
+- (void)stopAudioCaptureFromCancel:(BOOL)fromCancel {
     if ((self.player.state & STKAudioPlayerStateRunning) != 0) {
-        [self stopPlayback];
-        if ([self.audioCaptureDelegate
-                respondsToSelector:
-                    @selector(audioSourceControllerdidFinishAudioCapture:)]) {
-            [self.audioCaptureDelegate
-                audioSourceControllerdidFinishAudioCapture:self];
+        [self.player stop];
+        if (fromCancel) {
+            if ([self.audioCaptureDelegate
+                 respondsToSelector:
+                 @selector(audioSourceControllerdidCancelAudioCapture:)]) {
+                [self.audioCaptureDelegate
+                 audioSourceControllerdidCancelAudioCapture:self];
+            }
+        } else {
+            if ([self.audioCaptureDelegate
+                 respondsToSelector:
+                 @selector(audioSourceControllerdidFinishAudioCapture:)]) {
+                [self.audioCaptureDelegate
+                 audioSourceControllerdidFinishAudioCapture:self];
+            }
         }
     }
 }

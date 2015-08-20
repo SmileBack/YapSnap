@@ -34,6 +34,8 @@
 
 - (void)audioSourceControllerdidFinishAudioCapture:(YSAudioSourceController*)controller;
 
+- (void)audioSourceControllerdidCancelAudioCapture:(YSAudioSourceController*)controller;
+
 - (void)audioSourceController:(YSAudioSourceController*)controller didReceieveUnexpectedError:(NSError*)error;
 
 @end
