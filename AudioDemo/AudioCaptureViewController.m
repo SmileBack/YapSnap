@@ -110,12 +110,7 @@ static const float TIMER_INTERVAL = .05; //.02;
     self.recordProgressView.progress = 0.0;
 
     self.bottomView.hidden = YES;
-    NSArray *categories = self.audioSource.availableCategories;
-    NSMutableArray *items = [NSMutableArray arrayWithCapacity:categories.count];
-    for (YTTrackGroup *group in categories) {
-        [items addObject:[YSSegmentedControlItem itemWithTitle:group.name]];
-    }
-    self.categorySelectorView.items = items;
+    
     self.recordProgressView.trackTintColor = [UIColor whiteColor];
 }
 
