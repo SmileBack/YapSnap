@@ -46,6 +46,10 @@
 }
 
 - (void) startPlayback{}
+- (void) stopAudioCapture{}
 - (void) cancelPlayingAudio{}
+
+- (void)clearSearchResults {}
+- (void)searchWithText:(NSString *)text {}
 
 @end

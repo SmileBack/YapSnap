@@ -30,10 +30,16 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchBar;
 @property (strong, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
+@property (weak, nonatomic) AudioCaptureViewController* audioCapture;
 
 @end
 
 @implementation HomeViewController
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,17 +65,49 @@
         self.pageLabelConstraint.constant = 100;
     }
     
+    self.resetButton.alpha = 0;
     self.pageLabel.textColor = THEME_SECONDARY_COLOR;
     self.countdownTimerLabel.textColor = THEME_SECONDARY_COLOR;
 }
 
--(void)textFieldDidChange:(UITextField *)searchBox {
-    if ([self.searchBar.text length] == 0) {
-        NSLog(@"Empty String");
-        self.resetButton.alpha = 0;
-    } else {
-        [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (![YSUser currentUser].hasSessionToken) { // Force log in
+        [self performSegueWithIdentifier:@"Login" sender:nil];
     }
+    
+    if (countdownTimer) {
+        [countdownTimer invalidate];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if (countdownTimer) {
+        [countdownTimer invalidate];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationItem.backBarButtonItem.tintColor = UIColor.whiteColor;
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    //Nav bar should not be transparent after finishing registration process
+    self.navigationController.navigationBar.translucent = NO;
+    
+    [self setupNavBarStuff];
+    
+    [self reloadUnopenedYapsCount];
+    [self updateYapsButtonAnimation];
+    
+    self.countdownTimerLabel.alpha = 0;
+    
+    self.topLeftButton.alpha = 1;
+    self.yapsPageButton.alpha = 1;
+    self.pageLabel.alpha = 1;
 }
 
 #pragma mark - Search box stuff
@@ -117,40 +155,34 @@
 
 #pragma mark - UITextFieldDelegate
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    NSLog(@"Textfield did begin editing");
-    // RUDD TODO:
-//    self.songs = nil;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    //Remove extra space at end of string
-    [self searchWithTextInTextField:textField];
-    return YES;
-}
-
-- (void)searchWithTextInTextField:(UITextField*)textField {
     self.searchBar.text = [self.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     [self.view endEditing:YES];
     if ([self.searchBar.text length] > 0) {
-        // RUDD TODO:
-//        [self searchForTracksWithString:self.searchBar.text];
-        [[API sharedAPI] sendSearchTerm:textField.text withCallback:^(BOOL success, NSError *error) {
-            if (success) {
-                NSLog(@"Sent search term metric");
-            } else {
-                NSLog(@"Failed to send search term metric");
-            }
-        }];
+        [self.audioCapture searchWithText:textField.text];
+        [[API sharedAPI] sendSearchTerm:textField.text withCallback:^(BOOL success, NSError *error) {}];
+    } else {
+        [self.audioCapture clearSearchResults];
+    }
+    return YES;
+}
+
+-(void)textFieldDidChange:(UITextField *)searchBox {
+    if ([self.searchBar.text length] == 0) {
+        NSLog(@"Empty String");
+        self.resetButton.alpha = 0;
+    } else {
+        [self updateVisibilityOfMagnifyingGlassAndResetButtons];
     }
 }
 
-
+#pragma mark - Other
 
 - (IBAction) didTapResetButton {
     double delay = .1;
     self.searchBar.text = nil;
+    [self.audioCapture clearSearchResults];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.searchBar becomeFirstResponder];
     });
@@ -296,32 +328,6 @@
                                                   }];
 }
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.navigationItem.backBarButtonItem.tintColor = UIColor.whiteColor;
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    
-    //Nav bar should not be transparent after finishing registration process
-    self.navigationController.navigationBar.translucent = NO;
-    
-    [self setupNavBarStuff];
-    
-    [self reloadUnopenedYapsCount];
-    [self updateYapsButtonAnimation];
-    
-    self.countdownTimerLabel.alpha = 0;
-    
-    self.topLeftButton.alpha = 1;
-    self.yapsPageButton.alpha = 1;
-    self.pageLabel.alpha = 1;
-}
-
 - (void) showTopButtons {
     [UIView animateWithDuration:.3
                           delay:0
@@ -345,25 +351,6 @@
                          self.yapsPageButton.alpha = 0;
                      }
                      completion:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    if (![YSUser currentUser].hasSessionToken) { // Force log in
-        [self performSegueWithIdentifier:@"Login" sender:nil];
-    }
-    
-    if (countdownTimer) {
-        [countdownTimer invalidate];
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    if (countdownTimer) {
-        [countdownTimer invalidate];
-    }
 }
 
 -(void) startCountdownTimer
@@ -522,23 +509,32 @@
             [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:nil];
         };
     } else if ([@"Audio Record" isEqualToString:segue.identifier]) {
-        AudioCaptureViewController* audio = segue.destinationViewController;
+        self.audioCapture = segue.destinationViewController;
         if (sender) { // The presence of a sender means that there was a spotify genre specified
-
             if (self.replyWithVoice) {
-                audio.type = AudioCaptureTypeMic;
+                self.audioCapture.type = AudioCaptureTypeMic;
             } else {
-                audio.type = AudioCapTureTypeSpotify;
+                self.audioCapture.type = AudioCapTureTypeSpotify;
             }
             
-            audio.audioCaptureContext = @{
+            self.audioCapture.audioCaptureContext = @{
                                           AudioCaptureContextGenreName: sender
                                           };
         } else {
-            audio.type = AudioCaptureTypeMic;
+            self.audioCapture.type = AudioCaptureTypeMic;
         }
-        audio.contactReplyingTo = self.contactReplyingTo;
+        self.audioCapture.contactReplyingTo = self.contactReplyingTo;
     }
+}
+
+- (BOOL) didOpenYapForFirstTime
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
+}
+
+- (BOOL) didSeeWelcomePopup
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_POPUP_KEY];
 }
 
 #pragma mark - Feedback
@@ -568,16 +564,6 @@
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     [controller dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (BOOL) didOpenYapForFirstTime
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
-}
-
-- (BOOL) didSeeWelcomePopup
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_POPUP_KEY];
 }
 
 @end

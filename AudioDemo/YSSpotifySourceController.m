@@ -217,6 +217,14 @@
 
 #pragma mark - Spotify Search
 
+- (void)searchWithText:(NSString *)text {
+    [self searchForTracksWithString:text];
+}
+
+- (void)clearSearchResults {
+    [self retrieveAndLoadTracksForCategory:self.trackGroupPool];
+}
+
 - (void) searchForTracksWithString:(NSString *)searchString
 {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];

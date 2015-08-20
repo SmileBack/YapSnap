@@ -36,4 +36,7 @@ static NSString* const AudioCaptureContextGenreName = @"genre";
 @property (weak, nonatomic) IBOutlet YSRecordProgressView *recordProgressView;
 @property (assign, nonatomic) BOOL replyWithVoice;
 
+- (void)clearSearchResults;
+- (void)searchWithText:(NSString *)text;
+
 @end

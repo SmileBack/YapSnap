@@ -328,6 +328,16 @@ static const float TIMER_INTERVAL = .05;//.02;
     NSLog(@"Audio Progress Timer Invalidate 3");
 }
 
+#pragma mark - Audio Capture
+
+- (void)clearSearchResults {
+    [self.audioSource clearSearchResults];
+}
+
+- (void)searchWithText:(NSString *)text {
+    [self.audioSource searchWithText:text];
+}
+
 #pragma mark - Bottom View
 - (IBAction) didTapNextButton {
     if (self.type == AudioCapTureTypeSpotify) {
