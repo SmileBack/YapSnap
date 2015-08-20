@@ -171,6 +171,7 @@ PODS:
   - Mantle (1.5.4):
     - Mantle/extobjc (= 1.5.4)
   - Mantle/extobjc (1.5.4)
+  - Masonry (0.6.2)
   - Mixpanel (2.7.2):
     - Mixpanel/MPCategoryHelpers (= 2.7.2)
   - Mixpanel/MPCategoryHelpers (2.7.2)
@@ -190,6 +191,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
   - AWSiOSSDKv2 (~> 2.0.15)
   - CRToast (~> 0.0.7)
+  - Masonry
   - Mixpanel
   - MJPopupViewController (~> 0.4)
   - SDWebImage (~> 3.7.1)
@@ -214,6 +216,7 @@ SPEC CHECKSUMS:
   FMDB: d274d9ff773415735022ac57bfba9f6002f9fed8
   GZIP: f0863fda354e8f83316508c0a2c7bbe385e39129
   Mantle: 60acd0cd363e27d945bda0a6b8e90577112d28f3
+  Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   Mixpanel: e9bcb16eb0e2a98fc330ceeb0d8b7f4aec4182ab
   MJPopupViewController: e9ad553a3145eb8126ba2748e872ae7fb25cc605
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
@@ -225,4 +228,4 @@ SPEC CHECKSUMS:
   UICKeyChainStore: 891bcd2fe687c92db8e648cba035c4e662ffa43e
   XMLDictionary: f9f51601ba76678b594ab485f2b00ec1fed23724
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.37.2
