@@ -55,6 +55,7 @@
 		7819048E1AF2CB2F00196DFF /* ArrowImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819048D1AF2CB2F00196DFF /* ArrowImage@2x.png */; };
 		781904901AF3293700196DFF /* MicrophoneWhiteSmooth.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819048F1AF3293700196DFF /* MicrophoneWhiteSmooth.png */; };
 		7819916F1AABBA6E00309E38 /* SettingsIconWhite8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */; };
+		781C00891B7E6AA800525B12 /* YSSongCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C00881B7E6AA800525B12 /* YSSongCollectionViewDataSource.m */; };
 		7828A8DC1A846C0C00BAA609 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7828A8DB1A846C0C00BAA609 /* MessageUI.framework */; };
 		782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */ = {isa = PBXBuildFile; fileRef = 782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */; };
 		782D13441ACB8349007C8499 /* YapIconUnopenedSent.png in Resources */ = {isa = PBXBuildFile; fileRef = 782D13431ACB8349007C8499 /* YapIconUnopenedSent.png */; };
@@ -403,6 +404,8 @@
 		7819048D1AF2CB2F00196DFF /* ArrowImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArrowImage@2x.png"; sourceTree = "<group>"; };
 		7819048F1AF3293700196DFF /* MicrophoneWhiteSmooth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MicrophoneWhiteSmooth.png; sourceTree = "<group>"; };
 		7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIconWhite8@2x.png"; sourceTree = "<group>"; };
+		781C00871B7E6AA800525B12 /* YSSongCollectionViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSongCollectionViewDataSource.h; sourceTree = "<group>"; };
+		781C00881B7E6AA800525B12 /* YSSongCollectionViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSongCollectionViewDataSource.m; sourceTree = "<group>"; };
 		7828A8DB1A846C0C00BAA609 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder10.png; sourceTree = "<group>"; };
 		782D13431ACB8349007C8499 /* YapIconUnopenedSent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconUnopenedSent.png; sourceTree = "<group>"; };
@@ -1076,6 +1079,8 @@
 				FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */,
 				783CCF731B3461D800E3B5BF /* YTSearchSuggestionsViewController.h */,
 				783CCF741B3461D800E3B5BF /* YTSearchSuggestionsViewController.m */,
+				781C00871B7E6AA800525B12 /* YSSongCollectionViewDataSource.h */,
+				781C00881B7E6AA800525B12 /* YSSongCollectionViewDataSource.m */,
 			);
 			name = "Spotify Page";
 			sourceTree = "<group>";
@@ -2099,6 +2104,7 @@
 				FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */,
 				FC0642D51A9D65D000E3D60F /* Environment.m in Sources */,
 				374383E019CE29880009C323 /* EnterPhoneNumberViewController.m in Sources */,
+				781C00891B7E6AA800525B12 /* YSSongCollectionViewDataSource.m in Sources */,
 				F44B0C5316DA404700E6CD88 /* AppDelegate.m in Sources */,
 				374383E919CE323B0009C323 /* LandingPageViewController.m in Sources */,
 				78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */,

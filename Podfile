@@ -8,6 +8,7 @@ target "YapTap" do
   pod 'AFNetworking', '~> 2.5.0'
   pod 'SDWebImage', '~> 3.7.1'
   pod 'StreamingKit', '~> 0.1.25'
+  pod 'TTTAttributedLabel', :git => 'https://github.com/danberenholtz/StreamingKit.git'
   pod 'AWSiOSSDKv2', '~> 2.0.15'
   pod 'SHSPhoneComponent', '~> 2.15'
   pod 'CRToast', '~> 0.0.7'
