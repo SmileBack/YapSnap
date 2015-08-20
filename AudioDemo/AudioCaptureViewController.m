@@ -449,6 +449,7 @@ static const float TIMER_INTERVAL = .05; //.02;
 
 - (IBAction)didTapCancelButton {
     [self.audioSource cancelPlayingAudio];
+    [self audioSourceControllerdidCancelAudioCapture:self.audioSource];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Cancel Clip"];
 }
