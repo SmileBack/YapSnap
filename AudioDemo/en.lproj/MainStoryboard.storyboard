@@ -69,7 +69,7 @@
                                     <constraint firstAttribute="height" constant="8" id="qrH-M5-cXV"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kej-1D-xvX">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kej-1D-xvX" customClass="YSSegmentedControlScrollView">
                                 <rect key="frame" x="0.0" y="8" width="320" height="40"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yN-vL-GUj" customClass="YSSegmentedControl">
@@ -173,6 +173,7 @@
                         <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="OWQ-Ga-xCg"/>
                         <outlet property="bottomView" destination="Zpi-cJ-NfZ" id="gyE-dK-6pj"/>
                         <outlet property="bottomViewLabel" destination="F8L-qW-m1K" id="4nv-6E-Kmh"/>
+                        <outlet property="categorySelectorContainer" destination="Kej-1D-xvX" id="lTD-gN-p6H"/>
                         <outlet property="categorySelectorView" destination="9yN-vL-GUj" id="xkS-Le-245"/>
                         <outlet property="continueButton" destination="sYX-lW-YlV" id="M9z-hn-TJL"/>
                         <outlet property="continueButtonRightConstraint" destination="ZsU-mb-xc9" id="cJA-Tc-nd5"/>
@@ -892,7 +893,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="8CA760E0-A2C7-4319-B324-2AD4F11B0B23"/>
+                                <state key="normal" backgroundImage="070CFCAD-DFCC-47AE-9AA8-3D382C027368"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1822,7 +1823,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="8CA760E0-A2C7-4319-B324-2AD4F11B0B23" width="300" height="300">
+        <image name="070CFCAD-DFCC-47AE-9AA8-3D382C027368" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

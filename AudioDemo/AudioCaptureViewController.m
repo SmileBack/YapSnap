@@ -33,6 +33,7 @@
 @property (strong, nonatomic)
     IBOutlet NSLayoutConstraint *continueButtonRightConstraint;
 @property (weak, nonatomic) IBOutlet YSSegmentedControl *categorySelectorView;
+@property (weak, nonatomic) IBOutlet YSSegmentedControlScrollView *categorySelectorContainer;
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
@@ -68,7 +69,7 @@ static const float TIMER_INTERVAL = .05; //.02;
     [self addCancelButton];
 
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
-    
+    self.categorySelectorContainer.control = self.categorySelectorView;
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
     [self.recordButton
         setBackgroundImage:[UIImage

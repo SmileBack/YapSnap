@@ -28,3 +28,9 @@ extern NSUInteger const YSSegmentedControl_ViewTagOffset;
 - (void)setEnabled:(BOOL)enabled forSegmentAtIndex:(NSUInteger)segment animated:(BOOL)animated;
 
 @end
+
+@interface YSSegmentedControlScrollView: UIScrollView
+
+@property (strong, nonatomic) YSSegmentedControl* control;
+
+@end

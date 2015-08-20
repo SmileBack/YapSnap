@@ -225,3 +225,17 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
 }
 
 @end
+
+@implementation YSSegmentedControlScrollView
+
+- (void)setControl:(YSSegmentedControl *)control {
+    [_control removeTarget:self action:@selector(didChangeControl) forControlEvents:UIControlEventValueChanged];
+    _control = control;
+    [_control addTarget:self action:@selector(didChangeControl) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)didChangeControl {
+    [self scrollRectToVisible:self.control.currentlyEnabledView.frame animated:YES];
+}
+
+@end
