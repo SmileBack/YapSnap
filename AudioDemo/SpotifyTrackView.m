@@ -111,4 +111,10 @@
     return self;
 }
 
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    self.layer.borderColor = selected ? THEME_RED_COLOR.CGColor : nil;
+    self.layer.borderWidth = selected ? 2 : 0;
+}
+
 @end
