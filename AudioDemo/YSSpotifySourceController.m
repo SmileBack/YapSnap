@@ -62,6 +62,19 @@
     self.songDataSource.delegate = self;
     self.collectionView.dataSource = self.songDataSource;
     self.collectionView.delegate = self;
+    UICollectionViewFlowLayout *aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
+    aFlowLayout.itemSize = CGSizeMake(150, 180);
+    if (IS_IPHONE_6_PLUS_SIZE) {
+        aFlowLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+        aFlowLayout.itemSize = CGSizeMake(180, 210);
+    } else if (IS_IPHONE_6_SIZE) {
+        aFlowLayout.itemSize = CGSizeMake(160, 190);
+        aFlowLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+    } else {
+        aFlowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
+    }
+    self.collectionView.collectionViewLayout = aFlowLayout;
+    
     [self.collectionView registerClass:[SpotifyTrackCollectionViewCell class]
             forCellWithReuseIdentifier:@"track"];
     [self createTrackGroups];
@@ -103,6 +116,8 @@
         [self playSongAtIndexPath:indexPath withOffsetStartTime:0];
     }
 }
+
+- (void)songCollectionDataSource:(YSSongCollectionViewDataSource *)dataSource didTapArtistAtIndexPath:(NSIndexPath *)indexPath {}
 
 - (void)songCollectionDataSource:(YSSongCollectionViewDataSource *)dataSource
   didTapSongOptionOneAtIndexPath:(NSIndexPath *)indexPath {
