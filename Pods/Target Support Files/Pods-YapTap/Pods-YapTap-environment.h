@@ -162,6 +162,12 @@
 #define COCOAPODS_VERSION_MINOR_GZIP 0
 #define COCOAPODS_VERSION_PATCH_GZIP 3
 
+// MJPopupViewController
+#define COCOAPODS_POD_AVAILABLE_MJPopupViewController
+#define COCOAPODS_VERSION_MAJOR_MJPopupViewController 0
+#define COCOAPODS_VERSION_MINOR_MJPopupViewController 4
+#define COCOAPODS_VERSION_PATCH_MJPopupViewController 0
+
 // Mantle
 #define COCOAPODS_POD_AVAILABLE_Mantle
 #define COCOAPODS_VERSION_MAJOR_Mantle 1
@@ -222,6 +228,12 @@
 #define COCOAPODS_VERSION_MINOR_TMCache 2
 #define COCOAPODS_VERSION_PATCH_TMCache 3
 
+// UIAlertView+Blocks
+#define COCOAPODS_POD_AVAILABLE_UIAlertView_Blocks
+#define COCOAPODS_VERSION_MAJOR_UIAlertView_Blocks 0
+#define COCOAPODS_VERSION_MINOR_UIAlertView_Blocks 9
+#define COCOAPODS_VERSION_PATCH_UIAlertView_Blocks 0
+
 // UICKeyChainStore
 #define COCOAPODS_POD_AVAILABLE_UICKeyChainStore
 #define COCOAPODS_VERSION_MAJOR_UICKeyChainStore 1
@@ -233,10 +245,4 @@
 #define COCOAPODS_VERSION_MAJOR_XMLDictionary 1
 #define COCOAPODS_VERSION_MINOR_XMLDictionary 4
 #define COCOAPODS_VERSION_PATCH_XMLDictionary 0
-
-// iCarousel
-#define COCOAPODS_POD_AVAILABLE_iCarousel
-#define COCOAPODS_VERSION_MAJOR_iCarousel 1
-#define COCOAPODS_VERSION_MINOR_iCarousel 8
-#define COCOAPODS_VERSION_PATCH_iCarousel 1
 

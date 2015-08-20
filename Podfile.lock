@@ -168,13 +168,13 @@ PODS:
   - FMDB/standard (2.4):
     - FMDB/common
   - GZIP (1.0.3)
-  - iCarousel (1.8.1)
   - Mantle (1.5.4):
     - Mantle/extobjc (= 1.5.4)
   - Mantle/extobjc (1.5.4)
   - Mixpanel (2.7.2):
     - Mixpanel/MPCategoryHelpers (= 2.7.2)
   - Mixpanel/MPCategoryHelpers (2.7.2)
+  - MJPopupViewController (0.4)
   - Reachability (3.2)
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
@@ -182,6 +182,7 @@ PODS:
   - SHSPhoneComponent (2.15)
   - StreamingKit (0.1.25)
   - TMCache (1.2.3)
+  - UIAlertView+Blocks (0.9)
   - UICKeyChainStore (1.1.1)
   - XMLDictionary (1.4)
 
@@ -189,28 +190,39 @@ DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
   - AWSiOSSDKv2 (~> 2.0.15)
   - CRToast (~> 0.0.7)
-  - iCarousel (~> 1.8.1)
   - Mixpanel
+  - MJPopupViewController (~> 0.4)
   - SDWebImage (~> 3.7.1)
   - SHSPhoneComponent (~> 2.15)
-  - StreamingKit (~> 0.1.25)
+  - StreamingKit (from `https://github.com/danberenholtz/StreamingKit.git`)
+  - UIAlertView+Blocks
+
+EXTERNAL SOURCES:
+  StreamingKit:
+    :git: https://github.com/danberenholtz/StreamingKit.git
+
+CHECKOUT OPTIONS:
+  StreamingKit:
+    :commit: c07c191d88b48febe237e86427643f6a9271a66e
+    :git: https://github.com/danberenholtz/StreamingKit.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  AWSiOSSDKv2: 53c8f9aa2c61099e035755dd739aa91c2ab2765c
-  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
-  CRToast: f9f2c4b29776d68ba24c4d621cba59a83fea921b
-  FMDB: 0b2fa25e5264ef177973c0cb8c02c711107979aa
-  GZIP: f27c434ffee5e9a9b34f4e9c19e91350fa8bbde1
-  iCarousel: 5acab560f10dc13da2440c89f35a0ad278b5147d
-  Mantle: d5fbaf30fbc58031223af13812c060e15934a1fe
-  Mixpanel: def38b9e600f101686b8d647e05660a72c089c65
-  Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  SHSPhoneComponent: 0827ce04b28d3dbbdc4251ac3b937f769f58af3d
-  StreamingKit: 5b36623e7246cccddb8db3aee79c43bb180a51be
-  TMCache: 11589ef8c40909114a5e60132711c9a559e01d97
-  UICKeyChainStore: ea8f9851811284c6b9ff5b2133acd53342127cc3
-  XMLDictionary: 735e81b9a043e220b0d24e9d4f16719606f2e0fc
+  AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
+  AWSiOSSDKv2: 9106f8cddeba3031bd24ddcd757f79268e4187ef
+  Bolts: e431c88fd02115d4a34016c2100bbfa4d2d5b146
+  CRToast: 99a28f4387def43b439ad88f957ce31357ff7373
+  FMDB: d274d9ff773415735022ac57bfba9f6002f9fed8
+  GZIP: f0863fda354e8f83316508c0a2c7bbe385e39129
+  Mantle: 60acd0cd363e27d945bda0a6b8e90577112d28f3
+  Mixpanel: e9bcb16eb0e2a98fc330ceeb0d8b7f4aec4182ab
+  MJPopupViewController: e9ad553a3145eb8126ba2748e872ae7fb25cc605
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
+  StreamingKit: f00c054cfd0f59d88c8be7a2270e208302ce48c4
+  TMCache: 5f68bc38d741aa8df4c63131b847522783665d81
+  UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
+  UICKeyChainStore: 891bcd2fe687c92db8e648cba035c4e662ffa43e
+  XMLDictionary: f9f51601ba76678b594ab485f2b00ec1fed23724
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.0
