@@ -41,10 +41,11 @@
 - (YapBuilder *) getYapBuilder
 {
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
-
     return nil;
 }
 
+- (NSArray *)availableCategories {return @[];}
+- (void)didSelectCategory:(id<YSAudioSourceControllerCategory>)category {}
 - (void) startPlayback{}
 - (void) stopAudioCapture{}
 - (void) cancelPlayingAudio{}

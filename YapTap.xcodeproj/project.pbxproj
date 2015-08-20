@@ -32,6 +32,7 @@
 		37D413CA19D22B5E00021548 /* EnterNameEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D413C919D22B5E00021548 /* EnterNameEmailViewController.m */; };
 		37D413CC19D230D000021548 /* ArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D413CB19D230D000021548 /* ArrowWhite.png */; };
 		37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */; };
+		5DA370721B864D2600A70DAC /* YSSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA370711B864D2600A70DAC /* YSSegmentedControl.m */; };
 		780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 780211611AAB8EE000A71889 /* FriendsIcon@2x.png */; };
 		780D43221B0646770060DAED /* AEFloatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D430B1B0646770060DAED /* AEFloatConverter.m */; };
 		780D43231B0646770060DAED /* EZAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D430D1B0646770060DAED /* EZAudio.m */; };
@@ -365,6 +366,8 @@
 		37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpotifyLogo@2x.png"; sourceTree = "<group>"; };
 		37E122E51A4011560073684D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		41ED5961C23D704BCAF364D2 /* libPods-YapTap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapTap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DA370701B864D2600A70DAC /* YSSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSegmentedControl.h; sourceTree = "<group>"; };
+		5DA370711B864D2600A70DAC /* YSSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSegmentedControl.m; sourceTree = "<group>"; };
 		780211611AAB8EE000A71889 /* FriendsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FriendsIcon@2x.png"; sourceTree = "<group>"; };
 		7803F2AC1B328DCA00F50238 /* futuratmed-italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "futuratmed-italic.ttf"; sourceTree = "<group>"; };
 		780D430A1B0646770060DAED /* AEFloatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEFloatConverter.h; sourceTree = "<group>"; };
@@ -1603,6 +1606,8 @@
 				7840480A1AB7334A00FE6D93 /* NextButton.m */,
 				783CCF761B3466A800E3B5BF /* YTRoundButton.h */,
 				783CCF771B3466A800E3B5BF /* YTRoundButton.m */,
+				5DA370701B864D2600A70DAC /* YSSegmentedControl.h */,
+				5DA370711B864D2600A70DAC /* YSSegmentedControl.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2053,6 +2058,7 @@
 				780D43281B0646770060DAED /* EZAudioPlotGLKViewController.m in Sources */,
 				780D432C1B0646770060DAED /* EZRecorder.m in Sources */,
 				780D432B1B0646770060DAED /* EZPlot.m in Sources */,
+				5DA370721B864D2600A70DAC /* YSSegmentedControl.m in Sources */,
 				FCFCE45E1AF549C20094926E /* BlockFriendAlertView.m in Sources */,
 				37D413CA19D22B5E00021548 /* EnterNameEmailViewController.m in Sources */,
 				3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */,

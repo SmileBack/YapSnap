@@ -16,6 +16,12 @@
 
 @class YSAudioSourceController;
 
+@protocol  YSAudioSourceControllerCategory<NSObject>
+
+- (NSString *)name;
+
+@end
+
 @protocol YSAudioSourceControllerDelegate <NSObject>
 
 @optional
@@ -38,6 +44,9 @@
 @interface YSAudioSourceController : UIViewController
 
 @property (weak) id<YSAudioSourceControllerDelegate> audioCaptureDelegate;
+
+- (NSArray *)availableCategories;
+- (void)didSelectCategory:(id<YSAudioSourceControllerCategory>)category;
 
 - (BOOL) startAudioCapture;
 - (void) stopAudioCapture;

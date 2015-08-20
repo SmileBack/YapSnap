@@ -10,6 +10,8 @@
 
 @interface YTTrackGroup : NSObject
 
++ (YTTrackGroup *)trackGroupWithName:(NSString *)name apiString:(NSString *)apiString;
+
 @property (nonatomic, strong) NSString *apiString;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray *songs;

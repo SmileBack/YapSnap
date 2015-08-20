@@ -38,6 +38,8 @@
 #define IS_IPHONE_6_SIZE [UIScreen mainScreen].bounds.size.height == 667.0f
 #define IS_IPHONE_6_PLUS_SIZE [UIScreen mainScreen].bounds.size.height == 736.0f
 
+#define MAS_SHORTHAND
+
 #endif
 
 

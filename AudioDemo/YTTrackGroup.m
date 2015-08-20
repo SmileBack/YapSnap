@@ -10,4 +10,11 @@
 
 @implementation YTTrackGroup
 
++ (YTTrackGroup *)trackGroupWithName:(NSString *)name apiString:(NSString *)apiString {
+    YTTrackGroup *group = YTTrackGroup.new;
+    group.name = name;
+    group.apiString = apiString;
+    return group;
+}
+
 @end
