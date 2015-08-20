@@ -21,6 +21,8 @@
 #define LISTENED_TO_CLIP_NOTIFICATION @"com.yapsnap.ListenedToClipNotification"
 #define REMOVE_BOTTOM_BANNER_NOTIFICATION \
     @"com.yapsnap.RemoveBottomBannerNotification"
+#define CHANGE_CATEGORY_NOTIFICATION \
+@"com.yapsnap.DidChangeCategory"
 
 typedef NS_ENUM(NSUInteger, AudioCaptureType) {
     AudioCaptureTypeMic,

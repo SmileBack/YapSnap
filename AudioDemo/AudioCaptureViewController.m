@@ -264,6 +264,7 @@ static const float TIMER_INTERVAL = .05; //.02;
 #pragma mark - Actions
 
 - (IBAction)segmentedControlDidChanage:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:CHANGE_CATEGORY_NOTIFICATION object:nil];
     [self.audioSource cancelPlayingAudio];
     [self.audioSource didSelectCategory:[self.audioSource availableCategories][self.categorySelectorView.selectedSegmentIndex]];
 }
