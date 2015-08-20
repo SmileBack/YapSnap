@@ -13,6 +13,7 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "AudioCaptureViewController.h"
 #import "YSPushManager.h"
+#import "YSSegmentedControl.h"
 
 @interface HomeViewController () <UITextFieldDelegate> {
     NSTimer *countdownTimer;
@@ -177,24 +178,32 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [[NSNotificationCenter defaultCenter] postNotificationName:CANCEL_AUDIO_PLAYBACK object:nil];
     CGRect frame = [self.audioCapture.audioSource.view convertRect:self.audioCapture.audioSource.view.frame toView:self.view];
     self.searchOverlay = [[UIView alloc] initWithFrame:frame];
     self.searchOverlay.backgroundColor = [UIColor colorWithWhite:0.0 alpha:1.0];
     self.searchOverlay.alpha = 0.0;
-    [self.searchOverlay addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.searchBar action:@selector(resignFirstResponder)]];
+    [self.searchOverlay addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelSearch)]];
     [self.view addSubview:self.searchOverlay];
     [UIView animateWithDuration:0.3 animations:^{
         self.searchOverlay.alpha = 0.5;
     }];
+    self.audioCapture.categorySelectorView.isInactive = YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.audioCapture.categorySelectorView.isInactive = textField.text.length != 0;
     [UIView animateWithDuration:0.3 animations:^{
         self.searchOverlay.alpha = 0.0;
     } completion:^(BOOL finished) {
         [self.searchOverlay removeFromSuperview];
         self.searchOverlay = nil;
     }];
+}
+
+- (void)cancelSearch {
+    self.searchBar.text = nil;
+    [self.searchBar resignFirstResponder];
 }
 
 #pragma mark - Other

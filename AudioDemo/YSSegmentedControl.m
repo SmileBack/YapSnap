@@ -32,12 +32,13 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
 @property (strong) UIView *underline;
 @property (strong) UIView *triangle;
 @property (weak) UIView *currentlyEnabledView;
+@property UIColor *unhighlightedColor;
 
 @end
 
 @implementation YSSegmentedControl
 
-@synthesize items = _items;
+@synthesize items = _items, isInactive = _isInactive;
 @dynamic showsSelectionTriangle;
 
 - (id)initWithFrame:(CGRect)frame {
@@ -57,6 +58,7 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
     UIView *left = UIView.new;
     UIView *right = UIView.new;
     
+    self.unhighlightedColor = [UIColor colorWithRed:31/255.0 green:65/255.0 blue:102/255.0 alpha:1.0];
     self.backgroundColor = THEME_BACKGROUND_COLOR;
     
     for (UIView *view in @[ topSeparator, bottomSeparator, left, right ]) {
@@ -120,7 +122,7 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
             label.text = item.title;
             label.font = [UIFont fontWithName:@"Futura-Medium" size:15];
             label.textAlignment = NSTextAlignmentCenter;
-            label.textColor = [UIColor colorWithRed:31/255.0 green:65/255.0 blue:102/255.0 alpha:1.0];
+            label.textColor = self.unhighlightedColor;
             view = label;
         }
         
@@ -160,12 +162,13 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
 }
 
 - (void)setEnabled:(BOOL)enabled forSegmentAtIndex:(NSUInteger)segment animated:(BOOL)animated {
-    if (segment != self.selectedSegmentIndex) {
+    if (segment != self.selectedSegmentIndex || self.isInactive) {
+        self.isInactive = NO;
         UIView *oldView = self.currentlyEnabledView;
         
         if ([oldView isKindOfClass:[UILabel class]]) {
             UILabel *label = (UILabel *)oldView;
-            label.textColor = [UIColor colorWithRed:31/255.0 green:65/255.0 blue:102/255.0 alpha:1.0];
+            label.textColor = self.unhighlightedColor;
         }
         
         self.currentlyEnabledView = [self viewWithTag:YSSegmentedControl_ViewTagOffset + segment];
@@ -200,6 +203,34 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
                              }];
         }
     }
+}
+
+- (BOOL)isInactive {
+    return _isInactive;
+}
+
+- (void)setIsInactive:(BOOL)isInactive {
+    if (isInactive != _isInactive) {
+        _isInactive = isInactive;
+        [UIView animateWithDuration:0.2
+                         animations:^{
+                             if (isInactive) {
+                                 UIView *oldView = self.currentlyEnabledView;
+                                 if ([oldView isKindOfClass:[UILabel class]]) {
+                                     UILabel *label = (UILabel *)oldView;
+                                     label.textColor = self.unhighlightedColor;
+                                 }
+                                 self.underline.alpha = 0.0;
+                             } else {
+                                 UIView *oldView = self.currentlyEnabledView;
+                                 if ([oldView isKindOfClass:[UILabel class]]) {
+                                     UILabel *label = (UILabel *)oldView;
+                                     label.textColor = UIColor.whiteColor;
+                                 }
+                                 self.underline.alpha = 1.0;
+                             }
+                         }];
+    }    
 }
 
 - (NSInteger)selectedSegmentIndex {

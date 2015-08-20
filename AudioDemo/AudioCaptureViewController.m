@@ -16,7 +16,6 @@
 #import "ContactManager.h"
 #import "YapsViewController.h"
 #import "NextButton.h"
-#import "YSSegmentedControl.h"
 #import "YTTrackGroup.h"
 
 @interface AudioCaptureViewController () <YSAudioSourceControllerDelegate> {
@@ -32,7 +31,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *bottomViewLabel;
 @property (strong, nonatomic)
     IBOutlet NSLayoutConstraint *continueButtonRightConstraint;
-@property (weak, nonatomic) IBOutlet YSSegmentedControl *categorySelectorView;
 @property (weak, nonatomic) IBOutlet YSSegmentedControlScrollView *categorySelectorContainer;
 
 - (void)switchToSpotifyMode;
@@ -184,6 +182,9 @@ static const float TIMER_INTERVAL = .05; //.02;
                       self.recordProgressView.alpha = 0;
                       self.recordProgressView.progress = 0.0;
                     }];
+    [center addObserverForName:CANCEL_AUDIO_PLAYBACK object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [self.audioSource cancelPlayingAudio];
+    }];
 }
 
 - (void)updateProgress {

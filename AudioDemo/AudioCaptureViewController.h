@@ -12,6 +12,7 @@
 #import "YSRecordProgressView.h"
 #import "PhoneContact.h"
 #import "OffsetImageButton.h"
+#import "YSSegmentedControl.h"
 
 #define DISMISS_KEYBOARD_NOTIFICATION @"DismissKeyboardNotification"
 #define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION \
@@ -23,6 +24,7 @@
     @"com.yapsnap.RemoveBottomBannerNotification"
 #define CHANGE_CATEGORY_NOTIFICATION \
 @"com.yapsnap.DidChangeCategory"
+#define CANCEL_AUDIO_PLAYBACK @"com.yapsnap.cancelAudio"
 
 typedef NS_ENUM(NSUInteger, AudioCaptureType) {
     AudioCaptureTypeMic,
@@ -42,6 +44,7 @@ static NSString *const AudioCaptureContextGenreName = @"genre";
                                              // related dictionary keys
 @property (nonatomic) YSContact *contactReplyingTo;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
+@property (weak, nonatomic) IBOutlet YSSegmentedControl *categorySelectorView;
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
 @property (weak, nonatomic) IBOutlet YSRecordProgressView *recordProgressView;
 @property (assign, nonatomic) BOOL replyWithVoice;

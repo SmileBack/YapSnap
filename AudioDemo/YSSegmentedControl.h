@@ -23,6 +23,7 @@ extern NSUInteger const YSSegmentedControl_ViewTagOffset;
 @property (strong) NSArray* items;
 @property(nonatomic) NSInteger selectedSegmentIndex;
 @property BOOL showsSelectionTriangle;
+@property BOOL isInactive;
 
 - (void)setEnabled:(BOOL)enabled forSegmentAtIndex:(NSUInteger)segment;
 - (void)setEnabled:(BOOL)enabled forSegmentAtIndex:(NSUInteger)segment animated:(BOOL)animated;
