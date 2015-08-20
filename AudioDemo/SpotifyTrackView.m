@@ -91,7 +91,7 @@
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[view(110)]" options:0 metrics:nil views:@{@"view": self.ribbonImageView}]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(110)]" options:0 metrics:nil views:@{@"view": self.ribbonImageView}]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[track(10)]-(3)-[artist(10)]-(3)-|" options:0 metrics:nil views:@{@"image": self.imageView, @"track": self.songNameLabel, @"artist": self.artistButton}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[track(13)]-(0)-[artist(13)]-(0)-|" options:0 metrics:nil views:@{@"image": self.imageView, @"track": self.songNameLabel, @"artist": self.artistButton}]];
     }
     return self;
 }
