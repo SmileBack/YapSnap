@@ -783,7 +783,8 @@ static API *sharedAPI;
 
     NSString *url = @"/itunes_tracks";
     NSMutableDictionary *params = [self paramsWithDict:@{@"aws_song_url": track.awsSongUrl,
-                                                         @"aws_song_etag": track.awsSongEtag}];
+                                                         @"aws_song_etag": track.awsSongEtag,
+                                                         @"persistent_id": track.persistentID}];
 
     if (track.label)
         params[@"label"] = track.label;
