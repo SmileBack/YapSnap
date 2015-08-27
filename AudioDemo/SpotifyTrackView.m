@@ -75,8 +75,8 @@
             [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
         }
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[view(20)]-|" options:0 metrics:nil views:@{@"view": self.spotifyButton}]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view(20)]" options:0 metrics:nil views:@{@"view": self.spotifyButton}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[view(30)]-|" options:0 metrics:nil views:@{@"view": self.spotifyButton}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view(30)]" options:0 metrics:nil views:@{@"view": self.spotifyButton}]];
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[view(42)]" options:0 metrics:nil views:@{@"view": self.bannerLabel}]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(42)]" options:0 metrics:nil views:@{@"view": self.bannerLabel}]];
