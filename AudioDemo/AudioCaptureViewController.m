@@ -73,12 +73,6 @@ static const float TIMER_INTERVAL = .05; //.02;
         setBackgroundImage:[UIImage
                                imageNamed:@"RecordButtonBlueBorder10Pressed.png"]
                   forState:UIControlStateHighlighted];
-    self.recordProgressView.progress = 0;
-
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]
-        initWithTarget:self
-                action:@selector(tappedProgressView)];
-    [self.recordProgressView addGestureRecognizer:tapGesture];
 
     if (self.type == AudioCaptureTypeMic) {
         [self switchToMicMode];
@@ -103,13 +97,7 @@ static const float TIMER_INTERVAL = .05; //.02;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    self.recordProgressView.alpha = 0;
-    self.recordProgressView.progress = 0.0;
-
     self.bottomView.hidden = YES;
-    
-    self.recordProgressView.trackTintColor = [UIColor whiteColor];
     
     if (!self.categorySelectorView.items) {
         NSArray *categories = self.audioSource.availableCategories;
@@ -162,25 +150,12 @@ static const float TIMER_INTERVAL = .05; //.02;
                       [weakSelf.navigationController
                           popToRootViewControllerAnimated:YES];
                     }];
-    /*
-     [center addObserverForName:UIApplicationWillResignActiveNotification
-     object:nil
-     queue:nil
-     usingBlock:^(NSNotification *note) {
-     [audioProgressTimer invalidate];
-     NSLog(@"Audio Progress Timer Invalidate 5");
-     self.recordProgressView.progress = 0.0;
-     [self.audioSource stopAudioCapture];
-     }];
-     */
 
     [center addObserverForName:REMOVE_BOTTOM_BANNER_NOTIFICATION
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                       self.bottomView.hidden = YES;
-                      self.recordProgressView.alpha = 0;
-                      self.recordProgressView.progress = 0.0;
                     }];
     [center addObserverForName:CANCEL_AUDIO_PLAYBACK object:nil queue:nil usingBlock:^(NSNotification *note) {
         [self.audioSource cancelPlayingAudio];
@@ -189,8 +164,6 @@ static const float TIMER_INTERVAL = .05; //.02;
 
 - (void)updateProgress {
     self.elapsedTime += TIMER_INTERVAL;
-
-    [self.recordProgressView setProgress:(self.elapsedTime / MAX_CAPTURE_TIME)];
 
     // Added the minus .02 because otherwise the page would transition .02 seconds
     // too early
@@ -275,14 +248,6 @@ static const float TIMER_INTERVAL = .05; //.02;
 - (void)audioSourceControllerWillStartAudioCapture:
     (YSAudioSourceController *)controller {
     NSLog(@"Will Start Audio Capture");
-    [UIView animateWithDuration:.2
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                       self.recordProgressView.alpha = 1;
-                     }
-                     completion:nil];
-
     [[NSNotificationCenter defaultCenter]
         postNotificationName:WILL_START_AUDIO_CAPTURE_NOTIFICATION
                       object:nil];
@@ -291,18 +256,14 @@ static const float TIMER_INTERVAL = .05; //.02;
 - (void)audioSourceControllerDidStartAudioCapture:
     (YSAudioSourceController *)controller {
     NSLog(@"Did Start Audio Capture");
-    self.recordProgressView.trackTintColor = [UIColor whiteColor];
-
     [[NSNotificationCenter defaultCenter]
         postNotificationName:DID_START_AUDIO_CAPTURE_NOTIFICATION
                       object:nil];
 
-    self.recordProgressView.alpha = 1;
     [[NSNotificationCenter defaultCenter]
         postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION
                       object:nil];
     self.elapsedTime = 0;
-    [self.recordProgressView setProgress:0];
 
     if (audioProgressTimer) {
         [audioProgressTimer invalidate];
@@ -331,18 +292,10 @@ static const float TIMER_INTERVAL = .05; //.02;
 
     if (self.elapsedTime <= CAPTURE_THRESHOLD) {
         NSLog(@"Didn't hit threshold");
-        self.recordProgressView.progress = 0.0;
         [[NSNotificationCenter defaultCenter]
             postNotificationName:
                 UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION
                           object:nil];
-        [UIView animateWithDuration:.1
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                           self.recordProgressView.alpha = 0;
-                         }
-                         completion:nil];
         if (self.type == AudioCaptureTypeMic) {
             double delay = .1;
             dispatch_after(
@@ -357,13 +310,6 @@ static const float TIMER_INTERVAL = .05; //.02;
         [[NSNotificationCenter defaultCenter]
             postNotificationName:LISTENED_TO_CLIP_NOTIFICATION
                           object:nil];
-
-        if (self.type == AudioCapTureTypeSpotify) {
-            self.recordProgressView.progress = 1.0; // DEFAULT EVERY YAP TO 12 SECONDS
-        }
-        self.recordProgressView.trackTintColor =
-            [UIColor colorWithWhite:0.85
-                              alpha:1.0];
     }
 
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -383,7 +329,6 @@ static const float TIMER_INTERVAL = .05; //.02;
           [[YTNotifications sharedNotifications]
               showNotificationText:@"Oops, Something Went Wrong!"];
         });
-    [self.recordProgressView setProgress:0];
     self.elapsedTime = 0;
     [audioProgressTimer invalidate];
     NSLog(@"Audio Progress Timer Invalidate 3");
@@ -392,9 +337,6 @@ static const float TIMER_INTERVAL = .05; //.02;
 - (void)audioSourceControllerdidCancelAudioCapture:(YSAudioSourceController *)controller {
     self.elapsedTime = 0;
     self.bottomView.hidden = YES;
-    self.recordProgressView.alpha = 0;
-    [self.recordProgressView setProgress:0];
-    self.recordProgressView.trackTintColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI
                                                         object:nil];
 }

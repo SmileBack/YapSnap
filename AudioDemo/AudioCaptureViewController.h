@@ -46,7 +46,6 @@ static NSString *const AudioCaptureContextGenreName = @"genre";
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 @property (weak, nonatomic) IBOutlet YSSegmentedControl *categorySelectorView;
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
-@property (weak, nonatomic) IBOutlet YSRecordProgressView *recordProgressView;
 @property (assign, nonatomic) BOOL replyWithVoice;
 
 - (void)clearSearchResults;
