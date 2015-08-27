@@ -301,6 +301,7 @@
 		FC52C1B01A786F0F00D85FA8 /* RecentContact.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1AF1A786F0F00D85FA8 /* RecentContact.m */; };
 		FC52C1B41A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1B31A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m */; };
 		FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC609BC21A3CC24500182F08 /* SpotifyAPI.m */; };
+		FC7C42B11B8E993600629AA8 /* YSITunesTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC7C42B01B8E993600629AA8 /* YSITunesTrack.m */; };
 		FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */; };
 		FC865CC11A9A7B2B003AFAFA /* UIViewController+ScreenSize.m in Sources */ = {isa = PBXBuildFile; fileRef = FC865CC01A9A7B2B003AFAFA /* UIViewController+ScreenSize.m */; };
 		FCAA32901A8C2FD900FDCC78 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA328F1A8C2FD900FDCC78 /* UserCell.m */; };
@@ -702,6 +703,8 @@
 		FC52C1B31A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSpotifyTapGestureRecognizer.m; sourceTree = "<group>"; };
 		FC609BC11A3CC24500182F08 /* SpotifyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyAPI.h; sourceTree = "<group>"; };
 		FC609BC21A3CC24500182F08 /* SpotifyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPI.m; sourceTree = "<group>"; };
+		FC7C42AF1B8E993600629AA8 /* YSITunesTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSITunesTrack.h; sourceTree = "<group>"; };
+		FC7C42B01B8E993600629AA8 /* YSITunesTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSITunesTrack.m; sourceTree = "<group>"; };
 		FC80F3CF1A3CC6BD00F7ABD0 /* YSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTrack.h; sourceTree = "<group>"; };
 		FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSTrack.m; sourceTree = "<group>"; };
 		FC865CBF1A9A7B2B003AFAFA /* UIViewController+ScreenSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ScreenSize.h"; sourceTree = "<group>"; };
@@ -2079,6 +2082,7 @@
 				FCFCE4541AF529030094926E /* AddFriendsBuilder.m in Sources */,
 				FCE234491AAB749E00C1EDB0 /* YTNotifications.m in Sources */,
 				783CCF781B3466A800E3B5BF /* YTRoundButton.m in Sources */,
+				FC7C42B11B8E993600629AA8 /* YSITunesTrack.m in Sources */,
 				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
