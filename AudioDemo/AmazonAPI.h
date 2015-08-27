@@ -17,4 +17,7 @@ typedef void (^UploadedFileCallback)(NSString *url, NSString *etag, NSError *err
 - (void) uploadYap:(NSURL *)url withCallback:(UploadedFileCallback)callback;
 - (void) uploadPhoto:(NSURL *)imageURL withCallback:(UploadedFileCallback)callback;
 
+- (void) uploadiTunesTrack:(NSURL *)fileURL withCallback:(UploadedFileCallback)callback;
+- (void) uploadiTunesArtwork:(NSURL *)fileURL withCallback:(UploadedFileCallback)callback;
+
 @end
