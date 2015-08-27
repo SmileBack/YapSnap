@@ -32,6 +32,7 @@
 @property (strong, nonatomic)
     IBOutlet NSLayoutConstraint *continueButtonRightConstraint;
 @property (weak, nonatomic) IBOutlet YSSegmentedControlScrollView *categorySelectorContainer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomBarBottomConstraint;
 
 - (void)switchToSpotifyMode;
 - (void)switchToMicMode;
@@ -97,7 +98,7 @@ static const float TIMER_INTERVAL = .05; //.02;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.bottomView.hidden = YES;
+    [self setBottomBarVisible:NO];
     
     if (!self.categorySelectorView.items) {
         NSArray *categories = self.audioSource.availableCategories;
@@ -155,7 +156,7 @@ static const float TIMER_INTERVAL = .05; //.02;
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                      self.bottomView.hidden = YES;
+                        [self setBottomBarVisible:NO];
                     }];
     [center addObserverForName:CANCEL_AUDIO_PLAYBACK object:nil queue:nil usingBlock:^(NSNotification *note) {
         [self.audioSource cancelPlayingAudio];
@@ -237,6 +238,14 @@ static const float TIMER_INTERVAL = .05; //.02;
 
 #pragma mark - Actions
 
+- (void)setBottomBarVisible:(BOOL)visible {
+    [self.view layoutIfNeeded];
+    self.bottomBarBottomConstraint.constant = visible ? 0 : CGRectGetHeight(self.bottomView.frame);
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
 - (IBAction)segmentedControlDidChanage:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:CHANGE_CATEGORY_NOTIFICATION object:nil];
     [self.audioSource cancelPlayingAudio];
@@ -251,6 +260,7 @@ static const float TIMER_INTERVAL = .05; //.02;
     [[NSNotificationCenter defaultCenter]
         postNotificationName:WILL_START_AUDIO_CAPTURE_NOTIFICATION
                       object:nil];
+    [self setBottomBarVisible:YES];
 }
 
 - (void)audioSourceControllerDidStartAudioCapture:
@@ -279,8 +289,6 @@ static const float TIMER_INTERVAL = .05; //.02;
     [[NSNotificationCenter defaultCenter]
         postNotificationName:AUDIO_CAPTURE_DID_START_NOTIFICATION
                       object:nil];
-
-    self.bottomView.hidden = NO;
 }
 
 - (void)audioSourceControllerdidFinishAudioCapture:
@@ -336,7 +344,7 @@ static const float TIMER_INTERVAL = .05; //.02;
 
 - (void)audioSourceControllerdidCancelAudioCapture:(YSAudioSourceController *)controller {
     self.elapsedTime = 0;
-    self.bottomView.hidden = YES;
+    [self setBottomBarVisible:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI
                                                         object:nil];
 }
