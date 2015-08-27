@@ -60,6 +60,7 @@
 
 - (void)clearSearchResults;
 - (void)searchWithText:(NSString *)text;
+- (void)updatePlaybackProgress:(NSTimeInterval)playbackTime;
 
 // Spotify source will return the YSTrack.
 // Mic source could return the audio file. for now will return nothing.

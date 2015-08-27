@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <StreamingKit/STKAudioPlayer.h>
 
-@class YSSongCollectionViewDataSource;
+@class YSSongCollectionViewDataSource, SpotifyTrackCollectionViewCell;
 
 @protocol YSSongCollectionViewDelegate <NSObject>
 
@@ -24,5 +25,7 @@
 
 @property (weak) id<YSSongCollectionViewDelegate> delegate;
 @property (strong, nonatomic) NSArray* songs;
+
+- (void)updateCell:(SpotifyTrackCollectionViewCell *)cell withState:(STKAudioPlayerState)state;
 
 @end

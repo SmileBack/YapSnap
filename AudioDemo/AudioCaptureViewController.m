@@ -22,7 +22,7 @@
     NSTimer *audioProgressTimer;
 }
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
-@property (nonatomic) float elapsedTime;
+@property (nonatomic) NSTimeInterval elapsedTime;
 @property (weak, nonatomic) IBOutlet UIButton *switchButton;
 @property (weak, nonatomic) IBOutlet UILabel *receiverLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -43,8 +43,8 @@
 
 @implementation AudioCaptureViewController
 
-static const float MAX_CAPTURE_TIME = 12.0;
-static const float TIMER_INTERVAL = .05; //.02;
+static const NSTimeInterval MAX_CAPTURE_TIME = 12.0;
+static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil {
@@ -98,7 +98,7 @@ static const float TIMER_INTERVAL = .05; //.02;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setBottomBarVisible:NO];
+    [self setBottomBarVisible:NO animated:NO];
     
     if (!self.categorySelectorView.items) {
         NSArray *categories = self.audioSource.availableCategories;
@@ -166,6 +166,7 @@ static const float TIMER_INTERVAL = .05; //.02;
 - (void)updateProgress {
     self.elapsedTime += TIMER_INTERVAL;
 
+    [self.audioSource updatePlaybackProgress:fabs(ceil(MAX_CAPTURE_TIME - self.elapsedTime))]; //fabs needed because this can funkily get rounded to
     // Added the minus .02 because otherwise the page would transition .02 seconds
     // too early
     if (self.elapsedTime - .02 >= MAX_CAPTURE_TIME) {
@@ -239,9 +240,13 @@ static const float TIMER_INTERVAL = .05; //.02;
 #pragma mark - Actions
 
 - (void)setBottomBarVisible:(BOOL)visible {
+    [self setBottomBarVisible:visible animated:YES];
+}
+
+- (void)setBottomBarVisible:(BOOL)visible animated:(BOOL)animated {
     [self.view layoutIfNeeded];
     self.bottomBarBottomConstraint.constant = visible ? 0 : CGRectGetHeight(self.bottomView.frame);
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:animated ? 0.3 : 0 animations:^{
         [self.view layoutIfNeeded];
     }];
 }

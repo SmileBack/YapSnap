@@ -10,7 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "API.h"
 #import "SpotifyAPI.h"
-#import "SpotifyTrackView.h"
+#import "SpotifyTrackCollectionViewCell.h"
 #import "OpenInSpotifyAlertView.h"
 #import <AVFoundation/AVAudioSession.h>
 #import "AppDelegate.h"
@@ -53,18 +53,18 @@
     self.collectionView.dataSource = self.songDataSource;
     self.collectionView.delegate = self;
     UICollectionViewFlowLayout *aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
+    aFlowLayout.minimumInteritemSpacing = 2;
+    aFlowLayout.minimumLineSpacing = 2;
+    aFlowLayout.sectionInset = UIEdgeInsetsMake(2, 2, 2, 2);
     if (IS_IPHONE_6_PLUS_SIZE) {
         aFlowLayout.itemSize = CGSizeMake(200, 230);
-        aFlowLayout.sectionInset = UIEdgeInsetsMake(1, 2, 1, 2);
     } else if (IS_IPHONE_6_SIZE) {
-        aFlowLayout.itemSize = CGSizeMake(182, 220);
-        aFlowLayout.sectionInset = UIEdgeInsetsMake(1, 0, 1, 0);
+        aFlowLayout.itemSize = CGSizeMake(184, 220);
     } else {
         aFlowLayout.itemSize = CGSizeMake(152, 180);
-        aFlowLayout.sectionInset = UIEdgeInsetsMake(1, 2, 1, 2);
     }
     self.collectionView.collectionViewLayout = aFlowLayout;
-    
+
     [self.collectionView registerClass:[SpotifyTrackCollectionViewCell class]
             forCellWithReuseIdentifier:@"track"];
 }
@@ -72,18 +72,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.playerAlreadyStartedPlayingForThisSong = NO;
-}
-
-- (void)playSongAtIndexPath:(NSIndexPath *)indexPath
-        withOffsetStartTime:(NSUInteger)offset {
-    [self.collectionView
-        selectItemAtIndexPath:indexPath
-                     animated:YES
-               scrollPosition:UICollectionViewScrollPositionNone];
-    YSTrack *selectedTrack = self.songs[indexPath.row];
-    selectedTrack.secondsToFastForward =
-        [NSNumber numberWithUnsignedInteger:offset];
-    [self startAudioCapture];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -96,8 +84,7 @@
 
 - (void)songCollectionDataSource:(YSSongCollectionViewDataSource *)dataSource
            didTapSongAtIndexPath:(NSIndexPath *)indexPath {
-    if ([indexPath
-            isEqual:self.collectionView.indexPathsForSelectedItems.firstObject]) {
+    if ([indexPath isEqual:self.collectionView.indexPathsForSelectedItems.firstObject]) {
         if (self.player.state == STKAudioPlayerStatePlaying) {
             [self.player pause];
         } else {
@@ -109,7 +96,8 @@
     }
 }
 
-- (void)songCollectionDataSource:(YSSongCollectionViewDataSource *)dataSource didTapArtistAtIndexPath:(NSIndexPath *)indexPath {}
+- (void)songCollectionDataSource:(YSSongCollectionViewDataSource *)dataSource didTapArtistAtIndexPath:(NSIndexPath *)indexPath {
+}
 
 - (void)songCollectionDataSource:(YSSongCollectionViewDataSource *)dataSource
   didTapSongOptionOneAtIndexPath:(NSIndexPath *)indexPath {
@@ -193,12 +181,16 @@
 
 - (void)createTrackGroups {
     self.trackGroups = @[
-//                         [YTTrackGroup trackGroupWithName:@"Recent" apiString:nil],
-                         [YTTrackGroup trackGroupWithName:@"Trending" apiString:@"trending_tracks"],
-                         [YTTrackGroup trackGroupWithName:@"Funny" apiString:@"funny_tracks"],
-                         [YTTrackGroup trackGroupWithName:@"Classics" apiString:@"nostalgic_tracks"],
-                         [YTTrackGroup trackGroupWithName:@"Flirty" apiString:@"flirtatious_tracks"]
-                         ];
+        //                         [YTTrackGroup trackGroupWithName:@"Recent" apiString:nil],
+        [YTTrackGroup trackGroupWithName:@"Trending"
+                               apiString:@"trending_tracks"],
+        [YTTrackGroup trackGroupWithName:@"Funny"
+                               apiString:@"funny_tracks"],
+        [YTTrackGroup trackGroupWithName:@"Classics"
+                               apiString:@"nostalgic_tracks"],
+        [YTTrackGroup trackGroupWithName:@"Flirty"
+                               apiString:@"flirtatious_tracks"]
+    ];
 }
 
 - (NSArray *)availableCategories {
@@ -367,6 +359,11 @@
 - (void)audioPlayer:(STKAudioPlayer *)audioPlayer
        stateChanged:(STKAudioPlayerState)state
       previousState:(STKAudioPlayerState)previousState {
+    YSTrack *track = self.songs[((NSIndexPath *)[self.collectionView indexPathsForSelectedItems].firstObject).row];
+    SpotifyTrackCollectionViewCell *trackViewCell = ((SpotifyTrackCollectionViewCell *)[self.collectionView
+                                                                                    cellForItemAtIndexPath:((NSIndexPath *)[self.collectionView
+                                                                                                                            indexPathsForSelectedItems].firstObject)]);
+
     if (state == STKAudioPlayerStateReady) {
         NSLog(@"state == STKAudioPlayerStateReady");
     }
@@ -378,11 +375,6 @@
     if (state == STKAudioPlayerStatePlaying) {
         NSLog(@"state == STKAudioPlayerStatePlaying");
 
-        YSTrack *track =
-            self.songs[((NSIndexPath *)
-                            [self.collectionView indexPathsForSelectedItems]
-                                .firstObject)
-                           .row];
         if (!self.playerAlreadyStartedPlayingForThisSong) {
             if (track.secondsToFastForward.intValue > 0) {
                 [audioPlayer seekToTime:track.secondsToFastForward.intValue];
@@ -399,16 +391,6 @@
                 audioSourceControllerDidStartAudioCapture:self];
         }
         // Show Song Clip buttons when user is playing a song
-        SpotifyTrackView *trackView =
-            ((SpotifyTrackCollectionViewCell *)[self.collectionView
-                 cellForItemAtIndexPath:((NSIndexPath *)
-                                             [self.collectionView
-                                                     indexPathsForSelectedItems]
-                                                 .firstObject)])
-                .trackView;
-        trackView.songVersionOneButton.hidden = NO;
-        trackView.songVersionTwoButton.hidden = NO;
-        trackView.songVersionBackground.hidden = NO;
         track.songVersionButtonsAreShowing = YES;
         [[NSUserDefaults standardUserDefaults]
             setBool:YES
@@ -417,12 +399,6 @@
 
     if (state == STKAudioPlayerStateBuffering) {
         NSLog(@"state == STKAudioPlayerStateBuffering");
-        if (self.playerAlreadyStartedPlayingForThisSong) {
-            NSLog(@"Buffering for second time!");
-            [[YTNotifications sharedNotifications] showBufferingText:@"Buffering"];
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Buffering notification - Spotify"];
-        }
     }
 
     if (state == STKAudioPlayerStatePaused) {
@@ -443,9 +419,24 @@
     if (state == STKAudioPlayerStateDisposed) {
         NSLog(@"state == STKAudioPlayerStateDisposed");
     }
+    
+    [self.songDataSource updateCell:trackViewCell withState:state];
 }
 
 #pragma mark - Implement public audio methods
+
+- (void)playSongAtIndexPath:(NSIndexPath *)indexPath
+        withOffsetStartTime:(NSUInteger)offset {
+    [self.collectionView
+        selectItemAtIndexPath:indexPath
+                     animated:YES
+               scrollPosition:UICollectionViewScrollPositionNone];
+    YSTrack *selectedTrack = self.songs[indexPath.row];
+    selectedTrack.secondsToFastForward =
+        [NSNumber numberWithUnsignedInteger:offset];
+    [self startAudioCapture];
+}
+
 - (BOOL)startAudioCapture {
     if (![AFNetworkReachabilityManager sharedManager].reachable) {
         double delay = 0.1;
@@ -468,11 +459,7 @@
         [alert show];
         return NO;
     } else {
-        YSTrack *song =
-            self.songs[((NSIndexPath *)
-                            [self.collectionView indexPathsForSelectedItems]
-                                .firstObject)
-                           .row];
+        YSTrack *song = self.songs[((NSIndexPath *)[self.collectionView indexPathsForSelectedItems].firstObject).row];
         self.player = [STKAudioPlayer new];
         self.player.delegate = self;
         [[AVAudioSession sharedInstance]
@@ -544,20 +531,27 @@
         [self.player stop];
         if (fromCancel) {
             if ([self.audioCaptureDelegate
-                 respondsToSelector:
-                 @selector(audioSourceControllerdidCancelAudioCapture:)]) {
+                    respondsToSelector:
+                        @selector(audioSourceControllerdidCancelAudioCapture:)]) {
                 [self.audioCaptureDelegate
-                 audioSourceControllerdidCancelAudioCapture:self];
+                    audioSourceControllerdidCancelAudioCapture:self];
             }
         } else {
             if ([self.audioCaptureDelegate
-                 respondsToSelector:
-                 @selector(audioSourceControllerdidFinishAudioCapture:)]) {
+                    respondsToSelector:
+                        @selector(audioSourceControllerdidFinishAudioCapture:)]) {
                 [self.audioCaptureDelegate
-                 audioSourceControllerdidFinishAudioCapture:self];
+                    audioSourceControllerdidFinishAudioCapture:self];
             }
         }
     }
+}
+
+- (void)updatePlaybackProgress:(NSTimeInterval)playbackTime {
+    SpotifyTrackCollectionViewCell *trackViewCell = ((SpotifyTrackCollectionViewCell *)[self.collectionView
+                                                                                        cellForItemAtIndexPath:((NSIndexPath *)[self.collectionView
+                                                                                                                                indexPathsForSelectedItems].firstObject)]);
+    trackViewCell.countdownTimer = playbackTime;
 }
 
 #pragma mark - Setting NSDefaults

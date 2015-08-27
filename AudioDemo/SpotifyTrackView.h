@@ -30,9 +30,3 @@
 @property (nonatomic, strong) UIImageView *ribbonImageView;
 
 @end
-
-@interface SpotifyTrackCollectionViewCell: UICollectionViewCell
-
-@property (nonatomic, strong) SpotifyTrackView *trackView;
-
-@end

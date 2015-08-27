@@ -91,30 +91,9 @@
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[view(110)]" options:0 metrics:nil views:@{@"view": self.ribbonImageView}]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view(110)]" options:0 metrics:nil views:@{@"view": self.ribbonImageView}]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[track(13)]-(0)-[artist(13)]-(0)-|" options:0 metrics:nil views:@{@"image": self.imageView, @"track": self.songNameLabel, @"artist": self.artistButton}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[image]-(2)-[track(13)]-(0)-[artist(13)]" options:0 metrics:nil views:@{@"image": self.imageView, @"track": self.songNameLabel, @"artist": self.artistButton}]];
     }
     return self;
-}
-
-@end
-
-@implementation SpotifyTrackCollectionViewCell
-
-- (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self.trackView = [[SpotifyTrackView alloc] initWithFrame:frame];
-        [self.contentView addSubview:self.trackView];
-        [self.trackView setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[v]|" options:0 metrics:nil views:@{@"v": self.trackView}]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[v]|" options:0 metrics:nil views:@{@"v": self.trackView}]];
-    }
-    return self;
-}
-
-- (void)setSelected:(BOOL)selected {
-    [super setSelected:selected];
-    self.layer.borderColor = selected ? THEME_RED_COLOR.CGColor : nil;
-    self.layer.borderWidth = selected ? 2 : 0;
 }
 
 @end

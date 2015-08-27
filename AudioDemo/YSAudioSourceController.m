@@ -52,5 +52,6 @@
 
 - (void)clearSearchResults {}
 - (void)searchWithText:(NSString *)text {}
+- (void)updatePlaybackProgress:(NSTimeInterval)playbackTime {}
 
 @end

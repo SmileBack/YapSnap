@@ -32,6 +32,7 @@
 		37D413CA19D22B5E00021548 /* EnterNameEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D413C919D22B5E00021548 /* EnterNameEmailViewController.m */; };
 		37D413CC19D230D000021548 /* ArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D413CB19D230D000021548 /* ArrowWhite.png */; };
 		37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */; };
+		5D3CD7A21B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A11B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.m */; };
 		5DA370721B864D2600A70DAC /* YSSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA370711B864D2600A70DAC /* YSSegmentedControl.m */; };
 		780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 780211611AAB8EE000A71889 /* FriendsIcon@2x.png */; };
 		780D43221B0646770060DAED /* AEFloatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D430B1B0646770060DAED /* AEFloatConverter.m */; };
@@ -366,6 +367,8 @@
 		37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpotifyLogo@2x.png"; sourceTree = "<group>"; };
 		37E122E51A4011560073684D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		41ED5961C23D704BCAF364D2 /* libPods-YapTap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapTap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D3CD7A01B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrackCollectionViewCell.h; sourceTree = "<group>"; };
+		5D3CD7A11B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrackCollectionViewCell.m; sourceTree = "<group>"; };
 		5DA370701B864D2600A70DAC /* YSSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSegmentedControl.h; sourceTree = "<group>"; };
 		5DA370711B864D2600A70DAC /* YSSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSegmentedControl.m; sourceTree = "<group>"; };
 		780211611AAB8EE000A71889 /* FriendsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FriendsIcon@2x.png"; sourceTree = "<group>"; };
@@ -1621,6 +1624,8 @@
 				FCAA328F1A8C2FD900FDCC78 /* UserCell.m */,
 				784047E71AB4DB0400FE6D93 /* OffsetImageButton.h */,
 				784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */,
+				5D3CD7A01B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.h */,
+				5D3CD7A11B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -2093,6 +2098,7 @@
 				FC0642D51A9D65D000E3D60F /* Environment.m in Sources */,
 				374383E019CE29880009C323 /* EnterPhoneNumberViewController.m in Sources */,
 				781C00891B7E6AA800525B12 /* YSSongCollectionViewDataSource.m in Sources */,
+				5D3CD7A21B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.m in Sources */,
 				F44B0C5316DA404700E6CD88 /* AppDelegate.m in Sources */,
 				374383E919CE323B0009C323 /* LandingPageViewController.m in Sources */,
 				78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */,

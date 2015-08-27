@@ -8,8 +8,14 @@
 
 #import "YSSongCollectionViewDataSource.h"
 #import "YSTrack.h"
-#import "SpotifyTrackView.h"
+#import "SpotifyTrackCollectionViewCell.h"
 #import <UIImageView+WebCache.h>
+
+@interface YSSongCollectionViewDataSource()
+
+@property STKAudioPlayerState audioState;
+
+@end
 
 @implementation YSSongCollectionViewDataSource
 
@@ -57,6 +63,11 @@
     [trackView.songVersionTwoButton addTarget:self action:@selector(didTapSongVersionTwoButton:) forControlEvents:UIControlEventTouchDown];
     [trackView.spotifyButton addTarget:self action:@selector(didTapSpotifyButton:) forControlEvents:UIControlEventTouchUpInside];
     trackView.tag = indexPath.row; // Used for tap actions
+    
+    if ([[collectionView indexPathsForSelectedItems].firstObject isEqual:indexPath]) {
+        [self updateCell:trackViewCell withState:self.audioState];
+    }
+    
     return trackViewCell;
 }
 
@@ -93,6 +104,21 @@
 - (void)didTapSpotifyButton:(id)sender {
     if ([self.delegate respondsToSelector:@selector(songCollectionDataSource:didTapSpotifyAtIndexPath:)]) {
         [self.delegate songCollectionDataSource:self didTapSpotifyAtIndexPath:[NSIndexPath indexPathForItem:[sender superview].tag inSection:0]];
+    }
+}
+
+#pragma mark - Methods
+
+- (void)updateCell:(SpotifyTrackCollectionViewCell *)cell withState:(STKAudioPlayerState)state {
+    self.audioState = state;
+    if (state == STKAudioPlayerStateBuffering) {
+        cell.state = SpotifyTrackViewCellStateBuffering;
+    } else if (state == STKAudioPlayerStatePaused) {
+        cell.state = SpotifyTrackViewCellStatePaused;
+    } else if (state == STKAudioPlayerStateStopped) {
+        cell.state = SpotifyTrackViewCellStatePaused;
+    } else  if (state == STKAudioPlayerStatePlaying) {
+        cell.state = SpotifyTrackViewCellStatePlaying;
     }
 }
 
