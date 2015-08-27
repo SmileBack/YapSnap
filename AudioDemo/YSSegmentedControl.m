@@ -191,9 +191,9 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
         
         [self.underline remakeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.currentlyEnabledView.centerX);
-            make.width.equalTo(self.currentlyEnabledView.width);
-            make.bottom.equalTo(self.bottom);
-            make.height.equalTo(@5.0f);
+            make.width.equalTo(@(selectedItemSize.width));
+            make.bottom.equalTo(self.bottom).offset(-3);
+            make.height.equalTo(@2.0f);
         }];
         
         if (animated) {
