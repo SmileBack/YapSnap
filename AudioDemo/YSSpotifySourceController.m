@@ -53,15 +53,15 @@
     self.collectionView.dataSource = self.songDataSource;
     self.collectionView.delegate = self;
     UICollectionViewFlowLayout *aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
-    aFlowLayout.itemSize = CGSizeMake(150, 180);
     if (IS_IPHONE_6_PLUS_SIZE) {
-        aFlowLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
-        aFlowLayout.itemSize = CGSizeMake(180, 210);
+        aFlowLayout.itemSize = CGSizeMake(200, 230);
+        aFlowLayout.sectionInset = UIEdgeInsetsMake(1, 2, 1, 2);
     } else if (IS_IPHONE_6_SIZE) {
-        aFlowLayout.itemSize = CGSizeMake(160, 190);
-        aFlowLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+        aFlowLayout.itemSize = CGSizeMake(182, 220);
+        aFlowLayout.sectionInset = UIEdgeInsetsMake(1, 0, 1, 0);
     } else {
-        aFlowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
+        aFlowLayout.itemSize = CGSizeMake(152, 180);
+        aFlowLayout.sectionInset = UIEdgeInsetsMake(1, 2, 1, 2);
     }
     self.collectionView.collectionViewLayout = aFlowLayout;
     
