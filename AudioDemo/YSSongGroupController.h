@@ -8,6 +8,6 @@
 
 #import "AudioCaptureViewController.h"
 
-@interface YSSongGroupController : YSAudioSourceController
+@interface YSSongGroupController : YSAudioSourceViewController
 
 @end

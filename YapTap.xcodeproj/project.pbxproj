@@ -37,6 +37,8 @@
 		5D3CD7A91B8FB79A00B0F03C /* NSArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A81B8FB79A00B0F03C /* NSArray+Shuffle.m */; };
 		5D3CD7AC1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7AB1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m */; };
 		5DA370721B864D2600A70DAC /* YSSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA370711B864D2600A70DAC /* YSSegmentedControl.m */; };
+		5DFDD5B91B90DE60008754F4 /* YSAudioSourceNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFDD5B81B90DE60008754F4 /* YSAudioSourceNavigationController.m */; };
+		5DFDD5BB1B90E465008754F4 /* YSAudioSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFDD5BA1B90DF72008754F4 /* YSAudioSourceController.m */; };
 		780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 780211611AAB8EE000A71889 /* FriendsIcon@2x.png */; };
 		780D43221B0646770060DAED /* AEFloatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D430B1B0646770060DAED /* AEFloatConverter.m */; };
 		780D43231B0646770060DAED /* EZAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D430D1B0646770060DAED /* EZAudio.m */; };
@@ -292,7 +294,6 @@
 		FC0642D51A9D65D000E3D60F /* Environment.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0642D41A9D65D000E3D60F /* Environment.m */; };
 		FC0642D71A9D65E200E3D60F /* Environments.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC0642D61A9D65E200E3D60F /* Environments.plist */; };
 		FC0642D91A9D68FC00E3D60F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0642D81A9D68FC00E3D60F /* SystemConfiguration.framework */; };
-		FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D451A45F41600B148AB /* YSAudioSourceController.m */; };
 		FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */; };
 		FC0C1D4C1A45F98500B148AB /* YSMicSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0C1D4B1A45F98500B148AB /* YSMicSourceController.m */; };
 		FC1A03701A7D775A00074E6A /* AmazonAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1A036F1A7D775A00074E6A /* AmazonAPI.m */; };
@@ -380,6 +381,9 @@
 		5D3CD7AB1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongGroupCollectionViewCell.m; sourceTree = "<group>"; };
 		5DA370701B864D2600A70DAC /* YSSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSegmentedControl.h; sourceTree = "<group>"; };
 		5DA370711B864D2600A70DAC /* YSSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSegmentedControl.m; sourceTree = "<group>"; };
+		5DFDD5B71B90DE60008754F4 /* YSAudioSourceNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSAudioSourceNavigationController.h; sourceTree = "<group>"; };
+		5DFDD5B81B90DE60008754F4 /* YSAudioSourceNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSAudioSourceNavigationController.m; sourceTree = "<group>"; };
+		5DFDD5BA1B90DF72008754F4 /* YSAudioSourceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YSAudioSourceController.m; sourceTree = "<group>"; };
 		780211611AAB8EE000A71889 /* FriendsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FriendsIcon@2x.png"; sourceTree = "<group>"; };
 		7803F2AC1B328DCA00F50238 /* futuratmed-italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "futuratmed-italic.ttf"; sourceTree = "<group>"; };
 		780D430A1B0646770060DAED /* AEFloatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEFloatConverter.h; sourceTree = "<group>"; };
@@ -689,7 +693,6 @@
 		FC0642D61A9D65E200E3D60F /* Environments.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Environments.plist; sourceTree = "<group>"; };
 		FC0642D81A9D68FC00E3D60F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FC0C1D441A45F41600B148AB /* YSAudioSourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSAudioSourceController.h; sourceTree = "<group>"; };
-		FC0C1D451A45F41600B148AB /* YSAudioSourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSAudioSourceController.m; sourceTree = "<group>"; };
 		FC0C1D471A45F79000B148AB /* YSSpotifySourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSpotifySourceController.h; sourceTree = "<group>"; };
 		FC0C1D481A45F79000B148AB /* YSSpotifySourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSpotifySourceController.m; sourceTree = "<group>"; };
 		FC0C1D4A1A45F98500B148AB /* YSMicSourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSMicSourceController.h; sourceTree = "<group>"; };
@@ -1536,7 +1539,9 @@
 			isa = PBXGroup;
 			children = (
 				FC0C1D441A45F41600B148AB /* YSAudioSourceController.h */,
-				FC0C1D451A45F41600B148AB /* YSAudioSourceController.m */,
+				5DFDD5BA1B90DF72008754F4 /* YSAudioSourceController.m */,
+				5DFDD5B71B90DE60008754F4 /* YSAudioSourceNavigationController.h */,
+				5DFDD5B81B90DE60008754F4 /* YSAudioSourceNavigationController.m */,
 			);
 			name = "Audio Source";
 			sourceTree = "<group>";
@@ -2070,6 +2075,7 @@
 				7853936E1AD9C17500C6BEA7 /* WelcomePopupViewController.m in Sources */,
 				FCFCE4511AF528100094926E /* YTBuilder.m in Sources */,
 				780D43271B0646770060DAED /* EZAudioPlotGL.m in Sources */,
+				5DFDD5BB1B90E465008754F4 /* YSAudioSourceController.m in Sources */,
 				7840480B1AB7334A00FE6D93 /* NextButton.m in Sources */,
 				FCD2577A1ABA60AE00981E5D /* UIViewController+Navigation.m in Sources */,
 				78A569A31A73227200818A17 /* YSColorPicker.m in Sources */,
@@ -2104,6 +2110,7 @@
 				FCEF99361A6D6B22000FDE4C /* CustomizeYapViewController.m in Sources */,
 				FCBB96FF1A7D4C97003D5F24 /* YSUser.m in Sources */,
 				FCBB97061A7D6CDF003D5F24 /* EditFieldViewController.m in Sources */,
+				5DFDD5B91B90DE60008754F4 /* YSAudioSourceNavigationController.m in Sources */,
 				780D43221B0646770060DAED /* AEFloatConverter.m in Sources */,
 				FCFCE4661AF568000094926E /* SpotifyArtistFactory.m in Sources */,
 				FCFCE4541AF529030094926E /* AddFriendsBuilder.m in Sources */,
@@ -2128,7 +2135,6 @@
 				374383E919CE323B0009C323 /* LandingPageViewController.m in Sources */,
 				78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */,
 				784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */,
-				FC0C1D461A45F41600B148AB /* YSAudioSourceController.m in Sources */,
 				786192871B0A783B007279E8 /* ForwardingPopupViewController.m in Sources */,
 				783CCF7E1B38CB9000E3B5BF /* SpotifyTrackFactory.m in Sources */,
 				378191D419E59B4A006EF98F /* API.m in Sources */,

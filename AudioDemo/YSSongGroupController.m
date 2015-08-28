@@ -9,8 +9,9 @@
 #import "YSSongGroupController.h"
 #import "YTTrackGroup.h"
 #import "SongGroupCollectionViewCell.h"
+#import "YSSpotifySourceController.h"
 
-@interface YSSongGroupController()<UICollectionViewDataSource>
+@interface YSSongGroupController()<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (strong, nonatomic) NSArray *trackGroups;
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -45,6 +46,7 @@
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
     self.collectionView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0];
     self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
     [self.collectionView registerClass:[SongGroupCollectionViewCell class]
             forCellWithReuseIdentifier:@"group"];
     
@@ -62,6 +64,12 @@
     SongGroupCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"group" forIndexPath:indexPath];
     cell.label.text = ((YTTrackGroup *)self.trackGroups[indexPath.row]).name;
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    YSSpotifySourceController *vc = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+    vc.trackGroup = self.trackGroups[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

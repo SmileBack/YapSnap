@@ -14,7 +14,7 @@
 #define DID_START_AUDIO_CAPTURE_NOTIFICATION @"com.yapsnap.StartAudioCaptureLoadingSpinnerNotification"
 #define WILL_START_AUDIO_CAPTURE_NOTIFICATION @"com.yapsnap.WillStartAudioCaptureLoadingSpinnerNotification"
 
-@class YSAudioSourceController;
+@protocol YSAudioSource;
 
 @protocol  YSAudioSourceControllerCategory<NSObject>
 
@@ -27,23 +27,23 @@
 @optional
 
 // Called before audio capture starts (possibly before related content is loaded from the network)
-- (void)audioSourceControllerWillStartAudioCapture:(YSAudioSourceController*)controller;
+- (void)audioSourceControllerWillStartAudioCapture:(id<YSAudioSource>)controller;
 
 // Called when audio capture actually has started
-- (void)audioSourceControllerDidStartAudioCapture:(YSAudioSourceController*)controller;
+- (void)audioSourceControllerDidStartAudioCapture:(id<YSAudioSource>)controller;
 
-- (void)audioSourceControllerdidFinishAudioCapture:(YSAudioSourceController*)controller;
+- (void)audioSourceControllerdidFinishAudioCapture:(id<YSAudioSource>)controller;
 
-- (void)audioSourceControllerdidCancelAudioCapture:(YSAudioSourceController*)controller;
+- (void)audioSourceControllerdidCancelAudioCapture:(id<YSAudioSource>)controller;
 
-- (void)audioSourceController:(YSAudioSourceController*)controller didReceieveUnexpectedError:(NSError*)error;
+- (void)audioSourceController:(id<YSAudioSource>)controller didReceieveUnexpectedError:(NSError*)error;
 
 @end
 
 /*
  * Base class for audio sources (i.e. Spotify or recording through the mic)
  */
-@interface YSAudioSourceController : UIViewController
+@protocol YSAudioSource<NSObject>
 
 @property (weak) id<YSAudioSourceControllerDelegate> audioCaptureDelegate;
 
@@ -61,4 +61,7 @@
 // Mic source could return the audio file. for now will return nothing.
 - (YapBuilder *) getYapBuilder;
 
+@end
+
+@interface YSAudioSourceViewController : UIViewController<YSAudioSource>
 @end

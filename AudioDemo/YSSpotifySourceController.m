@@ -30,7 +30,6 @@
 @property (nonatomic, strong) NSMutableArray *tracks;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) YSSongCollectionViewDataSource *songDataSource;
-@property YTTrackGroup *trackGroup;
 
 @end
 

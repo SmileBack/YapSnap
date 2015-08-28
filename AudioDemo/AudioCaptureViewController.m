@@ -18,8 +18,9 @@
 #import "NextButton.h"
 #import "YTTrackGroup.h"
 #import "YSSongGroupController.h"
+#import "YSAudioSourceNavigationController.h"
 
-@interface AudioCaptureViewController () <YSAudioSourceControllerDelegate> {
+@interface AudioCaptureViewController () <YSAudioSourceControllerDelegate, UINavigationControllerDelegate> {
     NSTimer *audioProgressTimer;
 }
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
@@ -209,14 +210,12 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         case 0:
             self.audioSource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
             break;
-        case 1:
-            self.audioSource = [[YSSongGroupController alloc] init];
-            break;
-        case 2:
-            self.audioSource = [[YSSongGroupController alloc] init];
-            break;
         default:
-            self.audioSource = [[YSSongGroupController alloc] init];
+        {
+            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSongGroupController alloc] init]];
+            nc.delegate = self.parentViewController;
+            self.audioSource = nc;
+        }
             break;
     }
 }
@@ -224,7 +223,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 #pragma mark - YSAudioSourceControllerDelegate
 
 - (void)audioSourceControllerWillStartAudioCapture:
-    (YSAudioSourceController *)controller {
+    (id<YSAudioSource>)controller {
     NSLog(@"Will Start Audio Capture");
     [[NSNotificationCenter defaultCenter]
         postNotificationName:WILL_START_AUDIO_CAPTURE_NOTIFICATION
@@ -233,7 +232,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 }
 
 - (void)audioSourceControllerDidStartAudioCapture:
-    (YSAudioSourceController *)controller {
+    (id<YSAudioSource>)controller {
     NSLog(@"Did Start Audio Capture");
     [[NSNotificationCenter defaultCenter]
         postNotificationName:DID_START_AUDIO_CAPTURE_NOTIFICATION
@@ -261,7 +260,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 }
 
 - (void)audioSourceControllerdidFinishAudioCapture:
-    (YSAudioSourceController *)controller {
+    (id<YSAudioSource>)controller {
     [audioProgressTimer invalidate];
     [[NSNotificationCenter defaultCenter]
         postNotificationName:STOP_LOADING_SPINNER_NOTIFICATION
@@ -284,7 +283,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     [mixpanel track:@"Untapped Record Button"];
 }
 
-- (void)audioSourceController:(YSAudioSourceController *)controller
+- (void)audioSourceController:(id<YSAudioSource>)controller
    didReceieveUnexpectedError:(NSError *)error {
     //[self.recordProgressView.activityIndicator stopAnimating];
     [[NSNotificationCenter defaultCenter]
@@ -302,7 +301,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     NSLog(@"Audio Progress Timer Invalidate 3");
 }
 
-- (void)audioSourceControllerdidCancelAudioCapture:(YSAudioSourceController *)controller {
+- (void)audioSourceControllerdidCancelAudioCapture:(id<YSAudioSource>)controller {
     self.elapsedTime = 0;
     [self setBottomBarVisible:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:RESET_BANNER_UI
@@ -335,15 +334,19 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
 #pragma mark - Mode Changing
 
-- (void)setAudioSource:(YSAudioSourceController *)to {
-    _audioSource = to;
-    if (to) {
-        [self.audioSource removeFromParentViewController];
-        to.audioCaptureDelegate = self;
-        [self addChildViewController:to];
-        to.view.frame = self.audioSourceContainer.bounds;
-        [self.audioSourceContainer addSubview:to.view];
-        [to didMoveToParentViewController:self];
+- (void)setAudioSource:(id<YSAudioSource>)to {
+    if ([to isKindOfClass:[UIViewController class]]) {
+        UIViewController *toVC = (UIViewController *)to;
+        UIViewController *fromVC = (UIViewController *)_audioSource;
+        _audioSource = to;
+        if (to) {
+            [fromVC removeFromParentViewController];
+            to.audioCaptureDelegate = self;
+            [self addChildViewController:toVC];
+            toVC.view.frame = self.audioSourceContainer.bounds;
+            [self.audioSourceContainer addSubview:toVC.view];
+            [toVC didMoveToParentViewController:self];
+        }
     }
 }
 

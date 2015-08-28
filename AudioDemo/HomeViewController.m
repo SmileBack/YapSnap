@@ -178,17 +178,20 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [[NSNotificationCenter defaultCenter] postNotificationName:CANCEL_AUDIO_PLAYBACK object:nil];
-    CGRect frame = [self.audioCapture.audioSource.view convertRect:self.audioCapture.audioSource.view.frame toView:self.view];
-    self.searchOverlay = [[UIView alloc] initWithFrame:frame];
-    self.searchOverlay.backgroundColor = [UIColor colorWithWhite:0.0 alpha:1.0];
-    self.searchOverlay.alpha = 0.0;
-    [self.searchOverlay addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelSearch)]];
-    [self.view addSubview:self.searchOverlay];
-    [UIView animateWithDuration:0.3 animations:^{
-        self.searchOverlay.alpha = 0.5;
-    }];
-    self.audioCapture.categorySelectorView.isInactive = YES;
+    if ([self.audioCapture.audioSource isKindOfClass:[UIViewController class]]) {
+        UIViewController *vc = (UIViewController *)self.audioCapture.audioSource;
+        [[NSNotificationCenter defaultCenter] postNotificationName:CANCEL_AUDIO_PLAYBACK object:nil];
+        CGRect frame = [vc.view convertRect:vc.view.frame toView:self.view];
+        self.searchOverlay = [[UIView alloc] initWithFrame:frame];
+        self.searchOverlay.backgroundColor = [UIColor colorWithWhite:0.0 alpha:1.0];
+        self.searchOverlay.alpha = 0.0;
+        [self.searchOverlay addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelSearch)]];
+        [self.view addSubview:self.searchOverlay];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.searchOverlay.alpha = 0.5;
+        }];
+        self.audioCapture.categorySelectorView.isInactive = YES;
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -568,6 +571,21 @@
 #pragma mark - Mail Delegate
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UINavigationControllerDelegate
+
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated {
+    BOOL back = navigationController.viewControllers.count > 1;
+    [self.topLeftButton setImage:back ? [UIImage imageNamed:@"back"] : [UIImage imageNamed:@"FriendsIcon"] forState:UIControlStateNormal];
+    [self.topLeftButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+    if (back) {
+        [self.topLeftButton addTarget:navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        [self.topLeftButton addTarget:self action:@selector(leftButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    }
 }
 
 @end

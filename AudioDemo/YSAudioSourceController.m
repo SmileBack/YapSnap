@@ -8,11 +8,9 @@
 
 #import "YSAudioSourceController.h"
 
-@interface YSAudioSourceController ()
+@implementation YSAudioSourceViewController
 
-@end
-
-@implementation YSAudioSourceController
+@synthesize audioCaptureDelegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,7 +37,6 @@
     return nil;
 }
 
-- (NSArray *)availableCategories {return @[];}
 - (void) startPlayback{}
 - (void) stopAudioCapture{}
 - (void) cancelPlayingAudio{}

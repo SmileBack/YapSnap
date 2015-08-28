@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h> // IS THIS NECESSARY HERE? Added this for short sound feature
 #import "ZLSinusWaveView.h"
 
-@interface YSMicSourceController : YSAudioSourceController<AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+@interface YSMicSourceController : YSAudioSourceViewController<AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
 @property (weak, nonatomic) IBOutlet ZLSinusWaveView *sinusWaveView;
 
