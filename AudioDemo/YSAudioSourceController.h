@@ -47,16 +47,11 @@
 
 @property (weak) id<YSAudioSourceControllerDelegate> audioCaptureDelegate;
 
-- (NSArray *)availableCategories;
-- (void)didSelectCategory:(id<YSAudioSourceControllerCategory>)category;
-
 - (BOOL) startAudioCapture;
 - (void) stopAudioCapture;
 
 - (void) startPlayback;
 - (void) cancelPlayingAudio;
-
-- (void) resetUI;
 
 - (void)clearSearchResults;
 - (void)searchWithText:(NSString *)text;

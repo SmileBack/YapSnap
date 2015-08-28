@@ -33,6 +33,9 @@
 		37D413CC19D230D000021548 /* ArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D413CB19D230D000021548 /* ArrowWhite.png */; };
 		37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */; };
 		5D3CD7A21B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A11B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.m */; };
+		5D3CD7A61B8FB24F00B0F03C /* YSSongGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A51B8FB24F00B0F03C /* YSSongGroupController.m */; };
+		5D3CD7A91B8FB79A00B0F03C /* NSArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A81B8FB79A00B0F03C /* NSArray+Shuffle.m */; };
+		5D3CD7AC1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7AB1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m */; };
 		5DA370721B864D2600A70DAC /* YSSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA370711B864D2600A70DAC /* YSSegmentedControl.m */; };
 		780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 780211611AAB8EE000A71889 /* FriendsIcon@2x.png */; };
 		780D43221B0646770060DAED /* AEFloatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D430B1B0646770060DAED /* AEFloatConverter.m */; };
@@ -369,6 +372,12 @@
 		41ED5961C23D704BCAF364D2 /* libPods-YapTap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapTap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D3CD7A01B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrackCollectionViewCell.h; sourceTree = "<group>"; };
 		5D3CD7A11B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrackCollectionViewCell.m; sourceTree = "<group>"; };
+		5D3CD7A41B8FB24F00B0F03C /* YSSongGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSongGroupController.h; sourceTree = "<group>"; };
+		5D3CD7A51B8FB24F00B0F03C /* YSSongGroupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSongGroupController.m; sourceTree = "<group>"; };
+		5D3CD7A71B8FB79A00B0F03C /* NSArray+Shuffle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Shuffle.h"; sourceTree = "<group>"; };
+		5D3CD7A81B8FB79A00B0F03C /* NSArray+Shuffle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Shuffle.m"; sourceTree = "<group>"; };
+		5D3CD7AA1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongGroupCollectionViewCell.h; sourceTree = "<group>"; };
+		5D3CD7AB1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongGroupCollectionViewCell.m; sourceTree = "<group>"; };
 		5DA370701B864D2600A70DAC /* YSSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSegmentedControl.h; sourceTree = "<group>"; };
 		5DA370711B864D2600A70DAC /* YSSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSegmentedControl.m; sourceTree = "<group>"; };
 		780211611AAB8EE000A71889 /* FriendsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FriendsIcon@2x.png"; sourceTree = "<group>"; };
@@ -938,6 +947,15 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		5D3CD7A31B8FB22C00B0F03C /* Song Group Page */ = {
+			isa = PBXGroup;
+			children = (
+				5D3CD7A41B8FB24F00B0F03C /* YSSongGroupController.h */,
+				5D3CD7A51B8FB24F00B0F03C /* YSSongGroupController.m */,
+			);
+			name = "Song Group Page";
+			sourceTree = "<group>";
+		};
 		780D43091B0646670060DAED /* EZAudio */ = {
 			isa = PBXGroup;
 			children = (
@@ -1497,6 +1515,7 @@
 			children = (
 				784E35EA1A659BD00029AA01 /* Audio Capture */,
 				783CCF711B33A4FE00E3B5BF /* Spotify Page */,
+				5D3CD7A31B8FB22C00B0F03C /* Song Group Page */,
 				783CCF721B33A50F00E3B5BF /* Mic Page */,
 				FCFCE45F1AF559B50094926E /* Home View Controller */,
 				785393721AD9C48B00C6BEA7 /* Customize Yap */,
@@ -1626,6 +1645,8 @@
 				784047E81AB4DB0400FE6D93 /* OffsetImageButton.m */,
 				5D3CD7A01B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.h */,
 				5D3CD7A11B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.m */,
+				5D3CD7AA1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.h */,
+				5D3CD7AB1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1639,6 +1660,8 @@
 				FC865CC01A9A7B2B003AFAFA /* UIViewController+ScreenSize.m */,
 				FCD257781ABA60AE00981E5D /* UIViewController+Navigation.h */,
 				FCD257791ABA60AE00981E5D /* UIViewController+Navigation.m */,
+				5D3CD7A71B8FB79A00B0F03C /* NSArray+Shuffle.h */,
+				5D3CD7A81B8FB79A00B0F03C /* NSArray+Shuffle.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -2061,6 +2084,7 @@
 				FC52C1B01A786F0F00D85FA8 /* RecentContact.m in Sources */,
 				787C84DF1A7732E4005D80D5 /* PhoneNumberChecker.m in Sources */,
 				780D43281B0646770060DAED /* EZAudioPlotGLKViewController.m in Sources */,
+				5D3CD7A61B8FB24F00B0F03C /* YSSongGroupController.m in Sources */,
 				780D432C1B0646770060DAED /* EZRecorder.m in Sources */,
 				780D432B1B0646770060DAED /* EZPlot.m in Sources */,
 				5DA370721B864D2600A70DAC /* YSSegmentedControl.m in Sources */,
@@ -2069,6 +2093,7 @@
 				3793FDFF19BCF16B00FBBBCE /* PhoneContact.m in Sources */,
 				7857CABE1AFBB43300ADF999 /* HomeViewController.m in Sources */,
 				783CCF7B1B34741300E3B5BF /* YTSpotifyCategory.m in Sources */,
+				5D3CD7A91B8FB79A00B0F03C /* NSArray+Shuffle.m in Sources */,
 				FC1A03701A7D775A00074E6A /* AmazonAPI.m in Sources */,
 				37D413C019D21A1F00021548 /* UIColor+BButton.m in Sources */,
 				FCAA32901A8C2FD900FDCC78 /* UserCell.m in Sources */,
@@ -2108,6 +2133,7 @@
 				783CCF7E1B38CB9000E3B5BF /* SpotifyTrackFactory.m in Sources */,
 				378191D419E59B4A006EF98F /* API.m in Sources */,
 				78319A811ACD29A9000C3FD6 /* FeedbackMonitor.m in Sources */,
+				5D3CD7AC1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m in Sources */,
 				783CCF6D1B33431D00E3B5BF /* SearchArtistAlertView.m in Sources */,
 				FCBB97031A7D636A003D5F24 /* SettingsViewController.m in Sources */,
 				FC0C1D4C1A45F98500B148AB /* YSMicSourceController.m in Sources */,

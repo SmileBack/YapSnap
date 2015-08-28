@@ -20,7 +20,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+        self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.8];
         self.imageView = [[UIImageView alloc] init];
         self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         self.spinner.center = self.center;

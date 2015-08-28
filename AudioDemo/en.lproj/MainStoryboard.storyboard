@@ -889,7 +889,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="C653384B-E888-4BDA-97E6-0F8F596C4DA5"/>
+                                <state key="normal" backgroundImage="B61A5D56-B6B8-44E4-9721-9769A82EDD95"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1822,7 +1822,7 @@ Type it here!</string>
     <resources>
         <image name="AddRecipientsIcon2.png" width="128" height="128"/>
         <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="C653384B-E888-4BDA-97E6-0F8F596C4DA5" width="300" height="300">
+        <image name="B61A5D56-B6B8-44E4-9721-9769A82EDD95" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

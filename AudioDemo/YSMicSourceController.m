@@ -226,11 +226,6 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     self.sinusWaveView.alpha = 0;
 }
 
-- (void) resetUI
-{
-    // Nothing for now.
-}
-
 #pragma mark - AVAudioPlayerDelegate
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
     [self.player stop];

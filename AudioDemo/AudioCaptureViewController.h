@@ -20,23 +20,15 @@
 #define AUDIO_CAPTURE_DID_START_NOTIFICATION \
     @"yaptap.AudioCaptureDidStartNotification"
 #define LISTENED_TO_CLIP_NOTIFICATION @"com.yapsnap.ListenedToClipNotification"
-#define REMOVE_BOTTOM_BANNER_NOTIFICATION \
-    @"com.yapsnap.RemoveBottomBannerNotification"
 #define CHANGE_CATEGORY_NOTIFICATION \
 @"com.yapsnap.DidChangeCategory"
 #define CANCEL_AUDIO_PLAYBACK @"com.yapsnap.cancelAudio"
-
-typedef NS_ENUM(NSUInteger, AudioCaptureType) {
-    AudioCaptureTypeMic,
-    AudioCapTureTypeSpotify
-};
 
 static NSString *const AudioCaptureContextGenreName = @"genre";
 
 @interface AudioCaptureViewController
     : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
-@property AudioCaptureType type;
 @property NSDictionary *audioCaptureContext; // A bag of data that specifies the
                                              // context in which we should start
                                              // recording, e.g. Spotify music
@@ -46,7 +38,6 @@ static NSString *const AudioCaptureContextGenreName = @"genre";
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 @property (weak, nonatomic) IBOutlet YSSegmentedControl *categorySelectorView;
 @property (nonatomic, strong) YSAudioSourceController *audioSource;
-@property (assign, nonatomic) BOOL replyWithVoice;
 
 - (void)clearSearchResults;
 - (void)searchWithText:(NSString *)text;

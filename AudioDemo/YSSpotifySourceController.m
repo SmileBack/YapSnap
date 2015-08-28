@@ -20,6 +20,7 @@
 #import "YTTrackGroup.h"
 #import "YSSongCollectionViewDataSource.h"
 #import "Mixpanel/MPTweakInline.h"
+#import "NSArray+Shuffle.h"
 
 @interface YSSpotifySourceController () <UICollectionViewDelegate,
                                          YSSongCollectionViewDelegate>
@@ -27,24 +28,16 @@
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 @property (nonatomic, strong) NSMutableArray *tracks;
-@property (strong, nonatomic) NSArray *trackGroups;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) YSSongCollectionViewDataSource *songDataSource;
-@property YTTrackGroup *selectedTrackGroup;
+@property YTTrackGroup *trackGroup;
 
 @end
 
 @implementation YSSpotifySourceController
 
-- (void)setSongs:(NSArray *)songs {
-    _songs = songs;
-    self.songDataSource.songs = songs;
-    [self.collectionView reloadData];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self createTrackGroups];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Spotify Page"];
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
@@ -52,18 +45,18 @@
     self.songDataSource.delegate = self;
     self.collectionView.dataSource = self.songDataSource;
     self.collectionView.delegate = self;
-    UICollectionViewFlowLayout *aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
-    aFlowLayout.minimumInteritemSpacing = 2;
-    aFlowLayout.minimumLineSpacing = 2;
-    aFlowLayout.sectionInset = UIEdgeInsetsMake(2, 2, 2, 2);
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.minimumInteritemSpacing = 2;
+    flowLayout.minimumLineSpacing = 2;
+    flowLayout.sectionInset = UIEdgeInsetsMake(2, 2, 2, 2);
     if (IS_IPHONE_6_PLUS_SIZE) {
-        aFlowLayout.itemSize = CGSizeMake(200, 230);
+        flowLayout.itemSize = CGSizeMake(200, 230);
     } else if (IS_IPHONE_6_SIZE) {
-        aFlowLayout.itemSize = CGSizeMake(184, 220);
+        flowLayout.itemSize = CGSizeMake(184, 220);
     } else {
-        aFlowLayout.itemSize = CGSizeMake(152, 180);
+        flowLayout.itemSize = CGSizeMake(152, 180);
     }
-    self.collectionView.collectionViewLayout = aFlowLayout;
+    self.collectionView.collectionViewLayout = flowLayout;
 
     [self.collectionView registerClass:[SpotifyTrackCollectionViewCell class]
             forCellWithReuseIdentifier:@"track"];
@@ -72,12 +65,21 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.playerAlreadyStartedPlayingForThisSong = NO;
+    [self retrieveAndLoadTracksForCategory:self.trackGroup];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     for (NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
         [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
     }
+}
+
+#pragma mark - Setters/Getters
+
+- (void)setSongs:(NSArray *)songs {
+    _songs = songs;
+    self.songDataSource.songs = songs;
+    [self.collectionView reloadData];
 }
 
 #pragma mark - YSSongCollectionViewDataSourceDelegate
@@ -179,64 +181,22 @@
 
 #pragma mark - Track Category Stuff
 
-- (void)createTrackGroups {
-    self.trackGroups = @[
-        //                         [YTTrackGroup trackGroupWithName:@"Recent" apiString:nil],
-        [YTTrackGroup trackGroupWithName:@"Trending"
-                               apiString:@"trending_tracks"],
-        [YTTrackGroup trackGroupWithName:@"Funny"
-                               apiString:@"funny_tracks"],
-        [YTTrackGroup trackGroupWithName:@"Classics"
-                               apiString:@"nostalgic_tracks"],
-        [YTTrackGroup trackGroupWithName:@"Flirty"
-                               apiString:@"flirtatious_tracks"]
-    ];
-}
-
-- (NSArray *)availableCategories {
-    return self.trackGroups;
-}
-
-- (void)didSelectCategory:(id<YSAudioSourceControllerCategory>)category {
-    self.selectedTrackGroup = (YTTrackGroup *)category;
-    [self retrieveAndLoadTracksForCategory:self.selectedTrackGroup];
-}
-
 - (void)retrieveAndLoadTracksForCategory:(YTTrackGroup *)trackGroup {
     if (trackGroup.songs) {
-        self.songs = trackGroup.songs;
-        [self loadSongsForCategory:trackGroup];
-    } else if (!trackGroup.apiString) {
-        [self loadSongsForCategory:self.selectedTrackGroup];
+        self.songs = [trackGroup.songs shuffledArray];
     } else {
+        trackGroup = trackGroup ? trackGroup : [YTTrackGroup defaultTrackGroup];
         [[API sharedAPI]
             retrieveTracksForCategory:trackGroup
                          withCallback:^(NSArray *songs, NSError *error) {
                            if (songs) {
                                trackGroup.songs = songs;
-                               self.songs = trackGroup.songs;
-                               [self loadSongsForCategory:trackGroup];
+                               self.songs = [trackGroup.songs shuffledArray];
                            } else {
                                NSLog(@"Something went wrong");
                            }
                          }];
     }
-}
-
-- (void)loadSongsForCategory:(YTTrackGroup *)trackGroup {
-    // Shuffle all
-    self.songs = [self shuffleTracks:[NSMutableArray arrayWithArray:self.songs]];
-}
-
-- (NSMutableArray *)shuffleTracks:(NSMutableArray *)tracks {
-    NSUInteger count = [tracks count];
-    for (NSUInteger i = 0; i < count; ++i) {
-        NSInteger remainingCount = count - i;
-        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t)remainingCount);
-        [tracks exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
-    }
-
-    return tracks;
 }
 
 #pragma mark - Spotify Search
@@ -246,7 +206,7 @@
 }
 
 - (void)clearSearchResults {
-    [self retrieveAndLoadTracksForCategory:self.selectedTrackGroup];
+    [self retrieveAndLoadTracksForCategory:self.trackGroup];
 }
 
 - (void)searchForTracksWithString:(NSString *)searchString {

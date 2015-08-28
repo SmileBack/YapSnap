@@ -33,11 +33,6 @@
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
 }
 
-- (void) resetUI
-{
-    [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
-}
-
 - (YapBuilder *) getYapBuilder
 {
     [NSException raise:NSInternalInconsistencyException format:@"Unimplemented method!"];
@@ -45,7 +40,6 @@
 }
 
 - (NSArray *)availableCategories {return @[];}
-- (void)didSelectCategory:(id<YSAudioSourceControllerCategory>)category {}
 - (void) startPlayback{}
 - (void) stopAudioCapture{}
 - (void) cancelPlayingAudio{}

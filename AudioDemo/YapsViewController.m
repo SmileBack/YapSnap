@@ -546,7 +546,6 @@ static NSString *CellIdentifier = @"Cell";
         }
         
         // This tells Audio VC if it should initialize voice
-        audioVC.replyWithVoice = self.replyWithVoice;
         self.replyWithVoice = NO;
         
         PhoneContact *contact = [[ContactManager sharedContactManager] contactForPhoneNumber:targetPhone];

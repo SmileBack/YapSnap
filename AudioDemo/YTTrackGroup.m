@@ -10,6 +10,16 @@
 
 @implementation YTTrackGroup
 
++ (YTTrackGroup *)defaultTrackGroup {
+    static dispatch_once_t once;
+    static id sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [YTTrackGroup trackGroupWithName:@"Trending"
+                                                apiString:@"trending_tracks"];
+    });
+    return sharedInstance;
+}
+
 + (YTTrackGroup *)trackGroupWithName:(NSString *)name apiString:(NSString *)apiString {
     YTTrackGroup *group = YTTrackGroup.new;
     group.name = name;

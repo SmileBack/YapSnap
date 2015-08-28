@@ -17,13 +17,13 @@
 #import "YapsViewController.h"
 #import "NextButton.h"
 #import "YTTrackGroup.h"
+#import "YSSongGroupController.h"
 
 @interface AudioCaptureViewController () <YSAudioSourceControllerDelegate> {
     NSTimer *audioProgressTimer;
 }
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 @property (nonatomic) NSTimeInterval elapsedTime;
-@property (weak, nonatomic) IBOutlet UIButton *switchButton;
 @property (weak, nonatomic) IBOutlet UILabel *receiverLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
@@ -33,9 +33,8 @@
     IBOutlet NSLayoutConstraint *continueButtonRightConstraint;
 @property (weak, nonatomic) IBOutlet YSSegmentedControlScrollView *categorySelectorContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomBarBottomConstraint;
+@property (strong, nonatomic) NSArray *audioSourceNames;
 
-- (void)switchToSpotifyMode;
-- (void)switchToMicMode;
 - (IBAction)didTapNextButton;
 - (IBAction)didTapCancelButton;
 
@@ -46,28 +45,11 @@
 static const NSTimeInterval MAX_CAPTURE_TIME = 12.0;
 static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil
-               bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        [self commonInit];
-    }
-    return self;
-}
-
-- (void)awakeFromNib {
-    [self commonInit];
-}
-
-- (void)commonInit {
-    self.type = AudioCapTureTypeSpotify;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self addCancelButton];
-
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    self.audioSourceNames = @[@"New", @"Moods", @"Genres", @"Upload"];
+    
     self.categorySelectorContainer.control = self.categorySelectorView;
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
     [self.recordButton
@@ -75,16 +57,10 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
                                imageNamed:@"RecordButtonBlueBorder10Pressed.png"]
                   forState:UIControlStateHighlighted];
 
-    if (self.type == AudioCaptureTypeMic) {
-        [self switchToMicMode];
-        self.bottomViewLabel.text = @"Send Yap";
-    } else {
-        [self switchToSpotifyMode];
-        self.bottomViewLabel.text = @"Choose This Clip";
-    }
-
+    self.audioSource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+    self.bottomViewLabel.text = @"Choose This Clip";
+    
     [self setupNotifications];
-
     if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
         self.continueButtonRightConstraint.constant = -128;
     } else if (IS_IPHONE_6_SIZE) {
@@ -101,10 +77,10 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     [self setBottomBarVisible:NO animated:NO];
     
     if (!self.categorySelectorView.items) {
-        NSArray *categories = self.audioSource.availableCategories;
+        NSArray *categories = self.audioSourceNames;
         NSMutableArray *items = [NSMutableArray arrayWithCapacity:categories.count];
-        for (YTTrackGroup *group in categories) {
-            [items addObject:[YSSegmentedControlItem itemWithTitle:group.name]];
+        for (NSString *name in categories) {
+            [items addObject:[YSSegmentedControlItem itemWithTitle:name]];
         }
         self.categorySelectorView.items = items;
     }
@@ -119,20 +95,6 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     }
 
     [self.audioSource stopAudioCapture];
-}
-
-- (void)addCancelButton {
-    UIImage *cancelModalImage = [UIImage imageNamed:@"WhiteDownArrow2.png"];
-    UIButton *cancelModalButton =
-        [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [cancelModalButton setBackgroundImage:cancelModalImage
-                                 forState:UIControlStateNormal];
-    [cancelModalButton addTarget:self
-                          action:@selector(cancelPressed)
-                forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *cancelButton =
-        [[UIBarButtonItem alloc] initWithCustomView:cancelModalButton];
-    [self.navigationItem setLeftBarButtonItem:cancelButton];
 }
 
 - (BOOL)internetIsNotReachable {
@@ -150,13 +112,6 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
                     usingBlock:^(NSNotification *note) {
                       [weakSelf.navigationController
                           popToRootViewControllerAnimated:YES];
-                    }];
-
-    [center addObserverForName:REMOVE_BOTTOM_BANNER_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        [self setBottomBarVisible:NO];
                     }];
     [center addObserverForName:CANCEL_AUDIO_PLAYBACK object:nil queue:nil usingBlock:^(NSNotification *note) {
         [self.audioSource cancelPlayingAudio];
@@ -214,10 +169,6 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         self.yapBuilder.duration = self.elapsedTime;
         self.yapBuilder.text = @"";
         self.yapBuilder.color = self.view.backgroundColor;
-        // To get pitch value in 'cent' units, multiply self.pitchShiftValue by
-        // STK_PITCHSHIFT_TRANSFORM
-        self.yapBuilder.pitchValueInCentUnits = [NSNumber numberWithFloat:0];
-
         vc.builder = self.yapBuilder;
 
         if (self.contactReplyingTo) {
@@ -254,7 +205,20 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 - (IBAction)segmentedControlDidChanage:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:CHANGE_CATEGORY_NOTIFICATION object:nil];
     [self.audioSource cancelPlayingAudio];
-    [self.audioSource didSelectCategory:[self.audioSource availableCategories][self.categorySelectorView.selectedSegmentIndex]];
+    switch (self.categorySelectorView.selectedSegmentIndex) {
+        case 0:
+            self.audioSource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+            break;
+        case 1:
+            self.audioSource = [[YSSongGroupController alloc] init];
+            break;
+        case 2:
+            self.audioSource = [[YSSongGroupController alloc] init];
+            break;
+        default:
+            self.audioSource = [[YSSongGroupController alloc] init];
+            break;
+    }
 }
 
 #pragma mark - YSAudioSourceControllerDelegate
@@ -309,15 +273,6 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
             postNotificationName:
                 UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION
                           object:nil];
-        if (self.type == AudioCaptureTypeMic) {
-            double delay = .1;
-            dispatch_after(
-                dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)),
-                dispatch_get_main_queue(), ^{
-                  [[YTNotifications sharedNotifications]
-                      showNotificationText:@"Keep Holding"];
-                });
-        }
     } else {
         NSLog(@"Hit threshold");
         [[NSNotificationCenter defaultCenter]
@@ -366,40 +321,9 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
 #pragma mark - Bottom View
 - (IBAction)didTapNextButton {
-    if (self.type == AudioCapTureTypeSpotify) {
-        [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Tapped Choose Clip"];
-    } else if (self.type == AudioCaptureTypeMic) {
-        if (self.contactReplyingTo) {
-            // Create yap object
-            self.yapBuilder = [self.audioSource getYapBuilder];
-            self.yapBuilder.duration = self.elapsedTime;
-            self.yapBuilder.pitchValueInCentUnits = [NSNumber numberWithFloat:0];
-            self.yapBuilder.color = self.view.backgroundColor;
-            self.yapBuilder.contacts = @[ self.contactReplyingTo ];
-
-            NSLog(@"sendYapBuilder Triggered");
-            NSArray *pendingYaps =
-                [[API sharedAPI] sendYapBuilder:self.yapBuilder
-                                   withCallback:^(BOOL success, NSError *error) {
-                                     if (success) {
-                                         [[ContactManager sharedContactManager]
-                                             sentYapTo:self.yapBuilder.contacts];
-                                     } else {
-                                         NSLog(@"Error Sending Yap: %@", error);
-                                         // uh oh spaghettios
-                                         // TODO: tell the user something went wrong
-                                     }
-                                   }];
-            NSLog(@"Sent yaps call");
-
-            [self performSegueWithIdentifier:@"YapsViewControllerSegue"
-                                      sender:pendingYaps];
-        } else {
-            [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
-        }
-    }
+    [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Choose Clip"];
 }
 
 - (IBAction)didTapCancelButton {
@@ -411,34 +335,16 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
 #pragma mark - Mode Changing
 
-- (void)switchToSpotifyMode {
-    self.type = AudioCapTureTypeSpotify;
-    [self.switchButton setImage:[UIImage imageNamed:@"MicrophoneButton.png"]
-                       forState:UIControlStateNormal];
-    YSSpotifySourceController *spotifySource = [self.storyboard
-        instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
-    [self setRecordSourceViewController:spotifySource];
-}
-
-- (void)switchToMicMode {
-    //[self.switchButton setTitle:@"Music" forState:UIControlStateNormal];
-    [self.switchButton setImage:[UIImage imageNamed:@"MusicButton.png"]
-                       forState:UIControlStateNormal];
-    self.type = AudioCaptureTypeMic;
-    YSMicSourceController *micSource = [self.storyboard
-        instantiateViewControllerWithIdentifier:@"MicSourceController"];
-    [self setRecordSourceViewController:micSource];
-}
-
-- (void)setRecordSourceViewController:(YSAudioSourceController *)to {
-    NSAssert(to != nil, @"To controller cannot be nil");
-    [self.audioSource removeFromParentViewController];
-    to.audioCaptureDelegate = self;
-    [self addChildViewController:to];
-    to.view.frame = self.audioSourceContainer.bounds;
-    [self.audioSourceContainer addSubview:to.view];
-    self.audioSource = to;
-    [to didMoveToParentViewController:self];
+- (void)setAudioSource:(YSAudioSourceController *)to {
+    _audioSource = to;
+    if (to) {
+        [self.audioSource removeFromParentViewController];
+        to.audioCaptureDelegate = self;
+        [self addChildViewController:to];
+        to.view.frame = self.audioSourceContainer.bounds;
+        [self.audioSourceContainer addSubview:to.view];
+        [to didMoveToParentViewController:self];
+    }
 }
 
 @end

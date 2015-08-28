@@ -531,19 +531,6 @@
         };
     } else if ([@"Audio Record" isEqualToString:segue.identifier]) {
         self.audioCapture = segue.destinationViewController;
-        if (sender) { // The presence of a sender means that there was a spotify genre specified
-            if (self.replyWithVoice) {
-                self.audioCapture.type = AudioCaptureTypeMic;
-            } else {
-                self.audioCapture.type = AudioCapTureTypeSpotify;
-            }
-
-            self.audioCapture.audioCaptureContext = @{
-                AudioCaptureContextGenreName : sender
-            };
-        } else {
-            self.audioCapture.type = AudioCaptureTypeMic;
-        }
         self.audioCapture.contactReplyingTo = self.contactReplyingTo;
     }
 }

@@ -440,7 +440,6 @@
         AudioCaptureViewController *vc = segue.destinationViewController;
         YSContact *contact = sender;
         vc.contactReplyingTo = contact;
-        vc.replyWithVoice = self.replyWithVoice;
         self.replyWithVoice = NO;
     }
 }

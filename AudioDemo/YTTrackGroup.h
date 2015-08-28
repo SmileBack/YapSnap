@@ -12,6 +12,8 @@
 
 + (YTTrackGroup *)trackGroupWithName:(NSString *)name apiString:(NSString *)apiString;
 
++ (YTTrackGroup *)defaultTrackGroup;
+
 @property (nonatomic, strong) NSString *apiString;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray *songs;
