@@ -45,7 +45,6 @@
 @property (nonatomic, readonly) NSArray *yaps;
 @property (nonatomic, strong) YSYap *addFriendYap;
 @property (nonatomic, strong) NSString *titleString;
-@property (assign, nonatomic) BOOL replyWithVoice;
 @property (strong, nonatomic) YTUnregisteredUserSMSInviter *unregisteredUserSMSInviter;
 @property (assign, nonatomic) BOOL smsAlertWasAlreadyPrompted;
 
@@ -545,9 +544,6 @@ static NSString *CellIdentifier = @"Cell";
             targetName = yap.senderName;
         }
         
-        // This tells Audio VC if it should initialize voice
-        self.replyWithVoice = NO;
-        
         PhoneContact *contact = [[ContactManager sharedContactManager] contactForPhoneNumber:targetPhone];
         if (contact) {
             audioVC.contactReplyingTo = contact;
@@ -819,7 +815,6 @@ static NSString *CellIdentifier = @"Cell";
 {
     //This is a hack to prevent multiple popups from showing
     self.smsAlertWasAlreadyPrompted = YES;
-    self.replyWithVoice = YES;
     [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
 }
 

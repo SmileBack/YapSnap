@@ -15,7 +15,7 @@
 #import "YSPushManager.h"
 #import "YSSegmentedControl.h"
 
-@interface HomeViewController () <UITextFieldDelegate> {
+@interface HomeViewController () <UITextFieldDelegate, UINavigationControllerDelegate> {
     NSTimer *countdownTimer;
     int currMinute;
     int currSeconds;

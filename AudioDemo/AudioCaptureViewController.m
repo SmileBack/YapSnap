@@ -132,21 +132,6 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     }
 }
 
-/*
- - (void) timerFired
- {
- self.elapsedTime += TIME_INTERVAL;
- 
- CGFloat trackLength = [self.yap.duration floatValue];
- CGFloat progress = self.elapsedTime / 12;
- [self.progressView setProgress:progress];
- 
- if (self.elapsedTime >= trackLength) {
- [self stop];
- }
- }
- */
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([@"Prepare Yap For Text Segue" isEqualToString:segue.identifier]) {
         CustomizeYapViewController *addTextVC = segue.destinationViewController;
@@ -206,18 +191,25 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 - (IBAction)segmentedControlDidChanage:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:CHANGE_CATEGORY_NOTIFICATION object:nil];
     [self.audioSource cancelPlayingAudio];
+    id<YSAudioSource> audioSource = nil;
     switch (self.categorySelectorView.selectedSegmentIndex) {
         case 0:
-            self.audioSource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+            audioSource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
             break;
         default:
         {
             YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSongGroupController alloc] init]];
-            nc.delegate = self.parentViewController;
-            self.audioSource = nc;
+            if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
+                nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
+            }
+            audioSource = nc;
         }
             break;
     }
+    // HAACKKKKKK: cancelPlayingAudio is ASYNC, but doesn't have a callback. The lib we're using needs to do that, but in the mean time, dispatch this async.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.audioSource = audioSource;
+    });
 }
 
 #pragma mark - YSAudioSourceControllerDelegate
