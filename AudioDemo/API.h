@@ -14,7 +14,7 @@
 #import "YapBuilder.h"
 #import "AddFriendsBuilder.h"
 #import "YTTrackGroup.h"
-#import "YSITunesTrack.h"
+#import "YSITunesUpload.h"
 
 
 #define NOTIFICATION_INVALID_SESSION @"com.yapsnap.InvalidSessionNotification"
@@ -57,7 +57,7 @@ typedef void (^ITunesTracksCallback)(NSArray *tracks, NSError *error);
 - (void) retrieveTracksForCategory:(YTTrackGroup*)category withCallback:(OnboardingTracksCallback)callback;
 
 - (void) getItunesTracks:(ITunesTracksCallback)callback;
-- (void) uploadItunesTrack:(YSITunesTrack *)upload withCallback:(ITunesUploadCallback)callback;
+- (void) uploadItunesTrack:(YSiTunesUpload *)upload withCallback:(ITunesUploadCallback)callback;
 
 # pragma mark - Updating of User Data
 - (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback;

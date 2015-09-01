@@ -777,7 +777,7 @@ static API *sharedAPI;
          }];
 }
 
-- (void) uploadItunesTrack:(YSITunesTrack *)track withCallback:(ITunesUploadCallback)callback
+- (void) uploadItunesTrack:(YSiTunesUpload *)track withCallback:(ITunesUploadCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
