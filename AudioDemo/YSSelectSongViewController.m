@@ -7,6 +7,8 @@
 //
 
 #import "YSSelectSongViewController.h"
+#import "YSiTunesUpload.h"
+#import "YSTrimSongViewController.h"
 
 #define TRIM_SEGUE @"Trim Segue"
 
@@ -29,7 +31,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:TRIM_SEGUE]) {
-        
+        YSTrimSongViewController *vc = segue.destinationViewController;
+        YSiTunesUpload *upload = sender;
+        vc.iTunesUpload = upload;
     }
 }
 
@@ -47,6 +51,7 @@
     picker.allowsPickingMultipleItems = NO;
     picker.prompt = NSLocalizedString (@"Add songs to play",
                        "Prompt in media item picker");
+    picker.showsCloudItems = NO;
 
     [self presentViewController:picker animated:YES completion:^{
         
@@ -61,9 +66,25 @@
 #pragma mark - MediaPickerDelegate
 - (void) mediaPicker: (MPMediaPickerController *) mediaPicker
    didPickMediaItems: (MPMediaItemCollection *) collection {
+    if (collection.items.count != 1) {
+        //TODO what to do if there isn't something selected?
+        return;
+    }
+    MPMediaItem *item = collection.items[0];
+    NSLog(@"Song name: %@", item.title);
+    YSiTunesUpload *upload = [YSiTunesUpload new];
+    upload.artistName = item.artist;
+    upload.songName = item.title;
+    upload.persistentID = [NSNumber numberWithLongLong:item.persistentID];
+    MPMediaItemArtwork *artwork = item.artwork;
+    UIImage *image = [artwork imageWithSize:artwork.imageCropRect.size];
+    upload.artworkImage = image;
+    upload.trackURL = [item valueForProperty:MPMediaItemPropertyAssetURL];
+    upload.trackDuration = item.playbackDuration;
     
+    __weak YSSelectSongViewController *weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        [weakSelf performSegueWithIdentifier:TRIM_SEGUE sender:upload];
     }];
 }
 

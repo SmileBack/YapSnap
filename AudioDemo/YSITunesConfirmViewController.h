@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YSITunesTrack.h"
+#import "YSiTunesUpload.h"
 
 @interface YSITunesConfirmViewController : UIViewController
 
-@property (nonatomic, strong) YSITunesTrack *iTunesTrack;
+@property (nonatomic, strong) YSiTunesUpload *iTunesUpload;
 
 @end
