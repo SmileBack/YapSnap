@@ -711,6 +711,8 @@
 		FC59CD441B8EAC120091D4D3 /* YSITunesConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSITunesConfirmViewController.m; sourceTree = "<group>"; };
 		FC609BC11A3CC24500182F08 /* SpotifyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyAPI.h; sourceTree = "<group>"; };
 		FC609BC21A3CC24500182F08 /* SpotifyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPI.m; sourceTree = "<group>"; };
+		FC6C2A521B952249001E9C1D /* YSiTunesUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSiTunesUpload.h; sourceTree = "<group>"; };
+		FC6C2A531B952249001E9C1D /* YSiTunesUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSiTunesUpload.m; sourceTree = "<group>"; };
 		FC7C42AF1B8E993600629AA8 /* YSITunesTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSITunesTrack.h; sourceTree = "<group>"; };
 		FC7C42B01B8E993600629AA8 /* YSITunesTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSITunesTrack.m; sourceTree = "<group>"; };
 		FC80F3CF1A3CC6BD00F7ABD0 /* YSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTrack.h; sourceTree = "<group>"; };
@@ -1615,6 +1617,8 @@
 			children = (
 				FC7C42AF1B8E993600629AA8 /* YSITunesTrack.h */,
 				FC7C42B01B8E993600629AA8 /* YSITunesTrack.m */,
+				FC6C2A521B952249001E9C1D /* YSiTunesUpload.h */,
+				FC6C2A531B952249001E9C1D /* YSiTunesUpload.m */,
 			);
 			name = iTunes;
 			sourceTree = "<group>";
@@ -2123,6 +2127,7 @@
 				FC7C42B11B8E993600629AA8 /* YSITunesTrack.m in Sources */,
 				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
+				FC6C2A541B952249001E9C1D /* YSiTunesUpload.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
 				FC1E89B81A4B852C007A8CDA /* SpotifyTrackView.m in Sources */,
 				780D43251B0646770060DAED /* EZAudioPlayer.m in Sources */,
