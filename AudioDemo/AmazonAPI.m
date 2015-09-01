@@ -29,12 +29,6 @@ static AmazonAPI *sharedAPI;
 
 - (void) setupAws
 {
-//    AWSCognitoCredentialsProvider *credentialsProvider = [AWSCognitoCredentialsProvider credentialsWithRegionType:AWSRegionUSEast1
-//                                                                                                        accountId:@"193191061924"
-//                                                                                                   identityPoolId:nil
-//                                                                                                    unauthRoleArn:nil
-//                                                                                                      authRoleArn:nil];
-
     AWSStaticCredentialsProvider *creds = [AWSStaticCredentialsProvider credentialsWithAccessKey:@"AKIAIDOJIA33U2VL5OPA"
                                                                                        secretKey:@"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"];
 
