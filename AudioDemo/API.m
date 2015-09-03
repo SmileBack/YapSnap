@@ -754,4 +754,65 @@ static API *sharedAPI;
     NSLog(@"category in API.m: %@", category);
 }
 
+# pragma mark - iTunes
+- (void) getItunesTracks:(ITunesTracksCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    NSString *url = @"/itunes_tracks";
+    [manager GET:[self urlForEndpoint:url]
+      parameters:[self paramsWithDict:@{}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSArray *tracks = nil;
+             if ([responseObject isKindOfClass:[NSArray class]]) {
+                 NSArray *response = responseObject;
+                 NSLog(@"Tracks: %@", response);
+                 tracks = [YSITunesTrack tracksFromArrayOfDictionaries:response];
+             }
+             callback(tracks, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [self processFailedOperation:operation];
+             callback(NO, error);
+         }];
+}
+
+- (void) uploadItunesTrack:(YSiTunesUpload *)track withCallback:(ITunesUploadCallback)callback
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+
+    NSString *url = @"/itunes_tracks";
+    NSMutableDictionary *params = [self paramsWithDict:@{@"aws_song_url": track.awsSongUrl,
+                                                         @"aws_song_etag": track.awsSongEtag,
+                                                         @"persistent_id": track.persistentID}];
+
+    if (track.label)
+        params[@"label"] = track.label;
+    if (track.artistName)
+        params[@"artist_name"] = track.artistName;
+    if (track.songName)
+        params[@"song_name"] = track.artistName;
+    if (track.awsArtworkUrl && track.awsArtworkEtag) {
+        params[@"aws_artwork_url"] = track.awsArtworkUrl;
+        params[@"aws_artwork_etag"] = track.awsArtworkEtag;
+    }
+
+    [manager POST:[self urlForEndpoint:url]
+      parameters:params
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             YSITunesTrack *returnedTrack = nil;
+             if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                 NSDictionary *response = responseObject;
+                 NSLog(@"Track response: %@", response);
+                 returnedTrack = [YSITunesTrack trackFromDictionary:response];
+             }
+             callback(returnedTrack, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             [self processFailedOperation:operation];
+             callback(NO, error);
+         }];
+}
+
 @end
+

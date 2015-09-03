@@ -29,12 +29,6 @@ static AmazonAPI *sharedAPI;
 
 - (void) setupAws
 {
-//    AWSCognitoCredentialsProvider *credentialsProvider = [AWSCognitoCredentialsProvider credentialsWithRegionType:AWSRegionUSEast1
-//                                                                                                        accountId:@"193191061924"
-//                                                                                                   identityPoolId:nil
-//                                                                                                    unauthRoleArn:nil
-//                                                                                                      authRoleArn:nil];
-
     AWSStaticCredentialsProvider *creds = [AWSStaticCredentialsProvider credentialsWithAccessKey:@"AKIAIDOJIA33U2VL5OPA"
                                                                                        secretKey:@"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"];
 
@@ -94,6 +88,53 @@ static AmazonAPI *sharedAPI;
         }
         return nil;
     }];
+}
+
+#pragma mark - Genric
+- (void) uploadFile:(NSURL *)fileURL withName:(NSString *)fileName andContentType:(NSString *)contentType andBucket:(NSString *)bucket withCallback:(UploadedFileCallback)callback
+{
+    AWSS3TransferManager *transferManager = [AWSS3TransferManager defaultS3TransferManager];
+    AWSS3TransferManagerUploadRequest *uploadRequest = [AWSS3TransferManagerUploadRequest new];
+    uploadRequest.bucket = bucket;
+    uploadRequest.key = fileName;
+    uploadRequest.body = fileURL;
+    uploadRequest.contentType = contentType;
+    uploadRequest.ACL = AWSS3ObjectCannedACLPublicRead;
+    
+    NSString *url = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, fileName];
+    
+    [[transferManager upload:uploadRequest] continueWithBlock:^id(BFTask *task) {
+        if (task.error) {
+            callback(nil, nil, task.error);
+        } else {
+            AWSS3TransferManagerUploadOutput *output = task.result;
+            callback(url, output.ETag, nil);
+        }
+        return nil;
+    }];
+}
+
+#pragma mark - iTunes
+- (void) uploadiTunesTrack:(NSURL *)fileURL withCallback:(UploadedFileCallback)callback
+{
+    NSString *fileName = [NSString stringWithFormat:@"%d_%f", [YSUser currentUser].userID.intValue, [NSDate date].timeIntervalSince1970];
+    
+    [self uploadFile:fileURL
+            withName:fileName
+      andContentType:@"audio/mp4" //TODO what is the type????????
+           andBucket:@"audiomessenger/uploads/itunes/songs"
+        withCallback:callback];
+}
+
+- (void) uploadiTunesArtwork:(NSURL *)fileURL withCallback:(UploadedFileCallback)callback
+{
+    NSString *fileName = [NSString stringWithFormat:@"%d_%f", [YSUser currentUser].userID.intValue, [NSDate date].timeIntervalSince1970];
+    
+    [self uploadFile:fileURL
+            withName:fileName
+      andContentType:@"image/png" //TODO what is the type????????
+           andBucket:@"audiomessenger/uploads/itunes/artwork"
+        withCallback:callback];
 }
 
 @end

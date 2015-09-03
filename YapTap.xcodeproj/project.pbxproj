@@ -301,7 +301,13 @@
 		FC52C1AD1A785D2800D85FA8 /* YSPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1AC1A785D2800D85FA8 /* YSPushManager.m */; };
 		FC52C1B01A786F0F00D85FA8 /* RecentContact.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1AF1A786F0F00D85FA8 /* RecentContact.m */; };
 		FC52C1B41A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52C1B31A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m */; };
+		FC59CD3F1B8EA6900091D4D3 /* YSTrimSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC59CD3E1B8EA6900091D4D3 /* YSTrimSongViewController.m */; };
+		FC59CD451B8EAC120091D4D3 /* YSITunesConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC59CD441B8EAC120091D4D3 /* YSITunesConfirmViewController.m */; };
 		FC609BC31A3CC24500182F08 /* SpotifyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = FC609BC21A3CC24500182F08 /* SpotifyAPI.m */; };
+		FC6C2A541B952249001E9C1D /* YSiTunesUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C2A531B952249001E9C1D /* YSiTunesUpload.m */; };
+		FC6C2A571B95239B001E9C1D /* YSSongTrimmer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6C2A561B95239B001E9C1D /* YSSongTrimmer.m */; };
+		FC6C2A591B952C7D001E9C1D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6C2A581B952C7D001E9C1D /* CoreMedia.framework */; };
+		FC7C42B11B8E993600629AA8 /* YSITunesTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC7C42B01B8E993600629AA8 /* YSITunesTrack.m */; };
 		FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */; };
 		FC865CC11A9A7B2B003AFAFA /* UIViewController+ScreenSize.m in Sources */ = {isa = PBXBuildFile; fileRef = FC865CC01A9A7B2B003AFAFA /* UIViewController+ScreenSize.m */; };
 		FCAA32901A8C2FD900FDCC78 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA328F1A8C2FD900FDCC78 /* UserCell.m */; };
@@ -313,6 +319,8 @@
 		FCD885AE1AC8A2A0007729CC /* YapsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD885AD1AC8A2A0007729CC /* YapsCache.m */; };
 		FCE234491AAB749E00C1EDB0 /* YTNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE234481AAB749E00C1EDB0 /* YTNotifications.m */; };
 		FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE2347C1AAB917100C1EDB0 /* LaunchScreen.xib */; };
+		FCEE680E1B8E93CC0010B298 /* YSSelectSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEE680D1B8E93CC0010B298 /* YSSelectSongViewController.m */; };
+		FCEE68101B8E945F0010B298 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEE680F1B8E945F0010B298 /* MediaPlayer.framework */; };
 		FCEF99361A6D6B22000FDE4C /* CustomizeYapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99351A6D6B22000FDE4C /* CustomizeYapViewController.m */; };
 		FCEF99391A6D6B9A000FDE4C /* YapBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF99381A6D6B9A000FDE4C /* YapBuilder.m */; };
 		FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF993C1A6D6F06000FDE4C /* NoAnimationPushSegue.m */; };
@@ -703,8 +711,19 @@
 		FC52C1AF1A786F0F00D85FA8 /* RecentContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentContact.m; sourceTree = "<group>"; };
 		FC52C1B21A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSpotifyTapGestureRecognizer.h; sourceTree = "<group>"; };
 		FC52C1B31A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSpotifyTapGestureRecognizer.m; sourceTree = "<group>"; };
+		FC59CD3D1B8EA6900091D4D3 /* YSTrimSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTrimSongViewController.h; sourceTree = "<group>"; };
+		FC59CD3E1B8EA6900091D4D3 /* YSTrimSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSTrimSongViewController.m; sourceTree = "<group>"; };
+		FC59CD431B8EAC120091D4D3 /* YSITunesConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSITunesConfirmViewController.h; sourceTree = "<group>"; };
+		FC59CD441B8EAC120091D4D3 /* YSITunesConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSITunesConfirmViewController.m; sourceTree = "<group>"; };
 		FC609BC11A3CC24500182F08 /* SpotifyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyAPI.h; sourceTree = "<group>"; };
 		FC609BC21A3CC24500182F08 /* SpotifyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPI.m; sourceTree = "<group>"; };
+		FC6C2A521B952249001E9C1D /* YSiTunesUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSiTunesUpload.h; sourceTree = "<group>"; };
+		FC6C2A531B952249001E9C1D /* YSiTunesUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSiTunesUpload.m; sourceTree = "<group>"; };
+		FC6C2A551B95239B001E9C1D /* YSSongTrimmer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSongTrimmer.h; sourceTree = "<group>"; };
+		FC6C2A561B95239B001E9C1D /* YSSongTrimmer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSongTrimmer.m; sourceTree = "<group>"; };
+		FC6C2A581B952C7D001E9C1D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		FC7C42AF1B8E993600629AA8 /* YSITunesTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSITunesTrack.h; sourceTree = "<group>"; };
+		FC7C42B01B8E993600629AA8 /* YSITunesTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSITunesTrack.m; sourceTree = "<group>"; };
 		FC80F3CF1A3CC6BD00F7ABD0 /* YSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTrack.h; sourceTree = "<group>"; };
 		FC80F3D01A3CC6BD00F7ABD0 /* YSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSTrack.m; sourceTree = "<group>"; };
 		FC865CBF1A9A7B2B003AFAFA /* UIViewController+ScreenSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ScreenSize.h"; sourceTree = "<group>"; };
@@ -726,6 +745,9 @@
 		FCE234471AAB749E00C1EDB0 /* YTNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTNotifications.h; sourceTree = "<group>"; };
 		FCE234481AAB749E00C1EDB0 /* YTNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTNotifications.m; sourceTree = "<group>"; };
 		FCE2347C1AAB917100C1EDB0 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		FCEE680C1B8E93CC0010B298 /* YSSelectSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSelectSongViewController.h; sourceTree = "<group>"; };
+		FCEE680D1B8E93CC0010B298 /* YSSelectSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSelectSongViewController.m; sourceTree = "<group>"; };
+		FCEE680F1B8E945F0010B298 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		FCEF99341A6D6B22000FDE4C /* CustomizeYapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizeYapViewController.h; sourceTree = "<group>"; };
 		FCEF99351A6D6B22000FDE4C /* CustomizeYapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizeYapViewController.m; sourceTree = "<group>"; };
 		FCEF99371A6D6B9A000FDE4C /* YapBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YapBuilder.h; sourceTree = "<group>"; };
@@ -751,6 +773,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC6C2A591B952C7D001E9C1D /* CoreMedia.framework in Frameworks */,
+				FCEE68101B8E945F0010B298 /* MediaPlayer.framework in Frameworks */,
 				780D43301B064A3F0060DAED /* GLKit.framework in Frameworks */,
 				FC0642D91A9D68FC00E3D60F /* SystemConfiguration.framework in Frameworks */,
 				7828A8DC1A846C0C00BAA609 /* MessageUI.framework in Frameworks */,
@@ -1425,6 +1449,8 @@
 		F44B0C4116DA404700E6CD88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FC6C2A581B952C7D001E9C1D /* CoreMedia.framework */,
+				FCEE680F1B8E945F0010B298 /* MediaPlayer.framework */,
 				780D432F1B064A3F0060DAED /* GLKit.framework */,
 				FC0642D81A9D68FC00E3D60F /* SystemConfiguration.framework */,
 				787A6D941A4DD8A2001551C6 /* Crashlytics.framework */,
@@ -1495,6 +1521,7 @@
 		FC0C1D3F1A45EE5E00B148AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FCEE680B1B8E93B20010B298 /* iTunes */,
 				784E35EA1A659BD00029AA01 /* Audio Capture */,
 				783CCF711B33A4FE00E3B5BF /* Spotify Page */,
 				783CCF721B33A50F00E3B5BF /* Mic Page */,
@@ -1570,6 +1597,7 @@
 		FC609BC01A3CC22F00182F08 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FC7C42AE1B8E992400629AA8 /* iTunes */,
 				FCFCE4631AF567E80094926E /* Spotify */,
 				FCFCE44E1AF527F20094926E /* Builders */,
 				FC0642D31A9D65D000E3D60F /* Environment.h */,
@@ -1593,6 +1621,19 @@
 				FCD885AD1AC8A2A0007729CC /* YapsCache.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		FC7C42AE1B8E992400629AA8 /* iTunes */ = {
+			isa = PBXGroup;
+			children = (
+				FC7C42AF1B8E993600629AA8 /* YSITunesTrack.h */,
+				FC7C42B01B8E993600629AA8 /* YSITunesTrack.m */,
+				FC6C2A521B952249001E9C1D /* YSiTunesUpload.h */,
+				FC6C2A531B952249001E9C1D /* YSiTunesUpload.m */,
+				FC6C2A551B95239B001E9C1D /* YSSongTrimmer.h */,
+				FC6C2A561B95239B001E9C1D /* YSSongTrimmer.m */,
+			);
+			name = iTunes;
 			sourceTree = "<group>";
 		};
 		FCA2CE9E1A3CCC9B0055C76A /* Views */ = {
@@ -1652,6 +1693,19 @@
 				FCBB97051A7D6CDF003D5F24 /* EditFieldViewController.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		FCEE680B1B8E93B20010B298 /* iTunes */ = {
+			isa = PBXGroup;
+			children = (
+				FCEE680C1B8E93CC0010B298 /* YSSelectSongViewController.h */,
+				FCEE680D1B8E93CC0010B298 /* YSSelectSongViewController.m */,
+				FC59CD3D1B8EA6900091D4D3 /* YSTrimSongViewController.h */,
+				FC59CD3E1B8EA6900091D4D3 /* YSTrimSongViewController.m */,
+				FC59CD431B8EAC120091D4D3 /* YSITunesConfirmViewController.h */,
+				FC59CD441B8EAC120091D4D3 /* YSITunesConfirmViewController.m */,
+			);
+			name = iTunes;
 			sourceTree = "<group>";
 		};
 		FCEF993A1A6D6EF0000FDE4C /* Segues */ = {
@@ -1747,7 +1801,7 @@
 				ORGANIZATIONNAME = Appcoda;
 				TargetAttributes = {
 					F44B0C3E16DA404700E6CD88 = {
-						DevelopmentTeam = S7LF8DWGYS;
+						DevelopmentTeam = 4R48R23C3S;
 					};
 				};
 			};
@@ -2076,7 +2130,9 @@
 				787EC5E31AC9D0AD000C5539 /* JEProgressView.m in Sources */,
 				780D43291B0646770060DAED /* EZMicrophone.m in Sources */,
 				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,
+				FC6C2A571B95239B001E9C1D /* YSSongTrimmer.m in Sources */,
 				FCEF99361A6D6B22000FDE4C /* CustomizeYapViewController.m in Sources */,
+				FC59CD451B8EAC120091D4D3 /* YSITunesConfirmViewController.m in Sources */,
 				FCBB96FF1A7D4C97003D5F24 /* YSUser.m in Sources */,
 				FCBB97061A7D6CDF003D5F24 /* EditFieldViewController.m in Sources */,
 				780D43221B0646770060DAED /* AEFloatConverter.m in Sources */,
@@ -2084,19 +2140,23 @@
 				FCFCE4541AF529030094926E /* AddFriendsBuilder.m in Sources */,
 				FCE234491AAB749E00C1EDB0 /* YTNotifications.m in Sources */,
 				783CCF781B3466A800E3B5BF /* YTRoundButton.m in Sources */,
+				FC7C42B11B8E993600629AA8 /* YSITunesTrack.m in Sources */,
 				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
+				FC6C2A541B952249001E9C1D /* YSiTunesUpload.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
 				FC1E89B81A4B852C007A8CDA /* SpotifyTrackView.m in Sources */,
 				780D43251B0646770060DAED /* EZAudioPlayer.m in Sources */,
 				FCEF99401A6D7BF2000FDE4C /* YapCell.m in Sources */,
 				FC029EA21A96BC190013B866 /* YSContact.m in Sources */,
 				FCFCE4581AF5413D0094926E /* AddFriendAlertView.m in Sources */,
+				FC59CD3F1B8EA6900091D4D3 /* YSTrimSongViewController.m in Sources */,
 				783CCF751B3461D800E3B5BF /* YTSearchSuggestionsViewController.m in Sources */,
 				FC865CC11A9A7B2B003AFAFA /* UIViewController+ScreenSize.m in Sources */,
 				FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */,
 				FC0642D51A9D65D000E3D60F /* Environment.m in Sources */,
 				374383E019CE29880009C323 /* EnterPhoneNumberViewController.m in Sources */,
+				FCEE680E1B8E93CC0010B298 /* YSSelectSongViewController.m in Sources */,
 				781C00891B7E6AA800525B12 /* YSSongCollectionViewDataSource.m in Sources */,
 				5D3CD7A21B8F7B2C00B0F03C /* SpotifyTrackCollectionViewCell.m in Sources */,
 				F44B0C5316DA404700E6CD88 /* AppDelegate.m in Sources */,
@@ -2231,7 +2291,7 @@
 				INFOPLIST_FILE = "AudioDemo/YapTap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b1f551b-3e6a-46d7-8e30-f6b8f0e6c47d";
+				PROVISIONING_PROFILE = "818ef46f-3897-4b50-ab45-f78ab9f8ea3a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2254,7 +2314,7 @@
 				INFOPLIST_FILE = "AudioDemo/YapTap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6b926112-acba-40f9-8406-70897ee519b0";
+				PROVISIONING_PROFILE = "1bcd33b5-1704-4491-a6d0-246954b51e48";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
