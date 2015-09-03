@@ -149,7 +149,7 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
         previous = view;
     }
     if (items.count > 0) {
-        [self setEnabled:YES forSegmentAtIndex:0 animated:NO];
+        self.selectedSegmentIndex = 0;
     }
 }
 
@@ -162,6 +162,10 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
 }
 
 - (void)setEnabled:(BOOL)enabled forSegmentAtIndex:(NSUInteger)segment animated:(BOOL)animated {
+    [self setEnabled:enabled forSegmentAtIndex:segment animated:animated firesEvents:YES];
+}
+
+- (void)setEnabled:(BOOL)enabled forSegmentAtIndex:(NSUInteger)segment animated:(BOOL)animated firesEvents:(BOOL)firesEvents {
     if (segment != self.selectedSegmentIndex || self.isInactive) {
         self.isInactive = NO;
         UIView *oldView = self.currentlyEnabledView;
@@ -182,7 +186,9 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
             selectedItemSize = ((UIImageView *)self.currentlyEnabledView).image.size;
         }
         
-        [self sendActionsForControlEvents:UIControlEventValueChanged];
+        if (firesEvents) {
+            [self sendActionsForControlEvents:UIControlEventValueChanged];
+        }
         
         [self.triangle remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.bottom).offset(-0.5);
@@ -235,6 +241,10 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
 
 - (NSInteger)selectedSegmentIndex {
     return self.currentlyEnabledView.tag - YSSegmentedControl_ViewTagOffset;
+}
+
+- (void)setSelectedSegmentIndex:(NSInteger)selectedSegmentIndex {
+    [self setEnabled:YES forSegmentAtIndex:selectedSegmentIndex animated:NO firesEvents:NO];
 }
 
 - (void)setShowsSelectionTriangle:(BOOL)showsSelectionTriangle {

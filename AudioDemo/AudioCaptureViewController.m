@@ -87,8 +87,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
             [items addObject:[YSSegmentedControlItem itemWithTitle:name]];
         }
         self.categorySelectorView.items = items;
-        [self.categorySelectorView setEnabled:YES forSegmentAtIndex:1];
-        [self segmentedControlDidChanage:self.categorySelectorView];
+        self.categorySelectorView.selectedSegmentIndex = 1;
     }
 }
 
