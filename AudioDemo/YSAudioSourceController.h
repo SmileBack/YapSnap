@@ -47,6 +47,9 @@
 
 @property (weak) id<YSAudioSourceControllerDelegate> audioCaptureDelegate;
 
+// To be displayed in the audio capture bar, can be nil
+- (NSString *)currentAudioDescription;
+
 - (BOOL) startAudioCapture;
 - (void) stopAudioCapture;
 

@@ -83,6 +83,14 @@
     }
 }
 
+- (NSString *)currentAudioDescription {
+    if ([self.topViewController conformsToProtocol:@protocol(YSAudioSource)] &&
+        [self.topViewController respondsToSelector:@selector(currentAudioDescription)]) {
+        return [(id<YSAudioSource>)self.topViewController currentAudioDescription];
+    }
+    return nil;
+}
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     [super pushViewController:viewController animated:animated];
     if ([viewController conformsToProtocol:@protocol(YSAudioSource)]) {

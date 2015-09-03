@@ -40,6 +40,7 @@
 - (void) startPlayback{}
 - (void) stopAudioCapture{}
 - (void) cancelPlayingAudio{}
+- (NSString *)currentAudioDescription {return nil;}
 
 - (void)clearSearchResults {}
 - (void)searchWithText:(NSString *)text {}

@@ -30,6 +30,7 @@
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (nonatomic, strong) YapBuilder *yapBuilder;
 @property (weak, nonatomic) IBOutlet UILabel *bottomViewLabel;
+@property (weak, nonatomic) IBOutlet UILabel *songNameLabel;
 @property (strong, nonatomic)
     IBOutlet NSLayoutConstraint *continueButtonRightConstraint;
 @property (weak, nonatomic) IBOutlet YSSegmentedControlScrollView *categorySelectorContainer;
@@ -183,6 +184,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 - (void)setBottomBarVisible:(BOOL)visible animated:(BOOL)animated {
     [self.view layoutIfNeeded];
     self.bottomBarBottomConstraint.constant = visible ? 0 : CGRectGetHeight(self.bottomView.frame);
+    self.songNameLabel.text = [self.audioSource currentAudioDescription];
     [UIView animateWithDuration:animated ? 0.3 : 0 animations:^{
         [self.view layoutIfNeeded];
     }];

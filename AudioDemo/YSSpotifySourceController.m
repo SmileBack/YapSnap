@@ -396,6 +396,14 @@
     [self startAudioCapture];
 }
 
+- (NSString *)currentAudioDescription {
+    if (self.collectionView.indexPathsForSelectedItems.count > 0) {
+        YSTrack *song = self.songs[((NSIndexPath *)[self.collectionView indexPathsForSelectedItems].firstObject).row];
+        return song.name;
+    }
+    return nil;
+}
+
 - (BOOL)startAudioCapture {
     if (![AFNetworkReachabilityManager sharedManager].reachable) {
         double delay = 0.1;
