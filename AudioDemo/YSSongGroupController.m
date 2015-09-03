@@ -10,6 +10,7 @@
 #import "YTTrackGroup.h"
 #import "SongGroupCollectionViewCell.h"
 #import "YSSpotifySourceController.h"
+#import "UICollectionViewFlowLayout+YS.h"
 
 @interface YSSongGroupController()<UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -36,18 +37,7 @@
                          [YTTrackGroup trackGroupWithName:@"Rowdy"
                                                 apiString:@"flirtatious_tracks"]
                          ];
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.minimumInteritemSpacing = 2;
-    flowLayout.minimumLineSpacing = 2;
-    flowLayout.sectionInset = UIEdgeInsetsMake(2, 2, 2, 2);
-    if (IS_IPHONE_6_PLUS_SIZE) {
-        flowLayout.itemSize = CGSizeMake(200, 230);
-    } else if (IS_IPHONE_6_SIZE) {
-        flowLayout.itemSize = CGSizeMake(184, 220);
-    } else {
-        flowLayout.itemSize = CGSizeMake(152, 180);
-    }
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewFlowLayout appLayout]];
     self.collectionView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;

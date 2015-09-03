@@ -20,6 +20,7 @@
 #import "YSSongGroupController.h"
 #import "YSAudioSourceNavigationController.h"
 #import "YSRecentSourceController.h"
+#import "YSSelectSongViewController.h"
 
 @interface AudioCaptureViewController () <YSAudioSourceControllerDelegate, UINavigationControllerDelegate> {
     NSTimer *audioProgressTimer;
@@ -143,14 +144,11 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         // Create yap object
         self.yapBuilder = [self.audioSource getYapBuilder];
         self.yapBuilder.duration = self.elapsedTime;
-        addTextVC.yapBuilder = self.yapBuilder;
         if (self.contactReplyingTo) {
             self.yapBuilder.contacts = @[ self.contactReplyingTo ];
         }
-
+        addTextVC.yapBuilder = self.yapBuilder;
         self.elapsedTime = 0;
-
-        // The following only applies to Voice Messages
     } else if ([@"Contacts Segue" isEqualToString:segue.identifier]) {
         ContactsViewController *vc = segue.destinationViewController;
 
@@ -204,6 +202,15 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         case 1:
             audioSource = [[YSSpotifySourceController alloc] init];
             break;
+        case 4:
+        {
+            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSelectSongViewController alloc] init]];
+            if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
+                nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
+            }
+            audioSource = nc;
+            break;
+        }
         default:
         {
             YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSongGroupController alloc] init]];
@@ -321,9 +328,13 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
 #pragma mark - Bottom View
 - (IBAction)didTapNextButton {
-    [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
+    [self.audioSource prepareYapBuilder];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Choose Clip"];
+}
+
+- (void)audioSourceControllerIsReadyToProduceYapBuidler:(id<YSAudioSource>)controller {
+    [self performSegueWithIdentifier:@"Prepare Yap For Text Segue" sender:nil];
 }
 
 - (IBAction)didTapCancelButton {

@@ -15,19 +15,13 @@
 #import "YSPushManager.h"
 #import "YSSegmentedControl.h"
 
-@interface HomeViewController () <UITextFieldDelegate, UINavigationControllerDelegate> {
-    NSTimer *countdownTimer;
-    int currMinute;
-    int currSeconds;
-}
+@interface HomeViewController () <UITextFieldDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) IBOutlet UILabel *pageLabel;
 @property (nonatomic, strong) NSNumber *unopenedYapsCount;
 @property (strong, nonatomic) NSTimer *pulsatingTimer;
 @property (strong, nonatomic) WelcomePopupViewController *welcomePopupVC;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *pageLabelConstraint;
-@property (strong, nonatomic) IBOutlet UILabel *countdownTimerLabel;
-@property IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UITextField *searchBar;
 @property (strong, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
@@ -69,24 +63,11 @@
 
     self.resetButton.alpha = 0;
     self.pageLabel.textColor = THEME_SECONDARY_COLOR;
-    self.countdownTimerLabel.textColor = THEME_SECONDARY_COLOR;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     if (![YSUser currentUser].hasSessionToken) { // Force log in
         [self performSegueWithIdentifier:@"Login" sender:nil];
-    }
-
-    if (countdownTimer) {
-        [countdownTimer invalidate];
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-
-    if (countdownTimer) {
-        [countdownTimer invalidate];
     }
 }
 
@@ -102,8 +83,6 @@
 
     [self reloadUnopenedYapsCount];
     [self updateYapsButtonAnimation];
-
-    self.countdownTimerLabel.alpha = 0;
 
     self.topLeftButton.alpha = 1;
     self.yapsPageButton.alpha = 1;
@@ -247,68 +226,6 @@
                       [weakSelf dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
 
-    [center addObserverForName:AUDIO_CAPTURE_DID_START_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                      NSLog(@"Audio Capture Did Start");
-                      [weakSelf showAndStartTimer];
-                    }];
-
-    [center addObserverForName:STOP_LOADING_SPINNER_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                      [weakSelf.activityIndicator stopAnimating];
-                    }];
-
-    [center addObserverForName:UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                      NSLog(@"Home VC received threshold notification");
-                      [self showTopButtons];
-                      [countdownTimer invalidate];
-                      [UIView animateWithDuration:.1
-                                            delay:0
-                                          options:UIViewAnimationOptionCurveEaseOut
-                                       animations:^{
-                                         weakSelf.countdownTimerLabel.alpha = 0;
-                                       }
-                                       completion:nil];
-                    }];
-
-    [center addObserverForName:LISTENED_TO_CLIP_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                      [countdownTimer invalidate];
-                      [UIView animateWithDuration:.2
-                                            delay:0
-                                          options:UIViewAnimationOptionCurveEaseOut
-                                       animations:^{
-                                         weakSelf.countdownTimerLabel.alpha = 0;
-                                       }
-                                       completion:nil];
-                    }];
-
-    [center addObserverForName:DID_START_AUDIO_CAPTURE_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                      [weakSelf hideTopButtons];
-                      weakSelf.countdownTimerLabel.alpha = 0;
-                    }];
-
-    [center addObserverForName:WILL_START_AUDIO_CAPTURE_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                      weakSelf.countdownTimerLabel.alpha = 0;
-                      [weakSelf.activityIndicator startAnimating];
-                      [weakSelf hideTopButtons];
-                    }];
-
     [center addObserverForName:COMPLETED_REGISTRATION_NOTIFICATION
                         object:nil
                          queue:nil
@@ -316,14 +233,6 @@
                       if (!weakSelf.didSeeWelcomePopup) {
                           [weakSelf showWelcomePopup];
                       }
-                    }];
-
-    [center addObserverForName:RESET_BANNER_UI
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                      [weakSelf showTopButtons];
-                      weakSelf.countdownTimerLabel.alpha = 0;
                     }];
 
     [center addObserverForName:UIApplicationDidBecomeActiveNotification
@@ -365,53 +274,6 @@
                                                   }];
 }
 
-- (void)showTopButtons {
-    [UIView animateWithDuration:.3
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                       self.topLeftButton.alpha = 1;
-                       self.yapsPageButton.alpha = 1;
-                       self.pageLabel.alpha = 1;
-                     }
-                     completion:nil];
-}
-
-- (void)hideTopButtons {
-    self.pageLabel.alpha = 0;
-
-    [UIView animateWithDuration:.3
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                       self.topLeftButton.alpha = 0;
-                       self.yapsPageButton.alpha = 0;
-                     }
-                     completion:nil];
-}
-
-- (void)startCountdownTimer {
-    NSLog(@"Start Countdown Timer");
-    [countdownTimer invalidate];
-    countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countdownTimerFired) userInfo:nil repeats:YES];
-}
-
-- (void)countdownTimerFired {
-    //NSLog(@"countdownTimer fired");
-    //NSLog(@"currMinute: %d; currSeconds: %d", currMinute, currSeconds);
-    if ((currMinute > 0 || currSeconds >= 0) && currMinute >= 0) {
-        if (currSeconds > 0) {
-            //      NSLog(@"currSeconds: %d", currSeconds);
-            currSeconds -= 1;
-        }
-
-        self.countdownTimerLabel.text = [NSString stringWithFormat:@"%d", currSeconds];
-    } else {
-        NSLog(@"countdownTimer invalidate");
-        [countdownTimer invalidate];
-    }
-}
-
 - (void)reloadUnopenedYapsCount {
     [[API sharedAPI] unopenedYapsCountWithCallback:^(NSNumber *count, NSError *error) {
       if (error) {
@@ -433,13 +295,6 @@
           self.unopenedYapsCount = count;
       }
     }];
-}
-
-- (void)showAndStartTimer {
-    self.countdownTimerLabel.alpha = 1;
-    self.countdownTimerLabel.text = @"12";
-    currSeconds = 12;
-    [self startCountdownTimer];
 }
 
 - (BOOL)isInReplyMode {

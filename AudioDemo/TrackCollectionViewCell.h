@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TrackView.h"
 #import "SpotifyTrackView.h"
 
 typedef NS_ENUM(NSInteger, SpotifyTrackViewCellState) {
@@ -16,10 +17,16 @@ typedef NS_ENUM(NSInteger, SpotifyTrackViewCellState) {
     SpotifyTrackViewCellStateBuffering,
 };
 
-@interface SpotifyTrackCollectionViewCell: UICollectionViewCell
+@interface TrackCollectionViewCell: UICollectionViewCell
 
 @property NSTimeInterval countdownTimer;
-@property (nonatomic, strong) SpotifyTrackView *trackView;
+@property (nonatomic, strong) TrackView *trackView;
 @property SpotifyTrackViewCellState state;
+
+@end
+
+@interface SpotifyTrackCollectionViewCell: TrackCollectionViewCell
+
+@property (nonatomic, strong) SpotifyTrackView *trackView;
 
 @end

@@ -38,6 +38,8 @@
 
 - (void)audioSourceController:(id<YSAudioSource>)controller didReceieveUnexpectedError:(NSError*)error;
 
+- (void)audioSourceControllerIsReadyToProduceYapBuidler:(id<YSAudioSource>)controller;
+
 @end
 
 /*
@@ -62,6 +64,8 @@
 
 // Spotify source will return the YSTrack.
 // Mic source could return the audio file. for now will return nothing.
+- (void)prepareYapBuilder;
+
 - (YapBuilder *) getYapBuilder;
 
 @end

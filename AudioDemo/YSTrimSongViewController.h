@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "YSiTunesUpload.h"
+#import "YSAudioSourceController.h"
 
-@interface YSTrimSongViewController : UIViewController<UIScrollViewDelegate>
+@interface YSTrimSongViewController : YSAudioSourceViewController<UIScrollViewDelegate>
 @property (nonatomic, strong) YSiTunesUpload *iTunesUpload;
-
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *artistLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *artworkImageView;
 
 @end

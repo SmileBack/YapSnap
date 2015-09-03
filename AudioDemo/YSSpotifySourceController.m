@@ -10,7 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "API.h"
 #import "SpotifyAPI.h"
-#import "SpotifyTrackCollectionViewCell.h"
+#import "TrackCollectionViewCell.h"
 #import "OpenInSpotifyAlertView.h"
 #import <AVFoundation/AVAudioSession.h>
 #import "AppDelegate.h"
@@ -21,6 +21,7 @@
 #import "YSSongCollectionViewDataSource.h"
 #import "Mixpanel/MPTweakInline.h"
 #import "NSArray+Shuffle.h"
+#import "UICollectionViewFlowLayout+YS.h"
 
 @interface YSSpotifySourceController () <UICollectionViewDelegate,
                                          YSSongCollectionViewDelegate>
@@ -38,20 +39,9 @@
     [super viewDidLoad];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Spotify Page"];
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.minimumInteritemSpacing = 2;
-    flowLayout.minimumLineSpacing = 2;
-    flowLayout.sectionInset = UIEdgeInsetsMake(2, 2, 2, 2);
-    if (IS_IPHONE_6_PLUS_SIZE) {
-        flowLayout.itemSize = CGSizeMake(200, 230);
-    } else if (IS_IPHONE_6_SIZE) {
-        flowLayout.itemSize = CGSizeMake(184, 220);
-    } else {
-        flowLayout.itemSize = CGSizeMake(152, 180);
-    }
     self.songDataSource = [[YSSongCollectionViewDataSource alloc] init];
     self.songDataSource.delegate = self;
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewFlowLayout appLayout]];
     self.collectionView.dataSource = self.songDataSource;
     self.collectionView.delegate = self;
     [self.collectionView registerClass:[SpotifyTrackCollectionViewCell class]

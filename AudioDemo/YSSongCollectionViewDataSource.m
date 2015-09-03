@@ -8,7 +8,7 @@
 
 #import "YSSongCollectionViewDataSource.h"
 #import "YSTrack.h"
-#import "SpotifyTrackCollectionViewCell.h"
+#import "TrackCollectionViewCell.h"
 #import <UIImageView+WebCache.h>
 
 @interface YSSongCollectionViewDataSource()

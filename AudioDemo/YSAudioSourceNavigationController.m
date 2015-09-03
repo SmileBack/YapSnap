@@ -62,6 +62,13 @@
     }
 }
 
+- (void)prepareYapBuilder {
+    if ([self.topViewController conformsToProtocol:@protocol(YSAudioSource)] &&
+        [self.topViewController respondsToSelector:@selector(prepareYapBuilder)]) {
+        return [(id<YSAudioSource>)self.topViewController prepareYapBuilder];
+    }
+}
+
 - (void)clearSearchResults {
     if ([self.topViewController conformsToProtocol:@protocol(YSAudioSource)] &&
         [self.topViewController respondsToSelector:@selector(clearSearchResults)]) {

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "YSAudioSourceController.h"
 
 @interface YSSelectSongViewController : UIViewController<MPMediaPickerControllerDelegate>
 

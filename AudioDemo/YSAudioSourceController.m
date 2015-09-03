@@ -45,5 +45,6 @@
 - (void)clearSearchResults {}
 - (void)searchWithText:(NSString *)text {}
 - (void)updatePlaybackProgress:(NSTimeInterval)playbackTime {}
+- (void)prepareYapBuilder { [self.audioCaptureDelegate audioSourceControllerIsReadyToProduceYapBuidler:self]; }
 
 @end

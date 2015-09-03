@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Appcoda. All rights reserved.
 //
 
-#import "SpotifyTrackCollectionViewCell.h"
+#import "TrackCollectionViewCell.h"
 
 @interface TrackCollectionOverlayView : UIView
 
@@ -69,19 +69,19 @@
 
 @end
 
-@interface SpotifyTrackCollectionViewCell()
+@interface TrackCollectionViewCell()
 
 @property TrackCollectionOverlayView* selectedOverlay;
 
 @end
 
-@implementation SpotifyTrackCollectionViewCell
+@implementation TrackCollectionViewCell
 
 @synthesize state = _state, countdownTimer = _countdownTimer;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.trackView = [[SpotifyTrackView alloc] initWithFrame:frame];
+        self.trackView = [[TrackView alloc] initWithFrame:frame];
         [self.contentView addSubview:self.trackView];
         [self.trackView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[v]|" options:0 metrics:nil views:@{@"v": self.trackView}]];
@@ -161,6 +161,22 @@
 
 - (NSTimeInterval)countdownTimer {
     return _countdownTimer;
+}
+
+@end
+
+@implementation SpotifyTrackCollectionViewCell
+
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self.trackView removeFromSuperview];
+        self.trackView = [[SpotifyTrackView alloc] initWithFrame:frame];
+        [self.contentView addSubview:self.trackView];
+        [self.trackView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[v]|" options:0 metrics:nil views:@{@"v": self.trackView}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[v]|" options:0 metrics:nil views:@{@"v": self.trackView}]];
+    }
+    return self;
 }
 
 @end
