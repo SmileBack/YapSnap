@@ -19,6 +19,7 @@
 #import "YTTrackGroup.h"
 #import "YSSongGroupController.h"
 #import "YSAudioSourceNavigationController.h"
+#import "YSRecentSourceController.h"
 
 @interface AudioCaptureViewController () <YSAudioSourceControllerDelegate, UINavigationControllerDelegate> {
     NSTimer *audioProgressTimer;
@@ -50,7 +51,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
-    self.audioSourceNames = @[@"New", @"Moods", @"Genres", @"Upload"];
+    self.audioSourceNames = @[@"Recent", @"New", @"Moods", @"Genres", @"Upload"];
     
     self.categorySelectorContainer.control = self.categorySelectorView;
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
@@ -59,7 +60,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
                                imageNamed:@"RecordButtonBlueBorder10Pressed.png"]
                   forState:UIControlStateHighlighted];
 
-    self.audioSource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+    self.audioSource = [[YSSpotifySourceController alloc] init];
     self.bottomViewLabel.text = @"Choose This Clip";
     
     [self setupNotifications];
@@ -85,6 +86,8 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
             [items addObject:[YSSegmentedControlItem itemWithTitle:name]];
         }
         self.categorySelectorView.items = items;
+        [self.categorySelectorView setEnabled:YES forSegmentAtIndex:1];
+        [self segmentedControlDidChanage:self.categorySelectorView];
     }
 }
 
@@ -196,7 +199,10 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     id<YSAudioSource> audioSource = nil;
     switch (self.categorySelectorView.selectedSegmentIndex) {
         case 0:
-            audioSource = [self.storyboard instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+            audioSource = [[YSRecentSourceController alloc] init];
+            break;
+        case 1:
+            audioSource = [[YSSpotifySourceController alloc] init];
             break;
         default:
         {

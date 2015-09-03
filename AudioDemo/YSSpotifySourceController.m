@@ -24,11 +24,10 @@
 
 @interface YSSpotifySourceController () <UICollectionViewDelegate,
                                          YSSongCollectionViewDelegate>
-@property (nonatomic, strong) NSArray *songs;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 @property (nonatomic, strong) NSMutableArray *tracks;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) UICollectionView *collectionView;
 @property (strong, nonatomic) YSSongCollectionViewDataSource *songDataSource;
 
 @end
@@ -39,11 +38,6 @@
     [super viewDidLoad];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Spotify Page"];
-    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
-    self.songDataSource = [[YSSongCollectionViewDataSource alloc] init];
-    self.songDataSource.delegate = self;
-    self.collectionView.dataSource = self.songDataSource;
-    self.collectionView.delegate = self;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.minimumInteritemSpacing = 2;
     flowLayout.minimumLineSpacing = 2;
@@ -55,10 +49,22 @@
     } else {
         flowLayout.itemSize = CGSizeMake(152, 180);
     }
-    self.collectionView.collectionViewLayout = flowLayout;
-
+    self.songDataSource = [[YSSongCollectionViewDataSource alloc] init];
+    self.songDataSource.delegate = self;
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+    self.collectionView.dataSource = self.songDataSource;
+    self.collectionView.delegate = self;
     [self.collectionView registerClass:[SpotifyTrackCollectionViewCell class]
             forCellWithReuseIdentifier:@"track"];
+    self.collectionView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0];
+    
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    
+    // Constraints
+    [self.collectionView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:self.collectionView];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[v]|" options:0 metrics:nil views:@{@"v": self.collectionView}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top][v][bottom]" options:0 metrics:nil views:@{@"v": self.collectionView, @"top": self.topLayoutGuide, @"bottom": self.bottomLayoutGuide}]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -71,7 +71,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    YSSpotifySourceController *vc = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"SpotifySourceController"];
+    YSSpotifySourceController *vc = [[YSSpotifySourceController alloc] init];
     vc.trackGroup = self.trackGroups[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }

@@ -25,5 +25,7 @@
 //+ (YSTrack *) trackFromSpotifyDictionary:(NSDictionary *)trackDictionary;
 + (NSArray *) tracksFromYapTapDictionaryArray:(NSArray *)itemDictionaries inCategory:(BOOL)inCategory;
 
++ (YSTrack *) trackFromYapTapDictionary:(NSDictionary *)trackDictionary;
+
 
 @end

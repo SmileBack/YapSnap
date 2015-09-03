@@ -26,18 +26,13 @@
     yap.rgbColorComponents = dict[@"color_rgb"];
     yap.pitchValueInCentUnits = dict[@"pitch_value"];
     yap.secondsToFastForward = dict[@"seconds_to_fast_forward"];
-
-    yap.artist = dict[@"spotify_artist_name"];
     
     if ([dict[@"type"]  isEqual: @"SpotifyMessage"]) {
-        yap.playbackURL = dict[@"spotify_preview_url"];
+        yap.track = [YSTrack trackFromYapTapDictionary:dict];
+        yap.playbackURL = yap.track.previewURL;
     } else {
         yap.playbackURL = dict[@"aws_recording_url"];
     };
-    yap.listenOnSpotifyURL = dict[@"spotify_full_song_url"];
-    yap.songName = dict[@"spotify_song_name"];
-    yap.spotifyID = dict[@"spotify_song_id"];
-    yap.imageURL = dict[@"spotify_image_url"];
     
     yap.yapPhotoURL = dict[@"aws_photo_url"];
     
@@ -177,6 +172,26 @@
     } else {
         return NO;
     }
+}
+
+- (NSString *)artist {
+    return self.track.artistName;
+}
+
+- (NSString *)listenOnSpotifyURL {
+    return self.track.spotifyURL;
+}
+
+- (NSString *)songName {
+    return self.track.name;
+}
+
+- (NSString *)spotifyID {
+    return self.track.spotifyID;
+}
+
+- (NSString *)imageURL {
+    return self.track.imageURL;
 }
 
 @end

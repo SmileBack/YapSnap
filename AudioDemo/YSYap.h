@@ -21,16 +21,20 @@
 @property (strong, nonatomic) NSString *text;
 @property (strong, nonatomic) NSArray *rgbColorComponents;
 @property (nonatomic, strong) NSNumber *pitchValueInCentUnits;
-@property (nonatomic, strong) NSNumber *secondsToFastForward;
 @property (nonatomic, strong) NSString *notificationType;
+@property (nonatomic, strong) NSString *playbackURL;
+@property (nonatomic, strong) NSNumber *secondsToFastForward;
 
 // Spotify stuff
-@property (strong, nonatomic) NSString *artist;
-@property (strong, nonatomic) NSString *playbackURL;
-@property (strong, nonatomic) NSString *listenOnSpotifyURL;
-@property (strong, nonatomic) NSString *songName;
-@property (strong, nonatomic) NSString *spotifyID;
-@property (strong, nonatomic) NSString *imageURL;
+@property (strong, nonatomic) YSTrack *track;
+
+// These just defer to the above track
+@property (readonly) NSString *artist;
+@property (readonly) NSString *listenOnSpotifyURL;
+@property (readonly) NSString *songName;
+@property (readonly) NSString *spotifyID;
+@property (readonly) NSString *imageURL;
+
 
 // Photo
 @property (strong, nonatomic) NSString *yapPhotoURL;
