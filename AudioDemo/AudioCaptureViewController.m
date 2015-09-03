@@ -315,6 +315,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 }
 
 - (void)searchWithText:(NSString *)text {
+    [self setAudioSource:[[YSSpotifySourceController alloc] init]];
     [self.audioSource searchWithText:text];
 }
 
