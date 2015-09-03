@@ -30,6 +30,10 @@
                          [YTTrackGroup trackGroupWithName:@"Classics"
                                                 apiString:@"nostalgic_tracks"],
                          [YTTrackGroup trackGroupWithName:@"Flirty"
+                                                apiString:@"flirtatious_tracks"],
+                         [YTTrackGroup trackGroupWithName:@"Fun"
+                                                apiString:@"flirtatious_tracks"],
+                         [YTTrackGroup trackGroupWithName:@"Rowdy"
                                                 apiString:@"flirtatious_tracks"]
                          ];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
