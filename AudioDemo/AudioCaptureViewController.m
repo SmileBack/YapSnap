@@ -221,9 +221,9 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
             break;
     }
     // HAACKKKKKK: cancelPlayingAudio is ASYNC, but doesn't have a callback. The lib we're using needs to do that, but in the mean time, dispatch this async.
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.audioSource = audioSource;
-    });
+//    });
 }
 
 #pragma mark - YSAudioSourceControllerDelegate
