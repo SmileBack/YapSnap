@@ -39,6 +39,7 @@
 		5D3CD7A91B8FB79A00B0F03C /* NSArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A81B8FB79A00B0F03C /* NSArray+Shuffle.m */; };
 		5D3CD7AC1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7AB1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m */; };
 		5DA370721B864D2600A70DAC /* YSSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA370711B864D2600A70DAC /* YSSegmentedControl.m */; };
+		5DFD303A1B98CD0B00EDA581 /* TrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFD30391B98CD0B00EDA581 /* TrackView.m */; };
 		5DFDD5B91B90DE60008754F4 /* YSAudioSourceNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFDD5B81B90DE60008754F4 /* YSAudioSourceNavigationController.m */; };
 		5DFDD5BB1B90E465008754F4 /* YSAudioSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFDD5BA1B90DF72008754F4 /* YSAudioSourceController.m */; };
 		780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 780211611AAB8EE000A71889 /* FriendsIcon@2x.png */; };
@@ -395,6 +396,8 @@
 		5D3CD7AB1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongGroupCollectionViewCell.m; sourceTree = "<group>"; };
 		5DA370701B864D2600A70DAC /* YSSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSegmentedControl.h; sourceTree = "<group>"; };
 		5DA370711B864D2600A70DAC /* YSSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSegmentedControl.m; sourceTree = "<group>"; };
+		5DFD30381B98CD0B00EDA581 /* TrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackView.h; sourceTree = "<group>"; };
+		5DFD30391B98CD0B00EDA581 /* TrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackView.m; sourceTree = "<group>"; };
 		5DFDD5B71B90DE60008754F4 /* YSAudioSourceNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSAudioSourceNavigationController.h; sourceTree = "<group>"; };
 		5DFDD5B81B90DE60008754F4 /* YSAudioSourceNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSAudioSourceNavigationController.m; sourceTree = "<group>"; };
 		5DFDD5BA1B90DF72008754F4 /* YSAudioSourceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YSAudioSourceController.m; sourceTree = "<group>"; };
@@ -1676,6 +1679,8 @@
 				FCAA328D1A8C2FC000FDCC78 /* Cells */,
 				FC1E89B61A4B852C007A8CDA /* SpotifyTrackView.h */,
 				FC1E89B71A4B852C007A8CDA /* SpotifyTrackView.m */,
+				5DFD30381B98CD0B00EDA581 /* TrackView.h */,
+				5DFD30391B98CD0B00EDA581 /* TrackView.m */,
 				78A569A41A73227700818A17 /* YSColorPicker.h */,
 				78A569A21A73227200818A17 /* YSColorPicker.m */,
 				784048091AB7334A00FE6D93 /* NextButton.h */,

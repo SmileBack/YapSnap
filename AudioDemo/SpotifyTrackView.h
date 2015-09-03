@@ -7,26 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TrackView.h"
 
-@interface SpotifyTrackView : UIView
+@interface SpotifyTrackView : TrackView
 
-@property (nonatomic, strong) NSString *spotifySongID;
-@property (nonatomic, strong) NSString *spotifyURL;
-
-@property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) UILabel *songNameLabel;
-@property (nonatomic, strong) UIButton *artistButton;
 @property (nonatomic, strong) UIButton *spotifyButton;
-
 @property (nonatomic, strong) UIButton *songVersionOneButton;
 @property (nonatomic, strong) UIButton *songVersionTwoButton;
-
-@property (nonatomic, strong) UIButton *albumImageButton;
-
-@property (nonatomic, strong) UIView *songVersionBackground;
-
-@property (nonatomic, strong) UILabel *bannerLabel;
-
-@property (nonatomic, strong) UIImageView *ribbonImageView;
 
 @end

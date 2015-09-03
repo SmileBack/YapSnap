@@ -52,11 +52,7 @@
     }
     
     trackView.songNameLabel.text = track.name;
-    trackView.spotifySongID = track.spotifyID;
-    trackView.spotifyURL = track.spotifyURL;
     [trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
-    trackView.bannerLabel.hidden = YES;
-    trackView.ribbonImageView.hidden = YES;
     [trackView.artistButton addTarget:self action:@selector(didTapArtistButton:) forControlEvents:UIControlEventTouchUpInside];
     [trackView.albumImageButton addTarget:self action:@selector(didTapAlbumButton:) forControlEvents:UIControlEventTouchUpInside];
     [trackView.songVersionOneButton addTarget:self action:@selector(didTapSongVersionOneButton:) forControlEvents:UIControlEventTouchDown];
