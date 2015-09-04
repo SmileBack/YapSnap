@@ -759,7 +759,7 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    NSString *url = @"/itunes_tracks";
+    NSString *url = @"users/self/uploaded_tracks";
     [manager GET:[self urlForEndpoint:url]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -781,7 +781,7 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
-    NSString *url = @"/itunes_tracks";
+    NSString *url = @"/uploaded_tracks";
     NSMutableDictionary *params = [self paramsWithDict:@{@"aws_song_url": track.awsSongUrl,
                                                          @"aws_song_etag": track.awsSongEtag,
                                                          @"persistent_id": track.persistentID}];

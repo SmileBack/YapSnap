@@ -38,6 +38,7 @@
 		5D3CD7A61B8FB24F00B0F03C /* YSSongGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A51B8FB24F00B0F03C /* YSSongGroupController.m */; };
 		5D3CD7A91B8FB79A00B0F03C /* NSArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A81B8FB79A00B0F03C /* NSArray+Shuffle.m */; };
 		5D3CD7AC1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7AB1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m */; };
+		5D9D47711B9A2BED00A3CB1D /* UIImageView+AudioPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D47701B9A2BED00A3CB1D /* UIImageView+AudioPlot.m */; };
 		5DA370721B864D2600A70DAC /* YSSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA370711B864D2600A70DAC /* YSSegmentedControl.m */; };
 		5DFD303A1B98CD0B00EDA581 /* TrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFD30391B98CD0B00EDA581 /* TrackView.m */; };
 		5DFD303D1B98D06500EDA581 /* UICollectionViewFlowLayout+YS.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFD303C1B98D06500EDA581 /* UICollectionViewFlowLayout+YS.m */; };
@@ -395,6 +396,8 @@
 		5D3CD7A81B8FB79A00B0F03C /* NSArray+Shuffle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Shuffle.m"; sourceTree = "<group>"; };
 		5D3CD7AA1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongGroupCollectionViewCell.h; sourceTree = "<group>"; };
 		5D3CD7AB1B8FBDEE00B0F03C /* SongGroupCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongGroupCollectionViewCell.m; sourceTree = "<group>"; };
+		5D9D476F1B9A2BED00A3CB1D /* UIImageView+AudioPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AudioPlot.h"; sourceTree = "<group>"; };
+		5D9D47701B9A2BED00A3CB1D /* UIImageView+AudioPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AudioPlot.m"; sourceTree = "<group>"; };
 		5DA370701B864D2600A70DAC /* YSSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSegmentedControl.h; sourceTree = "<group>"; };
 		5DA370711B864D2600A70DAC /* YSSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSegmentedControl.m; sourceTree = "<group>"; };
 		5DFD30381B98CD0B00EDA581 /* TrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackView.h; sourceTree = "<group>"; };
@@ -993,6 +996,17 @@
 				5D3CD7A51B8FB24F00B0F03C /* YSSongGroupController.m */,
 			);
 			name = "Song Group Page";
+			sourceTree = "<group>";
+		};
+		5D9D476E1B9A2BD100A3CB1D /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				5DFD303B1B98D06500EDA581 /* UICollectionViewFlowLayout+YS.h */,
+				5DFD303C1B98D06500EDA581 /* UICollectionViewFlowLayout+YS.m */,
+				5D9D476F1B9A2BED00A3CB1D /* UIImageView+AudioPlot.h */,
+				5D9D47701B9A2BED00A3CB1D /* UIImageView+AudioPlot.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		780D43091B0646670060DAED /* EZAudio */ = {
@@ -1677,6 +1691,7 @@
 		FCA2CE9E1A3CCC9B0055C76A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5D9D476E1B9A2BD100A3CB1D /* Categories */,
 				FCFCE4551AF541010094926E /* Alert View */,
 				787EC5E01AC9D09B000C5539 /* ProgressView */,
 				FCAA328D1A8C2FC000FDCC78 /* Cells */,
@@ -1694,8 +1709,6 @@
 				5DA370711B864D2600A70DAC /* YSSegmentedControl.m */,
 				5D0231601B98BED20011FD1C /* YSEmptyScreenView.h */,
 				5D0231611B98BED20011FD1C /* YSEmptyScreenView.m */,
-				5DFD303B1B98D06500EDA581 /* UICollectionViewFlowLayout+YS.h */,
-				5DFD303C1B98D06500EDA581 /* UICollectionViewFlowLayout+YS.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2181,6 +2194,7 @@
 				5DFD303A1B98CD0B00EDA581 /* TrackView.m in Sources */,
 				FC1E89BE1A4B9518007A8CDA /* PlaybackVC.m in Sources */,
 				787EC5E31AC9D0AD000C5539 /* JEProgressView.m in Sources */,
+				5D9D47711B9A2BED00A3CB1D /* UIImageView+AudioPlot.m in Sources */,
 				780D43291B0646770060DAED /* EZMicrophone.m in Sources */,
 				5D0231621B98BED20011FD1C /* YSEmptyScreenView.m in Sources */,
 				3793FDF419BCEF5700FBBBCE /* ContactsViewController.m in Sources */,
