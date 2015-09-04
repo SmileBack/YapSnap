@@ -58,7 +58,6 @@
     self.artworkImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.timeScrollView.backgroundColor = UIColor.clearColor;
     self.timeScrollView.showsHorizontalScrollIndicator = NO;
-    self.timeScrollView.
     self.timeScrollView.delegate = self;
     
     self.playbackBar.backgroundColor = UIColor.redColor;
