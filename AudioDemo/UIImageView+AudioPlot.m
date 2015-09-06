@@ -36,20 +36,20 @@
     UIGraphicsBeginImageContext(imageSize);
     CGContextRef context = UIGraphicsGetCurrentContext();
 
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
     CGContextSetAlpha(context, 1.0);
     CGRect rect;
     rect.size = imageSize;
     rect.origin.x = 0;
     rect.origin.y = 0;
 
-    CGColorRef leftcolor = [[UIColor whiteColor] CGColor];
+    CGColorRef leftcolor = THEME_RED_COLOR.CGColor;
     CGColorRef rightcolor = [[UIColor redColor] CGColor];
 
     CGContextFillRect(context, rect);
 
     CGContextSetLineWidth(context, 1.0);
-
+    channelCount = 1;
     float halfGraphHeight = (imageHeight / 2) / (float)channelCount;
     float centerLeft = halfGraphHeight;
     float centerRight = (halfGraphHeight * 3);

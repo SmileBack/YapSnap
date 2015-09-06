@@ -11,11 +11,14 @@
 #import "API.h"
 #import "AmazonAPI.h"
 #import "UIImageView+AudioPlot.h"
+#import <StreamingKit/STKAudioPlayer.h>
+#import <AVFoundation/AVFoundation.h>
 
 #define SECONDS_PER_CLIP 12.0f
 
 @interface YSTrimSongViewController ()<UIScrollViewDelegate>
 
+@property (strong, nonatomic) AVPlayer *player;
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *artistLabel;
 @property (strong, nonatomic) UIImageView *artworkImageView;
@@ -34,9 +37,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.player = [[AVPlayer alloc] initWithURL:self.iTunesUpload.trackURL];
     self.view.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0];
-    
+    [[AVAudioSession sharedInstance]
+     setCategory:AVAudioSessionCategoryPlayAndRecord
+     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
+     error:nil];
     self.titleLabel = UILabel.new;
     self.artistLabel = UILabel.new;
     self.artworkImageView = UIImageView.new;
@@ -50,7 +56,7 @@
     self.artworkImageView.image = self.iTunesUpload.artworkImage;
     
     for (UILabel *label in @[self.titleLabel, self.artistLabel]) {
-        label.textColor = UIColor.whiteColor;
+        label.textColor = THEME_DARK_BLUE_COLOR;
         label.font = [UIFont fontWithName:@"Futura-Medium" size:25];
         label.textAlignment = NSTextAlignmentCenter;
     }
@@ -60,7 +66,7 @@
     self.timeScrollView.showsHorizontalScrollIndicator = NO;
     self.timeScrollView.delegate = self;
     
-    self.playbackBar.backgroundColor = UIColor.redColor;
+    self.playbackBar.backgroundColor = THEME_RED_COLOR;
     
     // Constraints
     for (UIView* view in @[self.titleLabel, self.artistLabel, self.artworkImageView, self.timeScrollView, self.leftBar, self.rightBar, self.playbackBar]) {
@@ -68,15 +74,17 @@
         [self.view addSubview:view];
     }
     
-    for (UIView *view in @[self.titleLabel, self.artistLabel, self.artworkImageView, self.timeScrollView]) {
+    for (UIView *view in @[self.titleLabel, self.artistLabel, self.artworkImageView]) {
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[v]-|" options:0 metrics:nil views:@{@"v": view}]];
     }
     
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[v]|" options:0 metrics:nil views:@{@"v": self.timeScrollView}]];
+    
     for (UIView *view in @[self.leftBar, self.rightBar]) {
-        view.backgroundColor = UIColor.whiteColor;
+        view.backgroundColor = THEME_BACKGROUND_COLOR;
         NSLayoutAttribute xAttribute = view == self.leftBar ? NSLayoutAttributeLeft : NSLayoutAttributeRight;
         NSLayoutAttribute xOffset = view == self.leftBar ? 20 : -20;
-        [self.view addConstraints:@[[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:10],
+        [self.view addConstraints:@[[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:2],
                                     [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.timeScrollView attribute:NSLayoutAttributeHeight multiplier:1.2 constant:0],
                                     [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.timeScrollView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
                                     [NSLayoutConstraint constraintWithItem:view attribute:xAttribute relatedBy:NSLayoutRelationEqual toItem:self.timeScrollView attribute:xAttribute multiplier:1.0 constant:xOffset]
@@ -103,13 +111,14 @@
     CGFloat pointsPerSecond = distance / SECONDS_PER_CLIP;
     CGFloat widthOfContent = self.iTunesUpload.trackDuration * pointsPerSecond;
     [self.timeScrollView addConstraint:[NSLayoutConstraint constraintWithItem:plot attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:widthOfContent]];
+    [self.view layoutIfNeeded];
+    self.timeScrollView.contentInset = UIEdgeInsetsMake(0, CGRectGetMaxX(self.leftBar.frame), 0, CGRectGetMaxX(self.leftBar.frame));
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    self.playbackTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updatePlaybackBar) userInfo:nil repeats:YES];
-    [self.playbackTimer fire];
-    // TODO: Start audio
+- (void)viewWillAppear:(BOOL)animated {
     [self.audioCaptureDelegate audioSourceControllerWillStartAudioCapture:self];
+    self.timeScrollView.contentOffset = CGPointMake(-CGRectGetMaxX(self.leftBar.frame), 0); // This triggers the playback view moving
+    [self.player play];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -119,16 +128,24 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self.playbackTimer invalidate];
-    // TODO: Stop playback
+    [self resetPlaybackTimer];
+    [self.player pause];
+}
+
+- (NSTimeInterval)secondsForContentOffset:(CGPoint)offset {
+    return (self.timeScrollView.contentOffset.x/self.timeScrollView.contentSize.width) * self.iTunesUpload.trackDuration;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    [self resetPlayback];
+    [self resetPlaybackTimer];
+    [self.player seekToTime:CMTimeMakeWithSeconds([self secondsForContentOffset:self.timeScrollView.contentOffset], NSEC_PER_SEC)];
+    [self.player play];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self resetPlayback];
+    [self resetPlaybackTimer];
+    [self.player seekToTime:CMTimeMakeWithSeconds([self secondsForContentOffset:self.timeScrollView.contentOffset], NSEC_PER_SEC)];
+    [self.player play];
 }
 
 #pragma mark - Playback
@@ -137,34 +154,34 @@
     self.playbackXConstraint.constant = self.playbackXConstraint.constant + 1;
     [self.view layoutIfNeeded];
     if (CGRectGetMaxX(self.playbackBar.frame) > CGRectGetMaxX(self.rightBar.frame)) {
-        // TODO: Stop audio
+        [self.player pause];
         [self.playbackTimer invalidate];
     }
 }
 
-- (void)resetPlayback {
+- (void)resetPlaybackTimer  {
     // TODO: Start playback at given point
+    [self.playbackTimer invalidate];
     self.playbackXConstraint.constant = 0;
-    self.playbackTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updatePlaybackBar) userInfo:nil repeats:YES];
-    [self.playbackTimer fire];
+    NSTimeInterval playTime = 12;
+    CGFloat width = CGRectGetMaxX(self.rightBar.frame) - CGRectGetMaxX(self.leftBar.frame);
+    self.playbackTimer = [NSTimer scheduledTimerWithTimeInterval:playTime/width target:self selector:@selector(updatePlaybackBar) userInfo:nil repeats:YES];
 }
 
 #pragma mark - Trim And Upload
 - (void)trim {
     __weak YSTrimSongViewController *weakSelf = self;
-
-    // TODO HACK
-    self.iTunesUpload.startTime = 0.0f;
-    self.iTunesUpload.endTime = 12.0f;
+    self.iTunesUpload.startTime = [self secondsForContentOffset:self.timeScrollView.contentOffset];
+    self.iTunesUpload.endTime = [self secondsForContentOffset:self.timeScrollView.contentOffset] + 12;
 
     YSSongTrimmer *trimmer = [YSSongTrimmer songTrimmerWithSong:self.iTunesUpload];
 
     [trimmer trim:^(NSString *url, NSError *error) {
         NSURL *theURL = [NSURL URLWithString:url];
-        if (url) {
+        if (theURL) {
             [weakSelf uploadSongClip:theURL];
         } else {
-            [self.uploadSpinner stopAnimating];
+            [weakSelf.uploadSpinner stopAnimating];
         }
     }];
 }
