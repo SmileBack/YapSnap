@@ -96,4 +96,11 @@
     return track;
 }
 
++ (YSTrack *)trackFromiTunesTrack:(YSITunesTrack *)itunesTrack {
+    YSTrack *track = YSTrack.new;
+    track.name = itunesTrack.songName;
+    track.artistName = itunesTrack.artistName;
+    return track;
+}
+
 @end

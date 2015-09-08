@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YSITunesTrack.h"
 
 @interface YSTrack : NSObject
 
@@ -18,8 +19,6 @@
 @property (nonatomic, strong) NSString *imageURL;
 @property (nonatomic, strong) NSString *spotifyURL;
 @property (nonatomic, strong) NSNumber *secondsToFastForward;
-@property (nonatomic) BOOL songVersionButtonsAreShowing;
-@property (nonatomic) BOOL isExplainerTrack;
 
 + (NSArray *) tracksFromSpotifyDictionaryArray:(NSArray *)itemDictionaries inCategory:(BOOL)inCategory;
 //+ (YSTrack *) trackFromSpotifyDictionary:(NSDictionary *)trackDictionary;
@@ -27,5 +26,6 @@
 
 + (YSTrack *) trackFromYapTapDictionary:(NSDictionary *)trackDictionary;
 
++ (YSTrack *) trackFromiTunesTrack:(YSITunesTrack *)track;
 
 @end

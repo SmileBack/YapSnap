@@ -29,7 +29,7 @@ static API *sharedAPI;
         sharedAPI = [API new];
         [AFHTTPRequestOperationManager manager].requestSerializer = [AFJSONRequestSerializer serializer];
     }
-
+    
     return sharedAPI;
 }
 
@@ -58,12 +58,12 @@ static API *sharedAPI;
 - (NSMutableDictionary *)paramsWithDict:(NSDictionary *)dict
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:dict];
-
+    
     if (self.sessionToken) {
         NSLog(@"Session token: %@", self.sessionToken);
         params[@"session_token"] = self.sessionToken;
     }
-
+    
     return params;
 }
 
@@ -193,43 +193,43 @@ static API *sharedAPI;
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager PATCH:[self urlForEndpoint:@"users/self/clear_yaps"]
-       parameters:[self paramsWithDict:@{}]
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              callback(YES, nil);
-              NSLog(@"Cleared Yaps Successfully");
-          }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              callback(NO, error);
-              NSLog(@"Error clearing yaps: %@", error);
-              
-              [self processFailedOperation:operation];
-          }];
+        parameters:[self paramsWithDict:@{}]
+           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+               callback(YES, nil);
+               NSLog(@"Cleared Yaps Successfully");
+           }
+           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+               callback(NO, error);
+               NSLog(@"Error clearing yaps: %@", error);
+               
+               [self processFailedOperation:operation];
+           }];
 }
 
 - (void) sendFriendRequests:(AddFriendsBuilder *)addFriendsBuilder withCallback:(SuccessOrErrorCallback)callback
 {
     NSDictionary *params = @{@"recipients": addFriendsBuilder.contactsList};
-
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:[self urlForEndpoint:@"friends/add"]
-        parameters:[self paramsWithDict:params]
-           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-               callback(YES, nil);
-               NSLog(@"Added friends successfully");
-               NSLog(@"responseObject: %@", responseObject);
-               
-               if ([responseObject isKindOfClass:[NSArray class]]) {
-                   NSArray *yapDicts = responseObject;
-                   NSArray *yaps = [YSYap yapsWithArray:yapDicts];
-                   [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FRIEND_REQUEST_SENT object:nil userInfo:@{@"yaps": yaps}];
-               }
-           }
-           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-               callback(NO, error);
-               NSLog(@"Error adding friends: %@", error);
-               
-               [self processFailedOperation:operation];
-           }];
+       parameters:[self paramsWithDict:params]
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              callback(YES, nil);
+              NSLog(@"Added friends successfully");
+              NSLog(@"responseObject: %@", responseObject);
+              
+              if ([responseObject isKindOfClass:[NSArray class]]) {
+                  NSArray *yapDicts = responseObject;
+                  NSArray *yaps = [YSYap yapsWithArray:yapDicts];
+                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FRIEND_REQUEST_SENT object:nil userInfo:@{@"yaps": yaps}];
+              }
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              callback(NO, error);
+              NSLog(@"Error adding friends: %@", error);
+              
+              [self processFailedOperation:operation];
+          }];
 }
 
 - (void) confirmFriendFromYap:(YSYap *)yap withCallback:(SuccessOrErrorCallback)callback
@@ -276,7 +276,7 @@ static API *sharedAPI;
     } else {
         [self sendYap:yapBuilder withCallback:callback];
     }
-
+    
     return [YSYap pendingYapsWithYapBuilder:yapBuilder];
 }
 
@@ -308,7 +308,7 @@ static API *sharedAPI;
             } else {
                 NSLog(@"Successfully uploaded voice file to AWS");
             }
-                    
+            
             NSDictionary *params = [weakSelf paramsWithDict:@{@"type": MESSAGE_TYPE_VOICE,
                                                               @"aws_recording_url": url,
                                                               @"aws_recording_etag": etag,
@@ -386,27 +386,44 @@ static API *sharedAPI;
     NSString *url = [self urlForEndpoint:@"audio_messages"];
     
     YSTrack *song = builder.track;
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"spotify_song_name": song.name,
-                                        @"spotify_song_id": song.spotifyID,
-                                        @"spotify_image_url": song.imageURL,
-                                        @"spotify_artist_name": song.artistName,
-                                        @"spotify_full_song_url": song.spotifyURL,
-                                        @"spotify_preview_url": song.previewURL,
-                                        @"type": MESSAGE_TYPE_SPOTIFY,
-                                        @"seconds_to_fast_forward": song.secondsToFastForward,
-                                        }];
-    if (song.albumName) {
-        dictionary[@"spotify_album_name"] = song.albumName;
-    } else { // TODO: Hack, back-end fails when album name isn't specified, so just specify a fake one.
-        dictionary[@"spotify_album_name"] = @"fake";
+    NSMutableDictionary *dictionary;
+    if ([builder.messageType isEqualToString:MESSAGE_TYPE_SPOTIFY]) {
+        dictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"spotify_song_name": song.name,
+                                                                     @"spotify_song_id": song.spotifyID,
+                                                                     @"spotify_image_url": song.imageURL,
+                                                                     @"spotify_artist_name": song.artistName,
+                                                                     @"spotify_full_song_url": song.spotifyURL,
+                                                                     @"spotify_preview_url": song.previewURL,
+                                                                     @"type": builder.messageType,
+                                                                     @"seconds_to_fast_forward": song.secondsToFastForward,
+                                                                     }];
+        if (song.albumName) {
+            dictionary[@"spotify_album_name"] = song.albumName;
+        } else { // TODO: Hack, back-end fails when album name isn't specified, so just specify a fake one.
+            dictionary[@"spotify_album_name"] = @"fake";
+        }
+    } else {
+        // iTunes track
+        dictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"aws_song_url": builder.awsVoiceURL,
+                                                                     @"aws_song_etag": builder.awsVoiceEtag,
+                                                                     @"aws_image_url": builder.imageAwsUrl,
+                                                                     @"aws_image_etag": builder.imageAwsEtag,
+                                                                     @"artist_name": builder.track.artistName,
+                                                                     @"type": builder.messageType,
+                                                                     @"category_name": @"fake",
+                                                                     }];
+        if (builder.track.albumName) {
+            dictionary[@"album_name"] = builder.track.albumName;
+        }
     }
+    
     NSDictionary *params = [self paramsWithDict:dictionary
                                   andYapBuilder:builder];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Send Song Yap call finished: %@", responseObject);
-
+        
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Sent Yap - Song"];
         [mixpanel.people increment:@"Sent Yap - Song #" by:[NSNumber numberWithInt:1]];
@@ -433,34 +450,34 @@ static API *sharedAPI;
 - (void) getYapsWithCallback:(YapsCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-
+    
     [manager GET:[self urlForEndpoint:@"audio_messages"]
-       parameters:[self paramsWithDict:@{}]
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSArray *yapDicts = responseObject; //Assuming it is an array
-              NSArray *yaps = [YSYap yapsWithArray:yapDicts];
-              //NSLog(@"Yaps: %@", responseObject);
-              
-              NSMutableArray *imagesToPrefetch = [NSMutableArray new];
-              for (YSYap *yap in yaps) {
-                  if (!yap.wasOpened && yap.receivedByCurrentUser && yap.yapPhotoURL && ![yap.yapPhotoURL isEqual:[NSNull null]]) {
-                      NSLog(@"Prefetching: %@", yap.yapPhotoURL);
-                      [imagesToPrefetch addObject:yap.yapPhotoURL];
-                  }
-              }
-              if (imagesToPrefetch.count > 0) {
-                  [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:imagesToPrefetch];
-              }
-              
-              callback(yaps, nil);
-          }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              Mixpanel *mixpanel = [Mixpanel sharedInstance];
-              [mixpanel track:@"API Error - getYaps"];
-              
+      parameters:[self paramsWithDict:@{}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSArray *yapDicts = responseObject; //Assuming it is an array
+             NSArray *yaps = [YSYap yapsWithArray:yapDicts];
+             //NSLog(@"Yaps: %@", responseObject);
+             
+             NSMutableArray *imagesToPrefetch = [NSMutableArray new];
+             for (YSYap *yap in yaps) {
+                 if (!yap.wasOpened && yap.receivedByCurrentUser && yap.yapPhotoURL && ![yap.yapPhotoURL isEqual:[NSNull null]]) {
+                     NSLog(@"Prefetching: %@", yap.yapPhotoURL);
+                     [imagesToPrefetch addObject:yap.yapPhotoURL];
+                 }
+             }
+             if (imagesToPrefetch.count > 0) {
+                 [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:imagesToPrefetch];
+             }
+             
+             callback(yaps, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             Mixpanel *mixpanel = [Mixpanel sharedInstance];
+             [mixpanel track:@"API Error - getYaps"];
+             
              [self processFailedOperation:operation];
-              callback(NO, error);
-          }];
+             callback(NO, error);
+         }];
 }
 
 - (void) updateYapStatus:(YSYap *)yap toStatus:(NSString *)status withCallback:(IsFriendCallback)callback
@@ -548,18 +565,18 @@ static API *sharedAPI;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *endpoint = [NSString stringWithFormat:@"users/self/block_user/%d", userId.intValue];
     [manager PATCH:[self urlForEndpoint:endpoint]
-       parameters:[self paramsWithDict:@{}]
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSLog(@"responseObject: %@", responseObject);
-              callback(YES, nil);
-          }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              Mixpanel *mixpanel = [Mixpanel sharedInstance];
-              [mixpanel track:@"API Error - blockUser"];
-              
-              [self processFailedOperation:operation];
-              callback(NO, error);
-          }];
+        parameters:[self paramsWithDict:@{}]
+           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+               NSLog(@"responseObject: %@", responseObject);
+               callback(YES, nil);
+           }
+           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+               Mixpanel *mixpanel = [Mixpanel sharedInstance];
+               [mixpanel track:@"API Error - blockUser"];
+               
+               [self processFailedOperation:operation];
+               callback(NO, error);
+           }];
 }
 
 # pragma mark - Friends & Top Friends
@@ -567,7 +584,7 @@ static API *sharedAPI;
 - (void) friends:(FriendsCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-
+    
     [manager GET:[self urlForEndpoint:@"users/self/friends"]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -593,7 +610,7 @@ static API *sharedAPI;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     NSString *endpoint = [NSString stringWithFormat:@"users/top_friends/%d", user.userID.intValue];
-
+    
     [manager GET:[self urlForEndpoint:endpoint]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -621,7 +638,7 @@ static API *sharedAPI;
 - (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-
+    
     NSMutableDictionary *props = [NSMutableDictionary dictionaryWithDictionary:properties];
     props[@"app_version"] = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     props[@"os_version"] = [[UIDevice currentDevice] systemVersion];
@@ -630,27 +647,27 @@ static API *sharedAPI;
     NSLog(@"push enabled: %@", props[@"push_enabled"]);
     
     NSDictionary *params = [self paramsWithDict:props];
-
+    
     NSString *endpoint = @"users/self";
     [manager PUT:[self urlForEndpoint:endpoint]
-       parameters:params
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                  NSDictionary *dict = responseObject;
-                  YSUser *user = [YSUser userFromDictionary:dict];
-                  [YSUser setCurrentUser:user];
-                  callback(YES, nil);
-              } else {
-                  callback(NO, nil);
-              }
-          }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              Mixpanel *mixpanel = [Mixpanel sharedInstance];
-              [mixpanel track:@"API Error - updateUserData"];
-              
-              [self processFailedOperation:operation];
-              callback(NO, error);
-          }];
+      parameters:params
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                 NSDictionary *dict = responseObject;
+                 YSUser *user = [YSUser userFromDictionary:dict];
+                 [YSUser setCurrentUser:user];
+                 callback(YES, nil);
+             } else {
+                 callback(NO, nil);
+             }
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             Mixpanel *mixpanel = [Mixpanel sharedInstance];
+             [mixpanel track:@"API Error - updateUserData"];
+             
+             [self processFailedOperation:operation];
+             callback(NO, error);
+         }];
 }
 
 - (void) updateUserPushToken:(NSString *)token withCallBack:(SuccessOrErrorCallback)callback
@@ -689,44 +706,44 @@ static API *sharedAPI;
     NSDictionary *params = [self paramsWithDict:@{@"search_term": searchTerm}];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:[self urlForEndpoint:@"search_terms"]
-      parameters:params
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            callback(YES, nil);
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-             [mixpanel track:@"API Error - sendSearchTerm"];
-             [self processFailedOperation:operation];
-             callback(NO, error);
-         }];
+       parameters:params
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              callback(YES, nil);
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              Mixpanel *mixpanel = [Mixpanel sharedInstance];
+              [mixpanel track:@"API Error - sendSearchTerm"];
+              [self processFailedOperation:operation];
+              callback(NO, error);
+          }];
 }
 
 #pragma mark - Retrieve Tracks
 /*
-- (void) retrieveTracksForCategory:(YTTrackGroup*)category withCallback:(OnboardingTracksCallback)callback
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    NSString *url = [NSString stringWithFormat:@"/spotify/%@", category.apiString];
-    [manager GET:[self urlForEndpoint:url]
-        parameters:[self paramsWithDict:@{}]
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSDictionary *response = responseObject;
-             //NSLog(@"Response Object: %@", responseObject);
-             NSArray *items = response[@"tracks"][@"items"];
-             NSLog(@"Items: %@", items);
-             
-             NSArray *songs = [YSTrack tracksFromSpotifyDictionaryArray:items inCategory:NO];
-             callback(songs, nil);
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             
-             [self processFailedOperation:operation];
-             callback(NO, error);
-         }];
-        NSLog(@"category in API.m: %@", category);
-}
-*/
+ - (void) retrieveTracksForCategory:(YTTrackGroup*)category withCallback:(OnboardingTracksCallback)callback
+ {
+ AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+ 
+ NSString *url = [NSString stringWithFormat:@"/spotify/%@", category.apiString];
+ [manager GET:[self urlForEndpoint:url]
+ parameters:[self paramsWithDict:@{}]
+ success:^(AFHTTPRequestOperation *operation, id responseObject) {
+ NSDictionary *response = responseObject;
+ //NSLog(@"Response Object: %@", responseObject);
+ NSArray *items = response[@"tracks"][@"items"];
+ NSLog(@"Items: %@", items);
+ 
+ NSArray *songs = [YSTrack tracksFromSpotifyDictionaryArray:items inCategory:NO];
+ callback(songs, nil);
+ }
+ failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+ 
+ [self processFailedOperation:operation];
+ callback(NO, error);
+ }];
+ NSLog(@"category in API.m: %@", category);
+ }
+ */
 
 
 - (void) retrieveTracksForCategory:(YTTrackGroup*)category withCallback:(OnboardingTracksCallback)callback
@@ -735,7 +752,7 @@ static API *sharedAPI;
     
     NSString *url = @"/spotify_songs";
     [manager GET:[self urlForEndpoint:url]
-     parameters:[self paramsWithDict:@{@"category": category.apiString}]
+      parameters:[self paramsWithDict:@{@"category": category.apiString}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSArray *songs = nil;
              if ([responseObject isKindOfClass:[NSArray class]]) {
@@ -780,38 +797,38 @@ static API *sharedAPI;
 - (void) uploadItunesTrack:(YSiTunesUpload *)track withCallback:(ITunesUploadCallback)callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-
+    
     NSString *url = @"/uploaded_tracks";
     NSMutableDictionary *params = [self paramsWithDict:@{@"aws_song_url": track.awsSongUrl,
                                                          @"aws_song_etag": track.awsSongEtag,
                                                          @"persistent_id": track.persistentID}];
-
+    
     if (track.label)
         params[@"label"] = track.label;
     if (track.artistName)
         params[@"artist_name"] = track.artistName;
     if (track.songName)
-        params[@"song_name"] = track.artistName;
+        params[@"song_name"] = track.songName;
     if (track.awsArtworkUrl && track.awsArtworkEtag) {
-        params[@"aws_artwork_url"] = track.awsArtworkUrl;
-        params[@"aws_artwork_etag"] = track.awsArtworkEtag;
+        params[@"aws_image_url"] = track.awsArtworkUrl;
+        params[@"aws_image_etag"] = track.awsArtworkEtag;
     }
-
+    
     [manager POST:[self urlForEndpoint:url]
-      parameters:params
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             YSITunesTrack *returnedTrack = nil;
-             if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                 NSDictionary *response = responseObject;
-                 NSLog(@"Track response: %@", response);
-                 returnedTrack = [YSITunesTrack trackFromDictionary:response];
-             }
-             callback(returnedTrack, nil);
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             [self processFailedOperation:operation];
-             callback(NO, error);
-         }];
+       parameters:params
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              YSITunesTrack *returnedTrack = nil;
+              if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                  NSDictionary *response = responseObject;
+                  NSLog(@"Track response: %@", response);
+                  returnedTrack = [YSITunesTrack trackFromDictionary:response];
+              }
+              callback(returnedTrack, nil);
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              [self processFailedOperation:operation];
+              callback(NO, error);
+          }];
 }
 
 @end

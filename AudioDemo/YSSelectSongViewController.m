@@ -13,14 +13,19 @@
 #import "TrackCollectionViewCell.h"
 #import "UploadCell.h"
 #import "YSTrimSongViewController.h"
+#import "API.h"
+#import <UIImageView+WebCache.h>
 
 @interface YSSelectSongViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property UICollectionView *collectionView;
+@property NSArray *tracks;
 
 @end
 
 @implementation YSSelectSongViewController
+
+@synthesize tracks = _tracks;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,6 +43,16 @@
     [self.collectionView registerClass:[TrackCollectionViewCell class]
             forCellWithReuseIdentifier:@"track"];
     self.collectionView.backgroundColor = [UIColor colorWithRed:239 / 255.0 green:239 / 255.0 blue:244 / 255.0 alpha:1.0];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [[API sharedAPI] getItunesTracks:^(NSArray *tracks, NSError *error) {
+        if (error) {
+            // TODO: Display error callback
+        } else {
+            self.tracks = tracks;
+        }
+    }];
 }
 
 #pragma mark - Actions
@@ -64,12 +79,33 @@
 
 #pragma mark - UICollectionViewDelegate/DataSource
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 2;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1;
+    return section == 0 ? 1 : self.tracks.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UploadCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"upload" forIndexPath:indexPath];
+    UICollectionViewCell *cell;
+    if (indexPath.section == 0) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"upload" forIndexPath:indexPath];
+    } else {
+        TrackCollectionViewCell *trackCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"track" forIndexPath:indexPath];
+        YSITunesTrack *track = self.tracks[indexPath.row];
+        trackCell.trackView.songNameLabel.text = track.artistName;
+        if (track.awsArtworkUrl) {
+            [trackCell.trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.awsArtworkUrl]];
+        } else {
+            trackCell.trackView.imageView.image = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
+        }
+        
+        [trackCell.trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
+        [trackCell.trackView.albumImageButton addTarget:self action:@selector(didTapAlbumButton:) forControlEvents:UIControlEventTouchUpInside];
+        cell = trackCell;
+    }
+    
     return cell;
 }
 
@@ -105,6 +141,17 @@
 
 - (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Getters/Setters
+
+- (void)setTracks:(NSArray *)tracks {
+    _tracks = tracks;
+    [self.collectionView reloadData];
+}
+
+- (NSArray *)tracks {
+    return _tracks;
 }
 
 @end

@@ -47,10 +47,6 @@
         trackView.imageView.image = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
     }
     
-    if (track.isExplainerTrack) {
-        trackView.imageView.image = [UIImage imageNamed:@"ExplainerTrackImage3.png"];
-    }
-    
     trackView.songNameLabel.text = track.name;
     [trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
     [trackView.artistButton addTarget:self action:@selector(didTapArtistButton:) forControlEvents:UIControlEventTouchUpInside];

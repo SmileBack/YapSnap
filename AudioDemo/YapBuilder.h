@@ -12,6 +12,7 @@
 
 #define MESSAGE_TYPE_VOICE @"VoiceMessage"
 #define MESSAGE_TYPE_SPOTIFY @"SpotifyMessage"
+#define MESSAGE_TYPE_ITUNES @"UploadedMessage"
 
 typedef NS_ENUM(NSUInteger, YTYapSendingAction) {
     YTYapSendingActionReply,

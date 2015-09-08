@@ -122,6 +122,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [self.player pause];
     [self.playbackTimer invalidate];
 }
 
@@ -163,16 +164,15 @@
     // TODO: Start playback at given point
     [self.playbackTimer invalidate];
     self.playbackXConstraint.constant = 0;
-    NSTimeInterval playTime = 12;
     CGFloat width = CGRectGetMaxX(self.rightBar.frame) - CGRectGetMaxX(self.leftBar.frame);
-    self.playbackTimer = [NSTimer scheduledTimerWithTimeInterval:playTime/width target:self selector:@selector(updatePlaybackBar) userInfo:nil repeats:YES];
+    self.playbackTimer = [NSTimer scheduledTimerWithTimeInterval:SECONDS_PER_CLIP/width target:self selector:@selector(updatePlaybackBar) userInfo:nil repeats:YES];
 }
 
 #pragma mark - Trim And Upload
 - (void)trim {
     __weak YSTrimSongViewController *weakSelf = self;
     self.iTunesUpload.startTime = [self secondsForContentOffset:self.timeScrollView.contentOffset];
-    self.iTunesUpload.endTime = [self secondsForContentOffset:self.timeScrollView.contentOffset] + 12;
+    self.iTunesUpload.endTime = [self secondsForContentOffset:self.timeScrollView.contentOffset] + SECONDS_PER_CLIP;
 
     YSSongTrimmer *trimmer = [YSSongTrimmer songTrimmerWithSong:self.iTunesUpload];
 
@@ -242,6 +242,7 @@
                             // TODO
                             [self.uploadSpinner stopAnimating];
                         } else {
+                            self.itunesTrack = self.iTunesUpload;
                             [self.audioCaptureDelegate audioSourceControllerIsReadyToProduceYapBuidler:self];
                         }
                     }];
@@ -275,7 +276,14 @@
 
 - (YapBuilder *) getYapBuilder {
     YapBuilder *yapBuilder = [[YapBuilder alloc] init];
-    // TODO: Configure Yap builder
+    yapBuilder.duration = SECONDS_PER_CLIP;
+    yapBuilder.messageType = MESSAGE_TYPE_ITUNES;
+    YSTrack *track = [YSTrack trackFromiTunesTrack:self.iTunesUpload];
+    yapBuilder.track = track;
+    yapBuilder.awsVoiceEtag = self.itunesTrack.awsSongEtag;
+    yapBuilder.awsVoiceURL = self.itunesTrack.awsSongUrl;
+    yapBuilder.imageAwsEtag = self.itunesTrack.awsArtworkEtag;
+    yapBuilder.imageAwsUrl = self.itunesTrack.awsArtworkUrl;
     return yapBuilder;
 }
 

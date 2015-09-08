@@ -346,7 +346,6 @@
                 audioSourceControllerDidStartAudioCapture:self];
         }
         // Show Song Clip buttons when user is playing a song
-        track.songVersionButtonsAreShowing = YES;
         [[NSUserDefaults standardUserDefaults]
             setBool:YES
              forKey:DID_PLAY_SONG_FOR_FIRST_TIME_KEY];
