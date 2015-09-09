@@ -20,7 +20,7 @@
     } else if (IS_IPHONE_6_SIZE) {
         flowLayout.itemSize = CGSizeMake(184, 220);
     } else {
-        flowLayout.itemSize = CGSizeMake(152, 180);
+        flowLayout.itemSize = CGSizeMake(157, 185);
     }
     return flowLayout;
 }

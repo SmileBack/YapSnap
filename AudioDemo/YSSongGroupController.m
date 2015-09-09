@@ -24,18 +24,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.trackGroups = @[
-                         [YTTrackGroup trackGroupWithName:@"Trending"
-                                                apiString:@"trending_tracks"],
-                         [YTTrackGroup trackGroupWithName:@"Funny"
-                                                apiString:@"funny_tracks"],
-                         [YTTrackGroup trackGroupWithName:@"Classics"
-                                                apiString:@"nostalgic_tracks"],
-                         [YTTrackGroup trackGroupWithName:@"Flirty"
-                                                apiString:@"flirtatious_tracks"],
-                         [YTTrackGroup trackGroupWithName:@"Fun"
-                                                apiString:@"flirtatious_tracks"],
-                         [YTTrackGroup trackGroupWithName:@"Rowdy"
-                                                apiString:@"flirtatious_tracks"]
+                         [YTTrackGroup trackGroupWithName:@""
+                                                apiString:@"trending_tracks"
+                                                imageName:@"Genre_HipHop"],
+                         [YTTrackGroup trackGroupWithName:@""
+                                                apiString:@"funny_tracks"
+                                                imageName:@"Genre_Rock"],
+                         [YTTrackGroup trackGroupWithName:@""
+                                                apiString:@"nostalgic_tracks"
+                                                imageName:@"Genre_Pop2"],
+                         [YTTrackGroup trackGroupWithName:@""
+                                                apiString:@"flirtatious_tracks"
+                                                imageName:@"Genre_EDM3"],
+                         [YTTrackGroup trackGroupWithName:@""
+                                                apiString:@"flirtatious_tracks"
+                                                imageName:@"Genre_Country2"],
+                         [YTTrackGroup trackGroupWithName:@""
+                                                apiString:@"flirtatious_tracks"
+                                                imageName:@"Genre_Latin4"]
                          ];
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewFlowLayout appLayout]];
     self.collectionView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0];
@@ -57,6 +63,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SongGroupCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"group" forIndexPath:indexPath];
     cell.label.text = ((YTTrackGroup *)self.trackGroups[indexPath.row]).name;
+    cell.imageView.image = [UIImage imageNamed:((YTTrackGroup *)self.trackGroups[indexPath.row]).imageName];
     return cell;
 }
 

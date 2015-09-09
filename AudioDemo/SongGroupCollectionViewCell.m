@@ -13,7 +13,6 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.imageView = UIImageView.new;
-        self.imageView.image = [UIImage imageNamed:@"background"];
         self.label = UILabel.new;
         self.label.textColor = UIColor.whiteColor;
         self.label.textAlignment = NSTextAlignmentCenter;

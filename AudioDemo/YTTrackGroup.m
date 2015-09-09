@@ -15,15 +15,17 @@
     static id sharedInstance;
     dispatch_once(&once, ^{
         sharedInstance = [YTTrackGroup trackGroupWithName:@"Trending"
-                                                apiString:@"trending_tracks"];
+                                                apiString:@"trending_tracks"
+                                                imageName:@"background"];
     });
     return sharedInstance;
 }
 
-+ (YTTrackGroup *)trackGroupWithName:(NSString *)name apiString:(NSString *)apiString {
++ (YTTrackGroup *)trackGroupWithName:(NSString *)name apiString:(NSString *)apiString imageName:(NSString *)imageName {
     YTTrackGroup *group = YTTrackGroup.new;
     group.name = name;
     group.apiString = apiString;
+    group.imageName = imageName;
     return group;
 }
 
