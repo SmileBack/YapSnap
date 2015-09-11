@@ -36,6 +36,7 @@
 		5D0231621B98BED20011FD1C /* YSEmptyScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0231611B98BED20011FD1C /* YSEmptyScreenView.m */; };
 		5D1E696A1BA362B1002E8212 /* YSMoodGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E69691BA362B1002E8212 /* YSMoodGroupViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5D1E696D1BA362C0002E8212 /* YSGenreGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E696C1BA362C0002E8212 /* YSGenreGroupViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5D1E69701BA3685A002E8212 /* YSSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E696F1BA3685A002E8212 /* YSSpinnerView.m */; settings = {ASSET_TAGS = (); }; };
 		5D3CD7A21B8F7B2C00B0F03C /* TrackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A11B8F7B2C00B0F03C /* TrackCollectionViewCell.m */; };
 		5D3CD7A61B8FB24F00B0F03C /* YSSongGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A51B8FB24F00B0F03C /* YSSongGroupController.m */; };
 		5D3CD7A91B8FB79A00B0F03C /* NSArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A81B8FB79A00B0F03C /* NSArray+Shuffle.m */; };
@@ -405,6 +406,8 @@
 		5D1E69691BA362B1002E8212 /* YSMoodGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSMoodGroupViewController.m; sourceTree = "<group>"; };
 		5D1E696B1BA362C0002E8212 /* YSGenreGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSGenreGroupViewController.h; sourceTree = "<group>"; };
 		5D1E696C1BA362C0002E8212 /* YSGenreGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSGenreGroupViewController.m; sourceTree = "<group>"; };
+		5D1E696E1BA3685A002E8212 /* YSSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSpinnerView.h; sourceTree = "<group>"; };
+		5D1E696F1BA3685A002E8212 /* YSSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSpinnerView.m; sourceTree = "<group>"; };
 		5D3CD7A01B8F7B2C00B0F03C /* TrackCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCollectionViewCell.h; sourceTree = "<group>"; };
 		5D3CD7A11B8F7B2C00B0F03C /* TrackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCollectionViewCell.m; sourceTree = "<group>"; };
 		5D3CD7A41B8FB24F00B0F03C /* YSSongGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSongGroupController.h; sourceTree = "<group>"; };
@@ -1340,6 +1343,8 @@
 				787EC5E21AC9D0AD000C5539 /* JEProgressView.m */,
 				784047E01AB4C57500FE6D93 /* YSRecordProgressView.h */,
 				784047E11AB4C57500FE6D93 /* YSRecordProgressView.m */,
+				5D1E696E1BA3685A002E8212 /* YSSpinnerView.h */,
+				5D1E696F1BA3685A002E8212 /* YSSpinnerView.m */,
 			);
 			name = ProgressView;
 			sourceTree = "<group>";
@@ -2223,6 +2228,7 @@
 				78B2522F1AF0A2E400353711 /* FBShimmeringLayer.m in Sources */,
 				783A1CBF1B17721D00B610B3 /* UIAlertView+Blocks.m in Sources */,
 				FC3ECAE91A830496002678F6 /* FriendsViewController.m in Sources */,
+				5D1E69701BA3685A002E8212 /* YSSpinnerView.m in Sources */,
 				37D413BE19D21A1F00021548 /* NSString+FontAwesome.m in Sources */,
 				786192741B09A942007279E8 /* RecordPopupViewController.m in Sources */,
 				783CCFB71B3C8AE300E3B5BF /* YTTrackGroup.m in Sources */,

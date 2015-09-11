@@ -15,6 +15,7 @@
 #import "YSTrimSongViewController.h"
 #import "API.h"
 #import <UIImageView+WebCache.h>
+#import "YSSpinnerView.h"
 
 @interface YSSelectSongViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -123,6 +124,13 @@
         //TODO what to do if there isn't something selected?
         return;
     }
+    
+    // Loading spinner
+    YSSpinnerView *spinnerView = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    spinnerView.center = mediaPicker.view.center;
+    [mediaPicker.view addSubview:spinnerView];
+    [mediaPicker.view layoutIfNeeded];
+    
     MPMediaItem *item = collection.items[0];
     NSLog(@"Song name: %@", item.title);
     YSiTunesUpload *upload = [YSiTunesUpload new];

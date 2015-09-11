@@ -99,7 +99,6 @@
                                 ]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top]-[title]-[artist]-[image(200)]-[scroll(50)]" options:0 metrics:nil views:@{@"top": self.topLayoutGuide, @"title": self.titleLabel, @"artist": self.artistLabel, @"image": self.artworkImageView, @"scroll": self.timeScrollView}]];
-
     
     UIImageView *plot = [UIImageView imageViewWithAudioUrl:self.iTunesUpload.trackURL];
     [plot setTranslatesAutoresizingMaskIntoConstraints:NO];
