@@ -19,7 +19,7 @@
         label.text = @"Upload a song";
         label.textColor = UIColor.whiteColor;
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont fontWithName:@"Futura-Medium" size:25];
+        label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
         
         // Constraints
         for (UIView *view in @[label, imageView]) {

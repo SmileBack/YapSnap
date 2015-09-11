@@ -16,7 +16,7 @@
     flowLayout.minimumLineSpacing = 2;
     flowLayout.sectionInset = UIEdgeInsetsMake(2, 2, 2, 2);
     if (IS_IPHONE_6_PLUS_SIZE) {
-        flowLayout.itemSize = CGSizeMake(200, 230);
+        flowLayout.itemSize = CGSizeMake(204, 234);
     } else if (IS_IPHONE_6_SIZE) {
         flowLayout.itemSize = CGSizeMake(184, 220);
     } else {

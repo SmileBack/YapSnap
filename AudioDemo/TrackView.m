@@ -24,7 +24,7 @@
         self.songNameLabel.textColor = UIColor.blackColor;
         self.songNameLabel.backgroundColor = [UIColor clearColor];
         self.songNameLabel.textAlignment = NSTextAlignmentCenter;
-        self.songNameLabel.font = [UIFont fontWithName:@"Futura-Medium" size:IS_IPHONE_4_SIZE ? 8 : 10];
+        self.songNameLabel.font = [UIFont fontWithName:@"Futura-Medium" size:IS_IPHONE_4_SIZE ? 8 : 12];
         
         // ALBUM BUTTON
         self.albumImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -34,7 +34,7 @@
         self.artistButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.artistButton.titleLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:10]];
         self.artistButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [self.artistButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        [self.artistButton setTitleColor:UIColor.darkGrayColor forState:UIControlStateNormal];
         
         // Constraints
         for (UIView* view in @[self.imageView,  self.albumImageButton, self.artistButton, self.songNameLabel]) {
