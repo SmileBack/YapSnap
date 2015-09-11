@@ -13,6 +13,7 @@
 #import "UIImageView+AudioPlot.h"
 #import <StreamingKit/STKAudioPlayer.h>
 #import <AVFoundation/AVFoundation.h>
+#import "YSSpinnerView.h"
 
 #define SECONDS_PER_CLIP 12.0f
 
@@ -26,10 +27,10 @@
 @property (strong, nonatomic) UIView *leftBar;
 @property (strong, nonatomic) UIView *rightBar;
 @property (strong, nonatomic) UIView *playbackBar;
-@property (strong, nonatomic) UIActivityIndicatorView *uploadSpinner;
 @property (strong, nonatomic) YSITunesTrack *itunesTrack;
 @property (strong, nonatomic) NSTimer *playbackTimer;
 @property (strong, nonatomic) NSLayoutConstraint *playbackXConstraint;
+@property (strong, nonatomic) YSSpinnerView *spinner;
 
 @end
 
@@ -121,6 +122,8 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [self.spinner removeFromSuperview];
+    self.spinner = nil;
     [self.player pause];
     [self.playbackTimer invalidate];
 }
@@ -180,7 +183,7 @@
         if (theURL) {
             [weakSelf uploadSongClip:theURL];
         } else {
-            [weakSelf.uploadSpinner stopAnimating];
+            [weakSelf.spinner removeFromSuperview];
         }
     }];
 }
@@ -204,7 +207,7 @@
                       withCallback:^(NSString *url, NSString *etag, NSError *error) {
                           if (error) {
                               // TODO
-                              [self.uploadSpinner stopAnimating];
+                              [self.spinner removeFromSuperview];
                           } else {
                               weakSelf.iTunesUpload.awsArtworkUrl = url;
                               weakSelf.iTunesUpload.awsArtworkEtag = etag;
@@ -222,7 +225,7 @@
                     withCallback:^(NSString *url, NSString *etag, NSError *error) {
                         if (error) {
                             // TODO
-                            [self.uploadSpinner stopAnimating];
+                            [self.spinner removeFromSuperview];
                         } else {
                             weakSelf.iTunesUpload.awsSongUrl = url;
                             weakSelf.iTunesUpload.awsSongEtag = etag;
@@ -237,9 +240,10 @@
     API *sharedAPI = [API sharedAPI];
     [sharedAPI uploadItunesTrack:self.iTunesUpload
                     withCallback:^(YSITunesTrack *itunesTrack, NSError *error) {
+                        [self.spinner removeFromSuperview];
+                        self.spinner = nil;
                         if (error) {
                             // TODO
-                            [self.uploadSpinner stopAnimating];
                         } else {
                             self.itunesTrack = self.iTunesUpload;
                             [self.audioCaptureDelegate audioSourceControllerIsReadyToProduceYapBuidler:self];
@@ -252,7 +256,10 @@
 #pragma mark - Implement public audio methods
 
 - (void)prepareYapBuilder {
-    [self.uploadSpinner startAnimating];
+    [self.spinner removeFromSuperview];
+    self.spinner = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    [self.view addSubview:self.spinner];
+    self.spinner.center = self.view.center;
     [self trim];
 }
 

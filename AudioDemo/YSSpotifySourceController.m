@@ -63,6 +63,13 @@
     [self retrieveAndLoadTracksForCategory:self.trackGroup];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.player.state == STKAudioPlayerStatePlaying) {
+        [self cancelPlayingAudio];
+    }
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     for (NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
         [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
