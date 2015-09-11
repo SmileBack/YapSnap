@@ -189,31 +189,39 @@
 }
 
 - (NSURL *)saveImage {
-    NSData *pngData = UIImagePNGRepresentation(self.iTunesUpload.artworkImage);
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *imageName = [NSString stringWithFormat:@"image_%d.png", arc4random() % 1000];
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:imageName];
-    [pngData writeToFile:filePath atomically:YES];
-    return [NSURL fileURLWithPath:filePath];
+    if (self.iTunesUpload.artworkImage) {
+        NSData *pngData = UIImagePNGRepresentation(self.iTunesUpload.artworkImage);
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsPath = [paths objectAtIndex:0];
+        NSString *imageName = [NSString stringWithFormat:@"image_%d.png", arc4random() % 1000];
+        NSString *filePath = [documentsPath stringByAppendingPathComponent:imageName];
+        [pngData writeToFile:filePath atomically:YES];
+        return [NSURL fileURLWithPath:filePath];
+    } else {
+        return nil;
+    }
 }
 
 - (void)uploadArtwork {
     NSLog(@"Uploading artwork.");
     NSURL *url = [self saveImage];
-    __weak YSTrimSongViewController *weakSelf = self;
-    AmazonAPI *amazonAPI = [AmazonAPI sharedAPI];
-    [amazonAPI uploadiTunesArtwork:url
-                      withCallback:^(NSString *url, NSString *etag, NSError *error) {
-                          if (error) {
-                              // TODO
-                              [self.spinner removeFromSuperview];
-                          } else {
-                              weakSelf.iTunesUpload.awsArtworkUrl = url;
-                              weakSelf.iTunesUpload.awsArtworkEtag = etag;
-                              [weakSelf uploadToBackend];
-                          }
-                      }];
+    if (url) {
+        __weak YSTrimSongViewController *weakSelf = self;
+        AmazonAPI *amazonAPI = [AmazonAPI sharedAPI];
+        [amazonAPI uploadiTunesArtwork:url
+                          withCallback:^(NSString *url, NSString *etag, NSError *error) {
+                              if (error) {
+                                  // TODO
+                                  [self.spinner removeFromSuperview];
+                              } else {
+                                  weakSelf.iTunesUpload.awsArtworkUrl = url;
+                                  weakSelf.iTunesUpload.awsArtworkEtag = etag;
+                                  [weakSelf uploadToBackend];
+                              }
+                          }];
+    } else {
+        [self uploadToBackend];
+    }
 }
 
 - (void)uploadSongClip:(NSURL *)url {

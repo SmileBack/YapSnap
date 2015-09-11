@@ -404,13 +404,11 @@ static API *sharedAPI;
         }
     } else {
         // iTunes track
-        dictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"aws_song_url": builder.awsVoiceURL,
-                                                                     @"aws_song_etag": builder.awsVoiceEtag,
-                                                                     @"aws_image_url": builder.imageAwsUrl,
-                                                                     @"aws_image_etag": builder.imageAwsEtag,
-                                                                     @"artist_name": builder.track.artistName,
+        dictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"spotify_preview_url": builder.awsVoiceURL,
+                                                                     @"spotify_image_url": builder.imageAwsUrl,
+                                                                     @"spotify_artist_name": builder.track.artistName,
+                                                                     @"spotify_song_name": builder.track.name,
                                                                      @"type": builder.messageType,
-                                                                     @"category_name": @"fake",
                                                                      }];
         if (builder.track.albumName) {
             dictionary[@"album_name"] = builder.track.albumName;

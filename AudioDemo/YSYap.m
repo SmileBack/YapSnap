@@ -30,6 +30,8 @@
     if ([dict[@"type"]  isEqual: @"SpotifyMessage"]) {
         yap.track = [YSTrack trackFromYapTapDictionary:dict];
         yap.playbackURL = yap.track.previewURL;
+    } else if ([dict[@"type"] isEqual:@"UploadedMessage"]) {
+        yap.playbackURL = dict[@"spotify_preview_url"];
     } else {
         yap.playbackURL = dict[@"aws_recording_url"];
     };
@@ -45,7 +47,9 @@
     yap.receiverPhone = dict[@"receiver_phone"];
     
     yap.notificationType = dict[@"notification_type"];
-
+    
+    
+    
     return yap;
 }
 

@@ -95,7 +95,10 @@
     } else {
         TrackCollectionViewCell *trackCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"track" forIndexPath:indexPath];
         YSITunesTrack *track = self.tracks[indexPath.row];
-        trackCell.trackView.songNameLabel.text = track.artistName;
+        if (track.songName) {
+            trackCell.trackView.songNameLabel.text = track.songName;
+        }
+        
         if (track.awsArtworkUrl) {
             [trackCell.trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.awsArtworkUrl]];
         } else {

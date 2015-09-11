@@ -25,17 +25,15 @@
 {
     YSITunesTrack *track = [YSITunesTrack new];
     
-    track.iTunesTrackID = trackDict[@"itunes_track_id"];
-
-    track.label = trackDict[@"label"];
-    track.artistName = trackDict[@"artist_name"];
-    track.songName = trackDict[@"song_name"];
-    track.persistentID = trackDict[@"persistent_id"];
-
-    track.awsSongUrl = trackDict[@"aws_song_url"];
-    track.awsSongEtag = trackDict[@"aws_song_etag"];
-    track.awsArtworkUrl = trackDict[@"aws_artwork_url"];
-    track.awsArtworkEtag = trackDict[@"aws_artwork_etag"];
+    track.iTunesTrackID = trackDict[@"itunes_track_id"] != nil && trackDict[@"itunes_track_id"] != [NSNull null] ? trackDict[@"itunes_track_id"] : nil;
+    track.label = trackDict[@"label"] != nil && trackDict[@"label"] != [NSNull null] ? trackDict[@"label"] : nil;
+    track.artistName = trackDict[@"artist_name"] != nil && trackDict[@"artist_name"] != [NSNull null] ? trackDict[@"artist_name"] : nil;
+    track.songName = trackDict[@"song_name"] != nil && trackDict[@"song_name"] != [NSNull null] ? trackDict[@"song_name"] : nil;
+    track.persistentID = trackDict[@"persistent_id"] != nil && trackDict[@"persistent_id"] != [NSNull null] ? trackDict[@"persistent_id"] : nil;
+    track.awsSongUrl = trackDict[@"aws_song_url"] != nil && trackDict[@"aws_song_url"] != [NSNull null] ? trackDict[@"aws_song_url"] : nil;
+    track.awsSongEtag = trackDict[@"aws_song_etag"] != nil && trackDict[@"aws_song_etag"] != [NSNull null] ? trackDict[@"aws_song_etag"] : nil;
+    track.awsArtworkUrl = trackDict[@"aws_artwork_url"] != nil && trackDict[@"aws_artwork_url"] != [NSNull null] ? trackDict[@"aws_artwork_url"] : nil;
+    track.awsArtworkEtag = trackDict[@"aws_artwork_etag"] != nil && trackDict[@"aws_artwork_etag"] != [NSNull null] ? trackDict[@"aws_artwork_etag"] : nil;
 
     return track;
 }

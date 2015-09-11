@@ -116,6 +116,8 @@
     [super prepareForReuse];
     [self.selectedOverlay removeFromSuperview];
     self.selectedOverlay = nil;
+    self.trackView.songNameLabel.text = nil;
+    [self.trackView.artistButton setTitle:nil forState:UIControlStateNormal];
 }
 
 - (void)setState:(SpotifyTrackViewCellState)state {
