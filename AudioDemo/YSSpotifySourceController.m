@@ -287,17 +287,16 @@
 #pragma mark - STKAudioPlayerDelegate
 
 - (void)audioPlayer:(STKAudioPlayer *)audioPlayer
-    didStartPlayingQueueItemId:(NSObject *)queueItemId {
-}
+    didStartPlayingQueueItemId:(NSObject *)queueItemId {}
+
 - (void)audioPlayer:(STKAudioPlayer *)audioPlayer
-    didFinishBufferingSourceWithQueueItemId:(NSObject *)queueItemId {
-}
+    didFinishBufferingSourceWithQueueItemId:(NSObject *)queueItemId {}
+
 - (void)audioPlayer:(STKAudioPlayer *)audioPlayer
     didFinishPlayingQueueItemId:(NSObject *)queueItemId
                      withReason:(STKAudioPlayerStopReason)stopReason
                     andProgress:(double)progress
-                    andDuration:(double)duration {
-}
+                    andDuration:(double)duration {}
 
 - (void)audioPlayer:(STKAudioPlayer *)audioPlayer
     unexpectedError:(STKAudioPlayerErrorCode)errorCode {
@@ -343,7 +342,6 @@
             }
             // set self.playerAlreadyStartedPlayingForThisSong to True!
             self.playerAlreadyStartedPlayingForThisSong = YES;
-            NSLog(@"Set playerAlreadyStartedPlayingForThisSong to TRUE");
         }
 
         if ([self.audioCaptureDelegate
@@ -352,35 +350,16 @@
             [self.audioCaptureDelegate
                 audioSourceControllerDidStartAudioCapture:self];
         }
-        // Show Song Clip buttons when user is playing a song
-        [[NSUserDefaults standardUserDefaults]
-            setBool:YES
-             forKey:DID_PLAY_SONG_FOR_FIRST_TIME_KEY];
-    }
-
-    if (state == STKAudioPlayerStateBuffering) {
-        NSLog(@"state == STKAudioPlayerStateBuffering");
-    }
-
-    if (state == STKAudioPlayerStatePaused) {
-        NSLog(@"state == STKAudioPlayerStatePaused");
     }
 
     if (state == STKAudioPlayerStateStopped) {
-        NSLog(@"state == STKAudioPlayerStateStopped");
         self.playerAlreadyStartedPlayingForThisSong = NO;
     }
 
     if (state == STKAudioPlayerStateError) {
-        NSLog(@"state == STKAudioPlayerStateError");
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Player State Error - Spotify"];
     }
-
-    if (state == STKAudioPlayerStateDisposed) {
-        NSLog(@"state == STKAudioPlayerStateDisposed");
-    }
-    
     [self.songDataSource updateCell:trackViewCell withState:state];
 }
 
@@ -522,75 +501,5 @@
                                                                                                                                 indexPathsForSelectedItems].firstObject)]);
     trackViewCell.countdownTimer = playbackTime;
 }
-
-#pragma mark - Setting NSDefaults
-
-- (BOOL)didPlaySongForFirstTime {
-    return [[NSUserDefaults standardUserDefaults]
-        boolForKey:DID_PLAY_SONG_FOR_FIRST_TIME_KEY];
-}
-
-- (BOOL)tappedArtistButtonForFirstTime {
-    return [[NSUserDefaults standardUserDefaults]
-        boolForKey:DID_TAP_ARTIST_BUTTON_FOR_FIRST_TIME_KEY];
-}
-
-/*
- - (void) retrieveTracksForCategory:(NSString *)playlistName
- {
- Mixpanel *mixpanel = [Mixpanel sharedInstance];
- [mixpanel track:@"Searched Songs"];
- [mixpanel.people increment:@"Searched Songs #" by:[NSNumber numberWithInt:1]];
-
- self.songs = nil;
- [self.carousel reloadData];
- self.carousel.alpha = 1;
- self.loadingIndicator.alpha = 1;
- [self.loadingIndicator startAnimating];
-
- __weak YSSpotifySourceController *weakSelf = self;
- void (^callback)(NSArray*, NSError*) = ^(NSArray *songs, NSError *error) {
- //NSLog(@"Songs: %@", songs);
- if (songs) {
- weakSelf.songs = songs;
- weakSelf.carousel.currentItemIndex = 0;
- [weakSelf.carousel reloadData];
-
- if (songs.count == 0) {
- [self.loadingIndicator stopAnimating];
-
- NSLog(@"No Songs Returned For Search Query");
-
- double delay = 0.2;
- dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay *
- NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
- [[YTNotifications sharedNotifications] showNotificationText:@"No Songs. Try New
- Search."];
- });
- } else {
- NSLog(@"Returned Songs Successfully");
- [self.loadingIndicator stopAnimating];
- }
- } else if (error) {
- [self.loadingIndicator stopAnimating];
-
- if ([self internetIsNotReachable]) {
- double delay = 0.1;
- dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay *
- NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
- [[YTNotifications sharedNotifications] showNotificationText:@"No Internet
- Connection!"];
- });
- } else {
- NSLog(@"Error Returning Songs %@", error);
- [mixpanel track:@"Spotify Error - search (other)"];
- }
- }
- };
-
- [[SpotifyAPI sharedApi] retrieveTracksFromSpotifyForPlaylist:playlistName
- withCallback:callback];
- }
- */
 
 @end

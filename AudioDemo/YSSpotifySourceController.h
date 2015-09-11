@@ -20,8 +20,6 @@
 #define RESET_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
 #define LISTENED_TO_CLIP_NOTIFICATION @"com.yapsnap.ListenedToClipNotification"
 #define RESET_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
-#define DID_PLAY_SONG_FOR_FIRST_TIME_KEY @"yaptap.DidPlaySongForFirstTimeKey"
-#define DID_TAP_ARTIST_BUTTON_FOR_FIRST_TIME_KEY @"yaptap.DidTapArtistButtonForFirstTimeKey"
 
 @property (nonatomic, strong) NSArray *songs;
 @property YTTrackGroup *trackGroup;
