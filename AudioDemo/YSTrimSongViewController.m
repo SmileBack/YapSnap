@@ -53,7 +53,7 @@
     
     self.titleLabel.text = self.iTunesUpload.songName;
     self.artistLabel.text = self.iTunesUpload.artistName;
-    self.artworkImageView.image = self.iTunesUpload.artworkImage;
+    self.artworkImageView.image = self.iTunesUpload.artworkImage ? self.iTunesUpload.artworkImage : [UIImage imageNamed:@"CancelImageWhite3"];
     
     for (UILabel *label in @[self.titleLabel, self.artistLabel]) {
         label.textColor = THEME_DARK_BLUE_COLOR;
