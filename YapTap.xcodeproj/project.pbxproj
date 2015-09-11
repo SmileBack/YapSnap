@@ -34,6 +34,8 @@
 		37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */; };
 		5D02315F1B9899EA0011FD1C /* YSRecentSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D02315E1B9899EA0011FD1C /* YSRecentSourceController.m */; };
 		5D0231621B98BED20011FD1C /* YSEmptyScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0231611B98BED20011FD1C /* YSEmptyScreenView.m */; };
+		5D1E696A1BA362B1002E8212 /* YSMoodGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E69691BA362B1002E8212 /* YSMoodGroupViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5D1E696D1BA362C0002E8212 /* YSGenreGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E696C1BA362C0002E8212 /* YSGenreGroupViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5D3CD7A21B8F7B2C00B0F03C /* TrackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A11B8F7B2C00B0F03C /* TrackCollectionViewCell.m */; };
 		5D3CD7A61B8FB24F00B0F03C /* YSSongGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A51B8FB24F00B0F03C /* YSSongGroupController.m */; };
 		5D3CD7A91B8FB79A00B0F03C /* NSArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A81B8FB79A00B0F03C /* NSArray+Shuffle.m */; };
@@ -399,6 +401,10 @@
 		5D02315E1B9899EA0011FD1C /* YSRecentSourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecentSourceController.m; sourceTree = "<group>"; };
 		5D0231601B98BED20011FD1C /* YSEmptyScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSEmptyScreenView.h; sourceTree = "<group>"; };
 		5D0231611B98BED20011FD1C /* YSEmptyScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSEmptyScreenView.m; sourceTree = "<group>"; };
+		5D1E69681BA362B1002E8212 /* YSMoodGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSMoodGroupViewController.h; sourceTree = "<group>"; };
+		5D1E69691BA362B1002E8212 /* YSMoodGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSMoodGroupViewController.m; sourceTree = "<group>"; };
+		5D1E696B1BA362C0002E8212 /* YSGenreGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSGenreGroupViewController.h; sourceTree = "<group>"; };
+		5D1E696C1BA362C0002E8212 /* YSGenreGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSGenreGroupViewController.m; sourceTree = "<group>"; };
 		5D3CD7A01B8F7B2C00B0F03C /* TrackCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCollectionViewCell.h; sourceTree = "<group>"; };
 		5D3CD7A11B8F7B2C00B0F03C /* TrackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCollectionViewCell.m; sourceTree = "<group>"; };
 		5D3CD7A41B8FB24F00B0F03C /* YSSongGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSongGroupController.h; sourceTree = "<group>"; };
@@ -1027,6 +1033,10 @@
 			children = (
 				5D3CD7A41B8FB24F00B0F03C /* YSSongGroupController.h */,
 				5D3CD7A51B8FB24F00B0F03C /* YSSongGroupController.m */,
+				5D1E69681BA362B1002E8212 /* YSMoodGroupViewController.h */,
+				5D1E69691BA362B1002E8212 /* YSMoodGroupViewController.m */,
+				5D1E696B1BA362C0002E8212 /* YSGenreGroupViewController.h */,
+				5D1E696C1BA362C0002E8212 /* YSGenreGroupViewController.m */,
 			);
 			name = "Song Group Page";
 			sourceTree = "<group>";
@@ -2264,6 +2274,7 @@
 				FCFCE4581AF5413D0094926E /* AddFriendAlertView.m in Sources */,
 				FC59CD3F1B8EA6900091D4D3 /* YSTrimSongViewController.m in Sources */,
 				783CCF751B3461D800E3B5BF /* YTSearchSuggestionsViewController.m in Sources */,
+				5D1E696A1BA362B1002E8212 /* YSMoodGroupViewController.m in Sources */,
 				FC865CC11A9A7B2B003AFAFA /* UIViewController+ScreenSize.m in Sources */,
 				FC0C1D491A45F79000B148AB /* YSSpotifySourceController.m in Sources */,
 				FC0642D51A9D65D000E3D60F /* Environment.m in Sources */,
@@ -2284,6 +2295,7 @@
 				783CCF6D1B33431D00E3B5BF /* SearchArtistAlertView.m in Sources */,
 				FCBB97031A7D636A003D5F24 /* SettingsViewController.m in Sources */,
 				FC0C1D4C1A45F98500B148AB /* YSMicSourceController.m in Sources */,
+				5D1E696D1BA362C0002E8212 /* YSGenreGroupViewController.m in Sources */,
 				786192781B09B810007279E8 /* ContactsPopupViewController.m in Sources */,
 				FCEF993D1A6D6F06000FDE4C /* NoAnimationPushSegue.m in Sources */,
 				784047E21AB4C57500FE6D93 /* YSRecordProgressView.m in Sources */,

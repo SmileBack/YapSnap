@@ -17,7 +17,8 @@
 #import "YapsViewController.h"
 #import "NextButton.h"
 #import "YTTrackGroup.h"
-#import "YSSongGroupController.h"
+#import "YSMoodGroupViewController.h"
+#import "YSGenreGroupViewController.h"
 #import "YSAudioSourceNavigationController.h"
 #import "YSRecentSourceController.h"
 #import "YSSelectSongViewController.h"
@@ -201,6 +202,24 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         case 1:
             audioSource = [[YSSpotifySourceController alloc] init];
             break;
+        case 2:
+        {
+            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSMoodGroupViewController alloc] init]];
+            if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
+                nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
+            }
+            audioSource = nc;
+        }
+            break;
+        case 3:
+        {
+            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSMoodGroupViewController alloc] init]];
+            if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
+                nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
+            }
+            audioSource = nc;
+        }
+            break;
         case 4:
         {
             YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSelectSongViewController alloc] init]];
@@ -211,13 +230,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
             break;
         }
         default:
-        {
-            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSongGroupController alloc] init]];
-            if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
-                nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
-            }
-            audioSource = nc;
-        }
+            NSAssert(false, @"index out of bounds on scroll bar");
             break;
     }
     // HAACKKKKKK: cancelPlayingAudio is ASYNC, but doesn't have a callback. The lib we're using needs to do that, but in the mean time, dispatch this async.

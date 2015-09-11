@@ -14,7 +14,6 @@
 
 @interface YSSongGroupController()<UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (strong, nonatomic) NSArray *trackGroups;
 @property (strong, nonatomic) UICollectionView *collectionView;
 
 @end
@@ -23,26 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.trackGroups = @[
-                         [YTTrackGroup trackGroupWithName:@""
-                                                apiString:@"trending_tracks"
-                                                imageName:@"Genre_HipHop"],
-                         [YTTrackGroup trackGroupWithName:@""
-                                                apiString:@"funny_tracks"
-                                                imageName:@"Genre_Rock"],
-                         [YTTrackGroup trackGroupWithName:@""
-                                                apiString:@"nostalgic_tracks"
-                                                imageName:@"Genre_Pop2"],
-                         [YTTrackGroup trackGroupWithName:@""
-                                                apiString:@"flirtatious_tracks"
-                                                imageName:@"Genre_EDM3"],
-                         [YTTrackGroup trackGroupWithName:@""
-                                                apiString:@"flirtatious_tracks"
-                                                imageName:@"Genre_Country2"],
-                         [YTTrackGroup trackGroupWithName:@""
-                                                apiString:@"flirtatious_tracks"
-                                                imageName:@"Genre_Latin4"]
-                         ];
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewFlowLayout appLayout]];
     self.collectionView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0];
     self.collectionView.dataSource = self;

@@ -10,4 +10,6 @@
 
 @interface YSSongGroupController : YSAudioSourceViewController
 
+@property (readonly) NSArray *trackGroups; // To be overridden by subclasses
+
 @end
