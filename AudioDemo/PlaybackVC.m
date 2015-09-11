@@ -193,7 +193,7 @@
 {
     NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
     NSLog(@"Playing URL: %@ %@ auth token", self.yap.playbackURL, headers ? @"with" : @"without");
-    if (headers) {
+    if (headers && [self.yap.type isEqualToString:MESSAGE_TYPE_SPOTIFY]) {
         [self.player play:self.yap.playbackURL withHeaders:headers];
     } else {
         [self.player play:self.yap.playbackURL];
@@ -319,13 +319,8 @@
 - (void) timerFired
 {
     self.elapsedTime += TIME_INTERVAL;
-    
-    if ([self.yap.type isEqual:@"SpotifyMessage"]) {
-        self.trackLength = 12; // DEFAULT TO 12 SECONDS
-    } else {
-        self.trackLength = [self.yap.duration floatValue];
-    }
-    CGFloat progress = self.elapsedTime / 12;
+    self.trackLength = 12;
+    CGFloat progress = self.elapsedTime / self.trackLength;
     [self.progressView setProgress:progress];
     
     if (self.elapsedTime >= self.trackLength) {

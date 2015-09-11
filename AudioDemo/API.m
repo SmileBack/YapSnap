@@ -405,13 +405,15 @@ static API *sharedAPI;
     } else {
         // iTunes track
         dictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"spotify_preview_url": builder.awsVoiceURL,
-                                                                     @"spotify_image_url": builder.imageAwsUrl,
                                                                      @"spotify_artist_name": builder.track.artistName,
                                                                      @"spotify_song_name": builder.track.name,
                                                                      @"type": builder.messageType,
                                                                      }];
         if (builder.track.albumName) {
             dictionary[@"album_name"] = builder.track.albumName;
+        }
+        if (builder.imageAwsUrl) {
+            dictionary[@"spotify_image_url"] = builder.imageAwsUrl;
         }
     }
     
