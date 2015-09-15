@@ -120,22 +120,22 @@
     [self.trackView.artistButton setTitle:nil forState:UIControlStateNormal];
 }
 
-- (void)setState:(SpotifyTrackViewCellState)state {
+- (void)setState:(TrackViewCellState)state {
     _state = state;
     switch (state) {
-        case SpotifyTrackViewCellStateBuffering:
+        case TrackViewCellStateBuffering:
             [self.selectedOverlay.spinner startAnimating];
             self.selectedOverlay.imageView.image = nil;
             self.selectedOverlay.countdownLabel.hidden = YES;
             self.selectedOverlay.countdownLabel.text = nil;
             break;
-        case SpotifyTrackViewCellStatePaused:
+        case TrackViewCellStatePaused:
             [self.selectedOverlay.spinner stopAnimating];
             self.selectedOverlay.imageView.image = [UIImage imageNamed:@"play"];
             self.selectedOverlay.countdownLabel.hidden = YES;
             self.selectedOverlay.countdownLabel.text = nil;
             break;
-        case SpotifyTrackViewCellStatePlaying:
+        case TrackViewCellStatePlaying:
             [self.selectedOverlay.spinner stopAnimating];
             self.selectedOverlay.imageView.image = [UIImage imageNamed:@"pause"];
             self.selectedOverlay.countdownLabel.hidden = NO;
@@ -152,7 +152,7 @@
     [self.selectedOverlay.imageView.layer addAnimation:transition forKey:nil];
 }
 
-- (SpotifyTrackViewCellState)state {
+- (TrackViewCellState)state {
     return _state;
 }
 

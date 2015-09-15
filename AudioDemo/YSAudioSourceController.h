@@ -54,8 +54,6 @@
 
 - (BOOL) startAudioCapture;
 - (void) stopAudioCapture;
-
-- (void) startPlayback;
 - (void) cancelPlayingAudio;
 
 - (void)clearSearchResults;

@@ -37,6 +37,7 @@
 		5D1E696A1BA362B1002E8212 /* YSMoodGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E69691BA362B1002E8212 /* YSMoodGroupViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5D1E696D1BA362C0002E8212 /* YSGenreGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E696C1BA362C0002E8212 /* YSGenreGroupViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5D1E69701BA3685A002E8212 /* YSSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E696F1BA3685A002E8212 /* YSSpinnerView.m */; settings = {ASSET_TAGS = (); }; };
+		5D1E69731BA374B2002E8212 /* YSSTKAudioPlayerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E69721BA374B2002E8212 /* YSSTKAudioPlayerDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		5D3CD7A21B8F7B2C00B0F03C /* TrackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A11B8F7B2C00B0F03C /* TrackCollectionViewCell.m */; };
 		5D3CD7A61B8FB24F00B0F03C /* YSSongGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A51B8FB24F00B0F03C /* YSSongGroupController.m */; };
 		5D3CD7A91B8FB79A00B0F03C /* NSArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A81B8FB79A00B0F03C /* NSArray+Shuffle.m */; };
@@ -408,6 +409,8 @@
 		5D1E696C1BA362C0002E8212 /* YSGenreGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSGenreGroupViewController.m; sourceTree = "<group>"; };
 		5D1E696E1BA3685A002E8212 /* YSSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSpinnerView.h; sourceTree = "<group>"; };
 		5D1E696F1BA3685A002E8212 /* YSSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSpinnerView.m; sourceTree = "<group>"; };
+		5D1E69711BA374B2002E8212 /* YSSTKAudioPlayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSTKAudioPlayerDelegate.h; sourceTree = "<group>"; };
+		5D1E69721BA374B2002E8212 /* YSSTKAudioPlayerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSTKAudioPlayerDelegate.m; sourceTree = "<group>"; };
 		5D3CD7A01B8F7B2C00B0F03C /* TrackCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCollectionViewCell.h; sourceTree = "<group>"; };
 		5D3CD7A11B8F7B2C00B0F03C /* TrackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCollectionViewCell.m; sourceTree = "<group>"; };
 		5D3CD7A41B8FB24F00B0F03C /* YSSongGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSongGroupController.h; sourceTree = "<group>"; };
@@ -1200,6 +1203,8 @@
 				781C00881B7E6AA800525B12 /* YSSongCollectionViewDataSource.m */,
 				5D02315D1B9899EA0011FD1C /* YSRecentSourceController.h */,
 				5D02315E1B9899EA0011FD1C /* YSRecentSourceController.m */,
+				5D1E69711BA374B2002E8212 /* YSSTKAudioPlayerDelegate.h */,
+				5D1E69721BA374B2002E8212 /* YSSTKAudioPlayerDelegate.m */,
 			);
 			name = "Spotify Page";
 			sourceTree = "<group>";
@@ -2269,6 +2274,7 @@
 				FCE234491AAB749E00C1EDB0 /* YTNotifications.m in Sources */,
 				783CCF781B3466A800E3B5BF /* YTRoundButton.m in Sources */,
 				FC7C42B11B8E993600629AA8 /* YSITunesTrack.m in Sources */,
+				5D1E69731BA374B2002E8212 /* YSSTKAudioPlayerDelegate.m in Sources */,
 				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
 				3793FDFC19BCF11E00FBBBCE /* UIViewController+Communication.m in Sources */,
 				FC6C2A541B952249001E9C1D /* YSiTunesUpload.m in Sources */,

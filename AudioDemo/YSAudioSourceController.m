@@ -37,7 +37,6 @@
     return nil;
 }
 
-- (void) startPlayback{}
 - (void) stopAudioCapture{}
 - (void) cancelPlayingAudio{}
 - (NSString *)currentAudioDescription {return nil;}

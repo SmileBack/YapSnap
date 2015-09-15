@@ -10,7 +10,7 @@
 
 @implementation YSAudioSourceNavigationController
 
-@synthesize audioCaptureDelegate;
+@synthesize audioCaptureDelegate = _audioCaptureDelegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,13 +39,6 @@
         return [(id<YSAudioSource>)self.topViewController getYapBuilder];
     }
     return nil;
-}
-
-- (void)startPlayback {
-    if ([self.topViewController conformsToProtocol:@protocol(YSAudioSource)] &&
-        [self.topViewController respondsToSelector:@selector(startPlayback)]) {
-        [(id<YSAudioSource>)self.topViewController startPlayback];
-    }
 }
 
 - (void)stopAudioCapture {
@@ -85,7 +78,7 @@
 
 - (void)updatePlaybackProgress:(NSTimeInterval)playbackTime {
     if ([self.topViewController conformsToProtocol:@protocol(YSAudioSource)] &&
-        [self.topViewController respondsToSelector:@selector(updatePlaybackProgress)]) {
+        [self.topViewController respondsToSelector:@selector(updatePlaybackProgress:)]) {
         return [(id<YSAudioSource>)self.topViewController updatePlaybackProgress:playbackTime];
     }
 }
@@ -102,6 +95,14 @@
     [super pushViewController:viewController animated:animated];
     if ([viewController conformsToProtocol:@protocol(YSAudioSource)]) {
         id<YSAudioSource> source = (id<YSAudioSource>)viewController;
+        source.audioCaptureDelegate = self.audioCaptureDelegate;
+    }
+}
+
+- (void)setAudioCaptureDelegate:(id<YSAudioSourceControllerDelegate>)audioCaptureDelegate {
+    _audioCaptureDelegate = audioCaptureDelegate;
+    if ([self.topViewController conformsToProtocol:@protocol(YSAudioSource)]) {
+        id<YSAudioSource> source = (id<YSAudioSource>)self.topViewController;
         source.audioCaptureDelegate = self.audioCaptureDelegate;
     }
 }

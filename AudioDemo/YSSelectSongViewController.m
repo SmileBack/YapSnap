@@ -16,17 +16,21 @@
 #import "API.h"
 #import <UIImageView+WebCache.h>
 #import "YSSpinnerView.h"
+#import "YSSTKAudioPlayerDelegate.h"
+#import "YSTrack.h"
 
-@interface YSSelectSongViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface YSSelectSongViewController () <UICollectionViewDataSource, UICollectionViewDelegate, STKAudioPlayerDelegate>
 
 @property UICollectionView *collectionView;
 @property NSArray *tracks;
+@property YSSTKAudioPlayerDelegate *audioPlayerDelegate;
+@property STKAudioPlayer *player;
 
 @end
 
 @implementation YSSelectSongViewController
 
-@synthesize tracks = _tracks;
+@synthesize tracks = _tracks, audioCaptureDelegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,6 +48,11 @@
     [self.collectionView registerClass:[TrackCollectionViewCell class]
             forCellWithReuseIdentifier:@"track"];
     self.collectionView.backgroundColor = [UIColor colorWithRed:239 / 255.0 green:239 / 255.0 blue:244 / 255.0 alpha:1.0];
+    
+    self.audioPlayerDelegate = [[YSSTKAudioPlayerDelegate alloc] init];
+    self.audioPlayerDelegate.collectionView = self.collectionView;
+    self.audioPlayerDelegate.audioSource = self;
+    self.audioPlayerDelegate.audioCaptureDelegate = self.audioCaptureDelegate;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -107,6 +116,12 @@
         
         [trackCell.trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
         [trackCell.trackView.albumImageButton addTarget:self action:@selector(didTapAlbumButton:) forControlEvents:UIControlEventTouchUpInside];
+        trackCell.trackView.albumImageButton.tag = indexPath.row;
+        
+        if ([[collectionView indexPathsForSelectedItems].firstObject isEqual:indexPath]) {
+            [self updateCell:trackCell withState:self.player.state];
+        }
+        
         cell = trackCell;
     }
     
@@ -153,6 +168,120 @@
 - (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - YSAudioSource
+
+- (NSString *)currentAudioDescription {
+    YSITunesTrack *track = ((YSITunesTrack *)self.tracks[self.collectionView.indexPathsForSelectedItems.firstObject.row]);
+    return track.songName;
+}
+
+- (BOOL) startAudioCapture {
+    self.player = [STKAudioPlayer new];
+    self.player.delegate = self;
+    self.audioPlayerDelegate.player = self.player;
+    YSITunesTrack *track = ((YSITunesTrack *)self.tracks[self.collectionView.indexPathsForSelectedItems.firstObject.row]);
+    return [self.audioPlayerDelegate startAudioCaptureWithPreviewUrl:track.awsSongUrl withHeaders:nil];
+}
+
+- (void) stopAudioCapture {
+    [self.audioPlayerDelegate stopAudioCapture];
+}
+
+- (void) cancelPlayingAudio {
+    [self.audioPlayerDelegate cancelPlayingAudio];
+}
+
+- (void)clearSearchResults {}
+
+- (void)searchWithText:(NSString *)text {}
+
+- (void)updatePlaybackProgress:(NSTimeInterval)playbackTime {
+    [self.audioPlayerDelegate updatePlaybackProgress:playbackTime];
+}
+
+// Spotify source will return the YSTrack.
+// Mic source could return the audio file. for now will return nothing.
+- (void)prepareYapBuilder {
+    [self.audioCaptureDelegate audioSourceControllerIsReadyToProduceYapBuidler:self];
+}
+
+- (YapBuilder *) getYapBuilder {
+    YSITunesTrack *iTunesTrack = ((YSITunesTrack *)self.tracks[self.collectionView.indexPathsForSelectedItems.firstObject.row]);
+    YapBuilder *yapBuilder = [[YapBuilder alloc] init];
+    YSTrack *track = [YSTrack trackFromiTunesTrack:iTunesTrack];
+    yapBuilder.track = track;
+    yapBuilder.messageType = MESSAGE_TYPE_ITUNES;
+    yapBuilder.duration = 12;
+    yapBuilder.awsVoiceEtag = iTunesTrack.awsSongEtag;
+    yapBuilder.awsVoiceURL = iTunesTrack.awsSongUrl;
+    yapBuilder.imageAwsEtag = iTunesTrack.awsArtworkEtag;
+    yapBuilder.imageAwsUrl = iTunesTrack.awsArtworkUrl;
+    return yapBuilder;
+}
+
+#pragma mark - Actions
+
+- (void)didTapAlbumButton:(UIButton *)button {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:button.tag inSection:1];
+    [self.collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    
+    if ([indexPath isEqual:self.collectionView.indexPathsForSelectedItems.firstObject] && self.audioPlayerDelegate.player.state == STKAudioPlayerStatePlaying) {
+        [self.audioPlayerDelegate.player pause];
+    } else {
+        [self startAudioCapture];
+    }
+}
+
+- (void)updateCell:(TrackCollectionViewCell *)cell withState:(STKAudioPlayerState)state {
+    if (state == STKAudioPlayerStateBuffering) {
+        cell.state = TrackViewCellStateBuffering;
+    } else if (state == STKAudioPlayerStatePaused) {
+        cell.state = TrackViewCellStatePaused;
+    } else if (state == STKAudioPlayerStateStopped) {
+        cell.state = TrackViewCellStatePaused;
+    } else  if (state == STKAudioPlayerStatePlaying) {
+        cell.state = TrackViewCellStatePlaying;
+    }
+}
+#pragma mark - STKAudioPlayerDelegate
+
+- (void)audioPlayer:(STKAudioPlayer *)audioPlayer
+didStartPlayingQueueItemId:(NSObject *)queueItemId {
+    [self.audioPlayerDelegate audioPlayer:audioPlayer didStartPlayingQueueItemId:queueItemId];
+}
+
+- (void)audioPlayer:(STKAudioPlayer *)audioPlayer
+didFinishBufferingSourceWithQueueItemId:(NSObject *)queueItemId {
+    [self.audioPlayerDelegate audioPlayer:audioPlayer didFinishBufferingSourceWithQueueItemId:queueItemId];
+}
+
+- (void)audioPlayer:(STKAudioPlayer *)audioPlayer
+didFinishPlayingQueueItemId:(NSObject *)queueItemId
+         withReason:(STKAudioPlayerStopReason)stopReason
+        andProgress:(double)progress
+        andDuration:(double)duration {
+    [self.audioPlayerDelegate audioPlayer:audioPlayer didFinishPlayingQueueItemId:queueItemId withReason:stopReason andProgress:progress andDuration:duration];
+}
+
+- (void)audioPlayer:(STKAudioPlayer *)audioPlayer
+    unexpectedError:(STKAudioPlayerErrorCode)errorCode {
+    [self.audioPlayerDelegate audioPlayer:audioPlayer unexpectedError:errorCode];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Player Unexpected Error - Spotify"];
+}
+
+- (void)audioPlayer:(STKAudioPlayer *)audioPlayer
+       stateChanged:(STKAudioPlayerState)state
+      previousState:(STKAudioPlayerState)previousState {
+    [self.audioPlayerDelegate audioPlayer:audioPlayer stateChanged:state previousState:previousState];
+    TrackCollectionViewCell *trackViewCell = ((TrackCollectionViewCell *)[self.collectionView
+                                                                          cellForItemAtIndexPath:((NSIndexPath *)[self.collectionView
+                                                                                                                  indexPathsForSelectedItems].firstObject)]);
+    
+    [self updateCell:trackViewCell withState:state];
+}
+
 
 #pragma mark - Getters/Setters
 

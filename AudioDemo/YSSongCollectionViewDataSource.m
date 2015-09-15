@@ -101,16 +101,16 @@
 
 #pragma mark - Methods
 
-- (void)updateCell:(SpotifyTrackCollectionViewCell *)cell withState:(STKAudioPlayerState)state {
+- (void)updateCell:(TrackCollectionViewCell *)cell withState:(STKAudioPlayerState)state {
     self.audioState = state;
     if (state == STKAudioPlayerStateBuffering) {
-        cell.state = SpotifyTrackViewCellStateBuffering;
+        cell.state = TrackViewCellStateBuffering;
     } else if (state == STKAudioPlayerStatePaused) {
-        cell.state = SpotifyTrackViewCellStatePaused;
+        cell.state = TrackViewCellStatePaused;
     } else if (state == STKAudioPlayerStateStopped) {
-        cell.state = SpotifyTrackViewCellStatePaused;
+        cell.state = TrackViewCellStatePaused;
     } else  if (state == STKAudioPlayerStatePlaying) {
-        cell.state = SpotifyTrackViewCellStatePlaying;
+        cell.state = TrackViewCellStatePlaying;
     }
 }
 
