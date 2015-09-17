@@ -658,6 +658,7 @@ static NSString *CellIdentifier = @"Cell";
     [[API sharedAPI] sendYapBuilder:yapBuilder
                        withCallback:^(BOOL success, NSError *error) {
                            if (success) {
+                               [[NSNotificationCenter defaultCenter] postNotificationName:DID_SEND_YAP_NOTIFICATION object:nil];
                                [[ContactManager sharedContactManager] sentYapTo:weakSelf.selectedContacts];
                            } else {
                                NSLog(@"Error Sending Yap: %@", error);
@@ -667,14 +668,6 @@ static NSString *CellIdentifier = @"Cell";
                        }];
     
     [weakSelf performSegueWithIdentifier:@"YapsViewControllerSegue" sender:pendingYaps];
-    
-    
-    
-    /*
-     NSArray *pendingYaps = [[API sharedAPI] sendYapBuilder:self.yapBuilder
-     [[ContactManager sharedContactManager] sentYapTo:self.yapBuilder.contacts];
-     */
-
 }
 
 #pragma mark - UISearchDisplayDelegate

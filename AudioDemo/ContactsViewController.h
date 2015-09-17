@@ -10,6 +10,8 @@
 #import "ContactSelectionCell.h"
 #import "API.h"
 
+#define DID_SEND_YAP_NOTIFICATION @"com.yapsnap.didSendYapNotification"
+
 @class ContactsViewController;
 
 @protocol ContactsViewControllerDelegate <NSObject>

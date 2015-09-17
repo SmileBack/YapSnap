@@ -7,6 +7,13 @@
 //
 
 #import "YSAudioSourceNavigationController.h"
+#import "ContactsViewController.h"
+
+@interface YSAudioSourceNavigationController()
+
+@property id observer;
+
+@end
 
 @implementation YSAudioSourceNavigationController
 
@@ -15,6 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationBarHidden = YES;
+    self.observer = [[NSNotificationCenter defaultCenter] addObserverForName:DID_SEND_YAP_NOTIFICATION object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self popToRootViewControllerAnimated:NO];
+    }];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.observer name:nil object:nil];
 }
 
 - (BOOL)startAudioCapture {
