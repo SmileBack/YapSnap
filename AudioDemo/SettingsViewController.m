@@ -65,13 +65,31 @@
                                                   }];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    [self addCancelButton];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
+    [self.navigationController setNavigationBarHidden:NO];
     [self.tableView reloadData];
+}
+
+- (void) addCancelButton {
+    UIImage* cancelModalImage = [UIImage imageNamed:@"WhiteDownArrow2.png"];
+    UIButton *cancelModalButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [cancelModalButton setBackgroundImage:cancelModalImage forState:UIControlStateNormal];
+    [cancelModalButton addTarget:self action:@selector(cancelPressed)
+                forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelModalButton];
+    [self.navigationItem setLeftBarButtonItem:cancelButton];
+}
+
+- (void) cancelPressed
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (NSArray *) sections

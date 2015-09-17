@@ -129,6 +129,10 @@
                          completion:nil];
         self.magnifyingGlassImageView.hidden = NO;
     }
+    
+    if ([self.searchBar.text length] == 0) {
+        self.resetButton.alpha = 0;
+    }
 }
 
 #pragma mark - UITextFieldDelegate
@@ -181,6 +185,7 @@
         [self.searchOverlay removeFromSuperview];
         self.searchOverlay = nil;
     }];
+    [self updateVisibilityOfMagnifyingGlassAndResetButtons];
 }
 
 - (void)cancelSearch {
@@ -366,7 +371,8 @@
     if ([self isInReplyMode]) {
         [self.navigationController popViewControllerAnimated:NO];
     } else {
-        [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
+        //[self performSegueWithIdentifier:@"Friends Segue" sender:nil];
+        [self performSegueWithIdentifier:@"Settings Segue" sender:nil];
     }
 }
 
