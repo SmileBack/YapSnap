@@ -20,16 +20,13 @@
 
 #import "Mixpanel.h"
 
-#define THEME_BACKGROUND_COLOR [UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0f]
-//#define THEME_BACKGROUND_COLOR [UIColor colorWithRed:233.0/255.0 green:234.0/255.0 blue:236.0/255.0 alpha:1.0f]
+#define THEME_BACKGROUND_COLOR [UIColor colorWithRed:20.0/255.0 green:179.0/255.0 blue:255.0/255.0 alpha:1.0f]//[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1.0f]
 
 #define THEME_DARK_BLUE_COLOR [UIColor colorWithRed:31.0/255.0 green:107.0/255.0 blue:219.0/255.0 alpha:1.0f]
-//#define THEME_DARK_BLUE_COLOR [UIColor colorWithRed:233.0/255.0 green:234.0/255.0 blue:236.0/255.0 alpha:1.0f]
 
 #define THEME_RED_COLOR [UIColor colorWithRed:255.0f/255.0f green:42.0f/255.0f blue:85.0f/255.0f alpha:1]
 
 #define THEME_SECONDARY_COLOR [UIColor whiteColor]
-//#define THEME_SECONDARY_COLOR [UIColor blackColor]
 
 
 #define IS_BEFORE_IOS_8  ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] == NSOrderedAscending)

@@ -34,6 +34,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
+@property (weak, nonatomic) IBOutlet UIButton *sendTextButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *replayButton;
 @property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
@@ -160,6 +161,10 @@
     self.friendRequestButton.layer.cornerRadius = 4;
     self.friendRequestButton.layer.borderWidth = 1;
     self.friendRequestButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
+    
+    self.sendTextButton.layer.cornerRadius = 4;
+    self.sendTextButton.layer.borderWidth = 1;
+    self.sendTextButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
 }
 
 - (void) handleImageAndPlayAudio
@@ -229,14 +234,26 @@
     [self dismissThis];
 }
 
+- (IBAction)didTapSendText:(id)sender {
+    [self dismissThis];
+    [self.yapCreatingDelegate didOriginateReplyFromYapSameClip:self.yap];
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Reply to Song from Playback (Same Clip)"];
+}
+
 - (IBAction)didTapReply:(id)sender {
-        
+    
     if (self.yap.isFriendRequest) {
         [self dismissThis];
         [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Sent Yap From Friend Request"];
     } else if (self.yap.receivedByCurrentUser) {
+        [self dismissThis];
+        [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Reply to Song from Playback (Different Clip)"];
+        /*
         if ([self.yap.type isEqual:@"SpotifyMessage"]) {
             UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song, or a new one?"
                                                                             delegate:self
@@ -254,6 +271,7 @@
             actionSheetVoice.tag = 200;
             [actionSheetVoice showInView:self.view];
         }
+         */
     } else {
         if ([self.yap.type isEqual:@"SpotifyMessage"]) {
             UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Use the same song, or a new one?"
@@ -357,12 +375,12 @@
                              completion:nil];
             
             
-            if ([self.yap.type isEqual:@"SpotifyMessage"]) {
-                // DEFAULT TO 12 SECONDS
-                self.progressViewRemainderWidth = 0;
-            } else {
+            if ([self.yap.type isEqual:@"VoiceMessage"]) {
                 CGFloat width = self.view.frame.size.width;
                 self.progressViewRemainderWidth = (12 - [self.yap.duration floatValue]) * width/12;
+            } else {
+                // DEFAULT TO 12 SECONDS
+                self.progressViewRemainderWidth = 0;
             }
             
             self.progressViewRemainder = [[UIView alloc] init];

@@ -42,6 +42,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *albumLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
 @property (strong, nonatomic) ForwardingPopupViewController *forwardingPopupVC;
+@property (strong, nonatomic) IBOutlet UILabel *replyLabel;
 
 - (IBAction)didTapCameraButton;
 - (IBAction)didTapResetPhotoButton;
@@ -109,6 +110,14 @@
         [self.topLeftButton setImage:[UIImage imageNamed:@"LeftArrow500.png"] forState:UIControlStateHighlighted];
     }
     
+    if (self.isReplying) {
+        self.replyLabel.hidden = NO;
+        self.textView.backgroundColor = THEME_DARK_BLUE_COLOR;
+        self.albumImage.hidden = YES;
+        self.albumLabel.hidden = YES;
+        self.cameraButton.hidden = YES;
+    }
+    
     double delay = 0.2;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.continueButton startToPulsate];
@@ -133,6 +142,9 @@
     } else if (IS_IPHONE_5_SIZE) {
         self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:34];
     }
+    
+    NSLog(@"YapBuilder imageAWSURL: %@", self.yapBuilder.imageAwsUrl);
+    NSLog(@"YapBuilder imageAWSURL: %@", self.yapBuilder.image);
     
     [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.track.imageURL]];
     self.textView.text = self.yapBuilder.text;
@@ -168,7 +180,7 @@
         if ([contact.phoneNumber isEqualToString:@"+13245678910"] || [contact.phoneNumber isEqualToString:@"+13027865701"]) {
             self.titleLabel.text = @"Reply to YapTap Team";
         } else {
-            self.titleLabel.text = [NSString stringWithFormat:@"Reply to %@", contactFirstName];
+            self.titleLabel.text = [NSString stringWithFormat:@"To %@", contactFirstName];
         }
     } else {
         self.titleLabel.text = @"Add Message";
