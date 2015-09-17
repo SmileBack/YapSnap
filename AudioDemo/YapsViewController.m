@@ -329,13 +329,17 @@ static NSString *CellIdentifier = @"Cell";
     
     if ((([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] ||[yap.type isEqual:MESSAGE_TYPE_ITUNES]) && yap.sentByCurrentUser) || (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] ||[yap.type isEqual:MESSAGE_TYPE_ITUNES]) && yap.receivedByCurrentUser && yap.wasOpened)) {
         cell.goToSpotifyView.hidden = NO;
-        YSSpotifyTapGestureRecognizer *singleFingerTap =
-        [[YSSpotifyTapGestureRecognizer alloc] initWithTarget:self
-                                                       action:@selector(handleSpotifyTap:)];
-        singleFingerTap.yap = yap;
-        [cell.goToSpotifyView addGestureRecognizer:singleFingerTap];
-        if (cell.albumImageView) {
+        //YSSpotifyTapGestureRecognizer *singleFingerTap =
+        //[[YSSpotifyTapGestureRecognizer alloc] initWithTarget:self
+          //                                             action:@selector(handleSpotifyTap:)];
+        //singleFingerTap.yap = yap;
+        //[cell.goToSpotifyView addGestureRecognizer:singleFingerTap];
+        NSLog(@"Image URL: %@", yap.imageURL);
+        
+        if (cell.albumImageView && yap.imageURL && ![yap.imageURL isEqual:[NSNull null]]) {
             [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
+        } else {
+            NSLog(@"NO ALBUM IMAGE");
         }
         //cell.spotifyBottomImageView.hidden = NO;
         cell.spotifyBottomImageView.hidden = YES;
@@ -456,6 +460,13 @@ static NSString *CellIdentifier = @"Cell";
     self.selectedYap = yap;
     NSString *receiverFirstName = [[self.selectedYap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
     
+    [self didOriginateReplyFromYapNewClip:yap];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Send %@ a Yap!", receiverFirstName]];
+    });
+    
+    /*
     if (yap.receivedByCurrentUser) {
         if ([yap.type isEqual:@"SpotifyMessage"]) {
             UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song, or a new one?"
@@ -493,6 +504,7 @@ static NSString *CellIdentifier = @"Cell";
             [actionSheetVoice showInView:self.view];
         }
     }
+     */
 }
 
 

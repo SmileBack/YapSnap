@@ -31,6 +31,7 @@
         yap.track = [YSTrack trackFromYapTapDictionary:dict];
         yap.playbackURL = yap.track.previewURL;
     } else if ([dict[@"type"] isEqual:@"UploadedMessage"]) {
+        yap.track = [YSTrack trackFromYapTapDictionary:dict];
         yap.playbackURL = dict[@"spotify_preview_url"];
     } else {
         yap.playbackURL = dict[@"aws_recording_url"];
