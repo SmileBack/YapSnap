@@ -320,12 +320,14 @@ static NSString *CellIdentifier = @"Cell";
     
     YapCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
+    cell.goToSpotifyView.hidden = YES;
+    
     cell.createdTimeLabel.font = [UIFont systemFontOfSize:11];
     
     [cell.albumImageView.layer setBorderColor: [[UIColor darkGrayColor] CGColor]];
     [cell.albumImageView.layer setBorderWidth: 0.5];
     
-    if (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.sentByCurrentUser) || ([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] && yap.receivedByCurrentUser && yap.wasOpened)) {
+    if ((([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] ||[yap.type isEqual:MESSAGE_TYPE_ITUNES]) && yap.sentByCurrentUser) || (([yap.type isEqual:MESSAGE_TYPE_SPOTIFY] ||[yap.type isEqual:MESSAGE_TYPE_ITUNES]) && yap.receivedByCurrentUser && yap.wasOpened)) {
         cell.goToSpotifyView.hidden = NO;
         YSSpotifyTapGestureRecognizer *singleFingerTap =
         [[YSSpotifyTapGestureRecognizer alloc] initWithTarget:self
@@ -335,7 +337,8 @@ static NSString *CellIdentifier = @"Cell";
         if (cell.albumImageView) {
             [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
         }
-        cell.spotifyBottomImageView.hidden = NO;
+        //cell.spotifyBottomImageView.hidden = NO;
+        cell.spotifyBottomImageView.hidden = YES;
     } else if (([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.sentByCurrentUser) || ([yap.type isEqual:MESSAGE_TYPE_VOICE] && yap.receivedByCurrentUser && yap.wasOpened)) {
         cell.goToSpotifyView.hidden = NO;
         [cell.albumImageView setImage:[UIImage imageNamed:@"YapTapCartoonIcon.png"]];
@@ -640,7 +643,7 @@ static NSString *CellIdentifier = @"Cell";
 
 //The event handling method
 - (void)handleSpotifyTap:(YSSpotifyTapGestureRecognizer *)recognizer {
-    //CGPoint location = [recognizer locationInView:[recognizer.view superview]];
+    /*
     YSYap *yap = recognizer.yap;
     NSLog(@"Tapped go to spotify view for yap: %@", yap.playbackURL);
     OpenInSpotifyAlertView *alert = [[OpenInSpotifyAlertView alloc] initWithYap:yap];
@@ -648,6 +651,7 @@ static NSString *CellIdentifier = @"Cell";
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Spotify Button (Yaps Page)"];
+     */
 }
 
 - (void)dismissViewController {
