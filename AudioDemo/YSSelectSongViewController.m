@@ -90,20 +90,24 @@
 #pragma mark - UICollectionViewDelegate/DataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return section == 0 ? 1 : self.tracks.count;
+    return self.tracks.count + 1; // Is always
+}
+
+- (NSUInteger)trackRowForCollectionViewRow:(NSUInteger)row {
+    return row - 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell;
-    if (indexPath.section == 0) {
+    if (indexPath.row == 0) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"upload" forIndexPath:indexPath];
     } else {
         TrackCollectionViewCell *trackCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"track" forIndexPath:indexPath];
-        YSITunesTrack *track = self.tracks[indexPath.row];
+        YSITunesTrack *track = self.tracks[[self trackRowForCollectionViewRow:indexPath.row]];
         if (track.songName) {
             trackCell.trackView.songNameLabel.text = track.songName;
         }
@@ -131,6 +135,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([[collectionView cellForItemAtIndexPath:indexPath].reuseIdentifier isEqualToString:@"upload"]) {
         [self pickSongs:nil];
+        [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     }
 }
 
@@ -172,15 +177,19 @@
 #pragma mark - YSAudioSource
 
 - (NSString *)currentAudioDescription {
-    YSITunesTrack *track = ((YSITunesTrack *)self.tracks[self.collectionView.indexPathsForSelectedItems.firstObject.row]);
-    return track.songName;
+    if (self.collectionView.indexPathsForSelectedItems.count > 0) {
+        YSITunesTrack *track = ((YSITunesTrack *)self.tracks[[self trackRowForCollectionViewRow:self.collectionView.indexPathsForSelectedItems.firstObject.row]]);
+        return track.songName;
+    } else {
+        return nil;
+    }
 }
 
 - (BOOL) startAudioCapture {
     self.player = [STKAudioPlayer new];
     self.player.delegate = self;
     self.audioPlayerDelegate.player = self.player;
-    YSITunesTrack *track = ((YSITunesTrack *)self.tracks[self.collectionView.indexPathsForSelectedItems.firstObject.row]);
+    YSITunesTrack *track = ((YSITunesTrack *)self.tracks[[self trackRowForCollectionViewRow:self.collectionView.indexPathsForSelectedItems.firstObject.row]]);
     return [self.audioPlayerDelegate startAudioCaptureWithPreviewUrl:track.awsSongUrl withHeaders:nil];
 }
 
@@ -207,7 +216,7 @@
 }
 
 - (YapBuilder *) getYapBuilder {
-    YSITunesTrack *iTunesTrack = ((YSITunesTrack *)self.tracks[self.collectionView.indexPathsForSelectedItems.firstObject.row]);
+    YSITunesTrack *iTunesTrack = ((YSITunesTrack *)self.tracks[[self trackRowForCollectionViewRow:self.collectionView.indexPathsForSelectedItems.firstObject.row]]);
     YapBuilder *yapBuilder = [[YapBuilder alloc] init];
     YSTrack *track = [YSTrack trackFromiTunesTrack:iTunesTrack];
     yapBuilder.track = track;
@@ -223,7 +232,7 @@
 #pragma mark - Actions
 
 - (void)didTapAlbumButton:(UIButton *)button {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:button.tag inSection:1];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:button.tag inSection:0];
     [self.collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
     
     if ([indexPath isEqual:self.collectionView.indexPathsForSelectedItems.firstObject] && self.audioPlayerDelegate.player.state == STKAudioPlayerStatePlaying) {

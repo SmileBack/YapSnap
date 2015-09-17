@@ -84,11 +84,9 @@ static NSString *CellIdentifier = @"Cell";
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    //self.comingFromContactsOrCustomizeYapPage = YES; //TODO:Remove
     if (self.comingFromContactsOrCustomizeYapPage) {
         UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissViewController)];
         [self.navigationItem setLeftBarButtonItem:cancel];
-        //[self showFirstYapAlert];
     }
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
