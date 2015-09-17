@@ -32,8 +32,8 @@
     track.persistentID = trackDict[@"persistent_id"] != nil && trackDict[@"persistent_id"] != [NSNull null] ? trackDict[@"persistent_id"] : nil;
     track.awsSongUrl = trackDict[@"aws_song_url"] != nil && trackDict[@"aws_song_url"] != [NSNull null] ? trackDict[@"aws_song_url"] : nil;
     track.awsSongEtag = trackDict[@"aws_song_etag"] != nil && trackDict[@"aws_song_etag"] != [NSNull null] ? trackDict[@"aws_song_etag"] : nil;
-    track.awsArtworkUrl = trackDict[@"aws_artwork_url"] != nil && trackDict[@"aws_artwork_url"] != [NSNull null] ? trackDict[@"aws_artwork_url"] : nil;
-    track.awsArtworkEtag = trackDict[@"aws_artwork_etag"] != nil && trackDict[@"aws_artwork_etag"] != [NSNull null] ? trackDict[@"aws_artwork_etag"] : nil;
+    track.awsArtworkUrl = trackDict[@"aws_image_url"] != nil && trackDict[@"aws_image_url"] != [NSNull null] ? trackDict[@"aws_image_url"] : nil;
+    track.awsArtworkEtag = trackDict[@"aws_image_etag"] != nil && trackDict[@"aws_image_etag"] != [NSNull null] ? trackDict[@"aws_image_etag"] : nil;
 
     return track;
 }
