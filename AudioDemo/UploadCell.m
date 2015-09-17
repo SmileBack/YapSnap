@@ -15,6 +15,8 @@
         UIView *container = UIView.new;
         [self addSubview:container];
         container.backgroundColor = THEME_BACKGROUND_COLOR;
+        container.layer.borderWidth = 2;
+        container.layer.borderColor = [THEME_SECONDARY_COLOR CGColor];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"plus"]];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         UILabel *label = UILabel.new;

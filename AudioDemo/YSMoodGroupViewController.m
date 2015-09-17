@@ -18,23 +18,23 @@
 - (NSArray *)trackGroups {
     return @[
              [YTTrackGroup trackGroupWithName:@""
-                                    apiString:@"trending_tracks"
-                                    imageName:@"Genre_HipHop"],
+                                    apiString:@"flirtatious_tracks"
+                                    imageName:@"Mood_Flirtatious"],
+             [YTTrackGroup trackGroupWithName:@""
+                                    apiString:@"nostaligic_tracks"
+                                    imageName:@"Mood_Nostalgic"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"funny_tracks"
-                                    imageName:@"Genre_Rock"],
+                                    imageName:@"Mood_Funny"],
              [YTTrackGroup trackGroupWithName:@""
-                                    apiString:@"nostalgic_tracks"
-                                    imageName:@"Genre_Pop2"],
+                                    apiString:@"celebratory_tracks"
+                                    imageName:@"Mood_Celebratory"],
              [YTTrackGroup trackGroupWithName:@""
-                                    apiString:@"flirtatious_tracks"
-                                    imageName:@"Genre_EDM3"],
+                                    apiString:@"happy_tracks"
+                                    imageName:@"Mood_Happy"],
              [YTTrackGroup trackGroupWithName:@""
-                                    apiString:@"flirtatious_tracks"
-                                    imageName:@"Genre_Country2"],
-             [YTTrackGroup trackGroupWithName:@""
-                                    apiString:@"flirtatious_tracks"
-                                    imageName:@"Genre_Latin4"]
+                                    apiString:@"sad_tracks"
+                                    imageName:@"Mood_Sad"]
              ];
 }
 

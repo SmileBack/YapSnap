@@ -213,7 +213,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
             break;
         case 3:
         {
-            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSMoodGroupViewController alloc] init]];
+            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSGenreGroupViewController alloc] init]];
             if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
                 nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
             }
