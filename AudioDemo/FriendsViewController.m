@@ -99,12 +99,14 @@
     
     [self getSelfAndUpdateScore];
     
+    /*
     // TEXT COLOR OF UINAVBAR
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
-    
+    */
+     
     [self setupDoubleTap];
     
     [self setupNotifications];
@@ -119,7 +121,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+    //[self.navigationController setNavigationBarHidden:NO];
     
     //This is part of a hack to prevent multiple popups from showing
     //self.smsAlertWasAlreadyPrompted = NO;
@@ -160,12 +162,18 @@
 
 - (void) addCancelButton {
     UIImage* cancelModalImage = [UIImage imageNamed:@"WhiteDownArrow2.png"];
-    UIButton *cancelModalButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    //UIImage* cancelModalImage = [UIImage imageNamed:@"LeftArrow500.png"];
+    UIButton *cancelModalButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 0, 44, 44)];
     [cancelModalButton setBackgroundImage:cancelModalImage forState:UIControlStateNormal];
     [cancelModalButton addTarget:self action:@selector(cancelPressed)
                 forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelModalButton];
     [self.navigationItem setLeftBarButtonItem:cancelButton];
+}
+
+- (void) cancelPressed
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) getSelfAndUpdateScore
@@ -430,11 +438,6 @@
         YSContact *contact = sender;
         vc.contactReplyingTo = contact;
     }
-}
-
-- (void) cancelPressed
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)didTapLargeAddFriendsButton

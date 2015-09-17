@@ -258,7 +258,6 @@
                         <outlet property="topLeftButton" destination="yjE-ev-SsG" id="D5w-gs-u5p"/>
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="AEp-MY-7pq"/>
-                        <segue destination="99I-02-yZb" kind="modal" identifier="Friends Segue" id="POl-Pz-fbY"/>
                         <segue destination="9sH-V7-KSA" kind="modal" identifier="Login" id="hiH-DV-0vZ"/>
                         <segue destination="8HU-Ch-EUO" kind="modal" identifier="Settings Segue" id="iFo-6O-wBh"/>
                     </connections>
@@ -282,23 +281,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Qe-Br-FXB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-118" y="-1278"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="g4r-i2-C16">
-            <objects>
-                <navigationController id="99I-02-yZb" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="FP5-wp-pi8"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lhY-Wf-eat">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="IdD-6v-OZr" kind="relationship" relationship="rootViewController" id="f3G-bm-6Hh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xbk-tQ-1er" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1388" y="-3534"/>
         </scene>
         <!--Settings-->
         <scene sceneID="WQN-iU-g00">
@@ -530,15 +512,15 @@
                         <viewControllerLayoutGuide type="bottom" id="dGM-cC-PZ3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="F6W-sY-6UP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jGg-FF-Oxq">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Collapsed Cell" rowHeight="50" id="xo0-rH-GTC" customClass="UserCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xo0-rH-GTC" id="Jlw-my-iup">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
@@ -570,7 +552,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Expanded Cell" rowHeight="100" id="StL-Qb-M7C" customClass="UserCell">
-                                        <rect key="frame" x="0.0" y="136" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="72" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="StL-Qb-M7C" id="VtK-kq-5Zi">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
@@ -654,7 +636,7 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5l-NO-JDy">
-                                <rect key="frame" x="0.0" y="423" width="320" height="145"/>
+                                <rect key="frame" x="0.0" y="359" width="320" height="145"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Joe-p3-743">
                                         <rect key="frame" x="30" y="28" width="260" height="100"/>
@@ -713,7 +695,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dqY-2D-Jm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1937" y="-3534"/>
+            <point key="canvasLocation" x="3057" y="-1518"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FNZ-jd-esV">
@@ -861,7 +843,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="9E8698AE-2B30-44F3-90FF-5D75EDD46E8C"/>
+                                <state key="normal" backgroundImage="C35855CE-A65A-4519-A1B0-94A3D932C83C"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -967,28 +949,28 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="90" id="S8N-yP-ZE0" customClass="YapCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="90" id="S8N-yP-ZE0" customClass="YapCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S8N-yP-ZE0" id="A8d-hh-0Fb">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDh-aC-ePB">
+                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDh-aC-ePB">
                                                     <rect key="frame" x="57" y="26" width="180" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="created" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-IT-vWn">
+                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="created" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-IT-vWn">
                                                     <rect key="frame" x="57" y="46" width="250" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ih-GO-vgw">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ih-GO-vgw">
                                                     <rect key="frame" x="238" y="8" width="74" height="74"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5LG-nM-ff1" userLabel="Album">
@@ -1089,7 +1071,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vaK-d3-AtD">
-                        <barButtonItem key="rightBarButtonItem" image="SettingsIconWhite8.png" style="plain" id="UOa-uX-nLV">
+                        <barButtonItem key="rightBarButtonItem" image="FriendsIcon.png" style="plain" id="UOa-uX-nLV">
                             <connections>
                                 <action selector="didTapSettingsButton" destination="Vua-bX-Wl1" id="kBv-An-pgb"/>
                             </connections>
@@ -1102,8 +1084,8 @@
                         <outlet property="tableView" destination="hWh-h3-qO7" id="klJ-nF-XsM"/>
                         <segue destination="Dgp-JD-d1e" kind="modal" identifier="Playback Segue" animates="NO" id="LuI-mK-8FP"/>
                         <segue destination="2" kind="custom" identifier="Reply Segue" customClass="NoAnimationPushSegue" id="Enn-ka-dSJ"/>
-                        <segue destination="8HU-Ch-EUO" kind="push" identifier="Settings Segue" id="hyA-PG-u3D"/>
                         <segue destination="j1Z-Ou-SMe" kind="custom" identifier="Audio Capture With Yap" customClass="NoAnimationPushSegue" id="RZ7-m8-cys"/>
+                        <segue destination="IdD-6v-OZr" kind="push" identifier="Friends Segue" id="kuN-R0-HIi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-WI-Tyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1811,7 +1793,9 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="9E8698AE-2B30-44F3-90FF-5D75EDD46E8C" width="300" height="300">
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
+        <image name="C35855CE-A65A-4519-A1B0-94A3D932C83C" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -7884,11 +7868,10 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="CameraIcon20.png" width="150" height="150"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite3.png" width="350" height="350"/>
+        <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
         <image name="PlusButtonWhite3.png" width="20" height="20"/>
@@ -7902,10 +7885,9 @@ A
         <image name="listen_on_spotify-black2.png" width="178" height="53"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Enn-ka-dSJ"/>
         <segue reference="AEp-MY-7pq"/>
-        <segue reference="RZ7-m8-cys"/>
-        <segue reference="iFo-6O-wBh"/>
+        <segue reference="Enn-ka-dSJ"/>
         <segue reference="vIm-eD-gkR"/>
+        <segue reference="RZ7-m8-cys"/>
     </inferredMetricsTieBreakers>
 </document>

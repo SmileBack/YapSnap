@@ -739,7 +739,8 @@ static NSString *CellIdentifier = @"Cell";
 - (IBAction)didTapSettingsButton
 {
     self.settingsButton.enabled = NO;
-    [self performSegueWithIdentifier:@"Settings Segue" sender:nil];
+    //[self performSegueWithIdentifier:@"Settings Segue" sender:nil];
+    [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
 }
 
 #pragma mark - Image Getters

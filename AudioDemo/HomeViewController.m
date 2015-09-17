@@ -440,7 +440,7 @@
       willShowViewController:(UIViewController *)viewController
                     animated:(BOOL)animated {
     BOOL back = navigationController.viewControllers.count > 1;
-    [self.topLeftButton setImage:back ? [UIImage imageNamed:@"back"] : [UIImage imageNamed:@"FriendsIcon"] forState:UIControlStateNormal];
+    [self.topLeftButton setImage:back ? [UIImage imageNamed:@"back"] : [UIImage imageNamed:@"SettingsIconWhite8"] forState:UIControlStateNormal];
     [self.topLeftButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
     if (back) {
         [self.topLeftButton addTarget:navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
