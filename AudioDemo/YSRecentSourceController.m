@@ -25,7 +25,7 @@
         for (YSYap *yap in yaps) {
             if (yap.track) {
                 [tracks addObject:yap.track];
-            }
+            }            
         }
         self.songs = tracks;
         if (self.songs.count == 0) {

@@ -388,7 +388,13 @@
             self.player = [STKAudioPlayer new];
             self.player.delegate = self;
             self.audioPlayerDelegate.player = self.player;
-            return [self.audioPlayerDelegate startAudioCaptureWithPreviewUrl:song.previewURL withHeaders:headers];
+            
+            // Only Spotify songs should play with headers
+            if ([song.previewURL containsString:@"scdn"]) {
+                return [self.audioPlayerDelegate startAudioCaptureWithPreviewUrl:song.previewURL withHeaders:headers];
+            } else {
+                return [self.audioPlayerDelegate startAudioCaptureWithPreviewUrl:song.previewURL withHeaders:nil];
+            }
         }
     }
 }

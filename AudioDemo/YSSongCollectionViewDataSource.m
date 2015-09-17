@@ -41,7 +41,7 @@
         track.secondsToFastForward = [NSNumber numberWithInt:0];
     }
     
-    if (track.imageURL) {
+    if (track.imageURL && ![track.imageURL isEqual:[NSNull null]]) {
         [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.imageURL]];
     } else {
         trackView.imageView.image = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
