@@ -12,7 +12,9 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = THEME_BACKGROUND_COLOR;
+        UIView *container = UIView.new;
+        [self addSubview:container];
+        container.backgroundColor = THEME_BACKGROUND_COLOR;
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"plus"]];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         UILabel *label = UILabel.new;
@@ -22,11 +24,19 @@
         label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
         
         // Constraints
-        for (UIView *view in @[label, imageView]) {
+        for (UIView *view in @[label, imageView, container]) {
+            if (view != container) {
+                [container addSubview:view];
+            }
             [view setTranslatesAutoresizingMaskIntoConstraints:NO];
-            [self addSubview:view];
             [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[v]|" options:0 metrics:nil views:@{@"v": view}]];
-            [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:view == imageView ? -30 : 30]];
+        }
+        
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[v]" options:0 metrics:nil views:@{@"v": container}]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:container attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+        
+        for (UIView *view in @[label, imageView]) {
+            [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:container attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:view == imageView ? -30 : 30]];
         }
     }
     return self;
