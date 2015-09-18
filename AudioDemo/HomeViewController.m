@@ -141,6 +141,9 @@
     self.searchBar.text = [self.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     [self.view endEditing:YES];
     if ([self.searchBar.text length] > 0) {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        [self navigationController:self.navigationController willShowViewController:self animated:NO]; // Refreshes back button
+        
         [self.audioCapture searchWithText:textField.text];
         [[API sharedAPI] sendSearchTerm:textField.text
                            withCallback:^(BOOL success, NSError *error){
