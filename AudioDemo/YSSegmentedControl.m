@@ -208,6 +208,8 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
                                  [self layoutIfNeeded];
                              }];
         }
+    } else {
+        [self sendActionsForControlEvents:UIControlEventTouchUpInside];
     }
 }
 

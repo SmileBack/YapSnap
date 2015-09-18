@@ -190,6 +190,12 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         [self.view layoutIfNeeded];
     }];
 }
+- (IBAction)didTapSegmentedControl:(id)sender {
+    if ([self.audioSource isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *nc = (UINavigationController *)self.audioSource;
+        [nc popToRootViewControllerAnimated:YES];
+    }
+}
 
 - (IBAction)segmentedControlDidChanage:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:CHANGE_CATEGORY_NOTIFICATION object:nil];
