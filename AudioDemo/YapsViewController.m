@@ -400,6 +400,7 @@ static NSString *CellIdentifier = @"Cell";
     
     YSYap *yap = self.yaps[indexPath.row];
     if (yap.receivedByCurrentUser) {
+        /*
         if (yap.wasOpened) {
             YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             
@@ -418,6 +419,7 @@ static NSString *CellIdentifier = @"Cell";
                 [self.tableView reloadRowsAtIndexPaths:@[adjustedPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             });
         } else if (!yap.wasOpened) {
+         */
             if ([self internetIsNotReachable]){
                 double delay = 0.1;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -426,7 +428,7 @@ static NSString *CellIdentifier = @"Cell";
             } else {
                 [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
             }
-        }
+       // }
         
     } else if (yap.sentByCurrentUser) {
         YapCell *cell = (YapCell *)[self.tableView cellForRowAtIndexPath:indexPath];

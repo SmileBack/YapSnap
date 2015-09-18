@@ -24,6 +24,7 @@
     SpotifyTrackCollectionViewCell *trackViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"track" forIndexPath:indexPath];
     SpotifyTrackView *trackView = trackViewCell.trackView;
     // Set song version button selections
+    
     if (IS_IPHONE_4_SIZE) {
         [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"SongVersionOneSelectediPhone4.png"] forState:UIControlStateNormal];
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelectediPhone4.png"] forState:UIControlStateNormal];
@@ -34,6 +35,7 @@
         [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"SongVersionOneSelected.png"] forState:UIControlStateNormal];
         [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
     }
+    
     
     if (track.secondsToFastForward.intValue > 1) {
         NSLog(@"Backend is giving us this info");
@@ -51,10 +53,23 @@
     [trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
     [trackView.artistButton addTarget:self action:@selector(didTapArtistButton:) forControlEvents:UIControlEventTouchUpInside];
     [trackView.albumImageButton addTarget:self action:@selector(didTapAlbumButton:) forControlEvents:UIControlEventTouchUpInside];
+    
     [trackView.songVersionOneButton addTarget:self action:@selector(didTapSongVersionOneButton:) forControlEvents:UIControlEventTouchDown];
     [trackView.songVersionTwoButton addTarget:self action:@selector(didTapSongVersionTwoButton:) forControlEvents:UIControlEventTouchDown];
     [trackView.spotifyButton addTarget:self action:@selector(didTapSpotifyButton:) forControlEvents:UIControlEventTouchUpInside];
     trackView.tag = indexPath.row; // Used for tap actions
+    
+    // IF A SPOTIFY TRACK
+    if ([track.previewURL containsString:@"scdn"]) {
+        trackView.spotifyButton.hidden = NO;
+        trackView.songVersionOneButton.hidden = NO;
+        trackView.songVersionTwoButton.hidden = NO;
+    } else {
+        trackView.spotifyButton.hidden = YES;
+        trackView.songVersionOneButton.hidden = YES;
+        trackView.songVersionTwoButton.hidden = YES;
+    }
+    
     
     if ([[collectionView indexPathsForSelectedItems].firstObject isEqual:indexPath]) {
         [self updateCell:trackViewCell withState:self.audioState];

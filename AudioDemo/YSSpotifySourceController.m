@@ -390,7 +390,7 @@
             self.audioPlayerDelegate.player = self.player;
             
             // Only Spotify songs should play with headers
-            if ([song.previewURL containsString:@"scdn"]) {
+            if ([self trackIsFromSpotify]) {
                 return [self.audioPlayerDelegate startAudioCaptureWithPreviewUrl:song.previewURL withHeaders:headers];
             } else {
                 return [self.audioPlayerDelegate startAudioCaptureWithPreviewUrl:song.previewURL withHeaders:nil];
@@ -413,6 +413,15 @@
 
 - (void)updatePlaybackProgress:(NSTimeInterval)playbackTime {
     [self.audioPlayerDelegate updatePlaybackProgress:playbackTime];
+}
+
+-(BOOL)trackIsFromSpotify {
+    YSTrack *song = self.songs[((NSIndexPath *)[self.collectionView indexPathsForSelectedItems].firstObject).row];
+    if ([song.previewURL containsString:@"scdn"]) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 @end

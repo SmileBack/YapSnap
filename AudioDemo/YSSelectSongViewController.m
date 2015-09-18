@@ -242,6 +242,18 @@
     }
 }
 
+- (void)playSongAtIndexPath:(NSIndexPath *)indexPath
+        withOffsetStartTime:(NSUInteger)offset {
+    [self.collectionView
+     selectItemAtIndexPath:indexPath
+     animated:YES
+     scrollPosition:UICollectionViewScrollPositionNone];
+    YSTrack *selectedTrack = self.tracks[indexPath.row];
+    selectedTrack.secondsToFastForward =
+    [NSNumber numberWithUnsignedInteger:offset];
+    [self startAudioCapture];
+}
+
 - (void)updateCell:(TrackCollectionViewCell *)cell withState:(STKAudioPlayerState)state {
     if (state == STKAudioPlayerStateBuffering) {
         cell.state = TrackViewCellStateBuffering;

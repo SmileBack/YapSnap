@@ -93,15 +93,15 @@
 - (void)setupSearchBox {
     self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeWords;
     self.searchBar.textColor = THEME_SECONDARY_COLOR;
-    self.searchBar.backgroundColor = THEME_DARK_BLUE_COLOR;
+    self.searchBar.backgroundColor = [UIColor colorWithRed:1/255.0 green:160.0/255.0 blue:230.0/255.0 alpha:1.0f];//THEME_BACKGROUND_COLOR;
     [self.searchBar setTintColor:THEME_SECONDARY_COLOR];
     self.searchBar.font = [UIFont fontWithName:@"Futura-Medium" size:15];
     self.searchBar.delegate = self;
     [self.searchBar addTarget:self
                        action:@selector(textFieldDidChange:)
              forControlEvents:UIControlEventEditingChanged];
-    self.searchBar.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search YapTap" attributes:@{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.35]}];
-    self.searchBar.layer.cornerRadius = 1.0f;
+    self.searchBar.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search YapTap" attributes:@{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.75]}];
+    self.searchBar.layer.cornerRadius = 4.0f;
     self.searchBar.layer.masksToBounds = YES;
     self.searchBar.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
     self.searchBar.layer.borderWidth = 1.0f;
