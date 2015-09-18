@@ -63,13 +63,14 @@
     
     if (self.yap.sentByCurrentUser) {
         //self.replyButton.hidden = YES;
-        NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
+        //NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
         
         if ([self.yap.receiverPhone isEqualToString:@"+13245678910"] || [self.yap.receiverPhone isEqualToString:@"+13027865701"]) {
             self.titleLabel.text = @"Sent to YapTap Team";
             [self.replyButton setTitle:@"Send Another Yap" forState:UIControlStateNormal];
         } else {
-            [self.replyButton setTitle:[NSString stringWithFormat:@"Send %@ Another Yap", receiverFirstName] forState:UIControlStateNormal];
+            [self.replyButton setTitle:@"Yap Reply"/*[NSString stringWithFormat:@"Send %@ Another Yap", receiverFirstName]*/ forState:UIControlStateNormal];
+            [self.sendTextButton setTitle:@"Text Reply" forState:UIControlStateNormal];
         }
         
         if (self.yap.isFriendRequest) {
@@ -78,9 +79,10 @@
     } else if (self.yap.receivedByCurrentUser) {
         if (self.yap.isFriendRequest) {
             self.forwardButton.hidden = YES;
-            NSString *senderFirstName = [[self.yap.displaySenderName componentsSeparatedByString:@" "] objectAtIndex:0];
+            //NSString *senderFirstName = [[self.yap.displaySenderName componentsSeparatedByString:@" "] objectAtIndex:0];
             self.replyButton.backgroundColor = THEME_RED_COLOR;
-            [self.replyButton setTitle:[NSString stringWithFormat:@"Send %@ a Yap", senderFirstName] forState:UIControlStateNormal];
+            [self.replyButton setTitle:@"Yap Reply" forState:UIControlStateNormal];
+            [self.sendTextButton setTitle:@"Text Reply" forState:UIControlStateNormal];
             NSLog(@"Yap status: %@", self.yap.status);
             if ([self.yap.status isEqualToString:@"unopened"]) {
                 self.friendRequestButton.hidden = NO;
