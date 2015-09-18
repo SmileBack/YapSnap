@@ -258,6 +258,12 @@
 		789351CD1BAA7C7A003C8AA0 /* Mood_Happy.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351C71BAA7C7A003C8AA0 /* Mood_Happy.png */; settings = {ASSET_TAGS = (); }; };
 		789351CE1BAA7C7A003C8AA0 /* Mood_Nostalgic.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351C81BAA7C7A003C8AA0 /* Mood_Nostalgic.png */; settings = {ASSET_TAGS = (); }; };
 		789351CF1BAA7C7A003C8AA0 /* Mood_Sad.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351C91BAA7C7A003C8AA0 /* Mood_Sad.png */; settings = {ASSET_TAGS = (); }; };
+		789351D31BABF04A003C8AA0 /* Mood_Flirtatious2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D01BABF04A003C8AA0 /* Mood_Flirtatious2.png */; settings = {ASSET_TAGS = (); }; };
+		789351D41BABF04A003C8AA0 /* Mood_Funny2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D11BABF04A003C8AA0 /* Mood_Funny2.png */; settings = {ASSET_TAGS = (); }; };
+		789351D51BABF04A003C8AA0 /* Mood_Celebratory2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D21BABF04A003C8AA0 /* Mood_Celebratory2.png */; settings = {ASSET_TAGS = (); }; };
+		789351D71BABF061003C8AA0 /* Mood_Happy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D61BABF061003C8AA0 /* Mood_Happy2.png */; settings = {ASSET_TAGS = (); }; };
+		789351DA1BABF09D003C8AA0 /* Mood_Nostalgic2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D81BABF09D003C8AA0 /* Mood_Nostalgic2.png */; settings = {ASSET_TAGS = (); }; };
+		789351DB1BABF09D003C8AA0 /* Mood_Sad2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D91BABF09D003C8AA0 /* Mood_Sad2.png */; settings = {ASSET_TAGS = (); }; };
 		78A2E84F1ACC65B000B5A404 /* PinkStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E84E1ACC65B000B5A404 /* PinkStar.png */; };
 		78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8511ACC671600B5A404 /* PinkStar1.png */; };
 		78A2E8551ACC671600B5A404 /* PinkStar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8521ACC671600B5A404 /* PinkStar2.png */; };
@@ -682,6 +688,12 @@
 		789351C71BAA7C7A003C8AA0 /* Mood_Happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Happy.png; sourceTree = "<group>"; };
 		789351C81BAA7C7A003C8AA0 /* Mood_Nostalgic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Nostalgic.png; sourceTree = "<group>"; };
 		789351C91BAA7C7A003C8AA0 /* Mood_Sad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Sad.png; sourceTree = "<group>"; };
+		789351D01BABF04A003C8AA0 /* Mood_Flirtatious2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Flirtatious2.png; sourceTree = "<group>"; };
+		789351D11BABF04A003C8AA0 /* Mood_Funny2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Funny2.png; sourceTree = "<group>"; };
+		789351D21BABF04A003C8AA0 /* Mood_Celebratory2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Celebratory2.png; sourceTree = "<group>"; };
+		789351D61BABF061003C8AA0 /* Mood_Happy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Happy2.png; sourceTree = "<group>"; };
+		789351D81BABF09D003C8AA0 /* Mood_Nostalgic2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Nostalgic2.png; sourceTree = "<group>"; };
+		789351D91BABF09D003C8AA0 /* Mood_Sad2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Sad2.png; sourceTree = "<group>"; };
 		78A2E84E1ACC65B000B5A404 /* PinkStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar.png; sourceTree = "<group>"; };
 		78A2E8511ACC671600B5A404 /* PinkStar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar1.png; sourceTree = "<group>"; };
 		78A2E8521ACC671600B5A404 /* PinkStar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar2.png; sourceTree = "<group>"; };
@@ -880,6 +892,12 @@
 				783021031BA0A4F2009198BC /* Genre_Latin2.png */,
 				783021051BA0A539009198BC /* Genre_Latin3.png */,
 				783021071BA0A579009198BC /* Genre_Latin4.png */,
+				789351D81BABF09D003C8AA0 /* Mood_Nostalgic2.png */,
+				789351D91BABF09D003C8AA0 /* Mood_Sad2.png */,
+				789351D01BABF04A003C8AA0 /* Mood_Flirtatious2.png */,
+				789351D11BABF04A003C8AA0 /* Mood_Funny2.png */,
+				789351D21BABF04A003C8AA0 /* Mood_Celebratory2.png */,
+				789351D61BABF061003C8AA0 /* Mood_Happy2.png */,
 				789351C41BAA7C7A003C8AA0 /* Mood_Celebratory.png */,
 				789351C51BAA7C7A003C8AA0 /* Mood_Flirtatious.png */,
 				789351C61BAA7C7A003C8AA0 /* Mood_Funny.png */,
@@ -1963,12 +1981,14 @@
 				786192881B0A783B007279E8 /* ForwardingPopupViewController.xib in Resources */,
 				782D13981ACC59E6007C8499 /* YapsButtonNoYaps.png in Resources */,
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
+				789351D71BABF061003C8AA0 /* Mood_Happy2.png in Resources */,
 				78319A7D1ACD0111000C3FD6 /* MicModeButtonIcon@2x.png in Resources */,
 				789351CC1BAA7C7A003C8AA0 /* Mood_Funny.png in Resources */,
 				781904821AF1E3CE00196DFF /* ResetButton40@2x.png in Resources */,
 				789351CF1BAA7C7A003C8AA0 /* Mood_Sad.png in Resources */,
 				7861926B1B099B2E007279E8 /* megaphone_shutterstock3.png in Resources */,
 				7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */,
+				789351D41BABF04A003C8AA0 /* Mood_Funny2.png in Resources */,
 				782D13441ACB8349007C8499 /* YapIconUnopenedSent.png in Resources */,
 				7867C1C61B01808D0050632F /* GiftButton.png in Resources */,
 				78A2E8691ACC840000B5A404 /* BalloonGreen20.png in Resources */,
@@ -2014,6 +2034,7 @@
 				786192671B086251007279E8 /* ProgressViewLightBlueiPhone4@2x.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
 				786192821B0A4D5F007279E8 /* CancelPhotoButton200@2x.png in Resources */,
+				789351DA1BABF09D003C8AA0 /* Mood_Nostalgic2.png in Resources */,
 				78C1C3041B264CB400C6CBCA /* ProgressViewRedNew@3x.png in Resources */,
 				783CCFA61B39416000E3B5BF /* ExplainerTrackImage2.png in Resources */,
 				78624BF61B04EC6B00C8E049 /* ProgressViewYellow@2x.png in Resources */,
@@ -2046,6 +2067,7 @@
 				788363901AD78BB6001CBD1B /* OneNotSelectediPhone4@2x.png in Resources */,
 				783020FC1BA0A207009198BC /* Genre_EDM.png in Resources */,
 				7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */,
+				789351D31BABF04A003C8AA0 /* Mood_Flirtatious2.png in Resources */,
 				783CCFC11B3CF41300E3B5BF /* YapTapCartoonIcon.png in Resources */,
 				7863B5DD1A99A25F00531CED /* sound1.wav in Resources */,
 				784C67E11A6253CE0084894D /* MusicIcon@2x.png in Resources */,
@@ -2127,6 +2149,7 @@
 				783CCFB91B3CF03000E3B5BF /* LeftArrowImage100.png in Resources */,
 				7845D4A71B4F745400BEE05E /* TrendingRibbon6.png in Resources */,
 				7854B06D1AF85BC900A02DF9 /* LeftArrow.png in Resources */,
+				789351D51BABF04A003C8AA0 /* Mood_Celebratory2.png in Resources */,
 				78439F901AE61528004CFB5F /* YapsIconReceivedUnopened4.png in Resources */,
 				78A2E8561ACC671600B5A404 /* PinkStar3.png in Resources */,
 				78A2E8661ACC822800B5A404 /* Balloon20.png in Resources */,
@@ -2134,6 +2157,7 @@
 				78C1C3081B264F6400C6CBCA /* ProgressViewRedNew@2x.png in Resources */,
 				78624C061B04F0CE00C8E049 /* ProgressViewRed@3x.png in Resources */,
 				78C1C2FC1B263BB700C6CBCA /* DiceCircle2.png in Resources */,
+				789351DB1BABF09D003C8AA0 /* Mood_Sad2.png in Resources */,
 				78439FC01AE77145004CFB5F /* SongVersionOneSelected@3x.png in Resources */,
 				78F1E4111AD2E80A00C2743B /* CameraIcon20.png in Resources */,
 				FC0642D71A9D65E200E3D60F /* Environments.plist in Resources */,

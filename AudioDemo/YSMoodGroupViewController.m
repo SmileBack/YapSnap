@@ -19,22 +19,22 @@
     return @[
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"flirtatious_tracks"
-                                    imageName:@"Mood_Flirtatious"],
+                                    imageName:@"Mood_Flirtatious2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"nostaligic_tracks"
-                                    imageName:@"Mood_Nostalgic"],
+                                    imageName:@"Mood_Nostalgic2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"funny_tracks"
-                                    imageName:@"Mood_Funny"],
+                                    imageName:@"Mood_Funny2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"celebratory_tracks"
-                                    imageName:@"Mood_Celebratory"],
+                                    imageName:@"Mood_Celebratory2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"happy_tracks"
-                                    imageName:@"Mood_Happy"],
+                                    imageName:@"Mood_Happy2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"sad_tracks"
-                                    imageName:@"Mood_Sad"]
+                                    imageName:@"Mood_Sad2"]
              ];
 }
 
