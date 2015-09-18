@@ -20,8 +20,6 @@
 @interface YSTrimSongViewController ()<UIScrollViewDelegate>
 
 @property (strong, nonatomic) AVPlayer *player;
-@property (strong, nonatomic) UILabel *titleLabel;
-@property (strong, nonatomic) UILabel *artistLabel;
 @property (strong, nonatomic) UIImageView *artworkImageView;
 @property (strong, nonatomic) UIScrollView *timeScrollView;
 @property (strong, nonatomic) UIView *leftBar;
@@ -44,45 +42,36 @@
      setCategory:AVAudioSessionCategoryPlayAndRecord
      withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
      error:nil];
-    self.titleLabel = UILabel.new;
-    self.artistLabel = UILabel.new;
     self.artworkImageView = UIImageView.new;
     self.timeScrollView = UIScrollView.new;
     self.leftBar = UIView.new;
     self.rightBar = UIView.new;
     self.playbackBar = UIView.new;
     
-    self.titleLabel.text = self.iTunesUpload.songName;
-    self.artistLabel.text = self.iTunesUpload.artistName;
     self.artworkImageView.image = self.iTunesUpload.artworkImage ? self.iTunesUpload.artworkImage : [UIImage imageNamed:@"CancelImageWhite3"];
-    
-    for (UILabel *label in @[self.titleLabel, self.artistLabel]) {
-        label.textColor = THEME_DARK_BLUE_COLOR;
-        label.font = [UIFont fontWithName:@"Futura-Medium" size:25];
-        label.textAlignment = NSTextAlignmentCenter;
-    }
     
     self.artworkImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.timeScrollView.backgroundColor = UIColor.clearColor;
     self.timeScrollView.showsHorizontalScrollIndicator = NO;
     self.timeScrollView.delegate = self;
     
-    self.playbackBar.backgroundColor = THEME_RED_COLOR;
+    self.playbackBar.backgroundColor = [UIColor yellowColor];
     
     // Constraints
-    for (UIView* view in @[self.titleLabel, self.artistLabel, self.artworkImageView, self.timeScrollView, self.leftBar, self.rightBar, self.playbackBar]) {
+    for (UIView* view in @[self.artworkImageView, self.timeScrollView, self.leftBar, self.rightBar, self.playbackBar]) {
         [view setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.view addSubview:view];
     }
     
-    for (UIView *view in @[self.titleLabel, self.artistLabel, self.artworkImageView]) {
+    for (UIView *view in @[self.artworkImageView]) {
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[v]-|" options:0 metrics:nil views:@{@"v": view}]];
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.artworkImageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.artworkImageView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
     }
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[v]|" options:0 metrics:nil views:@{@"v": self.timeScrollView}]];
     
     for (UIView *view in @[self.leftBar, self.rightBar]) {
-        view.backgroundColor = THEME_BACKGROUND_COLOR;
+        view.backgroundColor = THEME_RED_COLOR;
         NSLayoutAttribute xAttribute = view == self.leftBar ? NSLayoutAttributeLeft : NSLayoutAttributeRight;
         NSLayoutAttribute xOffset = view == self.leftBar ? 20 : -20;
         [self.view addConstraints:@[[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:2],
@@ -99,7 +88,7 @@
                                 self.playbackXConstraint
                                 ]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top]-[title]-[artist]-[image(200)]-[scroll(50)]" options:0 metrics:nil views:@{@"top": self.topLayoutGuide, @"title": self.titleLabel, @"artist": self.artistLabel, @"image": self.artworkImageView, @"scroll": self.timeScrollView}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top]-[image]-(30)-[scroll(50)]" options:0 metrics:nil views:@{@"top": self.topLayoutGuide, @"image": self.artworkImageView, @"scroll": self.timeScrollView}]];
     
     UIImageView *plot = [UIImageView imageViewWithAudioUrl:self.iTunesUpload.trackURL];
     [plot setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -272,7 +261,7 @@
 }
 
 - (NSString *)currentAudioDescription {
-    return self.titleLabel.text;
+    return self.iTunesUpload.songName;
 }
 
 - (BOOL)startAudioCapture {
