@@ -844,7 +844,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="2E543241-EDAB-4EC9-95B4-2CBDD454B247"/>
+                                <state key="normal" backgroundImage="44A34710-70E0-4172-99BC-DAB0DE005843"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -971,8 +971,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="created" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-IT-vWn">
-                                                    <rect key="frame" x="57" y="46" width="250" height="21"/>
+                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="created" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-IT-vWn">
+                                                    <rect key="frame" x="57" y="46" width="250" height="27.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -985,24 +985,14 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="listen_on_spotify-black2.png" translatesAutoresizingMaskIntoConstraints="NO" id="pzR-Ra-Cuh" userLabel="Listen on Spotify Image">
-                                                            <rect key="frame" x="0.0" y="52" width="74" height="22"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="22" id="3sA-qz-StV"/>
-                                                            </constraints>
-                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="5LG-nM-ff1" secondAttribute="trailing" id="1PO-VT-gh7"/>
                                                         <constraint firstAttribute="width" constant="74" id="2qk-Py-XoM"/>
-                                                        <constraint firstItem="pzR-Ra-Cuh" firstAttribute="leading" secondItem="6Ih-GO-vgw" secondAttribute="leading" id="6Ao-su-V3Q"/>
-                                                        <constraint firstAttribute="bottom" secondItem="pzR-Ra-Cuh" secondAttribute="bottom" id="AMT-ZY-5Gq"/>
                                                         <constraint firstAttribute="bottom" secondItem="5LG-nM-ff1" secondAttribute="bottom" id="NPh-gv-e5a"/>
                                                         <constraint firstAttribute="height" constant="74" id="NZg-ax-PDf"/>
                                                         <constraint firstItem="5LG-nM-ff1" firstAttribute="leading" secondItem="6Ih-GO-vgw" secondAttribute="leading" id="Zrr-ue-p45"/>
-                                                        <constraint firstAttribute="trailing" secondItem="pzR-Ra-Cuh" secondAttribute="trailing" id="aBh-OL-oqh"/>
                                                         <constraint firstItem="5LG-nM-ff1" firstAttribute="top" secondItem="6Ih-GO-vgw" secondAttribute="top" id="wDb-3u-jfa"/>
                                                     </constraints>
                                                 </view>
@@ -1023,7 +1013,7 @@
                                                 <constraint firstItem="6Ih-GO-vgw" firstAttribute="leading" secondItem="RDh-aC-ePB" secondAttribute="trailing" constant="1" id="FPx-ZB-bBx"/>
                                                 <constraint firstItem="AyM-nu-slZ" firstAttribute="leading" secondItem="A8d-hh-0Fb" secondAttribute="leading" constant="12" id="Kx5-RC-Gnb"/>
                                                 <constraint firstAttribute="centerY" secondItem="AyM-nu-slZ" secondAttribute="centerY" id="ONr-Py-WC2"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="OzR-IT-vWn" secondAttribute="bottom" constant="14.5" id="Pq6-f9-4LK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="OzR-IT-vWn" secondAttribute="bottom" constant="8" id="Pq6-f9-4LK"/>
                                                 <constraint firstAttribute="trailing" secondItem="6Ih-GO-vgw" secondAttribute="trailing" constant="8" id="Ttl-TV-1aX"/>
                                                 <constraint firstItem="RDh-aC-ePB" firstAttribute="top" secondItem="A8d-hh-0Fb" secondAttribute="topMargin" constant="18" id="UA3-3m-H4g"/>
                                                 <constraint firstItem="RDh-aC-ePB" firstAttribute="leading" secondItem="AyM-nu-slZ" secondAttribute="trailing" constant="18" id="X71-J1-YE4"/>
@@ -1038,7 +1028,6 @@
                                             <outlet property="goToSpotifyView" destination="6Ih-GO-vgw" id="8B8-hN-PeF"/>
                                             <outlet property="icon" destination="AyM-nu-slZ" id="6er-f3-9Mn"/>
                                             <outlet property="nameLabel" destination="RDh-aC-ePB" id="9v3-Ul-pfO"/>
-                                            <outlet property="spotifyBottomImageView" destination="pzR-Ra-Cuh" id="bpl-or-oyZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1814,7 +1803,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="2E543241-EDAB-4EC9-95B4-2CBDD454B247" width="300" height="300">
+        <image name="44A34710-70E0-4172-99BC-DAB0DE005843" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -7903,7 +7892,6 @@ A
         <image name="SpotifyIconWhite2.png" width="100" height="100"/>
         <image name="YapsButtonNoYaps.png" width="160" height="84"/>
         <image name="YellowStar.png" width="40" height="40"/>
-        <image name="listen_on_spotify-black2.png" width="178" height="53"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="AEp-MY-7pq"/>

@@ -438,15 +438,15 @@ static NSString *CellIdentifier = @"Cell";
             cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@ opened your yap", yap.displayReceiverName];
         } else if (!yap.wasOpened) {
             if (yap.isPending) {
-                cell.createdTimeLabel.text = @"It'll be delivered once they join!";
+                cell.createdTimeLabel.text = @"It'll be delivered once they join!\n(hold down to view)";
             } else if (yap.isSending) {
                 NSLog(@"Tapped cell with status of isSending");
             } else {
-                cell.createdTimeLabel.text = @"Your yap has been delivered";
+                cell.createdTimeLabel.text = @"Your yap has been delivered!\n(hold down to view)";
             }
         }
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSIndexPath* adjustedPath = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
             [self.tableView reloadRowsAtIndexPaths:@[adjustedPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         });
