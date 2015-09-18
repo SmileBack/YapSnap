@@ -264,6 +264,7 @@
 		789351D71BABF061003C8AA0 /* Mood_Happy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D61BABF061003C8AA0 /* Mood_Happy2.png */; settings = {ASSET_TAGS = (); }; };
 		789351DA1BABF09D003C8AA0 /* Mood_Nostalgic2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D81BABF09D003C8AA0 /* Mood_Nostalgic2.png */; settings = {ASSET_TAGS = (); }; };
 		789351DB1BABF09D003C8AA0 /* Mood_Sad2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D91BABF09D003C8AA0 /* Mood_Sad2.png */; settings = {ASSET_TAGS = (); }; };
+		789351DD1BACB7E8003C8AA0 /* SpotifyLogo2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351DC1BACB7E8003C8AA0 /* SpotifyLogo2@2x.png */; settings = {ASSET_TAGS = (); }; };
 		78A2E84F1ACC65B000B5A404 /* PinkStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E84E1ACC65B000B5A404 /* PinkStar.png */; };
 		78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8511ACC671600B5A404 /* PinkStar1.png */; };
 		78A2E8551ACC671600B5A404 /* PinkStar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8521ACC671600B5A404 /* PinkStar2.png */; };
@@ -694,6 +695,7 @@
 		789351D61BABF061003C8AA0 /* Mood_Happy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Happy2.png; sourceTree = "<group>"; };
 		789351D81BABF09D003C8AA0 /* Mood_Nostalgic2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Nostalgic2.png; sourceTree = "<group>"; };
 		789351D91BABF09D003C8AA0 /* Mood_Sad2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Sad2.png; sourceTree = "<group>"; };
+		789351DC1BACB7E8003C8AA0 /* SpotifyLogo2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpotifyLogo2@2x.png"; sourceTree = "<group>"; };
 		78A2E84E1ACC65B000B5A404 /* PinkStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar.png; sourceTree = "<group>"; };
 		78A2E8511ACC671600B5A404 /* PinkStar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar1.png; sourceTree = "<group>"; };
 		78A2E8521ACC671600B5A404 /* PinkStar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar2.png; sourceTree = "<group>"; };
@@ -1187,6 +1189,7 @@
 				78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */,
 				78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */,
 				37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */,
+				789351DC1BACB7E8003C8AA0 /* SpotifyLogo2@2x.png */,
 				78C690181AD5DADD00FC3C76 /* Song Version Buttons */,
 			);
 			name = "Spotify Page";
@@ -1952,6 +1955,11 @@
 				TargetAttributes = {
 					F44B0C3E16DA404700E6CD88 = {
 						DevelopmentTeam = S7LF8DWGYS;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -2121,6 +2129,7 @@
 				7861924D1B072077007279E8 /* WhiteCamera100.png in Resources */,
 				781904861AF287C100196DFF /* ResetButton60@2x.png in Resources */,
 				787EC6181ACA245E000C5539 /* OldProgressViewRed@2x.png in Resources */,
+				789351DD1BACB7E8003C8AA0 /* SpotifyLogo2@2x.png in Resources */,
 				783CCF821B3913BF00E3B5BF /* ChartsIcon2.png in Resources */,
 				783020FA1BA0A159009198BC /* Genre_Pop2.png in Resources */,
 				787EC5FF1ACA068F000C5539 /* BalloonYellow10.png in Resources */,

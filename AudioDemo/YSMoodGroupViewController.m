@@ -27,7 +27,7 @@
                                     apiString:@"funny_tracks"
                                     imageName:@"Mood_Funny2"],
              [YTTrackGroup trackGroupWithName:@""
-                                    apiString:@"celebratory_tracks"
+                                    apiString:@"celebrate_tracks"
                                     imageName:@"Mood_Celebratory2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"happy_tracks"
