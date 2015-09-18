@@ -15,6 +15,8 @@
 @property (nonatomic, strong) NSString *artistName;
 @property (nonatomic, strong) NSString *songName;
 @property (nonatomic, strong) NSNumber *persistentID;
+@property (nonatomic, strong) NSString * albumName;
+@property (nonatomic, strong) NSString * genreName;
 
 @property (nonatomic, strong) NSString *awsSongUrl;
 @property (nonatomic, strong) NSString *awsSongEtag;

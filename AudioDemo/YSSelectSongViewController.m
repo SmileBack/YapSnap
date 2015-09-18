@@ -159,6 +159,8 @@
     YSiTunesUpload *upload = [YSiTunesUpload new];
     upload.artistName = item.artist;
     upload.songName = item.title;
+    upload.albumName = item.albumTitle;
+    upload.genreName = item.genre;
     upload.persistentID = [NSNumber numberWithLongLong:item.persistentID];
     MPMediaItemArtwork *artwork = item.artwork;
     UIImage *image = [artwork imageWithSize:artwork.imageCropRect.size];

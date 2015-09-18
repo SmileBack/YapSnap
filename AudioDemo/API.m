@@ -410,7 +410,7 @@ static API *sharedAPI;
                                                                      @"type": builder.messageType,
                                                                      }];
         if (builder.track.albumName) {
-            dictionary[@"album_name"] = builder.track.albumName;
+            dictionary[@"spotify_album_name"] = builder.track.albumName;
         }
         if (builder.imageAwsUrl) {
             dictionary[@"spotify_image_url"] = builder.imageAwsUrl;
@@ -812,6 +812,12 @@ static API *sharedAPI;
     if (track.awsArtworkUrl && track.awsArtworkEtag) {
         params[@"aws_image_url"] = track.awsArtworkUrl;
         params[@"aws_image_etag"] = track.awsArtworkEtag;
+    }
+    if (track.genreName) {
+        params[@"genre"] = track.genreName;
+    }
+    if (track.albumName) {
+        params[@"album_name"] = track.albumName;
     }
     
     [manager POST:[self urlForEndpoint:url]

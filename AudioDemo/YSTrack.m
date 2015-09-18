@@ -100,6 +100,8 @@
     YSTrack *track = YSTrack.new;
     track.name = itunesTrack.songName;
     track.artistName = itunesTrack.artistName;
+    track.albumName = itunesTrack.albumName;
+    track.genreName = itunesTrack.genreName;
     return track;
 }
 
