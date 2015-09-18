@@ -161,14 +161,10 @@
 }
 
 - (void) addCancelButton {
-    UIImage* cancelModalImage = [UIImage imageNamed:@"WhiteDownArrow2.png"];
-    //UIImage* cancelModalImage = [UIImage imageNamed:@"LeftArrow500.png"];
-    UIButton *cancelModalButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 0, 44, 44)];
-    [cancelModalButton setBackgroundImage:cancelModalImage forState:UIControlStateNormal];
-    [cancelModalButton addTarget:self action:@selector(cancelPressed)
-                forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc] initWithCustomView:cancelModalButton];
-    [self.navigationItem setLeftBarButtonItem:cancelButton];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:nil
+                                                                            action:nil];
 }
 
 - (void) cancelPressed
