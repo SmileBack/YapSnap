@@ -43,7 +43,7 @@
     rect.origin.x = 0;
     rect.origin.y = 0;
 
-    CGColorRef leftcolor = THEME_RED_COLOR.CGColor;
+    CGColorRef leftcolor = THEME_BACKGROUND_COLOR.CGColor;
     CGColorRef rightcolor = [[UIColor redColor] CGColor];
 
     CGContextFillRect(context, rect);
@@ -86,7 +86,7 @@
     NSError *error = nil;
 
     AVAssetReader *reader = [[AVAssetReader alloc] initWithAsset:songAsset error:&error];
-
+    reader.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeMake(120, 1));
     AVAssetTrack *songTrack = [songAsset.tracks objectAtIndex:0];
 
     NSDictionary *outputSettingsDict = [[NSDictionary alloc] initWithObjectsAndKeys:
