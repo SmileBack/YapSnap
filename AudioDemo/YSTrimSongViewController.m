@@ -29,6 +29,7 @@
 @property (strong, nonatomic) NSTimer *playbackTimer;
 @property (strong, nonatomic) NSLayoutConstraint *playbackXConstraint;
 @property (strong, nonatomic) YSSpinnerView *spinner;
+@property BOOL didSelectTrack;
 
 @end
 
@@ -115,6 +116,9 @@
     self.spinner = nil;
     [self.player pause];
     [self.playbackTimer invalidate];
+    if (!self.didSelectTrack) {
+        [self cancelPlayingAudio];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -253,6 +257,7 @@
 #pragma mark - Implement public audio methods
 
 - (void)prepareYapBuilder {
+    self.didSelectTrack = YES;
     [self.spinner removeFromSuperview];
     self.spinner = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     [self.view addSubview:self.spinner];

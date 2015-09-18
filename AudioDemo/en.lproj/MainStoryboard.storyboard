@@ -721,7 +721,7 @@
                         <viewControllerLayoutGuide type="bottom" id="T1S-dg-Qvf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="54R-6y-Wab">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.080000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5VO-Xh-MtL" userLabel="Album Image View">
@@ -737,7 +737,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aiy-hB-M9w" userLabel="Bottom View">
-                                <rect key="frame" x="0.0" y="493" width="320" height="75"/>
+                                <rect key="frame" x="0.0" y="429" width="320" height="75"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rt6-3v-M26" userLabel="Line">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
@@ -756,7 +756,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9XV-zO-GXP" customClass="NextButton">
-                                <rect key="frame" x="264" y="508" width="46" height="46"/>
+                                <rect key="frame" x="264" y="444" width="46" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="Vfc-07-yYR"/>
                                     <constraint firstAttribute="height" constant="46" id="fME-FA-i3s"/>
@@ -779,7 +779,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="B2R-OB-er0">
-                                <rect key="frame" x="80" y="501" width="160" height="60"/>
+                                <rect key="frame" x="80" y="437" width="160" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Xas-7e-BpI"/>
                                     <constraint firstAttribute="width" constant="160" id="cxc-J0-LPo"/>
@@ -842,13 +842,13 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="A5FE423D-5D2F-47A5-A5E7-4E124E048983"/>
+                                <state key="normal" backgroundImage="F0738519-9ACC-4069-B8B0-2A0CD3BC57E5"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNC-9Z-jqK" userLabel="Add Recipients Button">
-                                <rect key="frame" x="3" y="498" width="65" height="65"/>
+                                <rect key="frame" x="3" y="434" width="65" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="AeO-V7-4py"/>
                                     <constraint firstAttribute="height" constant="65" id="vl1-rz-9Wy"/>
@@ -1802,7 +1802,12 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="A5FE423D-5D2F-47A5-A5E7-4E124E048983" width="300" height="300">
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
+        <image name="CameraIcon20.png" width="150" height="150"/>
+        <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="CancelImageWhite3.png" width="350" height="350"/>
+        <image name="F0738519-9ACC-4069-B8B0-2A0CD3BC57E5" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -7875,11 +7880,6 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="CameraIcon20.png" width="150" height="150"/>
-        <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="CancelImageWhite3.png" width="350" height="350"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
@@ -7895,7 +7895,7 @@ A
     <inferredMetricsTieBreakers>
         <segue reference="Q0Z-rg-Tpo"/>
         <segue reference="Ny4-zR-Cgq"/>
+        <segue reference="eDP-Ek-kdM"/>
         <segue reference="vIm-eD-gkR"/>
-        <segue reference="RZ7-m8-cys"/>
     </inferredMetricsTieBreakers>
 </document>
