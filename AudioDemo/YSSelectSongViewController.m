@@ -235,11 +235,11 @@
 
 - (void)didTapAlbumButton:(UIButton *)button {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:button.tag inSection:0];
-    [self.collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
     
     if ([indexPath isEqual:self.collectionView.indexPathsForSelectedItems.firstObject] && self.audioPlayerDelegate.player.state == STKAudioPlayerStatePlaying) {
         [self.audioPlayerDelegate.player pause];
     } else {
+        [self.collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
         [self startAudioCapture];
     }
 }
