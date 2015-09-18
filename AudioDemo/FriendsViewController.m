@@ -121,7 +121,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //[self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
     
     //This is part of a hack to prevent multiple popups from showing
     //self.smsAlertWasAlreadyPrompted = NO;
