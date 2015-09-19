@@ -265,6 +265,12 @@
 		789351DA1BABF09D003C8AA0 /* Mood_Nostalgic2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D81BABF09D003C8AA0 /* Mood_Nostalgic2.png */; settings = {ASSET_TAGS = (); }; };
 		789351DB1BABF09D003C8AA0 /* Mood_Sad2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D91BABF09D003C8AA0 /* Mood_Sad2.png */; settings = {ASSET_TAGS = (); }; };
 		789351DD1BACB7E8003C8AA0 /* SpotifyLogo2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351DC1BACB7E8003C8AA0 /* SpotifyLogo2@2x.png */; settings = {ASSET_TAGS = (); }; };
+		789351E11BAD3A8F003C8AA0 /* CartoonsLong6@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351DF1BAD3A8F003C8AA0 /* CartoonsLong6@3x.png */; settings = {ASSET_TAGS = (); }; };
+		789351E21BAD3A8F003C8AA0 /* CartoonsLong6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351E01BAD3A8F003C8AA0 /* CartoonsLong6@2x.png */; settings = {ASSET_TAGS = (); }; };
+		789351E41BAD3C5D003C8AA0 /* test123.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351E31BAD3C5D003C8AA0 /* test123.png */; settings = {ASSET_TAGS = (); }; };
+		789351E71BAD4039003C8AA0 /* LoginPageImageMusicNotes2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351E51BAD4039003C8AA0 /* LoginPageImageMusicNotes2@2x.png */; settings = {ASSET_TAGS = (); }; };
+		789351E81BAD4039003C8AA0 /* LoginPageImageMusicIcons2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351E61BAD4039003C8AA0 /* LoginPageImageMusicIcons2@3x.png */; settings = {ASSET_TAGS = (); }; };
+		789351EA1BAD41FC003C8AA0 /* LoginPageImageSmalleriPhonesMusicNotes2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351E91BAD41FC003C8AA0 /* LoginPageImageSmalleriPhonesMusicNotes2@2x.png */; settings = {ASSET_TAGS = (); }; };
 		78A2E84F1ACC65B000B5A404 /* PinkStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E84E1ACC65B000B5A404 /* PinkStar.png */; };
 		78A2E8541ACC671600B5A404 /* PinkStar1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8511ACC671600B5A404 /* PinkStar1.png */; };
 		78A2E8551ACC671600B5A404 /* PinkStar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A2E8521ACC671600B5A404 /* PinkStar2.png */; };
@@ -696,6 +702,12 @@
 		789351D81BABF09D003C8AA0 /* Mood_Nostalgic2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Nostalgic2.png; sourceTree = "<group>"; };
 		789351D91BABF09D003C8AA0 /* Mood_Sad2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Sad2.png; sourceTree = "<group>"; };
 		789351DC1BACB7E8003C8AA0 /* SpotifyLogo2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpotifyLogo2@2x.png"; sourceTree = "<group>"; };
+		789351DF1BAD3A8F003C8AA0 /* CartoonsLong6@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CartoonsLong6@3x.png"; sourceTree = "<group>"; };
+		789351E01BAD3A8F003C8AA0 /* CartoonsLong6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CartoonsLong6@2x.png"; sourceTree = "<group>"; };
+		789351E31BAD3C5D003C8AA0 /* test123.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test123.png; sourceTree = "<group>"; };
+		789351E51BAD4039003C8AA0 /* LoginPageImageMusicNotes2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginPageImageMusicNotes2@2x.png"; sourceTree = "<group>"; };
+		789351E61BAD4039003C8AA0 /* LoginPageImageMusicIcons2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginPageImageMusicIcons2@3x.png"; sourceTree = "<group>"; };
+		789351E91BAD41FC003C8AA0 /* LoginPageImageSmalleriPhonesMusicNotes2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginPageImageSmalleriPhonesMusicNotes2@2x.png"; sourceTree = "<group>"; };
 		78A2E84E1ACC65B000B5A404 /* PinkStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar.png; sourceTree = "<group>"; };
 		78A2E8511ACC671600B5A404 /* PinkStar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar1.png; sourceTree = "<group>"; };
 		78A2E8521ACC671600B5A404 /* PinkStar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkStar2.png; sourceTree = "<group>"; };
@@ -883,6 +895,7 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				789351E31BAD3C5D003C8AA0 /* test123.png */,
 				783020F31BA09EFF009198BC /* Genre_HipHop.png */,
 				783020F51BA0A049009198BC /* Genre_Rock.png */,
 				783020F71BA0A101009198BC /* Genre_Pop.png */,
@@ -1001,6 +1014,7 @@
 				784E35ED1A659DB40029AA01 /* ColorPickerSpectrum@2x.png */,
 				78A569A51A73935200818A17 /* ColorPickerSpectrum2@2x.png */,
 				FC0642D61A9D65E200E3D60F /* Environments.plist */,
+				789351DE1BAD3A69003C8AA0 /* Cartoons */,
 				37D413B219D217FF00021548 /* Fonts */,
 				FCE2347C1AAB917100C1EDB0 /* LaunchScreen.xib */,
 				7863B5DC1A99A25F00531CED /* sound1.wav */,
@@ -1499,6 +1513,18 @@
 				788363A31AD79572001CBD1B /* OneNotSelectediPhone6@2x.png */,
 			);
 			name = iPhone6;
+			sourceTree = "<group>";
+		};
+		789351DE1BAD3A69003C8AA0 /* Cartoons */ = {
+			isa = PBXGroup;
+			children = (
+				789351DF1BAD3A8F003C8AA0 /* CartoonsLong6@3x.png */,
+				789351E01BAD3A8F003C8AA0 /* CartoonsLong6@2x.png */,
+				789351E51BAD4039003C8AA0 /* LoginPageImageMusicNotes2@2x.png */,
+				789351E61BAD4039003C8AA0 /* LoginPageImageMusicIcons2@3x.png */,
+				789351E91BAD41FC003C8AA0 /* LoginPageImageSmalleriPhonesMusicNotes2@2x.png */,
+			);
+			name = Cartoons;
 			sourceTree = "<group>";
 		};
 		78A2E8501ACC66FE00B5A404 /* Stars */ = {
@@ -2017,6 +2043,7 @@
 				78319A7F1ACD0290000C3FD6 /* MicModeButtonIcon@3x.png in Resources */,
 				787EC6091ACA12E7000C5539 /* OldProgressViewYellow@2x.png in Resources */,
 				786192631B086202007279E8 /* ProgressViewRediPhone4@2x.png in Resources */,
+				789351E81BAD4039003C8AA0 /* LoginPageImageMusicIcons2@3x.png in Resources */,
 				78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */,
 				783CCF8A1B39186700E3B5BF /* ChartsIcon5.png in Resources */,
 				7845D49F1B4F716600BEE05E /* TrendingRibbon2.png in Resources */,
@@ -2068,6 +2095,7 @@
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
 				78624BE71B03BA9100C8E049 /* GuidanceArrowLeft.png in Resources */,
 				78C584A61B30A98500B5AA5C /* ReplayIcon2.png in Resources */,
+				789351E11BAD3A8F003C8AA0 /* CartoonsLong6@3x.png in Resources */,
 				787EC6071ACA12DB000C5539 /* OldProgressViewLightBlue@2x.png in Resources */,
 				783CCFB41B3A6F2E00E3B5BF /* CategoryBackButtonImage.png in Resources */,
 				789351CE1BAA7C7A003C8AA0 /* Mood_Nostalgic.png in Resources */,
@@ -2137,6 +2165,7 @@
 				783CCF9E1B39227500E3B5BF /* ChartIcon150.png in Resources */,
 				78439FC61AE9A330004CFB5F /* PlusButtonWhite@2x.png in Resources */,
 				788363A21AD79488001CBD1B /* TwoNotSelectediPhone6@2x.png in Resources */,
+				789351E71BAD4039003C8AA0 /* LoginPageImageMusicNotes2@2x.png in Resources */,
 				78A569B61A74A8B900818A17 /* Microphone_Gray2.png in Resources */,
 				786192791B09B810007279E8 /* ContactsPopupViewController.xib in Resources */,
 				787EC5F11AC9EC0A000C5539 /* OldProgressViewLightBlue@3x.png in Resources */,
@@ -2180,6 +2209,8 @@
 				78624BF41B04EBF000C8E049 /* ProgressViewLightBlue@2x.png in Resources */,
 				786192531B07EE2B007279E8 /* Chipmunk.png in Resources */,
 				784C67F11A626F7B0084894D /* ProgressViewNotches5.png in Resources */,
+				789351E41BAD3C5D003C8AA0 /* test123.png in Resources */,
+				789351E21BAD3A8F003C8AA0 /* CartoonsLong6@2x.png in Resources */,
 				78ECF55E1B29318C0059C80B /* MegaphoneButton2.png in Resources */,
 				78C1C30A1B26AC8700C6CBCA /* ResetButton80@2x.png in Resources */,
 				786E0BE11AFFEDE700005D1D /* WhiteDownArrow.png in Resources */,
@@ -2187,6 +2218,7 @@
 				78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */,
 				78439FAE1AE6D705004CFB5F /* Record.png in Resources */,
 				784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */,
+				789351EA1BAD41FC003C8AA0 /* LoginPageImageSmalleriPhonesMusicNotes2@2x.png in Resources */,
 				78624BEA1B03EB3600C8E049 /* ProgressViewRediPhone5@2x.png in Resources */,
 				78624C081B04F0D700C8E049 /* ProgressViewYellow@3x.png in Resources */,
 				787EC60F1ACA1B1B000C5539 /* OldProgressViewGreeniPhone4@2x.png in Resources */,

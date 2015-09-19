@@ -41,7 +41,7 @@
     }
     
     if (self.isiPhone4Size || self.isiPhone5Size) {
-        self.imageView.image = [UIImage imageNamed:@"LoginPageImageSmalleriPhonesMusicNotes.png"];
+        self.imageView.image = [UIImage imageNamed:@"LoginPageImageSmalleriPhonesMusicNotes2.png"];
     }
 }
 
