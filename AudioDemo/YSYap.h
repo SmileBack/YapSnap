@@ -33,7 +33,7 @@
 @property (readonly) NSString *listenOnSpotifyURL;
 @property (readonly) NSString *songName;
 @property (readonly) NSString *spotifyID;
-@property (readonly) NSString *imageURL;
+@property (readonly) NSString *albumImageURL;
 
 
 // Photo

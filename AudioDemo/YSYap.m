@@ -195,7 +195,7 @@
     return self.track.spotifyID;
 }
 
-- (NSString *)imageURL {
+- (NSString *)albumImageURL {
     return self.track.albumImageURL;
 }
 

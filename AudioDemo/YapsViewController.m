@@ -334,10 +334,10 @@ static NSString *CellIdentifier = @"Cell";
           //                                             action:@selector(handleSpotifyTap:)];
         //singleFingerTap.yap = yap;
         //[cell.goToSpotifyView addGestureRecognizer:singleFingerTap];
-        NSLog(@"Image URL: %@", yap.imageURL);
+        NSLog(@"Image URL: %@", yap.albumImageURL);
         
-        if (cell.albumImageView && yap.imageURL && ![yap.imageURL isEqual:[NSNull null]]) {
-            [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.imageURL]];
+        if (cell.albumImageView && yap.albumImageURL && ![yap.albumImageURL isEqual:[NSNull null]]) {
+            [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.albumImageURL]];
         } else {
             NSLog(@"NO ALBUM IMAGE");
         }

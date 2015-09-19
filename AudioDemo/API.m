@@ -95,11 +95,11 @@ static API *sharedAPI;
     params[@"color_rgb"] = rgbColorComponents; //[NSArray arrayWithObjects:@"0", @"84", @"255", nil],
     
     // Photo stuff
-    if (yapBuilder.imageAwsUrl)
-        params[@"aws_photo_url"] = yapBuilder.imageAwsUrl;
+    if (yapBuilder.yapImageAwsUrl)
+        params[@"aws_photo_url"] = yapBuilder.yapImageAwsUrl;
     
-    if (yapBuilder.imageAwsEtag)
-        params[@"aws_photo_etag"] = yapBuilder.imageAwsEtag;
+    if (yapBuilder.yapImageAwsEtag)
+        params[@"aws_photo_etag"] = yapBuilder.yapImageAwsEtag;
     
     return params;
 }
@@ -256,9 +256,9 @@ static API *sharedAPI;
 - (NSArray *) sendYapBuilder:(YapBuilder *)yapBuilder withCallback:(SuccessOrErrorCallback)callback
 {
     // First, if there is a photo upload it to AWS.  The URL and Etag will be returned.
-    if (yapBuilder.image) {
+    if (yapBuilder.yapImage) {
         __weak API *weakSelf = self;
-        [[AmazonAPI sharedAPI] uploadPhoto:yapBuilder.image withCallback:^(NSString *url, NSString *etag, NSError *error) {
+        [[AmazonAPI sharedAPI] uploadPhoto:yapBuilder.yapImage withCallback:^(NSString *url, NSString *etag, NSError *error) {
             if (error) {
                 Mixpanel *mixpanel = [Mixpanel sharedInstance];
                 [mixpanel track:@"AWS Error - uploadPhoto"];
@@ -268,8 +268,8 @@ static API *sharedAPI;
                 callback(NO, error);
                 
             } else {
-                yapBuilder.imageAwsUrl = url;
-                yapBuilder.imageAwsEtag = etag;
+                yapBuilder.yapImageAwsUrl = url;
+                yapBuilder.yapImageAwsEtag = etag;
                 [weakSelf sendYap:yapBuilder withCallback:callback];
             }
         }];
@@ -412,8 +412,8 @@ static API *sharedAPI;
         if (builder.track.albumName) {
             dictionary[@"spotify_album_name"] = builder.track.albumName;
         }
-        if (builder.imageAwsUrl) {
-            dictionary[@"spotify_image_url"] = builder.imageAwsUrl;
+        if (builder.yapImageAwsUrl) {
+            dictionary[@"spotify_image_url"] = builder.yapImageAwsUrl;
         }
     }
     

@@ -87,7 +87,7 @@
     } else {
         if (self.isForwardingYap) {
             self.contactLabel.text = @"Select Recipients";
-            if (self.yapBuilder.imageAwsUrl && ![self.yapBuilder.imageAwsUrl isEqual: [NSNull null]]) {
+            if (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) {
                 self.resetPhotoButton.hidden = NO;
                 self.albumImage.hidden = YES;
             }
@@ -143,13 +143,13 @@
         self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:34];
     }
     
-    NSLog(@"YapBuilder imageAWSURL: %@", self.yapBuilder.imageAwsUrl);
-    NSLog(@"YapBuilder imageAWSURL: %@", self.yapBuilder.image);
+    NSLog(@"YapBuilder imageAWSURL: %@", self.yapBuilder.yapImageAwsUrl);
+    NSLog(@"YapBuilder imageAWSURL: %@", self.yapBuilder.yapImage);
     
     [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.track.albumImageURL]];
     self.textView.text = self.yapBuilder.text;
-    if (self.yapBuilder.imageAwsUrl && ![self.yapBuilder.imageAwsUrl isEqual: [NSNull null]]) {
-        [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.imageAwsUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    if (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) {
+        [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.yapImageAwsUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             self.yapPhoto.hidden = NO;
         }];
     }
@@ -438,13 +438,13 @@
     NSLog(@"Tapped Cancel Photo Button");
     
     self.yapPhoto.image = nil;
-    self.yapBuilder.image = nil;
+    self.yapBuilder.yapImage = nil;
     self.resetPhotoButton.hidden = YES;
     self.yapPhoto.hidden = YES;
     self.albumImage.hidden = NO;
     
-    self.yapBuilder.imageAwsEtag = nil;
-    self.yapBuilder.imageAwsUrl = nil;
+    self.yapBuilder.yapImageAwsEtag = nil;
+    self.yapBuilder.yapImageAwsUrl = nil;
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Reset Photo Button"];
@@ -469,7 +469,7 @@
     NSData *imageData = UIImagePNGRepresentation(chosenImage);
     [imageData writeToFile:path atomically:YES];
     NSURL *url = [[NSURL alloc] initFileURLWithPath:path];
-    self.yapBuilder.image = url;
+    self.yapBuilder.yapImage = url;
 
     [picker dismissViewControllerAnimated:YES completion:NULL];
     

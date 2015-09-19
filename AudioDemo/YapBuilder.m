@@ -32,8 +32,8 @@
         self.track.spotifyID = yap.spotifyID;
         self.track.previewURL = yap.playbackURL;
         self.track.artistName = yap.artist;
-        if (![yap.imageURL isEqual:[NSNull null]]) {
-            self.track.albumImageURL = yap.imageURL;
+        if (![yap.albumImageURL isEqual:[NSNull null]]) {
+            self.track.albumImageURL = yap.albumImageURL;
         }
 
         self.track.spotifyURL = yap.listenOnSpotifyURL;
@@ -54,7 +54,7 @@
             }
                 break;
             case YTYapSendingActionForward:
-                self.imageAwsUrl = yap.yapPhotoURL;
+                self.yapImageAwsUrl = yap.yapPhotoURL;
                 self.text = yap.text;
                 if ([yap.type isEqualToString:@"VoiceMessage"]) {
                     self.awsVoiceURL = yap.playbackURL;

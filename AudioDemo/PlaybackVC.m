@@ -123,8 +123,8 @@
             [mixpanel track:@"Volume Notification - PlayBack"];
         });
     }
-    if ([self.yap.type isEqual:@"SpotifyMessage"] && self.yap.imageURL) {
-        [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yap.imageURL]];
+    if ([self.yap.type isEqual:@"SpotifyMessage"] && self.yap.albumImageURL) {
+        [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yap.albumImageURL]];
     } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
         [self.albumImage setImage:[UIImage imageNamed:@"YapTapCartoonLarge2.png"]];
     }

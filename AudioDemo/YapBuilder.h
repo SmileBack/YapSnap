@@ -34,9 +34,9 @@ typedef NS_ENUM(NSUInteger, YTYapSendingAction) {
 @property (strong, nonatomic) NSString *awsVoiceEtag;
 
 #pragma mark - Photo Stuff
-@property (nonatomic, strong) NSURL *image;
-@property (nonatomic, strong) NSString *imageAwsUrl;
-@property (nonatomic, strong) NSString *imageAwsEtag;
+@property (nonatomic, strong) NSURL *yapImage;
+@property (nonatomic, strong) NSString *yapImageAwsUrl;
+@property (nonatomic, strong) NSString *yapImageAwsEtag;
 
 - (id)initWithYap:(YSYap*)yap sendingAction:(YTYapSendingAction)action;
 

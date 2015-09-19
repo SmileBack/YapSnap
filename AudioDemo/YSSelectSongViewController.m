@@ -226,8 +226,8 @@
     yapBuilder.duration = 12;
     yapBuilder.awsVoiceEtag = iTunesTrack.awsSongEtag;
     yapBuilder.awsVoiceURL = iTunesTrack.awsSongUrl;
-    yapBuilder.imageAwsEtag = iTunesTrack.awsArtworkEtag;
-    yapBuilder.imageAwsUrl = iTunesTrack.awsArtworkUrl;
+    yapBuilder.yapImageAwsEtag = iTunesTrack.awsArtworkEtag;
+    yapBuilder.yapImageAwsUrl = iTunesTrack.awsArtworkUrl;
     return yapBuilder;
 }
 
