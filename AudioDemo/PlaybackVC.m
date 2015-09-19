@@ -123,7 +123,7 @@
             [mixpanel track:@"Volume Notification - PlayBack"];
         });
     }
-    if (([self.yap.type isEqual:@"SpotifyMessage"] || [self.yap.type isEqual:@"UploadedMessage"]) && self.yap.albumImageURL) {
+    if (([self.yap.type isEqual:@"SpotifyMessage"] || [self.yap.type isEqual:@"UploadedMessage"]) && self.yap.albumImageURL && ![self.yap.albumImageURL isEqual: [NSNull null]]) {
         [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yap.albumImageURL]];
     } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
         [self.albumImage setImage:[UIImage imageNamed:@"YapTapCartoonLarge2.png"]];

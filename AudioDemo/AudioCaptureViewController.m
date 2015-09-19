@@ -143,7 +143,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
         // Create yap object
         self.yapBuilder = [self.audioSource getYapBuilder];
-        self.yapBuilder.duration = self.elapsedTime;
+        self.yapBuilder.duration = 12;//self.elapsedTime;
         if (self.contactReplyingTo) {
             self.yapBuilder.contacts = @[ self.contactReplyingTo ];
         }
@@ -154,7 +154,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
         // Create yap object
         self.yapBuilder = [self.audioSource getYapBuilder];
-        self.yapBuilder.duration = self.elapsedTime;
+        self.yapBuilder.duration = 12;//self.elapsedTime;
         self.yapBuilder.text = @"";
         self.yapBuilder.color = self.view.backgroundColor;
         vc.builder = self.yapBuilder;
@@ -169,7 +169,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         yapsVC.comingFromContactsOrCustomizeYapPage = YES;
 
         self.yapBuilder = [self.audioSource getYapBuilder];
-        self.yapBuilder.duration = self.elapsedTime;
+        self.yapBuilder.duration = 12;//self.elapsedTime;
         if (self.contactReplyingTo) {
             self.yapBuilder.contacts = @[ self.contactReplyingTo ];
         }

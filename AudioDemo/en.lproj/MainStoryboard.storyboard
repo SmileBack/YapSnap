@@ -842,7 +842,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="3CC6CF21-D51A-410C-B477-3328D7EE862A"/>
+                                <state key="normal" backgroundImage="9E3C3AF1-DD7E-4542-9190-F7031917D7FF"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1802,7 +1802,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="3CC6CF21-D51A-410C-B477-3328D7EE862A" width="300" height="300">
+        <image name="9E3C3AF1-DD7E-4542-9190-F7031917D7FF" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
