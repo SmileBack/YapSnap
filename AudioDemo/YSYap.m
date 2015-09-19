@@ -196,7 +196,7 @@
 }
 
 - (NSString *)imageURL {
-    return self.track.imageURL;
+    return self.track.albumImageURL;
 }
 
 @end

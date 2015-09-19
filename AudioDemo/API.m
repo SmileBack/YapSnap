@@ -390,7 +390,7 @@ static API *sharedAPI;
     if ([builder.messageType isEqualToString:MESSAGE_TYPE_SPOTIFY]) {
         dictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"spotify_song_name": song.name,
                                                                      @"spotify_song_id": song.spotifyID,
-                                                                     @"spotify_image_url": song.imageURL,
+                                                                     @"spotify_image_url": song.albumImageURL,
                                                                      @"spotify_artist_name": song.artistName,
                                                                      @"spotify_full_song_url": song.spotifyURL,
                                                                      @"spotify_preview_url": song.previewURL,

@@ -33,7 +33,7 @@
         self.track.previewURL = yap.playbackURL;
         self.track.artistName = yap.artist;
         if (![yap.imageURL isEqual:[NSNull null]]) {
-            self.track.imageURL = yap.imageURL;
+            self.track.albumImageURL = yap.imageURL;
         }
 
         self.track.spotifyURL = yap.listenOnSpotifyURL;

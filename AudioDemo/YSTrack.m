@@ -53,9 +53,9 @@
     
     NSArray *images = album[@"images"];
     if (images && images.count > 0) {
-        track.imageURL = ((NSDictionary *)images[0])[@"url"];
+        track.albumImageURL = ((NSDictionary *)images[0])[@"url"];
     } else {
-        track.imageURL = nil;
+        track.albumImageURL = nil;
     }
     
     track.secondsToFastForward = trackDictionary[@"seconds_to_fast_forward"];
@@ -89,7 +89,7 @@
     track.artistName = trackDictionary[@"spotify_artist_name"];
     track.spotifyURL = trackDictionary[@"spotify_full_song_url"];
     track.albumName = trackDictionary[@"spotify_album_name"];
-    track.imageURL = trackDictionary[@"spotify_image_url"];
+    track.albumImageURL = trackDictionary[@"spotify_image_url"];
     
     track.secondsToFastForward = trackDictionary[@"seconds_to_fast_forward"];
     

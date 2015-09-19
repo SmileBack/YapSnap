@@ -146,7 +146,7 @@
     NSLog(@"YapBuilder imageAWSURL: %@", self.yapBuilder.imageAwsUrl);
     NSLog(@"YapBuilder imageAWSURL: %@", self.yapBuilder.image);
     
-    [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.track.imageURL]];
+    [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.track.albumImageURL]];
     self.textView.text = self.yapBuilder.text;
     if (self.yapBuilder.imageAwsUrl && ![self.yapBuilder.imageAwsUrl isEqual: [NSNull null]]) {
         [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.imageAwsUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
