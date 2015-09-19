@@ -96,6 +96,8 @@
 		78319A7D1ACD0111000C3FD6 /* MicModeButtonIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78319A7C1ACD0111000C3FD6 /* MicModeButtonIcon@2x.png */; };
 		78319A7F1ACD0290000C3FD6 /* MicModeButtonIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78319A7E1ACD0290000C3FD6 /* MicModeButtonIcon@3x.png */; };
 		78319A811ACD29A9000C3FD6 /* FeedbackMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78319A801ACD29A9000C3FD6 /* FeedbackMonitor.m */; };
+		783714D91BADD29B0005CC04 /* ProgressViewRedNew10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 783714D81BADD29B0005CC04 /* ProgressViewRedNew10@2x.png */; settings = {ASSET_TAGS = (); }; };
+		783714DB1BADD4850005CC04 /* ProgressViewRedNew30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 783714DA1BADD4850005CC04 /* ProgressViewRedNew30@2x.png */; settings = {ASSET_TAGS = (); }; };
 		783A1CBF1B17721D00B610B3 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 783A1CBE1B17721D00B610B3 /* UIAlertView+Blocks.m */; };
 		783C54CC1B3E18F2009E9848 /* AddRecipientsIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 783C54CB1B3E18F2009E9848 /* AddRecipientsIcon2.png */; };
 		783CCF6D1B33431D00E3B5BF /* SearchArtistAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CCF6C1B33431D00E3B5BF /* SearchArtistAlertView.m */; };
@@ -481,6 +483,8 @@
 		78319A7E1ACD0290000C3FD6 /* MicModeButtonIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MicModeButtonIcon@3x.png"; sourceTree = "<group>"; };
 		78319A801ACD29A9000C3FD6 /* FeedbackMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackMonitor.m; sourceTree = "<group>"; };
 		78319A821ACD29AF000C3FD6 /* FeedbackMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedbackMonitor.h; sourceTree = "<group>"; };
+		783714D81BADD29B0005CC04 /* ProgressViewRedNew10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewRedNew10@2x.png"; sourceTree = "<group>"; };
+		783714DA1BADD4850005CC04 /* ProgressViewRedNew30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProgressViewRedNew30@2x.png"; sourceTree = "<group>"; };
 		783A1CBD1B17721D00B610B3 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		783A1CBE1B17721D00B610B3 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		783C54CB1B3E18F2009E9848 /* AddRecipientsIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddRecipientsIcon2.png; sourceTree = "<group>"; };
@@ -1352,6 +1356,8 @@
 		787EC6101ACA2449000C5539 /* Red */ = {
 			isa = PBXGroup;
 			children = (
+				783714D81BADD29B0005CC04 /* ProgressViewRedNew10@2x.png */,
+				783714DA1BADD4850005CC04 /* ProgressViewRedNew30@2x.png */,
 				78C1C3031B264CB400C6CBCA /* ProgressViewRedNew@3x.png */,
 				78C1C3011B264B9700C6CBCA /* ProgressViewRedNew2@2x.png */,
 				78C1C3071B264F6400C6CBCA /* ProgressViewRedNew@2x.png */,
@@ -1920,6 +1926,7 @@
 				78A569A61A73935200818A17 /* ColorPickerSpectrum2@2x.png in Resources */,
 				783CCF8A1B39186700E3B5BF /* ChartsIcon5.png in Resources */,
 				7845D49F1B4F716600BEE05E /* TrendingRibbon2.png in Resources */,
+				783714DB1BADD4850005CC04 /* ProgressViewRedNew30@2x.png in Resources */,
 				F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */,
 				78624BE81B03BA9100C8E049 /* GuidanceArrowRight.png in Resources */,
 				3793FDF919BCF0DC00FBBBCE /* ContactSelectionCell.xib in Resources */,
@@ -2005,6 +2012,7 @@
 				78C1C30C1B26AD2B00C6CBCA /* ResetButton90@2x.png in Resources */,
 				FCE2347D1AAB917100C1EDB0 /* LaunchScreen.xib in Resources */,
 				783CCFA21B39241400E3B5BF /* ChartIcon170.png in Resources */,
+				783714D91BADD29B0005CC04 /* ProgressViewRedNew10@2x.png in Resources */,
 				7845D4A51B4F738C00BEE05E /* TrendingRibbon5.png in Resources */,
 				783CCFB01B3A6D2F00E3B5BF /* CategoryButton.png in Resources */,
 				786E0BE71B00755800005D1D /* Shuffle60.png in Resources */,

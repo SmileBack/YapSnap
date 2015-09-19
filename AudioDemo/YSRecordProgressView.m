@@ -36,7 +36,7 @@
     self.progressViewStyle = UIProgressViewStyleBar;
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
-    [self setProgressImage:[UIImage imageNamed:@"ProgressViewRedNew.png"]];
+    [self setProgressImage:[UIImage imageNamed:@"ProgressViewRedNew30.png"]];
     
     self.trackTintColor = UIColor.whiteColor;
     

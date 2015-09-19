@@ -841,7 +841,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="B7B2B07B-D979-436F-AA1B-9A7A506F4F84"/>
+                                <state key="normal" backgroundImage="E8003844-066D-46AF-B2C8-3E56912E918D"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1127,14 +1127,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zM8-Va-aql" customClass="YSRecordProgressView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="8"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="8" id="FKH-qP-4Tv"/>
+                                    <constraint firstAttribute="height" constant="20" id="FKH-qP-4Tv"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-3F-cQc" userLabel="Flashback Image View">
-                                <rect key="frame" x="5" y="84" width="310" height="310"/>
+                                <rect key="frame" x="5" y="20" width="310" height="310"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cEy-3F-cQc" secondAttribute="height" multiplier="1:1" id="Zi0-q2-GBO"/>
                                 </constraints>
@@ -1146,7 +1146,7 @@
                                 </constraints>
                             </imageView>
                             <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i6A-Iw-epG">
-                                <rect key="frame" x="10" y="102" width="300" height="232"/>
+                                <rect key="frame" x="10" y="38" width="300" height="232"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="i6A-Iw-epG" secondAttribute="height" multiplier="20:17" constant="27.058823529411768" id="3CP-uV-ThE"/>
                                 </constraints>
@@ -1198,9 +1198,9 @@
                                 </constraints>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adb-GP-urO" userLabel="Album Label">
-                                <rect key="frame" x="16" y="83" width="288" height="21"/>
+                                <rect key="frame" x="16" y="447" width="288" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="sYl-pz-Ytb"/>
+                                    <constraint firstAttribute="height" constant="21" id="iMM-aS-o1C"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1254,41 +1254,41 @@
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="Cx1-jS-IBl" secondAttribute="bottom" constant="18" id="0Hm-F2-6TS"/>
+                            <constraint firstItem="adb-GP-urO" firstAttribute="centerX" secondItem="PvF-Jb-cMD" secondAttribute="centerX" id="1uc-j9-Xhh"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="gZw-Qu-kTZ" secondAttribute="bottom" constant="18" id="5dv-KE-B8i"/>
                             <constraint firstItem="PvF-Jb-cMD" firstAttribute="centerX" secondItem="8Sd-XX-W3O" secondAttribute="centerX" id="5sd-xi-c7c"/>
+                            <constraint firstItem="pHt-nE-rIi" firstAttribute="top" secondItem="adb-GP-urO" secondAttribute="bottom" constant="11" id="Bwd-O4-QoS"/>
                             <constraint firstItem="gZw-Qu-kTZ" firstAttribute="centerX" secondItem="8Sd-XX-W3O" secondAttribute="centerX" id="Dld-C8-eRs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7Kj-1X-Ut8" secondAttribute="trailing" constant="9" id="EjY-l4-w1O"/>
-                            <constraint firstItem="adb-GP-urO" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" id="Eo5-fU-dg5"/>
                             <constraint firstItem="oZS-3k-7XH" firstAttribute="centerX" secondItem="gZw-Qu-kTZ" secondAttribute="centerX" id="ImY-dt-3H3"/>
                             <constraint firstItem="JrI-Br-Kpk" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" id="KXQ-th-W8z"/>
                             <constraint firstItem="Cjl-Kr-TQg" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="-21" id="KzG-iq-Oyq"/>
-                            <constraint firstItem="adb-GP-urO" firstAttribute="trailing" secondItem="8Sd-XX-W3O" secondAttribute="trailingMargin" id="LDr-B4-rJN"/>
                             <constraint firstItem="vNe-98-kK7" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="12" id="LHt-IK-h9x"/>
                             <constraint firstItem="zM8-Va-aql" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leading" id="M2C-Am-O1j"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JrI-Br-Kpk" secondAttribute="trailing" constant="25" id="MfL-ng-uQH"/>
-                            <constraint firstItem="oZS-3k-7XH" firstAttribute="centerX" secondItem="adb-GP-urO" secondAttribute="centerX" id="OKp-er-pHc"/>
                             <constraint firstItem="Cjl-Kr-TQg" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="-6" id="OOB-wi-DYF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="i6A-Iw-epG" secondAttribute="trailing" constant="-6" id="Ocl-pQ-I4k"/>
                             <constraint firstItem="gzM-5p-4ue" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" id="Pxl-JP-ATj"/>
                             <constraint firstItem="cEy-3F-cQc" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="-11" id="QVm-XA-iK5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gzM-5p-4ue" secondAttribute="trailing" constant="-15" id="QZs-CB-nFD"/>
+                            <constraint firstItem="oZS-3k-7XH" firstAttribute="top" secondItem="zM8-Va-aql" secondAttribute="top" id="Qzn-kW-DY4"/>
                             <constraint firstAttribute="width" secondItem="zM8-Va-aql" secondAttribute="width" id="V4B-5j-4d9"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="PvF-Jb-cMD" secondAttribute="bottom" constant="43" id="VCg-cf-9Jy"/>
-                            <constraint firstItem="zM8-Va-aql" firstAttribute="top" secondItem="8Sd-XX-W3O" secondAttribute="topMargin" constant="64" id="W1F-D8-YBk"/>
+                            <constraint firstItem="zM8-Va-aql" firstAttribute="top" secondItem="8Sd-XX-W3O" secondAttribute="topMargin" id="W1F-D8-YBk"/>
                             <constraint firstItem="i6A-Iw-epG" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="-6" id="XER-Ke-paw"/>
                             <constraint firstItem="oZS-3k-7XH" firstAttribute="top" secondItem="JrI-Br-Kpk" secondAttribute="top" id="d5u-Vm-Ijb"/>
-                            <constraint firstItem="i6A-Iw-epG" firstAttribute="top" secondItem="zM8-Va-aql" secondAttribute="bottom" constant="30" id="foY-wC-KqM"/>
+                            <constraint firstItem="i6A-Iw-epG" firstAttribute="top" secondItem="zM8-Va-aql" secondAttribute="bottom" constant="18" id="foY-wC-KqM"/>
                             <constraint firstAttribute="centerX" secondItem="7Kj-1X-Ut8" secondAttribute="centerX" id="gdU-d3-ewh"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="7Kj-1X-Ut8" secondAttribute="bottom" constant="5" id="jNg-pm-Gdi"/>
                             <constraint firstAttribute="centerX" secondItem="vNe-98-kK7" secondAttribute="centerX" id="mUe-z6-SNR"/>
-                            <constraint firstItem="adb-GP-urO" firstAttribute="top" secondItem="zM8-Va-aql" secondAttribute="bottom" constant="11" id="p0p-fo-Gfa"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="pHt-nE-rIi" secondAttribute="bottom" constant="18" id="sXd-v8-ibG"/>
+                            <constraint firstItem="adb-GP-urO" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" id="sYx-7z-46G"/>
                             <constraint firstItem="oZS-3k-7XH" firstAttribute="centerX" secondItem="PvF-Jb-cMD" secondAttribute="centerX" id="st0-am-INY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cEy-3F-cQc" secondAttribute="trailing" constant="-11" id="tC6-Ly-wUV"/>
                             <constraint firstItem="oZS-3k-7XH" firstAttribute="height" secondItem="8Sd-XX-W3O" secondAttribute="height" id="tZW-Vb-lJs"/>
                             <constraint firstItem="pHt-nE-rIi" firstAttribute="leading" secondItem="PvF-Jb-cMD" secondAttribute="trailing" id="wo2-y6-I3Q"/>
                             <constraint firstItem="PvF-Jb-cMD" firstAttribute="leading" secondItem="Cx1-jS-IBl" secondAttribute="trailing" id="zAB-6Q-hWT"/>
-                            <constraint firstItem="cEy-3F-cQc" firstAttribute="top" secondItem="zM8-Va-aql" secondAttribute="bottom" constant="12" id="zJq-UB-q4f"/>
+                            <constraint firstItem="cEy-3F-cQc" firstAttribute="top" secondItem="zM8-Va-aql" secondAttribute="bottom" id="zJq-UB-q4f"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xVH-kE-ZoD"/>
@@ -1791,7 +1791,10 @@ Type it here!</string>
     <resources>
         <image name="AddRecipientsIcon2.png" width="128" height="128"/>
         <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="B7B2B07B-D979-436F-AA1B-9A7A506F4F84" width="300" height="300">
+        <image name="CameraIcon20.png" width="150" height="150"/>
+        <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="CancelImageWhite3.png" width="350" height="350"/>
+        <image name="E8003844-066D-46AF-B2C8-3E56912E918D" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -7864,9 +7867,6 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
-        <image name="CameraIcon20.png" width="150" height="150"/>
-        <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="CancelImageWhite3.png" width="350" height="350"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
