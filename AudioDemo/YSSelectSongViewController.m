@@ -112,8 +112,8 @@
             trackCell.trackView.songNameLabel.text = track.songName;
         }
         
-        if (track.awsArtworkUrl) {
-            [trackCell.trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.awsArtworkUrl]];
+        if (track.awsAlbumImageUrl) {
+            [trackCell.trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.awsAlbumImageUrl]];
         } else {
             trackCell.trackView.imageView.image = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
         }
@@ -226,8 +226,8 @@
     yapBuilder.duration = 12;
     yapBuilder.awsVoiceEtag = iTunesTrack.awsSongEtag;
     yapBuilder.awsVoiceURL = iTunesTrack.awsSongUrl;
-    yapBuilder.yapImageAwsEtag = iTunesTrack.awsArtworkEtag;
-    yapBuilder.yapImageAwsUrl = iTunesTrack.awsArtworkUrl;
+    yapBuilder.yapImageAwsEtag = iTunesTrack.awsAlbumImageEtag;
+    yapBuilder.yapImageAwsUrl = iTunesTrack.awsAlbumImageUrl;
     return yapBuilder;
 }
 

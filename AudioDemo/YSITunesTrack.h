@@ -20,8 +20,8 @@
 
 @property (nonatomic, strong) NSString *awsSongUrl;
 @property (nonatomic, strong) NSString *awsSongEtag;
-@property (nonatomic, strong) NSString *awsArtworkUrl;
-@property (nonatomic, strong) NSString *awsArtworkEtag;
+@property (nonatomic, strong) NSString *awsAlbumImageUrl;
+@property (nonatomic, strong) NSString *awsAlbumImageEtag;
 
 + (NSArray *) tracksFromArrayOfDictionaries:(NSArray *)array;
 + (YSITunesTrack *) trackFromDictionary:(NSDictionary *)trackDict;

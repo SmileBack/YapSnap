@@ -407,13 +407,13 @@ static API *sharedAPI;
         dictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"spotify_preview_url": builder.awsVoiceURL,
                                                                      @"spotify_artist_name": builder.track.artistName,
                                                                      @"spotify_song_name": builder.track.name,
-                                                                     @"type": builder.messageType,
+                                                                     @"type": builder.messageType
                                                                      }];
         if (builder.track.albumName) {
             dictionary[@"spotify_album_name"] = builder.track.albumName;
         }
-        if (builder.yapImageAwsUrl) {
-            dictionary[@"spotify_image_url"] = builder.yapImageAwsUrl;
+        if (builder.track.albumImageURL) {
+            dictionary[@"spotify_image_url"] = builder.track.albumImageURL;
         }
     }
     
@@ -809,9 +809,9 @@ static API *sharedAPI;
         params[@"artist_name"] = track.artistName;
     if (track.songName)
         params[@"song_name"] = track.songName;
-    if (track.awsArtworkUrl && track.awsArtworkEtag) {
-        params[@"aws_image_url"] = track.awsArtworkUrl;
-        params[@"aws_image_etag"] = track.awsArtworkEtag;
+    if (track.awsAlbumImageUrl && track.awsAlbumImageEtag) {
+        params[@"aws_image_url"] = track.awsAlbumImageUrl;
+        params[@"aws_image_etag"] = track.awsAlbumImageEtag;
     }
     if (track.genreName) {
         params[@"genre"] = track.genreName;

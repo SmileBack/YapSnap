@@ -207,8 +207,8 @@
                                   // TODO
                                   [self.spinner removeFromSuperview];
                               } else {
-                                  weakSelf.iTunesUpload.awsArtworkUrl = url;
-                                  weakSelf.iTunesUpload.awsArtworkEtag = etag;
+                                  weakSelf.iTunesUpload.awsAlbumImageUrl = url;
+                                  weakSelf.iTunesUpload.awsAlbumImageEtag = etag;
                                   [weakSelf uploadToBackend];
                               }
                           }];
@@ -290,7 +290,7 @@
     yapBuilder.track = track;
     yapBuilder.awsVoiceEtag = self.itunesTrack.awsSongEtag;
     yapBuilder.awsVoiceURL = self.itunesTrack.awsSongUrl;
-    yapBuilder.yapImageAwsEtag = self.itunesTrack.awsArtworkEtag;
+    yapBuilder.yapImageAwsEtag = self.itunesTrack.awsAlbumImageEtag;
     //yapBuilder.track.albumImageURL = self.itunesTrack.awsArtworkUrl;
     return yapBuilder;
 }

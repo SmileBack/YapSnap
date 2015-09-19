@@ -123,7 +123,7 @@
             [mixpanel track:@"Volume Notification - PlayBack"];
         });
     }
-    if ([self.yap.type isEqual:@"SpotifyMessage"] && self.yap.albumImageURL) {
+    if (([self.yap.type isEqual:@"SpotifyMessage"] || [self.yap.type isEqual:@"UploadedMessage"]) && self.yap.albumImageURL) {
         [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yap.albumImageURL]];
     } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
         [self.albumImage setImage:[UIImage imageNamed:@"YapTapCartoonLarge2.png"]];
@@ -135,7 +135,7 @@
     
     self.isFromFriend = [NSNumber numberWithInt:1]; // We are setting self.isFromFriend.boolValue to True so that friends popup doesn't come up if you press the X before back end response comes in. It'll get updated to the correct value once back end response comes in
     
-    if ([self.yap.type isEqual:@"SpotifyMessage"]) {
+    if ([self.yap.type isEqual:@"SpotifyMessage"] || [self.yap.type isEqual:@"UploadedMessage"]) {
         self.albumLabel.text = [NSString stringWithFormat:@"%@, by %@", self.yap.songName, self.yap.artist];
         self.spotifyButton.hidden = NO;
     } else {
