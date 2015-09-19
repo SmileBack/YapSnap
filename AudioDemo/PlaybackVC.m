@@ -61,6 +61,9 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Playback Page"];
     
+    self.replyButton.backgroundColor = [UIColor colorWithRed:1/255.0 green:160.0/255.0 blue:230.0/255.0 alpha:1.0f];
+    self.sendTextButton.backgroundColor = [UIColor colorWithRed:1/255.0 green:160.0/255.0 blue:230.0/255.0 alpha:1.0f];
+    
     if (self.yap.sentByCurrentUser) {
         //self.replyButton.hidden = YES;
         //NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
