@@ -87,7 +87,7 @@
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index != view.cancelButtonIndex) {
                                       NSLog(@"Tapped Continue on SMS Prompt");
-                                      [self.delegate showSMS:@"Hey I sent you something on an app I found called YapTap. Did you get anything from them?"
+                                      [self.delegate showSMS:@"Hey I sent you something on an app I found called YapTap. Download it here to see what I sent you: www.yaptapapp.com/download"
                                                 toRecipients:unregisteredContacts];
                                       
                                       Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -158,7 +158,7 @@
                                   self.smsAlertWasAlreadyPrompted = NO;
                                   if (index != view.cancelButtonIndex) {
                                       NSLog(@"Tapped Continue on SMS Prompt");
-                                      [self.delegate showSMS:@"Hey I sent you a friend request on an app I found called YapTap. Did you get anything from them?" toRecipients:unregisteredContacts];
+                                      [self.delegate showSMS:@"Hey I sent you a friend request on an app I found called YapTap. Download it here to accept my request: www.yaptapapp.com/download" toRecipients:unregisteredContacts];
                                       
                                       Mixpanel *mixpanel = [Mixpanel sharedInstance];
                                       [mixpanel track:@"Yes to SMS (Friend Request)"];
