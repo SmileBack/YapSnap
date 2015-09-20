@@ -290,8 +290,7 @@
     yapBuilder.track = track;
     yapBuilder.awsVoiceEtag = self.itunesTrack.awsSongEtag;
     yapBuilder.awsVoiceURL = self.itunesTrack.awsSongUrl;
-    yapBuilder.yapImageAwsEtag = self.itunesTrack.awsAlbumImageEtag;
-    //yapBuilder.track.albumImageURL = self.itunesTrack.awsArtworkUrl;
+    //yapBuilder.yapImageAwsEtag = self.itunesTrack.awsAlbumImageEtag;
     return yapBuilder;
 }
 

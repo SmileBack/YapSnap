@@ -14,7 +14,12 @@
 #import "SpotifyAPI.h"
 #import "OpenInSpotifyAlertView.h"
 
-@interface PlaybackVC ()
+@interface PlaybackVC ()  {
+    NSTimer *countdownTimer;
+    int currMinute;
+    int currSeconds;
+}
+
 @property (strong, nonatomic) IBOutlet YSRecordProgressView *progressView;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (strong, nonatomic) NSTimer *timer;
@@ -40,6 +45,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
 @property (weak, nonatomic) IBOutlet UIButton *friendRequestButton;
 
+@property (strong, nonatomic) IBOutlet UILabel *countdownTimerLabel;
+
+@property (strong, nonatomic) IBOutlet UIView *blurView;
+
 // nil means we don't know yet. YES/NO means the backend told us.
 @property (nonatomic, strong) NSNumber *isFromFriend;
 
@@ -61,8 +70,8 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Playback Page"];
     
-    self.replyButton.backgroundColor = [UIColor colorWithRed:1/255.0 green:160.0/255.0 blue:230.0/255.0 alpha:1.0f];
-    self.sendTextButton.backgroundColor = [UIColor colorWithRed:1/255.0 green:160.0/255.0 blue:230.0/255.0 alpha:1.0f];
+    self.replyButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0.0/255.0 alpha:0.6f];
+    self.sendTextButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.6f];
     
     if (self.yap.sentByCurrentUser) {
         //self.replyButton.hidden = YES;
@@ -113,7 +122,7 @@
     self.textView.textContainer.maximumNumberOfLines = 5;
     self.textView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
     
-    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    self.view.backgroundColor = [UIColor whiteColor];//THEME_BACKGROUND_COLOR;
     
     float volume = [[AVAudioSession sharedInstance] outputVolume];
     if (volume < 0.5) {
@@ -152,6 +161,8 @@
     } else if (IS_IPHONE_5_SIZE) {
         self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:34];
     }
+    
+    //[[MSLiveBlur sharedInstance] blurRect:self.albumImage.frame];
 }
 
 - (void) styleActionButtons {
@@ -228,7 +239,47 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
+    if (countdownTimer) {
+        [countdownTimer invalidate];
+    }
+    
     [self stop];
+}
+
+-(void) startCountdownTimer
+{
+    NSLog(@"Start Countdown Timer");
+    [countdownTimer invalidate];
+    countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countdownTimerFired) userInfo:nil repeats:YES];
+}
+
+-(void) countdownTimerFired
+{
+    //NSLog(@"countdownTimer fired");
+    //NSLog(@"currMinute: %d; currSeconds: %d", currMinute, currSeconds);
+    if((currMinute>0 || currSeconds>=0) && currMinute>=0)
+    {
+        if(currSeconds>0)
+        {
+            //      NSLog(@"currSeconds: %d", currSeconds);
+            currSeconds-=1;
+        }
+        
+        self.countdownTimerLabel.text = [NSString stringWithFormat:@"%d",currSeconds];
+    }
+    else
+    {
+        NSLog(@"countdownTimer invalidate");
+        [countdownTimer invalidate];
+    }
+}
+
+- (void) showAndStartTimer {
+    self.countdownTimerLabel.alpha = 1;
+    self.countdownTimerLabel.text = @"12";
+    currSeconds=12;
+    [self startCountdownTimer];
 }
 
 #pragma mark - Actions
@@ -256,45 +307,9 @@
     } else if (self.yap.receivedByCurrentUser) {
         [self dismissThis];
         [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Tapped Reply to Song from Playback (Different Clip)"];
-        /*
-        if ([self.yap.type isEqual:@"SpotifyMessage"]) {
-            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song, or a new one?"
-                                                                            delegate:self
-                                                                   cancelButtonTitle:@"Cancel"
-                                                              destructiveButtonTitle:nil
-                                                                   otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
-            actionSheetSpotify.tag = 100;
-            [actionSheetSpotify showInView:self.view];
-        } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
-            UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:@"Reply with a song yap or a voice yap"
-                                                                          delegate:self
-                                                                 cancelButtonTitle:@"Cancel"
-                                                            destructiveButtonTitle:nil
-                                                                 otherButtonTitles:@"Send a Song Yap", @"Send a Voice Yap", nil];
-            actionSheetVoice.tag = 200;
-            [actionSheetVoice showInView:self.view];
-        }
-         */
     } else {
-        if ([self.yap.type isEqual:@"SpotifyMessage"]) {
-            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Use the same song, or a new one?"
-                                                                            delegate:self
-                                                                   cancelButtonTitle:@"Cancel"
-                                                              destructiveButtonTitle:nil
-                                                                   otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
-            actionSheetSpotify.tag = 100;
-            [actionSheetSpotify showInView:self.view];
-        } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
-            UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:@"Send a song yap or a voice yap?"
-                                                                          delegate:self
-                                                                 cancelButtonTitle:@"Cancel"
-                                                            destructiveButtonTitle:nil
-                                                                 otherButtonTitles:@"Send a Song Yap", @"Send a Voice Yap", nil];
-            actionSheetVoice.tag = 200;
-            [actionSheetVoice showInView:self.view];
-        }
+        [self dismissThis];
+        [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
     }
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Reply (from Playback)"];
@@ -358,6 +373,10 @@
         NSLog(@"state == STKAudioPlayerStatePlaying");
         
         if (!self.playerAlreadyStartedPlayingForThisSong) {
+            [self showAndStartTimer];
+            
+            //self.countdownTimerLabel.hidden = NO;
+            
             NSLog(@"Seconds to Fast Forward: %d", self.yap.secondsToFastForward.intValue);
             
             if (self.yap.secondsToFastForward.intValue > 0) {
@@ -431,6 +450,7 @@
     
     if (state == STKAudioPlayerStateStopped) {
         NSLog(@"state == STKAudioPlayerStateStopped");
+        self.countdownTimerLabel.hidden = YES;
         [self.timer invalidate];
         self.timer = nil;
         [self.activityIndicator stopAnimating];
