@@ -61,7 +61,7 @@
                                                       object:nil
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note) {
-                                                      [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                                                      [weakSelf dismissViewControllerAnimated:YES completion:nil];
                                                   }];
 
     self.automaticallyAdjustsScrollViewInsets = NO;

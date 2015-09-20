@@ -89,7 +89,7 @@
             self.contactLabel.text = @"Select Recipients";
             if (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) {
                 self.resetPhotoButton.hidden = NO;
-                self.albumImage.hidden = YES;
+                //self.albumImage.hidden = YES;
             }
             double delay = 0.5;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -112,8 +112,8 @@
     
     if (self.isReplying) {
         self.replyLabel.hidden = NO;
-        self.textView.backgroundColor = [UIColor colorWithRed:(0/255) green:(0/255) blue:(0/255) alpha:.1];;
-        self.albumImage.hidden = YES;
+        self.textView.backgroundColor = [UIColor colorWithRed:(0/255) green:(0/255) blue:(0/255) alpha:.05];;
+        //self.albumImage.hidden = YES;
         self.albumLabel.hidden = YES;
         self.cameraButton.hidden = YES;
     }
@@ -192,15 +192,10 @@
     } else {
         self.titleLabel.text = @"Add Message";
     }
-    
-    //self.resetPhotoButton.layer.cornerRadius = 4;
-    //self.resetPhotoButton.layer.borderWidth = 1;
-    //self.resetPhotoButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
-    
-    //self.yapPhoto.layer.cornerRadius = 4;
-    //self.yapPhoto.layer.borderWidth = 1;
-    //self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
-    //self.yapPhoto.clipsToBounds = YES;
+
+    self.yapPhoto.layer.borderWidth = 1;
+    self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
+    self.yapPhoto.clipsToBounds = YES;
     
     self.progressView.trackTintColor = [UIColor colorWithWhite:0.85 alpha:1.0];
     
@@ -458,7 +453,7 @@
     self.yapBuilder.yapImage = nil;
     self.resetPhotoButton.hidden = YES;
     self.yapPhoto.hidden = YES;
-    self.albumImage.hidden = NO;
+    //self.albumImage.hidden = NO;
     
     self.yapBuilder.yapImageAwsEtag = nil;
     self.yapBuilder.yapImageAwsUrl = nil;
@@ -476,7 +471,7 @@
     
     self.yapPhoto.hidden = NO;
     self.resetPhotoButton.hidden = NO;
-    self.albumImage.hidden = YES;
+    //self.albumImage.hidden = YES;
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Selected a Photo"];
