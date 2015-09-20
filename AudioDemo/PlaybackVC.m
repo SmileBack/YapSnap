@@ -161,8 +161,6 @@
     } else if (IS_IPHONE_5_SIZE) {
         self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:34];
     }
-    
-    //[[MSLiveBlur sharedInstance] blurRect:self.albumImage.frame];
 }
 
 - (void) styleActionButtons {
@@ -189,11 +187,6 @@
     if (self.yap.yapPhotoURL && ![self.yap.yapPhotoURL isEqual: [NSNull null]]) {
         [self addShadowToTextView];
         self.albumImage.hidden = YES;
-        
-        //self.yapPhoto.layer.borderWidth = 1;
-        //self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
-        //self.yapPhoto.clipsToBounds = YES;
-         
         
         [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yap.yapPhotoURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (cacheType == SDImageCacheTypeDisk) {
@@ -307,9 +300,17 @@
     } else if (self.yap.receivedByCurrentUser) {
         [self dismissThis];
         [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
+        NSString *senderFirstName = [[self.yap.displaySenderName componentsSeparatedByString:@" "] objectAtIndex:0];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Send %@ a Yap!", senderFirstName]];
+        });
     } else {
         [self dismissThis];
         [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
+        NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Send %@ a Yap!", receiverFirstName]];
+        });
     }
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Reply (from Playback)"];
@@ -554,53 +555,6 @@
     self.textView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.textView.layer.shadowOpacity = 1.0f;
     self.textView.layer.shadowRadius = 1.0f;
-}
-
-#pragma mark - UIActionSheet method implementation
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSLog(@"Tapped Action Sheet; Button Index: %ld", (long)buttonIndex);
-    // Take a photo
-    if (actionSheet.tag == 100) {
-        if (buttonIndex == 0) {
-            [self dismissThis];
-            [self.yapCreatingDelegate didOriginateReplyFromYapSameClip:self.yap];
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply to Song from Playback (Same Clip)"];
-            // Upload a photo
-        } else if (buttonIndex == 1) {
-            [self dismissThis];
-            [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply to Song from Playback (Different Clip)"];
-        } else if (buttonIndex == 2) {
-            [self dismissThis];
-            [self.yapCreatingDelegate didOriginateReplyFromYapVoice:self.yap];
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply to Song from Playback (Voice)"];
-        } else {
-            NSLog(@"Did tap cancel");
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Canceled Reply to Song from Playback"];
-        }
-    } else if (actionSheet.tag == 200) {
-        if (buttonIndex == 0) {
-            [self dismissThis];
-            [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply to Voice from Playback (Songs)"];
-            // Upload a photo
-        } else if (buttonIndex == 1) {
-            [self dismissThis];
-            [self.yapCreatingDelegate didOriginateReplyFromYapVoice:self.yap];
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Tapped Reply to Voice from Playback (Voice)"];
-        } else {
-            NSLog(@"Did tap cancel");
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Canceled Reply to Voice from Playback"];
-        }
-    }
 }
 
 #pragma mark - Spotify Button

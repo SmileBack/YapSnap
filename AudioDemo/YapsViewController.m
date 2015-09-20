@@ -461,52 +461,19 @@ static NSString *CellIdentifier = @"Cell";
     YSYap *yap = self.yaps[indexPath.row];
     self.selectedYap = yap;
     NSString *receiverFirstName = [[self.selectedYap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
+    NSString *senderFirstName = [[self.selectedYap.displaySenderName componentsSeparatedByString:@" "] objectAtIndex:0];
     
     [self didOriginateReplyFromYapNewClip:yap];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Send %@ a Yap!", receiverFirstName]];
-    });
-    
-    /*
     if (yap.receivedByCurrentUser) {
-        if ([yap.type isEqual:@"SpotifyMessage"]) {
-            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:@"Reply with the same song, or a new one?"
-                                                                            delegate:self
-                                                                   cancelButtonTitle:@"Cancel"
-                                                              destructiveButtonTitle:nil
-                                                                   otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
-            actionSheetSpotify.tag = 100;
-            [actionSheetSpotify showInView:self.view];
-        } else {
-            UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:@"Reply with a song yap or a voice yap?"
-                                                                          delegate:self
-                                                                 cancelButtonTitle:@"Cancel"
-                                                            destructiveButtonTitle:nil
-                                                                 otherButtonTitles:@"Send a Song Yap", @"Send a Voice Yap", nil];
-            actionSheetVoice.tag = 200;
-            [actionSheetVoice showInView:self.view];
-        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Send %@ a Yap!", senderFirstName]];
+        });
     } else {
-        if ([yap.type isEqual:@"SpotifyMessage"]) {
-            UIActionSheet *actionSheetSpotify = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Send %@ a yap with the same song, or a new one?", receiverFirstName]
-                                                                            delegate:self
-                                                                   cancelButtonTitle:@"Cancel"
-                                                              destructiveButtonTitle:nil
-                                                                   otherButtonTitles:@"Use Same Song", @"Choose New Song", @"No Song. Just Voice", nil];
-            actionSheetSpotify.tag = 100;
-            [actionSheetSpotify showInView:self.view];
-        } else {
-            UIActionSheet *actionSheetVoice = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Send %@ a song yap or a voice yap?", receiverFirstName]
-                                                                          delegate:self
-                                                                 cancelButtonTitle:@"Cancel"
-                                                            destructiveButtonTitle:nil
-                                                                 otherButtonTitles:@"Send a Song Yap", @"Send a Voice Yap", nil];
-            actionSheetVoice.tag = 200;
-            [actionSheetVoice showInView:self.view];
-        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Send %@ a Yap!", receiverFirstName]];
+        });
     }
-     */
 }
 
 
