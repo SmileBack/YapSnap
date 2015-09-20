@@ -147,6 +147,13 @@
     NSLog(@"YapBuilder imageAWSURL: %@", self.yapBuilder.yapImage);
     
     [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.track.albumImageURL]];
+    
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+    effectView.frame =  CGRectMake(0, 0, 2208, 2208); // 2208 is largest screen height (iphone 6 plus)
+    [self.albumImage addSubview:effectView];
+    
+    
     self.textView.text = self.yapBuilder.text;
     if (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) {
         [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.yapImageAwsUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -236,6 +243,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
     [self.player stop];
+    
+    self.albumImage.alpha = 0;
 }
 
 - (void)didReceiveMemoryWarning {

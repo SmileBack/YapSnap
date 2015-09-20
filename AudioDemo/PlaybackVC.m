@@ -13,6 +13,8 @@
 #import "YSRecordProgressView.h"
 #import "SpotifyAPI.h"
 #import "OpenInSpotifyAlertView.h"
+#import "UIImage+BlurredFrame.h"
+
 
 @interface PlaybackVC ()  {
     NSTimer *countdownTimer;
@@ -70,8 +72,8 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Playback Page"];
     
-    self.replyButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0.0/255.0 alpha:0.6f];
-    self.sendTextButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.6f];
+    self.replyButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0.0/255.0 alpha:0.3f];
+    self.sendTextButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.3f];
     
     if (self.yap.sentByCurrentUser) {
         //self.replyButton.hidden = YES;
@@ -132,8 +134,17 @@
             [mixpanel track:@"Volume Notification - PlayBack"];
         });
     }
+    
     if (([self.yap.type isEqual:@"SpotifyMessage"] || [self.yap.type isEqual:@"UploadedMessage"]) && self.yap.albumImageURL && ![self.yap.albumImageURL isEqual: [NSNull null]]) {
         [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yap.albumImageURL]];
+        
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVisualEffectView *effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+        effectView.frame =  CGRectMake(0, 0, 2208, 2208); // 2208 is as big as iphone plus height
+        
+        [self.albumImage addSubview:effectView];
+        
+        
     } else if ([self.yap.type isEqual:@"VoiceMessage"]) {
         [self.albumImage setImage:[UIImage imageNamed:@"YapTapCartoonLarge2.png"]];
     }

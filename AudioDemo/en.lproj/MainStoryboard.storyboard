@@ -396,7 +396,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6ax-OF-ZYp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="R9f-jX-Qam">
-                        <rect key="frame" x="0.0" y="44" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Uk7-Dg-fop">
@@ -410,7 +410,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="W8t-1a-vba">
-                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="iTO-dn-ews" id="JfJ-lh-W15"/>
@@ -418,7 +418,7 @@
                                 </connections>
                             </tableView>
                             <view alpha="0.96999999999999997" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGC-QS-5qY">
-                                <rect key="frame" x="0.0" y="388" width="320" height="72"/>
+                                <rect key="frame" x="0.0" y="452" width="320" height="72"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6j-MM-95B" customClass="NextButton">
                                         <rect key="frame" x="266" y="16" width="44" height="44"/>
@@ -724,7 +724,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.080000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5VO-Xh-MtL" userLabel="Album Image View">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5VO-Xh-MtL" userLabel="Album Image View">
                                 <rect key="frame" x="-92" y="-20" width="504" height="504"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5VO-Xh-MtL" secondAttribute="height" multiplier="1:1" id="Shx-zz-ucg"/>
@@ -842,7 +842,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="C4F2DC43-9778-44B8-8E42-EA22DC403AE2"/>
+                                <state key="normal" backgroundImage="396DC5B9-46A9-49D9-9B80-2E2703D0FD44"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1128,10 +1128,6 @@
                                     <constraint firstAttribute="width" constant="568" id="tvK-wJ-UeM"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBU-RM-r15">
-                                <rect key="frame" x="0.0" y="-20" width="320" height="588"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zM8-Va-aql" customClass="YSRecordProgressView">
                                 <rect key="frame" x="0.0" y="-20" width="320" height="3"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1270,12 +1266,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="kBU-RM-r15" firstAttribute="bottom" secondItem="Mzh-6Q-CnN" secondAttribute="top" id="0Eu-5O-jwK"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="Cx1-jS-IBl" secondAttribute="bottom" constant="18" id="0Hm-F2-6TS"/>
                             <constraint firstItem="adb-GP-urO" firstAttribute="centerX" secondItem="PvF-Jb-cMD" secondAttribute="centerX" id="1uc-j9-Xhh"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="gZw-Qu-kTZ" secondAttribute="bottom" constant="18" id="5dv-KE-B8i"/>
                             <constraint firstItem="PvF-Jb-cMD" firstAttribute="centerX" secondItem="8Sd-XX-W3O" secondAttribute="centerX" id="5sd-xi-c7c"/>
-                            <constraint firstItem="kBU-RM-r15" firstAttribute="trailing" secondItem="zM8-Va-aql" secondAttribute="trailing" id="9kE-Qi-9EQ"/>
                             <constraint firstItem="pHt-nE-rIi" firstAttribute="top" secondItem="adb-GP-urO" secondAttribute="bottom" constant="11" id="Bwd-O4-QoS"/>
                             <constraint firstItem="gZw-Qu-kTZ" firstAttribute="centerX" secondItem="8Sd-XX-W3O" secondAttribute="centerX" id="Dld-C8-eRs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7Kj-1X-Ut8" secondAttribute="trailing" constant="9" id="EjY-l4-w1O"/>
@@ -1301,14 +1295,12 @@
                             <constraint firstItem="uey-Gz-VuN" firstAttribute="centerX" secondItem="8Sd-XX-W3O" secondAttribute="centerX" id="gVo-Dh-2mz"/>
                             <constraint firstAttribute="centerX" secondItem="7Kj-1X-Ut8" secondAttribute="centerX" id="gdU-d3-ewh"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="7Kj-1X-Ut8" secondAttribute="bottom" constant="5" id="jNg-pm-Gdi"/>
-                            <constraint firstItem="kBU-RM-r15" firstAttribute="leading" secondItem="zM8-Va-aql" secondAttribute="leading" id="kLP-d4-Jkn"/>
                             <constraint firstAttribute="centerX" secondItem="vNe-98-kK7" secondAttribute="centerX" id="mUe-z6-SNR"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="pHt-nE-rIi" secondAttribute="bottom" constant="18" id="sXd-v8-ibG"/>
                             <constraint firstItem="adb-GP-urO" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" id="sYx-7z-46G"/>
                             <constraint firstItem="oZS-3k-7XH" firstAttribute="centerX" secondItem="PvF-Jb-cMD" secondAttribute="centerX" id="st0-am-INY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cEy-3F-cQc" secondAttribute="trailing" constant="-11" id="tC6-Ly-wUV"/>
                             <constraint firstItem="oZS-3k-7XH" firstAttribute="height" secondItem="8Sd-XX-W3O" secondAttribute="height" id="tZW-Vb-lJs"/>
-                            <constraint firstItem="kBU-RM-r15" firstAttribute="top" secondItem="gzM-5p-4ue" secondAttribute="top" constant="-20" id="wQ7-cB-8jE"/>
                             <constraint firstItem="pHt-nE-rIi" firstAttribute="leading" secondItem="PvF-Jb-cMD" secondAttribute="trailing" id="wo2-y6-I3Q"/>
                             <constraint firstItem="PvF-Jb-cMD" firstAttribute="leading" secondItem="Cx1-jS-IBl" secondAttribute="trailing" id="zAB-6Q-hWT"/>
                         </constraints>
@@ -1318,7 +1310,6 @@
                         <outlet property="activityIndicator" destination="vNe-98-kK7" id="gDX-w8-0nN"/>
                         <outlet property="albumImage" destination="oZS-3k-7XH" id="2ei-fw-y0P"/>
                         <outlet property="albumLabel" destination="adb-GP-urO" id="AvH-5r-jj4"/>
-                        <outlet property="blurView" destination="kBU-RM-r15" id="XkO-4T-f1V"/>
                         <outlet property="countdownTimerLabel" destination="uey-Gz-VuN" id="qQR-a0-eRD"/>
                         <outlet property="friendRequestActivityIndicator" destination="PvF-Jb-cMD" id="lKe-gV-g0F"/>
                         <outlet property="friendRequestButton" destination="gZw-Qu-kTZ" id="tYI-eO-AnX"/>
@@ -1813,9 +1804,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="C4F2DC43-9778-44B8-8E42-EA22DC403AE2" width="300" height="300">
+        <image name="396DC5B9-46A9-49D9-9B80-2E2703D0FD44" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -7888,6 +7877,8 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="CameraIcon20.png" width="150" height="150"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite3.png" width="350" height="350"/>
@@ -7904,9 +7895,9 @@ A
         <image name="YellowStar.png" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ny4-zR-Cgq"/>
-        <segue reference="Q0Z-rg-Tpo"/>
+        <segue reference="czb-n6-hbf"/>
         <segue reference="eDP-Ek-kdM"/>
-        <segue reference="vIm-eD-gkR"/>
+        <segue reference="Q0Z-rg-Tpo"/>
+        <segue reference="rVt-9v-iFr"/>
     </inferredMetricsTieBreakers>
 </document>
