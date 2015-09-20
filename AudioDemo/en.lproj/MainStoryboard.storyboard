@@ -842,7 +842,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="396DC5B9-46A9-49D9-9B80-2E2703D0FD44"/>
+                                <state key="normal" backgroundImage="A34D73CD-362D-40D6-908E-EED554654DCD"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -862,6 +862,10 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUG-Uw-gQP" userLabel="Album Label">
                                 <rect key="frame" x="16" y="404" width="288" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="WXJ-do-rJ8"/>
+                                    <constraint firstAttribute="width" constant="288" id="zIV-0b-Auw"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -909,7 +913,6 @@
                             <constraint firstItem="Yo4-ls-PqW" firstAttribute="top" secondItem="dHY-Se-Z5T" secondAttribute="bottom" constant="3" id="vDJ-Ls-FRu"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="B2R-OB-er0" secondAttribute="bottom" constant="7" id="vNZ-Va-hqk"/>
                             <constraint firstItem="5VO-Xh-MtL" firstAttribute="centerX" secondItem="gWj-LF-pEZ" secondAttribute="centerX" id="vyl-UM-2fF"/>
-                            <constraint firstItem="KUG-Uw-gQP" firstAttribute="top" secondItem="gWj-LF-pEZ" secondAttribute="bottom" constant="10" id="wEX-TC-zPu"/>
                             <constraint firstItem="lNC-9Z-jqK" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="-13" id="wdD-48-Fuc"/>
                             <constraint firstItem="KUG-Uw-gQP" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" id="wjr-2Y-iOY"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" id="xUK-bi-lf5"/>
@@ -1804,7 +1807,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="396DC5B9-46A9-49D9-9B80-2E2703D0FD44" width="300" height="300">
+        <image name="A34D73CD-362D-40D6-908E-EED554654DCD" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

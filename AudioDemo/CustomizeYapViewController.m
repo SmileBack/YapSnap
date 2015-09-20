@@ -232,6 +232,8 @@
     [super viewWillAppear:animated];
     self.continueButton.userInteractionEnabled = YES; //This is here just in case
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    self.albumImage.alpha = 1;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -244,7 +246,13 @@
     [super viewWillDisappear:animated];
     [self.player stop];
     
-    self.albumImage.alpha = 0;
+    [UIView animateWithDuration:.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.albumImage.alpha = 0;
+                     }
+                     completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -13,8 +13,6 @@
 #import "YSRecordProgressView.h"
 #import "SpotifyAPI.h"
 #import "OpenInSpotifyAlertView.h"
-#import "UIImage+BlurredFrame.h"
-
 
 @interface PlaybackVC ()  {
     NSTimer *countdownTimer;
