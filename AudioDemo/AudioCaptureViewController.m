@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet YSSegmentedControlScrollView *categorySelectorContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomBarBottomConstraint;
 @property (strong, nonatomic) NSArray *audioSourceNames;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryBarWidthConstraint;
 
 - (IBAction)didTapNextButton;
 - (IBAction)didTapCancelButton;
@@ -68,10 +69,13 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     [self setupNotifications];
     if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
         self.continueButtonRightConstraint.constant = -128;
+        self.categoryBarWidthConstraint.constant = 365;
     } else if (IS_IPHONE_6_SIZE) {
         self.continueButtonRightConstraint.constant = -150;
+        self.categoryBarWidthConstraint.constant = 375;
     } else if (IS_IPHONE_6_PLUS_SIZE) {
         self.continueButtonRightConstraint.constant = -170;
+        self.categoryBarWidthConstraint.constant = 414;
     }
 
     [self.continueButton startToPulsate];

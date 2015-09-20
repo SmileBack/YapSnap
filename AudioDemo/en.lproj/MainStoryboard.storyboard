@@ -135,6 +135,7 @@
                         <outlet property="bottomBarBottomConstraint" destination="uuE-Pf-nMR" id="DBX-wB-u4m"/>
                         <outlet property="bottomView" destination="Zpi-cJ-NfZ" id="gyE-dK-6pj"/>
                         <outlet property="bottomViewLabel" destination="F8L-qW-m1K" id="4nv-6E-Kmh"/>
+                        <outlet property="categoryBarWidthConstraint" destination="ihk-47-bi8" id="8pP-x5-To8"/>
                         <outlet property="categorySelectorContainer" destination="Kej-1D-xvX" id="lTD-gN-p6H"/>
                         <outlet property="categorySelectorView" destination="9yN-vL-GUj" id="xkS-Le-245"/>
                         <outlet property="continueButton" destination="sYX-lW-YlV" id="M9z-hn-TJL"/>
@@ -395,7 +396,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6ax-OF-ZYp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="R9f-jX-Qam">
-                        <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Uk7-Dg-fop">
@@ -409,7 +410,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="W8t-1a-vba">
-                                <rect key="frame" x="0.0" y="44" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="iTO-dn-ews" id="JfJ-lh-W15"/>
@@ -417,7 +418,7 @@
                                 </connections>
                             </tableView>
                             <view alpha="0.96999999999999997" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGC-QS-5qY">
-                                <rect key="frame" x="0.0" y="452" width="320" height="72"/>
+                                <rect key="frame" x="0.0" y="388" width="320" height="72"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6j-MM-95B" customClass="NextButton">
                                         <rect key="frame" x="266" y="16" width="44" height="44"/>
@@ -841,7 +842,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="09F5A9AE-CADF-4016-B9D0-73B10A570855"/>
+                                <state key="normal" backgroundImage="C4F2DC43-9778-44B8-8E42-EA22DC403AE2"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1812,7 +1813,9 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="09F5A9AE-CADF-4016-B9D0-73B10A570855" width="300" height="300">
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
+        <image name="C4F2DC43-9778-44B8-8E42-EA22DC403AE2" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -7885,8 +7888,6 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="CameraIcon20.png" width="150" height="150"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite3.png" width="350" height="350"/>
@@ -7903,9 +7904,9 @@ A
         <image name="YellowStar.png" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Ny4-zR-Cgq"/>
         <segue reference="Q0Z-rg-Tpo"/>
-        <segue reference="czb-n6-hbf"/>
         <segue reference="eDP-Ek-kdM"/>
-        <segue reference="rVt-9v-iFr"/>
+        <segue reference="vIm-eD-gkR"/>
     </inferredMetricsTieBreakers>
 </document>
