@@ -21,7 +21,7 @@
                                     apiString:@"flirtatious_tracks"
                                     imageName:@"Mood_Flirtatious2"],
              [YTTrackGroup trackGroupWithName:@""
-                                    apiString:@"nostaligic_tracks"
+                                    apiString:@"nostalgic_tracks"
                                     imageName:@"Mood_Nostalgic2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"funny_tracks"

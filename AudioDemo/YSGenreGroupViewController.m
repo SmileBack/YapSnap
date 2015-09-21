@@ -24,7 +24,7 @@
                                     apiString:@"genre_rock_tracks"
                                     imageName:@"Genre_Rock"],
              [YTTrackGroup trackGroupWithName:@""
-                                    apiString:@"genre_nostalgic_tracks"
+                                    apiString:@"genre_pop_tracks"
                                     imageName:@"Genre_Pop2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"genre_edm_tracks"
