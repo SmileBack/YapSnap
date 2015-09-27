@@ -217,7 +217,9 @@
 {
     NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
     NSLog(@"Playing URL: %@ %@ auth token", self.yap.playbackURL, headers ? @"with" : @"without");
-    if (headers && [self.yap.type isEqualToString:MESSAGE_TYPE_SPOTIFY]) {
+    //if (headers && [self.yap.type isEqualToString:MESSAGE_TYPE_SPOTIFY]) {
+    // Check if preview url is spotify song
+    if (headers && [self.yap.track.previewURL containsString:@"scdn"]) {
         [self.player play:self.yap.playbackURL withHeaders:headers];
     } else {
         [self.player play:self.yap.playbackURL];
@@ -620,6 +622,5 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Accept Friend Request"];
 }
-
 
 @end
