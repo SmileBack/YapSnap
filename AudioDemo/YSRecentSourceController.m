@@ -11,6 +11,9 @@
 #import "YSYap.h"
 #import "YSEmptyScreenView.h"
 
+#define RELOAD_COLLECTION_VIEW @"com.yapsnap.ReloadCollectionViewNotification"
+
+
 @interface YSRecentSourceController()
 
 @property (strong) YSEmptyScreenView *emptyView;
@@ -25,6 +28,7 @@
         for (YSYap *yap in yaps) {
             if (yap.track) {
                 [tracks addObject:yap.track];
+                NSLog(@"Songs: %@", yap.track);
             }            
         }
         self.songs = tracks;
@@ -39,6 +43,9 @@
         } else {
             [self.emptyView removeFromSuperview];
             self.emptyView = nil;
+            
+            // Tell Spotify Source Controller to reload collection view
+            [[NSNotificationCenter defaultCenter] postNotificationName:RELOAD_COLLECTION_VIEW object:nil];
         }
     }];
 }

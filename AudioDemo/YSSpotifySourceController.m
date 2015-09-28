@@ -25,6 +25,9 @@
 #import "YSSTKAudioPlayerDelegate.h"
 #import "TracksCache.h"
 
+#define RELOAD_COLLECTION_VIEW @"com.yapsnap.ReloadCollectionViewNotification"
+
+
 @interface YSSpotifySourceController () <UICollectionViewDelegate,
                                          YSSongCollectionViewDelegate>
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
@@ -32,6 +35,7 @@
 @property (strong, nonatomic) YSSongCollectionViewDataSource *songDataSource;
 @property (strong, nonatomic) YSSTKAudioPlayerDelegate *audioPlayerDelegate;
 @property (strong, nonatomic) STKAudioPlayer *player;
+@property (nonatomic) BOOL loadingSearchResults;
 
 @end
 
@@ -92,6 +96,7 @@
     if (self.audioPlayerDelegate.player.state == STKAudioPlayerStatePlaying) {
         [self cancelPlayingAudio];
     }
+    self.loadingSearchResults = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -112,6 +117,13 @@
                         self.songDataSource.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup]; //[TracksCache sharedCache].trendingSongs;
                         [self.collectionView reloadData];
                     }];
+    
+    [center addObserverForName:RELOAD_COLLECTION_VIEW
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self.collectionView reloadData];
+                    }];
 }
 
 #pragma mark - Setters/Getters
@@ -119,7 +131,7 @@
 - (void)setSongs:(NSArray *)songs {
     _songs = songs;
     self.songDataSource.songs = songs;
-    //[self.collectionView reloadData];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - YSSongCollectionViewDataSourceDelegate
@@ -222,22 +234,24 @@
 #pragma mark - Track Category Stuff
 
 - (void)retrieveAndLoadTracksForCategory:(YTTrackGroup *)trackGroup {
-    trackGroup = trackGroup ? trackGroup : [YTTrackGroup defaultTrackGroup];
-    
-    if ([[TracksCache sharedCache] haveSongsForTrackGroup:trackGroup]) {
-        self.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:trackGroup];
-        self.songDataSource.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:trackGroup];
-        [self.collectionView reloadData];
-    } else {
-        [[TracksCache sharedCache] loadTracksForGroup:trackGroup withCallback:^(NSArray *songs, NSError *error) {
-            if (songs) {
-                self.songs = songs;
-                self.songDataSource.songs = songs;
-                [self.collectionView reloadData];
-            } else {
-                NSLog(@"Something went wrong");
-            }
-        }];
+    if (!self.loadingSearchResults) {
+        trackGroup = trackGroup ? trackGroup : [YTTrackGroup defaultTrackGroup];
+        
+        if ([[TracksCache sharedCache] haveSongsForTrackGroup:trackGroup]) {
+            self.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:trackGroup];
+            self.songDataSource.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:trackGroup];
+            [self.collectionView reloadData];
+        } else {
+            [[TracksCache sharedCache] loadTracksForGroup:trackGroup withCallback:^(NSArray *songs, NSError *error) {
+                if (songs) {
+                    self.songs = songs;
+                    self.songDataSource.songs = songs;
+                    [self.collectionView reloadData];
+                } else {
+                    NSLog(@"Something went wrong");
+                }
+            }];
+        }
     }
 }
 
@@ -256,12 +270,17 @@
     [mixpanel track:@"Searched Songs"];
     [mixpanel.people increment:@"Searched Songs #" by:[NSNumber numberWithInt:1]];
 
+    self.loadingSearchResults = YES;
+    
     self.songs = nil;
 
     __weak YSSpotifySourceController *weakSelf = self;
     void (^callback)(NSArray *, NSError *) = ^(NSArray *songs, NSError *error) {
       if (songs) {
           weakSelf.songs = songs;
+          weakSelf.songDataSource.songs = songs;
+          [self.collectionView reloadData];
+          
           if (songs.count == 0) {
               NSLog(@"No Songs Returned For Search Query");
 
