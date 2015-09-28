@@ -115,7 +115,7 @@ static ContactManager *sharedInstance;
         NSMutableDictionary *phoneNumberContacts = [NSMutableDictionary dictionaryWithCapacity:contacts.count];
 
         for (APContact *contact in contacts) {
-            NSLog(@"Contact: %@", contact);
+            //NSLog(@"Contact: %@", contact);
             for (NSString *p in contact.phones) {
                 NSString *phone = [ContactManager stringPhoneNumber:p];
                 PhoneContact *phoneContact = [PhoneContact phoneContactWithName:contact.compositeName contactID:contact.recordID andPhoneNumber:phone];

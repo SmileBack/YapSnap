@@ -456,7 +456,7 @@ static API *sharedAPI;
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSArray *yapDicts = responseObject; //Assuming it is an array
              NSArray *yaps = [YSYap yapsWithArray:yapDicts];
-             NSLog(@"Yaps: %@", responseObject);
+             //NSLog(@"Yaps: %@", responseObject);
              
              NSMutableArray *imagesToPrefetch = [NSMutableArray new];
              for (YSYap *yap in yaps) {

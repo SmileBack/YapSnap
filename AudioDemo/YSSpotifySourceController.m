@@ -69,8 +69,13 @@
 {
     [super viewWillAppear:animated];
     
-    self.songs = [TracksCache sharedCache].songs;
-    self.songDataSource.songs = [TracksCache sharedCache].songs;
+    if (!self.trackGroup) {
+        self.trackGroup = [YTTrackGroup defaultTrackGroup];
+    }
+    NSLog(@"TRACK GROUP1: %@", self.trackGroup.apiString);
+    
+    self.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup]; //[TracksCache sharedCache].trendingSongs;
+    self.songDataSource.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup]; //[TracksCache sharedCache].trendingSongs;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -78,7 +83,7 @@
     
     self.playerAlreadyStartedPlayingForThisSong = NO;
     [self retrieveAndLoadTracksForCategory:self.trackGroup];
-    
+
     [self setupNotifications];
 }
 
@@ -102,9 +107,9 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [[TracksCache sharedCache] shuffleTracks];
-                        self.songs = [TracksCache sharedCache].songs;
-                        self.songDataSource.songs = [TracksCache sharedCache].songs;
+                        [[TracksCache sharedCache] shuffleTracksForTrackGroup:self.trackGroup];
+                        self.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup]; //[TracksCache sharedCache].trendingSongs;
+                        self.songDataSource.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup]; //[TracksCache sharedCache].trendingSongs;
                         [self.collectionView reloadData];
                     }];
 }
@@ -217,31 +222,22 @@
 #pragma mark - Track Category Stuff
 
 - (void)retrieveAndLoadTracksForCategory:(YTTrackGroup *)trackGroup {
-    if (trackGroup.songs) {
-        self.songs = [trackGroup.songs shuffledArray];
+    trackGroup = trackGroup ? trackGroup : [YTTrackGroup defaultTrackGroup];
+    
+    if ([[TracksCache sharedCache] haveSongsForTrackGroup:trackGroup]) {
+        self.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:trackGroup];
+        self.songDataSource.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:trackGroup];
+        [self.collectionView reloadData];
     } else {
-        trackGroup = trackGroup ? trackGroup : [YTTrackGroup defaultTrackGroup];
-        
-        if ([TracksCache sharedCache].songs) {
-            NSLog(@"Songs exist: %@", [TracksCache sharedCache].songs);
-            self.songs = [TracksCache sharedCache].songs;
-            self.songDataSource.songs = [TracksCache sharedCache].songs;
-            [self.collectionView reloadData];
-        } else {
-            [[API sharedAPI]
-                retrieveTracksForCategory:trackGroup
-                             withCallback:^(NSArray *songs, NSError *error) {
-                               if (songs) {
-                                   trackGroup.songs = songs;
-                                   //self.songs = [trackGroup.songs shuffledArray];
-                                   self.songDataSource.songs = [TracksCache sharedCache].songs; //new
-                                   self.songs = [TracksCache sharedCache].songs; //new
-                                   [self.collectionView reloadData]; //new
-                               } else {
-                                   NSLog(@"Something went wrong");
-                               }
-                             }];
-        }
+        [[TracksCache sharedCache] loadTracksForGroup:trackGroup withCallback:^(NSArray *songs, NSError *error) {
+            if (songs) {
+                self.songs = songs;
+                self.songDataSource.songs = songs;
+                [self.collectionView reloadData];
+            } else {
+                NSLog(@"Something went wrong");
+            }
+        }];
     }
 }
 
@@ -460,23 +456,6 @@
     } else {
         return NO;
     }
-}
-
-- (void) loadTracks {
-    __weak YSSpotifySourceController *weakSelf = self;
-    [[TracksCache sharedCache] loadTracksWithCallback:^(NSArray *songs, NSError *error) {
-        if (songs) {
-            NSLog(@"Songs: %@", songs);
-            [weakSelf.collectionView reloadData];
-        } else {
-            NSLog(@"Error! %@", error);
-        }
-    }];
-}
-
-- (NSArray *)trendingSongs
-{
-    return [TracksCache sharedCache].songs;
 }
 
 
