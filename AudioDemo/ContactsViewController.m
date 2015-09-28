@@ -377,7 +377,6 @@ static NSString *CellIdentifier = @"Cell";
 
         cell.nameLabel.text = contact.name;
         cell.phoneLabel.text = contact.phoneNumber;
-        cell.typeLabel.text = contact.label;
         
         cell.selectionView.layer.cornerRadius = 8.0f;
         cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
@@ -500,7 +499,7 @@ static NSString *CellIdentifier = @"Cell";
             if (indexPath.section == 0) {
                 ContactManager *contactManager = [ContactManager sharedContactManager];
                 RecentContact *recent = contactManager.recentContacts[indexPath.row];
-                contact = [contactManager contactForContactID:recent.contactID];
+                contact = [contactManager contactForPhoneNumber:recent.phoneNumber];
             } else {
                 NSString *letter = self.allLetters[indexPath.section - 1];
                 NSArray *contacts = self.contactDict[letter];

@@ -13,7 +13,8 @@
 # pragma mark - Persistence
 - (void)encodeWithCoder:(NSCoder *)encoder {
     //Encode properties, other class variables, etc
-    [encoder encodeObject:self.contactID forKey:@"contactID"];
+    // No longer code contactID
+    [encoder encodeObject:self.phoneNumber forKey:@"phoneNumber"];
     [encoder encodeObject:self.contactTime forKey:@"contactTime"];
 }
 
@@ -21,6 +22,7 @@
     if((self = [super init])) {
         //decode properties, other class vars
         self.contactID = [decoder decodeObjectForKey:@"contactID"];
+        self.phoneNumber = [decoder decodeObjectForKey:@"phoneNumber"];
         self.contactTime = [decoder decodeObjectForKey:@"contactTime"];
     }
     return self;

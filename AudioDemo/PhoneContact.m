@@ -22,12 +22,12 @@
 }
 */
 
-+ (PhoneContact *) phoneContactWithName:(NSString *)name phoneLabel:(NSString *)label andPhoneNumber:(NSString *)phoneNumber
++ (PhoneContact *) phoneContactWithName:(NSString *)name contactID:(NSNumber *)contactID andPhoneNumber:(NSString *)phoneNumber
 {
     PhoneContact *contact = [PhoneContact new];
 
     contact.name = name;
-    contact.label = label;
+    contact.contactID = contactID;
     contact.phoneNumber = phoneNumber;
     
     return contact;
