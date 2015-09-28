@@ -23,6 +23,7 @@
 #import "NSArray+Shuffle.h"
 #import "UICollectionViewFlowLayout+YS.h"
 #import "YSSTKAudioPlayerDelegate.h"
+#import "TracksCache.h"
 
 @interface YSSpotifySourceController () <UICollectionViewDelegate,
                                          YSSongCollectionViewDelegate>
@@ -64,10 +65,21 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top][v][bottom]" options:0 metrics:nil views:@{@"v": self.collectionView, @"top": self.topLayoutGuide, @"bottom": self.bottomLayoutGuide}]];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.songs = [TracksCache sharedCache].songs;
+    self.songDataSource.songs = [TracksCache sharedCache].songs;
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
     self.playerAlreadyStartedPlayingForThisSong = NO;
     [self retrieveAndLoadTracksForCategory:self.trackGroup];
+    
+    [self setupNotifications];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -83,12 +95,26 @@
     }
 }
 
+- (void)setupNotifications {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+    [center addObserverForName:UIApplicationWillEnterForegroundNotification//UIApplicationDidBecomeActiveNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [[TracksCache sharedCache] shuffleTracks];
+                        self.songs = [TracksCache sharedCache].songs;
+                        self.songDataSource.songs = [TracksCache sharedCache].songs;
+                        [self.collectionView reloadData];
+                    }];
+}
+
 #pragma mark - Setters/Getters
 
 - (void)setSongs:(NSArray *)songs {
     _songs = songs;
     self.songDataSource.songs = songs;
-    [self.collectionView reloadData];
+    //[self.collectionView reloadData];
 }
 
 #pragma mark - YSSongCollectionViewDataSourceDelegate
@@ -195,16 +221,27 @@
         self.songs = [trackGroup.songs shuffledArray];
     } else {
         trackGroup = trackGroup ? trackGroup : [YTTrackGroup defaultTrackGroup];
-        [[API sharedAPI]
-            retrieveTracksForCategory:trackGroup
-                         withCallback:^(NSArray *songs, NSError *error) {
-                           if (songs) {
-                               trackGroup.songs = songs;
-                               self.songs = [trackGroup.songs shuffledArray];
-                           } else {
-                               NSLog(@"Something went wrong");
-                           }
-                         }];
+        
+        if ([TracksCache sharedCache].songs) {
+            NSLog(@"Songs exist: %@", [TracksCache sharedCache].songs);
+            self.songs = [TracksCache sharedCache].songs;
+            self.songDataSource.songs = [TracksCache sharedCache].songs;
+            [self.collectionView reloadData];
+        } else {
+            [[API sharedAPI]
+                retrieveTracksForCategory:trackGroup
+                             withCallback:^(NSArray *songs, NSError *error) {
+                               if (songs) {
+                                   trackGroup.songs = songs;
+                                   //self.songs = [trackGroup.songs shuffledArray];
+                                   self.songDataSource.songs = [TracksCache sharedCache].songs; //new
+                                   self.songs = [TracksCache sharedCache].songs; //new
+                                   [self.collectionView reloadData]; //new
+                               } else {
+                                   NSLog(@"Something went wrong");
+                               }
+                             }];
+        }
     }
 }
 
@@ -359,7 +396,8 @@
 }
 
 - (BOOL)startAudioCapture {
-    if (self.songs.count == 0) {
+    //if (self.songs.count == 0) {
+    if (self.songDataSource.songs.count == 0) {
         NSLog(@"Can't Play Because No Song");
         UIAlertView *alert = [[UIAlertView alloc]
                 initWithTitle:@"Search Above"
@@ -423,5 +461,23 @@
         return NO;
     }
 }
+
+- (void) loadTracks {
+    __weak YSSpotifySourceController *weakSelf = self;
+    [[TracksCache sharedCache] loadTracksWithCallback:^(NSArray *songs, NSError *error) {
+        if (songs) {
+            NSLog(@"Songs: %@", songs);
+            [weakSelf.collectionView reloadData];
+        } else {
+            NSLog(@"Error! %@", error);
+        }
+    }];
+}
+
+- (NSArray *)trendingSongs
+{
+    return [TracksCache sharedCache].songs;
+}
+
 
 @end

@@ -26,6 +26,7 @@
 
 typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 typedef void (^YapsCallback)(NSArray *yaps, NSError *error);
+typedef void (^TracksCallback)(NSArray *songs, NSError *error);
 typedef void (^YapCountCallback)(NSNumber *count, NSError *error);
 typedef void (^UserCallback)(YSUser *user, NSError *error);
 typedef void (^FriendsCallback)(NSArray *friends, NSError *error);
@@ -43,6 +44,7 @@ typedef void (^ITunesTracksCallback)(NSArray *tracks, NSError *error);
 - (void) openSession:(NSString *)phoneNumber withCallback:(SuccessOrErrorCallback)callback;
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(UserCallback)callback;
 - (void) getYapsWithCallback:(YapsCallback)callback;
+- (void) getTracksWithCallback:(TracksCallback)callback;
 - (void) updateYapStatus:(YSYap *)yap toStatus:(NSString *)status withCallback:(IsFriendCallback)callback;
 - (void) unopenedYapsCountWithCallback:(YapCountCallback)callback;
 - (void) logout:(SuccessOrErrorCallback)callback;

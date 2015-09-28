@@ -84,6 +84,7 @@
 		78141D921BB8CE480091B8B6 /* PhoneContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 78141D8E1BB8CE480091B8B6 /* PhoneContact.m */; settings = {ASSET_TAGS = (); }; };
 		78141D931BB8CE480091B8B6 /* ContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78141D901BB8CE480091B8B6 /* ContactManager.m */; settings = {ASSET_TAGS = (); }; };
 		78141D951BB8CE860091B8B6 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78141D941BB8CE860091B8B6 /* ContactsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		78141D9A1BB8DB050091B8B6 /* TracksCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 78141D991BB8DB050091B8B6 /* TracksCache.m */; settings = {ASSET_TAGS = (); }; };
 		781904801AF1E2A300196DFF /* ResetButton30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */; };
 		781904821AF1E3CE00196DFF /* ResetButton40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 781904811AF1E3CE00196DFF /* ResetButton40@2x.png */; };
 		781904841AF1F27700196DFF /* YapsButtonNoYaps5.png in Resources */ = {isa = PBXBuildFile; fileRef = 781904831AF1F27600196DFF /* YapsButtonNoYaps5.png */; };
@@ -435,6 +436,8 @@
 		78141D8F1BB8CE480091B8B6 /* ContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactManager.h; sourceTree = "<group>"; };
 		78141D901BB8CE480091B8B6 /* ContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactManager.m; sourceTree = "<group>"; };
 		78141D941BB8CE860091B8B6 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		78141D981BB8DB050091B8B6 /* TracksCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TracksCache.h; sourceTree = "<group>"; };
+		78141D991BB8DB050091B8B6 /* TracksCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TracksCache.m; sourceTree = "<group>"; };
 		7819047F1AF1E2A300196DFF /* ResetButton30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton30@2x.png"; sourceTree = "<group>"; };
 		781904811AF1E3CE00196DFF /* ResetButton40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton40@2x.png"; sourceTree = "<group>"; };
 		781904831AF1F27600196DFF /* YapsButtonNoYaps5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapsButtonNoYaps5.png; sourceTree = "<group>"; };
@@ -1662,6 +1665,8 @@
 				FCE234481AAB749E00C1EDB0 /* YTNotifications.m */,
 				FCD885AC1AC8A2A0007729CC /* YapsCache.h */,
 				FCD885AD1AC8A2A0007729CC /* YapsCache.m */,
+				78141D981BB8DB050091B8B6 /* TracksCache.h */,
+				78141D991BB8DB050091B8B6 /* TracksCache.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2146,6 +2151,7 @@
 				78141D791BB8CD150091B8B6 /* APContact.m in Sources */,
 				78141D651BB8CCFF0091B8B6 /* APContactBuilder.m in Sources */,
 				FC6C2A541B952249001E9C1D /* YSiTunesUpload.m in Sources */,
+				78141D9A1BB8DB050091B8B6 /* TracksCache.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
 				FC1E89B81A4B852C007A8CDA /* SpotifyTrackView.m in Sources */,
 				780D43251B0646770060DAED /* EZAudioPlayer.m in Sources */,

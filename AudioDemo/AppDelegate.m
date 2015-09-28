@@ -16,6 +16,7 @@
 #import "Mixpanel.h"
 #import "Environment.h"
 #import "YapsCache.h"
+#import "TracksCache.h"
 #import "FeedbackMonitor.h"
 #import "SpotifyAPI.h"
 
@@ -54,6 +55,8 @@
     
     [[YapsCache sharedCache] loadYapsWithCallback:nil];
     
+    [[TracksCache sharedCache] loadTracksWithCallback:nil];
+
     return YES;
 }
 
@@ -141,7 +144,7 @@
     [self.feedbackMonitor appOpened];
     
     [[SpotifyAPI sharedApi] getAccessToken]; //Activate to get access token
-    
+        
     NSLog(@"App Opened Count: %ld", (long)self.appOpenedCount);
 }
 
