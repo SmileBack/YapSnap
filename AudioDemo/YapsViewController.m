@@ -675,7 +675,7 @@ static NSString *CellIdentifier = @"Cell";
             }];
             self.selectedYap = nil;
         } else {
-            [self promptToBlock];
+            //[self promptToBlock];
         }
     } else if ([alertView isKindOfClass:[BlockFriendAlertView class]]) {
         if (buttonIndex == 1) {
