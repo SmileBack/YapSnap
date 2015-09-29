@@ -153,9 +153,15 @@
     
     self.isFromFriend = [NSNumber numberWithInt:1]; // We are setting self.isFromFriend.boolValue to True so that friends popup doesn't come up if you press the X before back end response comes in. It'll get updated to the correct value once back end response comes in
     
+    // CHECK IF SONG CAN BE FORWARDED TO SPOTIFY
+    if (self.yap.spotifyID && ![self.yap.spotifyID isEqual: [NSNull null]] && ([self.yap.spotifyID length] > 10)) {
+        self.spotifyButton.hidden = NO;
+    } else {
+        self.spotifyButton.hidden = YES;
+    }
+    
     if ([self.yap.type isEqual:@"SpotifyMessage"] || [self.yap.type isEqual:@"UploadedMessage"]) {
         self.albumLabel.text = [NSString stringWithFormat:@"%@, by %@", self.yap.songName, self.yap.artist];
-        self.spotifyButton.hidden = NO;
     } else {
         self.albumLabel.text = [NSString stringWithFormat:@"by %@", self.yap.senderName];
     }
@@ -314,14 +320,14 @@
         [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
         NSString *senderFirstName = [[self.yap.displaySenderName componentsSeparatedByString:@" "] objectAtIndex:0];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Send %@ a Yap!", senderFirstName]];
+            [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Replying to %@", senderFirstName]];
         });
     } else {
         [self dismissThis];
         [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
         NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Send %@ a Yap!", receiverFirstName]];
+            [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Replying to %@", receiverFirstName]];
         });
     }
     Mixpanel *mixpanel = [Mixpanel sharedInstance];

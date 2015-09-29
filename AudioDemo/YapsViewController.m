@@ -467,11 +467,11 @@ static NSString *CellIdentifier = @"Cell";
     
     if (yap.receivedByCurrentUser) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Send %@ a Yap!", senderFirstName]];
+            [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Replying to %@", senderFirstName]];
         });
     } else {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Send %@ a Yap!", receiverFirstName]];
+            [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Replying to %@", receiverFirstName]];
         });
     }
 }

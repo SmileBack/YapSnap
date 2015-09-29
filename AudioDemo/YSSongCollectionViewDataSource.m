@@ -59,17 +59,20 @@
     [trackView.spotifyButton addTarget:self action:@selector(didTapSpotifyButton:) forControlEvents:UIControlEventTouchUpInside];
     trackView.tag = indexPath.row; // Used for tap actions
     
-    // IF A SPOTIFY TRACK
-    if ([track.previewURL containsString:@"scdn"]) {
+    // CHECK IF SONG CAN BE FORWARDED TO SPOTIFY
+    if (track.spotifyID && ![track.spotifyID isEqual: [NSNull null]] && ([track.spotifyID length] > 10)) {
         trackView.spotifyButton.hidden = NO;
+    } else {
+        trackView.spotifyButton.hidden = YES;
+    }
+    
+    if ([track.previewURL containsString:@"scdn"]) {
         trackView.songVersionOneButton.hidden = NO;
         trackView.songVersionTwoButton.hidden = NO;
     } else {
-        trackView.spotifyButton.hidden = YES;
         trackView.songVersionOneButton.hidden = YES;
         trackView.songVersionTwoButton.hidden = YES;
     }
-    
     
     if ([[collectionView indexPathsForSelectedItems].firstObject isEqual:indexPath]) {
         [self updateCell:trackViewCell withState:self.audioState];
