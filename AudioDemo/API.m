@@ -400,18 +400,31 @@ static API *sharedAPI;
         if (song.albumName) {
             dictionary[@"spotify_album_name"] = song.albumName;
         } else { // TODO: Hack, back-end fails when album name isn't specified, so just specify a fake one.
-            dictionary[@"spotify_album_name"] = @"fake";
+            dictionary[@"spotify_album_name"] = @"no album name";
         }
     } else {
         // iTunes track
         dictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"spotify_preview_url": builder.awsVoiceURL,
-                                                                     @"spotify_artist_name": builder.track.artistName,
-                                                                     @"spotify_song_name": builder.track.name,
                                                                      @"type": builder.messageType
                                                                      }];
         if (builder.track.albumName) {
             dictionary[@"spotify_album_name"] = builder.track.albumName;
+        } else {
+            dictionary[@"spotify_album_name"] = @"Album";
         }
+        
+        if (builder.track.artistName) {
+            dictionary[@"spotify_artist_name"] = builder.track.artistName;
+        } else {
+            dictionary[@"spotify_artist_name"] = @"Artist";
+        }
+        
+        if (builder.track.name) {
+            dictionary[@"spotify_song_name"] = builder.track.name;
+        } else {
+            dictionary[@"spotify_song_name"] = @"Song Name";
+        }
+
         if (builder.track.albumImageURL) {
             dictionary[@"spotify_image_url"] = builder.track.albumImageURL;
         }

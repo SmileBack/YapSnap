@@ -313,7 +313,8 @@
     yapBuilder.track = track;
     yapBuilder.awsVoiceEtag = self.itunesTrack.awsSongEtag;
     yapBuilder.awsVoiceURL = self.itunesTrack.awsSongUrl;
-    //yapBuilder.yapImageAwsEtag = self.itunesTrack.awsAlbumImageEtag;
+    // check whether song or artist name is null here
+    //
     return yapBuilder;
 }
 

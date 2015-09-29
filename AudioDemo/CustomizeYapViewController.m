@@ -113,9 +113,9 @@
     if (self.isReplying) {
         self.replyLabel.hidden = NO;
         self.textView.backgroundColor = [UIColor colorWithRed:(0/255) green:(0/255) blue:(0/255) alpha:.05];;
-        //self.albumImage.hidden = YES;
         self.albumLabel.hidden = YES;
         self.cameraButton.hidden = YES;
+        self.yapBuilder.awsVoiceURL = self.yapBuilder.track.previewURL;
     }
     
     double delay = 0.2;
