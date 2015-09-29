@@ -211,7 +211,7 @@
             forState:UIControlStateNormal];
     }
 
-    [self playSongAtIndexPath:indexPath withOffsetStartTime:17];
+    [self playSongAtIndexPath:indexPath withOffsetStartTime:15];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Song Version Two"];
 }
