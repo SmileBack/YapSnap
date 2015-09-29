@@ -23,14 +23,27 @@
 @implementation YSRecentSourceController
 
 - (void)viewWillAppear:(BOOL)animated {
-    [[YapsCache sharedCache] loadYapsWithCallback:^(NSArray *yaps, NSError *error) {
+//    [[YapsCache sharedCache] loadYapsWithCallback:^(NSArray *yaps, NSError *error) {
+//        NSMutableArray *tracks = [NSMutableArray arrayWithCapacity:yaps.count];
+//        for (YSYap *yap in yaps) {
+//            if (yap.track) {
+//                [tracks addObject:yap.track];
+//                NSLog(@"Songs: %@", yap.track);
+//            }            
+//        }
+        NSArray *yaps = [YapsCache sharedCache].yaps;
+    
         NSMutableArray *tracks = [NSMutableArray arrayWithCapacity:yaps.count];
         for (YSYap *yap in yaps) {
             if (yap.track) {
                 [tracks addObject:yap.track];
                 NSLog(@"Songs: %@", yap.track);
-            }            
+            }
         }
+    
+
+    
+    
         self.songs = tracks;
         if (self.songs.count == 0) {
             self.emptyView = [[YSEmptyScreenView alloc] initWithFrame:CGRectZero];
@@ -47,7 +60,7 @@
             // Tell Spotify Source Controller to reload collection view
             [[NSNotificationCenter defaultCenter] postNotificationName:RELOAD_COLLECTION_VIEW object:nil];
         }
-    }];
+    //}];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

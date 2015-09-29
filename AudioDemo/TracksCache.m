@@ -66,40 +66,40 @@ static TracksCache *sharedCache;
          }
          
          if (callback) {
+             if ([trackGroup.apiString  isEqual: @"trending_tracks"]) {
+                 songs = self.trendingSongs;
+             } else if ([trackGroup.apiString isEqual: @"flirtatious_tracks"]) {
+                 songs = self.flirtatiousSongs;
+             } else if ([trackGroup.apiString isEqual: @"funny_tracks"]) {
+                 songs = self.funnySongs;
+             } else if ([trackGroup.apiString isEqual: @"nostalgic_tracks"]) {
+                 songs = self.nostalgicSongs;
+             } else if ([trackGroup.apiString  isEqual: @"celebrate_tracks"]) {
+                 songs = self.celebrateSongs;
+             } else if ([trackGroup.apiString  isEqual: @"happy_tracks"]) {
+                 songs = self.happySongs;
+             } else if ([trackGroup.apiString  isEqual: @"sad_tracks"]) {
+                 songs = self.sadSongs;
+             } else if ([trackGroup.apiString  isEqual: @"genre_hiphop_tracks"]) {
+                 songs = self.hipHopSongs;
+             } else if ([trackGroup.apiString  isEqual: @"genre_rock_tracks"]) {
+                 songs = self.rockSongs;
+             } else if ([trackGroup.apiString  isEqual: @"genre_pop_tracks"]) {
+                 songs = self.popSongs;
+             } else if ([trackGroup.apiString  isEqual: @"genre_edm_tracks"]) {
+                 songs = self.edmSongs;
+             } else if ([trackGroup.apiString  isEqual: @"genre_country_tracks"]) {
+                 songs = self.countrySongs;
+             } else if ([trackGroup.apiString  isEqual: @"genre_latin_tracks"]) {
+                 songs = self.latinSongs;
+             }
+             
              callback(songs, error);
          }
      }];
 }
 
-- (void) shuffleTracksForTrackGroup:(YTTrackGroup*)trackGroup {
-    if ([trackGroup.apiString  isEqual: @"trending_tracks"]) {
-        self.trendingSongs = [self.trendingSongs shuffledArray];
-    } else if ([trackGroup.apiString  isEqual: @"flirtatious_tracks"]) {
-        self.flirtatiousSongs = [self.flirtatiousSongs shuffledArray];
-    } else if ([trackGroup.apiString  isEqual: @"nostalgic_tracks"]) {
-        self.nostalgicSongs = [self.nostalgicSongs shuffledArray];
-    } else if ([trackGroup.apiString  isEqual: @"funny_tracks"]) {
-        self.funnySongs = [self.funnySongs shuffledArray];
-    } else if ([trackGroup.apiString  isEqual: @"celebrate_tracks"]) {
-        self.celebrateSongs = [self.celebrateSongs shuffledArray];
-    } else if ([trackGroup.apiString  isEqual: @"happy_tracks"]) {
-        self.happySongs = [self.happySongs shuffledArray];
-    } else if ([trackGroup.apiString  isEqual: @"sad_tracks"]) {
-        self.sadSongs = [self.sadSongs shuffledArray];
-    } else if ([trackGroup.apiString  isEqual: @"genre_hiphop_tracks"]) {
-        self.hipHopSongs = [self.hipHopSongs shuffledArray];
-    } else if ([trackGroup.apiString  isEqual: @"genre_rock_tracks"]) {
-        self.rockSongs = [self.rockSongs shuffledArray];
-    } else if ([trackGroup.apiString  isEqual: @"genre_pop_tracks"]) {
-        self.popSongs = [self.popSongs shuffledArray];
-    } else if ([trackGroup.apiString  isEqual: @"genre_edm_tracks"]) {
-        self.edmSongs = [self.edmSongs shuffledArray];
-    } else if ([trackGroup.apiString  isEqual: @"genre_country_tracks"]) {
-        self.countrySongs = [self.countrySongs shuffledArray];
-    } else if ([trackGroup.apiString  isEqual: @"genre_latin_tracks"]) {
-        self.latinSongs = [self.latinSongs shuffledArray];
-    }
-}
+
 
 - (BOOL) haveSongsForTrackGroup:(YTTrackGroup*)trackGroup {
     if ([trackGroup.apiString  isEqual: @"trending_tracks"]) {
@@ -164,5 +164,65 @@ static TracksCache *sharedCache;
         return self.trendingSongs;
     }
 }
+
+- (void) shuffleCachedTracks {
+    self.trendingSongs = [self.trendingSongs shuffledArray];
+    self.flirtatiousSongs = [self.flirtatiousSongs shuffledArray];
+    self.nostalgicSongs = [self.nostalgicSongs shuffledArray];
+    self.funnySongs = [self.funnySongs shuffledArray];
+    self.celebrateSongs = [self.celebrateSongs shuffledArray];
+    self.happySongs = [self.happySongs shuffledArray];
+    self.sadSongs = [self.sadSongs shuffledArray];
+    self.hipHopSongs = [self.hipHopSongs shuffledArray];
+    self.rockSongs = [self.rockSongs shuffledArray];
+    self.popSongs = [self.popSongs shuffledArray];
+    self.edmSongs = [self.edmSongs shuffledArray];
+    self.countrySongs = [self.countrySongs shuffledArray];
+    self.latinSongs = [self.latinSongs shuffledArray];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+- (void) shuffleTracksForTrackGroup:(YTTrackGroup*)trackGroup {
+    if ([trackGroup.apiString  isEqual: @"trending_tracks"]) {
+        self.trendingSongs = [self.trendingSongs shuffledArray];
+    } else if ([trackGroup.apiString  isEqual: @"flirtatious_tracks"]) {
+        self.flirtatiousSongs = [self.flirtatiousSongs shuffledArray];
+    } else if ([trackGroup.apiString  isEqual: @"nostalgic_tracks"]) {
+        self.nostalgicSongs = [self.nostalgicSongs shuffledArray];
+    } else if ([trackGroup.apiString  isEqual: @"funny_tracks"]) {
+        self.funnySongs = [self.funnySongs shuffledArray];
+    } else if ([trackGroup.apiString  isEqual: @"celebrate_tracks"]) {
+        self.celebrateSongs = [self.celebrateSongs shuffledArray];
+    } else if ([trackGroup.apiString  isEqual: @"happy_tracks"]) {
+        self.happySongs = [self.happySongs shuffledArray];
+    } else if ([trackGroup.apiString  isEqual: @"sad_tracks"]) {
+        self.sadSongs = [self.sadSongs shuffledArray];
+    } else if ([trackGroup.apiString  isEqual: @"genre_hiphop_tracks"]) {
+        self.hipHopSongs = [self.hipHopSongs shuffledArray];
+    } else if ([trackGroup.apiString  isEqual: @"genre_rock_tracks"]) {
+        self.rockSongs = [self.rockSongs shuffledArray];
+    } else if ([trackGroup.apiString  isEqual: @"genre_pop_tracks"]) {
+        self.popSongs = [self.popSongs shuffledArray];
+    } else if ([trackGroup.apiString  isEqual: @"genre_edm_tracks"]) {
+        self.edmSongs = [self.edmSongs shuffledArray];
+    } else if ([trackGroup.apiString  isEqual: @"genre_country_tracks"]) {
+        self.countrySongs = [self.countrySongs shuffledArray];
+    } else if ([trackGroup.apiString  isEqual: @"genre_latin_tracks"]) {
+        self.latinSongs = [self.latinSongs shuffledArray];
+    }
+}
+*/
 
 @end

@@ -26,12 +26,14 @@
 
 + (TracksCache *) sharedCache;
 
-- (void) shuffleTracksForTrackGroup:(YTTrackGroup*)trackGroup;
-
 - (void) loadTracksForGroup:(YTTrackGroup*)trackGroup withCallback:(TracksCallback)callback;
 
 - (BOOL) haveSongsForTrackGroup:(YTTrackGroup*)trackGroup;
 
 - (NSArray*) cachedSongsForTrackGroup:(YTTrackGroup*)trackGroup;
+
+- (void) shuffleCachedTracks;
+
+//- (void) shuffleTracksForTrackGroup:(YTTrackGroup*)trackGroup;
 
 @end

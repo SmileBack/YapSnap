@@ -55,7 +55,7 @@
     
     [[YapsCache sharedCache] loadYapsWithCallback:nil];
     
-    [[TracksCache sharedCache] loadTracksForGroup:[YTTrackGroup defaultTrackGroup] withCallback:nil];
+    //[[TracksCache sharedCache] loadTracksForGroup:[YTTrackGroup defaultTrackGroup] withCallback:nil];
 
     return YES;
 }

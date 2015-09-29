@@ -78,8 +78,8 @@
     }
     NSLog(@"TRACK GROUP1: %@", self.trackGroup.apiString);
     
-    self.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup]; //[TracksCache sharedCache].trendingSongs;
-    self.songDataSource.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup]; //[TracksCache sharedCache].trendingSongs;
+    self.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup];
+    self.songDataSource.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,20 +108,13 @@
 - (void)setupNotifications {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     
-    [center addObserverForName:UIApplicationWillEnterForegroundNotification//UIApplicationDidBecomeActiveNotification
+    [center addObserverForName:UIApplicationWillEnterForegroundNotification
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        [[TracksCache sharedCache] shuffleTracksForTrackGroup:self.trackGroup];
-                        self.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup]; //[TracksCache sharedCache].trendingSongs;
-                        self.songDataSource.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup]; //[TracksCache sharedCache].trendingSongs;
-                        [self.collectionView reloadData];
-                    }];
-    
-    [center addObserverForName:RELOAD_COLLECTION_VIEW
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
+                        [[TracksCache sharedCache] shuffleCachedTracks];
+                        self.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup];
+                        self.songDataSource.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup];
                         [self.collectionView reloadData];
                     }];
 }
