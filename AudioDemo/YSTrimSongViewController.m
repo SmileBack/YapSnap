@@ -15,7 +15,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "YSSpinnerView.h"
 
-#define SECONDS_PER_CLIP 12.0f
+#define SECONDS_PER_CLIP 14.0f
 
 @interface YSTrimSongViewController ()<UIScrollViewDelegate>
 
