@@ -152,16 +152,28 @@
     if (CGRectGetMaxX(self.playbackBar.frame) > CGRectGetMaxX(self.rightBar.frame)) {
         [self.player pause];
         [self.playbackTimer invalidate];
+        [self loopSong]; //added
     }
 }
 
 - (void)resetPlaybackTimer  {
-    // TODO: Start playback at given point
     [self.playbackTimer invalidate];
     self.playbackXConstraint.constant = 0;
     CGFloat width = CGRectGetMaxX(self.rightBar.frame) - CGRectGetMaxX(self.leftBar.frame);
     self.playbackTimer = [NSTimer scheduledTimerWithTimeInterval:SECONDS_PER_CLIP/width target:self selector:@selector(updatePlaybackBar) userInfo:nil repeats:YES];
 }
+
+- (void)loopSong  {
+    [self.playbackTimer invalidate];
+    self.playbackXConstraint.constant = 0;
+    CGFloat width = CGRectGetMaxX(self.rightBar.frame) - CGRectGetMaxX(self.leftBar.frame);
+    self.playbackTimer = [NSTimer scheduledTimerWithTimeInterval:SECONDS_PER_CLIP/width target:self selector:@selector(updatePlaybackBar) userInfo:nil repeats:YES];
+    
+    [self.player seekToTime:CMTimeMakeWithSeconds([self secondsForContentOffset:self.timeScrollView.contentOffset], NSEC_PER_SEC)];
+    [self.player play];
+}
+
+
 
 #pragma mark - Trim And Upload
 - (void)trim {
