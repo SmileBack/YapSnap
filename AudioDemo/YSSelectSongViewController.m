@@ -84,7 +84,23 @@
 - (IBAction)didPressNext:(YSiTunesUpload *)sender {
     YSTrimSongViewController *vc = [[YSTrimSongViewController alloc] init];
     vc.iTunesUpload = sender;
-    [self.navigationController pushViewController:vc animated:NO];
+    
+    if (vc.iTunesUpload.trackURL) {
+        //[self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController pushViewController:vc animated:NO];
+    } else {
+        NSLog(@"NO TRACK URL!!!");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops, wrong file format"
+                                                        message:@"Try another song!"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    //YSTrimSongViewController *vc = [[YSTrimSongViewController alloc] init];
+    //vc.iTunesUpload = sender;
+    //[self.navigationController pushViewController:vc animated:NO];
 }
 
 #pragma mark - UICollectionViewDelegate/DataSource
