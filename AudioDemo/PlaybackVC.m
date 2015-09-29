@@ -282,8 +282,8 @@
 
 - (void) showAndStartTimer {
     self.countdownTimerLabel.alpha = 1;
-    self.countdownTimerLabel.text = @"12";
-    currSeconds=12;
+    self.countdownTimerLabel.text = @"15";//@"12";
+    currSeconds=15;//12;
     [self startCountdownTimer];
 }
 
@@ -370,7 +370,7 @@
 - (void) timerFired
 {
     self.elapsedTime += TIME_INTERVAL;
-    self.trackLength = 12;
+    self.trackLength = 15;//12;
     CGFloat progress = self.elapsedTime / self.trackLength;
     [self.progressView setProgress:progress];
     
@@ -414,7 +414,8 @@
             
             if ([self.yap.type isEqual:@"VoiceMessage"]) {
                 CGFloat width = self.view.frame.size.width;
-                self.progressViewRemainderWidth = (12 - [self.yap.duration floatValue]) * width/12;
+                //self.progressViewRemainderWidth = (12 - [self.yap.duration floatValue]) * width/12;
+                self.progressViewRemainderWidth = (15 - [self.yap.duration floatValue]) * width/15;
             } else {
                 // DEFAULT TO 12 SECONDS
                 self.progressViewRemainderWidth = 0;

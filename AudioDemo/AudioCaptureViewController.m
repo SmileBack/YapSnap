@@ -48,7 +48,7 @@
 
 @implementation AudioCaptureViewController
 
-static const NSTimeInterval MAX_CAPTURE_TIME = 12.0;
+static const NSTimeInterval MAX_CAPTURE_TIME = 15.0;
 static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
 - (void)viewDidLoad {
@@ -147,7 +147,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
         // Create yap object
         self.yapBuilder = [self.audioSource getYapBuilder];
-        self.yapBuilder.duration = 12;//self.elapsedTime;
+        self.yapBuilder.duration = 15;//12;//self.elapsedTime;
         if (self.contactReplyingTo) {
             self.yapBuilder.contacts = @[ self.contactReplyingTo ];
         }
@@ -158,7 +158,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
         // Create yap object
         self.yapBuilder = [self.audioSource getYapBuilder];
-        self.yapBuilder.duration = 12;//self.elapsedTime;
+        self.yapBuilder.duration = 15;//12;//self.elapsedTime;
         self.yapBuilder.text = @"";
         self.yapBuilder.color = self.view.backgroundColor;
         vc.builder = self.yapBuilder;
@@ -173,7 +173,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         yapsVC.comingFromContactsOrCustomizeYapPage = YES;
 
         self.yapBuilder = [self.audioSource getYapBuilder];
-        self.yapBuilder.duration = 12;//self.elapsedTime;
+        self.yapBuilder.duration = 15;//12;//self.elapsedTime;
         if (self.contactReplyingTo) {
             self.yapBuilder.contacts = @[ self.contactReplyingTo ];
         }

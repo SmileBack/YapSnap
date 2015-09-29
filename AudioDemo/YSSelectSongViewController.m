@@ -239,7 +239,7 @@
     YSTrack *track = [YSTrack trackFromiTunesTrack:iTunesTrack];
     yapBuilder.track = track;
     yapBuilder.messageType = MESSAGE_TYPE_ITUNES;
-    yapBuilder.duration = 12;
+    yapBuilder.duration = 15;//12;
     yapBuilder.awsVoiceEtag = iTunesTrack.awsSongEtag;
     yapBuilder.awsVoiceURL = iTunesTrack.awsSongUrl;
     return yapBuilder;
