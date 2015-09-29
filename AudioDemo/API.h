@@ -27,6 +27,7 @@
 typedef void (^SuccessOrErrorCallback)(BOOL success, NSError *error);
 typedef void (^YapsCallback)(NSArray *yaps, NSError *error);
 typedef void (^TracksCallback)(NSArray *songs, NSError *error);
+typedef void (^UploadedTracksCallback)(NSArray *songs, NSError *error);
 typedef void (^YapCountCallback)(NSNumber *count, NSError *error);
 typedef void (^UserCallback)(YSUser *user, NSError *error);
 typedef void (^FriendsCallback)(NSArray *friends, NSError *error);

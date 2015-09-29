@@ -50,7 +50,7 @@
             [self.view addSubview:self.emptyView];
             [self.emptyView setTranslatesAutoresizingMaskIntoConstraints:NO];
             self.emptyView.titleLabel.text = @"No Recent Tracks";
-            self.emptyView.explanationLabel.text = @"Send your first Yap";
+            self.emptyView.explanationLabel.text = @"Send a Yap";
             [self.view addConstraints:@[[NSLayoutConstraint constraintWithItem:self.emptyView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
                                         [NSLayoutConstraint constraintWithItem:self.emptyView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]]];
         } else {

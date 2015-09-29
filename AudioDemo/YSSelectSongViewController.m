@@ -18,6 +18,7 @@
 #import "YSSpinnerView.h"
 #import "YSSTKAudioPlayerDelegate.h"
 #import "YSTrack.h"
+#import "UploadedTracksCache.h"
 
 @interface YSSelectSongViewController () <UICollectionViewDataSource, UICollectionViewDelegate, STKAudioPlayerDelegate>
 
@@ -56,11 +57,27 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [[API sharedAPI] getItunesTracks:^(NSArray *tracks, NSError *error) {
+    [super viewDidAppear:animated];
+    
+    //self.tracks = [UploadedTracksCache sharedCache].uploadedTracks;
+    //[self loadiTunesTracks];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    self.tracks = [UploadedTracksCache sharedCache].uploadedTracks;
+    [self loadiTunesTracks];
+}
+
+- (void) loadiTunesTracks {
+    __weak YSSelectSongViewController *weakSelf = self;
+    [[UploadedTracksCache sharedCache] loadUploadedTracksWithCallback:^(NSArray *songs, NSError *error) {
         if (error) {
             // TODO: Display error callback
         } else {
-            self.tracks = tracks;
+            weakSelf.tracks = songs;
         }
     }];
 }
