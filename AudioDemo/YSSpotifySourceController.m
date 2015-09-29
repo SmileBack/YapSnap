@@ -117,6 +117,13 @@
                         self.songDataSource.songs = [[TracksCache sharedCache] cachedSongsForTrackGroup:self.trackGroup];
                         [self.collectionView reloadData];
                     }];
+    
+    [center addObserverForName:UIApplicationDidEnterBackgroundNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self stopAudioCapture];
+                    }];
 }
 
 #pragma mark - Setters/Getters

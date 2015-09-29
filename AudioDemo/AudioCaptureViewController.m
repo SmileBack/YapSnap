@@ -126,6 +126,14 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     [center addObserverForName:CANCEL_AUDIO_PLAYBACK object:nil queue:nil usingBlock:^(NSNotification *note) {
         [self.audioSource cancelPlayingAudio];
     }];
+    
+    [center addObserverForName:UIApplicationDidEnterBackgroundNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self setBottomBarVisible:NO animated:NO];
+                    }];
+
 }
 
 - (void)updateProgress {
