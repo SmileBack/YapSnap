@@ -49,7 +49,11 @@
     self.rightBar = UIView.new;
     self.playbackBar = UIView.new;
     
-    self.artworkImageView.image = self.iTunesUpload.artworkImage ? self.iTunesUpload.artworkImage : [UIImage imageNamed:@"CancelImageWhite3"];
+    self.artworkImageView.image = self.iTunesUpload.artworkImage ? self.iTunesUpload.artworkImage : [UIImage imageNamed:@"AlbumImagePlaceholder"];
+    
+    self.artworkImageView.layer.borderWidth = 1;
+    self.artworkImageView.layer.borderColor = [UIColor colorWithWhite:0.85 alpha:1.0].CGColor;
+    self.artworkImageView.clipsToBounds = YES;
     
     self.artworkImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.timeScrollView.backgroundColor = UIColor.clearColor;
@@ -203,7 +207,14 @@
         [pngData writeToFile:filePath atomically:YES];
         return [NSURL fileURLWithPath:filePath];
     } else {
-        return nil;
+        UIImage *image = [UIImage imageNamed:@"AlbumImagePlaceholder"];
+        NSData *pngData = UIImagePNGRepresentation(image);
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsPath = [paths objectAtIndex:0];
+        NSString *filePath = [documentsPath stringByAppendingPathComponent:@"image.png"];
+        [pngData writeToFile:filePath atomically:YES];
+        return [NSURL fileURLWithPath:filePath];
+        //return nil;
     }
 }
 
