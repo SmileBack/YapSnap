@@ -207,13 +207,20 @@
     self.replyLabel.shadowOffset = CGSizeMake(.5, .5);
     self.replyLabel.layer.masksToBounds = NO;
     
+    self.albumLabel.adjustsFontSizeToFitWidth = NO;
+    self.albumLabel.opaque = YES;
+    self.albumLabel.backgroundColor = [UIColor clearColor];
+    self.albumLabel.shadowColor = [UIColor blackColor];
+    self.albumLabel.shadowOffset = CGSizeMake(.5, .5);
+    self.albumLabel.layer.masksToBounds = NO;
+    
     self.yapPhoto.layer.borderWidth = 1;
     self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
     self.yapPhoto.clipsToBounds = YES;
     
     self.progressView.trackTintColor = [UIColor colorWithWhite:0.85 alpha:1.0];
     
-    if ([self.yapBuilder.messageType isEqual:@"SpotifyMessage"]) {
+    if ([self.yapBuilder.messageType isEqual:@"SpotifyMessage"] || [self.yapBuilder.messageType isEqual:@"UploadedMessage"]) {
         self.albumLabel.text = [NSString stringWithFormat:@"%@, by %@", self.yapBuilder.track.name, self.yapBuilder.track.artistName];
     } else {
         self.albumLabel.hidden = YES;
