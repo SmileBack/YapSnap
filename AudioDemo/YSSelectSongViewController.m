@@ -26,6 +26,7 @@
 @property NSArray *tracks;
 @property YSSTKAudioPlayerDelegate *audioPlayerDelegate;
 @property STKAudioPlayer *player;
+@property (strong, nonatomic) YSSpinnerView *spinnerView;
 
 @end
 
@@ -66,9 +67,15 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
     self.tracks = [UploadedTracksCache sharedCache].uploadedTracks;
     [self loadiTunesTracks];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.spinnerView removeFromSuperview];
 }
 
 - (void) loadiTunesTracks {
@@ -170,21 +177,28 @@
         [self pickSongs:nil];
         [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     }
+    
+    // Loading spinner
+    [self.spinnerView removeFromSuperview];
+    self.spinnerView = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    [self.view addSubview:self.spinnerView];
+    self.spinnerView.center = self.view.center;
 }
 
 #pragma mark - MediaPickerDelegate
 
 - (void)mediaPicker:(MPMediaPickerController *)mediaPicker
-    didPickMediaItems:(MPMediaItemCollection *)collection {
+  didPickMediaItems:(MPMediaItemCollection *)collection {
     if (collection.items.count != 1) {
         //TODO what to do if there isn't something selected?
         return;
     }
     
     // Loading spinner
-    YSSpinnerView *spinnerView = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    spinnerView.center = mediaPicker.view.center;
-    [mediaPicker.view addSubview:spinnerView];
+    [self.spinnerView removeFromSuperview];
+    self.spinnerView = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    self.spinnerView.center = mediaPicker.view.center;
+    [mediaPicker.view addSubview:self.spinnerView];
     [mediaPicker.view layoutIfNeeded];
     
     MPMediaItem *item = collection.items[0];
@@ -200,7 +214,7 @@
     upload.artworkImage = image;
     upload.trackURL = [item valueForProperty:MPMediaItemPropertyAssetURL];
     upload.trackDuration = item.playbackDuration;
-
+    
     [self didPressNext:upload];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
