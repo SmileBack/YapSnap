@@ -14,6 +14,10 @@
 @interface YSSongCollectionViewDataSource()
 
 @property STKAudioPlayerState audioState;
+@property (nonatomic, strong) UIImage *songVersionOneButtonImage;
+@property (nonatomic, strong) UIImage *songVersionTwoButtonImage;
+@property (nonatomic, strong) UIImage *albumPlaceholderImage;
+
 
 @end
 
@@ -23,19 +27,9 @@
     YSTrack *track = self.songs[indexPath.row];
     SpotifyTrackCollectionViewCell *trackViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"track" forIndexPath:indexPath];
     SpotifyTrackView *trackView = trackViewCell.trackView;
-    // Set song version button selections
     
-    if (IS_IPHONE_4_SIZE) {
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"SongVersionOneSelectediPhone4.png"] forState:UIControlStateNormal];
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelectediPhone4.png"] forState:UIControlStateNormal];
-    } else if (IS_IPHONE_6_SIZE) {
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"SongVersionOneSelectediPhone6.png"] forState:UIControlStateNormal];
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelectediPhone6.png"] forState:UIControlStateNormal];
-    } else {
-        [trackView.songVersionOneButton setImage:[UIImage imageNamed:@"SongVersionOneSelected.png"] forState:UIControlStateNormal];
-        [trackView.songVersionTwoButton setImage:[UIImage imageNamed:@"TwoNotSelected.png"] forState:UIControlStateNormal];
-    }
-    
+    [trackView.songVersionOneButton setImage:self.songVersionOneButtonImage forState:UIControlStateNormal];
+    [trackView.songVersionTwoButton setImage:self.songVersionTwoButtonImage forState:UIControlStateNormal];
     
     if (track.secondsToFastForward.intValue > 1) {
         NSLog(@"Backend is giving us this info");
@@ -46,9 +40,9 @@
     if (track.albumImageURL && ![track.albumImageURL isEqual:[NSNull null]]) {
         [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.albumImageURL]];
     } else {
-        trackView.imageView.image = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
+        trackView.imageView.image = self.albumPlaceholderImage;
     }
-    
+   
     trackView.songNameLabel.text = track.name;
     [trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
     [trackView.artistButton addTarget:self action:@selector(didTapArtistButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -73,6 +67,7 @@
         trackView.songVersionOneButton.hidden = YES;
         trackView.songVersionTwoButton.hidden = YES;
     }
+    
     
     if ([[collectionView indexPathsForSelectedItems].firstObject isEqual:indexPath]) {
         [self updateCell:trackViewCell withState:self.audioState];
@@ -130,6 +125,47 @@
     } else  if (state == STKAudioPlayerStatePlaying) {
         cell.state = TrackViewCellStatePlaying;
     }
+}
+
+#pragma mark - Image Getters
+- (UIImage *) songVersionOneButtonImage
+{
+    if (!_songVersionOneButtonImage) {
+        
+        if (IS_IPHONE_4_SIZE) {
+            _songVersionOneButtonImage = [UIImage imageNamed:@"SongVersionOneSelectediPhone4.png"];
+        } else if (IS_IPHONE_6_SIZE) {
+            _songVersionOneButtonImage = [UIImage imageNamed:@"SongVersionOneSelectediPhone6.png"];
+        } else {
+            _songVersionOneButtonImage = [UIImage imageNamed:@"SongVersionOneSelected.png"];
+        }
+    }
+    
+    return _songVersionOneButtonImage;
+}
+
+- (UIImage *) songVersionTwoButtonImage
+{
+    if (!_songVersionTwoButtonImage) {
+        
+        if (IS_IPHONE_4_SIZE) {
+            _songVersionTwoButtonImage = [UIImage imageNamed:@"TwoNotSelectediPhone4.png"];
+        } else if (IS_IPHONE_6_SIZE) {
+            _songVersionTwoButtonImage = [UIImage imageNamed:@"TwoNotSelectediPhone6.png"];
+        } else {
+            _songVersionTwoButtonImage = [UIImage imageNamed:@"TwoNotSelected.png"];
+        }
+    }
+    return _songVersionTwoButtonImage;
+}
+
+- (UIImage *) albumPlaceholderImage
+{
+    if (!_albumPlaceholderImage) {
+            _albumPlaceholderImage = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
+    }
+    
+    return _albumPlaceholderImage;
 }
 
 @end
