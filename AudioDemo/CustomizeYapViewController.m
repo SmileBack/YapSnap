@@ -103,11 +103,11 @@
     }
     
     if (self.isReplying || self.isForwardingYap) {
-        [self.topLeftButton setImage:[UIImage imageNamed:@"CancelImageWhite2.png"] forState:UIControlStateNormal];
-        [self.topLeftButton setImage:[UIImage imageNamed:@"CancelImageWhite2.png"] forState:UIControlStateHighlighted];
+        [self.topLeftButton setImage:[UIImage imageNamed:@"CancelImageWhite1000.png"] forState:UIControlStateNormal];
+        [self.topLeftButton setImage:[UIImage imageNamed:@"CancelImageWhite1000.png"] forState:UIControlStateHighlighted];
     } else {
-        [self.topLeftButton setImage:[UIImage imageNamed:@"LeftArrow500.png"] forState:UIControlStateNormal];
-        [self.topLeftButton setImage:[UIImage imageNamed:@"LeftArrow500.png"] forState:UIControlStateHighlighted];
+        [self.topLeftButton setImage:[UIImage imageNamed:@"LeftArrow900.png"] forState:UIControlStateNormal];
+        [self.topLeftButton setImage:[UIImage imageNamed:@"LeftArrow900.png"] forState:UIControlStateHighlighted];
     }
     
     if (self.isReplying) {
@@ -192,7 +192,21 @@
     } else {
         self.titleLabel.text = @"Add Message";
     }
+    
+    self.titleLabel.adjustsFontSizeToFitWidth = NO;
+    self.titleLabel.opaque = YES;
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.shadowColor = [UIColor lightGrayColor];
+    self.titleLabel.shadowOffset = CGSizeMake(1, 1);
+    self.titleLabel.layer.masksToBounds = NO;
 
+    self.replyLabel.adjustsFontSizeToFitWidth = NO;
+    self.replyLabel.opaque = YES;
+    self.replyLabel.backgroundColor = [UIColor clearColor];
+    self.replyLabel.shadowColor = [UIColor grayColor];
+    self.replyLabel.shadowOffset = CGSizeMake(.5, .5);
+    self.replyLabel.layer.masksToBounds = NO;
+    
     self.yapPhoto.layer.borderWidth = 1;
     self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
     self.yapPhoto.clipsToBounds = YES;

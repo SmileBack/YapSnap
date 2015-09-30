@@ -157,7 +157,7 @@
     if (self.yap.spotifyID && ![self.yap.spotifyID isEqual: [NSNull null]] && ([self.yap.spotifyID length] > 10)) {
         self.spotifyButton.hidden = NO;
     } else {
-        self.spotifyButton.hidden = YES;
+        //self.spotifyButton.hidden = YES;
     }
     
     if ([self.yap.type isEqual:@"SpotifyMessage"] || [self.yap.type isEqual:@"UploadedMessage"]) {
@@ -165,6 +165,13 @@
     } else {
         self.albumLabel.text = [NSString stringWithFormat:@"by %@", self.yap.senderName];
     }
+    
+    self.albumLabel.adjustsFontSizeToFitWidth = NO;
+    self.albumLabel.opaque = YES;
+    self.albumLabel.backgroundColor = [UIColor clearColor];
+    self.albumLabel.shadowColor = [UIColor blackColor];
+    self.albumLabel.shadowOffset = CGSizeMake(.5, .5);
+    self.albumLabel.layer.masksToBounds = NO;
     
     if (IS_IPHONE_4_SIZE) {
         self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:32];
