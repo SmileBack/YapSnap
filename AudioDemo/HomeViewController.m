@@ -214,6 +214,7 @@
         weakSelf.searchBar.text = nil;
         [weakSelf textFieldDidChange:self.searchBar];
         [weakSelf.searchBar resignFirstResponder];
+        [self.topLeftButton setImage:[UIImage imageNamed:@"SettingsIconWhite8"] forState:UIControlStateNormal];
     }];
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
