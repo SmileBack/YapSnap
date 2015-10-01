@@ -134,8 +134,10 @@
     NSLog(@"-CGRectGetMaxX(self.leftBar.frame: %f", -CGRectGetMaxX(self.leftBar.frame));
     [self loopSong]; // added this to fix bug where sometimes you'd go back to this page and bar would be stuck
     [self.player play];
+    
     self.effectView.alpha = 0;
     self.timeLabel.alpha = 0;
+    self.view.userInteractionEnabled = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -146,6 +148,7 @@
     if (!self.didSelectTrack) {
         [self cancelPlayingAudio];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_BOTTOM_BAR_NOTIFICATION object:nil];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -354,9 +357,13 @@
     self.didSelectTrack = YES;
     [self.spinner removeFromSuperview];
     self.spinner = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    self.spinner.center = self.artworkImageView.center;
     [self.view addSubview:self.spinner];
-    self.spinner.center = self.view.center;
     [self trim];
+    
+    self.view.userInteractionEnabled = NO;
+    [self.player pause];
+    [self.playbackTimer invalidate];
 }
 
 - (NSString *)currentAudioDescription {

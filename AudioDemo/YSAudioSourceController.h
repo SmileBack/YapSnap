@@ -13,6 +13,7 @@
 #define CAPTURE_THRESHOLD .8 //seconds
 #define DID_START_AUDIO_CAPTURE_NOTIFICATION @"com.yapsnap.StartAudioCaptureLoadingSpinnerNotification"
 #define WILL_START_AUDIO_CAPTURE_NOTIFICATION @"com.yapsnap.WillStartAudioCaptureLoadingSpinnerNotification"
+#define HIDE_BOTTOM_BAR_NOTIFICATION @"HideBottomBarNotification"
 
 @protocol YSAudioSource;
 

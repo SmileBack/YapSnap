@@ -134,7 +134,14 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
                         [self.audioSource cancelPlayingAudio];
                         [self audioSourceControllerdidCancelAudioCapture:self.audioSource];
                     }];
-
+    
+    // This is a hack
+    [center addObserverForName:HIDE_BOTTOM_BAR_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self setBottomBarVisible:NO animated:NO];
+                    }];
 }
 
 - (void)updateProgress {
