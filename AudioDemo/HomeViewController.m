@@ -174,7 +174,7 @@
         [self.searchOverlay addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelSearch)]];
         [self.view addSubview:self.searchOverlay];
         [UIView animateWithDuration:0.3 animations:^{
-            self.searchOverlay.alpha = 0.5;
+            self.searchOverlay.alpha = 0.75;
         }];
         self.audioCapture.categorySelectorView.isInactive = YES;
     }
