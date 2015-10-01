@@ -102,7 +102,7 @@
     track.artistName = itunesTrack.artistName;
     track.albumName = itunesTrack.albumName;
     track.genreName = itunesTrack.genreName;
-    track.albumImageURL = itunesTrack.awsAlbumImageUrl; //Added this
+    track.albumImageURL = itunesTrack.awsAlbumImageUrl;
     return track;
 }
 

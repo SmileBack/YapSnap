@@ -14,6 +14,8 @@
 #import <StreamingKit/STKAudioPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 #import "YSSpinnerView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 
 #define SECONDS_PER_CLIP 14.0f
 
@@ -54,7 +56,8 @@
     self.leftBar = UIView.new;
     self.rightBar = UIView.new;
     self.playbackBar = UIView.new;
-    
+
+    //[self.artworkImageView sd_setImageWithURL:[self albumImageNSURL]];
     self.artworkImageView.image = self.iTunesUpload.artworkImage ? self.iTunesUpload.artworkImage : [UIImage imageNamed:@"AlbumImagePlaceholder"];
     
     self.artworkImageView.layer.borderWidth = 1;
@@ -275,7 +278,7 @@
     }];
 }
 
-- (NSURL *)saveImage {
+- (NSURL *)albumImageNSURL {
     if (self.iTunesUpload.artworkImage) {
         NSData *pngData = UIImagePNGRepresentation(self.iTunesUpload.artworkImage);
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -298,7 +301,7 @@
 
 - (void)uploadArtwork {
     NSLog(@"Uploading artwork.");
-    NSURL *url = [self saveImage];
+    NSURL *url = [self albumImageNSURL];
     if (url) {
         __weak YSTrimSongViewController *weakSelf = self;
         AmazonAPI *amazonAPI = [AmazonAPI sharedAPI];
@@ -395,8 +398,7 @@
     yapBuilder.track = track;
     yapBuilder.awsVoiceEtag = self.itunesTrack.awsSongEtag;
     yapBuilder.awsVoiceURL = self.itunesTrack.awsSongUrl;
-    // check whether song or artist name is null here
-    //
+
     return yapBuilder;
 }
 
