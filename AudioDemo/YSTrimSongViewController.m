@@ -29,7 +29,13 @@
 @property (strong, nonatomic) NSTimer *playbackTimer;
 @property (strong, nonatomic) NSLayoutConstraint *playbackXConstraint;
 @property (strong, nonatomic) YSSpinnerView *spinner;
+@property (strong, nonatomic) UILabel *timeLabel;
 @property BOOL didSelectTrack;
+@property (strong, nonatomic) UIVisualEffectView *effectView;
+@property (nonatomic) int durationInSeconds;
+@property (nonatomic) int minutes;
+@property (nonatomic) int seconds;
+
 
 @end
 
@@ -107,12 +113,29 @@
     [self.timeScrollView addConstraint:[NSLayoutConstraint constraintWithItem:plot attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:widthOfContent]];
     [self.view layoutIfNeeded];
     self.timeScrollView.contentInset = UIEdgeInsetsMake(0, CGRectGetMaxX(self.leftBar.frame), 0, CGRectGetMaxX(self.leftBar.frame));
+    
+    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 300)/2, 90, 300, 100)];
+    self.timeLabel.text = @"O";
+    self.timeLabel.textColor = [UIColor whiteColor];
+    self.timeLabel.textAlignment = NSTextAlignmentCenter;
+    self.timeLabel.font = [UIFont fontWithName:@"Futura-Medium" size:90];
+    self.timeLabel.adjustsFontSizeToFitWidth = NO;
+    self.timeLabel.opaque = YES;
+    self.timeLabel.shadowColor = [UIColor blackColor];
+    self.timeLabel.shadowOffset = CGSizeMake(1, 1);
+    self.timeLabel.layer.masksToBounds = NO;
+    
+    [self.view addSubview:self.timeLabel];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.audioCaptureDelegate audioSourceControllerWillStartAudioCapture:self];
     self.timeScrollView.contentOffset = CGPointMake(-CGRectGetMaxX(self.leftBar.frame), 0); // This triggers the playback view moving
+    NSLog(@"-CGRectGetMaxX(self.leftBar.frame: %f", -CGRectGetMaxX(self.leftBar.frame));
+    [self loopSong]; // added this to fix bug where sometimes you'd go back to this page and bar would be stuck
     [self.player play];
+    self.effectView.alpha = 0;
+    self.timeLabel.alpha = 0;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -130,22 +153,69 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self resetPlaybackTimer];
     [self.player pause];
+    
+    self.effectView.alpha = 1;
+    self.timeLabel.alpha = 1;
+
+    self.durationInSeconds = MAX(0, ((self.timeScrollView.contentOffset.x/self.timeScrollView.contentSize.width) * self.iTunesUpload.trackDuration));
+    self.minutes = self.durationInSeconds / 60;
+    self.seconds = self.durationInSeconds % 60;
+    
+    self.timeLabel.text = [NSString stringWithFormat:@"%d:%02d", self.minutes, self.seconds];
+    
+    //self.timeLabel.text = [NSString stringWithFormat: @"%.0f", durationNoNegatives];
 }
 
 - (NSTimeInterval)secondsForContentOffset:(CGPoint)offset {
+    NSLog(@"Seconds2: %f", (self.timeScrollView.contentOffset.x/self.timeScrollView.contentSize.width) * self.iTunesUpload.trackDuration);
+
+    //self.timeLabel.text = [NSString stringWithFormat: @"%f", (self.timeScrollView.contentOffset.x/self.timeScrollView.contentSize.width) * self.iTunesUpload.trackDuration];
+    
     return (self.timeScrollView.contentOffset.x/self.timeScrollView.contentSize.width) * self.iTunesUpload.trackDuration;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    NSLog(@"WILL BEGIN DRAGGING");
+    
+    [self.effectView removeFromSuperview];
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    self.effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+    self.effectView.frame =  CGRectMake(0, 0, 2208, 2208); // 2208 is as big as iphone plus height
+    [self.artworkImageView addSubview:self.effectView];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     [self resetPlaybackTimer];
     [self.player seekToTime:CMTimeMakeWithSeconds([self secondsForContentOffset:self.timeScrollView.contentOffset], NSEC_PER_SEC)];
     [self.player play];
+    
+    [UIView animateWithDuration:.5
+                     animations:^(void) {
+                         self.effectView.alpha = 0;
+                     }];
+    
+    [UIView animateWithDuration:.2
+                     animations:^(void) {
+                         self.timeLabel.alpha = 0;
+                     }];
+    
+    NSLog(@"DID END DRAGGING");
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self resetPlaybackTimer];
     [self.player seekToTime:CMTimeMakeWithSeconds([self secondsForContentOffset:self.timeScrollView.contentOffset], NSEC_PER_SEC)];
     [self.player play];
+    
+    [UIView animateWithDuration:.5
+                     animations:^(void) {
+                         self.effectView.alpha = 0;
+                     }];
+    
+    [UIView animateWithDuration:.2
+                     animations:^(void) {
+                         self.timeLabel.alpha = 0;
+                     }];
 }
 
 #pragma mark - Playback
@@ -164,6 +234,7 @@
     [self.playbackTimer invalidate];
     self.playbackXConstraint.constant = 0;
     CGFloat width = CGRectGetMaxX(self.rightBar.frame) - CGRectGetMaxX(self.leftBar.frame);
+    
     self.playbackTimer = [NSTimer scheduledTimerWithTimeInterval:SECONDS_PER_CLIP/width target:self selector:@selector(updatePlaybackBar) userInfo:nil repeats:YES];
 }
 

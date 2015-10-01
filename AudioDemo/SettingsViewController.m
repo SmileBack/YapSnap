@@ -169,7 +169,7 @@
         }];
     } else if ([CLEAR_YAPS_SECTION isEqualToString:section]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Clear All Yaps"
-                                                        message:@"Are you sure you want to clear your yaps? This includes yaps you haven't yet opened!"
+                                                        message:@"Are you sure you want to clear your yaps? This includes yaps you haven't yet opened, and will also clear your 'Recent' tab."
                                                        delegate:self
                                               cancelButtonTitle:@"No"
                                               otherButtonTitles:@"Yes", nil];

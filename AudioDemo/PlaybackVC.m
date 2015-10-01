@@ -47,8 +47,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *countdownTimerLabel;
 
-@property (strong, nonatomic) IBOutlet UIView *blurView;
-
 // nil means we don't know yet. YES/NO means the backend told us.
 @property (nonatomic, strong) NSNumber *isFromFriend;
 

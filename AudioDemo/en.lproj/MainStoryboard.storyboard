@@ -843,7 +843,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="260D48CD-9BF4-435E-A1DF-204F0D3B4D31"/>
+                                <state key="normal" backgroundImage="8125B699-CF7B-4246-B60A-A66E42D91C12"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1808,7 +1808,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="260D48CD-9BF4-435E-A1DF-204F0D3B4D31" width="300" height="300">
+        <image name="8125B699-CF7B-4246-B60A-A66E42D91C12" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -7899,9 +7899,9 @@ A
         <image name="YellowStar.png" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="czb-n6-hbf"/>
-        <segue reference="eDP-Ek-kdM"/>
+        <segue reference="syO-tE-hvG"/>
+        <segue reference="JlX-pb-AK5"/>
         <segue reference="Q0Z-rg-Tpo"/>
-        <segue reference="rVt-9v-iFr"/>
+        <segue reference="eDP-Ek-kdM"/>
     </inferredMetricsTieBreakers>
 </document>
