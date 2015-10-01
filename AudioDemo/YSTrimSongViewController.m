@@ -114,7 +114,11 @@
     [self.view layoutIfNeeded];
     self.timeScrollView.contentInset = UIEdgeInsetsMake(0, CGRectGetMaxX(self.leftBar.frame), 0, CGRectGetMaxX(self.leftBar.frame));
     
-    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 300)/2, 90, 300, 100)];
+    float timeLabelHeight = 80;
+    float timeLabelXPosition = (self.view.frame.size.width - 300)/2;
+    float timeLabelYPosition = self.artworkImageView.frame.origin.y + self.artworkImageView.frame.size.height/2 - (timeLabelHeight/2);
+
+    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(timeLabelXPosition, timeLabelYPosition-10, 300, timeLabelHeight)];
     self.timeLabel.text = @"O";
     self.timeLabel.textColor = [UIColor whiteColor];
     self.timeLabel.textAlignment = NSTextAlignmentCenter;
@@ -192,12 +196,12 @@
     [self.player seekToTime:CMTimeMakeWithSeconds([self secondsForContentOffset:self.timeScrollView.contentOffset], NSEC_PER_SEC)];
     [self.player play];
     
-    [UIView animateWithDuration:.5
+    [UIView animateWithDuration:.8
                      animations:^(void) {
                          self.effectView.alpha = 0;
                      }];
     
-    [UIView animateWithDuration:.2
+    [UIView animateWithDuration:.5
                      animations:^(void) {
                          self.timeLabel.alpha = 0;
                      }];
@@ -210,12 +214,12 @@
     [self.player seekToTime:CMTimeMakeWithSeconds([self secondsForContentOffset:self.timeScrollView.contentOffset], NSEC_PER_SEC)];
     [self.player play];
     
-    [UIView animateWithDuration:.5
+    [UIView animateWithDuration:.8
                      animations:^(void) {
                          self.effectView.alpha = 0;
                      }];
     
-    [UIView animateWithDuration:.2
+    [UIView animateWithDuration:.5
                      animations:^(void) {
                          self.timeLabel.alpha = 0;
                      }];
