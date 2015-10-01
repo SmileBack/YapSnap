@@ -240,7 +240,7 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                       if (!weakSelf.didSeeWelcomePopup) {
-                          [weakSelf showWelcomePopup];
+                          //[weakSelf showWelcomePopup];
                       }
                     }];
 
