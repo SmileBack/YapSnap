@@ -419,7 +419,7 @@
       self.welcomePopupVC = [[WelcomePopupViewController alloc] initWithNibName:@"WelcomePopupViewController" bundle:nil];
       [self presentPopupViewController:self.welcomePopupVC animationType:MJPopupViewAnimationSlideTopTop];
 
-      //[[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_SEND_YAP_POPUP_KEY];
+      [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_SEND_YAP_POPUP_KEY];
     });
 }
 
