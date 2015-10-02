@@ -106,6 +106,8 @@
 		781C00891B7E6AA800525B12 /* YSSongCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C00881B7E6AA800525B12 /* YSSongCollectionViewDataSource.m */; };
 		7828A8DC1A846C0C00BAA609 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7828A8DB1A846C0C00BAA609 /* MessageUI.framework */; };
 		78299E981BBE4070001961C7 /* AlbumImagePlaceholder2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E971BBE4070001961C7 /* AlbumImagePlaceholder2.png */; settings = {ASSET_TAGS = (); }; };
+		78299E9A1BBF3F49001961C7 /* YapIconUnopenedSent100.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E991BBF3F49001961C7 /* YapIconUnopenedSent100.png */; settings = {ASSET_TAGS = (); }; };
+		78299E9C1BBF3FBC001961C7 /* YapIconOpenedSent100.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E9B1BBF3FBC001961C7 /* YapIconOpenedSent100.png */; settings = {ASSET_TAGS = (); }; };
 		782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */ = {isa = PBXBuildFile; fileRef = 782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */; };
 		782D13441ACB8349007C8499 /* YapIconUnopenedSent.png in Resources */ = {isa = PBXBuildFile; fileRef = 782D13431ACB8349007C8499 /* YapIconUnopenedSent.png */; };
 		782D13491ACB8B7A007C8499 /* YapIconOpenedSent3.png in Resources */ = {isa = PBXBuildFile; fileRef = 782D13481ACB8B7A007C8499 /* YapIconOpenedSent3.png */; };
@@ -473,6 +475,8 @@
 		781C00881B7E6AA800525B12 /* YSSongCollectionViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSongCollectionViewDataSource.m; sourceTree = "<group>"; };
 		7828A8DB1A846C0C00BAA609 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		78299E971BBE4070001961C7 /* AlbumImagePlaceholder2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumImagePlaceholder2.png; sourceTree = "<group>"; };
+		78299E991BBF3F49001961C7 /* YapIconUnopenedSent100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconUnopenedSent100.png; sourceTree = "<group>"; };
+		78299E9B1BBF3FBC001961C7 /* YapIconOpenedSent100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconOpenedSent100.png; sourceTree = "<group>"; };
 		782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder10.png; sourceTree = "<group>"; };
 		782D13431ACB8349007C8499 /* YapIconUnopenedSent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconUnopenedSent.png; sourceTree = "<group>"; };
 		782D13481ACB8B7A007C8499 /* YapIconOpenedSent3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconOpenedSent3.png; sourceTree = "<group>"; };
@@ -1055,10 +1059,12 @@
 			children = (
 				78439FAF1AE6EF46004CFB5F /* OpenGift700.png */,
 				7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */,
+				78299E9B1BBF3FBC001961C7 /* YapIconOpenedSent100.png */,
 				782D13481ACB8B7A007C8499 /* YapIconOpenedSent3.png */,
 				782D13431ACB8349007C8499 /* YapIconUnopenedSent.png */,
 				782D139F1ACC605D007C8499 /* YapsIconReceivedOpened.png */,
 				782D13A31ACC6274007C8499 /* YapsIconReceivedUnopened2.png */,
+				78299E991BBF3F49001961C7 /* YapIconUnopenedSent100.png */,
 			);
 			name = "Yap Page";
 			sourceTree = "<group>";
@@ -2068,10 +2074,12 @@
 				7861928C1B0EA528007279E8 /* CartooniPhone6@2x.png in Resources */,
 				7891233A1B2E959000894201 /* SpotifyIconWhite2.png in Resources */,
 				783CCFBD1B3CF16200E3B5BF /* LeftArrow400.png in Resources */,
+				78299E9A1BBF3F49001961C7 /* YapIconUnopenedSent100.png in Resources */,
 				78C1C30E1B26AE3C00C6CBCA /* ResetButton100@2x.png in Resources */,
 				788363871AD785FB001CBD1B /* OneNotSelected@3x.png in Resources */,
 				78A2E8641ACC7FB100B5A404 /* YapsButton100.png in Resources */,
 				782D13491ACB8B7A007C8499 /* YapIconOpenedSent3.png in Resources */,
+				78299E9C1BBF3FBC001961C7 /* YapIconOpenedSent100.png in Resources */,
 				78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */,
 				783714E31BAE1B8D0005CC04 /* ProgressViewRedNew50@2x.png in Resources */,
 				780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */,
