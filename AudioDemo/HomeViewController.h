@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *yapsPageButton;
 
 - (IBAction)didTapYapsPageButton;
+- (IBAction)didTapOverlayButton;
 - (IBAction)leftButtonPressed:(id)sender;
 
 

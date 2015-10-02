@@ -28,6 +28,13 @@
 @property (weak, nonatomic) AudioCaptureViewController *audioCapture;
 @property (strong, nonatomic) UIView *searchOverlay;
 @property (weak, nonatomic) IBOutlet UIView *container;
+@property (weak, nonatomic) IBOutlet UIView *overlayView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *overlayBottomConstraint;
+@property (strong, nonatomic) IBOutlet UIButton *overlayButton;
+@property (nonatomic, strong) IBOutlet UILabel *overlayTitleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *overlayLabel1;
+@property (nonatomic, strong) IBOutlet UILabel *overlayLabel2;
+@property (nonatomic, strong) IBOutlet UILabel *overlayLabel3;
 
 @end
 
@@ -63,6 +70,17 @@
 
     self.resetButton.alpha = 0;
     self.pageLabel.textColor = THEME_SECONDARY_COLOR;
+    
+    float height = self.view.frame.size.height;
+    NSLog(@"Height: %f", height);
+
+    self.overlayTitleLabel.alpha = 0;
+    self.overlayLabel1.alpha = 0;
+    self.overlayLabel2.alpha = 0;
+    self.overlayLabel3.alpha = 0;
+    self.overlayButton.alpha = 0;
+    
+    [self showOverlay];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -87,6 +105,60 @@
     self.topLeftButton.alpha = 1;
     self.yapsPageButton.alpha = 1;
     self.pageLabel.alpha = 1;
+}
+
+- (void) showOverlay {
+    self.overlayBottomConstraint.constant = -self.view.frame.size.height;
+    [self.view layoutIfNeeded];
+    [UIView animateWithDuration:1.0
+                          delay:1.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         // Make all constraint changes here
+                         self.overlayBottomConstraint.constant = 0;
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:nil];
+    
+    [UIView animateWithDuration:1
+                          delay:2
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.overlayTitleLabel.alpha = 1;
+                     }
+                     completion:nil];
+    
+    [UIView animateWithDuration:1
+                          delay:3
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.overlayLabel1.alpha = 1;
+                     }
+                     completion:nil];
+    
+    [UIView animateWithDuration:1
+                          delay:4
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.overlayLabel2.alpha = 1;
+                     }
+                     completion:nil];
+    
+    [UIView animateWithDuration:1
+                          delay:5
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.overlayLabel3.alpha = 1;
+                     }
+                     completion:nil];
+    
+    [UIView animateWithDuration:1
+                          delay:6
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.overlayButton.alpha = 1;
+                     }
+                     completion:nil];
 }
 
 #pragma mark - Search box stuff
@@ -241,6 +313,17 @@
                     usingBlock:^(NSNotification *note) {
                       if (!weakSelf.didSeeWelcomePopup) {
                           //[weakSelf showWelcomePopup];
+                          [UIView animateWithDuration:2
+                                                delay:0
+                                              options:UIViewAnimationOptionCurveEaseOut
+                                           animations:^{
+                                               self.overlayView.alpha = 1;
+                                           }
+                                           completion:^(BOOL finished) {
+                                               
+                                           }];
+                          
+                          
                       }
                     }];
 
@@ -451,6 +534,10 @@
     } else {
         [self.topLeftButton addTarget:self action:@selector(leftButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
+}
+
+- (void) didTapOverlayButton {
+    self.overlayView.alpha = 0;
 }
 
 @end
