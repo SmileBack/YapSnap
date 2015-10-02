@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 //TODO: REMOVE
-#define COMPLETED_REGISTRATION_NOTIFICATION @"com.yapsnap.CompletedRegistrationNotification"
+#define COMPLETED_REGISTRATION_NOTIFICATION @"com.yapsnap.CompletedRegistrationNotification2"
 
 
 @interface EnterCodeViewController ()
@@ -128,8 +128,7 @@
                 } else {
                     [self.view endEditing:YES];
                     
-                    //TODO: REMOVE
-                    [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETED_REGISTRATION_NOTIFICATION object:nil];
+                    //[[NSNotificationCenter defaultCenter] postNotificationName:COMPLETED_REGISTRATION_NOTIFICATION object:nil];
                     
                     [self dismissViewControllerAnimated:YES completion:nil];
                 }

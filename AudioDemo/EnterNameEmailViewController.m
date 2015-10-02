@@ -12,7 +12,7 @@
 #import "UIViewController+Alerts.h"
 #import "AppDelegate.h"
 
-#define COMPLETED_REGISTRATION_NOTIFICATION @"com.yapsnap.CompletedRegistrationNotification"
+#define COMPLETED_REGISTRATION_NOTIFICATION @"com.yapsnap.CompletedRegistrationNotification2"
 
 @interface EnterNameEmailViewController ()
 
