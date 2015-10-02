@@ -332,10 +332,18 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        //[weakSelf showWelcomePopup];
                       if (!weakSelf.didSeeWelcomeOverlay) {
                         [self showOverlay];
                       }
+                    }];
+    
+    [center addObserverForName:SHOW_SEND_YAP_POPUP
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        if (!weakSelf.didSeeSendYapPopup) {
+                            [weakSelf showSendYapPopup];
+                        }
                     }];
 
     [center addObserverForName:UIApplicationDidBecomeActiveNotification
@@ -404,18 +412,16 @@
     return self.contactReplyingTo != nil;
 }
 
-/*
-- (void)showWelcomePopup {
+- (void)showSendYapPopup {
     NSLog(@"tapped Welcome Popup");
-    double delay = 1;
+    double delay = .5;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
       self.welcomePopupVC = [[WelcomePopupViewController alloc] initWithNibName:@"WelcomePopupViewController" bundle:nil];
       [self presentPopupViewController:self.welcomePopupVC animationType:MJPopupViewAnimationSlideTopTop];
 
-      [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_WELCOME_POPUP_KEY];
+      //[[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_SEND_YAP_POPUP_KEY];
     });
 }
- */
 
 - (void)setupNavBarStuff {
     if ([self isInReplyMode]) {
@@ -505,6 +511,10 @@
 
 - (BOOL)didSeeWelcomeOverlay {
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_OVERLAY_KEY];
+}
+
+- (BOOL)didSeeSendYapPopup {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_SEND_YAP_POPUP_KEY];
 }
 
 #pragma mark - Feedback

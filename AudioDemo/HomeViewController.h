@@ -22,6 +22,8 @@
 #define WILL_START_AUDIO_CAPTURE_NOTIFICATION @"com.yapsnap.WillStartAudioCaptureLoadingSpinnerNotification"
 #define LISTENED_TO_CLIP_NOTIFICATION @"com.yapsnap.ListenedToClipNotification"
 #define RESET_BANNER_UI @"com.yapsnap.ResetSpotifyUINotification"
+#define SHOW_SEND_YAP_POPUP @"com.yapsnap.SendYapPopupNotification"
+#define DID_SEE_SEND_YAP_POPUP_KEY @"yaptap.DidSeeSendYapPopupKey"
 
 @interface HomeViewController : UIViewController<MFMailComposeViewControllerDelegate>
 

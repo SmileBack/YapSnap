@@ -47,8 +47,10 @@
 @property (nonatomic, strong) NSString *titleString;
 @property (strong, nonatomic) YTUnregisteredUserSMSInviter *unregisteredUserSMSInviter;
 @property (assign, nonatomic) BOOL smsAlertWasAlreadyPrompted;
+@property (strong, nonatomic) IBOutlet UIButton *sendYapButton;
 
 - (IBAction)didTapSettingsButton;
+- (IBAction)didTapSendYapButton;
 
 @end
 
@@ -128,6 +130,14 @@ static NSString *CellIdentifier = @"Cell";
     [self.pushNotificationsView addGestureRecognizer:tappedPushNotificationsView];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.pushNotificationsView.backgroundColor = THEME_BACKGROUND_COLOR;
+    
+    self.sendYapButton.layer.cornerRadius = 8;
+    self.sendYapButton.layer.borderWidth = 1;
+    self.sendYapButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.sendYapButton.backgroundColor = THEME_RED_COLOR;
+    self.sendYapButton.hidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -193,6 +203,16 @@ static NSString *CellIdentifier = @"Cell";
             } else {
                 self.titleString = @"Your Yaps";
                 [self updateTitleLabel];
+            }
+            
+            if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
+                if (yaps.count < 4) {
+                    self.sendYapButton.hidden = NO;
+                }
+            } else {
+                if (yaps.count < 5) {
+                    self.sendYapButton.hidden = NO;
+                }
             }
         } else {
             NSLog(@"Error! %@", error);
@@ -726,6 +746,16 @@ static NSString *CellIdentifier = @"Cell";
     self.settingsButton.enabled = NO;
     //[self performSegueWithIdentifier:@"Settings Segue" sender:nil];
     [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
+}
+
+- (IBAction)didTapSendYapButton
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_SEND_YAP_POPUP object:nil];
+    if (self.comingFromContactsOrCustomizeYapPage) {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - Image Getters
