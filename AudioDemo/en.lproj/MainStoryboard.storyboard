@@ -273,10 +273,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3m-2W-SMb" customClass="BButton">
-                                        <rect key="frame" x="37" y="466" width="246" height="38"/>
+                                        <rect key="frame" x="21" y="462" width="278" height="42"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="246" id="jY7-go-G29"/>
-                                            <constraint firstAttribute="height" constant="38" id="rgg-fG-mJD"/>
+                                            <constraint firstAttribute="width" constant="278" id="jY7-go-G29"/>
+                                            <constraint firstAttribute="height" constant="42" id="rgg-fG-mJD"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <state key="normal" title="I'm Ready!">
@@ -343,12 +343,14 @@
                         <outlet property="overlayBottomConstraint" destination="wrM-rg-Oq3" id="wsF-Ra-d43"/>
                         <outlet property="overlayButton" destination="Z3m-2W-SMb" id="Mcl-kw-f6K"/>
                         <outlet property="overlayLabel1" destination="tbL-u5-3D4" id="ZFN-iQ-kU6"/>
+                        <outlet property="overlayLabel1Constraint" destination="YcC-Ul-si2" id="Hee-2P-kjC"/>
                         <outlet property="overlayLabel2" destination="umm-zj-XKz" id="W99-Ak-sNg"/>
                         <outlet property="overlayLabel3" destination="zTk-7T-DVD" id="YKe-hl-0Ln"/>
                         <outlet property="overlayTitleLabel" destination="rVv-Vd-rWv" id="XGa-Xa-9Ek"/>
                         <outlet property="overlayView" destination="bni-ui-Ij7" id="ZCs-6t-rHB"/>
                         <outlet property="resetButton" destination="70i-RM-Ppe" id="iK5-ZN-IKi"/>
                         <outlet property="searchBar" destination="vzC-C0-gCC" id="xvn-xc-M6j"/>
+                        <outlet property="titleLabelConstraint" destination="Lk9-0X-2VL" id="WWb-TL-sTn"/>
                         <outlet property="topLeftButton" destination="yjE-ev-SsG" id="D5w-gs-u5p"/>
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="AEp-MY-7pq"/>
@@ -935,7 +937,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="98554CA1-4FC8-4EA8-B14F-B52EE03FDCEA"/>
+                                <state key="normal" backgroundImage="8371369D-3631-4A10-8D56-5DB7B7751825"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1900,7 +1902,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="98554CA1-4FC8-4EA8-B14F-B52EE03FDCEA" width="300" height="300">
+        <image name="8371369D-3631-4A10-8D56-5DB7B7751825" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

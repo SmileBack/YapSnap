@@ -162,7 +162,7 @@
 - (UIImage *) albumPlaceholderImage
 {
     if (!_albumPlaceholderImage) {
-            _albumPlaceholderImage = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
+            _albumPlaceholderImage = [UIImage imageNamed:@"AlbumImagePlaceholder2.png"];
     }
     
     return _albumPlaceholderImage;

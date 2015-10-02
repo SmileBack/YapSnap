@@ -30,6 +30,8 @@
 @property (weak, nonatomic) IBOutlet UIView *container;
 @property (weak, nonatomic) IBOutlet UIView *overlayView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *overlayBottomConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *titleLabelConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *overlayLabel1Constraint;
 @property (strong, nonatomic) IBOutlet UIButton *overlayButton;
 @property (nonatomic, strong) IBOutlet UILabel *overlayTitleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *overlayLabel1;
@@ -74,13 +76,7 @@
     float height = self.view.frame.size.height;
     NSLog(@"Height: %f", height);
 
-    self.overlayTitleLabel.alpha = 0;
-    self.overlayLabel1.alpha = 0;
-    self.overlayLabel2.alpha = 0;
-    self.overlayLabel3.alpha = 0;
-    self.overlayButton.alpha = 0;
-    
-    [self showOverlay];
+    [self setupOverlayStuff];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -105,6 +101,31 @@
     self.topLeftButton.alpha = 1;
     self.yapsPageButton.alpha = 1;
     self.pageLabel.alpha = 1;
+}
+
+- (void) setupOverlayStuff {
+    self.overlayView.alpha = 0;
+    self.overlayTitleLabel.alpha = 0;
+    self.overlayLabel1.alpha = 0;
+    self.overlayLabel2.alpha = 0;
+    self.overlayLabel3.alpha = 0;
+    self.overlayButton.alpha = 0;
+    
+    if (IS_IPHONE_6_SIZE) {
+        self.overlayTitleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:48];
+        self.overlayLabel1.font = [UIFont fontWithName:@"Futura-Medium" size:26];
+        self.overlayLabel2.font = [UIFont fontWithName:@"Futura-Medium" size:26];
+        self.overlayLabel3.font = [UIFont fontWithName:@"Futura-Medium" size:26];
+        self.titleLabelConstraint.constant = 85;
+        self.overlayLabel1Constraint.constant = 70;
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        self.overlayTitleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:52];
+        self.overlayLabel1.font = [UIFont fontWithName:@"Futura-Medium" size:28];
+        self.overlayLabel2.font = [UIFont fontWithName:@"Futura-Medium" size:28];
+        self.overlayLabel3.font = [UIFont fontWithName:@"Futura-Medium" size:28];
+        self.titleLabelConstraint.constant = 100;
+        self.overlayLabel1Constraint.constant = 80;
+    }
 }
 
 - (void) showOverlay {
@@ -311,19 +332,9 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                      if (!weakSelf.didSeeWelcomePopup) {
-                          //[weakSelf showWelcomePopup];
-                          [UIView animateWithDuration:2
-                                                delay:0
-                                              options:UIViewAnimationOptionCurveEaseOut
-                                           animations:^{
-                                               self.overlayView.alpha = 1;
-                                           }
-                                           completion:^(BOOL finished) {
-                                               
-                                           }];
-                          
-                          
+                        //[weakSelf showWelcomePopup];
+                      if (!weakSelf.didSeeWelcomeOverlay) {
+                        [self showOverlay];
                       }
                     }];
 
@@ -393,6 +404,7 @@
     return self.contactReplyingTo != nil;
 }
 
+/*
 - (void)showWelcomePopup {
     NSLog(@"tapped Welcome Popup");
     double delay = 1;
@@ -403,6 +415,7 @@
       [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_WELCOME_POPUP_KEY];
     });
 }
+ */
 
 - (void)setupNavBarStuff {
     if ([self isInReplyMode]) {
@@ -490,8 +503,8 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
 }
 
-- (BOOL)didSeeWelcomePopup {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_POPUP_KEY];
+- (BOOL)didSeeWelcomeOverlay {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_OVERLAY_KEY];
 }
 
 #pragma mark - Feedback
@@ -538,6 +551,7 @@
 
 - (void) didTapOverlayButton {
     self.overlayView.alpha = 0;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_WELCOME_OVERLAY_KEY];
 }
 
 @end

@@ -58,7 +58,7 @@
     self.playbackBar = UIView.new;
 
     //[self.artworkImageView sd_setImageWithURL:[self albumImageNSURL]];
-    self.artworkImageView.image = self.iTunesUpload.artworkImage ? self.iTunesUpload.artworkImage : [UIImage imageNamed:@"AlbumImagePlaceholder"];
+    self.artworkImageView.image = self.iTunesUpload.artworkImage ? self.iTunesUpload.artworkImage : [UIImage imageNamed:@"AlbumImagePlaceholder2"];
     
     self.artworkImageView.layer.borderWidth = 1;
     self.artworkImageView.layer.borderColor = [UIColor colorWithWhite:0.85 alpha:1.0].CGColor;
@@ -288,7 +288,7 @@
         [pngData writeToFile:filePath atomically:YES];
         return [NSURL fileURLWithPath:filePath];
     } else {
-        UIImage *image = [UIImage imageNamed:@"AlbumImagePlaceholder"];
+        UIImage *image = [UIImage imageNamed:@"AlbumImagePlaceholder2"];
         NSData *pngData = UIImagePNGRepresentation(image);
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsPath = [paths objectAtIndex:0];

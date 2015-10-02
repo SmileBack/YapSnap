@@ -156,7 +156,7 @@
         if (track.awsAlbumImageUrl) {
             [trackCell.trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.awsAlbumImageUrl]];
         } else {
-            trackCell.trackView.imageView.image = [UIImage imageNamed:@"AlbumImagePlaceholder.png"];
+            trackCell.trackView.imageView.image = [UIImage imageNamed:@"AlbumImagePlaceholder2.png"];
         }
         
         [trackCell.trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
