@@ -76,7 +76,7 @@
     float height = self.view.frame.size.height;
     NSLog(@"Height: %f", height);
     
-    [self showOverlay];
+    //[self showOverlay]; For Testing
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -89,8 +89,6 @@
     [super viewWillAppear:animated];
     self.navigationItem.backBarButtonItem.tintColor = UIColor.whiteColor;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    
-    [self setupOverlayStuff];
 
     //Nav bar should not be transparent after finishing registration process
     self.navigationController.navigationBar.translucent = NO;
@@ -107,12 +105,8 @@
 
 - (void) setupOverlayStuff {
     self.overlayBottomConstraint.constant = -self.view.frame.size.height;
+    self.overlayView.alpha = 1;
     
-    if (self.didSeeWelcomeOverlay) {
-        self.overlayView.alpha = 1;//change to 0
-    } else {
-        self.overlayView.alpha = 1;
-    }
     self.overlayTitleLabel.alpha = 0;
     self.overlayLabel1.alpha = 0;
     self.overlayLabel2.alpha = 0;
@@ -137,6 +131,8 @@
 }
 
 - (void) showOverlay {
+    [self setupOverlayStuff];
+
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:1.0
                           delay:1.0
@@ -340,7 +336,6 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                       if (!weakSelf.didSeeWelcomeOverlay) {
-                        [self setupOverlayStuff];
                         [self showOverlay];
                       }
                     }];
