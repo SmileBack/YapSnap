@@ -139,6 +139,7 @@
     [self setupOverlayStuff];
 
     [self.view layoutIfNeeded];
+
     [UIView animateWithDuration:1.0
                           delay:1.0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -340,9 +341,7 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                      //if (!weakSelf.didSeeWelcomeOverlay) {
                         [self showOverlay];
-                      //}
                     }];
     
     [center addObserverForName:SHOW_SEND_YAP_POPUP
@@ -517,10 +516,6 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:OPENED_YAP_FOR_FIRST_TIME_KEY];
 }
 
-- (BOOL)didSeeWelcomeOverlay {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_WELCOME_OVERLAY_KEY];
-}
-
 - (BOOL)didSeeSendYapPopup {
     return [[NSUserDefaults standardUserDefaults] boolForKey:DID_SEE_SEND_YAP_POPUP_KEY];
 }
@@ -569,7 +564,6 @@
 
 - (void) didTapOverlayButton {
     self.overlayView.alpha = 0;
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_WELCOME_OVERLAY_KEY];
 }
 
 @end

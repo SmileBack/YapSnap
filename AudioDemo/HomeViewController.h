@@ -12,7 +12,6 @@
 
 #define SHOW_FEEDBACK_PAGE @"yaptap.ShowFeedbackPage"
 #define OPENED_YAP_FOR_FIRST_TIME_KEY @"yaptap.OpenedYapForFirstTimeKey"
-#define DID_SEE_WELCOME_OVERLAY_KEY @"yaptap.DidSeeWelcomeOverlayKey605"
 #define DISMISS_WELCOME_POPUP @"DismissWelcomePopup"
 #define AUDIO_CAPTURE_DID_START_NOTIFICATION @"yaptap.AudioCaptureDidStartNotification"
 #define UNTAPPED_RECORD_BUTTON_BEFORE_THRESHOLD_NOTIFICATION @"yaptap.UntappedRecordButtonBeforeThresholdNotification"
