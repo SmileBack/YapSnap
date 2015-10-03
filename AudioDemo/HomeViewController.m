@@ -73,6 +73,11 @@
     self.resetButton.alpha = 0;
     self.pageLabel.textColor = THEME_SECONDARY_COLOR;
     
+    self.overlayButton.layer.cornerRadius = 4;
+    self.overlayButton.layer.borderWidth = 1;
+    //self.overlayButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.overlayButton.backgroundColor = [UIColor whiteColor];
+    
     float height = self.view.frame.size.height;
     NSLog(@"Height: %f", height);
     
@@ -335,9 +340,9 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                      if (!weakSelf.didSeeWelcomeOverlay) {
+                      //if (!weakSelf.didSeeWelcomeOverlay) {
                         [self showOverlay];
-                      }
+                      //}
                     }];
     
     [center addObserverForName:SHOW_SEND_YAP_POPUP
