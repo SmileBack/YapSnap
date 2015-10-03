@@ -122,7 +122,7 @@ static void * const keypath = (void*)&keypath;
     dismissButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     dismissButton.backgroundColor = [UIColor clearColor];
     dismissButton.frame = sourceView.bounds;
-    [overlayView addSubview:dismissButton];
+    //[overlayView addSubview:dismissButton]; MANUALLY REMOVED THIS SO TAPPING BG DOESNT DISMISS POPUP
     
     popupView.alpha = 0.0f;
     [overlayView addSubview:popupView];

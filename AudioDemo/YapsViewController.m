@@ -138,6 +138,8 @@ static NSString *CellIdentifier = @"Cell";
     self.sendYapButton.layer.borderColor = [UIColor whiteColor].CGColor;
     self.sendYapButton.backgroundColor = THEME_RED_COLOR;
     self.sendYapButton.hidden = YES;
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewDidAppear:(BOOL)animated

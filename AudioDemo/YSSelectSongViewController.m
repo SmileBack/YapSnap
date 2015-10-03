@@ -27,6 +27,7 @@
 @property YSSTKAudioPlayerDelegate *audioPlayerDelegate;
 @property STKAudioPlayer *player;
 @property (strong, nonatomic) YSSpinnerView *spinnerView;
+@property (weak, nonatomic) IBOutlet UIButton *onboardingButton;
 
 @end
 
@@ -55,6 +56,18 @@
     self.audioPlayerDelegate.collectionView = self.collectionView;
     self.audioPlayerDelegate.audioSource = self;
     self.audioPlayerDelegate.audioCaptureDelegate = self.audioCaptureDelegate;
+    
+    self.onboardingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.onboardingButton addTarget:self
+               action:@selector(aMethod:)
+     forControlEvents:UIControlEventTouchUpInside];
+    [self.onboardingButton setTitle:@"Show View" forState:UIControlStateNormal];
+    self.onboardingButton.frame = CGRectMake(15, 210.0, self.view.frame.size.width - 30, 80.0);
+    self.onboardingButton.backgroundColor = THEME_RED_COLOR;
+    self.onboardingButton.layer.cornerRadius = 4;
+    [self.onboardingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.onboardingButton.titleLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:24]];
+    [self.view addSubview:self.onboardingButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -135,7 +148,11 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.tracks.count + 1; // Is always
+    if (self.tracks.count > 0) {
+        return self.tracks.count + 1;
+    } else {
+        return 0;
+    }
 }
 
 - (NSUInteger)trackRowForCollectionViewRow:(NSUInteger)row {
