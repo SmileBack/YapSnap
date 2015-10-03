@@ -27,7 +27,10 @@
 @property YSSTKAudioPlayerDelegate *audioPlayerDelegate;
 @property STKAudioPlayer *player;
 @property (strong, nonatomic) YSSpinnerView *spinnerView;
-@property (weak, nonatomic) IBOutlet UIButton *onboardingButton;
+@property (strong, nonatomic) UIView *onboardingView;
+@property (weak, nonatomic) UIButton *onboardingButton;
+@property (strong, nonatomic) UILabel *onboardingLabel;
+@property (strong, nonatomic) UIImageView *onboardingImageView;
 
 @end
 
@@ -57,24 +60,12 @@
     self.audioPlayerDelegate.audioSource = self;
     self.audioPlayerDelegate.audioCaptureDelegate = self.audioCaptureDelegate;
     
-    self.onboardingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.onboardingButton addTarget:self
-               action:@selector(aMethod:)
-     forControlEvents:UIControlEventTouchUpInside];
-    [self.onboardingButton setTitle:@"Show View" forState:UIControlStateNormal];
-    self.onboardingButton.frame = CGRectMake(15, 210.0, self.view.frame.size.width - 30, 80.0);
-    self.onboardingButton.backgroundColor = THEME_RED_COLOR;
-    self.onboardingButton.layer.cornerRadius = 4;
-    [self.onboardingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.onboardingButton.titleLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:24]];
-    [self.view addSubview:self.onboardingButton];
+    [self setupOnboardingView];
+    self.onboardingView.hidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    //self.tracks = [UploadedTracksCache sharedCache].uploadedTracks;
-    //[self loadiTunesTracks];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -92,6 +83,48 @@
     [self.spinnerView removeFromSuperview];
 }
 
+- (void) setupOnboardingView {
+    self.onboardingView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.onboardingView.backgroundColor = [UIColor colorWithRed:239 / 255.0 green:239 / 255.0 blue:244 / 255.0 alpha:1.0];
+    [self.view addSubview:self.onboardingView];
+
+    self.onboardingImageView =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.onboardingImageView.image=[UIImage imageNamed:@"AlbumImagePlaceholder2.png"];
+    [self.onboardingView addSubview:self.onboardingImageView];
+    
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+    effectView.frame =  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    [self.onboardingView addSubview:effectView];
+    
+    self.onboardingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.onboardingButton addTarget:self
+                              action:@selector(didTapOnboardingButton)
+                    forControlEvents:UIControlEventTouchUpInside];
+    [self.onboardingButton setTitle:@"Upload & Trim" forState:UIControlStateNormal];
+    self.onboardingButton.frame = CGRectMake(15, self.view.frame.size.height-112-64-40-20, self.view.frame.size.width - 30, 112.0);
+    self.onboardingButton.layer.cornerRadius = 8;
+    self.onboardingButton.backgroundColor = THEME_RED_COLOR;
+    self.onboardingButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.onboardingButton.layer.borderWidth = 1;
+    [self.onboardingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.onboardingButton.titleLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:22]];
+    [self.onboardingView addSubview:self.onboardingButton];
+    
+    self.onboardingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, self.view.frame.size.width, 120)];
+    self.onboardingLabel.text = @"Use music from your library";
+    self.onboardingLabel.textColor = [UIColor whiteColor];
+    self.onboardingLabel.textAlignment = NSTextAlignmentCenter;
+    self.onboardingLabel.font = [UIFont fontWithName:@"Futura-Medium" size:40];
+    self.onboardingLabel.numberOfLines = 2;
+    self.onboardingLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.onboardingLabel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.onboardingLabel.layer.shadowOpacity = 1.0f;
+    self.onboardingLabel.layer.shadowRadius = 1.0f;
+    [self.onboardingView addSubview:self.onboardingLabel];
+
+}
+
 - (void) loadiTunesTracks {
     __weak YSSelectSongViewController *weakSelf = self;
     [[UploadedTracksCache sharedCache] loadUploadedTracksWithCallback:^(NSArray *songs, NSError *error) {
@@ -99,6 +132,12 @@
             // TODO: Display error callback
         } else {
             weakSelf.tracks = songs;
+            if (songs.count < 1) {
+                self.onboardingView.hidden = NO;
+                
+            } else {
+                self.onboardingView.hidden = YES;
+            }
         }
     }];
 }
@@ -113,8 +152,6 @@
     MPMediaPickerController *picker = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio];
     picker.delegate = self;
     picker.allowsPickingMultipleItems = NO;
-    picker.prompt = NSLocalizedString(@"Add songs to play",
-                                      "Prompt in media item picker");
     picker.showsCloudItems = NO;
     [self presentViewController:picker animated:YES completion:nil];
 }
@@ -194,8 +231,17 @@
     if ([[collectionView cellForItemAtIndexPath:indexPath].reuseIdentifier isEqualToString:@"upload"]) {
         [self pickSongs:nil];
         [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+        
+        // Loading spinner
+        [self.spinnerView removeFromSuperview];
+        self.spinnerView = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+        [self.view addSubview:self.spinnerView];
+        self.spinnerView.center = self.view.center;
     }
-    
+}
+
+- (void) didTapOnboardingButton {
+    [self pickSongs:nil];
     // Loading spinner
     [self.spinnerView removeFromSuperview];
     self.spinnerView = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];

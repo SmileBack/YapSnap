@@ -48,6 +48,8 @@
 @property (strong, nonatomic) YTUnregisteredUserSMSInviter *unregisteredUserSMSInviter;
 @property (assign, nonatomic) BOOL smsAlertWasAlreadyPrompted;
 @property (strong, nonatomic) IBOutlet UIButton *sendYapButton;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *sendYapButtonYConstraint;
+
 
 - (IBAction)didTapSettingsButton;
 - (IBAction)didTapSendYapButton;
@@ -140,6 +142,12 @@ static NSString *CellIdentifier = @"Cell";
     self.sendYapButton.hidden = YES;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    if (self.pushNotificationsView.hidden) {
+        self.sendYapButtonYConstraint.constant = 14 - 52;
+    } else {
+        self.sendYapButtonYConstraint.constant = 14;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

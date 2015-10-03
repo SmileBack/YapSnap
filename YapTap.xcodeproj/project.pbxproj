@@ -108,6 +108,7 @@
 		78299E981BBE4070001961C7 /* AlbumImagePlaceholder2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E971BBE4070001961C7 /* AlbumImagePlaceholder2.png */; settings = {ASSET_TAGS = (); }; };
 		78299E9A1BBF3F49001961C7 /* YapIconUnopenedSent100.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E991BBF3F49001961C7 /* YapIconUnopenedSent100.png */; settings = {ASSET_TAGS = (); }; };
 		78299E9C1BBF3FBC001961C7 /* YapIconOpenedSent100.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E9B1BBF3FBC001961C7 /* YapIconOpenedSent100.png */; settings = {ASSET_TAGS = (); }; };
+		78299E9E1BC06605001961C7 /* ColorfulMusicSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E9D1BC06605001961C7 /* ColorfulMusicSymbol.png */; settings = {ASSET_TAGS = (); }; };
 		782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */ = {isa = PBXBuildFile; fileRef = 782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */; };
 		782D13441ACB8349007C8499 /* YapIconUnopenedSent.png in Resources */ = {isa = PBXBuildFile; fileRef = 782D13431ACB8349007C8499 /* YapIconUnopenedSent.png */; };
 		782D13491ACB8B7A007C8499 /* YapIconOpenedSent3.png in Resources */ = {isa = PBXBuildFile; fileRef = 782D13481ACB8B7A007C8499 /* YapIconOpenedSent3.png */; };
@@ -477,6 +478,7 @@
 		78299E971BBE4070001961C7 /* AlbumImagePlaceholder2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumImagePlaceholder2.png; sourceTree = "<group>"; };
 		78299E991BBF3F49001961C7 /* YapIconUnopenedSent100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconUnopenedSent100.png; sourceTree = "<group>"; };
 		78299E9B1BBF3FBC001961C7 /* YapIconOpenedSent100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconOpenedSent100.png; sourceTree = "<group>"; };
+		78299E9D1BC06605001961C7 /* ColorfulMusicSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorfulMusicSymbol.png; sourceTree = "<group>"; };
 		782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder10.png; sourceTree = "<group>"; };
 		782D13431ACB8349007C8499 /* YapIconUnopenedSent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconUnopenedSent.png; sourceTree = "<group>"; };
 		782D13481ACB8B7A007C8499 /* YapIconOpenedSent3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconOpenedSent3.png; sourceTree = "<group>"; };
@@ -772,7 +774,6 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				78299E971BBE4070001961C7 /* AlbumImagePlaceholder2.png */,
 				783714DC1BAE0AFD0005CC04 /* Song Category Images */,
 				783C54CB1B3E18F2009E9848 /* AddRecipientsIcon2.png */,
 				7861924C1B072077007279E8 /* WhiteCamera100.png */,
@@ -1088,6 +1089,7 @@
 				78141DB41BBBA8670091B8B6 /* SpotifyIconWhite500.png */,
 				78AAB2541A71F82E00EFDF98 /* listen_on_spotify-black2.png */,
 				78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */,
+				78299E971BBE4070001961C7 /* AlbumImagePlaceholder2.png */,
 				37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */,
 				789351DC1BACB7E8003C8AA0 /* SpotifyLogo2@2x.png */,
 				78C690181AD5DADD00FC3C76 /* Song Version Buttons */,
@@ -1125,6 +1127,7 @@
 		783714DC1BAE0AFD0005CC04 /* Song Category Images */ = {
 			isa = PBXGroup;
 			children = (
+				78299E9D1BC06605001961C7 /* ColorfulMusicSymbol.png */,
 				78141DBE1BBBB3660091B8B6 /* CancelImageWhite400.png */,
 				783714DE1BAE0B600005CC04 /* Moods */,
 				783714DD1BAE0B540005CC04 /* Genres */,
@@ -1980,6 +1983,7 @@
 				37D20C2E19E4A2B3008530BF /* CancelImageWhite.png in Resources */,
 				F44B0C5716DA404700E6CD88 /* Default@2x.png in Resources */,
 				789123381B2E8F9800894201 /* SpotifyIconWhite.png in Resources */,
+				78299E9E1BC06605001961C7 /* ColorfulMusicSymbol.png in Resources */,
 				783020F41BA09EFF009198BC /* Genre_HipHop.png in Resources */,
 				F44B0C5916DA404700E6CD88 /* Default-568h@2x.png in Resources */,
 				78141DBF1BBBB3660091B8B6 /* CancelImageWhite400.png in Resources */,
