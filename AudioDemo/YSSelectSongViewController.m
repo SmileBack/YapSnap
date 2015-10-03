@@ -74,6 +74,14 @@
     //
     
     self.tracks = [UploadedTracksCache sharedCache].uploadedTracks;
+    if (self.tracks.count < 1) {
+        // Loading spinner
+        [self.spinnerView removeFromSuperview];
+        self.spinnerView = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+        [self.view addSubview:self.spinnerView];
+        self.spinnerView.center = self.view.center;
+    }
+    
     [self loadiTunesTracks];
 }
 
@@ -131,6 +139,7 @@
         if (error) {
             // TODO: Display error callback
         } else {
+            [self.spinnerView removeFromSuperview];
             weakSelf.tracks = songs;
             if (songs.count < 1) {
                 self.onboardingView.hidden = NO;
