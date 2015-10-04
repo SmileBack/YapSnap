@@ -31,8 +31,10 @@
     NSMutableArray *tracks = [NSMutableArray arrayWithCapacity:yaps.count];
     for (YSYap *yap in yaps) {
         if (yap.track) {
-            [tracks addObject:yap.track];
-            NSLog(@"Songs: %@", yap.track);
+            if (yap.senderID.intValue != 1) {
+                [tracks addObject:yap.track];
+                NSLog(@"Songs: %@", yap.track);
+            }
         }
     }
 
