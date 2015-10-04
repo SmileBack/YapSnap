@@ -109,6 +109,8 @@
 		78299E9A1BBF3F49001961C7 /* YapIconUnopenedSent100.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E991BBF3F49001961C7 /* YapIconUnopenedSent100.png */; settings = {ASSET_TAGS = (); }; };
 		78299E9C1BBF3FBC001961C7 /* YapIconOpenedSent100.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E9B1BBF3FBC001961C7 /* YapIconOpenedSent100.png */; settings = {ASSET_TAGS = (); }; };
 		78299E9E1BC06605001961C7 /* ColorfulMusicSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E9D1BC06605001961C7 /* ColorfulMusicSymbol.png */; settings = {ASSET_TAGS = (); }; };
+		78299EA01BC1CE48001961C7 /* CancelButton100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E9F1BC1CE48001961C7 /* CancelButton100@2x.png */; settings = {ASSET_TAGS = (); }; };
+		78299EA21BC1D1A0001961C7 /* CancelButton200@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299EA11BC1D1A0001961C7 /* CancelButton200@2x.png */; settings = {ASSET_TAGS = (); }; };
 		782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */ = {isa = PBXBuildFile; fileRef = 782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */; };
 		782D13441ACB8349007C8499 /* YapIconUnopenedSent.png in Resources */ = {isa = PBXBuildFile; fileRef = 782D13431ACB8349007C8499 /* YapIconUnopenedSent.png */; };
 		782D13491ACB8B7A007C8499 /* YapIconOpenedSent3.png in Resources */ = {isa = PBXBuildFile; fileRef = 782D13481ACB8B7A007C8499 /* YapIconOpenedSent3.png */; };
@@ -479,6 +481,8 @@
 		78299E991BBF3F49001961C7 /* YapIconUnopenedSent100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconUnopenedSent100.png; sourceTree = "<group>"; };
 		78299E9B1BBF3FBC001961C7 /* YapIconOpenedSent100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconOpenedSent100.png; sourceTree = "<group>"; };
 		78299E9D1BC06605001961C7 /* ColorfulMusicSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorfulMusicSymbol.png; sourceTree = "<group>"; };
+		78299E9F1BC1CE48001961C7 /* CancelButton100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelButton100@2x.png"; sourceTree = "<group>"; };
+		78299EA11BC1D1A0001961C7 /* CancelButton200@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelButton200@2x.png"; sourceTree = "<group>"; };
 		782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder10.png; sourceTree = "<group>"; };
 		782D13431ACB8349007C8499 /* YapIconUnopenedSent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconUnopenedSent.png; sourceTree = "<group>"; };
 		782D13481ACB8B7A007C8499 /* YapIconOpenedSent3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconOpenedSent3.png; sourceTree = "<group>"; };
@@ -775,6 +779,8 @@
 			isa = PBXGroup;
 			children = (
 				783714DC1BAE0AFD0005CC04 /* Song Category Images */,
+				78299E9F1BC1CE48001961C7 /* CancelButton100@2x.png */,
+				78299EA11BC1D1A0001961C7 /* CancelButton200@2x.png */,
 				783C54CB1B3E18F2009E9848 /* AddRecipientsIcon2.png */,
 				7861924C1B072077007279E8 /* WhiteCamera100.png */,
 				7867C1C51B01808D0050632F /* GiftButton.png */,
@@ -2049,6 +2055,7 @@
 				783C54CC1B3E18F2009E9848 /* AddRecipientsIcon2.png in Resources */,
 				78141DC31BBBB4790091B8B6 /* CancelImageWhite1000.png in Resources */,
 				78439FB01AE6EF46004CFB5F /* OpenGift700.png in Resources */,
+				78299EA01BC1CE48001961C7 /* CancelButton100@2x.png in Resources */,
 				7883637B1AD781C3001CBD1B /* OneNotSelected@2x.png in Resources */,
 				783CCFB91B3CF03000E3B5BF /* LeftArrowImage100.png in Resources */,
 				7854B06D1AF85BC900A02DF9 /* LeftArrow.png in Resources */,
@@ -2086,6 +2093,7 @@
 				78299E9C1BBF3FBC001961C7 /* YapIconOpenedSent100.png in Resources */,
 				78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */,
 				783714E31BAE1B8D0005CC04 /* ProgressViewRedNew50@2x.png in Resources */,
+				78299EA21BC1D1A0001961C7 /* CancelButton200@2x.png in Resources */,
 				780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */,
 				78DA1F801AA1961200693015 /* AlbumImagePlaceholder.png in Resources */,
 			);

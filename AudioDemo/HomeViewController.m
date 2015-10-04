@@ -436,7 +436,7 @@
 - (void)setupNavBarStuff {
     if ([self isInReplyMode]) {
         self.yapsPageButton.hidden = YES;
-        UIImage *buttonImage = [UIImage imageNamed:@"CancelImageWhite2.png"];
+        UIImage *buttonImage = [UIImage imageNamed:@"CancelButton200.png"]; //UNDO
         [self.topLeftButton setImage:buttonImage forState:UIControlStateNormal];
         self.topLeftButton.alpha = 1;
 
