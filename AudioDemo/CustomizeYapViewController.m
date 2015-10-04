@@ -49,6 +49,7 @@
 - (IBAction)didTapAddRecipientsInDoubleTapToReplyFlow;
 
 #define VIEWED_FORWARDING_POPUP_KEY @"yaptap.ViewedForwardingPopup"
+#define VIEWED_ONBOARDING_POPUP_KEY @"yaptap.ViewedForwardingPopup"
 
 @end
 
@@ -161,27 +162,22 @@
         }];
     }
 
-    if (!self.isForwardingYap) {
+    if (self.didViewOnboardingPopup) {
         if ([self.yapBuilder.messageType isEqual: @"UploadedMessage"]) {
             double delay3 = 1.5;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.textView becomeFirstResponder];
             });
         } else {
-            if (self.isReplying) {
-                double delay3 = 1.0;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.textView becomeFirstResponder];
-                });
-            } else {
-                double delay3 = .8;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.textView becomeFirstResponder];
-                });
-            }
+            double delay3 = 1.0;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.textView becomeFirstResponder];
+            });
         }
+    } else {
+        //[self showOnboardingPopup];
     }
-    
+
     [self addShadowToTextView];
     
     self.titleLabel.textColor = THEME_SECONDARY_COLOR;
@@ -289,6 +285,13 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_FORWARDING_POPUP_KEY];
 }
 
+#pragma mark - Onboarding Popup
+- (void) showOnboardingPopup {
+    self.onboardingPopupVC = [[CustomizeOnboardingPopupViewController alloc] initWithNibName:@"CustomizeOnboardingPopupViewController" bundle:nil];
+    [self presentPopupViewController:self.forwardingPopupVC animationType:MJPopupViewAnimationFade];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_ONBOARDING_POPUP_KEY];
+}
+
 - (void)updateBannerLabel {
     PhoneContact *contact = self.yapBuilder.contacts.firstObject;
     if (self.yapBuilder.contacts.count > 1) {
@@ -326,6 +329,11 @@
 - (BOOL) didViewForwardingPopup
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_FORWARDING_POPUP_KEY];
+}
+
+- (BOOL) didViewOnboardingPopup
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_ONBOARDING_POPUP_KEY];
 }
 
 - (void) sendYap
