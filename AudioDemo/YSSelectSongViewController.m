@@ -120,7 +120,7 @@
     [self.onboardingView addSubview:self.onboardingButton];
     
     self.onboardingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 120)];
-    self.onboardingLabel.text = @"Upload music from\nyour phone";
+    self.onboardingLabel.text = @"Upload from\nyour library";
     self.onboardingLabel.textColor = [UIColor whiteColor];
     self.onboardingLabel.textAlignment = NSTextAlignmentCenter;
     self.onboardingLabel.font = [UIFont fontWithName:@"Futura-Medium" size:40];

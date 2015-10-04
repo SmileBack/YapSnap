@@ -47,6 +47,8 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *countdownTimerLabel;
 
+@property (nonatomic) BOOL acceptedFriendRequest;
+
 // nil means we don't know yet. YES/NO means the backend told us.
 @property (nonatomic, strong) NSNumber *isFromFriend;
 
@@ -70,12 +72,9 @@
     
     self.replyButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0.0/255.0 alpha:0.3f];
     self.sendTextButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.3f];
-    self.friendRequestButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.3f];
+    self.friendRequestButton.backgroundColor = THEME_BACKGROUND_COLOR;
     
     if (self.yap.sentByCurrentUser) {
-        //self.replyButton.hidden = YES;
-        //NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
-        
         if ([self.yap.receiverPhone isEqualToString:@"+13245678910"] || [self.yap.receiverPhone isEqualToString:@"+13027865701"]) {
             self.titleLabel.text = @"Sent to YapTap Team";
             [self.replyButton setTitle:@"Send Another Yap" forState:UIControlStateNormal];
@@ -90,8 +89,6 @@
     } else if (self.yap.receivedByCurrentUser) {
         if (self.yap.isFriendRequest) {
             self.forwardButton.hidden = YES;
-            //NSString *senderFirstName = [[self.yap.displaySenderName componentsSeparatedByString:@" "] objectAtIndex:0];
-            self.replyButton.backgroundColor = THEME_RED_COLOR;
             [self.replyButton setTitle:@"Yap Reply" forState:UIControlStateNormal];
             [self.sendTextButton setTitle:@"Text Reply" forState:UIControlStateNormal];
             NSLog(@"Yap status: %@", self.yap.status);
@@ -182,6 +179,8 @@
     } else if (IS_IPHONE_5_SIZE) {
         self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:34];
     }
+    
+    self.acceptedFriendRequest = NO;
 }
 
 - (void) styleActionButtons {
@@ -610,30 +609,52 @@
 #pragma mark - Friend Request Stuff Button
 
 - (void) didTapFriendRequestButton {
-    NSLog(@"Tapped Friend Request Button");
-    [self.friendRequestButton setTitle:@"" forState:UIControlStateNormal];
-    [self.friendRequestActivityIndicator startAnimating];
-    self.isFromFriend = [NSNumber numberWithInt:1];
-    
-    [[API sharedAPI] confirmFriendFromYap:self.yap withCallback:^(BOOL success, NSError *error) {
-        if (success) {
-            [self.friendRequestActivityIndicator stopAnimating];
-            self.friendRequestButton.hidden = YES;
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
-                                                            message:[NSString stringWithFormat:@"You and %@ are friends. Tap the red button below and send them a yap!", self.yap.displaySenderName]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles: nil];
-            [alert show];
+    if (!self.acceptedFriendRequest) {
+        NSLog(@"Tapped Friend Request Button");
+        [self.friendRequestButton setTitle:@"" forState:UIControlStateNormal];
+        [self.friendRequestActivityIndicator startAnimating];
+        self.isFromFriend = [NSNumber numberWithInt:1];
+        
+        NSString *senderFirstName = [[self.yap.displaySenderName componentsSeparatedByString:@" "] objectAtIndex:0];
+        
+        [[API sharedAPI] confirmFriendFromYap:self.yap withCallback:^(BOOL success, NSError *error) {
+            if (success) {
+                [self.friendRequestActivityIndicator stopAnimating];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                                message:[NSString stringWithFormat:@"You and %@ are now friends. Tap the button below and send them a yap!", self.yap.displaySenderName]
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles: nil];
+                [alert show];
+                self.acceptedFriendRequest = YES;
+                [self.friendRequestButton setTitle:[NSString stringWithFormat:@"Send %@ a Yap", senderFirstName] forState:UIControlStateNormal];
+                self.friendRequestButton.backgroundColor = THEME_RED_COLOR;
+            } else {
+                [self.friendRequestActivityIndicator stopAnimating];
+                [self.friendRequestButton setTitle:@"Accept Friend Request" forState:UIControlStateNormal];
+                [[YTNotifications sharedNotifications] showBlueNotificationText:@"Oops, Something Went Wrong!"];
+            }
+        }];
+        
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Accept Friend Request"];
+    } else {
+        if (self.yap.receivedByCurrentUser) {
+            [self dismissThis];
+            [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
+            NSString *senderFirstName = [[self.yap.displaySenderName componentsSeparatedByString:@" "] objectAtIndex:0];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Replying to %@", senderFirstName]];
+            });
         } else {
-            [self.friendRequestActivityIndicator stopAnimating];
-            [self.friendRequestButton setTitle:@"Accept Friend Request" forState:UIControlStateNormal];
-            [[YTNotifications sharedNotifications] showBlueNotificationText:@"Oops, Something Went Wrong!"];
+            [self dismissThis];
+            [self.yapCreatingDelegate didOriginateReplyFromYapNewClip:self.yap];
+            NSString *receiverFirstName = [[self.yap.displayReceiverName componentsSeparatedByString:@" "] objectAtIndex:0];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Replying to %@", receiverFirstName]];
+            });
         }
-    }];
-    
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Accept Friend Request"];
+    }
 }
 
 @end
