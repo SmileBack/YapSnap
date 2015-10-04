@@ -20,6 +20,7 @@
 #import "FriendsViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ForwardingPopupViewController.h"
+#import "CustomizeOnboardingPopupViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 
 @interface CustomizeYapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -42,6 +43,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *albumLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
 @property (strong, nonatomic) ForwardingPopupViewController *forwardingPopupVC;
+@property (strong, nonatomic) CustomizeOnboardingPopupViewController *onboardingPopupVC;
 @property (strong, nonatomic) IBOutlet UILabel *replyLabel;
 
 - (IBAction)didTapCameraButton;
@@ -161,21 +163,26 @@
             self.yapPhoto.hidden = NO;
         }];
     }
-
-    if (self.didViewOnboardingPopup) {
-        if ([self.yapBuilder.messageType isEqual: @"UploadedMessage"]) {
-            double delay3 = 1.5;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.textView becomeFirstResponder];
-            });
+    
+    if (!self.isReplying && !self.isForwardingYap) {
+        if (self.didViewOnboardingPopup) {
+            if ([self.yapBuilder.messageType isEqual: @"UploadedMessage"]) {
+                double delay3 = 1.5;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.textView becomeFirstResponder];
+                });
+            } else {
+                double delay3 = 1.0;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.textView becomeFirstResponder];
+                });
+            }
         } else {
             double delay3 = 1.0;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.textView becomeFirstResponder];
+                [self showOnboardingPopup];
             });
         }
-    } else {
-        //[self showOnboardingPopup];
     }
 
     [self addShadowToTextView];
@@ -243,6 +250,17 @@
                         NSLog(@"Dismiss Welcome Popup");
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
+    
+    [center addObserverForName:DISMISS_CUSTOMIZE_ONBOARDING_POPUP_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                        double delay3 = 0.6;
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [self.textView becomeFirstResponder];
+                        });
+                    }];
 }
 
 
@@ -288,7 +306,7 @@
 #pragma mark - Onboarding Popup
 - (void) showOnboardingPopup {
     self.onboardingPopupVC = [[CustomizeOnboardingPopupViewController alloc] initWithNibName:@"CustomizeOnboardingPopupViewController" bundle:nil];
-    [self presentPopupViewController:self.forwardingPopupVC animationType:MJPopupViewAnimationFade];
+    [self presentPopupViewController:self.onboardingPopupVC animationType:MJPopupViewAnimationSlideTopTop];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_ONBOARDING_POPUP_KEY];
 }
 

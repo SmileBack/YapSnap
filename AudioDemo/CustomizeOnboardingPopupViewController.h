@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#define DISMISS_RECORD_POPUP @"DismissRecordPopup"
+#define DISMISS_CUSTOMIZE_ONBOARDING_POPUP_NOTIFICATION @"DismissCustomizeOnboardingPopup"
 
-@interface RecordPopupViewController : UIViewController
+@interface CustomizeOnboardingPopupViewController : UIViewController
 
 - (IBAction)didTapCancelButton;
 

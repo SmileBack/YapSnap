@@ -173,8 +173,8 @@
 		7854B0751AF89A7E00A02DF9 /* LeftArrow60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7854B0741AF89A7E00A02DF9 /* LeftArrow60.png */; };
 		7857CABE1AFBB43300ADF999 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857CABD1AFBB43300ADF999 /* HomeViewController.m */; };
 		7861924D1B072077007279E8 /* WhiteCamera100.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861924C1B072077007279E8 /* WhiteCamera100.png */; };
-		786192731B09A942007279E8 /* RecordPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192711B09A942007279E8 /* RecordPopupViewController.xib */; };
-		786192741B09A942007279E8 /* RecordPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192721B09A942007279E8 /* RecordPopupViewController.m */; };
+		786192731B09A942007279E8 /* CustomizeOnboardingPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192711B09A942007279E8 /* CustomizeOnboardingPopupViewController.xib */; };
+		786192741B09A942007279E8 /* CustomizeOnboardingPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192721B09A942007279E8 /* CustomizeOnboardingPopupViewController.m */; };
 		786192781B09B810007279E8 /* ContactsPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192761B09B810007279E8 /* ContactsPopupViewController.m */; };
 		786192791B09B810007279E8 /* ContactsPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192771B09B810007279E8 /* ContactsPopupViewController.xib */; };
 		786192871B0A783B007279E8 /* ForwardingPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192851B0A783B007279E8 /* ForwardingPopupViewController.m */; };
@@ -555,9 +555,9 @@
 		7857CABC1AFBB43300ADF999 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		7857CABD1AFBB43300ADF999 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		7861924C1B072077007279E8 /* WhiteCamera100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCamera100.png; sourceTree = "<group>"; };
-		786192701B09A942007279E8 /* RecordPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordPopupViewController.h; sourceTree = "<group>"; };
-		786192711B09A942007279E8 /* RecordPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordPopupViewController.xib; sourceTree = "<group>"; };
-		786192721B09A942007279E8 /* RecordPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordPopupViewController.m; sourceTree = "<group>"; };
+		786192701B09A942007279E8 /* CustomizeOnboardingPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizeOnboardingPopupViewController.h; sourceTree = "<group>"; };
+		786192711B09A942007279E8 /* CustomizeOnboardingPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomizeOnboardingPopupViewController.xib; sourceTree = "<group>"; };
+		786192721B09A942007279E8 /* CustomizeOnboardingPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizeOnboardingPopupViewController.m; sourceTree = "<group>"; };
 		786192761B09B810007279E8 /* ContactsPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsPopupViewController.m; sourceTree = "<group>"; };
 		786192771B09B810007279E8 /* ContactsPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsPopupViewController.xib; sourceTree = "<group>"; };
 		7861927A1B09B81E007279E8 /* ContactsPopupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactsPopupViewController.h; sourceTree = "<group>"; };
@@ -1322,9 +1322,9 @@
 		7861926F1B09A913007279E8 /* Customize Onboarding Popup */ = {
 			isa = PBXGroup;
 			children = (
-				786192701B09A942007279E8 /* RecordPopupViewController.h */,
-				786192721B09A942007279E8 /* RecordPopupViewController.m */,
-				786192711B09A942007279E8 /* RecordPopupViewController.xib */,
+				786192701B09A942007279E8 /* CustomizeOnboardingPopupViewController.h */,
+				786192721B09A942007279E8 /* CustomizeOnboardingPopupViewController.m */,
+				786192711B09A942007279E8 /* CustomizeOnboardingPopupViewController.xib */,
 			);
 			name = "Customize Onboarding Popup";
 			sourceTree = "<group>";
@@ -2001,7 +2001,7 @@
 				37D413CC19D230D000021548 /* ArrowWhite.png in Resources */,
 				78A2E84F1ACC65B000B5A404 /* PinkStar.png in Resources */,
 				788363A61AD79572001CBD1B /* OneNotSelectediPhone6@2x.png in Resources */,
-				786192731B09A942007279E8 /* RecordPopupViewController.xib in Resources */,
+				786192731B09A942007279E8 /* CustomizeOnboardingPopupViewController.xib in Resources */,
 				783CCFBF1B3CF1D100E3B5BF /* LeftArrow500.png in Resources */,
 				781904881AF288C100196DFF /* ResetButton70@2x.png in Resources */,
 				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
@@ -2161,7 +2161,7 @@
 				FC3ECAE91A830496002678F6 /* FriendsViewController.m in Sources */,
 				5D1E69701BA3685A002E8212 /* YSSpinnerView.m in Sources */,
 				37D413BE19D21A1F00021548 /* NSString+FontAwesome.m in Sources */,
-				786192741B09A942007279E8 /* RecordPopupViewController.m in Sources */,
+				786192741B09A942007279E8 /* CustomizeOnboardingPopupViewController.m in Sources */,
 				783CCFB71B3C8AE300E3B5BF /* YTTrackGroup.m in Sources */,
 				F44B0C4F16DA404700E6CD88 /* main.m in Sources */,
 				FC52C1B41A787DB800D85FA8 /* YSSpotifyTapGestureRecognizer.m in Sources */,
