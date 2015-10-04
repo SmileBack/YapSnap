@@ -139,6 +139,11 @@ static NSString *CellIdentifier = @"Cell";
     self.sendYapButton.layer.borderWidth = 1;
     self.sendYapButton.layer.borderColor = [UIColor whiteColor].CGColor;
     self.sendYapButton.backgroundColor = THEME_RED_COLOR;
+    if (self.comingFromContactsOrCustomizeYapPage) {
+        [self.sendYapButton setTitle:@"Send Another Yap" forState:UIControlStateNormal];
+    } else {
+        [self.sendYapButton setTitle:@"Send a Yap" forState:UIControlStateNormal];
+    }
     self.sendYapButton.hidden = YES;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

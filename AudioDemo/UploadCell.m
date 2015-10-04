@@ -20,7 +20,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"plus"]];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         UILabel *label = UILabel.new;
-        label.text = @"Upload a clip";
+        label.text = @"Upload & Trim";
         label.textColor = UIColor.whiteColor;
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont fontWithName:@"Futura-Medium" size:18];
