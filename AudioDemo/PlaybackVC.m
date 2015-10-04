@@ -70,6 +70,7 @@
     
     self.replyButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0.0/255.0 alpha:0.3f];
     self.sendTextButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.3f];
+    self.friendRequestButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.3f];
     
     if (self.yap.sentByCurrentUser) {
         //self.replyButton.hidden = YES;
@@ -619,7 +620,7 @@
             [self.friendRequestActivityIndicator stopAnimating];
             self.friendRequestButton.hidden = YES;
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
-                                                            message:[NSString stringWithFormat:@"You and %@ are friends. Now tap the button below and send them a yap!", self.yap.displaySenderName]
+                                                            message:[NSString stringWithFormat:@"You and %@ are friends. Tap the red button below and send them a yap!", self.yap.displaySenderName]
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles: nil];

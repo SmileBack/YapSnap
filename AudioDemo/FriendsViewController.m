@@ -114,6 +114,7 @@
     self.largeAddFriendsButton.layer.cornerRadius = 8;
     self.largeAddFriendsButton.layer.borderWidth = 1;
     self.largeAddFriendsButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.largeAddFriendsButton.backgroundColor = THEME_RED_COLOR;
     
     [self addCancelButton];
 }

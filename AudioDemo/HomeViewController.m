@@ -106,6 +106,9 @@
     self.topLeftButton.alpha = 1;
     self.yapsPageButton.alpha = 1;
     self.pageLabel.alpha = 1;
+    
+    self.searchBar.text = @"";
+    self.resetButton.alpha = 0;
 }
 
 - (void) setupOverlayStuff {
@@ -202,7 +205,7 @@
     [self.searchBar addTarget:self
                        action:@selector(textFieldDidChange:)
              forControlEvents:UIControlEventEditingChanged];
-    self.searchBar.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search for a song" attributes:@{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.65]}];
+    self.searchBar.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search for a song" attributes:@{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.6]}];
     self.searchBar.layer.cornerRadius = 4.0f;
     self.searchBar.layer.masksToBounds = YES;
     self.searchBar.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
@@ -348,9 +351,9 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        if (!weakSelf.didSeeSendYapPopup) {
+                        //if (!weakSelf.didSeeSendYapPopup) {
                             [weakSelf showSendYapPopup];
-                        }
+                        //}
                     }];
 
     [center addObserverForName:UIApplicationDidBecomeActiveNotification
