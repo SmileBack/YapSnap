@@ -119,7 +119,7 @@
     [self.onboardingButton.titleLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:22]];
     [self.onboardingView addSubview:self.onboardingButton];
     
-    self.onboardingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, self.view.frame.size.width, 120)];
+    self.onboardingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 120)];
     self.onboardingLabel.text = @"Use music from your library";
     self.onboardingLabel.textColor = [UIColor whiteColor];
     self.onboardingLabel.textAlignment = NSTextAlignmentCenter;

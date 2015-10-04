@@ -17,50 +17,61 @@
 @interface YSRecentSourceController()
 
 @property (strong) YSEmptyScreenView *emptyView;
+@property (strong, nonatomic) UIView *onboardingView;
+@property (strong, nonatomic) UILabel *onboardingLabel;
+@property (strong, nonatomic) UIImageView *onboardingImageView;
 
 @end
 
 @implementation YSRecentSourceController
 
 - (void)viewWillAppear:(BOOL)animated {
-//    [[YapsCache sharedCache] loadYapsWithCallback:^(NSArray *yaps, NSError *error) {
-//        NSMutableArray *tracks = [NSMutableArray arrayWithCapacity:yaps.count];
-//        for (YSYap *yap in yaps) {
-//            if (yap.track) {
-//                [tracks addObject:yap.track];
-//                NSLog(@"Songs: %@", yap.track);
-//            }            
-//        }
-        NSArray *yaps = [YapsCache sharedCache].yaps;
-    
-        NSMutableArray *tracks = [NSMutableArray arrayWithCapacity:yaps.count];
-        for (YSYap *yap in yaps) {
-            if (yap.track) {
-                [tracks addObject:yap.track];
-                NSLog(@"Songs: %@", yap.track);
-            }
-        }
-    
+    NSArray *yaps = [YapsCache sharedCache].yaps;
 
-    
-    
-        self.songs = tracks;
-        if (self.songs.count == 0) {
-            self.emptyView = [[YSEmptyScreenView alloc] initWithFrame:CGRectZero];
-            [self.view addSubview:self.emptyView];
-            [self.emptyView setTranslatesAutoresizingMaskIntoConstraints:NO];
-            self.emptyView.titleLabel.text = @"No Recent Clips";
-            self.emptyView.explanationLabel.text = @"Send a Yap";
-            [self.view addConstraints:@[[NSLayoutConstraint constraintWithItem:self.emptyView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
-                                        [NSLayoutConstraint constraintWithItem:self.emptyView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]]];
-        } else {
-            [self.emptyView removeFromSuperview];
-            self.emptyView = nil;
-            
-            // Tell Spotify Source Controller to reload collection view
-            [[NSNotificationCenter defaultCenter] postNotificationName:RELOAD_COLLECTION_VIEW object:nil];
+    NSMutableArray *tracks = [NSMutableArray arrayWithCapacity:yaps.count];
+    for (YSYap *yap in yaps) {
+        if (yap.track) {
+            [tracks addObject:yap.track];
+            NSLog(@"Songs: %@", yap.track);
         }
-    //}];
+    }
+
+    self.songs = tracks;
+    if (self.songs.count == 0) {
+        self.onboardingView.hidden = NO;
+        [self setupOnboardingView];
+    } else {
+        self.onboardingView.hidden = YES;
+        // Tell Spotify Source Controller to reload collection view
+        [[NSNotificationCenter defaultCenter] postNotificationName:RELOAD_COLLECTION_VIEW object:nil];
+    }
+}
+
+- (void) setupOnboardingView {
+    self.onboardingView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.onboardingView.backgroundColor = [UIColor colorWithRed:239 / 255.0 green:239 / 255.0 blue:244 / 255.0 alpha:1.0];
+    [self.view addSubview:self.onboardingView];
+    
+    self.onboardingImageView =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.onboardingImageView.image=[UIImage imageNamed:@"AlbumImagePlaceholder2.png"];
+    [self.onboardingView addSubview:self.onboardingImageView];
+    
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+    effectView.frame =  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    [self.onboardingView addSubview:effectView];
+    
+    self.onboardingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 120)];
+    self.onboardingLabel.text = @"No Recent\nMusic Clips";
+    self.onboardingLabel.textColor = [UIColor whiteColor];
+    self.onboardingLabel.textAlignment = NSTextAlignmentCenter;
+    self.onboardingLabel.font = [UIFont fontWithName:@"Futura-Medium" size:40];
+    self.onboardingLabel.numberOfLines = 3;
+    self.onboardingLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.onboardingLabel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.onboardingLabel.layer.shadowOpacity = 1.0f;
+    self.onboardingLabel.layer.shadowRadius = 1.0f;
+    [self.onboardingView addSubview:self.onboardingLabel];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
