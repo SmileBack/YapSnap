@@ -28,7 +28,7 @@
 @property STKAudioPlayer *player;
 @property (strong, nonatomic) YSSpinnerView *spinnerView;
 @property (strong, nonatomic) UIView *onboardingView;
-@property (weak, nonatomic) UIButton *onboardingButton;
+@property (strong, nonatomic) UIButton *onboardingButton;
 @property (strong, nonatomic) UILabel *onboardingLabel;
 @property (strong, nonatomic) UIImageView *onboardingImageView;
 
@@ -109,7 +109,7 @@
     [self.onboardingButton addTarget:self
                               action:@selector(didTapOnboardingButton)
                     forControlEvents:UIControlEventTouchUpInside];
-    [self.onboardingButton setTitle:@"Upload & Trim" forState:UIControlStateNormal];
+    [self.onboardingButton setTitle:@"Upload" forState:UIControlStateNormal];
     self.onboardingButton.frame = CGRectMake(15, self.view.frame.size.height-112-64-40-20, self.view.frame.size.width - 30, 112.0);
     self.onboardingButton.layer.cornerRadius = 8;
     self.onboardingButton.backgroundColor = THEME_RED_COLOR;
@@ -119,12 +119,12 @@
     [self.onboardingButton.titleLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:22]];
     [self.onboardingView addSubview:self.onboardingButton];
     
-    self.onboardingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 120)];
-    self.onboardingLabel.text = @"Upload from\nyour library";
+    self.onboardingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 160)];
+    self.onboardingLabel.text = @"Upload & Trim\nFrom Your\nLibrary";
     self.onboardingLabel.textColor = [UIColor whiteColor];
     self.onboardingLabel.textAlignment = NSTextAlignmentCenter;
     self.onboardingLabel.font = [UIFont fontWithName:@"Futura-Medium" size:40];
-    self.onboardingLabel.numberOfLines = 2;
+    self.onboardingLabel.numberOfLines = 3;
     self.onboardingLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
     self.onboardingLabel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.onboardingLabel.layer.shadowOpacity = 1.0f;
