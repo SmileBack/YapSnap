@@ -75,7 +75,7 @@
                 NSString *firstNameThree = [[unregisteredNames[2] componentsSeparatedByString:@" "] objectAtIndex:0];
                 self.alertMessage = [NSString stringWithFormat:@"We sent your yap! Want to send %@, %@, and %@ an SMS to make sure they see it?", firstNameOne, firstNameTwo, firstNameThree];
             } else {
-                self.alertMessage = [NSString stringWithFormat:@"We sent you yap! Want to send %@ and the others an SMS to make sure they see it?", firstNameOne];
+                self.alertMessage = [NSString stringWithFormat:@"We sent your yap! Want to send %@ and the others an SMS to make sure they see it?", firstNameOne];
             }
             
             
