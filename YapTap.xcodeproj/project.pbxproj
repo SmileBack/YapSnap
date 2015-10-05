@@ -111,6 +111,7 @@
 		78299E9E1BC06605001961C7 /* ColorfulMusicSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E9D1BC06605001961C7 /* ColorfulMusicSymbol.png */; settings = {ASSET_TAGS = (); }; };
 		78299EA01BC1CE48001961C7 /* CancelButton100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E9F1BC1CE48001961C7 /* CancelButton100@2x.png */; settings = {ASSET_TAGS = (); }; };
 		78299EA21BC1D1A0001961C7 /* CancelButton200@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299EA11BC1D1A0001961C7 /* CancelButton200@2x.png */; settings = {ASSET_TAGS = (); }; };
+		78299EA41BC1EDF0001961C7 /* ResetButton1000@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299EA31BC1EDF0001961C7 /* ResetButton1000@2x.png */; settings = {ASSET_TAGS = (); }; };
 		782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */ = {isa = PBXBuildFile; fileRef = 782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */; };
 		782D13441ACB8349007C8499 /* YapIconUnopenedSent.png in Resources */ = {isa = PBXBuildFile; fileRef = 782D13431ACB8349007C8499 /* YapIconUnopenedSent.png */; };
 		782D13491ACB8B7A007C8499 /* YapIconOpenedSent3.png in Resources */ = {isa = PBXBuildFile; fileRef = 782D13481ACB8B7A007C8499 /* YapIconOpenedSent3.png */; };
@@ -483,6 +484,7 @@
 		78299E9D1BC06605001961C7 /* ColorfulMusicSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorfulMusicSymbol.png; sourceTree = "<group>"; };
 		78299E9F1BC1CE48001961C7 /* CancelButton100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelButton100@2x.png"; sourceTree = "<group>"; };
 		78299EA11BC1D1A0001961C7 /* CancelButton200@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CancelButton200@2x.png"; sourceTree = "<group>"; };
+		78299EA31BC1EDF0001961C7 /* ResetButton1000@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ResetButton1000@2x.png"; sourceTree = "<group>"; };
 		782A61BC1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecordButtonBlueBorder10.png; sourceTree = "<group>"; };
 		782D13431ACB8349007C8499 /* YapIconUnopenedSent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconUnopenedSent.png; sourceTree = "<group>"; };
 		782D13481ACB8B7A007C8499 /* YapIconOpenedSent3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconOpenedSent3.png; sourceTree = "<group>"; };
@@ -1180,6 +1182,7 @@
 				78C1C3091B26AC8700C6CBCA /* ResetButton80@2x.png */,
 				78C1C30B1B26AD2B00C6CBCA /* ResetButton90@2x.png */,
 				78C1C30D1B26AE3C00C6CBCA /* ResetButton100@2x.png */,
+				78299EA31BC1EDF0001961C7 /* ResetButton1000@2x.png */,
 				7867C1C71B01A58E0050632F /* CancelImageWhite2.png */,
 				7867C1C91B01A64D0050632F /* CancelImageWhite3.png */,
 				786E0BE41B0019AE00005D1D /* PlusButtonWhite3@2x.png */,
@@ -1976,6 +1979,7 @@
 				78439FBA1AE76EEB004CFB5F /* SongVersionTwoSelected@2x.png in Resources */,
 				786BCB431ADC274600BA3FDD /* UploadIcon100.png in Resources */,
 				78A2E8551ACC671600B5A404 /* PinkStar2.png in Resources */,
+				78299EA41BC1EDF0001961C7 /* ResetButton1000@2x.png in Resources */,
 				783021001BA0A2CE009198BC /* Genre_EDM3.png in Resources */,
 				7854B0691AF8523100A02DF9 /* ControlCenterButton@2x.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,

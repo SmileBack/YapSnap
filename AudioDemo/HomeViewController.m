@@ -294,11 +294,33 @@
         self.searchOverlay = nil;
     }];
     [self updateVisibilityOfMagnifyingGlassAndResetButtons];
+    
+    if ([self.searchBar.text length] > 0) {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        [self navigationController:self.navigationController willShowViewController:self animated:NO]; // Refreshes back button
+        
+        [self.audioCapture searchWithText:textField.text];
+        [[API sharedAPI] sendSearchTerm:textField.text
+                           withCallback:^(BOOL success, NSError *error){
+                           }];
+    }
 }
 
 - (void)cancelSearch {
-    self.searchBar.text = nil;
+    //self.searchBar.text = nil;
     [self.searchBar resignFirstResponder];
+    
+    if ([self.searchBar.text length] > 0) {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        [self navigationController:self.navigationController willShowViewController:self animated:NO]; // Refreshes back button
+        
+        [self.audioCapture searchWithText:self.searchBar.text];
+        [[API sharedAPI] sendSearchTerm:self.searchBar.text
+                           withCallback:^(BOOL success, NSError *error){
+                           }];
+    } else {
+        [self.audioCapture clearSearchResults];
+    }
 }
 
 #pragma mark - Other
@@ -310,6 +332,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
       [self.searchBar becomeFirstResponder];
     });
+    self.resetButton.alpha = 0;
 }
 
 - (void)setupNotifications {
