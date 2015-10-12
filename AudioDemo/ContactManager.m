@@ -19,8 +19,8 @@ static ContactManager *sharedInstance;
 
 @interface ContactManager()
 @property (nonatomic, strong) NSMutableDictionary *phoneToContacts;
-
 @property (nonatomic, strong) APAddressBook *addressBook;
+
 @end
 
 @implementation ContactManager
@@ -90,15 +90,48 @@ static ContactManager *sharedInstance;
     return [self contactForPhoneNumber:phoneNumber].name;
 }
 
+//- (NSArray *) getAllContacts
+//{
+//    [self loadAllContacts];
+//    
+//    NSMutableArray *contacts = [NSMutableArray new];
+//    
+//    for (PhoneContact *contact in self.phoneToContacts.allValues) {
+//        if (contact.name && contact.name.length > 0) {
+//            [contacts addObject:contact];
+//        }
+//    }
+//    
+//    NSLog(@"self.phoneToContacts.allValues: %@", self.phoneToContacts.allValues);
+//    
+//    return [contacts sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+//        PhoneContact *contact1 = obj1;
+//        PhoneContact *contact2 = obj2;
+//        
+//        return [contact1.name compare:contact2.name];
+//    }];
+//}
+
 - (NSArray *) getAllContacts
 {
     [self loadAllContacts];
+    
+    // VERY HACKY - THIS IS HERE BECAUSE THE FOLLOWING CODE RELIES ON self.addressBook loadContacts COMPLETING
+    if (self.sleep) {
+        NSLog(@"BEGIN SLEEP");
+        [NSThread sleepForTimeInterval:2.5f];
+        NSLog(@"SLEEP IS OVER");
+        self.sleep = NO;
+    }
+    
     NSMutableArray *contacts = [NSMutableArray new];
+    
     for (PhoneContact *contact in self.phoneToContacts.allValues) {
         if (contact.name && contact.name.length > 0) {
             [contacts addObject:contact];
         }
     }
+    
     return [contacts sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         PhoneContact *contact1 = obj1;
         PhoneContact *contact2 = obj2;
@@ -111,19 +144,20 @@ static ContactManager *sharedInstance;
 {
     __weak ContactManager *weakSelf = self;
     [self.addressBook loadContacts:^(NSArray *contacts, NSError *error) {
-        NSMutableDictionary *idToContacts = [NSMutableDictionary dictionaryWithCapacity:contacts.count];
+        //NSMutableDictionary *idToContacts = [NSMutableDictionary dictionaryWithCapacity:contacts.count];
         NSMutableDictionary *phoneNumberContacts = [NSMutableDictionary dictionaryWithCapacity:contacts.count];
-
         for (APContact *contact in contacts) {
-            //NSLog(@"Contact: %@", contact);
+            NSLog(@"contact: %@", contact);
             for (NSString *p in contact.phones) {
                 NSString *phone = [ContactManager stringPhoneNumber:p];
                 PhoneContact *phoneContact = [PhoneContact phoneContactWithName:contact.compositeName contactID:contact.recordID andPhoneNumber:phone];
                 phoneNumberContacts[[self usNumberFromPhoneNumber:phoneContact.phoneNumber]] = phoneContact;
             }
         }
-
+        
         weakSelf.phoneToContacts = phoneNumberContacts;
+        NSLog(@"PHONE TO CONTACTS READY TO GO");
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CONTACTS_LOADED object:nil];
     }];
 }

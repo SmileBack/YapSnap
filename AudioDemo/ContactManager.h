@@ -26,6 +26,9 @@
 - (PhoneContact *) contactForPhoneNumber:(NSString *)phoneNumber;
 - (PhoneContact *) recentContactAtIndex:(NSInteger)index;
 
+// THIS IS A HACK
+@property (assign, nonatomic) BOOL sleep;
+
 #pragma mark - Recent Contact Stuff
 @property (nonatomic, strong) NSMutableArray *recentContacts;
 - (void) sentYapTo:(NSArray *)contacts;

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define DISMISS_CONTACTS_POPUP @"DismissContactsPopup"
+#define SHOW_CONTACTS_POPUP @"ShowContactsPopup"
 
 @interface ContactsPopupViewController : UIViewController
 

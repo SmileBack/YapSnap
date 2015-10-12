@@ -36,7 +36,7 @@
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *keyboardVerticalSpace;
 
-#define VIEWED_CONTACTS_ONBOARDING_ALERT_KEY @"yaptap.ViewedContactsOnboardingAlertKey4"
+#define VIEWED_CONTACTS_ONBOARDING_ALERT_KEY @"yaptap.ViewedContactsOnboardingAlertKey10"
 
 @end
 
@@ -171,6 +171,13 @@ static NSString *CellIdentifier = @"Cell";
                         NSLog(@"Dismiss Welcome Popup");
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
+    
+//    [center addObserverForName:NOTIFICATION_CONTACTS_LOADED
+//                        object:nil
+//                         queue:nil
+//                    usingBlock:^(NSNotification *note) {
+//                        [self.tableView reloadData];
+//                    }];
 }
 
 - (void) setupConstraints {
@@ -251,26 +258,34 @@ static NSString *CellIdentifier = @"Cell";
     __weak ContactsViewController *weakSelf = self;
     
     if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
             weakSelf.contacts = [[ContactManager sharedContactManager] getAllContacts];
-            
+                        
             [weakSelf prepareContactDict];
+        
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadData];
-            });
+        //    });
         });
-        if (self.builder.builderType == BuilderTypeYap) {
-            double delay = 0.5;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (!self.didViewContactsOnboardingAlert) {
-                    [self showOnboardingPopup];
-                }
-            });
-        }
     } else {
         ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
         ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
             if (granted) {
+                // SHOW ONBOARDING POPUP
+                if (self.builder.builderType == BuilderTypeYap) {
+                    double delay = 0.1;
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        if (!self.didViewContactsOnboardingAlert) {
+                            [self showOnboardingPopup];
+                            NSLog(@"SHOWED ONBOARDING POPUP");
+                        }
+                    });
+                }
+                
+                // THIS NEXT LINE IS A HACK!!!!!!!!!!!
+                [ContactManager sharedContactManager].sleep = YES;
+                
                 [weakSelf loadContacts];
                 if (self.builder.builderType == BuilderTypeYap) {
                     double delay = 0.5;
