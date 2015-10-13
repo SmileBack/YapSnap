@@ -64,7 +64,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
                   forState:UIControlStateHighlighted];
 
     self.audioSource = [[YSSpotifySourceController alloc] init];
-    self.bottomViewLabel.text = @"Send This Clip";
+    self.bottomViewLabel.text = @"Choose This Clip";
     
     [self setupNotifications];
     if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
