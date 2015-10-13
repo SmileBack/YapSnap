@@ -383,6 +383,7 @@ static NSString *CellIdentifier = @"Cell";
         [cell.albumImageView setImage:[UIImage imageNamed:@"YapTapCartoonIcon.png"]];
         cell.spotifyBottomImageView.hidden = YES;
     } else {
+        [cell.albumImageView sd_setImageWithURL:[NSURL URLWithString:yap.albumImageURL]];
         cell.goToSpotifyView.hidden = YES;
     }
     

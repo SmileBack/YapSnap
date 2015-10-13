@@ -130,7 +130,15 @@
     }
     
     if (([self.yap.type isEqual:@"SpotifyMessage"] || [self.yap.type isEqual:@"UploadedMessage"]) && self.yap.albumImageURL && ![self.yap.albumImageURL isEqual: [NSNull null]]) {
-        [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yap.albumImageURL]];
+        [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yap.albumImageURL]completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (cacheType == SDImageCacheTypeDisk) {
+                NSLog(@"Album Photo from disk");
+            } else if (cacheType == SDImageCacheTypeMemory) {
+                NSLog(@"Album Photo from memory");
+            } else {
+                NSLog(@"Album Photo from web");
+            }
+        }];
         
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         UIVisualEffectView *effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
