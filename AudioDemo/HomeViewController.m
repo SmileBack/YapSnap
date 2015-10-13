@@ -342,7 +342,11 @@
         weakSelf.searchBar.text = nil;
         [weakSelf textFieldDidChange:self.searchBar];
         [weakSelf.searchBar resignFirstResponder];
-        [self.topLeftButton setImage:[UIImage imageNamed:@"SettingsIconWhite8"] forState:UIControlStateNormal];
+        if (![self isInReplyMode]) {
+            [self.topLeftButton setImage:[UIImage imageNamed:@"SettingsIconWhite8"] forState:UIControlStateNormal];
+        } else {
+            [self.topLeftButton setImage:[UIImage imageNamed:@"CancelButton200.png"] forState:UIControlStateNormal];
+        }
     }];
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
@@ -579,7 +583,15 @@
       willShowViewController:(UIViewController *)viewController
                     animated:(BOOL)animated {
     BOOL back = navigationController.viewControllers.count > 1;
-    [self.topLeftButton setImage:back ? [UIImage imageNamed:@"back"] : [UIImage imageNamed:@"SettingsIconWhite8"] forState:UIControlStateNormal];
+        
+    
+    
+    if (![self isInReplyMode]) {
+        [self.topLeftButton setImage:back ? [UIImage imageNamed:@"back"] : [UIImage imageNamed:@"SettingsIconWhite8"] forState:UIControlStateNormal];
+    } else {
+        [self.topLeftButton setImage:back ? [UIImage imageNamed:@"back"] : [UIImage imageNamed:@"CancelButton200.png"] forState:UIControlStateNormal];
+    }
+    
     [self.topLeftButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
     if (back) {
         [self.topLeftButton addTarget:navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
