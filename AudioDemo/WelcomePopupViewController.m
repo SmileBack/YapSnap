@@ -28,7 +28,7 @@
     self.view.layer.borderWidth = borderWidth;
     self.view.layer.cornerRadius = 5;
     
-    //self.view.backgroundColor = THEME_BACKGROUND_COLOR;
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
 }
 
 - (IBAction) didTapCancelButton {

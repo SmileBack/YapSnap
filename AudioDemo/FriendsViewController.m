@@ -71,7 +71,6 @@
             double delay = 0.5;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [[YTNotifications sharedNotifications] showNotificationText:@"Oops, Error Loading Friends!"];
-                
             });
         } else {
             if (friends.count > 2) {
@@ -227,6 +226,12 @@
     } else {
         contact = [YSContact contactWithName:self.selectedFriend.displayNameNotFromContacts andPhoneNumber:self.selectedFriend.phone];
     }
+    
+    double delay = 0.5;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[YTNotifications sharedNotifications] showNotificationText:[NSString stringWithFormat:@"Send to %@", [[contact.name componentsSeparatedByString:@" "] objectAtIndex:0]]];
+        
+    });
     
     [self performSegueWithIdentifier:@"Send Yap Segue" sender:contact];
     [mixpanel track:@"Yap from Friends (Song)"];
