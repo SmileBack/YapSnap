@@ -31,7 +31,7 @@
     NSMutableArray *tracks = [NSMutableArray arrayWithCapacity:yaps.count];
     for (YSYap *yap in yaps) {
         if (yap.track) {
-            if (yap.senderID.intValue != 1 && ![yap.notificationType  isEqual: @"friendship_request"]) {
+            if (yap.senderID.intValue != 1 && ![yap.notificationType  isEqual: @"friendship_request"] && (yap.wasOpened || yap.sentByCurrentUser)) {
                 [tracks addObject:yap.track];
                 NSLog(@"Songs: %@", yap.track);
             }
