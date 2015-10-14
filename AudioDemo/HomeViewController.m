@@ -246,8 +246,14 @@
     self.searchBar.text = [self.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     [self.view endEditing:YES];
     if ([self.searchBar.text length] > 0) {
-        [self.navigationController popToRootViewControllerAnimated:NO];
-        [self navigationController:self.navigationController willShowViewController:self animated:NO]; // Refreshes back button
+        if (![self isInReplyMode]) {
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            [self navigationController:self.navigationController willShowViewController:self animated:NO]; // Refreshes back button
+        } else {
+            // Had to do some funky stuff here for this to work fully when in reply mode
+            [self.topLeftButton setImage:[UIImage imageNamed:@"CancelButton200.png"] forState:UIControlStateNormal];
+            [self.topLeftButton addTarget:self action:@selector(leftButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        }
         
         [self.audioCapture searchWithText:textField.text];
         [[API sharedAPI] sendSearchTerm:textField.text
@@ -296,8 +302,14 @@
     [self updateVisibilityOfMagnifyingGlassAndResetButtons];
     
     if ([self.searchBar.text length] > 0) {
-        [self.navigationController popToRootViewControllerAnimated:NO];
-        [self navigationController:self.navigationController willShowViewController:self animated:NO]; // Refreshes back button
+        if (![self isInReplyMode]) {
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            [self navigationController:self.navigationController willShowViewController:self animated:NO]; // Refreshes back button
+        } else {
+            // Had to do some funky stuff here for this to work fully when in reply mode
+            [self.topLeftButton setImage:[UIImage imageNamed:@"CancelButton200.png"] forState:UIControlStateNormal];
+            [self.topLeftButton addTarget:self action:@selector(leftButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        }
         
         [self.audioCapture searchWithText:textField.text];
         [[API sharedAPI] sendSearchTerm:textField.text
@@ -514,7 +526,6 @@
     if ([self isInReplyMode]) {
         [self.navigationController popViewControllerAnimated:NO];
     } else {
-        //[self performSegueWithIdentifier:@"Friends Segue" sender:nil];
         [self performSegueWithIdentifier:@"Settings Segue" sender:nil];
     }
 }
