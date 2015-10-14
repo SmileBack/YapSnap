@@ -32,6 +32,7 @@
 @property (strong, nonatomic) NSLayoutConstraint *playbackXConstraint;
 @property (strong, nonatomic) YSSpinnerView *spinner;
 @property (strong, nonatomic) UILabel *timeLabel;
+@property (strong, nonatomic) UILabel *songDurationLabel;
 @property BOOL didSelectTrack;
 @property (strong, nonatomic) UIVisualEffectView *effectView;
 @property (nonatomic) int durationInSeconds;
@@ -63,6 +64,15 @@
     self.artworkImageView.layer.borderWidth = 1;
     self.artworkImageView.layer.borderColor = [UIColor colorWithWhite:0.85 alpha:1.0].CGColor;
     self.artworkImageView.clipsToBounds = YES;
+    [self.artworkImageView setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedImageView)];
+    [tap setNumberOfTouchesRequired:1];
+    [tap setNumberOfTapsRequired:1];
+    [self.artworkImageView addGestureRecognizer:tap];
+    
+    UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedImageView)];
+    [swipeRecognizer setDirection:(UISwipeGestureRecognizerDirectionUp | UISwipeGestureRecognizerDirectionDown | UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight)];
+    [self.artworkImageView addGestureRecognizer:swipeRecognizer];
     
     self.artworkImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.timeScrollView.backgroundColor = UIColor.clearColor;
@@ -134,6 +144,20 @@
     
     [self.view addSubview:self.timeLabel];
     
+    
+    self.songDurationLabel = [[UILabel alloc] initWithFrame:CGRectMake(timeLabelXPosition, timeLabelYPosition-10+120, 300, timeLabelHeight)];
+    self.songDurationLabel.text = @"O";
+    self.songDurationLabel.textColor = [UIColor whiteColor];
+    self.songDurationLabel.textAlignment = NSTextAlignmentCenter;
+    self.songDurationLabel.font = [UIFont fontWithName:@"Futura-Medium" size:25];
+    self.songDurationLabel.adjustsFontSizeToFitWidth = NO;
+    self.songDurationLabel.opaque = YES;
+    self.songDurationLabel.shadowColor = [UIColor blackColor];
+    self.songDurationLabel.shadowOffset = CGSizeMake(.5, .5);
+    self.songDurationLabel.layer.masksToBounds = NO;
+    
+    [self.view addSubview:self.songDurationLabel];
+    
 //    double delay = 0.5;
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        [[YTNotifications sharedNotifications] showNotificationText:@"Slide To Select Part"];
@@ -149,6 +173,7 @@
     
     self.effectView.alpha = 0;
     self.timeLabel.alpha = 0;
+    self.songDurationLabel.alpha = 0;
     self.view.userInteractionEnabled = YES;
 }
 
@@ -163,6 +188,14 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_BOTTOM_BAR_NOTIFICATION object:nil];
 }
 
+- (void) tappedImageView {
+    [[YTNotifications sharedNotifications] showNotificationText:@"Slide the Sound Wave Below!"];
+}
+
+- (void) swipedImageView {
+    [[YTNotifications sharedNotifications] showNotificationText:@"Slide the Sound Wave Below!"];
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -171,14 +204,26 @@
     
     self.effectView.alpha = 1;
     self.timeLabel.alpha = 1;
+    self.songDurationLabel.alpha = 1;
 
     self.durationInSeconds = MAX(0, ((self.timeScrollView.contentOffset.x/self.timeScrollView.contentSize.width) * self.iTunesUpload.trackDuration));
     self.minutes = self.durationInSeconds / 60;
     self.seconds = self.durationInSeconds % 60;
     
     self.timeLabel.text = [NSString stringWithFormat:@"%d:%02d", self.minutes, self.seconds];
+    /*
+    int seconds = self.iTunesUpload.trackDuration % 60;
+    int minutes = (self.iTunesUpload.trackDuration / 60) % 60;
+    int hours = self.iTunesUpload.trackDuration / 3600;
+    return [NSString stringWithFormat:@"%02d:%02d:%02d",hours, minutes, seconds];
+    */
     
-    //self.timeLabel.text = [NSString stringWithFormat: @"%.0f", durationNoNegatives];
+    int roundedNumber = ceil((double)self.iTunesUpload.trackDuration);
+    NSLog(@"Duration: %f", self.iTunesUpload.trackDuration);
+    NSLog(@"Rounded Duration: %d", roundedNumber);
+    NSLog(@"Formatted Duration: %@", [NSString stringWithFormat:@"%d:%02d", (roundedNumber/60) % 60,(roundedNumber/60)]);
+    
+    self.songDurationLabel.text = [NSString stringWithFormat:@"%d:%02d", roundedNumber/60, roundedNumber % 60];
 }
 
 - (NSTimeInterval)secondsForContentOffset:(CGPoint)offset {
@@ -212,6 +257,7 @@
     [UIView animateWithDuration:.5
                      animations:^(void) {
                          self.timeLabel.alpha = 0;
+                         self.songDurationLabel.alpha = 0;
                      }];
     
     NSLog(@"DID END DRAGGING");
@@ -230,6 +276,7 @@
     [UIView animateWithDuration:.5
                      animations:^(void) {
                          self.timeLabel.alpha = 0;
+                         self.songDurationLabel.alpha = 0;
                      }];
 }
 
