@@ -60,6 +60,12 @@ static TracksCache *sharedCache;
                  weakSelf.countrySongs = [songs shuffledArray];
              } else if ([trackGroup.apiString  isEqual: @"genre_latin_tracks"]) {
                  weakSelf.latinSongs = [songs shuffledArray];
+             } else if ([trackGroup.apiString  isEqual: @"genre_film_tracks"]) {
+                 weakSelf.filmSongs = [songs shuffledArray];
+             } else if ([trackGroup.apiString  isEqual: @"romantic_tracks"]) {
+                 weakSelf.romanticSongs = [songs shuffledArray];
+             } else if ([trackGroup.apiString  isEqual: @"inspire_tracks"]) {
+                 weakSelf.inspireSongs = [songs shuffledArray];
              }
          } else {
              NSLog(@"Something went wrong");
@@ -92,8 +98,14 @@ static TracksCache *sharedCache;
                  songs = self.countrySongs;
              } else if ([trackGroup.apiString  isEqual: @"genre_latin_tracks"]) {
                  songs = self.latinSongs;
+             } else if ([trackGroup.apiString  isEqual: @"genre_film_tracks"]) {
+                 songs = self.filmSongs;
+             } else if ([trackGroup.apiString  isEqual: @"romantic_tracks"]) {
+                 songs = self.romanticSongs;
+             } else if ([trackGroup.apiString  isEqual: @"inspire_tracks"]) {
+                 songs = self.inspireSongs;
              }
-             
+         
              callback(songs, error);
          }
      }];
@@ -128,6 +140,12 @@ static TracksCache *sharedCache;
         return self.countrySongs.count > 0;
     } else if ([trackGroup.apiString  isEqual: @"genre_latin_tracks"]) {
         return self.latinSongs.count > 0;
+    } else if ([trackGroup.apiString  isEqual: @"genre_film_tracks"]) {
+        return self.filmSongs.count > 0;
+    } else if ([trackGroup.apiString  isEqual: @"romantic_tracks"]) {
+        return self.romanticSongs.count > 0;
+    } else if ([trackGroup.apiString  isEqual: @"inspire_tracks"]) {
+        return self.inspireSongs.count > 0;
     } else {
         return NO;
     }
@@ -160,6 +178,12 @@ static TracksCache *sharedCache;
         return self.countrySongs;
     } else if ([trackGroup.apiString  isEqual: @"genre_latin_tracks"]) {
         return self.latinSongs;
+    } else if ([trackGroup.apiString  isEqual: @"genre_film_tracks"]) {
+        return self.filmSongs;
+    } else if ([trackGroup.apiString  isEqual: @"inspire_tracks"]) {
+        return self.inspireSongs;
+    } else if ([trackGroup.apiString  isEqual: @"romantic_tracks"]) {
+        return self.romanticSongs;
     } else {
         return self.trendingSongs;
     }
@@ -179,6 +203,9 @@ static TracksCache *sharedCache;
     self.edmSongs = [self.edmSongs shuffledArray];
     self.countrySongs = [self.countrySongs shuffledArray];
     self.latinSongs = [self.latinSongs shuffledArray];
+    self.filmSongs = [self.filmSongs shuffledArray];
+    self.romanticSongs = [self.romanticSongs shuffledArray];
+    self.inspireSongs = [self.inspireSongs shuffledArray];
 }
 
 

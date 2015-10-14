@@ -17,12 +17,16 @@
 @property (nonatomic, strong) NSArray *celebrateSongs;
 @property (nonatomic, strong) NSArray *happySongs;
 @property (nonatomic, strong) NSArray *sadSongs;
+@property (nonatomic, strong) NSArray *romanticSongs;
+@property (nonatomic, strong) NSArray *inspireSongs;
+
 @property (nonatomic, strong) NSArray *hipHopSongs;
 @property (nonatomic, strong) NSArray *rockSongs;
 @property (nonatomic, strong) NSArray *popSongs;
 @property (nonatomic, strong) NSArray *edmSongs;
 @property (nonatomic, strong) NSArray *countrySongs;
 @property (nonatomic, strong) NSArray *latinSongs;
+@property (nonatomic, strong) NSArray *filmSongs;
 
 + (TracksCache *) sharedCache;
 
