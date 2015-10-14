@@ -168,7 +168,7 @@
         [self showFeedbackEmailViewControllerWithCompletion:^{
         }];
     } else if ([CLEAR_YAPS_SECTION isEqualToString:section]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Clear All Yaps"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Clear Inbox"
                                                         message:@"Are you sure you want to clear all of your sent and received yaps? This will also clear your 'Recent' tab."
                                                        delegate:self
                                               cancelButtonTitle:@"No"

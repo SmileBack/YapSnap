@@ -219,6 +219,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
 - (IBAction)segmentedControlDidChanage:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:CHANGE_CATEGORY_NOTIFICATION object:nil];
+    [self setBottomBarVisible:NO animated:NO];
     [self.audioSource cancelPlayingAudio];
     id<YSAudioSource> audioSource = nil;
     switch (self.categorySelectorView.selectedSegmentIndex) {

@@ -289,6 +289,7 @@
         }];
         self.audioCapture.categorySelectorView.isInactive = YES;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_BOTTOM_BAR_NOTIFICATION object:nil];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {

@@ -13,7 +13,7 @@
 #define LAST_NAME_SECTION @"Last Name"
 #define EMAIL_SECTION @"Email"
 #define PHONE_NUMBER_SECTION @"Phone Number"
-#define CLEAR_YAPS_SECTION @"Clear All Yaps"
+#define CLEAR_YAPS_SECTION @"Clear Inbox"
 #define FEEDBACK_SECTION @"Send Us Feedback"
 #define DOWNLOAD_SPOTIFY_SECTION @"Download Spotify"
 #define LOGOUT_SECTION @"Logout"
