@@ -221,7 +221,7 @@
     self.albumLabel.opaque = YES;
     self.albumLabel.backgroundColor = [UIColor clearColor];
     self.albumLabel.shadowColor = [UIColor blackColor];
-    self.albumLabel.shadowOffset = CGSizeMake(.5, .5);
+    self.albumLabel.shadowOffset = CGSizeMake(1, 1);
     self.albumLabel.layer.masksToBounds = NO;
     
     self.yapPhoto.layer.borderWidth = 1;

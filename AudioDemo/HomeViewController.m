@@ -205,7 +205,7 @@
     [self.searchBar addTarget:self
                        action:@selector(textFieldDidChange:)
              forControlEvents:UIControlEventEditingChanged];
-    self.searchBar.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search for a song" attributes:@{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.6]}];
+    self.searchBar.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search for a clip" attributes:@{NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.6]}];
     self.searchBar.layer.cornerRadius = 4.0f;
     self.searchBar.layer.masksToBounds = YES;
     self.searchBar.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;

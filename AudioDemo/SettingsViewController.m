@@ -169,7 +169,7 @@
         }];
     } else if ([CLEAR_YAPS_SECTION isEqualToString:section]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Clear Inbox"
-                                                        message:@"Are you sure you want to clear all of your sent and received yaps? This will also clear your 'Recent' tab."
+                                                        message:@"Are you sure you want to clear your inbox? This will also clear your 'Recent' tab, but not your 'Upload' tab."
                                                        delegate:self
                                               cancelButtonTitle:@"No"
                                               otherButtonTitles:@"Yes", nil];

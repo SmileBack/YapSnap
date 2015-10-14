@@ -120,7 +120,7 @@
     [self.onboardingView addSubview:self.onboardingButton];
     
     self.onboardingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 160)];
-    self.onboardingLabel.text = @"Upload & Trim\nFrom Your\nLibrary";
+    self.onboardingLabel.text = @"Choose a Clip\nFrom Your\nLibrary";
     self.onboardingLabel.textColor = [UIColor whiteColor];
     self.onboardingLabel.textAlignment = NSTextAlignmentCenter;
     self.onboardingLabel.font = [UIFont fontWithName:@"Futura-Medium" size:40];
