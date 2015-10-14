@@ -21,20 +21,26 @@
                                     apiString:@"genre_hiphop_tracks"
                                     imageName:@"Genre_HipHop"],
              [YTTrackGroup trackGroupWithName:@""
-                                    apiString:@"genre_rock_tracks"
-                                    imageName:@"Genre_Rock"],
+                                    apiString:@"genre_film_tracks"
+                                    imageName:@"Genre_Film2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"genre_pop_tracks"
                                     imageName:@"Genre_Pop2"],
+             [YTTrackGroup trackGroupWithName:@""
+                                    apiString:@"genre_rock_tracks"
+                                    imageName:@"Genre_Rock"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"genre_edm_tracks"
                                     imageName:@"Genre_EDM3"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"genre_country_tracks"
                                     imageName:@"Genre_Country2"],
+             
+             /*
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"genre_latin_tracks"
                                     imageName:@"Genre_Latin4"]
+              */
              ];
 }
 

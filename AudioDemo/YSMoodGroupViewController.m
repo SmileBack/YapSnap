@@ -21,11 +21,17 @@
                                     apiString:@"flirtatious_tracks"
                                     imageName:@"Mood_Flirtatious2"],
              [YTTrackGroup trackGroupWithName:@""
+                                    apiString:@"romantic_tracks"
+                                    imageName:@"Mood_Romantic"],
+             [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"nostalgic_tracks"
                                     imageName:@"Mood_Nostalgic2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"funny_tracks"
                                     imageName:@"Mood_Funny2"],
+             [YTTrackGroup trackGroupWithName:@""
+                                    apiString:@"inspire_tracks"
+                                    imageName:@"Mood_Inspire"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"celebrate_tracks"
                                     imageName:@"Mood_Celebratory2"],
@@ -34,7 +40,7 @@
                                     imageName:@"Mood_Happy2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"sad_tracks"
-                                    imageName:@"Mood_Sad2"]
+                                    imageName:@"Mood_Sad2"],
              ];
 }
 
