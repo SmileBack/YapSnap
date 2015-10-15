@@ -42,7 +42,7 @@
 @property (nonatomic) int seconds;
 @property (strong, nonatomic) UploadPopupViewController *uploadPopupVC;
 
-#define VIEWED_UPLOAD_POPUP_KEY @"yaptap.ViewedUploadPopup3"
+#define VIEWED_UPLOAD_POPUP_KEY @"yaptap.ViewedUploadPopup8"
 
 @end
 
@@ -194,6 +194,8 @@
         [self cancelPlayingAudio];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_BOTTOM_BAR_NOTIFICATION object:nil];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    NSLog(@"View Will Disappear");
 }
 
 - (void) setupNotifications {
@@ -206,13 +208,21 @@
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
                     }];
     
-    [center addObserverForName:UIApplicationWillResignActiveNotification
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        NSLog(@"Dismiss Welcome Popup");
-                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-                    }];
+//    [center addObserverForName:UIApplicationWillResignActiveNotification
+//                        object:nil
+//                         queue:nil
+//                    usingBlock:^(NSNotification *note) {
+//                        NSLog(@"Dismiss Welcome Popup");
+//                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+//                    }];
+//    
+//    [center addObserverForName:UIApplicationWillEnterForegroundNotification
+//                        object:nil
+//                         queue:nil
+//                    usingBlock:^(NSNotification *note) {
+//                        NSLog(@"Dismiss Welcome Popup");
+//                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+//                    }];
 }
 
 - (void) tappedImageView {
