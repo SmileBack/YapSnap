@@ -101,7 +101,6 @@
     [self setupNavBarStuff];
 
     [self reloadUnopenedYapsCount];
-    [self updateYapsButtonAnimation];
 
     self.topLeftButton.alpha = 1;
     self.yapsPageButton.alpha = 1;
@@ -385,6 +384,7 @@
                          queue:nil
                     usingBlock:^(NSNotification *note) {
                         [self showOverlay];
+                        [self updateYapsButtonAnimation];
                     }];
     
     [center addObserverForName:SHOW_SEND_YAP_POPUP

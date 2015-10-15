@@ -929,7 +929,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="C0531374-591E-460C-8CF2-C669F246C990"/>
+                                <state key="normal" backgroundImage="370029DD-0CE1-415C-9F8D-738FCC5798BB"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1913,9 +1913,7 @@ Type it here!</string>
         </scene>
     </scenes>
     <resources>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="C0531374-591E-460C-8CF2-C669F246C990" width="300" height="300">
+        <image name="370029DD-0CE1-415C-9F8D-738FCC5798BB" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -7988,6 +7986,8 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="CameraIcon400.png" width="150" height="150"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite500.png" width="350" height="350"/>
