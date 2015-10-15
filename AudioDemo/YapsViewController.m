@@ -769,8 +769,12 @@ static NSString *CellIdentifier = @"Cell";
     [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_SEND_YAP_POPUP object:nil];
     if (self.comingFromContactsOrCustomizeYapPage) {
         [self.navigationController popToRootViewControllerAnimated:NO];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Send Another Yap (Yaps Page)"];
     } else {
         [self.navigationController popViewControllerAnimated:YES];
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Send a Yap (Yaps Page)"];
     }
 }
 

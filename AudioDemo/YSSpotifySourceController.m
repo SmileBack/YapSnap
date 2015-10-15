@@ -246,6 +246,9 @@
             }];
         }
     }
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped a Category"];
 }
 
 #pragma mark - Spotify Search
