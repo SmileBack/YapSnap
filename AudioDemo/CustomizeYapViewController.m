@@ -19,7 +19,6 @@
 #import <AVFoundation/AVAudioSession.h>
 #import "FriendsViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "ForwardingPopupViewController.h"
 #import "CustomizeOnboardingPopupViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 
@@ -42,15 +41,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *addRecipientsButton;
 @property (strong, nonatomic) IBOutlet UILabel *albumLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
-@property (strong, nonatomic) ForwardingPopupViewController *forwardingPopupVC;
 @property (strong, nonatomic) CustomizeOnboardingPopupViewController *onboardingPopupVC;
 @property (strong, nonatomic) IBOutlet UILabel *replyLabel;
+
 
 - (IBAction)didTapCameraButton;
 - (IBAction)didTapResetPhotoButton;
 - (IBAction)didTapAddRecipientsInDoubleTapToReplyFlow;
 
-#define VIEWED_FORWARDING_POPUP_KEY @"yaptap.ViewedForwardingPopup"
 #define VIEWED_ONBOARDING_POPUP_KEY @"yaptap.ViewedForwardingPopup"
 
 @end
@@ -94,12 +92,6 @@
                 self.resetPhotoButton.hidden = NO;
                 //self.albumImage.hidden = YES;
             }
-            double delay = 0.5;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (!self.didViewForwardingPopup) {
-                    [self showForwardingPopup];;
-                }
-            });
         } else {
             self.contactLabel.text = @"Send Yap";
         }
@@ -243,13 +235,6 @@
 
 - (void) setupNotifications {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserverForName:DISMISS_FORWARDING_POPUP_NOTIFICATION
-                        object:nil
-                         queue:nil
-                    usingBlock:^(NSNotification *note) {
-                        NSLog(@"Dismiss Welcome Popup");
-                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-                    }];
     
     [center addObserverForName:DISMISS_CUSTOMIZE_ONBOARDING_POPUP_NOTIFICATION
                         object:nil
@@ -296,13 +281,6 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Forwarding Popup
-- (void) showForwardingPopup {
-    self.forwardingPopupVC = [[ForwardingPopupViewController alloc] initWithNibName:@"ForwardingPopupViewController" bundle:nil];
-    [self presentPopupViewController:self.forwardingPopupVC animationType:MJPopupViewAnimationFade];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_FORWARDING_POPUP_KEY];
-}
-
 #pragma mark - Onboarding Popup
 - (void) showOnboardingPopup {
     self.onboardingPopupVC = [[CustomizeOnboardingPopupViewController alloc] initWithNibName:@"CustomizeOnboardingPopupViewController" bundle:nil];
@@ -342,11 +320,6 @@
 -(BOOL) internetIsNotReachable
 {
     return ![AFNetworkReachabilityManager sharedManager].reachable;
-}
-
-- (BOOL) didViewForwardingPopup
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_FORWARDING_POPUP_KEY];
 }
 
 - (BOOL) didViewOnboardingPopup

@@ -104,6 +104,7 @@
 		781904901AF3293700196DFF /* MicrophoneWhiteSmooth.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819048F1AF3293700196DFF /* MicrophoneWhiteSmooth.png */; };
 		7819916F1AABBA6E00309E38 /* SettingsIconWhite8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */; };
 		781C00891B7E6AA800525B12 /* YSSongCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C00881B7E6AA800525B12 /* YSSongCollectionViewDataSource.m */; };
+		782535A71BCF7AEF0015E6BA /* Swipe Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 782535A61BCF7AEF0015E6BA /* Swipe Icon.png */; settings = {ASSET_TAGS = (); }; };
 		7828A8DC1A846C0C00BAA609 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7828A8DB1A846C0C00BAA609 /* MessageUI.framework */; };
 		78299E981BBE4070001961C7 /* AlbumImagePlaceholder2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E971BBE4070001961C7 /* AlbumImagePlaceholder2.png */; settings = {ASSET_TAGS = (); }; };
 		78299E9A1BBF3F49001961C7 /* YapIconUnopenedSent100.png in Resources */ = {isa = PBXBuildFile; fileRef = 78299E991BBF3F49001961C7 /* YapIconUnopenedSent100.png */; settings = {ASSET_TAGS = (); }; };
@@ -180,8 +181,8 @@
 		786192741B09A942007279E8 /* CustomizeOnboardingPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192721B09A942007279E8 /* CustomizeOnboardingPopupViewController.m */; };
 		786192781B09B810007279E8 /* ContactsPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192761B09B810007279E8 /* ContactsPopupViewController.m */; };
 		786192791B09B810007279E8 /* ContactsPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192771B09B810007279E8 /* ContactsPopupViewController.xib */; };
-		786192871B0A783B007279E8 /* ForwardingPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192851B0A783B007279E8 /* ForwardingPopupViewController.m */; };
-		786192881B0A783B007279E8 /* ForwardingPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192861B0A783B007279E8 /* ForwardingPopupViewController.xib */; };
+		786192871B0A783B007279E8 /* UploadPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786192851B0A783B007279E8 /* UploadPopupViewController.m */; };
+		786192881B0A783B007279E8 /* UploadPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786192861B0A783B007279E8 /* UploadPopupViewController.xib */; };
 		7861928A1B0E77D4007279E8 /* CartoonsLong5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786192891B0E77D4007279E8 /* CartoonsLong5@3x.png */; };
 		7861928C1B0EA528007279E8 /* CartooniPhone6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7861928B1B0EA528007279E8 /* CartooniPhone6@2x.png */; };
 		7863B5DD1A99A25F00531CED /* sound1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7863B5DC1A99A25F00531CED /* sound1.wav */; };
@@ -481,6 +482,7 @@
 		7819916E1AABBA6E00309E38 /* SettingsIconWhite8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIconWhite8@2x.png"; sourceTree = "<group>"; };
 		781C00871B7E6AA800525B12 /* YSSongCollectionViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSongCollectionViewDataSource.h; sourceTree = "<group>"; };
 		781C00881B7E6AA800525B12 /* YSSongCollectionViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSongCollectionViewDataSource.m; sourceTree = "<group>"; };
+		782535A61BCF7AEF0015E6BA /* Swipe Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Swipe Icon.png"; sourceTree = "<group>"; };
 		7828A8DB1A846C0C00BAA609 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		78299E971BBE4070001961C7 /* AlbumImagePlaceholder2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumImagePlaceholder2.png; sourceTree = "<group>"; };
 		78299E991BBF3F49001961C7 /* YapIconUnopenedSent100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YapIconUnopenedSent100.png; sourceTree = "<group>"; };
@@ -571,9 +573,9 @@
 		786192761B09B810007279E8 /* ContactsPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsPopupViewController.m; sourceTree = "<group>"; };
 		786192771B09B810007279E8 /* ContactsPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsPopupViewController.xib; sourceTree = "<group>"; };
 		7861927A1B09B81E007279E8 /* ContactsPopupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactsPopupViewController.h; sourceTree = "<group>"; };
-		786192841B0A783B007279E8 /* ForwardingPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardingPopupViewController.h; sourceTree = "<group>"; };
-		786192851B0A783B007279E8 /* ForwardingPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardingPopupViewController.m; sourceTree = "<group>"; };
-		786192861B0A783B007279E8 /* ForwardingPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForwardingPopupViewController.xib; sourceTree = "<group>"; };
+		786192841B0A783B007279E8 /* UploadPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPopupViewController.h; sourceTree = "<group>"; };
+		786192851B0A783B007279E8 /* UploadPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPopupViewController.m; sourceTree = "<group>"; };
+		786192861B0A783B007279E8 /* UploadPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPopupViewController.xib; sourceTree = "<group>"; };
 		786192891B0E77D4007279E8 /* CartoonsLong5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CartoonsLong5@3x.png"; sourceTree = "<group>"; };
 		7861928B1B0EA528007279E8 /* CartooniPhone6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CartooniPhone6@2x.png"; sourceTree = "<group>"; };
 		7863B5DC1A99A25F00531CED /* sound1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound1.wav; sourceTree = "<group>"; };
@@ -788,6 +790,7 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				782535A61BCF7AEF0015E6BA /* Swipe Icon.png */,
 				783714DC1BAE0AFD0005CC04 /* Song Category Images */,
 				78299E9F1BC1CE48001961C7 /* CancelButton100@2x.png */,
 				78299EA11BC1D1A0001961C7 /* CancelButton200@2x.png */,
@@ -1332,7 +1335,7 @@
 		7861926E1B09A904007279E8 /* Onboarding Popups */ = {
 			isa = PBXGroup;
 			children = (
-				786192831B0A77F5007279E8 /* Forwarding Popup */,
+				786192831B0A77F5007279E8 /* Upload Popup */,
 				7861926F1B09A913007279E8 /* Customize Onboarding Popup */,
 				785393701AD9C17C00C6BEA7 /* Welcome Popup */,
 				786192751B09B597007279E8 /* Contacts Popup */,
@@ -1360,14 +1363,14 @@
 			name = "Contacts Popup";
 			sourceTree = "<group>";
 		};
-		786192831B0A77F5007279E8 /* Forwarding Popup */ = {
+		786192831B0A77F5007279E8 /* Upload Popup */ = {
 			isa = PBXGroup;
 			children = (
-				786192841B0A783B007279E8 /* ForwardingPopupViewController.h */,
-				786192851B0A783B007279E8 /* ForwardingPopupViewController.m */,
-				786192861B0A783B007279E8 /* ForwardingPopupViewController.xib */,
+				786192841B0A783B007279E8 /* UploadPopupViewController.h */,
+				786192851B0A783B007279E8 /* UploadPopupViewController.m */,
+				786192861B0A783B007279E8 /* UploadPopupViewController.xib */,
 			);
-			name = "Forwarding Popup";
+			name = "Upload Popup";
 			sourceTree = "<group>";
 		};
 		786BCB411ADC25A300BA3FDD /* Customize Page */ = {
@@ -1957,7 +1960,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				786192881B0A783B007279E8 /* ForwardingPopupViewController.xib in Resources */,
+				786192881B0A783B007279E8 /* UploadPopupViewController.xib in Resources */,
 				782D13981ACC59E6007C8499 /* YapsButtonNoYaps.png in Resources */,
 				378FD61219BDF45C007F3224 /* CheckWhite.png in Resources */,
 				789351D71BABF061003C8AA0 /* Mood_Happy2.png in Resources */,
@@ -1975,6 +1978,7 @@
 				37BF0DED19E9164C0077B74F /* RedCircleIcon@2x.png in Resources */,
 				78B252261AF0238800353711 /* MagnifyingGlass.png in Resources */,
 				783CCFBB1B3CF0E500E3B5BF /* LeftArrow300.png in Resources */,
+				782535A71BCF7AEF0015E6BA /* Swipe Icon.png in Resources */,
 				7854B06B1AF8535500A02DF9 /* ControlCenterButton2@2x.png in Resources */,
 				78319A7F1ACD0290000C3FD6 /* MicModeButtonIcon@3x.png in Resources */,
 				783714E11BAE1AD00005CC04 /* ProgressViewRedNew40@2x.png in Resources */,
@@ -2267,7 +2271,7 @@
 				78A569A01A731FF300818A17 /* NSDate+InternetDateTime.m in Sources */,
 				5D02315F1B9899EA0011FD1C /* YSRecentSourceController.m in Sources */,
 				784047E91AB4DB0400FE6D93 /* OffsetImageButton.m in Sources */,
-				786192871B0A783B007279E8 /* ForwardingPopupViewController.m in Sources */,
+				786192871B0A783B007279E8 /* UploadPopupViewController.m in Sources */,
 				783CCF7E1B38CB9000E3B5BF /* SpotifyTrackFactory.m in Sources */,
 				378191D419E59B4A006EF98F /* API.m in Sources */,
 				78319A811ACD29A9000C3FD6 /* FeedbackMonitor.m in Sources */,

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 martinjuhasz.de. All rights reserved.
 //
 
-#import "ForwardingPopupViewController.h"
+#import "UploadPopupViewController.h"
 
-@implementation ForwardingPopupViewController
+@implementation UploadPopupViewController
 
 
 - (void)viewDidLoad
@@ -27,10 +27,12 @@
     self.view.layer.borderColor = [UIColor whiteColor].CGColor;
     self.view.layer.borderWidth = borderWidth;
     self.view.layer.cornerRadius = 5;
+    
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
 }
 
 - (IBAction) didTapCancelButton {
-    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_FORWARDING_POPUP_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DISMISS_UPLOAD_POPUP_NOTIFICATION object:nil];
 }
 
 @end

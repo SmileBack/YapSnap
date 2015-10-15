@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#define DISMISS_FORWARDING_POPUP_NOTIFICATION @"DismissForwardingPopup"
+#define DISMISS_UPLOAD_POPUP_NOTIFICATION @"DismissUploadPopup"
 
-@interface ForwardingPopupViewController : UIViewController
+@interface UploadPopupViewController : UIViewController
 
 - (IBAction)didTapCancelButton;
 

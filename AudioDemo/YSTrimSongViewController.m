@@ -15,6 +15,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "YSSpinnerView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "UIViewController+MJPopupViewController.h"
+#import "UploadPopupViewController.h"
 
 
 #define SECONDS_PER_CLIP 14.0f
@@ -38,6 +40,9 @@
 @property (nonatomic) int durationInSeconds;
 @property (nonatomic) int minutes;
 @property (nonatomic) int seconds;
+@property (strong, nonatomic) UploadPopupViewController *uploadPopupVC;
+
+#define VIEWED_UPLOAD_POPUP_KEY @"yaptap.ViewedUploadPopup3"
 
 @end
 
@@ -56,6 +61,8 @@
     self.leftBar = UIView.new;
     self.rightBar = UIView.new;
     self.playbackBar = UIView.new;
+    
+    [self setupNotifications];
 
     //[self.artworkImageView sd_setImageWithURL:[self albumImageNSURL]];
     self.artworkImageView.image = self.iTunesUpload.artworkImage ? self.iTunesUpload.artworkImage : [UIImage imageNamed:@"AlbumImagePlaceholder2"];
@@ -157,10 +164,12 @@
     
     [self.view addSubview:self.songDurationLabel];
     
-//    double delay = 0.5;
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [[YTNotifications sharedNotifications] showNotificationText:@"Slide To Select Part"];
-//    });
+    double delay = 0.5;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (!self.didViewUploadPopup) {
+            [self showUploadPopup];;
+        }
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -185,6 +194,25 @@
         [self cancelPlayingAudio];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_BOTTOM_BAR_NOTIFICATION object:nil];
+}
+
+- (void) setupNotifications {
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:DISMISS_UPLOAD_POPUP_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Dismiss Welcome Popup");
+                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                    }];
+    
+    [center addObserverForName:UIApplicationWillResignActiveNotification
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        NSLog(@"Dismiss Welcome Popup");
+                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                    }];
 }
 
 - (void) tappedImageView {
@@ -457,6 +485,18 @@
     yapBuilder.awsVoiceURL = self.itunesTrack.awsSongUrl;
 
     return yapBuilder;
+}
+
+- (BOOL) didViewUploadPopup
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_UPLOAD_POPUP_KEY];
+}
+
+#pragma mark - Upload Popup
+- (void) showUploadPopup {
+    self.uploadPopupVC = [[UploadPopupViewController alloc] initWithNibName:@"UploadPopupViewController" bundle:nil];
+    [self presentPopupViewController:self.uploadPopupVC animationType:MJPopupViewAnimationFade];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_UPLOAD_POPUP_KEY];
 }
 
 @end
