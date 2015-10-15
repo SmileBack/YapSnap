@@ -231,13 +231,26 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     id<YSAudioSource> audioSource = nil;
     switch (self.categorySelectorView.selectedSegmentIndex) {
         case 0:
+        {
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Changed Tab - Recent"];
+            
             audioSource = [[YSRecentSourceController alloc] init];
             break;
+        }
         case 1:
+        {
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Changed Tab - Trending"];
+            
             audioSource = [[YSSpotifySourceController alloc] init];
             break;
+        }
         case 2:
         {
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Changed Tab - Moods"];
+            
             YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSMoodGroupViewController alloc] init]];
             if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
                 nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
@@ -247,6 +260,9 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
             break;
         case 3:
         {
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Changed Tab - Genres"];
+            
             YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSGenreGroupViewController alloc] init]];
             if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
                 nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
@@ -256,11 +272,15 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
             break;
         case 4:
         {
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Changed Tab - Upload"];
+            
             YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSelectSongViewController alloc] init]];
             if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
                 nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
             }
             audioSource = nc;
+            
             break;
         }
         default:

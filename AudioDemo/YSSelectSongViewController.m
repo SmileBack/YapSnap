@@ -246,6 +246,9 @@
         self.spinnerView = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
         [self.view addSubview:self.spinnerView];
         self.spinnerView.center = self.view.center;
+        
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Tapped Upload - Regular"];
     }
 }
 
@@ -256,6 +259,9 @@
     self.spinnerView = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     [self.view addSubview:self.spinnerView];
     self.spinnerView.center = self.view.center;
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Tapped Upload - Onboarding"];
 }
 
 #pragma mark - MediaPickerDelegate
@@ -290,6 +296,9 @@
     
     [self didPressNext:upload];
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Upload - Selected Song from iTunes"];
 }
 
 - (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker {

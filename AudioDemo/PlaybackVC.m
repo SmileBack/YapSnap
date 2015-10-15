@@ -318,7 +318,7 @@
     [self dismissThis];
     [self.yapCreatingDelegate didOriginateReplyFromYapSameClip:self.yap];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Reply to Song from Playback (Same Clip)"];
+    [mixpanel track:@"Tapped Reply Text (from Playback)"];
 }
 
 - (IBAction)didTapReply:(id)sender {

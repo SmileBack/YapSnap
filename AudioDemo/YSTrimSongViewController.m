@@ -241,6 +241,9 @@
     self.effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
     self.effectView.frame =  CGRectMake(0, 0, 2208, 2208); // 2208 is as big as iphone plus height
     [self.artworkImageView addSubview:self.effectView];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Upload - Dragged Sound Wave"];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
@@ -327,6 +330,9 @@
             [weakSelf.spinner removeFromSuperview];
         }
     }];
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Upload - Pressed Continue on Trim Page"];
 }
 
 - (NSURL *)albumImageNSURL {
