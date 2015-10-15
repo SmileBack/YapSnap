@@ -39,7 +39,6 @@
 @property (nonatomic) int minutes;
 @property (nonatomic) int seconds;
 
-
 @end
 
 @implementation YSTrimSongViewController

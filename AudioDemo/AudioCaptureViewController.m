@@ -94,6 +94,9 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         self.categorySelectorView.items = items;
         self.categorySelectorView.selectedSegmentIndex = 1;
     }
+    
+    // The following line is probably unnecessary, but I added it just to be safe
+    self.continueButton.userInteractionEnabled = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -105,6 +108,8 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     }
 
     [self.audioSource stopAudioCapture];
+    
+    self.continueButton.userInteractionEnabled = YES;
 }
 
 - (BOOL)internetIsNotReachable {
@@ -200,6 +205,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
 - (void)setBottomBarVisible:(BOOL)visible {
     [self setBottomBarVisible:visible animated:YES];
+    self.continueButton.userInteractionEnabled = YES;
 }
 
 - (void)setBottomBarVisible:(BOOL)visible animated:(BOOL)animated {
@@ -209,6 +215,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     [UIView animateWithDuration:animated ? 0.3 : 0 animations:^{
         [self.view layoutIfNeeded];
     }];
+    self.continueButton.userInteractionEnabled = YES;
 }
 - (IBAction)didTapSegmentedControl:(id)sender {
     if ([self.audioSource isKindOfClass:[UINavigationController class]]) {
@@ -368,6 +375,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 #pragma mark - Bottom View
 - (IBAction)didTapNextButton {
     [self.audioSource prepareYapBuilder];
+    self.continueButton.userInteractionEnabled = NO;
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Choose Clip"];
 }
