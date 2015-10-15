@@ -78,7 +78,7 @@
     self.timeScrollView.showsHorizontalScrollIndicator = NO;
     self.timeScrollView.delegate = self;
     
-    self.playbackBar.backgroundColor = [UIColor yellowColor];
+    self.playbackBar.backgroundColor = [UIColor redColor];
     
     // Constraints
     for (UIView* view in @[self.artworkImageView, self.timeScrollView, self.leftBar, self.rightBar, self.playbackBar]) {
@@ -94,7 +94,7 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[v]|" options:0 metrics:nil views:@{@"v": self.timeScrollView}]];
     
     for (UIView *view in @[self.leftBar, self.rightBar]) {
-        view.backgroundColor = THEME_RED_COLOR;
+        view.backgroundColor = [UIColor blackColor];//THEME_RED_COLOR;
         NSLayoutAttribute xAttribute = view == self.leftBar ? NSLayoutAttributeLeft : NSLayoutAttributeRight;
         NSLayoutAttribute xOffset = view == self.leftBar ? 20 : -20;
         [self.view addConstraints:@[[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:2],
@@ -144,11 +144,11 @@
     [self.view addSubview:self.timeLabel];
     
     
-    self.songDurationLabel = [[UILabel alloc] initWithFrame:CGRectMake(timeLabelXPosition, timeLabelYPosition-10+120, 300, timeLabelHeight)];
+    self.songDurationLabel = [[UILabel alloc] initWithFrame:CGRectMake(timeLabelXPosition, timeLabelYPosition-10+125, 300, timeLabelHeight)];
     self.songDurationLabel.text = @"O";
     self.songDurationLabel.textColor = [UIColor whiteColor];
     self.songDurationLabel.textAlignment = NSTextAlignmentCenter;
-    self.songDurationLabel.font = [UIFont fontWithName:@"Futura-Medium" size:25];
+    self.songDurationLabel.font = [UIFont fontWithName:@"Futura-Medium" size:20];
     self.songDurationLabel.adjustsFontSizeToFitWidth = NO;
     self.songDurationLabel.opaque = YES;
     self.songDurationLabel.shadowColor = [UIColor blackColor];
@@ -188,11 +188,11 @@
 }
 
 - (void) tappedImageView {
-    [[YTNotifications sharedNotifications] showNotificationText:@"Slide the Sound Wave Below!"];
+    [[YTNotifications sharedNotifications] showNotificationText:@"Slide the Blue Wave Below!"];
 }
 
 - (void) swipedImageView {
-    [[YTNotifications sharedNotifications] showNotificationText:@"Slide the Sound Wave Below!"];
+    [[YTNotifications sharedNotifications] showNotificationText:@"Slide the Blue Wave Below!"];
 }
 
 #pragma mark - UIScrollViewDelegate
