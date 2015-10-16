@@ -42,7 +42,7 @@
 @property (nonatomic) int seconds;
 @property (strong, nonatomic) UploadPopupViewController *uploadPopupVC;
 
-#define VIEWED_UPLOAD_POPUP_KEY @"yaptap.ViewedUploadPopup8"
+#define VIEWED_UPLOAD_POPUP_KEY @"yaptap.ViewedUploadPopup11"
 
 @end
 
@@ -173,11 +173,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.effectView.alpha = 0;
-    self.timeLabel.alpha = 0;
-    self.songDurationLabel.alpha = 0;
-    self.view.userInteractionEnabled = YES;
-    
     if (self.didViewUploadPopup) {
         [self.audioCaptureDelegate audioSourceControllerWillStartAudioCapture:self];
         self.timeScrollView.contentOffset = CGPointMake(-CGRectGetMaxX(self.leftBar.frame), 0); // This triggers the playback view moving
@@ -189,6 +184,11 @@
         //this probably isn't necessary since audioSourceControllerWillStartAudioCapture is what causes the bar to show in the first place
         //[[NSNotificationCenter defaultCenter] postNotificationName:HIDE_BOTTOM_BAR_NOTIFICATION object:nil];
     }
+    
+    self.effectView.alpha = 0;
+    self.timeLabel.alpha = 0;
+    self.songDurationLabel.alpha = 0;
+    self.view.userInteractionEnabled = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -219,6 +219,8 @@
                         NSLog(@"-CGRectGetMaxX(self.leftBar.frame: %f", -CGRectGetMaxX(self.leftBar.frame));
                         [self loopSong]; // added this to fix bug where sometimes you'd go back to this page and bar would be stuck
                         [self.player play];
+                        self.timeLabel.alpha = 0;
+                        self.songDurationLabel.alpha = 0;
                     }];
 }
 

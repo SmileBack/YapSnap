@@ -391,9 +391,9 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        //if (!weakSelf.didSeeSendYapPopup) {
+                        if (!weakSelf.didSeeSendYapPopup) {
                             [weakSelf showSendYapPopup];
-                        //}
+                        }
                     }];
 
     [center addObserverForName:UIApplicationDidBecomeActiveNotification

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="260" height="260"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Step 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Step 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4">
                     <rect key="frame" x="23" y="55" width="214" height="49"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="214" id="8"/>
@@ -27,7 +27,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attach a message  or photo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                    <rect key="frame" x="16" y="82" width="228" height="145"/>
+                    <rect key="frame" x="16" y="30" width="228" height="145"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="145" id="18"/>
                         <constraint firstAttribute="width" constant="228" id="19"/>
@@ -49,7 +49,7 @@
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="7" firstAttribute="top" secondItem="1" secondAttribute="top" constant="82" id="12"/>
+                <constraint firstItem="7" firstAttribute="top" secondItem="1" secondAttribute="top" constant="30" id="12"/>
                 <constraint firstItem="4" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="15"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" constant="55" id="16"/>
                 <constraint firstItem="4" firstAttribute="centerX" secondItem="7" secondAttribute="centerX" id="17"/>
