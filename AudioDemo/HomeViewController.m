@@ -467,7 +467,7 @@
     double delay = .5;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
       self.welcomePopupVC = [[WelcomePopupViewController alloc] initWithNibName:@"WelcomePopupViewController" bundle:nil];
-      [self presentPopupViewController:self.welcomePopupVC animationType:MJPopupViewAnimationSlideTopTop];
+      [self presentPopupViewController:self.welcomePopupVC animationType:MJPopupViewAnimationFade];
 
       [[NSUserDefaults standardUserDefaults] setBool:YES forKey:DID_SEE_SEND_YAP_POPUP_KEY];
     });

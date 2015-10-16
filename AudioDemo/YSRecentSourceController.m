@@ -64,7 +64,7 @@
     [self.onboardingView addSubview:effectView];
     
     self.onboardingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 120)];
-    self.onboardingLabel.text = @"No Recent\nMusic Clips";
+    self.onboardingLabel.text = @"No Recent\nAudio Clips";
     self.onboardingLabel.textColor = [UIColor whiteColor];
     self.onboardingLabel.textAlignment = NSTextAlignmentCenter;
     self.onboardingLabel.font = [UIFont fontWithName:@"Futura-Medium" size:40];

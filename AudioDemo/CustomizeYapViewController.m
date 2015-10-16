@@ -284,7 +284,7 @@
 #pragma mark - Onboarding Popup
 - (void) showOnboardingPopup {
     self.onboardingPopupVC = [[CustomizeOnboardingPopupViewController alloc] initWithNibName:@"CustomizeOnboardingPopupViewController" bundle:nil];
-    [self presentPopupViewController:self.onboardingPopupVC animationType:MJPopupViewAnimationSlideTopTop];
+    [self presentPopupViewController:self.onboardingPopupVC animationType:MJPopupViewAnimationFade];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_ONBOARDING_POPUP_KEY];
 }
 
