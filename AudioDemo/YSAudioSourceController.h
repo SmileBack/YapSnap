@@ -14,6 +14,8 @@
 #define DID_START_AUDIO_CAPTURE_NOTIFICATION @"com.yapsnap.StartAudioCaptureLoadingSpinnerNotification"
 #define WILL_START_AUDIO_CAPTURE_NOTIFICATION @"com.yapsnap.WillStartAudioCaptureLoadingSpinnerNotification"
 #define HIDE_BOTTOM_BAR_NOTIFICATION @"HideBottomBarNotification"
+//#define SHOW_BOTTOM_BAR_NOTIFICATION @"ShowBottomBarNotification"
+
 
 @protocol YSAudioSource;
 

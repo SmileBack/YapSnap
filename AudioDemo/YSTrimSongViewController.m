@@ -167,22 +167,28 @@
     double delay = 0.5;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (!self.didViewUploadPopup) {
-            [self showUploadPopup];;
+            [self showUploadPopup];
         }
     });
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.audioCaptureDelegate audioSourceControllerWillStartAudioCapture:self];
-    self.timeScrollView.contentOffset = CGPointMake(-CGRectGetMaxX(self.leftBar.frame), 0); // This triggers the playback view moving
-    NSLog(@"-CGRectGetMaxX(self.leftBar.frame: %f", -CGRectGetMaxX(self.leftBar.frame));
-    [self loopSong]; // added this to fix bug where sometimes you'd go back to this page and bar would be stuck
-    [self.player play];
-    
     self.effectView.alpha = 0;
     self.timeLabel.alpha = 0;
     self.songDurationLabel.alpha = 0;
     self.view.userInteractionEnabled = YES;
+    
+    if (self.didViewUploadPopup) {
+        [self.audioCaptureDelegate audioSourceControllerWillStartAudioCapture:self];
+        self.timeScrollView.contentOffset = CGPointMake(-CGRectGetMaxX(self.leftBar.frame), 0); // This triggers the playback view moving
+        NSLog(@"-CGRectGetMaxX(self.leftBar.frame: %f", -CGRectGetMaxX(self.leftBar.frame));
+        [self loopSong]; // added this to fix bug where sometimes you'd go back to this page and bar would be stuck
+        [self.player play];
+    } else {
+        //We trigger popup to be shown in the viewdidload method
+        //this probably isn't necessary since audioSourceControllerWillStartAudioCapture is what causes the bar to show in the first place
+        //[[NSNotificationCenter defaultCenter] postNotificationName:HIDE_BOTTOM_BAR_NOTIFICATION object:nil];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -204,25 +210,16 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        NSLog(@"Dismiss Welcome Popup");
+                        NSLog(@"Dismiss Upload Popup");
                         [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_UPLOAD_POPUP_KEY];
+                        
+                        [self.audioCaptureDelegate audioSourceControllerWillStartAudioCapture:self];
+                        self.timeScrollView.contentOffset = CGPointMake(-CGRectGetMaxX(self.leftBar.frame), 0); // This triggers the playback view moving
+                        NSLog(@"-CGRectGetMaxX(self.leftBar.frame: %f", -CGRectGetMaxX(self.leftBar.frame));
+                        [self loopSong]; // added this to fix bug where sometimes you'd go back to this page and bar would be stuck
+                        [self.player play];
                     }];
-    
-//    [center addObserverForName:UIApplicationWillResignActiveNotification
-//                        object:nil
-//                         queue:nil
-//                    usingBlock:^(NSNotification *note) {
-//                        NSLog(@"Dismiss Welcome Popup");
-//                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-//                    }];
-//    
-//    [center addObserverForName:UIApplicationWillEnterForegroundNotification
-//                        object:nil
-//                         queue:nil
-//                    usingBlock:^(NSNotification *note) {
-//                        NSLog(@"Dismiss Welcome Popup");
-//                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-//                    }];
 }
 
 - (void) tappedImageView {
@@ -506,7 +503,6 @@
 - (void) showUploadPopup {
     self.uploadPopupVC = [[UploadPopupViewController alloc] initWithNibName:@"UploadPopupViewController" bundle:nil];
     [self presentPopupViewController:self.uploadPopupVC animationType:MJPopupViewAnimationFade];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_UPLOAD_POPUP_KEY];
 }
 
 @end

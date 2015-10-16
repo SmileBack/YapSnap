@@ -147,6 +147,14 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
                     usingBlock:^(NSNotification *note) {
                         [self setBottomBarVisible:NO animated:NO];
                     }];
+    /*
+    [center addObserverForName:SHOW_BOTTOM_BAR_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self setBottomBarVisible:YES animated:YES];
+                    }];
+     */
 }
 
 - (void)updateProgress {
