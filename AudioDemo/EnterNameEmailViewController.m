@@ -140,6 +140,8 @@
                                         [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETED_REGISTRATION_NOTIFICATION object:nil];
                                         [self dismissViewControllerAnimated:YES completion:nil];
                                         [[YSPushManager sharedPushManager] registerForNotifications];
+                                        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+                                        [mixpanel track:@"Completed Registration"];
                                     } else {
                                         NSLog(@"Error! %@", error);
                                         [[[UIAlertView alloc] initWithTitle:@"Try Again" message:@"There was an error saving your info. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];

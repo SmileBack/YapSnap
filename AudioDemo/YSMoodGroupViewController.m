@@ -22,7 +22,7 @@
                                     imageName:@"Mood_Flirtatious2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"romantic_tracks"
-                                    imageName:@"Mood_Romantic"],
+                                    imageName:@"Mood_Romantic2"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"nostalgic_tracks"
                                     imageName:@"Mood_Nostalgic2"],
@@ -34,7 +34,7 @@
                                     imageName:@"Mood_Inspire"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"celebrate_tracks"
-                                    imageName:@"Mood_Celebratory2"],
+                                    imageName:@"Mood_Celebrate"],
              [YTTrackGroup trackGroupWithName:@""
                                     apiString:@"happy_tracks"
                                     imageName:@"Mood_Happy2"],

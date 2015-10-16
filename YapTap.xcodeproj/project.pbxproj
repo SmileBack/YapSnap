@@ -152,6 +152,12 @@
 		7840480B1AB7334A00FE6D93 /* NextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840480A1AB7334A00FE6D93 /* NextButton.m */; };
 		7843369F1BD1407E00B8D7FF /* Pick_a_song_popup_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7843369E1BD1407E00B8D7FF /* Pick_a_song_popup_icon.png */; settings = {ASSET_TAGS = (); }; };
 		784336A11BD1432A00B8D7FF /* add_message_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336A01BD1432A00B8D7FF /* add_message_icon.png */; settings = {ASSET_TAGS = (); }; };
+		784336A31BD1A34A00B8D7FF /* Mood_Romantic2.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336A21BD1A34A00B8D7FF /* Mood_Romantic2.png */; settings = {ASSET_TAGS = (); }; };
+		784336A51BD1A69100B8D7FF /* Mood_Celebrate.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336A41BD1A69100B8D7FF /* Mood_Celebrate.png */; settings = {ASSET_TAGS = (); }; };
+		784336A71BD1AB5B00B8D7FF /* Genre_EDM4.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336A61BD1AB5B00B8D7FF /* Genre_EDM4.png */; settings = {ASSET_TAGS = (); }; };
+		784336A91BD1AB7100B8D7FF /* Genre_Country3.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336A81BD1AB7100B8D7FF /* Genre_Country3.png */; settings = {ASSET_TAGS = (); }; };
+		784336AB1BD1ACC500B8D7FF /* Genre_Rock2.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336AA1BD1ACC500B8D7FF /* Genre_Rock2.png */; settings = {ASSET_TAGS = (); }; };
+		784336AD1BD1AD2600B8D7FF /* Genre_Pop3.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336AC1BD1AD2600B8D7FF /* Genre_Pop3.png */; settings = {ASSET_TAGS = (); }; };
 		78439F881AE5C6A1004CFB5F /* SmallMusicIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439F871AE5C6A1004CFB5F /* SmallMusicIcon2.png */; };
 		78439FAE1AE6D705004CFB5F /* Record.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FAD1AE6D705004CFB5F /* Record.png */; };
 		78439FB01AE6EF46004CFB5F /* OpenGift700.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FAF1AE6EF46004CFB5F /* OpenGift700.png */; };
@@ -542,6 +548,12 @@
 		7840480A1AB7334A00FE6D93 /* NextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextButton.m; sourceTree = "<group>"; };
 		7843369E1BD1407E00B8D7FF /* Pick_a_song_popup_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pick_a_song_popup_icon.png; sourceTree = "<group>"; };
 		784336A01BD1432A00B8D7FF /* add_message_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_message_icon.png; sourceTree = "<group>"; };
+		784336A21BD1A34A00B8D7FF /* Mood_Romantic2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Romantic2.png; sourceTree = "<group>"; };
+		784336A41BD1A69100B8D7FF /* Mood_Celebrate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Celebrate.png; sourceTree = "<group>"; };
+		784336A61BD1AB5B00B8D7FF /* Genre_EDM4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genre_EDM4.png; sourceTree = "<group>"; };
+		784336A81BD1AB7100B8D7FF /* Genre_Country3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genre_Country3.png; sourceTree = "<group>"; };
+		784336AA1BD1ACC500B8D7FF /* Genre_Rock2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genre_Rock2.png; sourceTree = "<group>"; };
+		784336AC1BD1AD2600B8D7FF /* Genre_Pop3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genre_Pop3.png; sourceTree = "<group>"; };
 		78439F871AE5C6A1004CFB5F /* SmallMusicIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SmallMusicIcon2.png; sourceTree = "<group>"; };
 		78439FAD1AE6D705004CFB5F /* Record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Record.png; sourceTree = "<group>"; };
 		78439FAF1AE6EF46004CFB5F /* OpenGift700.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OpenGift700.png; sourceTree = "<group>"; };
@@ -1163,6 +1175,10 @@
 		783714DD1BAE0B540005CC04 /* Genres */ = {
 			isa = PBXGroup;
 			children = (
+				784336AC1BD1AD2600B8D7FF /* Genre_Pop3.png */,
+				784336AA1BD1ACC500B8D7FF /* Genre_Rock2.png */,
+				784336A61BD1AB5B00B8D7FF /* Genre_EDM4.png */,
+				784336A81BD1AB7100B8D7FF /* Genre_Country3.png */,
 				78AABC7A1BCDFB00008D3339 /* Genre_Film.png */,
 				78AABC7C1BCDFEE6008D3339 /* Genre_Film2.png */,
 				783020F31BA09EFF009198BC /* Genre_HipHop.png */,
@@ -1178,6 +1194,8 @@
 		783714DE1BAE0B600005CC04 /* Moods */ = {
 			isa = PBXGroup;
 			children = (
+				784336A41BD1A69100B8D7FF /* Mood_Celebrate.png */,
+				784336A21BD1A34A00B8D7FF /* Mood_Romantic2.png */,
 				78AABC7E1BCDFFC7008D3339 /* Mood_Inspire.png */,
 				78AABC781BCDF773008D3339 /* Mood_Romantic.png */,
 				789351D81BABF09D003C8AA0 /* Mood_Nostalgic2.png */,
@@ -2004,6 +2022,7 @@
 				78A2E8551ACC671600B5A404 /* PinkStar2.png in Resources */,
 				78299EA41BC1EDF0001961C7 /* ResetButton1000@2x.png in Resources */,
 				783021001BA0A2CE009198BC /* Genre_EDM3.png in Resources */,
+				784336A91BD1AB7100B8D7FF /* Genre_Country3.png in Resources */,
 				7854B0691AF8523100A02DF9 /* ControlCenterButton@2x.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
 				789351DA1BABF09D003C8AA0 /* Mood_Nostalgic2.png in Resources */,
@@ -2022,6 +2041,7 @@
 				78141DBF1BBBB3660091B8B6 /* CancelImageWhite400.png in Resources */,
 				78C584A61B30A98500B5AA5C /* ReplayIcon2.png in Resources */,
 				78141DB91BBBAC430091B8B6 /* CancelImageWhite200.png in Resources */,
+				784336AD1BD1AD2600B8D7FF /* Genre_Pop3.png in Resources */,
 				789351E11BAD3A8F003C8AA0 /* CartoonsLong6@3x.png in Resources */,
 				78439F881AE5C6A1004CFB5F /* SmallMusicIcon2.png in Resources */,
 				788363901AD78BB6001CBD1B /* OneNotSelectediPhone4@2x.png in Resources */,
@@ -2052,6 +2072,7 @@
 				78D7812A1ABA249E00F483A8 /* RecordButtonBlueBorder10Pressed.png in Resources */,
 				78141DBB1BBBB2080091B8B6 /* ReplayIcon100.png in Resources */,
 				781904901AF3293700196DFF /* MicrophoneWhiteSmooth.png in Resources */,
+				784336AB1BD1ACC500B8D7FF /* Genre_Rock2.png in Resources */,
 				78A8239A1ABE79BF00135369 /* LoginPageImageSmalleriPhones@2x.png in Resources */,
 				788363891AD78604001CBD1B /* TwoNotSelected@3x.png in Resources */,
 				786D91271A6F476C00177E25 /* CancelImageWhiteCircle.png in Resources */,
@@ -2083,8 +2104,10 @@
 				781904801AF1E2A300196DFF /* ResetButton30@2x.png in Resources */,
 				78141DB31BBBA7310091B8B6 /* LeftArrow800.png in Resources */,
 				783C54CC1B3E18F2009E9848 /* AddRecipientsIcon2.png in Resources */,
+				784336A71BD1AB5B00B8D7FF /* Genre_EDM4.png in Resources */,
 				78AABC7B1BCDFB00008D3339 /* Genre_Film.png in Resources */,
 				78141DC31BBBB4790091B8B6 /* CancelImageWhite1000.png in Resources */,
+				784336A51BD1A69100B8D7FF /* Mood_Celebrate.png in Resources */,
 				78439FB01AE6EF46004CFB5F /* OpenGift700.png in Resources */,
 				78299EA01BC1CE48001961C7 /* CancelButton100@2x.png in Resources */,
 				7883637B1AD781C3001CBD1B /* OneNotSelected@2x.png in Resources */,
@@ -2109,6 +2132,7 @@
 				78A2E85A1ACC6A4100B5A404 /* YapsButton3.png in Resources */,
 				78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */,
 				78439FAE1AE6D705004CFB5F /* Record.png in Resources */,
+				784336A31BD1A34A00B8D7FF /* Mood_Romantic2.png in Resources */,
 				784047FA1AB4F7D200FE6D93 /* MainStoryboard.storyboard in Resources */,
 				789351EA1BAD41FC003C8AA0 /* LoginPageImageSmalleriPhonesMusicNotes2@2x.png in Resources */,
 				782A61BD1AB7C69E00E86C02 /* RecordButtonBlueBorder10.png in Resources */,
