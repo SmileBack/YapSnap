@@ -471,14 +471,14 @@ static NSString *CellIdentifier = @"Cell";
         cell.createdTimeLabel.font = [UIFont italicSystemFontOfSize:11];
         
         if (yap.wasOpened) {
-            cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@ opened your yap", yap.displayReceiverName];
+            cell.createdTimeLabel.text = [NSString stringWithFormat:@"%@ opened your yap!\n(hold down to view yap)", yap.displayReceiverName];
         } else if (!yap.wasOpened) {
             if (yap.isPending) {
-                cell.createdTimeLabel.text = @"It'll be delivered once they join!\n(hold down to view)";
+                cell.createdTimeLabel.text = @"It'll be delivered once they join!\n(hold down to view yap)";
             } else if (yap.isSending) {
                 NSLog(@"Tapped cell with status of isSending");
             } else {
-                cell.createdTimeLabel.text = @"Your yap has been delivered!\n(hold down to view)";
+                cell.createdTimeLabel.text = @"Your yap has been delivered!\n(hold down to view yap)";
             }
         }
         

@@ -192,7 +192,7 @@
             self.titleLabel.text = @"";//[NSString stringWithFormat:@"To %@", contactFirstName];
         }
     } else {
-        self.titleLabel.text = @"Add Message";
+        self.titleLabel.text = @"Attach a Message";
     }
     
     self.titleLabel.adjustsFontSizeToFitWidth = NO;
@@ -416,7 +416,7 @@
         if (!self.isForwardingYap && !self.isReplying) {
             if (self.textView.text.length == 0) {
                 self.titleLabel.alpha = 1;
-                self.titleLabel.text = @"Add Message";
+                self.titleLabel.text = @"Attach a Message";
             } else {
                 [UIView animateWithDuration:.2
                                       delay:0
