@@ -108,6 +108,10 @@
     
     self.searchBar.text = @"";
     self.resetButton.alpha = 0;
+    
+    if (self.didOpenYapForFirstTime) {
+        [self removePulsatingAnimation];
+    }
 }
 
 - (void) setupOverlayStuff {
@@ -515,12 +519,16 @@
                                                              userInfo:nil
                                                               repeats:YES];
     } else {
-        if (self.pulsatingTimer) {
-            [self.pulsatingTimer invalidate];
-        }
-        [self.yapsPageButton.layer removeAnimationForKey:@"bounceAnimation"];
-        NSLog(@"Remove pulsating animation");
+        [self removePulsatingAnimation];
     }
+}
+
+- (void) removePulsatingAnimation {
+    if (self.pulsatingTimer) {
+        [self.pulsatingTimer invalidate];
+    }
+    [self.yapsPageButton.layer removeAnimationForKey:@"bounceAnimation"];
+    NSLog(@"Remove pulsating animation");
 }
 
 - (IBAction)leftButtonPressed:(id)sender {
