@@ -43,11 +43,15 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
 @property (strong, nonatomic) CustomizeOnboardingPopupViewController *onboardingPopupVC;
 @property (strong, nonatomic) IBOutlet UILabel *replyLabel;
-
+@property (strong, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UIButton *endPreviewButton;
+@property (weak, nonatomic) IBOutlet UIButton *startPreviewButton;
 
 - (IBAction)didTapCameraButton;
 - (IBAction)didTapResetPhotoButton;
 - (IBAction)didTapAddRecipientsInDoubleTapToReplyFlow;
+- (IBAction)didTapEndPreviewButton;
+- (IBAction)didTapStartPreviewButton;
 
 #define VIEWED_ONBOARDING_POPUP_KEY @"yaptap.ViewedForwardingPopup"
 
@@ -93,11 +97,12 @@
                 //self.albumImage.hidden = YES;
             }
         } else {
-            self.contactLabel.text = @"Send Yap";
+            self.contactLabel.text = @"";
+            //self.contactLabel.text = @"Send Yap";
         }
     }
     
-    if (self.isReplying || self.isForwardingYap) {
+    if (self.isReplyingWithText || self.isForwardingYap) {
         [self.topLeftButton setImage:[UIImage imageNamed:@"CancelImageWhite1000.png"] forState:UIControlStateNormal];
         [self.topLeftButton setImage:[UIImage imageNamed:@"CancelImageWhite1000.png"] forState:UIControlStateHighlighted];
     } else {
@@ -105,12 +110,13 @@
         [self.topLeftButton setImage:[UIImage imageNamed:@"LeftArrow900.png"] forState:UIControlStateHighlighted];
     }
     
-    if (self.isReplying) {
+    if (self.isReplyingWithText) {
         self.replyLabel.hidden = NO;
         self.textView.backgroundColor = [UIColor colorWithRed:(0/255) green:(0/255) blue:(0/255) alpha:.05];;
         self.albumLabel.hidden = YES;
         self.cameraButton.hidden = YES;
         self.yapBuilder.awsVoiceURL = self.yapBuilder.track.previewURL;
+        self.startPreviewButton.hidden = YES;
     }
     
     double delay = 0.2;
@@ -156,7 +162,7 @@
         }];
     }
     
-    if (!self.isReplying && !self.isForwardingYap) {
+    if (!self.isReplyingWithText && !self.isForwardingYap) {
         if (self.didViewOnboardingPopup) {
             if ([self.yapBuilder.messageType isEqual: @"UploadedMessage"]) {
                 double delay3 = 1.5;
@@ -183,7 +189,7 @@
     
     if (self.isForwardingYap) {
         self.titleLabel.text = @"Edit Yap & Forward";
-    } else if (self.isReplying) {
+    } else if (self.isReplyingWithText) {
         PhoneContact *contact = self.yapBuilder.contacts.firstObject;
         //NSString *contactFirstName = [[contact.name componentsSeparatedByString:@" "] objectAtIndex:0];
         if ([contact.phoneNumber isEqualToString:@"+13245678910"] || [contact.phoneNumber isEqualToString:@"+13027865701"]) {
@@ -198,8 +204,8 @@
     self.titleLabel.adjustsFontSizeToFitWidth = NO;
     self.titleLabel.opaque = YES;
     self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.shadowColor = [UIColor lightGrayColor];
-    self.titleLabel.shadowOffset = CGSizeMake(1, 1);
+    self.titleLabel.shadowColor = [UIColor blackColor];
+    self.titleLabel.shadowOffset = CGSizeMake(.5, .5);
     self.titleLabel.layer.masksToBounds = NO;
 
     self.replyLabel.adjustsFontSizeToFitWidth = NO;
@@ -231,6 +237,35 @@
     if (self.isForwardingYap && [self.yapBuilder.messageType isEqualToString:@"VoiceMessage"]) {
         [self.albumImage setImage:[UIImage imageNamed:@"YapTapCartoonLarge2.png"]];
     }
+    
+    
+    self.endPreviewButton.hidden = YES;
+    self.endPreviewButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.5f];
+    self.endPreviewButton.layer.cornerRadius = 4;
+    self.endPreviewButton.layer.borderWidth = 1;
+    self.endPreviewButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
+}
+
+- (void) didTapStartPreviewButton {
+    self.bottomView.hidden = YES;
+    self.contactLabel.hidden = YES;
+    self.continueButton.hidden = YES;
+    self.topLeftButton.hidden = YES;
+    self.titleLabel.hidden = YES;
+    self.cameraButton.hidden = YES;
+    self.endPreviewButton.hidden = NO;
+    self.startPreviewButton.hidden = YES;
+}
+
+- (void) didTapEndPreviewButton {
+    self.bottomView.hidden = NO;
+    self.contactLabel.hidden = NO;
+    self.continueButton.hidden = NO;
+    self.topLeftButton.hidden = NO;
+    self.titleLabel.hidden = NO;
+    self.cameraButton.hidden = NO;
+    self.endPreviewButton.hidden = YES;
+    self.startPreviewButton.hidden = NO;
 }
 
 - (void) setupNotifications {
@@ -413,7 +448,7 @@
         
         self.textView.text = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         
-        if (!self.isForwardingYap && !self.isReplying) {
+        if (!self.isForwardingYap && !self.isReplyingWithText) {
             if (self.textView.text.length == 0) {
                 self.titleLabel.alpha = 1;
                 self.titleLabel.text = @"Attach a Message";
@@ -557,7 +592,7 @@
 
 - (IBAction)leftButtonPressed:(id)sender
 {
-    if (self.isReplying || self.isForwardingYap) {
+    if (self.isReplyingWithText || self.isForwardingYap) {
         [self.navigationController popViewControllerAnimated:NO];
     } else {
         [self.navigationController popViewControllerAnimated:YES];

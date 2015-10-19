@@ -580,7 +580,7 @@ static NSString *CellIdentifier = @"Cell";
             if (action == YTYapSendingActionForward) {
                 vc.isForwardingYap = YES;
             } else {
-                vc.isReplying = YES;
+                vc.isReplyingWithText = YES;
             }
         }
     }

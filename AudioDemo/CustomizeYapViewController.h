@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) YapBuilder *yapBuilder;
 @property (assign, nonatomic) BOOL isForwardingYap;
-@property (assign, nonatomic) BOOL isReplying;
+@property (assign, nonatomic) BOOL isReplyingWithText;
 
 - (IBAction)leftButtonPressed:(id)sender;
 
