@@ -269,8 +269,18 @@
     self.startPreviewButton.hidden = YES;
     self.progressView.hidden = NO;
     self.titleLabel.alpha = 0;
+    self.addRecipientsButton.hidden = YES;
     [self.activityIndicator startAnimating];
     [self playYapAudio];
+    
+    float volume = [[AVAudioSession sharedInstance] outputVolume];
+    if (volume < 0.5) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[YTNotifications sharedNotifications] showBlueNotificationText:@"Turn Up The Volume!"];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Volume Notification - PlayBack"];
+        });
+    }
 }
 
 - (void) didTapEndPreviewButton {
@@ -287,6 +297,10 @@
     [self.player stop];
     self.progressView.hidden = YES;
     [self.progressView setProgress:0];
+    if (self.yapBuilder.contacts.count > 0) {
+        self.addRecipientsButton.hidden = NO;
+    }
+    
 }
 
 - (void) setupNotifications {
