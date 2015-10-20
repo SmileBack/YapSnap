@@ -107,7 +107,6 @@
             self.contactLabel.text = @"Select Recipients";
             if (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) {
                 self.resetPhotoButton.hidden = NO;
-                //self.albumImage.hidden = YES;
             }
         } else {
             self.contactLabel.text = @"";
@@ -270,6 +269,8 @@
     self.progressView.hidden = NO;
     self.titleLabel.alpha = 0;
     self.addRecipientsButton.hidden = YES;
+    self.textView.userInteractionEnabled = NO;
+    self.resetPhotoButton.hidden = YES;
     [self.activityIndicator startAnimating];
     [self playYapAudio];
     
@@ -300,7 +301,10 @@
     if (self.yapBuilder.contacts.count > 0) {
         self.addRecipientsButton.hidden = NO;
     }
-    
+    self.textView.userInteractionEnabled = YES;
+    if (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) {
+        self.resetPhotoButton.hidden = NO;
+    }
 }
 
 - (void) setupNotifications {
@@ -324,7 +328,7 @@
     [super viewWillAppear:animated];
     self.continueButton.userInteractionEnabled = YES; //This is here just in case
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    
+    self.textView.userInteractionEnabled = YES;
     self.albumImage.alpha = 1;
 }
 

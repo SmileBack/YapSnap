@@ -118,7 +118,7 @@
     self.textView.textContainer.maximumNumberOfLines = 6;
     self.textView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
     
-    self.view.backgroundColor = [UIColor whiteColor];//THEME_BACKGROUND_COLOR;
+    self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
     float volume = [[AVAudioSession sharedInstance] outputVolume];
     if (volume < 0.5) {
