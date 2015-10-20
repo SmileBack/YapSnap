@@ -10,8 +10,9 @@
 #import "YapBuilder.h"
 #import "YSColorPicker.h"
 #import "ContactsViewController.h"
+#import <STKAudioPlayer.h>
 
-@interface CustomizeYapViewController : UIViewController<YSColorPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, ContactsViewControllerDelegate>
+@interface CustomizeYapViewController : UIViewController<YSColorPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, ContactsViewControllerDelegate, STKAudioPlayerDelegate>
 
 @property (nonatomic, strong) YapBuilder *yapBuilder;
 @property (assign, nonatomic) BOOL isForwardingYap;

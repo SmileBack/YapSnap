@@ -875,10 +875,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygq-ac-kFT" customClass="YSRecordProgressView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="8"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="3"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="8" id="FeQ-XH-VcD"/>
+                                    <constraint firstAttribute="height" constant="3" id="FeQ-XH-VcD"/>
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vM0-Ja-t0y" userLabel="Reset Photo Button">
@@ -929,7 +929,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="E075C7F9-5C6A-4AC4-B447-73F965BB0BBC"/>
+                                <state key="normal" backgroundImage="A4E16E3C-CD6D-4ACA-9B72-739F0CC9D251"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -958,7 +958,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TYPE MESSAGE BELOW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHY-Se-Z5T">
-                                <rect key="frame" x="20" y="73" width="280" height="21"/>
+                                <rect key="frame" x="20" y="73.5" width="280" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -985,11 +985,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Yo4-ls-PqW" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="25" id="27x-2G-w35"/>
                             <constraint firstItem="6Bz-0m-hzI" firstAttribute="trailing" secondItem="Yo4-ls-PqW" secondAttribute="trailing" id="3Y2-GT-28H"/>
                             <constraint firstItem="KUG-Uw-gQP" firstAttribute="centerX" secondItem="dHY-Se-Z5T" secondAttribute="centerX" id="42z-rB-zpM"/>
                             <constraint firstItem="gWj-LF-pEZ" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="-21" id="4QE-y1-HOu"/>
-                            <constraint firstItem="gWj-LF-pEZ" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="12" id="4jz-vs-drj"/>
                             <constraint firstItem="dHY-Se-Z5T" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="4" id="7Jk-kz-snB"/>
                             <constraint firstItem="6Bz-0m-hzI" firstAttribute="top" secondItem="B2R-OB-er0" secondAttribute="top" id="8ae-gQ-Aor"/>
                             <constraint firstItem="KDf-Vb-ilr" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="2" id="9cU-hC-jm3"/>
@@ -997,6 +995,7 @@
                             <constraint firstAttribute="centerX" secondItem="B2R-OB-er0" secondAttribute="centerX" id="Bck-GS-k44"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Yo4-ls-PqW" secondAttribute="trailing" constant="-6" id="Hh4-oD-s6L"/>
                             <constraint firstAttribute="centerX" secondItem="yD7-vZ-19N" secondAttribute="centerX" id="IAx-iC-1H3"/>
+                            <constraint firstItem="ygq-ac-kFT" firstAttribute="centerX" secondItem="54R-6y-Wab" secondAttribute="centerX" id="JRZ-Yb-5rt"/>
                             <constraint firstItem="TCV-Y6-ICb" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="-13" id="KH1-Ef-ZE9"/>
                             <constraint firstItem="5VO-Xh-MtL" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="-20" id="LhI-GX-Cjf"/>
                             <constraint firstAttribute="trailing" secondItem="ygq-ac-kFT" secondAttribute="trailing" id="Lq3-1h-fim"/>
@@ -1006,17 +1005,19 @@
                             <constraint firstItem="vM0-Ja-t0y" firstAttribute="top" secondItem="gWj-LF-pEZ" secondAttribute="bottom" constant="8" id="Tb6-yF-Z4e"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gWj-LF-pEZ" secondAttribute="trailing" constant="-21" id="Vll-O7-eHX"/>
                             <constraint firstItem="9XV-zO-GXP" firstAttribute="centerY" secondItem="T1S-dg-Qvf" secondAttribute="top" constant="-37" id="X0t-yl-0Ze"/>
-                            <constraint firstItem="ygq-ac-kFT" firstAttribute="top" secondItem="54R-6y-Wab" secondAttribute="topMargin" constant="64" id="Xvf-wH-6CH"/>
+                            <constraint firstItem="ygq-ac-kFT" firstAttribute="top" secondItem="54R-6y-Wab" secondAttribute="topMargin" id="Xvf-wH-6CH"/>
+                            <constraint firstItem="Yo4-ls-PqW" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="77" id="YVk-T0-qUY"/>
+                            <constraint firstItem="ygq-ac-kFT" firstAttribute="width" secondItem="54R-6y-Wab" secondAttribute="width" id="ZnT-Pj-Xhl"/>
                             <constraint firstAttribute="centerX" secondItem="vM0-Ja-t0y" secondAttribute="centerX" id="aPE-60-suT"/>
                             <constraint firstItem="KUG-Uw-gQP" firstAttribute="centerX" secondItem="vM0-Ja-t0y" secondAttribute="centerX" id="cE0-1T-Rld"/>
                             <constraint firstItem="6Bz-0m-hzI" firstAttribute="leading" secondItem="Yo4-ls-PqW" secondAttribute="leading" id="eml-Vm-8ye"/>
                             <constraint firstItem="Yo4-ls-PqW" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="-6" id="hZX-8m-wLP"/>
                             <constraint firstItem="6Bz-0m-hzI" firstAttribute="bottom" secondItem="B2R-OB-er0" secondAttribute="bottom" id="kSq-DV-YxO"/>
+                            <constraint firstItem="gWj-LF-pEZ" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="64" id="l2C-jN-MLd"/>
                             <constraint firstItem="5VO-Xh-MtL" firstAttribute="bottom" secondItem="T1S-dg-Qvf" secondAttribute="top" constant="-20" id="mUw-zU-LQF"/>
                             <constraint firstItem="9XV-zO-GXP" firstAttribute="centerX" secondItem="54R-6y-Wab" secondAttribute="rightMargin" constant="-17" id="mW8-Gp-gvc"/>
                             <constraint firstItem="aiy-hB-M9w" firstAttribute="top" secondItem="KUG-Uw-gQP" secondAttribute="bottom" constant="4" id="oXh-QX-pNr"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="lNC-9Z-jqK" secondAttribute="bottom" constant="5" id="rKb-mE-EhF"/>
-                            <constraint firstItem="dHY-Se-Z5T" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="1" id="rLA-un-2YJ"/>
                             <constraint firstItem="aiy-hB-M9w" firstAttribute="width" secondItem="54R-6y-Wab" secondAttribute="width" id="rds-XL-fIa"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="aiy-hB-M9w" secondAttribute="bottom" id="tex-7R-1ER"/>
                             <constraint firstAttribute="centerX" secondItem="aiy-hB-M9w" secondAttribute="centerX" id="tjc-o5-EEr"/>
@@ -1937,12 +1938,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="CameraIcon400.png" width="150" height="150"/>
-        <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="CancelImageWhite500.png" width="350" height="350"/>
-        <image name="E075C7F9-5C6A-4AC4-B447-73F965BB0BBC" width="300" height="300">
+        <image name="A4E16E3C-CD6D-4ACA-9B72-739F0CC9D251" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8015,6 +8011,11 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
+        <image name="CameraIcon400.png" width="150" height="150"/>
+        <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="CancelImageWhite500.png" width="350" height="350"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>

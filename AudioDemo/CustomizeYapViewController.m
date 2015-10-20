@@ -15,14 +15,20 @@
 #import "YSRecordProgressView.h"
 #import "NextButton.h"
 #import "YapsViewController.h"
-#import <STKAudioPlayer.h>
 #import <AVFoundation/AVAudioSession.h>
 #import "FriendsViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CustomizeOnboardingPopupViewController.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "SpotifyAPI.h"
+#import "YSRecordProgressView.h"
 
-@interface CustomizeYapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@interface CustomizeYapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+    NSTimer *countdownTimer;
+    int currMinute;
+    int currSeconds;
+}
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet YSRecordProgressView *progressView;
@@ -46,6 +52,11 @@
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIButton *endPreviewButton;
 @property (weak, nonatomic) IBOutlet UIButton *startPreviewButton;
+@property (nonatomic) CGFloat elapsedTime;
+@property (nonatomic) CGFloat trackLength;
+@property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
+@property (strong, nonatomic) NSTimer *timer;
+
 
 - (IBAction)didTapCameraButton;
 - (IBAction)didTapResetPhotoButton;
@@ -56,6 +67,8 @@
 #define VIEWED_ONBOARDING_POPUP_KEY @"yaptap.ViewedForwardingPopup"
 
 @end
+
+#define TIME_INTERVAL .05f
 
 @implementation CustomizeYapViewController
 
@@ -73,8 +86,6 @@
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil
                                                                             action:nil];
-    
-    self.progressView.progress = 1.0; //self.yapBuilder.duration/12; DEFAULTING TO 12 SECONDS
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTextView:)];
     tap.delegate = self;
@@ -129,6 +140,7 @@
     double delay2 = 0.2;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.player = [STKAudioPlayer new];
+        self.player.delegate = self;
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
     });
     
@@ -255,6 +267,8 @@
     self.cameraButton.hidden = YES;
     self.endPreviewButton.hidden = NO;
     self.startPreviewButton.hidden = YES;
+    self.progressView.hidden = NO;
+    [self playYapAudio];
 }
 
 - (void) didTapEndPreviewButton {
@@ -266,6 +280,9 @@
     self.cameraButton.hidden = NO;
     self.endPreviewButton.hidden = YES;
     self.startPreviewButton.hidden = NO;
+    [self.player stop];
+    self.progressView.hidden = YES;
+    [self.progressView setProgress:0];
 }
 
 - (void) setupNotifications {
@@ -325,13 +342,15 @@
 
 - (void)updateBannerLabel {
     PhoneContact *contact = self.yapBuilder.contacts.firstObject;
+    NSString *contactReplyingToFirstName = [[contact.name componentsSeparatedByString:@" "] objectAtIndex:0];
+    
     if (self.yapBuilder.contacts.count > 1) {
         self.contactLabel.text = [NSString stringWithFormat:@"%lu Recipients", (unsigned long)self.yapBuilder.contacts.count];
     } else {
         if (IS_IPHONE_4_SIZE) {
-            self.contactLabel.text = [NSString stringWithFormat:@"To: %@", contact.name];
+            self.contactLabel.text = [NSString stringWithFormat:@"To: %@", contactReplyingToFirstName];
         } else {
-            self.contactLabel.text = [NSString stringWithFormat:@"Send to\n%@", contact.name];
+            self.contactLabel.text = [NSString stringWithFormat:@"To:\n%@", contactReplyingToFirstName];
         }
     }
     self.contactLabel.numberOfLines = 2;
@@ -608,6 +627,182 @@
     }
     [self.view endEditing:YES];
 }
+
+
+
+- (void) playYapAudio
+{
+    NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
+    NSLog(@"Playing URL: %@ %@ auth token", self.yapBuilder.track.previewURL, headers ? @"with" : @"without");
+    //if (headers && [self.yap.type isEqualToString:MESSAGE_TYPE_SPOTIFY]) {
+    // Check if preview url is spotify song
+    
+    if ([self.yapBuilder.awsVoiceURL length] > 0) {
+        [self.player play:self.yapBuilder.awsVoiceURL];
+    } else {
+        if (headers && [self.yapBuilder.track.previewURL containsString:@"scdn"]) {
+            [self.player play:self.yapBuilder.track.previewURL withHeaders:headers];
+        } else {
+            [self.player play:self.yapBuilder.track.previewURL];
+        }
+    }
+}
+
+#pragma mark - Progress Stuff
+- (void) timerFired
+{
+    self.elapsedTime += TIME_INTERVAL;
+    self.trackLength = 15;//12;
+    CGFloat progress = self.elapsedTime / self.trackLength;
+    
+    NSLog(@"self.elapsedTime: %f", self.elapsedTime);
+    NSLog(@"self.trackLength: %f", self.trackLength);
+    NSLog(@"progress: %f", progress);
+    
+    [self.progressView setProgress:progress];
+    
+    if (self.elapsedTime >= self.trackLength) {
+        [self.player stop];
+    }
+}
+
+#pragma mark - STKAudioPlayerDelegate
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer stateChanged:(STKAudioPlayerState)state previousState:(STKAudioPlayerState)previousState
+{
+    if (state == STKAudioPlayerStatePlaying) {
+        NSLog(@"state == STKAudioPlayerStatePlaying");
+        
+        if (!self.playerAlreadyStartedPlayingForThisSong) {            
+            
+            NSLog(@"Seconds to Fast Forward: %d", self.yapBuilder.track.secondsToFastForward.intValue);
+            
+            if (self.yapBuilder.track.secondsToFastForward.intValue > 0) {
+                [audioPlayer seekToTime:15];
+            }
+            
+            self.elapsedTime = 0.0f;
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL
+                                                          target:self
+                                                        selector:@selector(timerFired)
+                                                        userInfo:nil
+                                                         repeats:YES];
+            //[self.activityIndicator stopAnimating];
+            [UIView animateWithDuration:0.3
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{
+                                 self.titleLabel.alpha = 1;
+                             }
+                             completion:nil];
+            
+            
+            self.progressViewRemainder = [[UIView alloc] init];
+            [self.view addSubview:self.progressViewRemainder];
+            [self.progressViewRemainder setTranslatesAutoresizingMaskIntoConstraints:NO];
+            
+            [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:-1.0]];
+            [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
+            [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progressViewRemainder attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.progressView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.5]];
+            self.progressViewRemainder.backgroundColor = [UIColor lightGrayColor];
+            self.progressViewRemainder.alpha = 0;
+            
+            [UIView animateWithDuration:0.4
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{
+                                 self.progressViewRemainder.alpha = 1;
+                             }
+                             completion:nil];
+            
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Opened Yap"];
+            [mixpanel.people increment:@"Opened Yap #" by:[NSNumber numberWithInt:1]];
+            
+            // set self.playerAlreadyStartedPlayingForThisSong to True!
+            self.playerAlreadyStartedPlayingForThisSong = YES;
+            NSLog(@"Set playerAlreadyStartedPlayingForThisSong to TRUE");
+        }
+    }
+    
+    if (state == STKAudioPlayerStateStopped) {
+        NSLog(@"state == STKAudioPlayerStateStopped");
+        //self.countdownTimerLabel.hidden = YES;
+        [self.timer invalidate];
+        self.timer = nil;
+       // [self.activityIndicator stopAnimating];
+
+        self.playerAlreadyStartedPlayingForThisSong = NO;
+        NSLog(@"Set playerAlreadyStartedPlayingForThisSong to FALSE");
+    }
+    
+    if (state == STKAudioPlayerStateBuffering && previousState == STKAudioPlayerStatePlaying) {
+        NSLog(@"state changed from playing to buffering");
+    }
+    
+    if (state == STKAudioPlayerStateReady) {
+        NSLog(@"state == STKAudioPlayerStateReady");
+    }
+    
+    if (state == STKAudioPlayerStateRunning) {
+        NSLog(@"state == STKAudioPlayerStateRunning");
+    }
+    
+    if (state == STKAudioPlayerStateBuffering) {
+        NSLog(@"state == STKAudioPlayerStateBuffering");
+        if (self.playerAlreadyStartedPlayingForThisSong) {
+            NSLog(@"Buffering for second time!");
+            [[YTNotifications sharedNotifications] showBufferingText:@"Buffering..."];
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Buffering notification - PlayBack"];
+        }
+    }
+    
+    if (state == STKAudioPlayerStatePaused) {
+        NSLog(@"state == STKAudioPlayerStatePaused");
+    }
+    
+    if (state == STKAudioPlayerStateError) {
+        NSLog(@"state == STKAudioPlayerStateError");
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        [mixpanel track:@"Player State Error - PlayBack"];
+    }
+    
+    if (state == STKAudioPlayerStateDisposed) {
+        NSLog(@"state == STKAudioPlayerStateDisposed");
+    }
+}
+
+/// Raised when an item has finished buffering (may or may not be the currently playing item)
+/// This event may be raised multiple times for the same item if seek is invoked on the player
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didStartPlayingQueueItemId:(NSObject*)queueItemId
+{
+    NSLog(@"audioPlayer didStartPlayingQueueItemId");
+}
+
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishBufferingSourceWithQueueItemId:(NSObject*)queueItemId
+{
+    NSLog(@"audioPlayer didFinishBufferingSourceWithQueueItemId");
+}
+
+// We can get the reason why the player stopped!!!
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer didFinishPlayingQueueItemId:(NSObject*)queueItemId withReason:(STKAudioPlayerStopReason)stopReason andProgress:(double)progress andDuration:(double)duration
+{
+    NSLog(@"audioPlayer didFinishPlayingQueueItemId; Reason: %u; Progress: %f; Duration: %f", stopReason, progress, duration);
+}
+
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer unexpectedError:(STKAudioPlayerErrorCode)errorCode
+{
+    NSLog(@"audioPlayer unexpected error: %u", errorCode);
+    [audioPlayer stop];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[YTNotifications sharedNotifications] showNotificationText:@"Oops, There Was An Error"];
+    });
+    
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    [mixpanel track:@"Player Unexpected Error - PlayBack"];
+}
+
 
 
 @end
