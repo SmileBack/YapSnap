@@ -158,6 +158,11 @@
 		784336A91BD1AB7100B8D7FF /* Genre_Country3.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336A81BD1AB7100B8D7FF /* Genre_Country3.png */; settings = {ASSET_TAGS = (); }; };
 		784336AB1BD1ACC500B8D7FF /* Genre_Rock2.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336AA1BD1ACC500B8D7FF /* Genre_Rock2.png */; settings = {ASSET_TAGS = (); }; };
 		784336AD1BD1AD2600B8D7FF /* Genre_Pop3.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336AC1BD1AD2600B8D7FF /* Genre_Pop3.png */; settings = {ASSET_TAGS = (); }; };
+		784336B51BD5C79D00B8D7FF /* eye4.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336B41BD5C79D00B8D7FF /* eye4.png */; settings = {ASSET_TAGS = (); }; };
+		784336B71BD5F5EC00B8D7FF /* eye5.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336B61BD5F5EC00B8D7FF /* eye5.png */; settings = {ASSET_TAGS = (); }; };
+		784336B91BD5F67B00B8D7FF /* eye6.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336B81BD5F67B00B8D7FF /* eye6.png */; settings = {ASSET_TAGS = (); }; };
+		784336BB1BD5F8AA00B8D7FF /* eye7.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336BA1BD5F8AA00B8D7FF /* eye7.png */; settings = {ASSET_TAGS = (); }; };
+		784336BD1BD5FA2000B8D7FF /* eye8.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336BC1BD5FA2000B8D7FF /* eye8.png */; settings = {ASSET_TAGS = (); }; };
 		78439F881AE5C6A1004CFB5F /* SmallMusicIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439F871AE5C6A1004CFB5F /* SmallMusicIcon2.png */; };
 		78439FAE1AE6D705004CFB5F /* Record.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FAD1AE6D705004CFB5F /* Record.png */; };
 		78439FB01AE6EF46004CFB5F /* OpenGift700.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FAF1AE6EF46004CFB5F /* OpenGift700.png */; };
@@ -554,6 +559,11 @@
 		784336A81BD1AB7100B8D7FF /* Genre_Country3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genre_Country3.png; sourceTree = "<group>"; };
 		784336AA1BD1ACC500B8D7FF /* Genre_Rock2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genre_Rock2.png; sourceTree = "<group>"; };
 		784336AC1BD1AD2600B8D7FF /* Genre_Pop3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genre_Pop3.png; sourceTree = "<group>"; };
+		784336B41BD5C79D00B8D7FF /* eye4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye4.png; sourceTree = "<group>"; };
+		784336B61BD5F5EC00B8D7FF /* eye5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye5.png; sourceTree = "<group>"; };
+		784336B81BD5F67B00B8D7FF /* eye6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye6.png; sourceTree = "<group>"; };
+		784336BA1BD5F8AA00B8D7FF /* eye7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye7.png; sourceTree = "<group>"; };
+		784336BC1BD5FA2000B8D7FF /* eye8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye8.png; sourceTree = "<group>"; };
 		78439F871AE5C6A1004CFB5F /* SmallMusicIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SmallMusicIcon2.png; sourceTree = "<group>"; };
 		78439FAD1AE6D705004CFB5F /* Record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Record.png; sourceTree = "<group>"; };
 		78439FAF1AE6EF46004CFB5F /* OpenGift700.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OpenGift700.png; sourceTree = "<group>"; };
@@ -806,6 +816,9 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				784336BC1BD5FA2000B8D7FF /* eye8.png */,
+				784336B81BD5F67B00B8D7FF /* eye6.png */,
+				784336B41BD5C79D00B8D7FF /* eye4.png */,
 				784336A01BD1432A00B8D7FF /* add_message_icon.png */,
 				7843369E1BD1407E00B8D7FF /* Pick_a_song_popup_icon.png */,
 				782535A61BCF7AEF0015E6BA /* Swipe Icon.png */,
@@ -1400,6 +1413,8 @@
 		786BCB411ADC25A300BA3FDD /* Customize Page */ = {
 			isa = PBXGroup;
 			children = (
+				784336BA1BD5F8AA00B8D7FF /* eye7.png */,
+				784336B61BD5F5EC00B8D7FF /* eye5.png */,
 				78F1E4101AD2E80A00C2743B /* CameraIcon20.png */,
 				78141DAC1BBBA3F30091B8B6 /* CameraIcon400.png */,
 				786BCB421ADC274600BA3FDD /* UploadIcon100.png */,
@@ -1995,6 +2010,7 @@
 				782D13441ACB8349007C8499 /* YapIconUnopenedSent.png in Resources */,
 				7867C1C61B01808D0050632F /* GiftButton.png in Resources */,
 				784047FC1AB4FB7200FE6D93 /* MusicIconBlue3@2x.png in Resources */,
+				784336B71BD5F5EC00B8D7FF /* eye5.png in Resources */,
 				78141DAD1BBBA3F30091B8B6 /* CameraIcon400.png in Resources */,
 				78439FB71AE76EEB004CFB5F /* SongVersionTwoSelectediPhone6@2x.png in Resources */,
 				3753AF8919E9A4D000B6391D /* Microphone_White2.png in Resources */,
@@ -2024,6 +2040,7 @@
 				783021001BA0A2CE009198BC /* Genre_EDM3.png in Resources */,
 				784336A91BD1AB7100B8D7FF /* Genre_Country3.png in Resources */,
 				7854B0691AF8523100A02DF9 /* ControlCenterButton@2x.png in Resources */,
+				784336BD1BD5FA2000B8D7FF /* eye8.png in Resources */,
 				78CBF2F61A9960AD00F30DCA /* YellowStar.png in Resources */,
 				789351DA1BABF09D003C8AA0 /* Mood_Nostalgic2.png in Resources */,
 				78C1C3041B264CB400C6CBCA /* ProgressViewRedNew@3x.png in Resources */,
@@ -2060,6 +2077,7 @@
 				37BF0DDA19E8F9D60077B74F /* Microphone_White.png in Resources */,
 				7854B06F1AF86B1000A02DF9 /* LeftArrow10@2x.png in Resources */,
 				78439FBF1AE77145004CFB5F /* SongVersionOneSelected@2x.png in Resources */,
+				784336BB1BD5F8AA00B8D7FF /* eye7.png in Resources */,
 				784336A11BD1432A00B8D7FF /* add_message_icon.png in Resources */,
 				7854B0711AF88C1900A02DF9 /* LeftArrow30.png in Resources */,
 				7867C1C81B01A58E0050632F /* CancelImageWhite2.png in Resources */,
@@ -2101,6 +2119,7 @@
 				78439FC11AE77145004CFB5F /* SongVersionOneSelectediPhone4@2x.png in Resources */,
 				78439FB81AE76EEB004CFB5F /* SongVersionTwoSelectediPhone4@2x.png in Resources */,
 				788363771AD781A0001CBD1B /* TwoNotSelected@2x.png in Resources */,
+				784336B51BD5C79D00B8D7FF /* eye4.png in Resources */,
 				781904801AF1E2A300196DFF /* ResetButton30@2x.png in Resources */,
 				78141DB31BBBA7310091B8B6 /* LeftArrow800.png in Resources */,
 				783C54CC1B3E18F2009E9848 /* AddRecipientsIcon2.png in Resources */,
@@ -2146,6 +2165,7 @@
 				788363871AD785FB001CBD1B /* OneNotSelected@3x.png in Resources */,
 				78A2E8641ACC7FB100B5A404 /* YapsButton100.png in Resources */,
 				782D13491ACB8B7A007C8499 /* YapIconOpenedSent3.png in Resources */,
+				784336B91BD5F67B00B8D7FF /* eye6.png in Resources */,
 				78299E9C1BBF3FBC001961C7 /* YapIconOpenedSent100.png in Resources */,
 				78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */,
 				783714E31BAE1B8D0005CC04 /* ProgressViewRedNew50@2x.png in Resources */,

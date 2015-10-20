@@ -56,6 +56,7 @@
 @property (nonatomic) CGFloat trackLength;
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 @property (strong, nonatomic) NSTimer *timer;
+@property IBOutlet UIActivityIndicatorView* activityIndicator;
 
 
 - (IBAction)didTapCameraButton;
@@ -263,11 +264,12 @@
     self.contactLabel.hidden = YES;
     self.continueButton.hidden = YES;
     self.topLeftButton.hidden = YES;
-    self.titleLabel.hidden = YES;
     self.cameraButton.hidden = YES;
     self.endPreviewButton.hidden = NO;
     self.startPreviewButton.hidden = YES;
     self.progressView.hidden = NO;
+    self.titleLabel.hidden = YES;
+    [self.activityIndicator startAnimating];
     [self playYapAudio];
 }
 
@@ -276,7 +278,9 @@
     self.contactLabel.hidden = NO;
     self.continueButton.hidden = NO;
     self.topLeftButton.hidden = NO;
-    self.titleLabel.hidden = NO;
+    if (self.textView.text.length == 0) {
+        self.titleLabel.hidden = NO;
+    }
     self.cameraButton.hidden = NO;
     self.endPreviewButton.hidden = YES;
     self.startPreviewButton.hidden = NO;
@@ -686,14 +690,7 @@
                                                         selector:@selector(timerFired)
                                                         userInfo:nil
                                                          repeats:YES];
-            //[self.activityIndicator stopAnimating];
-            [UIView animateWithDuration:0.3
-                                  delay:0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{
-                                 self.titleLabel.alpha = 1;
-                             }
-                             completion:nil];
+            [self.activityIndicator stopAnimating];
             
             
             self.progressViewRemainder = [[UIView alloc] init];
@@ -729,7 +726,7 @@
         //self.countdownTimerLabel.hidden = YES;
         [self.timer invalidate];
         self.timer = nil;
-       // [self.activityIndicator stopAnimating];
+        [self.activityIndicator stopAnimating];
 
         self.playerAlreadyStartedPlayingForThisSong = NO;
         NSLog(@"Set playerAlreadyStartedPlayingForThisSong to FALSE");
