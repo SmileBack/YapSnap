@@ -268,7 +268,7 @@
     self.endPreviewButton.hidden = NO;
     self.startPreviewButton.hidden = YES;
     self.progressView.hidden = NO;
-    self.titleLabel.hidden = YES;
+    self.titleLabel.alpha = 0;
     [self.activityIndicator startAnimating];
     [self playYapAudio];
 }
@@ -279,7 +279,7 @@
     self.continueButton.hidden = NO;
     self.topLeftButton.hidden = NO;
     if (self.textView.text.length == 0) {
-        self.titleLabel.hidden = NO;
+        self.titleLabel.alpha = 1;
     }
     self.cameraButton.hidden = NO;
     self.endPreviewButton.hidden = YES;
