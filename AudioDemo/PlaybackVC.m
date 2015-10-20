@@ -70,8 +70,8 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Playback Page"];
     
-    self.replyButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0.0/255.0 alpha:0.3f];
-    self.sendTextButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.3f];
+    self.replyButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0.0/255.0 alpha:0.5f];
+    self.sendTextButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.5f];
     self.friendRequestButton.backgroundColor = THEME_BACKGROUND_COLOR;
     
     if (self.yap.sentByCurrentUser) {
@@ -115,7 +115,7 @@
         self.textView.hidden = NO;
     }
     
-    self.textView.textContainer.maximumNumberOfLines = 5;
+    self.textView.textContainer.maximumNumberOfLines = 6;
     self.textView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
     
     self.view.backgroundColor = [UIColor whiteColor];//THEME_BACKGROUND_COLOR;

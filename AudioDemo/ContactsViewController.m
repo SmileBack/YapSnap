@@ -304,20 +304,23 @@ static NSString *CellIdentifier = @"Cell";
                             NSLog(@"SHOWED ONBOARDING POPUP");
                         }
                     });
+                } else {
+                    [[YTNotifications sharedNotifications] showNotificationText:@"Loading Contacts..."];
                 }
                 
                 // THIS NEXT LINE IS A HACK!!!!!!!!!!!
                 [ContactManager sharedContactManager].sleep = YES;
                 
                 [weakSelf loadContacts];
-                if (self.builder.builderType == BuilderTypeYap) {
-                    double delay = 0.5;
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        if (!self.didViewContactsOnboardingAlert) {
-                            [self showOnboardingPopup];
-                        }
-                    });
-                }
+                
+//                if (self.builder.builderType == BuilderTypeYap) {
+//                    double delay = 0.5;
+//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                        if (!self.didViewContactsOnboardingAlert) {
+//                            [self showOnboardingPopup];
+//                        }
+//                    });
+//                }
             } else {
                 // User denied access
                 // Display an alert telling user the contact could not be added
