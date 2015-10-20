@@ -57,6 +57,7 @@
 @property (nonatomic) BOOL playerAlreadyStartedPlayingForThisSong;
 @property (strong, nonatomic) NSTimer *timer;
 @property IBOutlet UIActivityIndicatorView* activityIndicator;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *addRecipientsButtonLeadingConstraint;
 
 
 - (IBAction)didTapCameraButton;
@@ -129,6 +130,7 @@
         self.cameraButton.hidden = YES;
         self.yapBuilder.awsVoiceURL = self.yapBuilder.track.previewURL;
         self.startPreviewButton.hidden = YES;
+        self.addRecipientsButtonLeadingConstraint.constant = -18;
     }
     
     double delay = 0.2;
