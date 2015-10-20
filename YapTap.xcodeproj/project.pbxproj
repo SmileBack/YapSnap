@@ -163,6 +163,8 @@
 		784336B91BD5F67B00B8D7FF /* eye6.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336B81BD5F67B00B8D7FF /* eye6.png */; settings = {ASSET_TAGS = (); }; };
 		784336BB1BD5F8AA00B8D7FF /* eye7.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336BA1BD5F8AA00B8D7FF /* eye7.png */; settings = {ASSET_TAGS = (); }; };
 		784336BD1BD5FA2000B8D7FF /* eye8.png in Resources */ = {isa = PBXBuildFile; fileRef = 784336BC1BD5FA2000B8D7FF /* eye8.png */; settings = {ASSET_TAGS = (); }; };
+		784336C21BD6F17000B8D7FF /* PreviewPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 784336C01BD6F17000B8D7FF /* PreviewPopupViewController.m */; settings = {ASSET_TAGS = (); }; };
+		784336C31BD6F17000B8D7FF /* PreviewPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784336C11BD6F17000B8D7FF /* PreviewPopupViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		78439F881AE5C6A1004CFB5F /* SmallMusicIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439F871AE5C6A1004CFB5F /* SmallMusicIcon2.png */; };
 		78439FAE1AE6D705004CFB5F /* Record.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FAD1AE6D705004CFB5F /* Record.png */; };
 		78439FB01AE6EF46004CFB5F /* OpenGift700.png in Resources */ = {isa = PBXBuildFile; fileRef = 78439FAF1AE6EF46004CFB5F /* OpenGift700.png */; };
@@ -564,6 +566,9 @@
 		784336B81BD5F67B00B8D7FF /* eye6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye6.png; sourceTree = "<group>"; };
 		784336BA1BD5F8AA00B8D7FF /* eye7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye7.png; sourceTree = "<group>"; };
 		784336BC1BD5FA2000B8D7FF /* eye8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye8.png; sourceTree = "<group>"; };
+		784336BF1BD6F17000B8D7FF /* PreviewPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewPopupViewController.h; sourceTree = "<group>"; };
+		784336C01BD6F17000B8D7FF /* PreviewPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewPopupViewController.m; sourceTree = "<group>"; };
+		784336C11BD6F17000B8D7FF /* PreviewPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviewPopupViewController.xib; sourceTree = "<group>"; };
 		78439F871AE5C6A1004CFB5F /* SmallMusicIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SmallMusicIcon2.png; sourceTree = "<group>"; };
 		78439FAD1AE6D705004CFB5F /* Record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Record.png; sourceTree = "<group>"; };
 		78439FAF1AE6EF46004CFB5F /* OpenGift700.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OpenGift700.png; sourceTree = "<group>"; };
@@ -1298,6 +1303,16 @@
 			name = "Mic Page";
 			sourceTree = "<group>";
 		};
+		784336BE1BD6F14100B8D7FF /* Peview Popup */ = {
+			isa = PBXGroup;
+			children = (
+				784336BF1BD6F17000B8D7FF /* PreviewPopupViewController.h */,
+				784336C01BD6F17000B8D7FF /* PreviewPopupViewController.m */,
+				784336C11BD6F17000B8D7FF /* PreviewPopupViewController.xib */,
+			);
+			name = "Peview Popup";
+			sourceTree = "<group>";
+		};
 		784E35E91A659B8C0029AA01 /* Registration Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -1372,6 +1387,7 @@
 		7861926E1B09A904007279E8 /* Onboarding Popups */ = {
 			isa = PBXGroup;
 			children = (
+				784336BE1BD6F14100B8D7FF /* Peview Popup */,
 				786192831B0A77F5007279E8 /* Upload Popup */,
 				7861926F1B09A913007279E8 /* Customize Onboarding Popup */,
 				785393701AD9C17C00C6BEA7 /* Welcome Popup */,
@@ -2147,6 +2163,7 @@
 				789351E21BAD3A8F003C8AA0 /* CartoonsLong6@2x.png in Resources */,
 				78C1C30A1B26AC8700C6CBCA /* ResetButton80@2x.png in Resources */,
 				786E0BE11AFFEDE700005D1D /* WhiteDownArrow.png in Resources */,
+				784336C31BD6F17000B8D7FF /* PreviewPopupViewController.xib in Resources */,
 				78141DB51BBBA8670091B8B6 /* SpotifyIconWhite500.png in Resources */,
 				78A2E85A1ACC6A4100B5A404 /* YapsButton3.png in Resources */,
 				78AAB2551A71F82E00EFDF98 /* listen_on_spotify-black2.png in Resources */,
@@ -2238,6 +2255,7 @@
 				5DFDD5BB1B90E465008754F4 /* YSAudioSourceController.m in Sources */,
 				7840480B1AB7334A00FE6D93 /* NextButton.m in Sources */,
 				FCD2577A1ABA60AE00981E5D /* UIViewController+Navigation.m in Sources */,
+				784336C21BD6F17000B8D7FF /* PreviewPopupViewController.m in Sources */,
 				78A569A31A73227200818A17 /* YSColorPicker.m in Sources */,
 				78B2522F1AF0A2E400353711 /* FBShimmeringLayer.m in Sources */,
 				78141D5C1BB8CCE70091B8B6 /* APSocialServiceHelper.m in Sources */,

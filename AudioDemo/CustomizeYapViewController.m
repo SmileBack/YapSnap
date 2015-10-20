@@ -19,6 +19,7 @@
 #import "FriendsViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CustomizeOnboardingPopupViewController.h"
+#import "PreviewPopupViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "SpotifyAPI.h"
 #import "YSRecordProgressView.h"
@@ -48,6 +49,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *albumLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
 @property (strong, nonatomic) CustomizeOnboardingPopupViewController *onboardingPopupVC;
+@property (strong, nonatomic) PreviewPopupViewController *previewPopupVC;
 @property (strong, nonatomic) IBOutlet UILabel *replyLabel;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIButton *endPreviewButton;
@@ -67,6 +69,8 @@
 - (IBAction)didTapStartPreviewButton;
 
 #define VIEWED_ONBOARDING_POPUP_KEY @"yaptap.ViewedForwardingPopup"
+#define VIEWED_PREVIEW_POPUP_KEY @"yaptap.ViewedPreviewPopup"
+
 
 @end
 
@@ -320,6 +324,13 @@
                             [self.textView becomeFirstResponder];
                         });
                     }];
+    
+    [center addObserverForName:DISMISS_PREVIEW_POPUP_NOTIFICATION
+                        object:nil
+                         queue:nil
+                    usingBlock:^(NSNotification *note) {
+                        [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+                    }];
 }
 
 
@@ -362,6 +373,13 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_ONBOARDING_POPUP_KEY];
 }
 
+#pragma mark - Preview Popup
+- (void) showPreviewPopup {
+    self.previewPopupVC = [[PreviewPopupViewController alloc] initWithNibName:@"PreviewPopupViewController" bundle:nil];
+    [self presentPopupViewController:self.previewPopupVC animationType:MJPopupViewAnimationFade];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:VIEWED_PREVIEW_POPUP_KEY];
+}
+
 - (void)updateBannerLabel {
     PhoneContact *contact = self.yapBuilder.contacts.firstObject;
     NSString *contactReplyingToFirstName = [[contact.name componentsSeparatedByString:@" "] objectAtIndex:0];
@@ -401,6 +419,11 @@
 - (BOOL) didViewOnboardingPopup
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_ONBOARDING_POPUP_KEY];
+}
+
+- (BOOL) didViewPreviewPopup
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:VIEWED_PREVIEW_POPUP_KEY];
 }
 
 - (void) sendYap
@@ -501,6 +524,10 @@
                                      self.titleLabel.alpha = 0;
                                  }
                                  completion:nil];
+                double delay3 = 0.3;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self showPreviewPopup];
+                });
             }
         }
         
