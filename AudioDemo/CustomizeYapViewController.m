@@ -387,11 +387,7 @@
     if (self.yapBuilder.contacts.count > 1) {
         self.contactLabel.text = [NSString stringWithFormat:@"%lu Recipients", (unsigned long)self.yapBuilder.contacts.count];
     } else {
-        if (IS_IPHONE_4_SIZE) {
-            self.contactLabel.text = [NSString stringWithFormat:@"To: %@", contactReplyingToFirstName];
-        } else {
-            self.contactLabel.text = [NSString stringWithFormat:@"To:\n%@", contactReplyingToFirstName];
-        }
+        self.contactLabel.text = [NSString stringWithFormat:@"To %@", contactReplyingToFirstName];
     }
     self.contactLabel.numberOfLines = 2;
 }
@@ -524,10 +520,12 @@
                                      self.titleLabel.alpha = 0;
                                  }
                                  completion:nil];
-                double delay3 = 0.3;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self showPreviewPopup];
-                });
+                if (!self.didViewPreviewPopup) {
+                    double delay3 = 0.3;
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self showPreviewPopup];
+                    });
+                }
             }
         }
         

@@ -866,12 +866,12 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="B2R-OB-er0">
-                                <rect key="frame" x="80" y="501" width="160" height="60"/>
+                                <rect key="frame" x="94" y="501" width="160" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Xas-7e-BpI"/>
                                     <constraint firstAttribute="width" constant="160" id="cxc-J0-LPo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -930,13 +930,13 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="D0C6110F-DEA9-4E07-B31A-3A1FD97641CD"/>
+                                <state key="normal" backgroundImage="333985FC-DAE0-4815-99C4-F507C67D8498"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNC-9Z-jqK" userLabel="Add Recipients Button">
-                                <rect key="frame" x="48" y="498" width="65" height="65"/>
+                                <rect key="frame" x="44" y="498" width="65" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="AeO-V7-4py"/>
                                     <constraint firstAttribute="height" constant="65" id="vl1-rz-9Wy"/>
@@ -1004,7 +1004,7 @@
                             <constraint firstItem="6Bz-0m-hzI" firstAttribute="top" secondItem="B2R-OB-er0" secondAttribute="top" id="8ae-gQ-Aor"/>
                             <constraint firstItem="KDf-Vb-ilr" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="2" id="9cU-hC-jm3"/>
                             <constraint firstAttribute="centerX" secondItem="Yo4-ls-PqW" secondAttribute="centerX" id="A2N-25-MnL"/>
-                            <constraint firstAttribute="centerX" secondItem="B2R-OB-er0" secondAttribute="centerX" id="Bck-GS-k44"/>
+                            <constraint firstAttribute="centerX" secondItem="B2R-OB-er0" secondAttribute="centerX" constant="-14" id="Bck-GS-k44"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Yo4-ls-PqW" secondAttribute="trailing" constant="-6" id="Hh4-oD-s6L"/>
                             <constraint firstAttribute="centerX" secondItem="yD7-vZ-19N" secondAttribute="centerX" id="IAx-iC-1H3"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="centerX" secondItem="54R-6y-Wab" secondAttribute="centerX" id="JRZ-Yb-5rt"/>
@@ -1040,7 +1040,7 @@
                             <constraint firstItem="Yo4-ls-PqW" firstAttribute="top" secondItem="dHY-Se-Z5T" secondAttribute="bottom" constant="3" id="vDJ-Ls-FRu"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="B2R-OB-er0" secondAttribute="bottom" constant="7" id="vNZ-Va-hqk"/>
                             <constraint firstItem="5VO-Xh-MtL" firstAttribute="centerX" secondItem="gWj-LF-pEZ" secondAttribute="centerX" id="vyl-UM-2fF"/>
-                            <constraint firstItem="lNC-9Z-jqK" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="32" id="wdD-48-Fuc"/>
+                            <constraint firstItem="lNC-9Z-jqK" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="28" id="wdD-48-Fuc"/>
                             <constraint firstItem="KUG-Uw-gQP" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" id="wjr-2Y-iOY"/>
                             <constraint firstItem="ygq-ac-kFT" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leading" id="xUK-bi-lf5"/>
                         </constraints>
@@ -1952,12 +1952,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="CameraIcon400.png" width="150" height="150"/>
-        <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="CancelImageWhite500.png" width="350" height="350"/>
-        <image name="D0C6110F-DEA9-4E07-B31A-3A1FD97641CD" width="300" height="300">
+        <image name="333985FC-DAE0-4815-99C4-F507C67D8498" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8030,6 +8025,11 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
+        <image name="CameraIcon400.png" width="150" height="150"/>
+        <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="CancelImageWhite500.png" width="350" height="350"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
@@ -8044,9 +8044,9 @@ A
         <image name="eye8.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Enn-ka-dSJ"/>
-        <segue reference="AEp-MY-7pq"/>
+        <segue reference="czb-n6-hbf"/>
         <segue reference="RZ7-m8-cys"/>
         <segue reference="rVt-9v-iFr"/>
+        <segue reference="Enn-ka-dSJ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -26,8 +26,8 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preview" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                    <rect key="frame" x="16" y="15" width="228" height="145"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can preview your yap before sending!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                    <rect key="frame" x="16" y="30" width="228" height="145"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="145" id="18"/>
                         <constraint firstAttribute="width" constant="228" id="19"/>
@@ -46,25 +46,25 @@
                         <action selector="didTapCancelButton" destination="-1" eventType="touchUpInside" id="lnH-n8-gfC"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pick_a_song_popup_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="DVw-0r-8vc">
-                    <rect key="frame" x="98" y="141" width="64" height="64"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye8.png" translatesAutoresizingMaskIntoConstraints="NO" id="DVw-0r-8vc">
+                    <rect key="frame" x="80" y="150" width="100" height="100"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="64" id="IQ3-9m-KrB"/>
-                        <constraint firstAttribute="width" constant="64" id="m0k-ND-zyb"/>
+                        <constraint firstAttribute="height" constant="100" id="IQ3-9m-KrB"/>
+                        <constraint firstAttribute="width" constant="100" id="m0k-ND-zyb"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.078431372550000003" green="0.70196078429999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="7" firstAttribute="top" secondItem="1" secondAttribute="top" constant="15" id="12"/>
+                <constraint firstItem="7" firstAttribute="top" secondItem="1" secondAttribute="top" constant="30" id="12"/>
                 <constraint firstItem="4" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="15"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" constant="55" id="16"/>
                 <constraint firstItem="4" firstAttribute="centerX" secondItem="7" secondAttribute="centerX" id="17"/>
                 <constraint firstAttribute="centerX" secondItem="7" secondAttribute="centerX" id="7d6-D9-7fK"/>
                 <constraint firstAttribute="centerX" secondItem="4" secondAttribute="centerX" id="DQW-kE-bDS"/>
                 <constraint firstItem="DVw-0r-8vc" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="HkV-kc-3JI"/>
-                <constraint firstAttribute="bottom" secondItem="DVw-0r-8vc" secondAttribute="bottom" constant="55" id="McP-5T-WUZ"/>
+                <constraint firstAttribute="bottom" secondItem="DVw-0r-8vc" secondAttribute="bottom" constant="10" id="McP-5T-WUZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="183" y="192"/>
@@ -72,6 +72,6 @@
     </objects>
     <resources>
         <image name="CancelImageWhite3.png" width="350" height="350"/>
-        <image name="Pick_a_song_popup_icon.png" width="128" height="128"/>
+        <image name="eye8.png" width="128" height="128"/>
     </resources>
 </document>
