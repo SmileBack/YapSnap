@@ -11,6 +11,7 @@
 #import "EditFieldViewController.h"
 #import "API.h"
 #import "YapsCache.h"
+#import "ContactsViewController.h"
 
 #define LOGOUT @"logout"
 #define CLEAR_YAPS @"clear_yaps"
@@ -95,7 +96,7 @@
 - (NSArray *) sections
 {
     if (!_sections) {
-        _sections = @[FIRST_NAME_SECTION, LAST_NAME_SECTION, EMAIL_SECTION, PHONE_NUMBER_SECTION, CLEAR_YAPS_SECTION, FEEDBACK_SECTION, DOWNLOAD_SPOTIFY_SECTION, LOGOUT_SECTION];
+        _sections = @[FIRST_NAME_SECTION, LAST_NAME_SECTION, EMAIL_SECTION, PHONE_NUMBER_SECTION, ADD_FRIENDS_SECTION, CLEAR_YAPS_SECTION, FEEDBACK_SECTION, DOWNLOAD_SPOTIFY_SECTION, LOGOUT_SECTION];
     }
     return _sections;
 }
@@ -177,12 +178,15 @@
         [alert show];
     } else if ([DOWNLOAD_SPOTIFY_SECTION isEqualToString:section]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download Spotify"
-                                                        message:@"We link song snippets to full songs on Spotify!"
+                                                        message:@"We link song snippets on YapTap to the full songs on Spotify!"
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"Download", nil];
         self.alertViewString = DOWNLOAD_SPOTIFY;
         [alert show];
+    } else if ([ADD_FRIENDS_SECTION isEqualToString:section]) {
+        NSLog(@"Tapped Add Friends");
+        [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
     }
 }
 
@@ -263,6 +267,10 @@
     if ([@"Edit Field Segue" isEqualToString:segue.identifier]) {
         EditFieldViewController *vc = segue.destinationViewController;
         vc.editingField = sender;
+    } else if ([@"Contacts Segue" isEqualToString:segue.identifier]) {
+        UINavigationController *vc = segue.destinationViewController;
+        ContactsViewController *contactsVC = vc.viewControllers.firstObject;
+        contactsVC.builder = [AddFriendsBuilder new];
     }
 }
 
