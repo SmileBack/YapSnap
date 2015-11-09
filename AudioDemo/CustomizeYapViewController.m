@@ -520,12 +520,15 @@
                                      self.titleLabel.alpha = 0;
                                  }
                                  completion:nil];
-                if (!self.didViewPreviewPopup) {
-                    double delay3 = 0.3;
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [self showPreviewPopup];
-                    });
-                }
+            }
+        }
+        
+        if (!self.isReplyingWithText) {
+            if (!self.didViewPreviewPopup) {
+                double delay3 = 0.3;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self showPreviewPopup];
+                });
             }
         }
         

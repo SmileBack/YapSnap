@@ -111,8 +111,10 @@ static NSString *CellIdentifier = @"Cell";
     if (![YSPushManager sharedPushManager].pushEnabled) {
         self.pushNotificationsView.hidden = NO;
        
+        NSLog(@"self.unopenedYapsCount.intValue: %d", self.unopenedYapsCount.intValue);
+        
         if (!self.didViewNotificationAlert) {
-            if (self.unopenedYapsCount.intValue > 0 && ([AppDelegate sharedDelegate].appOpenedCount > 2)) {
+            if (self.unopenedYapsCount.intValue > 0 && ([AppDelegate sharedDelegate].appOpenedCount > 1) && self.didOpenYapForFirstTime) {
                 double delay = 0.5;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Turn on Notifications"
