@@ -35,7 +35,7 @@ static TracksCache *sharedCache;
          if (songs) {
              NSLog(@"There are songs");
              if ([trackGroup.apiString  isEqual: @"trending_tracks"]) {
-                 weakSelf.trendingSongs = [songs shuffledArray];
+                 weakSelf.trendingSongs = songs;//[songs shuffledArray];
              } else if ([trackGroup.apiString isEqual: @"flirtatious_tracks"]) {
                  weakSelf.flirtatiousSongs = [songs shuffledArray];
              } else if ([trackGroup.apiString isEqual: @"funny_tracks"]) {
@@ -49,19 +49,19 @@ static TracksCache *sharedCache;
              } else if ([trackGroup.apiString  isEqual: @"sad_tracks"]) {
                  weakSelf.sadSongs = [songs shuffledArray];
              } else if ([trackGroup.apiString  isEqual: @"genre_hiphop_tracks"]) {
-                 weakSelf.hipHopSongs = [songs shuffledArray];
+                 weakSelf.hipHopSongs = songs;//[songs shuffledArray];
              } else if ([trackGroup.apiString  isEqual: @"genre_rock_tracks"]) {
-                 weakSelf.rockSongs = [songs shuffledArray];
+                 weakSelf.rockSongs = songs;//[songs shuffledArray];
              } else if ([trackGroup.apiString  isEqual: @"genre_pop_tracks"]) {
-                 weakSelf.popSongs = [songs shuffledArray];
+                 weakSelf.popSongs = songs;//[songs shuffledArray];
              } else if ([trackGroup.apiString  isEqual: @"genre_edm_tracks"]) {
-                 weakSelf.edmSongs = [songs shuffledArray];
+                 weakSelf.edmSongs = songs;//[songs shuffledArray];
              } else if ([trackGroup.apiString  isEqual: @"genre_country_tracks"]) {
-                 weakSelf.countrySongs = [songs shuffledArray];
+                 weakSelf.countrySongs = songs;//[songs shuffledArray];
              } else if ([trackGroup.apiString  isEqual: @"genre_latin_tracks"]) {
-                 weakSelf.latinSongs = [songs shuffledArray];
+                 weakSelf.latinSongs = songs;//[songs shuffledArray];
              } else if ([trackGroup.apiString  isEqual: @"genre_film_tracks"]) {
-                 weakSelf.filmSongs = [songs shuffledArray];
+                 weakSelf.filmSongs = songs;//[songs shuffledArray];
              } else if ([trackGroup.apiString  isEqual: @"romantic_tracks"]) {
                  weakSelf.romanticSongs = [songs shuffledArray];
              } else if ([trackGroup.apiString  isEqual: @"inspire_tracks"]) {
@@ -190,20 +190,20 @@ static TracksCache *sharedCache;
 }
 
 - (void) shuffleCachedTracks {
-    self.trendingSongs = [self.trendingSongs shuffledArray];
+//    self.trendingSongs = [self.trendingSongs shuffledArray];
     self.flirtatiousSongs = [self.flirtatiousSongs shuffledArray];
     self.nostalgicSongs = [self.nostalgicSongs shuffledArray];
     self.funnySongs = [self.funnySongs shuffledArray];
     self.celebrateSongs = [self.celebrateSongs shuffledArray];
     self.happySongs = [self.happySongs shuffledArray];
     self.sadSongs = [self.sadSongs shuffledArray];
-    self.hipHopSongs = [self.hipHopSongs shuffledArray];
-    self.rockSongs = [self.rockSongs shuffledArray];
-    self.popSongs = [self.popSongs shuffledArray];
-    self.edmSongs = [self.edmSongs shuffledArray];
-    self.countrySongs = [self.countrySongs shuffledArray];
-    self.latinSongs = [self.latinSongs shuffledArray];
-    self.filmSongs = [self.filmSongs shuffledArray];
+//    self.hipHopSongs = [self.hipHopSongs shuffledArray];
+//    self.rockSongs = [self.rockSongs shuffledArray];
+//    self.popSongs = [self.popSongs shuffledArray];
+//    self.edmSongs = [self.edmSongs shuffledArray];
+//    self.countrySongs = [self.countrySongs shuffledArray];
+//    self.latinSongs = [self.latinSongs shuffledArray];
+//    self.filmSongs = [self.filmSongs shuffledArray];
     self.romanticSongs = [self.romanticSongs shuffledArray];
     self.inspireSongs = [self.inspireSongs shuffledArray];
 }
