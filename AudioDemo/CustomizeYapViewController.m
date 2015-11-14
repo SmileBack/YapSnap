@@ -758,8 +758,6 @@
                              completion:nil];
             
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Opened Yap"];
-            [mixpanel.people increment:@"Opened Yap #" by:[NSNumber numberWithInt:1]];
             
             // set self.playerAlreadyStartedPlayingForThisSong to True!
             self.playerAlreadyStartedPlayingForThisSong = YES;

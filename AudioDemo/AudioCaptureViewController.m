@@ -54,7 +54,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
-    self.audioSourceNames = @[@"Recent", @"Trending", @"Moods", @"Genres", @"Upload"];
+    self.audioSourceNames = @[@"Upload", @"Trending", @"Moods", @"Genres"];
     
     self.categorySelectorContainer.control = self.categorySelectorView;
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
@@ -69,7 +69,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     [self setupNotifications];
     if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
         self.continueButtonRightConstraint.constant = -128;
-        self.categoryBarWidthConstraint.constant = 365;
+        self.categoryBarWidthConstraint.constant = 320;
     } else if (IS_IPHONE_6_SIZE) {
         self.continueButtonRightConstraint.constant = -150;
         self.categoryBarWidthConstraint.constant = 375;
@@ -241,9 +241,14 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         case 0:
         {
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Changed Tab - Recent"];
+            [mixpanel track:@"Changed Tab - Upload"];
             
-            audioSource = [[YSRecentSourceController alloc] init];
+            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSelectSongViewController alloc] init]];
+            if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
+                nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
+            }
+            audioSource = nc;
+            
             break;
         }
         case 1:
@@ -278,19 +283,6 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
             audioSource = nc;
         }
             break;
-        case 4:
-        {
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Changed Tab - Upload"];
-            
-            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSelectSongViewController alloc] init]];
-            if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
-                nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
-            }
-            audioSource = nc;
-            
-            break;
-        }
         default:
             NSAssert(false, @"index out of bounds on scroll bar");
             break;
