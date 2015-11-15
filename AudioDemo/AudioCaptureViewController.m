@@ -54,7 +54,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
-    self.audioSourceNames = @[@"Upload", @"Trending", @"Moods", @"Charts"];
+    self.audioSourceNames = @[@"Upload", @"Trending", @"Moods", @"Top Charts"];
     
     self.categorySelectorContainer.control = self.categorySelectorView;
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
