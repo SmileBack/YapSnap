@@ -931,7 +931,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="11CAEF4E-2505-4BED-81F4-42DD71D5A0D4"/>
+                                <state key="normal" backgroundImage="72AFF9EA-6AEE-469E-9ED8-0402B6B58CBC"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1952,7 +1952,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="11CAEF4E-2505-4BED-81F4-42DD71D5A0D4" width="300" height="300">
+        <image name="72AFF9EA-6AEE-469E-9ED8-0402B6B58CBC" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

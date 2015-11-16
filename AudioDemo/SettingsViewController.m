@@ -67,7 +67,7 @@
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    [self addCancelButton];
+    //[self addCancelButton];
 }
 
 - (void) viewWillAppear:(BOOL)animated
