@@ -186,7 +186,7 @@
                                 </connections>
                             </containerView>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search YapTap" textAlignment="center" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="vzC-C0-gCC">
-                                <rect key="frame" x="51" y="24.5" width="215" height="38"/>
+                                <rect key="frame" x="59" y="24.5" width="207" height="38"/>
                                 <color key="backgroundColor" red="0.108335585" green="0.77454084769999998" blue="1" alpha="0.95999999999999996" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="MdJ-bN-SCR"/>
@@ -196,7 +196,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MagnifyingGlass.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Ld-Vx-ReT" userLabel="Magnifying Glass">
-                                <rect key="frame" x="57" y="33.5" width="20" height="20"/>
+                                <rect key="frame" x="65" y="33.5" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="5kN-BT-pOZ"/>
                                     <constraint firstAttribute="width" constant="20" id="ncr-4r-U5A"/>
@@ -216,14 +216,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjE-ev-SsG" userLabel="Friends Button">
-                                <rect key="frame" x="0.0" y="20" width="34" height="47"/>
+                                <rect key="frame" x="8" y="20" width="34" height="47"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="U1R-09-X9G"/>
                                     <constraint firstAttribute="width" constant="34" id="brA-dp-w8S"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" image="SettingsIconWhite8.png">
+                                <state key="normal" image="FriendsIcon.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -317,7 +317,7 @@
                             <constraint firstItem="vzC-C0-gCC" firstAttribute="leading" secondItem="yjE-ev-SsG" secondAttribute="trailing" constant="17" id="QW0-dZ-ms7"/>
                             <constraint firstItem="0Ld-Vx-ReT" firstAttribute="centerY" secondItem="vzC-C0-gCC" secondAttribute="centerY" id="TAj-Hy-x1S"/>
                             <constraint firstItem="bni-ui-Ij7" firstAttribute="height" secondItem="3" secondAttribute="height" id="VtY-Fl-BBf"/>
-                            <constraint firstItem="yjE-ev-SsG" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="-16" id="XlW-Zw-JQv"/>
+                            <constraint firstItem="yjE-ev-SsG" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="-8" id="XlW-Zw-JQv"/>
                             <constraint firstItem="T7q-Ko-Que" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" constant="4" id="i1s-q8-Nbc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="T7q-Ko-Que" secondAttribute="trailing" constant="-34" id="iSO-qz-PaH"/>
                             <constraint firstItem="yjE-ev-SsG" firstAttribute="top" secondItem="He3-zt-M1e" secondAttribute="bottom" id="kUL-A6-gVF"/>
@@ -931,7 +931,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="72AFF9EA-6AEE-469E-9ED8-0402B6B58CBC"/>
+                                <state key="normal" backgroundImage="F91F24AC-8A46-4FB7-B456-60853D3749DE"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1221,7 +1221,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vaK-d3-AtD">
-                        <barButtonItem key="rightBarButtonItem" image="FriendsIcon.png" style="plain" id="UOa-uX-nLV">
+                        <barButtonItem key="rightBarButtonItem" image="SettingsIconWhite8.png" style="plain" id="UOa-uX-nLV">
                             <connections>
                                 <action selector="didTapSettingsButton" destination="Vua-bX-Wl1" id="kBv-An-pgb"/>
                             </connections>
@@ -1952,7 +1952,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="72AFF9EA-6AEE-469E-9ED8-0402B6B58CBC" width="300" height="300">
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
+        <image name="CameraIcon400.png" width="150" height="150"/>
+        <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="CancelImageWhite500.png" width="350" height="350"/>
+        <image name="F91F24AC-8A46-4FB7-B456-60853D3749DE" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8025,11 +8030,6 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="CameraIcon400.png" width="150" height="150"/>
-        <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="CancelImageWhite500.png" width="350" height="350"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
