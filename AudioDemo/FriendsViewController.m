@@ -177,9 +177,14 @@
     [self.navigationItem setLeftBarButtonItem:cancelButton];
 }
 
+//- (void) cancelPressed
+//{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
+
 - (void) cancelPressed
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) getSelfAndUpdateScore
