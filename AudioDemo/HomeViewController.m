@@ -535,7 +535,7 @@
     if ([self isInReplyMode]) {
         [self.navigationController popViewControllerAnimated:NO];
     } else {
-        [self performSegueWithIdentifier:@"Settings Segue" sender:nil];
+        [self performSegueWithIdentifier:@"Friends Segue" sender:nil];
     }
 }
 
