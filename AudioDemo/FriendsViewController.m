@@ -98,13 +98,13 @@
     
     [self getSelfAndUpdateScore];
     
-    /*
+    
     // TEXT COLOR OF UINAVBAR
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
-    */
+    
      
     [self setupDoubleTap];
     

@@ -349,7 +349,6 @@
                         <outlet property="yapsPageButton" destination="T7q-Ko-Que" id="oqB-dm-Xay"/>
                         <segue destination="Vua-bX-Wl1" kind="push" identifier="YapsPageViewControllerSegue" id="AEp-MY-7pq"/>
                         <segue destination="9sH-V7-KSA" kind="modal" identifier="Login" id="hiH-DV-0vZ"/>
-                        <segue destination="8HU-Ch-EUO" kind="modal" identifier="Settings Segue" id="iFo-6O-wBh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -381,15 +380,15 @@
                         <viewControllerLayoutGuide type="bottom" id="A6g-AH-ZMj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="c1P-cc-dab">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Wxt-ug-3oL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Wxt-ug-3oL">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="UAQ-RV-UHx" detailTextLabel="SV5-KU-VEE" style="IBUITableViewCellStyleValue1" id="PxL-ic-pkM">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PxL-ic-pkM" id="5lq-cc-JJd">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -447,10 +446,10 @@
                         <viewControllerLayoutGuide type="bottom" id="6DQ-z1-9tf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zdM-Wx-iIj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="hBL-8E-dV6">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="hBL-8E-dV6">
                                 <rect key="frame" x="30" y="47" width="260" height="46"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -932,7 +931,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="86ABDEDE-FA14-49CC-98DC-C31D4BEDF149"/>
+                                <state key="normal" backgroundImage="11CAEF4E-2505-4BED-81F4-42DD71D5A0D4"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1238,11 +1237,12 @@
                         <segue destination="Dgp-JD-d1e" kind="modal" identifier="Playback Segue" animates="NO" id="LuI-mK-8FP"/>
                         <segue destination="2" kind="custom" identifier="Reply Segue" customClass="NoAnimationPushSegue" id="Enn-ka-dSJ"/>
                         <segue destination="j1Z-Ou-SMe" kind="custom" identifier="Audio Capture With Yap" customClass="NoAnimationPushSegue" id="RZ7-m8-cys"/>
+                        <segue destination="b8F-go-ayB" kind="push" identifier="Settings Segue" id="I7W-uF-dHG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kem-WI-Tyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3694" y="-1049"/>
+            <point key="canvasLocation" x="3494" y="-1389"/>
         </scene>
         <!--PlaybackVC-->
         <scene sceneID="Z9q-A6-PA1">
@@ -1933,25 +1933,6 @@
             <point key="canvasLocation" x="1737" y="-2528"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="AOf-Ex-mEL">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8HU-Ch-EUO" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="t7Z-ni-xiW"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JIo-0G-R5A">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="b8F-go-ayB" kind="relationship" relationship="rootViewController" id="VUm-oe-w5p"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O4K-Qt-RoH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1504" y="-183"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="cC2-H8-fIZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xtr-mv-7tz" sceneMemberID="viewController">
@@ -1971,7 +1952,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="86ABDEDE-FA14-49CC-98DC-C31D4BEDF149" width="300" height="300">
+        <image name="11CAEF4E-2505-4BED-81F4-42DD71D5A0D4" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8063,10 +8044,10 @@ A
         <image name="eye8.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Q0Z-rg-Tpo"/>
-        <segue reference="c26-Bf-LAT"/>
+        <segue reference="Enn-ka-dSJ"/>
         <segue reference="AEp-MY-7pq"/>
         <segue reference="RZ7-m8-cys"/>
         <segue reference="rVt-9v-iFr"/>
+        <segue reference="c26-Bf-LAT"/>
     </inferredMetricsTieBreakers>
 </document>
