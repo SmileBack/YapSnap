@@ -35,7 +35,7 @@ static TracksCache *sharedCache;
          if (songs) {
              NSLog(@"There are songs");
              if ([trackGroup.apiString  isEqual: @"trending_tracks"]) {
-                 weakSelf.trendingSongs = songs;//[songs shuffledArray];
+                 weakSelf.trendingSongs = [songs shuffledArray];
              } else if ([trackGroup.apiString isEqual: @"flirtatious_tracks"]) {
                  weakSelf.flirtatiousSongs = [songs shuffledArray];
              } else if ([trackGroup.apiString isEqual: @"funny_tracks"]) {
@@ -190,7 +190,7 @@ static TracksCache *sharedCache;
 }
 
 - (void) shuffleCachedTracks {
-//    self.trendingSongs = [self.trendingSongs shuffledArray];
+    self.trendingSongs = [self.trendingSongs shuffledArray];
     self.flirtatiousSongs = [self.flirtatiousSongs shuffledArray];
     self.nostalgicSongs = [self.nostalgicSongs shuffledArray];
     self.funnySongs = [self.funnySongs shuffledArray];
