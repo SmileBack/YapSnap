@@ -28,4 +28,6 @@
 
 - (void)didOriginateForwardFromYap:(YSYap *)yap;
 
+- (void)didOriginateFromCreateOwnYapButton;
+
 @end

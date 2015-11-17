@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) NSArray *pendingYaps;
 @property (assign, nonatomic) BOOL comingFromContactsOrCustomizeYapPage;
+@property (assign, nonatomic) BOOL openWelcomeYapAutomatically;
 @property (nonatomic, strong) NSNumber *unopenedYapsCount;
 
 - (void)showSMS:(NSString *)message toRecipients:(NSArray *)recipients;

@@ -155,6 +155,10 @@ static NSString *CellIdentifier = @"Cell";
     } else {
         self.sendYapButtonYConstraint.constant = 14;
     }
+    
+    if (self.openWelcomeYapAutomatically) {
+        [self openFirstYap];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -179,6 +183,11 @@ static NSString *CellIdentifier = @"Cell";
 
     //This is a hack to prevent multiple popups from showing
     self.smsAlertWasAlreadyPrompted = YES;
+}
+
+- (void) openFirstYap {
+    YSYap *yap = self.yaps[0];
+    [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
 }
 
 - (void) goToPhoneSettings {
@@ -854,6 +863,11 @@ static NSString *CellIdentifier = @"Cell";
     [self performSegueWithIdentifier:@"Reply Segue" sender:yap];
 }
 
+- (void)didOriginateFromCreateOwnYapButton
+{
+    NSLog(@"didOriginateFromCreateOwnYapButton");
+    [self dismissViewController];
+}
 
 #pragma mark - UIActionSheet method implementation
 

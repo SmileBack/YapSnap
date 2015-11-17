@@ -40,10 +40,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
 @property (weak, nonatomic) IBOutlet UIButton *sendTextButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *replayButton;
 @property (weak, nonatomic) IBOutlet UIButton *spotifyButton;
 @property (weak, nonatomic) IBOutlet UIButton *friendRequestButton;
+@property (weak, nonatomic) IBOutlet UIButton *createOwnYapButton;
 
 @property (strong, nonatomic) IBOutlet UILabel *countdownTimerLabel;
 
@@ -55,6 +57,7 @@
 - (IBAction)didTapReplayButton;
 - (IBAction)didTapSpotifyButton;
 - (IBAction)didTapFriendRequestButton;
+- (IBAction)didTapCreateOwnYapButton;
 
 @end
 
@@ -95,6 +98,13 @@
             if ([self.yap.status isEqualToString:@"unopened"]) {
                 self.friendRequestButton.hidden = NO;
             }
+        }
+        
+        if ([self.yap.senderPhone isEqualToString:@"+13245678910"]) {
+            self.cancelButton.hidden = YES;
+            self.replyButton.hidden = YES;
+            self.sendTextButton.hidden = YES;
+            self.createOwnYapButton.hidden = NO;
         }
     }
     
@@ -207,6 +217,10 @@
     self.sendTextButton.layer.cornerRadius = 4;
     self.sendTextButton.layer.borderWidth = 1;
     self.sendTextButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
+    
+    self.createOwnYapButton.layer.cornerRadius = 4;
+    self.createOwnYapButton.layer.borderWidth = 1;
+    self.createOwnYapButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
 }
 
 - (void) handleImageAndPlayAudio
@@ -663,6 +677,14 @@
             });
         }
     }
+}
+
+#pragma mark - Create Own Yap Button
+
+
+- (void) didTapCreateOwnYapButton {
+    [self dismissThis];
+    [self.yapCreatingDelegate didOriginateFromCreateOwnYapButton];
 }
 
 @end

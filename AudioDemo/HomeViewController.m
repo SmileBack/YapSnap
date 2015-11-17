@@ -359,7 +359,7 @@
         [weakSelf textFieldDidChange:self.searchBar];
         [weakSelf.searchBar resignFirstResponder];
         if (![self isInReplyMode]) {
-            [self.topLeftButton setImage:[UIImage imageNamed:@"SettingsIconWhite8"] forState:UIControlStateNormal];
+            [self.topLeftButton setImage:[UIImage imageNamed:@"FriendsIcon"] forState:UIControlStateNormal];
         } else {
             [self.topLeftButton setImage:[UIImage imageNamed:@"CancelButton200.png"] forState:UIControlStateNormal];
         }
@@ -550,6 +550,10 @@
     if ([@"YapsPageViewControllerSegue" isEqualToString:segue.identifier]) {
         YapsViewController *yapsVC = segue.destinationViewController;
         yapsVC.unopenedYapsCount = self.unopenedYapsCount;
+    } else if ([@"YapsPageViewControllerFromOverlaySegue" isEqualToString:segue.identifier]) {
+        YapsViewController *yapsVC = segue.destinationViewController;
+        yapsVC.unopenedYapsCount = self.unopenedYapsCount;
+        yapsVC.openWelcomeYapAutomatically = YES;
     } else if ([@"Friends Segue" isEqualToString:segue.identifier]) {
         UINavigationController *navVC = segue.destinationViewController;
         FriendsViewController *vc = navVC.viewControllers[0];
@@ -607,7 +611,7 @@
     
     
     if (![self isInReplyMode]) {
-        [self.topLeftButton setImage:back ? [UIImage imageNamed:@"back"] : [UIImage imageNamed:@"SettingsIconWhite8"] forState:UIControlStateNormal];
+        [self.topLeftButton setImage:back ? [UIImage imageNamed:@"back"] : [UIImage imageNamed:@"FriendsIcon"] forState:UIControlStateNormal];
     } else {
         [self.topLeftButton setImage:back ? [UIImage imageNamed:@"back"] : [UIImage imageNamed:@"CancelButton200.png"] forState:UIControlStateNormal];
     }
@@ -621,6 +625,7 @@
 }
 
 - (void) didTapOverlayButton {
+    [self performSegueWithIdentifier:@"YapsPageViewControllerFromOverlaySegue" sender:self];
     self.overlayView.alpha = 0;
 }
 
