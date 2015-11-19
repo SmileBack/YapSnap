@@ -19,6 +19,7 @@
 #import "TracksCache.h"
 #import "FeedbackMonitor.h"
 #import "SpotifyAPI.h"
+#import "Flurry.h"
 
 #define APP_OPENED_COUNTER @"yaptap.AppOpenedCounter"
 
@@ -54,6 +55,8 @@
     [self bindCrashlyticsToUser];
     
     [[YapsCache sharedCache] loadYapsWithCallback:nil];
+    
+    [Flurry startSession:@"NM4XW4RXZZTD8YTCJHHD"];
     
     //[[TracksCache sharedCache] loadTracksForGroup:[YTTrackGroup defaultTrackGroup] withCallback:nil];
 
@@ -139,6 +142,7 @@
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Opened App"];
     [mixpanel.people increment:@"Opened App #" by:[NSNumber numberWithInt:1]];
+    [Flurry logEvent:@"Opened App"];
     
     [self increaseAppOpenedCount];
     [self.feedbackMonitor appOpened];

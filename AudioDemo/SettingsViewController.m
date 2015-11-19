@@ -12,6 +12,7 @@
 #import "API.h"
 #import "YapsCache.h"
 #import "ContactsViewController.h"
+#import "Flurry.h"
 
 #define LOGOUT @"logout"
 #define CLEAR_YAPS @"clear_yaps"
@@ -33,6 +34,7 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Settings Page"];
+    [Flurry logEvent:@"Viewed Settings Page"];
     
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
     
@@ -198,6 +200,7 @@
             [[API sharedAPI] logout:^(BOOL success, NSError *error) {
                 Mixpanel *mixpanel = [Mixpanel sharedInstance];
                 [mixpanel track:@"Logged Out"];
+                [Flurry logEvent:@"Logged Out"];
             }];
         }
     } else if ([CLEAR_YAPS isEqualToString:self.alertViewString]) {

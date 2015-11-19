@@ -11,6 +11,7 @@
 #import "YSPushManager.h"
 #import "UIViewController+Alerts.h"
 #import "AppDelegate.h"
+#import "Flurry.h"
 
 #define COMPLETED_REGISTRATION_NOTIFICATION @"com.yapsnap.CompletedRegistrationNotification2"
 
@@ -37,6 +38,7 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Name Email Page"];
+    [Flurry logEvent:@"Viewed Name Email Page"];
     
     [self setupTextFields];
     
@@ -142,6 +144,7 @@
                                         [[YSPushManager sharedPushManager] registerForNotifications];
                                         Mixpanel *mixpanel = [Mixpanel sharedInstance];
                                         [mixpanel track:@"Completed Registration"];
+                                        [Flurry logEvent:@"Completed Registration"];
                                     } else {
                                         NSLog(@"Error! %@", error);
                                         [[[UIAlertView alloc] initWithTitle:@"Try Again" message:@"There was an error saving your info. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];

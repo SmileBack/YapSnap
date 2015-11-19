@@ -13,6 +13,8 @@
 #import "YSRecordProgressView.h"
 #import "SpotifyAPI.h"
 #import "OpenInSpotifyAlertView.h"
+#import "Flurry.h"
+
 
 @interface PlaybackVC ()  {
     NSTimer *countdownTimer;
@@ -72,6 +74,7 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Playback Page"];
+    [Flurry logEvent:@"Viewed Playback Page"];
     
     self.replyButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0.0/255.0 alpha:0.5f];
     self.sendTextButton.backgroundColor = [UIColor colorWithRed:0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0.5f];
@@ -333,6 +336,7 @@
     [self.yapCreatingDelegate didOriginateReplyFromYapSameClip:self.yap];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Reply Text (from Playback)"];
+    [Flurry logEvent:@"Tapped Reply Text (from Playback)"];
 }
 
 - (IBAction)didTapReply:(id)sender {
@@ -359,6 +363,7 @@
     }
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Reply (from Playback)"];
+    [Flurry logEvent:@"Tapped Reply (from Playback)"];
 }
 
 - (IBAction)didTapForward:(id)sender {
@@ -476,6 +481,7 @@
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Opened Yap"];
             [mixpanel.people increment:@"Opened Yap #" by:[NSNumber numberWithInt:1]];
+            [Flurry logEvent:@"Opened Yap"];
             
             if (self.yap.receivedByCurrentUser) {
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:OPENED_YAP_FOR_FIRST_TIME_KEY];

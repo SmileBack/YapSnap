@@ -12,6 +12,8 @@
 #import "YSPushManager.h"
 #import "Environment.h"
 #import <SDWebImage/SDWebImagePrefetcher.h>
+#import "Flurry.h"
+
 
 @interface API()
 
@@ -440,6 +442,8 @@ static API *sharedAPI;
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Sent Yap - Song"];
         [mixpanel.people increment:@"Sent Yap - Song #" by:[NSNumber numberWithInt:1]];
+        
+        [Flurry logEvent:@"Sent Yap - Song"];
         
         if ([responseObject isKindOfClass:[NSArray class]]) {
             NSArray *yapDicts = responseObject;

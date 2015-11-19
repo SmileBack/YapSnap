@@ -23,6 +23,7 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "SpotifyAPI.h"
 #import "YSRecordProgressView.h"
+#import "Flurry.h"
 
 
 @interface CustomizeYapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
@@ -475,6 +476,7 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Continue On Customize Page"];
+    [Flurry logEvent:@"Tapped Continue On Customize Page"];
 }
 
 - (IBAction)didTapAddRecipientsInDoubleTapToReplyFlow {
@@ -502,6 +504,7 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Add Camera Button"];
+    [Flurry logEvent:@"Tapped Camera Button"];
 }
 
 - (BOOL) textView: (UITextView*) textView shouldChangeTextInRange: (NSRange) range replacementText: (NSString*) text
@@ -649,12 +652,14 @@
             [self takePhoto];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Tapped Take Photo"];
+            [Flurry logEvent:@"Tapped Take Photo"];
             
         // Upload a photo
         } else if (buttonIndex == 1) {
             [self selectPhoto];
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Tapped Upload Photo"];
+            [Flurry logEvent:@"Tapped Upload Photo"];
         
         } else if (buttonIndex == 2) {
             NSLog(@"Did tap cancel");

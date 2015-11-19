@@ -26,6 +26,7 @@
 #import "CustomizeYapViewController.h"
 #import "FriendsViewController.h"
 #import <MessageUI/MessageUI.h>
+#import "Flurry.h"
 
 
 #define PENDING_YAPS_SECTION 0
@@ -66,6 +67,7 @@ static NSString *CellIdentifier = @"Cell";
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Yaps Page"];
+    [Flurry logEvent:@"Viewed Yaps Page"];
     
     self.unregisteredUserSMSInviter = [[YTUnregisteredUserSMSInviter alloc] init];
     self.unregisteredUserSMSInviter.delegate = self;

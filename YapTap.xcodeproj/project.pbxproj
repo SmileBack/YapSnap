@@ -268,6 +268,11 @@
 		78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DA1F7D1AA18D4900693015 /* WhiteCircle.png */; };
 		78DA1F801AA1961200693015 /* AlbumImagePlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */; };
 		78F1E4111AD2E80A00C2743B /* CameraIcon20.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E4101AD2E80A00C2743B /* CameraIcon20.png */; };
+		78F46CAF1BFE2E31001A4DC2 /* libFlurry_7.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F46CAE1BFE2E31001A4DC2 /* libFlurry_7.3.0.a */; settings = {ASSET_TAGS = (); }; };
+		78F46CC71BFE3037001A4DC2 /* libFlurryAds_7.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F46CC61BFE3037001A4DC2 /* libFlurryAds_7.3.0.a */; settings = {ASSET_TAGS = (); }; };
+		78F46CC91BFE307A001A4DC2 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F46CC81BFE307A001A4DC2 /* AdSupport.framework */; };
+		78F46CCB1BFE309A001A4DC2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F46CCA1BFE309A001A4DC2 /* Security.framework */; };
+		78F46CCD1BFE30A0001A4DC2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F46CCC1BFE30A0001A4DC2 /* StoreKit.framework */; };
 		A57E2BDB2471131379654871 /* libPods-YapTap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ED5961C23D704BCAF364D2 /* libPods-YapTap.a */; };
 		F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4216DA404700E6CD88 /* UIKit.framework */; };
 		F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44B0C4416DA404700E6CD88 /* Foundation.framework */; };
@@ -684,6 +689,27 @@
 		78DA1F7D1AA18D4900693015 /* WhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCircle.png; sourceTree = "<group>"; };
 		78DA1F7F1AA1961200693015 /* AlbumImagePlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumImagePlaceholder.png; sourceTree = "<group>"; };
 		78F1E4101AD2E80A00C2743B /* CameraIcon20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraIcon20.png; sourceTree = "<group>"; };
+		78F46CAC1BFE2E31001A4DC2 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		78F46CAD1BFE2E31001A4DC2 /* FlurryWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryWatch.h; sourceTree = "<group>"; };
+		78F46CAE1BFE2E31001A4DC2 /* libFlurry_7.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_7.3.0.a; sourceTree = "<group>"; };
+		78F46CB51BFE2F4D001A4DC2 /* FlurryAdNative.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryAdNative.h; sourceTree = "<group>"; };
+		78F46CB61BFE2F4D001A4DC2 /* FlurryAdNativeAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryAdNativeAsset.h; sourceTree = "<group>"; };
+		78F46CB71BFE2F4D001A4DC2 /* FlurryAdNativeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryAdNativeDelegate.h; sourceTree = "<group>"; };
+		78F46CB81BFE2F4D001A4DC2 /* FlurryAdNativeStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryAdNativeStyle.h; sourceTree = "<group>"; };
+		78F46CB91BFE2F56001A4DC2 /* FlurryAdInterstitial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryAdInterstitial.h; sourceTree = "<group>"; };
+		78F46CBA1BFE2F56001A4DC2 /* FlurryAdInterstitialDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryAdInterstitialDelegate.h; sourceTree = "<group>"; };
+		78F46CBB1BFE2F5D001A4DC2 /* FlurryAdBanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryAdBanner.h; sourceTree = "<group>"; };
+		78F46CBC1BFE2F5D001A4DC2 /* FlurryAdBannerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryAdBannerDelegate.h; sourceTree = "<group>"; };
+		78F46CBE1BFE2F79001A4DC2 /* FlurryAdError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryAdError.h; sourceTree = "<group>"; };
+		78F46CBF1BFE2F79001A4DC2 /* FlurryAdTargeting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryAdTargeting.h; sourceTree = "<group>"; };
+		78F46CC11BFE2F89001A4DC2 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		78F46CC21BFE2F89001A4DC2 /* FlurryAds.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryAds.h; sourceTree = "<group>"; };
+		78F46CC41BFE2FAD001A4DC2 /* FlurryTumblr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryTumblr.h; sourceTree = "<group>"; };
+		78F46CC51BFE2FAD001A4DC2 /* FlurryTumblrDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlurryTumblrDelegate.h; sourceTree = "<group>"; };
+		78F46CC61BFE3037001A4DC2 /* libFlurryAds_7.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAds_7.3.0.a; sourceTree = "<group>"; };
+		78F46CC81BFE307A001A4DC2 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		78F46CCA1BFE309A001A4DC2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		78F46CCC1BFE30A0001A4DC2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
 		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA961E944F5B46EDE7E7229C /* Pods-YapSnap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.release.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.release.xcconfig"; sourceTree = "<group>"; };
@@ -792,7 +818,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78F46CCD1BFE30A0001A4DC2 /* StoreKit.framework in Frameworks */,
+				78F46CCB1BFE309A001A4DC2 /* Security.framework in Frameworks */,
+				F44B0C4716DA404700E6CD88 /* CoreGraphics.framework in Frameworks */,
+				78F46CC91BFE307A001A4DC2 /* AdSupport.framework in Frameworks */,
 				FC6C2A591B952C7D001E9C1D /* CoreMedia.framework in Frameworks */,
+				78F46CAF1BFE2E31001A4DC2 /* libFlurry_7.3.0.a in Frameworks */,
 				FCEE68101B8E945F0010B298 /* MediaPlayer.framework in Frameworks */,
 				780D43301B064A3F0060DAED /* GLKit.framework in Frameworks */,
 				FC0642D91A9D68FC00E3D60F /* SystemConfiguration.framework in Frameworks */,
@@ -802,9 +833,9 @@
 				371C2C8B19BCF73800FDA390 /* AddressBookUI.framework in Frameworks */,
 				787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */,
 				F44B0C6616DD09D900E6CD88 /* AVFoundation.framework in Frameworks */,
+				78F46CC71BFE3037001A4DC2 /* libFlurryAds_7.3.0.a in Frameworks */,
 				F44B0C4316DA404700E6CD88 /* UIKit.framework in Frameworks */,
 				F44B0C4516DA404700E6CD88 /* Foundation.framework in Frameworks */,
-				F44B0C4716DA404700E6CD88 /* CoreGraphics.framework in Frameworks */,
 				A57E2BDB2471131379654871 /* libPods-YapTap.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1573,6 +1604,95 @@
 			name = iPhone5;
 			sourceTree = "<group>";
 		};
+		78F46CA91BFE2D77001A4DC2 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				78F46CC31BFE2F9A001A4DC2 /* FlurryTumblrAPI */,
+				78F46CB11BFE2F0E001A4DC2 /* FlurryAds */,
+				78F46CB01BFE2EF2001A4DC2 /* Flurry */,
+			);
+			name = Flurry;
+			sourceTree = "<group>";
+		};
+		78F46CB01BFE2EF2001A4DC2 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				78F46CAC1BFE2E31001A4DC2 /* Flurry.h */,
+				78F46CAD1BFE2E31001A4DC2 /* FlurryWatch.h */,
+				78F46CAE1BFE2E31001A4DC2 /* libFlurry_7.3.0.a */,
+			);
+			name = Flurry;
+			sourceTree = "<group>";
+		};
+		78F46CB11BFE2F0E001A4DC2 /* FlurryAds */ = {
+			isa = PBXGroup;
+			children = (
+				78F46CC61BFE3037001A4DC2 /* libFlurryAds_7.3.0.a */,
+				78F46CC01BFE2F7F001A4DC2 /* StaticAPI */,
+				78F46CBD1BFE2F70001A4DC2 /* Shared */,
+				78F46CB41BFE2F3E001A4DC2 /* FlurryAdNative */,
+				78F46CB31BFE2F2F001A4DC2 /* FlurryAdInterstitial */,
+				78F46CB21BFE2F23001A4DC2 /* FlurryAdBanner */,
+			);
+			name = FlurryAds;
+			sourceTree = "<group>";
+		};
+		78F46CB21BFE2F23001A4DC2 /* FlurryAdBanner */ = {
+			isa = PBXGroup;
+			children = (
+				78F46CBB1BFE2F5D001A4DC2 /* FlurryAdBanner.h */,
+				78F46CBC1BFE2F5D001A4DC2 /* FlurryAdBannerDelegate.h */,
+			);
+			name = FlurryAdBanner;
+			sourceTree = "<group>";
+		};
+		78F46CB31BFE2F2F001A4DC2 /* FlurryAdInterstitial */ = {
+			isa = PBXGroup;
+			children = (
+				78F46CB91BFE2F56001A4DC2 /* FlurryAdInterstitial.h */,
+				78F46CBA1BFE2F56001A4DC2 /* FlurryAdInterstitialDelegate.h */,
+			);
+			name = FlurryAdInterstitial;
+			sourceTree = "<group>";
+		};
+		78F46CB41BFE2F3E001A4DC2 /* FlurryAdNative */ = {
+			isa = PBXGroup;
+			children = (
+				78F46CB51BFE2F4D001A4DC2 /* FlurryAdNative.h */,
+				78F46CB61BFE2F4D001A4DC2 /* FlurryAdNativeAsset.h */,
+				78F46CB71BFE2F4D001A4DC2 /* FlurryAdNativeDelegate.h */,
+				78F46CB81BFE2F4D001A4DC2 /* FlurryAdNativeStyle.h */,
+			);
+			name = FlurryAdNative;
+			sourceTree = "<group>";
+		};
+		78F46CBD1BFE2F70001A4DC2 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				78F46CBE1BFE2F79001A4DC2 /* FlurryAdError.h */,
+				78F46CBF1BFE2F79001A4DC2 /* FlurryAdTargeting.h */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		78F46CC01BFE2F7F001A4DC2 /* StaticAPI */ = {
+			isa = PBXGroup;
+			children = (
+				78F46CC11BFE2F89001A4DC2 /* FlurryAdDelegate.h */,
+				78F46CC21BFE2F89001A4DC2 /* FlurryAds.h */,
+			);
+			name = StaticAPI;
+			sourceTree = "<group>";
+		};
+		78F46CC31BFE2F9A001A4DC2 /* FlurryTumblrAPI */ = {
+			isa = PBXGroup;
+			children = (
+				78F46CC41BFE2FAD001A4DC2 /* FlurryTumblr.h */,
+				78F46CC51BFE2FAD001A4DC2 /* FlurryTumblrDelegate.h */,
+			);
+			name = FlurryTumblrAPI;
+			sourceTree = "<group>";
+		};
 		D7F0B05C2CE000894BFB84FE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1606,6 +1726,9 @@
 		F44B0C4116DA404700E6CD88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78F46CCC1BFE30A0001A4DC2 /* StoreKit.framework */,
+				78F46CCA1BFE309A001A4DC2 /* Security.framework */,
+				78F46CC81BFE307A001A4DC2 /* AdSupport.framework */,
 				FC6C2A581B952C7D001E9C1D /* CoreMedia.framework */,
 				FCEE680F1B8E945F0010B298 /* MediaPlayer.framework */,
 				780D432F1B064A3F0060DAED /* GLKit.framework */,
@@ -1712,6 +1835,7 @@
 		FC0C1D4D1A46065B00B148AB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				78F46CA91BFE2D77001A4DC2 /* Flurry */,
 				78141D7F1BB8CD240091B8B6 /* APAddressBook */,
 				783A1CC01B17722100B610B3 /* UIAlertView+Blocks */,
 				780D432E1B0647E50060DAED /* ZLSinusWaveView */,
@@ -2462,6 +2586,10 @@
 				GCC_PREFIX_HEADER = "AudioDemo/YapTap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapTap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AudioDemo",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -2486,6 +2614,10 @@
 				GCC_PREFIX_HEADER = "AudioDemo/YapTap-Prefix.pch";
 				INFOPLIST_FILE = "AudioDemo/YapTap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AudioDemo",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

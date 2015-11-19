@@ -13,6 +13,7 @@
 #import "AudioCaptureViewController.h"
 #import "ContactManager.h"
 #import <MessageUI/MessageUI.h>
+#import "Flurry.h"
 
 #define CELL_COLLAPSED @"Collapsed Cell"
 #define CELL_EXPANDED @"Expanded Cell"
@@ -46,6 +47,7 @@
         
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Friends Page"];
+    [Flurry logEvent:@"Viewed Friends Page"];
     
     self.unregisteredUserSMSInviter = [[YTUnregisteredUserSMSInviter alloc] init];
     self.unregisteredUserSMSInviter.delegate = self;

@@ -14,6 +14,7 @@
 #import "AudioCaptureViewController.h"
 #import "YSPushManager.h"
 #import "YSSegmentedControl.h"
+#import "Flurry.h"
 
 @interface HomeViewController () <UITextFieldDelegate, UINavigationControllerDelegate>
 
@@ -544,6 +545,7 @@
 
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Tapped Yaps Page Button"];
+    [Flurry logEvent:@"Tapped Yaps Page Button"];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

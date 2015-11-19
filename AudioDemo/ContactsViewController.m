@@ -17,6 +17,8 @@
 #import <MessageUI/MessageUI.h>
 #import "UIAlertView+Blocks.h"
 #import "NextButton.h"
+#import "Flurry.h"
+
 
 @interface ContactsViewController () <UIAlertViewDelegate>
 
@@ -30,6 +32,7 @@
 @property (strong, nonatomic) ContactsPopupViewController *contactsPopupVC;
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *continueButtonRightConstraint;
+
 
 // Map of section letter to contacts:  A : [cont1, cont2]
 @property (nonatomic, strong) NSMutableDictionary *contactDict;
@@ -51,6 +54,8 @@ static NSString *CellIdentifier = @"Cell";
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Contacts Page"];
+    [Flurry logEvent:@"Viewed Contacts Page"];
+    
     
     self.bottomView.hidden = YES;
     
@@ -526,6 +531,7 @@ static NSString *CellIdentifier = @"Cell";
         
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Selected Contact for Friend Request"];
+        [Flurry logEvent:@"Selected Contact for Friend Request"];
     } else {
         PhoneContact *contact;
         if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -572,6 +578,7 @@ static NSString *CellIdentifier = @"Cell";
         
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Selected Contact for Yap"];
+        [Flurry logEvent:@"Selected Contact for Yap"];
     }
 }
 
@@ -671,6 +678,7 @@ static NSString *CellIdentifier = @"Cell";
                            if (success) {
                                Mixpanel *mixpanel = [Mixpanel sharedInstance];
                                [mixpanel track:@"Sent Friend Request"];
+                               [Flurry logEvent:@"Sent Friend Request"];
                                
                                [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
                            } else {

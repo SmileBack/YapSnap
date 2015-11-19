@@ -10,6 +10,7 @@
 #import "AudioCaptureViewController.h"
 #import "YSUser.h"
 #import "EnterPhoneNumberViewController.h"
+#import "Flurry.h"
 
 @implementation LandingPageViewController
 
@@ -38,6 +39,7 @@
     } else {
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Viewed Landing Page"];
+        [Flurry logEvent:@"Viewed Landing Page"];
     }
     
     if (self.isiPhone4Size || self.isiPhone5Size) {

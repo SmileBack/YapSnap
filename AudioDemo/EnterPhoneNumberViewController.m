@@ -13,6 +13,7 @@
 #import <SHSPhoneComponent/SHSPhoneNumberFormatter.h>
 #import "UIViewController+Alerts.h"
 #import "AppDelegate.h"
+#import "Flurry.h"
 
 @interface EnterPhoneNumberViewController ()
 
@@ -50,6 +51,7 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Phone Number Page"];
+    [Flurry logEvent:@"Viewed Phone Number Page"];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Retry"
                                                                              style:UIBarButtonItemStylePlain

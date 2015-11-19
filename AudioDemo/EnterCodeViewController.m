@@ -10,6 +10,8 @@
 #import "API.h"
 #import "UIViewController+Alerts.h"
 #import "AppDelegate.h"
+#import "Flurry.h"
+
 
 //TODO: REMOVE
 #define COMPLETED_REGISTRATION_NOTIFICATION @"com.yapsnap.CompletedRegistrationNotification2"
@@ -47,6 +49,7 @@
     
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Enter Code Page"];
+    [Flurry logEvent:@"Viewed Enter Code Page"];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                              style:UIBarButtonItemStylePlain
