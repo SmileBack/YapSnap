@@ -777,7 +777,6 @@ static NSString *CellIdentifier = @"Cell";
 
 - (IBAction)didTapSendYapButton
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_SEND_YAP_POPUP object:nil];
     if (self.comingFromContactsOrCustomizeYapPage) {
         [self.navigationController popToRootViewControllerAnimated:NO];
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -867,6 +866,7 @@ static NSString *CellIdentifier = @"Cell";
 {
     NSLog(@"didOriginateFromCreateOwnYapButton");
     [self dismissViewController];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_SEND_YAP_POPUP object:nil];
 }
 
 #pragma mark - UIActionSheet method implementation

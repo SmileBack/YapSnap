@@ -60,6 +60,7 @@
 @property (strong, nonatomic) NSTimer *timer;
 @property IBOutlet UIActivityIndicatorView* activityIndicator;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *addRecipientsButtonLeadingConstraint;
+@property (strong, nonatomic) IBOutlet UILabel *previewLabel;
 
 
 - (IBAction)didTapCameraButton;
@@ -68,8 +69,8 @@
 - (IBAction)didTapEndPreviewButton;
 - (IBAction)didTapStartPreviewButton;
 
-#define VIEWED_ONBOARDING_POPUP_KEY @"yaptap.ViewedForwardingPopup"
-#define VIEWED_PREVIEW_POPUP_KEY @"yaptap.ViewedPreviewPopup"
+#define VIEWED_ONBOARDING_POPUP_KEY @"yaptap.ViewedForwardingPopup5"
+#define VIEWED_PREVIEW_POPUP_KEY @"yaptap.ViewedPreviewPopup2"
 
 
 @end
@@ -275,6 +276,7 @@
     self.addRecipientsButton.hidden = YES;
     self.textView.userInteractionEnabled = NO;
     self.resetPhotoButton.hidden = YES;
+    self.previewLabel.hidden = YES;
     [self.activityIndicator startAnimating];
     [self playYapAudio];
     
@@ -299,6 +301,7 @@
     self.cameraButton.hidden = NO;
     self.endPreviewButton.hidden = YES;
     self.startPreviewButton.hidden = NO;
+    self.previewLabel.hidden = NO;
     [self.player stop];
     self.progressView.hidden = YES;
     [self.progressView setProgress:0];
@@ -756,8 +759,6 @@
                                  self.progressViewRemainder.alpha = 1;
                              }
                              completion:nil];
-            
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
             
             // set self.playerAlreadyStartedPlayingForThisSong to True!
             self.playerAlreadyStartedPlayingForThisSong = YES;

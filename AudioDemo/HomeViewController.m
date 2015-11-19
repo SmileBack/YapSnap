@@ -125,16 +125,16 @@
     self.overlayButton.alpha = 0;
     
     if (IS_IPHONE_6_SIZE) {
-        self.overlayTitleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:48];
+        self.overlayTitleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:55];
         self.overlayLabel1.font = [UIFont fontWithName:@"Futura-Medium" size:26];
-        self.overlayLabel2.font = [UIFont fontWithName:@"Futura-Medium" size:26];
+        self.overlayLabel2.font = [UIFont fontWithName:@"Futura-Medium" size:32];
         self.overlayLabel3.font = [UIFont fontWithName:@"Futura-Medium" size:26];
         self.titleLabelConstraint.constant = 85;
         self.overlayLabel1Constraint.constant = 70;
     } else if (IS_IPHONE_6_PLUS_SIZE) {
-        self.overlayTitleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:52];
+        self.overlayTitleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:58];
         self.overlayLabel1.font = [UIFont fontWithName:@"Futura-Medium" size:28];
-        self.overlayLabel2.font = [UIFont fontWithName:@"Futura-Medium" size:28];
+        self.overlayLabel2.font = [UIFont fontWithName:@"Futura-Medium" size:34];
         self.overlayLabel3.font = [UIFont fontWithName:@"Futura-Medium" size:28];
         self.titleLabelConstraint.constant = 100;
         self.overlayLabel1Constraint.constant = 80;
@@ -395,9 +395,9 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
-                        if (!weakSelf.didSeeSendYapPopup) {
+                        //if (!weakSelf.didSeeSendYapPopup) {
                             [weakSelf showSendYapPopup];
-                        }
+                        //}
                     }];
 
     [center addObserverForName:UIApplicationDidBecomeActiveNotification
