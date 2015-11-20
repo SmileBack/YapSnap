@@ -135,6 +135,7 @@
         self.cameraButton.hidden = YES;
         self.yapBuilder.awsVoiceURL = self.yapBuilder.track.previewURL;
         self.startPreviewButton.hidden = YES;
+        self.previewLabel.hidden = YES;
         self.addRecipientsButtonLeadingConstraint.constant = -18;
     }
     

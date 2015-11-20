@@ -270,7 +270,6 @@
 		78F1E4111AD2E80A00C2743B /* CameraIcon20.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1E4101AD2E80A00C2743B /* CameraIcon20.png */; };
 		78F46CAF1BFE2E31001A4DC2 /* libFlurry_7.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F46CAE1BFE2E31001A4DC2 /* libFlurry_7.3.0.a */; settings = {ASSET_TAGS = (); }; };
 		78F46CC71BFE3037001A4DC2 /* libFlurryAds_7.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F46CC61BFE3037001A4DC2 /* libFlurryAds_7.3.0.a */; settings = {ASSET_TAGS = (); }; };
-		78F46CC91BFE307A001A4DC2 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F46CC81BFE307A001A4DC2 /* AdSupport.framework */; };
 		78F46CCB1BFE309A001A4DC2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F46CCA1BFE309A001A4DC2 /* Security.framework */; };
 		78F46CCD1BFE30A0001A4DC2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F46CCC1BFE30A0001A4DC2 /* StoreKit.framework */; };
 		A57E2BDB2471131379654871 /* libPods-YapTap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ED5961C23D704BCAF364D2 /* libPods-YapTap.a */; };
@@ -821,7 +820,6 @@
 				78F46CCD1BFE30A0001A4DC2 /* StoreKit.framework in Frameworks */,
 				78F46CCB1BFE309A001A4DC2 /* Security.framework in Frameworks */,
 				F44B0C4716DA404700E6CD88 /* CoreGraphics.framework in Frameworks */,
-				78F46CC91BFE307A001A4DC2 /* AdSupport.framework in Frameworks */,
 				FC6C2A591B952C7D001E9C1D /* CoreMedia.framework in Frameworks */,
 				78F46CAF1BFE2E31001A4DC2 /* libFlurry_7.3.0.a in Frameworks */,
 				FCEE68101B8E945F0010B298 /* MediaPlayer.framework in Frameworks */,
