@@ -35,9 +35,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *overlayLabel1Constraint;
 @property (strong, nonatomic) IBOutlet UIButton *overlayButton;
 @property (nonatomic, strong) IBOutlet UILabel *overlayTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *overlayLabel1;
 @property (nonatomic, strong) IBOutlet UILabel *overlayLabel2;
-@property (nonatomic, strong) IBOutlet UILabel *overlayLabel3;
 
 @end
 
@@ -81,8 +79,6 @@
     
     float height = self.view.frame.size.height;
     NSLog(@"Height: %f", height);
-    
-    //[self showOverlay]; For Testing
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -120,23 +116,17 @@
     self.overlayView.alpha = 1;
     
     self.overlayTitleLabel.alpha = 0;
-    self.overlayLabel1.alpha = 0;
     self.overlayLabel2.alpha = 0;
-    self.overlayLabel3.alpha = 0;
     self.overlayButton.alpha = 0;
     
     if (IS_IPHONE_6_SIZE) {
         self.overlayTitleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:55];
-        self.overlayLabel1.font = [UIFont fontWithName:@"Futura-Medium" size:26];
         self.overlayLabel2.font = [UIFont fontWithName:@"Futura-Medium" size:32];
-        self.overlayLabel3.font = [UIFont fontWithName:@"Futura-Medium" size:26];
         self.titleLabelConstraint.constant = 85;
         self.overlayLabel1Constraint.constant = 70;
     } else if (IS_IPHONE_6_PLUS_SIZE) {
         self.overlayTitleLabel.font = [UIFont fontWithName:@"Futura-Medium" size:58];
-        self.overlayLabel1.font = [UIFont fontWithName:@"Futura-Medium" size:28];
         self.overlayLabel2.font = [UIFont fontWithName:@"Futura-Medium" size:34];
-        self.overlayLabel3.font = [UIFont fontWithName:@"Futura-Medium" size:28];
         self.titleLabelConstraint.constant = 100;
         self.overlayLabel1Constraint.constant = 80;
     }
@@ -166,26 +156,10 @@
                      completion:nil];
     
     [UIView animateWithDuration:1
-                          delay:3
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.overlayLabel1.alpha = 1;
-                     }
-                     completion:nil];
-    
-    [UIView animateWithDuration:1
                           delay:4
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          self.overlayLabel2.alpha = 1;
-                     }
-                     completion:nil];
-    
-    [UIView animateWithDuration:1
-                          delay:5
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.overlayLabel3.alpha = 1;
                      }
                      completion:nil];
     
@@ -459,6 +433,16 @@
           // Add number to button
           [self.yapsPageButton setTitle:count.description forState:UIControlStateNormal];
           self.unopenedYapsCount = count;
+          
+          if (count.description.intValue == 1) {
+              // SET OVERLAY & BUTTON TEXT HERE
+              self.overlayLabel2.text = @"YapTap lets you send cool audio messages!";
+              [self.overlayButton setTitle:@"See an Example!" forState:UIControlStateNormal];
+          } else {
+              // SET OVERLAY & BUTTON TEXT HERE
+              self.overlayLabel2.text = @"Your friend has sent you a yap!";
+             [self.overlayButton setTitle:@"Check It Out" forState:UIControlStateNormal];
+          }
       }
     }];
 }
@@ -627,7 +611,11 @@
 }
 
 - (void) didTapOverlayButton {
-    [self performSegueWithIdentifier:@"YapsPageViewControllerFromOverlaySegue" sender:self];
+    if (self.unopenedYapsCount.intValue == 1) {
+        [self performSegueWithIdentifier:@"YapsPageViewControllerFromOverlaySegue" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:self];
+    }
     self.overlayView.alpha = 0;
 }
 
