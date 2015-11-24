@@ -50,6 +50,8 @@
 @property (assign, nonatomic) BOOL smsAlertWasAlreadyPrompted;
 @property (strong, nonatomic) IBOutlet UIButton *sendYapButton;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *sendYapButtonYConstraint;
+@property (assign, nonatomic) BOOL openedWelcomeYap;
+
 
 
 - (IBAction)didTapSettingsButton;
@@ -158,8 +160,10 @@ static NSString *CellIdentifier = @"Cell";
         self.sendYapButtonYConstraint.constant = 14;
     }
     
-    if (self.openWelcomeYapAutomatically) {
-        [self openFirstYap];
+    if (self.yaps.count > 0) {
+        if (self.openWelcomeYapAutomatically) {
+            [self openFirstYap];
+        }
     }
 }
 
@@ -188,8 +192,11 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 - (void) openFirstYap {
-    YSYap *yap = self.yaps[0];
-    [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
+    if (!self.openedWelcomeYap) {
+        YSYap *yap = self.yaps[0];
+        [self performSegueWithIdentifier:@"Playback Segue" sender:yap];
+        self.openedWelcomeYap = YES;
+    }
 }
 
 - (void) goToPhoneSettings {
@@ -241,6 +248,9 @@ static NSString *CellIdentifier = @"Cell";
                 if (yaps.count < 5) {
                     self.sendYapButton.hidden = NO;
                 }
+            }
+            if (self.openWelcomeYapAutomatically) {
+                [self openFirstYap];
             }
         } else {
             NSLog(@"Error! %@", error);

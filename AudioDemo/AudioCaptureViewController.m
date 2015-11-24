@@ -54,7 +54,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
-    self.audioSourceNames = @[@"Upload", @"Trending", @"Moods", @"Top Charts"];
+    self.audioSourceNames = @[@"Upload", @"Trending", @"Top Charts", @"Moods"];
     
     self.categorySelectorContainer.control = self.categorySelectorView;
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
@@ -262,9 +262,9 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         case 2:
         {
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Changed Tab - Moods"];
+            [mixpanel track:@"Changed Tab - Genres"];
             
-            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSMoodGroupViewController alloc] init]];
+            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSGenreGroupViewController alloc] init]];
             if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
                 nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
             }
@@ -274,9 +274,9 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         case 3:
         {
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Changed Tab - Genres"];
+            [mixpanel track:@"Changed Tab - Moods"];
             
-            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSGenreGroupViewController alloc] init]];
+            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSMoodGroupViewController alloc] init]];
             if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
                 nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
             }

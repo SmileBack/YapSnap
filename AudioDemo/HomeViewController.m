@@ -613,7 +613,7 @@
 - (void) didTapOverlayButton {
     if (self.unopenedYapsCount.intValue == 1) {
         [self performSegueWithIdentifier:@"YapsPageViewControllerFromOverlaySegue" sender:self];
-    } else {
+    } else if (self.unopenedYapsCount.intValue > 1) {
         [self performSegueWithIdentifier:@"YapsPageViewControllerSegue" sender:self];
     }
     self.overlayView.alpha = 0;
