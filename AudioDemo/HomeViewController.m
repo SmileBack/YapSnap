@@ -15,6 +15,8 @@
 #import "YSPushManager.h"
 #import "YSSegmentedControl.h"
 #import "Flurry.h"
+#import "YapsCache.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface HomeViewController () <UITextFieldDelegate, UINavigationControllerDelegate>
 
@@ -36,6 +38,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *overlayButton;
 @property (nonatomic, strong) IBOutlet UILabel *overlayTitleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *overlayLabel2;
+@property (weak, nonatomic) UIImageView *hackImageView;
 
 @end
 
@@ -362,6 +365,13 @@
                         object:nil
                          queue:nil
                     usingBlock:^(NSNotification *note) {
+                        NSLog(@"YAPS: about to make yaps call");
+                        //THIS IS A HACK TO GET THE WELCOME YAP IMAGE TO LOAD INSTANTLY
+                        [[YapsCache sharedCache] loadYapsWithCallback:^(NSArray *yaps, NSError *error) {
+                            NSString *albumImageUrlOfFirstSong = [[yaps[0] track] albumImageURL];
+                            [self.hackImageView sd_setImageWithURL:[NSURL URLWithString:albumImageUrlOfFirstSong]];
+                        }];
+
                         [self showOverlay];
                         [self updateYapsButtonAnimation];
                     }];
