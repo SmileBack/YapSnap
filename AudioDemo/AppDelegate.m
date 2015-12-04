@@ -20,6 +20,7 @@
 #import "FeedbackMonitor.h"
 #import "SpotifyAPI.h"
 #import "Flurry.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #define APP_OPENED_COUNTER @"yaptap.AppOpenedCounter"
 
@@ -58,9 +59,20 @@
     
     [Flurry startSession:@"NM4XW4RXZZTD8YTCJHHD"];
     
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+    
     //[[TracksCache sharedCache] loadTracksForGroup:[YTTrackGroup defaultTrackGroup] withCallback:nil];
 
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation
+            ];
 }
 
 - (void) checkLaunchOptions:(NSDictionary *)launchOptions
@@ -150,6 +162,8 @@
     [[SpotifyAPI sharedApi] getAccessToken]; //Activate to get access token
         
     NSLog(@"App Opened Count: %ld", (long)self.appOpenedCount);
+    
+    [FBSDKAppEvents activateApp];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

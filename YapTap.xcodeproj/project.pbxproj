@@ -222,6 +222,7 @@
 		788363A61AD79572001CBD1B /* OneNotSelectediPhone6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 788363A31AD79572001CBD1B /* OneNotSelectediPhone6@2x.png */; };
 		788480441B177E9D0016536F /* YTUnregisteredUserSMSInviter.m in Sources */ = {isa = PBXBuildFile; fileRef = 788480431B177E9D0016536F /* YTUnregisteredUserSMSInviter.m */; };
 		7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */; };
+		78908E7C1C0BFF1700E42A14 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78908E7B1C0BFF1700E42A14 /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
 		789123381B2E8F9800894201 /* SpotifyIconWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 789123371B2E8F9800894201 /* SpotifyIconWhite.png */; };
 		7891233A1B2E959000894201 /* SpotifyIconWhite2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789123391B2E959000894201 /* SpotifyIconWhite2.png */; };
 		789351D31BABF04A003C8AA0 /* Mood_Flirtatious2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D01BABF04A003C8AA0 /* Mood_Flirtatious2.png */; settings = {ASSET_TAGS = (); }; };
@@ -635,6 +636,7 @@
 		788480421B177E9D0016536F /* YTUnregisteredUserSMSInviter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTUnregisteredUserSMSInviter.h; sourceTree = "<group>"; };
 		788480431B177E9D0016536F /* YTUnregisteredUserSMSInviter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTUnregisteredUserSMSInviter.m; sourceTree = "<group>"; };
 		7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBackArrow5.png; sourceTree = "<group>"; };
+		78908E7B1C0BFF1700E42A14 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		789123371B2E8F9800894201 /* SpotifyIconWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyIconWhite.png; sourceTree = "<group>"; };
 		789123391B2E959000894201 /* SpotifyIconWhite2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyIconWhite2.png; sourceTree = "<group>"; };
 		789351D01BABF04A003C8AA0 /* Mood_Flirtatious2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Flirtatious2.png; sourceTree = "<group>"; };
@@ -808,6 +810,7 @@
 				78F46CAF1BFE2E31001A4DC2 /* libFlurry_7.3.0.a in Frameworks */,
 				FCEE68101B8E945F0010B298 /* MediaPlayer.framework in Frameworks */,
 				780D43301B064A3F0060DAED /* GLKit.framework in Frameworks */,
+				78908E7C1C0BFF1700E42A14 /* FBSDKCoreKit.framework in Frameworks */,
 				FC0642D91A9D68FC00E3D60F /* SystemConfiguration.framework in Frameworks */,
 				7828A8DC1A846C0C00BAA609 /* MessageUI.framework in Frameworks */,
 				787C84DB1A76C77D005D80D5 /* AudioToolbox.framework in Frameworks */,
@@ -1636,6 +1639,7 @@
 		F44B0C4116DA404700E6CD88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78908E7B1C0BFF1700E42A14 /* FBSDKCoreKit.framework */,
 				78F46CCC1BFE30A0001A4DC2 /* StoreKit.framework */,
 				78F46CCA1BFE309A001A4DC2 /* Security.framework */,
 				78F46CC81BFE307A001A4DC2 /* AdSupport.framework */,
@@ -2482,6 +2486,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E5BE18B0D5C576F8F5235937 /* Pods-YapTap.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_DISPLAY_NAME_PREFIX = "Dev-";
 				BUNDLE_ID_SUFFIX = .dev;
@@ -2491,6 +2496,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/danberenholtz1/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioDemo/YapTap-Prefix.pch";
@@ -2510,6 +2516,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2EC984014C0190B93A4FFD0C /* Pods-YapTap.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_DISPLAY_NAME_PREFIX = "";
 				BUNDLE_ID_SUFFIX = "";
@@ -2519,6 +2526,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/danberenholtz1/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioDemo/YapTap-Prefix.pch";
