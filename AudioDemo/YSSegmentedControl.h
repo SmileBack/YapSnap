@@ -8,13 +8,20 @@
 
 extern NSUInteger const YSSegmentedControl_ViewTagOffset;
 
+typedef NS_ENUM(NSInteger, YSSegmentedControlItemStyle) {
+    YSSegmentedControlItemStylePlain = 0,
+    YSSegmentedControlItemStyleRightDecorator = 1,
+};
+
 @interface YSSegmentedControlItem : NSObject
 
 @property NSString* title;
 @property UIImage* image;
+@property YSSegmentedControlItemStyle style;
 
 + (YSSegmentedControlItem*)itemWithTitle:(NSString*)title;
 + (YSSegmentedControlItem*)itemWithImage:(UIImage*)image;
++ (YSSegmentedControlItem *)itemWithTitle:(NSString *)title style:(YSSegmentedControlItemStyle)style;
 
 @end
 

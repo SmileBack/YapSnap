@@ -19,10 +19,24 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
     return item;
 }
 
++ (YSSegmentedControlItem *)itemWithTitle:(NSString *)title style:(YSSegmentedControlItemStyle)style {
+    YSSegmentedControlItem *item = [[YSSegmentedControlItem alloc] init];
+    item.title = title;
+    item.style = style;
+    return item;
+}
+
 + (YSSegmentedControlItem *)itemWithImage:(UIImage *)image {
     YSSegmentedControlItem *item = [[YSSegmentedControlItem alloc] init];
     item.image = image;
     return item;
+}
+
+- (id)init {
+    if (self = [super init]) {
+        self.style = YSSegmentedControlItemStylePlain;
+    }
+    return self;
 }
 
 @end
@@ -137,13 +151,13 @@ NSUInteger const YSSegmentedControl_ViewTagOffset = 200;
         
         if (item != items.lastObject) {
             UIView *separator = UIView.new;
-            separator.backgroundColor = [UIColor clearColor];
+            separator.backgroundColor = item.style == YSSegmentedControlItemStyleRightDecorator ? [UIColor whiteColor] : [UIColor clearColor];
             [self addSubview:separator];
             [separator makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.top);
-                make.bottom.equalTo(self.bottom);
+                make.centerY.equalTo(self.centerY);
+                make.height.equalTo(self.height).multipliedBy(0.5);
                 make.left.equalTo(view.right);
-                make.width.equalTo(@0.5);
+                make.width.equalTo(@1);
             }];
         }
         previous = view;

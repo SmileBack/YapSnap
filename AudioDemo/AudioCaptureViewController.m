@@ -54,7 +54,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
-    self.audioSourceNames = @[@"Upload", @"Trending", @"Top Charts", @"Moods"];
+    self.audioSourceNames = @[@"Public", @"Upload", @"Top Charts", @"Moods"];
     
     self.categorySelectorContainer.control = self.categorySelectorView;
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
@@ -89,7 +89,11 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         NSArray *categories = self.audioSourceNames;
         NSMutableArray *items = [NSMutableArray arrayWithCapacity:categories.count];
         for (NSString *name in categories) {
-            [items addObject:[YSSegmentedControlItem itemWithTitle:name]];
+            if (name == categories.firstObject) {
+                [items addObject:[YSSegmentedControlItem itemWithTitle:name style:YSSegmentedControlItemStyleRightDecorator]];
+            } else {
+                [items addObject:[YSSegmentedControlItem itemWithTitle:name]];
+            }
         }
         self.categorySelectorView.items = items;
         self.categorySelectorView.selectedSegmentIndex = 1;
@@ -254,9 +258,14 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         case 1:
         {
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Changed Tab - Trending"];
+            [mixpanel track:@"Changed Tab - Upload"];
             
-            audioSource = [[YSSpotifySourceController alloc] init];
+            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSelectSongViewController alloc] init]];
+            if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
+                nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
+            }
+            audioSource = nc;
+            
             break;
         }
         case 2:
