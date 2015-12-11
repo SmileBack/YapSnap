@@ -82,6 +82,7 @@ static API *sharedAPI;
     if (yapBuilder.originYapID) {
         params[@"origin_yap_id"] = yapBuilder.originYapID;
     }
+    params[@"public"] = yapBuilder.isPublic ? @"true" : @"false";
     
     // Send Color
     CGFloat red;

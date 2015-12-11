@@ -23,6 +23,7 @@ typedef NS_ENUM(NSUInteger, YTYapSendingAction) {
 
 @interface YapBuilder : YTBuilder
 
+@property (nonatomic) BOOL isPublic;
 @property (nonatomic, strong) NSString *messageType;
 @property (nonatomic, strong) YSTrack *track; // Only used for Spotify
 @property (nonatomic) CGFloat duration;

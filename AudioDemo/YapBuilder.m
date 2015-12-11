@@ -16,6 +16,7 @@
 {
     if (self = [super init])
     {
+        self.isPublic = YES;
         self.text = @"";
     }
     return self;
@@ -25,6 +26,7 @@
 {
     if (self = [self init])
     {
+        self.isPublic = YES;
         self.messageType = yap.type;
         self.duration = [yap.duration floatValue];
         self.track = [[YSTrack alloc] init];

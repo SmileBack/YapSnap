@@ -19,6 +19,11 @@
 #import "NextButton.h"
 #import "Flurry.h"
 
+typedef NS_ENUM(NSInteger, ContactsViewControllerHeaderSection) {
+    ContactsViewControllerHeaderSectionPublic = 0,
+    ContactsViewControllerHeaderSectionRecent = 1,
+    ContactsViewControllerHeaderSectionCount = 2
+};
 
 @interface ContactsViewController () <UIAlertViewDelegate>
 
@@ -286,15 +291,11 @@ static NSString *CellIdentifier = @"Cell";
     __weak ContactsViewController *weakSelf = self;
     
     if ([ContactManager sharedContactManager].isAuthorizedForContacts) {
-        //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-            weakSelf.contacts = [[ContactManager sharedContactManager] getAllContacts];
-                        
-            [weakSelf prepareContactDict];
-        
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.tableView reloadData];
-        //    });
+        weakSelf.contacts = [[ContactManager sharedContactManager] getAllContacts];
+        [weakSelf prepareContactDict];
+    
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.tableView reloadData];
         });
     } else {
         ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
@@ -306,7 +307,6 @@ static NSString *CellIdentifier = @"Cell";
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         if (!self.didViewContactsOnboardingAlert) {
                             [self showOnboardingPopup];
-                            NSLog(@"SHOWED ONBOARDING POPUP");
                         }
                     });
                 } else {
@@ -357,229 +357,121 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 #pragma UITableViewDataSource
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-{
-    if (self.builder.builderType == BuilderTypeAddFriends) {
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return 1;
-        }else {
-            return self.allLetters.count;
-        }
+
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return 1;
+    }
+    return ContactsViewControllerHeaderSectionCount + self.allLetters.count;
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return self.filteredContacts.count;
+    }
     
-    } else {
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return 1;
-        }else {
-            return 1 + self.allLetters.count;
-        }
+    switch (section) {
+        case ContactsViewControllerHeaderSectionPublic:
+            return self.builder.builderType == BuilderTypeYap ? 1 : 0;
+        case ContactsViewControllerHeaderSectionRecent:
+            return self.builder.builderType == BuilderTypeYap ? [ContactManager sharedContactManager].recentContacts.count : 0;
+        default:
+            return [self contactsForTableViewSection:section].count;
     }
 }
 
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (self.builder.builderType == BuilderTypeAddFriends) {
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return self.filteredContacts.count;
-        }
-
-        NSString *letter = self.allLetters[section];
-        NSArray *contactsInRow = self.contactDict[letter];
-        return contactsInRow.count;
-        
-    } else {
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return self.filteredContacts.count;
-        }
-        
-        if (section == 0) {
-            return [ContactManager sharedContactManager].recentContacts.count;
-        } else {
-            NSString *letter = self.allLetters[section - 1];
-            NSArray *contactsInRow = self.contactDict[letter];
-            return contactsInRow.count;
-        }
-    }
+- (NSArray *)contactsForTableViewSection:(NSInteger)section {
+    return self.contactDict[self.allLetters[section - ContactsViewControllerHeaderSectionCount]];
 }
 
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (self.builder.builderType == BuilderTypeAddFriends) {
-        PhoneContact *contact;
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            contact = self.filteredContacts[indexPath.row];
-        } else {
-            NSString *letter = self.allLetters[indexPath.section];
-            NSArray *contacts = self.contactDict[letter];
-            contact = contacts[indexPath.row];
-        }
-        
-        ContactSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-        cell.nameLabel.text = contact.name;
-        cell.phoneLabel.text = contact.phoneNumber;
-        
-        cell.selectionView.layer.cornerRadius = 8.0f;
-        cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
-        cell.selectionView.layer.borderWidth = 1.0f;
-        cell.selectionView.backgroundColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR : [UIColor clearColor];
-        
-        cell.backgroundColor = [UIColor whiteColor];
-        
-        cell.nameLabel.font = [self.selectedContacts containsObject:contact] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
-        
-        return cell;
-        
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ContactSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.selectionView.layer.cornerRadius = 8.0f;
+    cell.selectionView.layer.borderWidth = 1.0f;
+    cell.backgroundColor = [UIColor whiteColor];
+    PhoneContact *contact;
+    BOOL selected = NO;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        contact = self.filteredContacts[indexPath.row];
+    } else if (indexPath.section == ContactsViewControllerHeaderSectionPublic) {
+        contact = nil;
+        cell.nameLabel.text = @"Make this Yap public";
+        cell.phoneLabel.text = nil;
+        selected = ((YapBuilder *)self.builder).isPublic;
+    } else if (indexPath.section == ContactsViewControllerHeaderSectionRecent) {
+        contact = [[ContactManager sharedContactManager] recentContactAtIndex:indexPath.row];
     } else {
-        PhoneContact *contact;
-        
-        //NSLog(@"contact: %@", contact);
-        //NSLog(@"contact name: %@", contact.name);
-        //NSLog(@"contact phone: %@", contact.phoneNumber);
-        
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            contact = self.filteredContacts[indexPath.row];
-        } else if (indexPath.section == 0) {
-            contact = [[ContactManager sharedContactManager] recentContactAtIndex:indexPath.row];
-        } else {
-            NSString *letter = self.allLetters[indexPath.section - 1];
-            NSArray *contacts = self.contactDict[letter];
-            contact = contacts[indexPath.row];
-        }
-        
-        ContactSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-        
-        cell.nameLabel.text = contact.name;
-        cell.phoneLabel.text = contact.phoneNumber;
-        cell.typeLabel.text = contact.label;
-        
-        cell.selectionView.layer.cornerRadius = 8.0f;
-        
+        contact = [self contactsForTableViewSection:indexPath.section][indexPath.row];
+    }
+    
+    if (contact) {
         NSArray *selectedContactsPhoneNumbers = [self.selectedContacts valueForKeyPath:@"phoneNumber"];
-        cell.selectionView.layer.borderColor = [selectedContactsPhoneNumbers containsObject:contact.phoneNumber] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
-        cell.selectionView.backgroundColor = [selectedContactsPhoneNumbers containsObject:contact.phoneNumber] ? THEME_RED_COLOR : [UIColor clearColor];
-        cell.nameLabel.font = [selectedContactsPhoneNumbers containsObject:contact.phoneNumber] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
-        
-        /*
-        cell.selectionView.layer.borderColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
-        cell.selectionView.backgroundColor = [self.selectedContacts containsObject:contact] ? THEME_RED_COLOR : [UIColor clearColor];
-        cell.nameLabel.font = [self.selectedContacts containsObject:contact] ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
-         */
-
-        cell.selectionView.layer.borderWidth = 1.0f;
-        
-        cell.backgroundColor = [UIColor whiteColor];
-        
-        return cell;
+        cell.nameLabel.text = contact.name;
+        cell.phoneLabel.text = contact.phoneNumber;
+        selected = [selectedContactsPhoneNumbers containsObject:contact.phoneNumber];
     }
+    
+    cell.selectionView.layer.borderColor = selected ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
+    cell.selectionView.backgroundColor = selected ? THEME_RED_COLOR : [UIColor clearColor];
+    cell.nameLabel.font = selected ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
+    
+    return cell;
 }
 
-- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (self.builder.builderType == BuilderTypeAddFriends) {
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return nil;
-        }
-        
-        NSString *letter = self.allLetters[section];
-        NSArray *contacts = self.contactDict[letter];
-        return contacts.count > 0 ? letter : nil;
-        
-        
-    } else {
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return nil;
-        }
-        
-        if (section == 0) {
-            if ([ContactManager sharedContactManager].recentContacts.count > 0) {
-                return @"Recent Contacts";
-            } else {
-                return nil;
-            }
-        } else {
-            NSString *letter = self.allLetters[section - 1];
-            NSArray *contacts = self.contactDict[letter];
-            return contacts.count > 0 ? letter : nil;
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (tableView == self.searchDisplayController.searchResultsTableView || [self tableView:tableView numberOfRowsInSection:section] ==  0) {
+        return nil;
+    }
+    switch (section) {
+        case ContactsViewControllerHeaderSectionPublic:
+            return @"Make Public";
+        case ContactsViewControllerHeaderSectionRecent:
+            return @"Recent";
+        default: {
+            NSString *letter = self.allLetters[section - ContactsViewControllerHeaderSectionCount];
+            return letter;
         }
     }
 }
 
-#pragma mark UITableViewCellDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (self.builder.builderType == BuilderTypeAddFriends) {
-        PhoneContact *contact;
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            contact = self.filteredContacts[indexPath.row];
-        } else {
-            NSString *letter = self.allLetters[indexPath.section];
-            NSArray *contacts = self.contactDict[letter];
-            contact = contacts[indexPath.row];
-        }
-        
-        if ([self.selectedContacts containsObject:contact]) {
-            [self.selectedContacts removeObject:contact];
-        } else {
-            [self.selectedContacts addObject:contact];
-        }
-        
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-
-        [self showOrHideBottomView];
-        [self updateBottomViewText];
-        [self updateTitleLabel];
-        
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Selected Contact for Friend Request"];
-        [Flurry logEvent:@"Selected Contact for Friend Request"];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    PhoneContact *contact;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        contact = self.filteredContacts[indexPath.row];
     } else {
-        PhoneContact *contact;
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            contact = self.filteredContacts[indexPath.row];
-        } else {
-            if (indexPath.section == 0) {
+        switch (indexPath.section) {
+            case ContactsViewControllerHeaderSectionRecent: {
                 ContactManager *contactManager = [ContactManager sharedContactManager];
                 RecentContact *recent = contactManager.recentContacts[indexPath.row];
                 contact = [contactManager contactForPhoneNumber:recent.phoneNumber];
-            } else {
-                NSString *letter = self.allLetters[indexPath.section - 1];
-                NSArray *contacts = self.contactDict[letter];
-                contact = contacts[indexPath.row];
+                break;
             }
-        }
-        
-        NSArray *selectedContactsPhoneNumbers = [self.selectedContacts valueForKeyPath:@"phoneNumber"];
-        if ([selectedContactsPhoneNumbers containsObject:contact.phoneNumber]) {
-            // locate object
-            NSInteger count = [self.selectedContacts count];
-            for (NSInteger index = (count - 1); index >= 0; index--) {
-                PhoneContact *phoneContact = self.selectedContacts[index];
-                if ([phoneContact.phoneNumber isEqualToString:contact.phoneNumber]) {
-                    [self.selectedContacts removeObject:phoneContact];
-                }
+            case ContactsViewControllerHeaderSectionPublic: {
+                YapBuilder *builder = (YapBuilder *)self.builder;
+                builder.isPublic = !builder.isPublic;
             }
-        } else {
-            [self.selectedContacts addObject:contact];
+                break;
+            default:
+                contact = [self contactsForTableViewSection:indexPath.section][indexPath.row];
+                break;
         }
-        
-        /*
+    }
+    
+    if (contact) {
         if ([self.selectedContacts containsObject:contact]) {
             [self.selectedContacts removeObject:contact];
         } else {
             [self.selectedContacts addObject:contact];
         }
-         */
-        
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        [self showOrHideBottomView];
-        [self updateBottomViewText];
-        [self updateTitleLabel];
-        
-        Mixpanel *mixpanel = [Mixpanel sharedInstance];
-        [mixpanel track:@"Selected Contact for Yap"];
-        [Flurry logEvent:@"Selected Contact for Yap"];
     }
+    
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self showOrHideBottomView];
+    [self updateBottomViewText];
+    [self updateTitleLabel];
+    NSString *metric = self.builder.builderType == BuilderTypeAddFriends ? @"Selected Contact for Friend Request" : @"Selected Contact for Yap";
+    [[Mixpanel sharedInstance] track:metric];
+    [Flurry logEvent:metric];
 }
 
 -( void) updateTitleLabel {
@@ -647,8 +539,7 @@ static NSString *CellIdentifier = @"Cell";
     }
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([@"YapsViewControllerSegue" isEqualToString:segue.identifier]) {
         NSArray *pendingYaps = sender;
         YapsViewController *vc = segue.destinationViewController;
