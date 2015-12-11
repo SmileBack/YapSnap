@@ -10,6 +10,14 @@
 
 @implementation UICollectionViewFlowLayout (YS)
 
++ (UICollectionViewFlowLayout *)screenWidthLayout {
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.minimumInteritemSpacing = 2;
+    flowLayout.minimumLineSpacing = 2;
+    flowLayout.sectionInset = UIEdgeInsetsMake(2, 2, 2, 2);
+    flowLayout.itemSize = CGSizeMake([UIScreen mainScreen].bounds.size.width - 40, [UIScreen mainScreen].bounds.size.width);
+    return flowLayout;
+}
 + (UICollectionViewFlowLayout *)appLayout {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.minimumInteritemSpacing = 2;

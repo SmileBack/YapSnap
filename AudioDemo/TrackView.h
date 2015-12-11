@@ -14,5 +14,6 @@
 @property (nonatomic, strong) UILabel *songNameLabel;
 @property (nonatomic, strong) UIButton *artistButton;
 @property (nonatomic, strong) UIButton *albumImageButton;
+@property (nonatomic) BOOL isBlurred;
 
 @end

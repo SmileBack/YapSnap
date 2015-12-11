@@ -8,6 +8,8 @@
 
 #import "TrackView.h"
 
+static NSInteger const BlurTag = 1002;
+
 @implementation TrackView
 
 - (id)initWithFrame:(CGRect)frame {
@@ -54,6 +56,22 @@
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[image]-(2)-[track(13)]-(0)-[artist(13)]" options:0 metrics:nil views:@{@"image": self.imageView, @"track": self.songNameLabel, @"artist": self.artistButton}]];
     }
     return self;
+}
+
+- (BOOL)isBlurred {
+    return [self viewWithTag:BlurTag] != nil;
+}
+
+- (void)setIsBlurred:(BOOL)isBlurred {
+    [[self viewWithTag:BlurTag] removeFromSuperview];
+    if (isBlurred) {
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVisualEffectView *effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+        effectView.frame =  CGRectMake(0, 0, 2208, 2208); // 2208 is largest screen height (iphone 6 plus)
+        effectView.tag = BlurTag;
+        effectView.frame = self.imageView.bounds;
+        [self addSubview:effectView];
+    }
 }
 
 @end

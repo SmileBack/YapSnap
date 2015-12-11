@@ -46,7 +46,7 @@
     
     self.yapsDataSource = [[YSYapsCollectionViewDataSource alloc] init];
     self.yapsDataSource.delegate = self;
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewFlowLayout appLayout]];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewFlowLayout screenWidthLayout]];
     self.collectionView.dataSource = self.yapsDataSource;
     self.collectionView.delegate = self;
     [self.collectionView registerClass:[SpotifyTrackCollectionViewCell class] forCellWithReuseIdentifier:@"track"];

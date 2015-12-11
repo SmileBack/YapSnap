@@ -10,6 +10,7 @@
 
 @interface UICollectionViewFlowLayout (YS)
 
++ (UICollectionViewFlowLayout *)screenWidthLayout;
 + (UICollectionViewFlowLayout *)appLayout;
 
 @end

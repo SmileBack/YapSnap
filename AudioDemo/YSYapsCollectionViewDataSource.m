@@ -27,13 +27,17 @@
     SpotifyTrackView *trackView = trackViewCell.trackView;
     
     if (track.albumImageURL && ![track.albumImageURL isEqual:[NSNull null]]) {
-        [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.albumImageURL]];
+        [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.albumImageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            trackView.isBlurred = YES;
+        }];
     }
+    
     
     trackView.songVersionOneButton.hidden = YES;
     trackView.songVersionTwoButton.hidden = YES;
     trackView.songNameLabel.text = track.name;
     [trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
+    trackView.isBlurred = YES;
     [trackView.albumImageButton addTarget:self action:@selector(didTapYap:) forControlEvents:UIControlEventTouchUpInside];
     [trackView.spotifyButton addTarget:self action:@selector(didTapSpotifyButton:) forControlEvents:UIControlEventTouchUpInside];
     trackView.tag = indexPath.row; // Used for tap actions

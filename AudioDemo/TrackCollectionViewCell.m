@@ -116,6 +116,7 @@
     [super prepareForReuse];
     [self.selectedOverlay removeFromSuperview];
     self.selectedOverlay = nil;
+    self.trackView.isBlurred = NO;
     self.trackView.songNameLabel.text = nil;
     [self.trackView.artistButton setTitle:nil forState:UIControlStateNormal];
 }
