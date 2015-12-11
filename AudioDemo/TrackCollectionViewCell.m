@@ -182,3 +182,19 @@
 }
 
 @end
+
+@implementation TrackCollectionViewCell (STK)
+
+- (void)updateWithState:(STKAudioPlayerState)state {
+    if (state == STKAudioPlayerStateBuffering) {
+        self.state = TrackViewCellStateBuffering;
+    } else if (state == STKAudioPlayerStatePaused) {
+        self.state = TrackViewCellStatePaused;
+    } else if (state == STKAudioPlayerStateStopped) {
+        self.state = TrackViewCellStatePaused;
+    } else  if (state == STKAudioPlayerStatePlaying) {
+        self.state = TrackViewCellStatePlaying;
+    }
+}
+
+@end

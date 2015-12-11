@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString *spotifyURL;
 @property (nonatomic, strong) NSString *genreName;
 @property (nonatomic, strong) NSNumber *secondsToFastForward;
+@property (readonly) BOOL isFromSpotify;
 
 + (NSArray *) tracksFromSpotifyDictionaryArray:(NSArray *)itemDictionaries inCategory:(BOOL)inCategory;
 //+ (YSTrack *) trackFromSpotifyDictionary:(NSDictionary *)trackDictionary;

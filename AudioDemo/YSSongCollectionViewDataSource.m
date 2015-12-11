@@ -18,7 +18,6 @@
 @property (nonatomic, strong) UIImage *songVersionTwoButtonImage;
 @property (nonatomic, strong) UIImage *albumPlaceholderImage;
 
-
 @end
 
 @implementation YSSongCollectionViewDataSource
@@ -53,20 +52,9 @@
     [trackView.spotifyButton addTarget:self action:@selector(didTapSpotifyButton:) forControlEvents:UIControlEventTouchUpInside];
     trackView.tag = indexPath.row; // Used for tap actions
     
-    // CHECK IF SONG CAN BE FORWARDED TO SPOTIFY
-    if (track.spotifyID && ![track.spotifyID isEqual: [NSNull null]] && ([track.spotifyID length] > 10)) {
-        trackView.spotifyButton.hidden = NO;
-    } else {
-        trackView.spotifyButton.hidden = YES;
-    }
-    
-    if ([track.previewURL containsString:@"scdn"]) {
-        trackView.songVersionOneButton.hidden = NO;
-        trackView.songVersionTwoButton.hidden = NO;
-    } else {
-        trackView.songVersionOneButton.hidden = YES;
-        trackView.songVersionTwoButton.hidden = YES;
-    }
+    trackView.spotifyButton.hidden = !(track.spotifyID && ![track.spotifyID isEqual:[NSNull null]] && [track.spotifyID length] > 10);
+    trackView.songVersionOneButton.hidden = !track.isFromSpotify;
+    trackView.songVersionTwoButton.hidden = !track.isFromSpotify;
     
     
     if ([[collectionView indexPathsForSelectedItems].firstObject isEqual:indexPath]) {
@@ -116,22 +104,13 @@
 
 - (void)updateCell:(TrackCollectionViewCell *)cell withState:(STKAudioPlayerState)state {
     self.audioState = state;
-    if (state == STKAudioPlayerStateBuffering) {
-        cell.state = TrackViewCellStateBuffering;
-    } else if (state == STKAudioPlayerStatePaused) {
-        cell.state = TrackViewCellStatePaused;
-    } else if (state == STKAudioPlayerStateStopped) {
-        cell.state = TrackViewCellStatePaused;
-    } else  if (state == STKAudioPlayerStatePlaying) {
-        cell.state = TrackViewCellStatePlaying;
-    }
+    [cell updateWithState:state];
 }
 
 #pragma mark - Image Getters
 - (UIImage *) songVersionOneButtonImage
 {
     if (!_songVersionOneButtonImage) {
-        
         if (IS_IPHONE_4_SIZE) {
             _songVersionOneButtonImage = [UIImage imageNamed:@"SongVersionOneSelectediPhone4.png"];
         } else if (IS_IPHONE_6_SIZE) {

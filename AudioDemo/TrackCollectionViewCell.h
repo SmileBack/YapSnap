@@ -30,3 +30,11 @@ typedef NS_ENUM(NSInteger, TrackViewCellState) {
 @property (nonatomic, strong) SpotifyTrackView *trackView;
 
 @end
+
+#import <STKAudioPlayer.h>
+
+@interface TrackCollectionViewCell (STK)
+
+- (void)updateWithState:(STKAudioPlayerState)state;
+
+@end

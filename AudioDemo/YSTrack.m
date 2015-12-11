@@ -79,6 +79,10 @@
     return tracks;
 }
 
+- (BOOL)isFromSpotify {
+    return [[self previewURL] containsString:@"scdn"];
+}
+
 + (YSTrack *) trackFromYapTapDictionary:(NSDictionary *)trackDictionary
 {
     YSTrack *track = [YSTrack new];

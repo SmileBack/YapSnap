@@ -82,7 +82,7 @@ static API *sharedAPI;
     if (yapBuilder.originYapID) {
         params[@"origin_yap_id"] = yapBuilder.originYapID;
     }
-    params[@"public"] = yapBuilder.isPublic ? @"true" : @"false";
+    params[@"is_public"] = yapBuilder.isPublic ? @"true" : @"false";
     
     // Send Color
     CGFloat red;
@@ -465,11 +465,18 @@ static API *sharedAPI;
     }];
 }
 
-- (void) getYapsWithCallback:(YapsCallback)callback
-{
+- (void) getYapsWithCallback:(YapsCallback)callback {
+    [self getYapsAtEndpoint:@"audio_messages" callback:callback];
+}
+
+- (void) getPublicYapsWithCallback:(YapsCallback)callback {
+    [self getYapsAtEndpoint:@"audio_messages/public_yaps" callback:callback];
+}
+
+- (void)getYapsAtEndpoint:(NSString *)endpoint callback:(YapsCallback)callback {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:[self urlForEndpoint:@"audio_messages"]
+    [manager GET:[self urlForEndpoint:endpoint]
       parameters:[self paramsWithDict:@{}]
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSArray *yapDicts = responseObject; //Assuming it is an array

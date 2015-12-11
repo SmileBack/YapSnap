@@ -22,6 +22,7 @@
 #import "YSAudioSourceNavigationController.h"
 #import "YSRecentSourceController.h"
 #import "YSSelectSongViewController.h"
+#import "YSPublicSourceController.h"
 
 @interface AudioCaptureViewController () <YSAudioSourceControllerDelegate, UINavigationControllerDelegate> {
     NSTimer *audioProgressTimer;
@@ -245,9 +246,9 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         case 0:
         {
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Changed Tab - Upload"];
+            [mixpanel track:@"Changed Tab - Public"];
             
-            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSelectSongViewController alloc] init]];
+            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSPublicSourceController alloc] init]];
             if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
                 nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
             }
