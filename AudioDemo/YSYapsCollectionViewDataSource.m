@@ -32,11 +32,9 @@
         }];
     }
     
-    
     trackView.songVersionOneButton.hidden = YES;
     trackView.songVersionTwoButton.hidden = YES;
-    trackView.songNameLabel.text = track.name;
-    [trackView.artistButton setTitle:[NSString stringWithFormat:@"by %@", track.artistName] forState:UIControlStateNormal];
+    trackView.songNameLabel.text = [NSString stringWithFormat:@"Made by %@", yap.senderName];
     trackView.isBlurred = YES;
     [trackView.albumImageButton addTarget:self action:@selector(didTapYap:) forControlEvents:UIControlEventTouchUpInside];
     [trackView.spotifyButton addTarget:self action:@selector(didTapSpotifyButton:) forControlEvents:UIControlEventTouchUpInside];

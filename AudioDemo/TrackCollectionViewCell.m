@@ -95,10 +95,12 @@
     if (selected && !self.selectedOverlay) {
         self.selectedOverlay = TrackCollectionOverlayView.new;
         self.selectedOverlay.alpha = 0;
-        [self.trackView.imageView addSubview:self.selectedOverlay];
+        [self.trackView insertSubview:self.selectedOverlay aboveSubview:self.trackView.imageView];
         [self.selectedOverlay setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.trackView.imageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[v]|" options:0 metrics:nil views:@{@"v": self.selectedOverlay}]];
-        [self.trackView.imageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[v]|" options:0 metrics:nil views:@{@"v": self.selectedOverlay}]];
+        [self.trackView addConstraints:@[[NSLayoutConstraint constraintWithItem:self.selectedOverlay attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.trackView.imageView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
+                                         [NSLayoutConstraint constraintWithItem:self.selectedOverlay attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.trackView.imageView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
+                                         [NSLayoutConstraint constraintWithItem:self.selectedOverlay attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.trackView.imageView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
+                                         [NSLayoutConstraint constraintWithItem:self.selectedOverlay attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.trackView.imageView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]]];
         [UIView animateWithDuration:0.2 animations:^{
             self.selectedOverlay.alpha = 1.0;
         }];
@@ -123,6 +125,9 @@
 
 - (void)setState:(TrackViewCellState)state {
     _state = state;
+    if (self.selectedOverlay) {
+        [self bringSubviewToFront:self.selectedOverlay];
+    }
     switch (state) {
         case TrackViewCellStateBuffering:
             [self.selectedOverlay.spinner startAnimating];

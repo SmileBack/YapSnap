@@ -42,4 +42,9 @@
     return self;
 }
 
+- (void)setIsBlurred:(BOOL)isBlurred {
+    [super setIsBlurred:isBlurred];
+    [self bringSubviewToFront:self.spotifyButton];
+}
+
 @end

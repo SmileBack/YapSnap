@@ -59,18 +59,18 @@ static NSInteger const BlurTag = 1002;
 }
 
 - (BOOL)isBlurred {
-    return [self viewWithTag:BlurTag] != nil;
+    return [self.imageView viewWithTag:BlurTag] != nil;
 }
 
 - (void)setIsBlurred:(BOOL)isBlurred {
-    [[self viewWithTag:BlurTag] removeFromSuperview];
+    [[self.imageView viewWithTag:BlurTag] removeFromSuperview];
     if (isBlurred) {
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         UIVisualEffectView *effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
         effectView.frame =  CGRectMake(0, 0, 2208, 2208); // 2208 is largest screen height (iphone 6 plus)
         effectView.tag = BlurTag;
         effectView.frame = self.imageView.bounds;
-        [self addSubview:effectView];
+        [self.imageView addSubview:effectView];
     }
 }
 
