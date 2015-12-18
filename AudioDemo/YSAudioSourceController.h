@@ -14,6 +14,7 @@
 #define DID_START_AUDIO_CAPTURE_NOTIFICATION @"com.yapsnap.StartAudioCaptureLoadingSpinnerNotification"
 #define WILL_START_AUDIO_CAPTURE_NOTIFICATION @"com.yapsnap.WillStartAudioCaptureLoadingSpinnerNotification"
 #define HIDE_BOTTOM_BAR_NOTIFICATION @"HideBottomBarNotification"
+#define IS_REPLY_OPTION @"ReplyOption"
 //#define SHOW_BOTTOM_BAR_NOTIFICATION @"ShowBottomBarNotification"
 
 
@@ -65,7 +66,7 @@
 
 // Spotify source will return the YSTrack.
 // Mic source could return the audio file. for now will return nothing.
-- (void)prepareYapBuilder;
+- (void)prepareYapBuilderWithOptions:(NSDictionary *)options;
 
 - (YapBuilder *) getYapBuilder;
 

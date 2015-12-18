@@ -34,6 +34,7 @@
 @property (strong, nonatomic) YSSTKAudioPlayerDelegate *audioPlayerDelegate;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic) BOOL loadingSearchResults;
+@property BOOL isReply;
 
 @end
 
@@ -223,9 +224,17 @@ didFinishPlayingQueueItemId:(NSObject *)queueItemId
     [self.audioPlayerDelegate updatePlaybackProgress:playbackTime];
 }
 
+- (void)prepareYapBuilderWithOptions:(NSDictionary *)options {
+    if (options[IS_REPLY_OPTION]) {
+        self.isReply = YES;
+    }
+    [super prepareYapBuilderWithOptions:options];
+}
+
 - (YapBuilder *)getYapBuilder {
     YSYap *yap = self.yaps[((NSIndexPath *)[self.collectionView indexPathsForSelectedItems].firstObject).row];
-    YapBuilder *builder = [[YapBuilder alloc] initWithYap:yap sendingAction:YTYapSendingActionForward];
+    YapBuilder *builder = [[YapBuilder alloc] initWithYap:yap sendingAction:self.isReply ? YTYapSendingActionReply : YTYapSendingActionForward];
+    self.isReply = NO;
     return builder;
 }
 

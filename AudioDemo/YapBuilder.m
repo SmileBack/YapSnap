@@ -42,6 +42,9 @@
         self.track.secondsToFastForward = yap.secondsToFastForward;
         
         self.originYapID = yap.yapID;
+        if ([yap.type isEqualToString:@"VoiceMessage"] || [yap.type isEqualToString:@"UploadedMessage"]) {
+            self.awsVoiceURL = yap.playbackURL;
+        }
         
         switch (action) {
             case YTYapSendingActionReply:
@@ -58,9 +61,6 @@
             case YTYapSendingActionForward:
                 self.yapImageAwsUrl = yap.yapPhotoURL;
                 self.text = yap.text;
-                if ([yap.type isEqualToString:@"VoiceMessage"] || [yap.type isEqualToString:@"UploadedMessage"]) {
-                    self.awsVoiceURL = yap.playbackURL;
-                }
                 break;
             default:
                 break;

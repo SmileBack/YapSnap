@@ -27,6 +27,7 @@
 @interface AudioCaptureViewController () <YSAudioSourceControllerDelegate, UINavigationControllerDelegate> {
     NSTimer *audioProgressTimer;
 }
+@property (weak, nonatomic) IBOutlet UIButton *replyButton;
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 @property (nonatomic) NSTimeInterval elapsedTime;
 @property (weak, nonatomic) IBOutlet UILabel *receiverLabel;
@@ -219,6 +220,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 - (void)setBottomBarVisible:(BOOL)visible {
     [self setBottomBarVisible:visible animated:YES];
     self.continueButton.userInteractionEnabled = YES;
+    self.replyButton.userInteractionEnabled = YES;
 }
 
 - (void)setBottomBarVisible:(BOOL)visible animated:(BOOL)animated {
@@ -404,10 +406,17 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
 #pragma mark - Bottom View
 - (IBAction)didTapNextButton {
-    [self.audioSource prepareYapBuilder];
+    [self.audioSource prepareYapBuilderWithOptions:nil];
     self.continueButton.userInteractionEnabled = NO;
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel track:@"Tapped Choose Clip"];
+    self.replyButton.userInteractionEnabled = NO;
+    [[Mixpanel sharedInstance] track:@"Tapped Choose Clip"];
+}
+
+- (IBAction)didTapReplyButton:(id)sender {
+    [self.audioSource prepareYapBuilderWithOptions:@{IS_REPLY_OPTION: @(YES)}];
+    self.continueButton.userInteractionEnabled = NO;
+    self.replyButton.userInteractionEnabled = NO;
+    [[Mixpanel sharedInstance] track:@"Tapped Reply To Clip"];
 }
 
 - (void)audioSourceControllerIsReadyToProduceYapBuidler:(id<YSAudioSource>)controller {

@@ -69,10 +69,10 @@
     }
 }
 
-- (void)prepareYapBuilder {
+- (void)prepareYapBuilderWithOptions:(NSDictionary *)options {
     if ([self.topViewController conformsToProtocol:@protocol(YSAudioSource)] &&
-        [self.topViewController respondsToSelector:@selector(prepareYapBuilder)]) {
-        return [(id<YSAudioSource>)self.topViewController prepareYapBuilder];
+        [self.topViewController respondsToSelector:@selector(prepareYapBuilderWithOptions:)]) {
+        return [(id<YSAudioSource>)self.topViewController prepareYapBuilderWithOptions:options];
     }
 }
 
