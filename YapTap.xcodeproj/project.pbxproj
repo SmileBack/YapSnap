@@ -36,6 +36,12 @@
 		5D1E696D1BA362C0002E8212 /* YSGenreGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E696C1BA362C0002E8212 /* YSGenreGroupViewController.m */; };
 		5D1E69701BA3685A002E8212 /* YSSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E696F1BA3685A002E8212 /* YSSpinnerView.m */; };
 		5D1E69731BA374B2002E8212 /* YSSTKAudioPlayerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E69721BA374B2002E8212 /* YSSTKAudioPlayerDelegate.m */; };
+		5D3546AC1C249025009223EB /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5D3546A51C249024009223EB /* FacebookSDKStrings.bundle */; };
+		5D3546AD1C249025009223EB /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3546A61C249024009223EB /* FBAudienceNetwork.framework */; };
+		5D3546AE1C249025009223EB /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3546A71C249024009223EB /* FBSDKCoreKit.framework */; };
+		5D3546AF1C249025009223EB /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3546A81C249024009223EB /* FBSDKLoginKit.framework */; };
+		5D3546B01C249025009223EB /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3546A91C249024009223EB /* FBSDKMessengerShareKit.framework */; };
+		5D3546B11C249025009223EB /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3546AA1C249024009223EB /* FBSDKShareKit.framework */; };
 		5D3CD7A21B8F7B2C00B0F03C /* TrackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A11B8F7B2C00B0F03C /* TrackCollectionViewCell.m */; };
 		5D3CD7A61B8FB24F00B0F03C /* YSSongGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A51B8FB24F00B0F03C /* YSSongGroupController.m */; };
 		5D3CD7A91B8FB79A00B0F03C /* NSArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3CD7A81B8FB79A00B0F03C /* NSArray+Shuffle.m */; };
@@ -224,7 +230,6 @@
 		788363A61AD79572001CBD1B /* OneNotSelectediPhone6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 788363A31AD79572001CBD1B /* OneNotSelectediPhone6@2x.png */; };
 		788480441B177E9D0016536F /* YTUnregisteredUserSMSInviter.m in Sources */ = {isa = PBXBuildFile; fileRef = 788480431B177E9D0016536F /* YTUnregisteredUserSMSInviter.m */; };
 		7885B2281A8DE53100B230A0 /* WhiteBackArrow5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */; };
-		78908E7C1C0BFF1700E42A14 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78908E7B1C0BFF1700E42A14 /* FBSDKCoreKit.framework */; };
 		789123381B2E8F9800894201 /* SpotifyIconWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 789123371B2E8F9800894201 /* SpotifyIconWhite.png */; };
 		7891233A1B2E959000894201 /* SpotifyIconWhite2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789123391B2E959000894201 /* SpotifyIconWhite2.png */; };
 		789351D31BABF04A003C8AA0 /* Mood_Flirtatious2.png in Resources */ = {isa = PBXBuildFile; fileRef = 789351D01BABF04A003C8AA0 /* Mood_Flirtatious2.png */; };
@@ -382,6 +387,12 @@
 		5D1E696F1BA3685A002E8212 /* YSSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSpinnerView.m; sourceTree = "<group>"; };
 		5D1E69711BA374B2002E8212 /* YSSTKAudioPlayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSTKAudioPlayerDelegate.h; sourceTree = "<group>"; };
 		5D1E69721BA374B2002E8212 /* YSSTKAudioPlayerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSTKAudioPlayerDelegate.m; sourceTree = "<group>"; };
+		5D3546A51C249024009223EB /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKStrings.bundle; path = External/Facebook/FacebookSDKStrings.bundle; sourceTree = "<group>"; };
+		5D3546A61C249024009223EB /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = External/Facebook/FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		5D3546A71C249024009223EB /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = External/Facebook/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		5D3546A81C249024009223EB /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = External/Facebook/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		5D3546A91C249024009223EB /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKMessengerShareKit.framework; path = External/Facebook/FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
+		5D3546AA1C249024009223EB /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = External/Facebook/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		5D3CD7A01B8F7B2C00B0F03C /* TrackCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCollectionViewCell.h; sourceTree = "<group>"; };
 		5D3CD7A11B8F7B2C00B0F03C /* TrackCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCollectionViewCell.m; sourceTree = "<group>"; };
 		5D3CD7A41B8FB24F00B0F03C /* YSSongGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSongGroupController.h; sourceTree = "<group>"; };
@@ -642,7 +653,6 @@
 		788480421B177E9D0016536F /* YTUnregisteredUserSMSInviter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTUnregisteredUserSMSInviter.h; sourceTree = "<group>"; };
 		788480431B177E9D0016536F /* YTUnregisteredUserSMSInviter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTUnregisteredUserSMSInviter.m; sourceTree = "<group>"; };
 		7885B2271A8DE53100B230A0 /* WhiteBackArrow5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBackArrow5.png; sourceTree = "<group>"; };
-		78908E7B1C0BFF1700E42A14 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		789123371B2E8F9800894201 /* SpotifyIconWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyIconWhite.png; sourceTree = "<group>"; };
 		789123391B2E959000894201 /* SpotifyIconWhite2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpotifyIconWhite2.png; sourceTree = "<group>"; };
 		789351D01BABF04A003C8AA0 /* Mood_Flirtatious2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mood_Flirtatious2.png; sourceTree = "<group>"; };
@@ -702,7 +712,6 @@
 		78F46CCA1BFE309A001A4DC2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		78F46CCC1BFE30A0001A4DC2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7DBB580EF15910507DC95A1F /* Pods-YapSnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.debug.xcconfig"; sourceTree = "<group>"; };
-		98C8F94496586F87E59A61FD /* libPods-YapSnap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YapSnap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA961E944F5B46EDE7E7229C /* Pods-YapSnap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapSnap.release.xcconfig"; path = "Pods/Target Support Files/Pods-YapSnap/Pods-YapSnap.release.xcconfig"; sourceTree = "<group>"; };
 		E5BE18B0D5C576F8F5235937 /* Pods-YapTap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapTap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapTap/Pods-YapTap.debug.xcconfig"; sourceTree = "<group>"; };
 		F44B0C3F16DA404700E6CD88 /* YapTap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YapTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -811,12 +820,16 @@
 			files = (
 				78F46CCD1BFE30A0001A4DC2 /* StoreKit.framework in Frameworks */,
 				78F46CCB1BFE309A001A4DC2 /* Security.framework in Frameworks */,
+				5D3546AD1C249025009223EB /* FBAudienceNetwork.framework in Frameworks */,
+				5D3546AE1C249025009223EB /* FBSDKCoreKit.framework in Frameworks */,
 				F44B0C4716DA404700E6CD88 /* CoreGraphics.framework in Frameworks */,
+				5D3546B01C249025009223EB /* FBSDKMessengerShareKit.framework in Frameworks */,
 				FC6C2A591B952C7D001E9C1D /* CoreMedia.framework in Frameworks */,
+				5D3546B11C249025009223EB /* FBSDKShareKit.framework in Frameworks */,
 				78F46CAF1BFE2E31001A4DC2 /* libFlurry_7.3.0.a in Frameworks */,
+				5D3546AF1C249025009223EB /* FBSDKLoginKit.framework in Frameworks */,
 				FCEE68101B8E945F0010B298 /* MediaPlayer.framework in Frameworks */,
 				780D43301B064A3F0060DAED /* GLKit.framework in Frameworks */,
-				78908E7C1C0BFF1700E42A14 /* FBSDKCoreKit.framework in Frameworks */,
 				FC0642D91A9D68FC00E3D60F /* SystemConfiguration.framework in Frameworks */,
 				7828A8DC1A846C0C00BAA609 /* MessageUI.framework in Frameworks */,
 				787C84DB1A76C77D005D80D5 /* AudioToolbox.framework in Frameworks */,
@@ -1657,26 +1670,30 @@
 		F44B0C4116DA404700E6CD88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78908E7B1C0BFF1700E42A14 /* FBSDKCoreKit.framework */,
-				78F46CCC1BFE30A0001A4DC2 /* StoreKit.framework */,
-				78F46CCA1BFE309A001A4DC2 /* Security.framework */,
-				78F46CC81BFE307A001A4DC2 /* AdSupport.framework */,
-				FC6C2A581B952C7D001E9C1D /* CoreMedia.framework */,
-				FCEE680F1B8E945F0010B298 /* MediaPlayer.framework */,
-				780D432F1B064A3F0060DAED /* GLKit.framework */,
-				FC0642D81A9D68FC00E3D60F /* SystemConfiguration.framework */,
-				787A6D941A4DD8A2001551C6 /* Crashlytics.framework */,
-				F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */,
-				7828A8DB1A846C0C00BAA609 /* MessageUI.framework */,
-				787C84DA1A76C77D005D80D5 /* AudioToolbox.framework */,
-				37E122E51A4011560073684D /* QuartzCore.framework */,
 				371C2C8819BCF73800FDA390 /* AddressBook.framework */,
 				371C2C8919BCF73800FDA390 /* AddressBookUI.framework */,
-				F44B0C4216DA404700E6CD88 /* UIKit.framework */,
-				F44B0C4416DA404700E6CD88 /* Foundation.framework */,
+				78F46CC81BFE307A001A4DC2 /* AdSupport.framework */,
+				787C84DA1A76C77D005D80D5 /* AudioToolbox.framework */,
+				F44B0C6516DD09D900E6CD88 /* AVFoundation.framework */,
 				F44B0C4616DA404700E6CD88 /* CoreGraphics.framework */,
-				98C8F94496586F87E59A61FD /* libPods-YapSnap.a */,
+				FC6C2A581B952C7D001E9C1D /* CoreMedia.framework */,
+				787A6D941A4DD8A2001551C6 /* Crashlytics.framework */,
+				5D3546A51C249024009223EB /* FacebookSDKStrings.bundle */,
+				5D3546A61C249024009223EB /* FBAudienceNetwork.framework */,
+				5D3546A71C249024009223EB /* FBSDKCoreKit.framework */,
+				5D3546A81C249024009223EB /* FBSDKLoginKit.framework */,
+				5D3546A91C249024009223EB /* FBSDKMessengerShareKit.framework */,
+				5D3546AA1C249024009223EB /* FBSDKShareKit.framework */,
+				F44B0C4416DA404700E6CD88 /* Foundation.framework */,
+				780D432F1B064A3F0060DAED /* GLKit.framework */,
 				41ED5961C23D704BCAF364D2 /* libPods-YapTap.a */,
+				FCEE680F1B8E945F0010B298 /* MediaPlayer.framework */,
+				7828A8DB1A846C0C00BAA609 /* MessageUI.framework */,
+				37E122E51A4011560073684D /* QuartzCore.framework */,
+				78F46CCA1BFE309A001A4DC2 /* Security.framework */,
+				78F46CCC1BFE30A0001A4DC2 /* StoreKit.framework */,
+				FC0642D81A9D68FC00E3D60F /* SystemConfiguration.framework */,
+				F44B0C4216DA404700E6CD88 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2229,6 +2246,7 @@
 				782D13491ACB8B7A007C8499 /* YapIconOpenedSent3.png in Resources */,
 				78299E9C1BBF3FBC001961C7 /* YapIconOpenedSent100.png in Resources */,
 				78DA1F7E1AA18D4900693015 /* WhiteCircle.png in Resources */,
+				5D3546AC1C249025009223EB /* FacebookSDKStrings.bundle in Resources */,
 				783714E31BAE1B8D0005CC04 /* ProgressViewRedNew50@2x.png in Resources */,
 				78299EA21BC1D1A0001961C7 /* CancelButton200@2x.png in Resources */,
 				780211621AAB8EE000A71889 /* FriendsIcon@2x.png in Resources */,
@@ -2517,6 +2535,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/danberenholtz1/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/External/Facebook",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioDemo/YapTap-Prefix.pch";
@@ -2547,6 +2566,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/danberenholtz1/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/External/Facebook",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioDemo/YapTap-Prefix.pch";

@@ -940,7 +940,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="FF1A3500-CB22-476D-8C3B-1A534B04FE57"/>
+                                <state key="normal" backgroundImage="E65744A6-19CA-40F1-AB41-38C4DAE3C297"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1610,50 +1610,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mY2-J4-2ui">
-                                <rect key="frame" x="135" y="332" width="51" height="51"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="51" id="leI-M8-hbi"/>
-                                    <constraint firstAttribute="height" constant="51" id="xHN-di-5dM"/>
-                                </constraints>
-                                <state key="normal" image="ArrowWhite.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapContinueButton" destination="gKu-qF-bJg" eventType="touchUpInside" id="qKZ-R0-nC3"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="First Name" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="p2C-z2-Tyv">
-                                <rect key="frame" x="45" y="198" width="230" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="ExS-f7-AnL"/>
-                                    <constraint firstAttribute="height" constant="40" id="b14-Nv-x5i"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Last Name" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="irE-n9-5jj">
-                                <rect key="frame" x="45" y="237" width="230" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="FFj-Gl-fXQ"/>
-                                    <constraint firstAttribute="height" constant="40" id="m5f-kc-YTD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email Address" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="MfG-PN-jQu">
-                                <rect key="frame" x="45" y="276" width="230" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="Jpp-et-5ZT"/>
-                                    <constraint firstAttribute="height" constant="40" id="KRM-ll-GPE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="go"/>
-                            </textField>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WeI-6r-4od">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WeI-6r-4od">
                                 <rect key="frame" x="142" y="339" width="37" height="37"/>
                             </activityIndicatorView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last step and you're in!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPM-Yr-5zo">
@@ -1675,31 +1632,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="p2C-z2-Tyv" secondAttribute="centerX" id="8DZ-Bm-QaS"/>
-                            <constraint firstItem="p2C-z2-Tyv" firstAttribute="top" secondItem="zPM-Yr-5zo" secondAttribute="bottom" constant="16" id="94u-Uj-1ab"/>
                             <constraint firstAttribute="centerX" secondItem="zPM-Yr-5zo" secondAttribute="centerX" id="Fac-5n-Ffs"/>
                             <constraint firstAttribute="centerX" secondItem="i7z-1r-1As" secondAttribute="centerX" id="H8v-2A-4ae"/>
-                            <constraint firstItem="mY2-J4-2ui" firstAttribute="centerY" secondItem="WeI-6r-4od" secondAttribute="centerY" id="LEo-x1-CSs"/>
-                            <constraint firstAttribute="centerX" secondItem="mY2-J4-2ui" secondAttribute="centerX" id="OoT-Qu-4gV"/>
                             <constraint firstItem="zPM-Yr-5zo" firstAttribute="top" secondItem="6em-4f-XSd" secondAttribute="bottom" constant="78" id="PMY-Po-dAK"/>
-                            <constraint firstItem="mY2-J4-2ui" firstAttribute="top" secondItem="MfG-PN-jQu" secondAttribute="bottom" constant="16" id="SMI-EJ-i7V"/>
                             <constraint firstItem="zPM-Yr-5zo" firstAttribute="leading" secondItem="o9u-Gc-mLy" secondAttribute="leading" id="Vuh-M3-7vh"/>
-                            <constraint firstItem="mY2-J4-2ui" firstAttribute="centerX" secondItem="WeI-6r-4od" secondAttribute="centerX" id="WCz-S8-O5z"/>
-                            <constraint firstItem="MfG-PN-jQu" firstAttribute="leading" secondItem="p2C-z2-Tyv" secondAttribute="leading" id="YyV-vW-kTK"/>
                             <constraint firstItem="i7z-1r-1As" firstAttribute="top" secondItem="6em-4f-XSd" secondAttribute="bottom" constant="54" id="di8-B7-3Rb"/>
-                            <constraint firstItem="MfG-PN-jQu" firstAttribute="trailing" secondItem="irE-n9-5jj" secondAttribute="trailing" id="fhL-HT-1LA"/>
-                            <constraint firstItem="p2C-z2-Tyv" firstAttribute="top" secondItem="irE-n9-5jj" secondAttribute="top" constant="-39" id="gIe-Gc-oei"/>
-                            <constraint firstItem="MfG-PN-jQu" firstAttribute="top" secondItem="p2C-z2-Tyv" secondAttribute="bottom" constant="38" id="iUm-Ad-XM3"/>
-                            <constraint firstAttribute="centerX" secondItem="irE-n9-5jj" secondAttribute="centerX" id="lIx-q3-aGo"/>
-                            <constraint firstAttribute="centerX" secondItem="MfG-PN-jQu" secondAttribute="centerX" id="p3g-tY-TcB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pEc-tv-5PK"/>
                     <connections>
-                        <outlet property="continueButton" destination="mY2-J4-2ui" id="k4F-nE-yLr"/>
-                        <outlet property="emailTextField" destination="MfG-PN-jQu" id="nas-Im-1vZ"/>
-                        <outlet property="firstNameTextField" destination="p2C-z2-Tyv" id="27i-zZ-YEF"/>
-                        <outlet property="lastNameTextField" destination="irE-n9-5jj" id="5YO-wL-jZd"/>
                         <outlet property="loadingSpinner" destination="WeI-6r-4od" id="8rJ-yr-EdF"/>
                         <outlet property="progressView" destination="i7z-1r-1As" id="eOs-VN-JQG"/>
                         <outlet property="topConstraint" destination="PMY-Po-dAK" id="ROR-RZ-VK1"/>
@@ -2000,7 +1941,7 @@
         <image name="CameraIcon400.png" width="150" height="150"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite500.png" width="350" height="350"/>
-        <image name="FF1A3500-CB22-476D-8C3B-1A534B04FE57" width="300" height="300">
+        <image name="E65744A6-19CA-40F1-AB41-38C4DAE3C297" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

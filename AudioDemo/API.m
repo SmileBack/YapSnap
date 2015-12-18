@@ -13,7 +13,7 @@
 #import "Environment.h"
 #import <SDWebImage/SDWebImagePrefetcher.h>
 #import "Flurry.h"
-
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface API()
 
@@ -181,6 +181,8 @@ static API *sharedAPI;
     [manager POST:[self urlForEndpoint:@"sessions/logout"]
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+              [loginManager logOut];
               callback(YES, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -711,11 +713,12 @@ static API *sharedAPI;
             withCallback:callback];
 }
 
-- (void) updateFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email withCallBack:(SuccessOrErrorCallback)callback
+- (void) updateFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email facebookIdentifier:(NSString*)facebookIdentifier withCallBack:(SuccessOrErrorCallback)callback
 {
     [self updateUserData:@{@"first_name": firstName,
                            @"last_name": lastName,
-                           @"email": email}
+                           @"email": email,
+                           @"facebook_id": facebookIdentifier}
             withCallback:callback];
 }
 
