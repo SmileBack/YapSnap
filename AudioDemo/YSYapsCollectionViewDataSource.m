@@ -32,7 +32,9 @@
         }];
     } else if (track.albumImageURL && ![track.albumImageURL isEqual:[NSNull null]]) {
         [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.albumImageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            trackView.isBlurred = YES;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0  * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ // Unclear why this is needed, but as isBlurred adds a subview to the trackView's imageView, without dispatch_after this will throw away the blur view when sd_imageWithUrl is cached
+                trackView.isBlurred = YES;
+            });
         }];
     }
     

@@ -65,8 +65,7 @@ static NSInteger const BlurTag = 1002;
 - (void)setIsBlurred:(BOOL)isBlurred {
     [[self.imageView viewWithTag:BlurTag] removeFromSuperview];
     if (isBlurred) {
-        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        UIVisualEffectView *effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
         effectView.frame =  CGRectMake(0, 0, 2208, 2208); // 2208 is largest screen height (iphone 6 plus)
         effectView.tag = BlurTag;
         effectView.frame = self.imageView.bounds;
