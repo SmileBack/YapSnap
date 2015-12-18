@@ -206,6 +206,7 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     self.trackView.isBlurred = NO;
+    self.trackView.senderProfilePicture.profileID = nil;
 }
 
 @end

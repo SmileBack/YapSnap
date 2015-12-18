@@ -94,6 +94,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
                                                  [[[UIAlertView alloc] initWithTitle:@"Try Again" message:@"There was an error saving your info. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
                                                  Mixpanel *mixpanel = [Mixpanel sharedInstance];
                                                  [mixpanel track:@"API Error - updateNameEmail (reg)"];
+                                                 [self dismissViewControllerAnimated:YES completion:nil];
                                              }
                                          }];
              } else {

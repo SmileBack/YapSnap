@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSNumber *pitchValueInCentUnits;
 @property (nonatomic, strong) NSString *notificationType;
 @property (nonatomic, strong) NSString *playbackURL;
+@property (nonatomic, strong) NSString *senderFacebookId;
 @property (nonatomic, strong) NSNumber *playCount;
 @property (nonatomic, strong) NSNumber *secondsToFastForward;
 

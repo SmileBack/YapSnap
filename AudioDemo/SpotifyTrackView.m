@@ -21,7 +21,6 @@
         // SPOTIFY BUTTON
         self.spotifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.spotifyButton setImage:[UIImage imageNamed:@"SpotifyLogo.png"] forState:UIControlStateNormal];
-
         for (UIView* view in @[self.spotifyButton, self.songVersionOneButton, self.songVersionTwoButton]) {
             [view setTranslatesAutoresizingMaskIntoConstraints:NO];
             [self addSubview:view];
@@ -63,12 +62,13 @@
         self.playCountLabel = UILabel.new;
         self.artistAndSongLabel = UILabel.new;
         self.yapTextLabel = UILabel.new;
+        self.senderProfilePicture = [[FBSDKProfilePictureView alloc] init];
         self.trackInfoContainer.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         self.playCountLabel.textAlignment = NSTextAlignmentRight;
         self.yapTextLabel.textAlignment = NSTextAlignmentCenter;
         self.artistAndSongLabel.textAlignment = NSTextAlignmentLeft;
         self.yapTextLabel.font = [UIFont fontWithName:@"Futura-Medium" size:30];
-        for (UIView *view in @[self.trackInfoContainer, self.playCountLabel, self.artistAndSongLabel, self.yapTextLabel]) {
+        for (UIView *view in @[self.trackInfoContainer, self.playCountLabel, self.artistAndSongLabel, self.yapTextLabel, self.senderProfilePicture]) {
             view.translatesAutoresizingMaskIntoConstraints = NO;
             [self addSubview:view];
         }
@@ -81,6 +81,8 @@
         // Constraints
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[artist]-[playCount]-|" options:0 metrics:nil views:@{@"artist": self.artistAndSongLabel, @"playCount": self.playCountLabel}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[sender(20)]-|" options:0 metrics:nil views:@{@"sender": self.senderProfilePicture}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[sender(20)]-|" options:0 metrics:nil views:@{@"sender": self.senderProfilePicture}]];
         [self addConstraints:@[[NSLayoutConstraint constraintWithItem:self.yapTextLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.imageView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0], [NSLayoutConstraint constraintWithItem:self.yapTextLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.imageView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]]];
         for (UIView *view in @[self.trackInfoContainer, self.yapTextLabel]) {
             [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(2)-[v]-(2)-|" options:0 metrics:nil views:@{@"v": view}]];

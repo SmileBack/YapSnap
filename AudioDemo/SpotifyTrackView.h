@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TrackView.h"
+#import <FBSDKCoreKit/FBSDKProfilePictureView.h>
 
 @interface SpotifyTrackView : TrackView
 
@@ -22,5 +23,6 @@
 @property (nonatomic, strong) UILabel *playCountLabel;
 @property (nonatomic, strong) UILabel *artistAndSongLabel;
 @property (nonatomic, strong) UILabel *yapTextLabel;
+@property (nonatomic, strong) FBSDKProfilePictureView *senderProfilePicture;
 
 @end

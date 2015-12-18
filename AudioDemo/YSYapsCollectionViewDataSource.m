@@ -25,7 +25,9 @@
     YSTrack *track = yap.track;
     YapTrackCollectionViewCell *trackViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"track" forIndexPath:indexPath];
     YapTrackView *trackView = trackViewCell.trackView;
-    
+    if (yap.senderFacebookId) {
+        trackView.senderProfilePicture.profileID = yap.senderFacebookId;
+    }
     if (yap.yapPhotoURL && ![yap.yapPhotoURL isEqual:[NSNull null]]) {
         [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:yap.yapPhotoURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             trackView.isBlurred = NO;
