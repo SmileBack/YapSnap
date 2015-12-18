@@ -176,6 +176,14 @@ didFinishPlayingQueueItemId:(NSObject *)queueItemId
 
 - (BOOL)startAudioCapture {
     YSYap *yap = self.yaps[((NSIndexPath *)[self.collectionView indexPathsForSelectedItems].firstObject).row];
+    if (yap.playCount) {
+        [[API sharedAPI] updatePlayCountForYap:yap callback:^(BOOL success, NSError *error) {
+            if (success) {
+                yap.playCount = [NSNumber numberWithInt:yap.playCount.intValue + 1];
+                [self.collectionView reloadItemsAtIndexPaths:self.collectionView.indexPathsForSelectedItems];;
+            }
+        }];
+    }
     if (yap.track) {
         NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
         if ([yap.track.previewURL isEqual:[NSNull null]]) {

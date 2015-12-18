@@ -46,6 +46,7 @@ typedef void (^ITunesTracksCallback)(NSArray *tracks, NSError *error);
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(UserCallback)callback;
 - (void) getYapsWithCallback:(YapsCallback)callback;
 - (void) getPublicYapsWithCallback:(YapsCallback)callback;
+- (void) updatePlayCountForYap:(YSYap *)yap callback:(SuccessOrErrorCallback)callback;
 //- (void) getTracksWithCallback:(TracksCallback)callback;
 - (void) updateYapStatus:(YSYap *)yap toStatus:(NSString *)status withCallback:(IsFriendCallback)callback;
 - (void) unopenedYapsCountWithCallback:(YapCountCallback)callback;

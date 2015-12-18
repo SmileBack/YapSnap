@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSNumber *pitchValueInCentUnits;
 @property (nonatomic, strong) NSString *notificationType;
 @property (nonatomic, strong) NSString *playbackURL;
+@property (nonatomic, strong) NSNumber *playCount;
 @property (nonatomic, strong) NSNumber *secondsToFastForward;
 
 // Spotify stuff

@@ -37,7 +37,9 @@
             });
         }];
     }
-    
+    if (yap.playCount) {
+        trackView.playCountLabel.text = [NSString stringWithFormat:@"%@", yap.playCount];
+    }
     trackView.yapTextLabel.text = yap.text;
     trackView.songVersionOneButton.hidden = YES;
     trackView.songVersionTwoButton.hidden = YES;

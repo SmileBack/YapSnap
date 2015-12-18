@@ -473,6 +473,17 @@ static API *sharedAPI;
     [self getYapsAtEndpoint:@"audio_messages/public_yaps" callback:callback];
 }
 
+- (void) updatePlayCountForYap:(YSYap *)yap callback:(SuccessOrErrorCallback)callback {
+    [[AFHTTPRequestOperationManager manager] POST:[self urlForEndpoint:[NSString stringWithFormat:@"audio_messages/%@/play_count", yap.yapID]]
+                                       parameters:nil
+                                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                              callback(YES, nil);
+                                          }
+                                          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                              callback(NO, error);
+                                          }];
+}
+
 - (void)getYapsAtEndpoint:(NSString *)endpoint callback:(YapsCallback)callback {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -481,7 +492,6 @@ static API *sharedAPI;
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSArray *yapDicts = responseObject; //Assuming it is an array
              NSArray *yaps = [YSYap yapsWithArray:yapDicts];
-             //NSLog(@"Yaps: %@", responseObject);
              
              NSMutableArray *imagesToPrefetch = [NSMutableArray new];
              for (YSYap *yap in yaps) {
