@@ -26,17 +26,21 @@
     YapTrackCollectionViewCell *trackViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"track" forIndexPath:indexPath];
     YapTrackView *trackView = trackViewCell.trackView;
     
-    if (track.albumImageURL && ![track.albumImageURL isEqual:[NSNull null]]) {
+    if (yap.yapPhotoURL && ![yap.yapPhotoURL isEqual:[NSNull null]]) {
+        [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:yap.yapPhotoURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            trackView.isBlurred = NO;
+        }];
+    } else if (track.albumImageURL && ![track.albumImageURL isEqual:[NSNull null]]) {
         [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.albumImageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             trackView.isBlurred = YES;
         }];
     }
     
+    
     trackView.songVersionOneButton.hidden = YES;
     trackView.songVersionTwoButton.hidden = YES;
     trackView.songNameLabel.text = [NSString stringWithFormat:@"Made by %@", yap.senderName];
     trackView.artistAndSongLabel.text = [NSString stringWithFormat:@"%@ by %@", yap.songName, yap.artist];
-    trackView.isBlurred = YES;
     [trackView.albumImageButton addTarget:self action:@selector(didTapYap:) forControlEvents:UIControlEventTouchUpInside];
     [trackView.spotifyButton addTarget:self action:@selector(didTapSpotifyButton:) forControlEvents:UIControlEventTouchUpInside];
     trackView.tag = indexPath.row; // Used for tap actions

@@ -203,6 +203,11 @@
     return self;
 }
 
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    self.trackView.isBlurred = NO;
+}
+
 @end
 
 @implementation TrackCollectionViewCell (STK)
