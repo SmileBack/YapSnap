@@ -36,7 +36,7 @@
         }];
     }
     
-    
+    trackView.yapTextLabel.text = yap.text;
     trackView.songVersionOneButton.hidden = YES;
     trackView.songVersionTwoButton.hidden = YES;
     trackView.songNameLabel.text = [NSString stringWithFormat:@"Made by %@", yap.senderName];
