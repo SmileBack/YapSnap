@@ -49,7 +49,7 @@
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewFlowLayout screenWidthLayout]];
     self.collectionView.dataSource = self.yapsDataSource;
     self.collectionView.delegate = self;
-    [self.collectionView registerClass:[SpotifyTrackCollectionViewCell class] forCellWithReuseIdentifier:@"track"];
+    [self.collectionView registerClass:[YapTrackCollectionViewCell class] forCellWithReuseIdentifier:@"track"];
     self.collectionView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0];
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     

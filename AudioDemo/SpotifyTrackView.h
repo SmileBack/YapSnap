@@ -16,3 +16,11 @@
 @property (nonatomic, strong) UIButton *songVersionTwoButton;
 
 @end
+
+@interface YapTrackView: SpotifyTrackView
+
+@property (nonatomic, strong) UILabel *playCountLabel;
+@property (nonatomic, strong) UILabel *artistAndSongLabel;
+@property (nonatomic, strong) UILabel *yapTextLabel;
+
+@end

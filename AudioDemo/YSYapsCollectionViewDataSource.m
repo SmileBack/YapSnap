@@ -23,8 +23,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YSYap *yap = self.yaps[indexPath.row];
     YSTrack *track = yap.track;
-    SpotifyTrackCollectionViewCell *trackViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"track" forIndexPath:indexPath];
-    SpotifyTrackView *trackView = trackViewCell.trackView;
+    YapTrackCollectionViewCell *trackViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"track" forIndexPath:indexPath];
+    YapTrackView *trackView = trackViewCell.trackView;
     
     if (track.albumImageURL && ![track.albumImageURL isEqual:[NSNull null]]) {
         [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:track.albumImageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -35,6 +35,7 @@
     trackView.songVersionOneButton.hidden = YES;
     trackView.songVersionTwoButton.hidden = YES;
     trackView.songNameLabel.text = [NSString stringWithFormat:@"Made by %@", yap.senderName];
+    trackView.artistAndSongLabel.text = [NSString stringWithFormat:@"%@ by %@", yap.songName, yap.artist];
     trackView.isBlurred = YES;
     [trackView.albumImageButton addTarget:self action:@selector(didTapYap:) forControlEvents:UIControlEventTouchUpInside];
     [trackView.spotifyButton addTarget:self action:@selector(didTapSpotifyButton:) forControlEvents:UIControlEventTouchUpInside];

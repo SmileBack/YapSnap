@@ -189,6 +189,22 @@
 
 @end
 
+@implementation YapTrackCollectionViewCell
+
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self.trackView removeFromSuperview];
+        self.trackView = [[YapTrackView alloc] initWithFrame:frame];
+        [self.contentView addSubview:self.trackView];
+        [self.trackView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[v]|" options:0 metrics:nil views:@{@"v": self.trackView}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[v]|" options:0 metrics:nil views:@{@"v": self.trackView}]];
+    }
+    return self;
+}
+
+@end
+
 @implementation TrackCollectionViewCell (STK)
 
 - (void)updateWithState:(STKAudioPlayerState)state {
