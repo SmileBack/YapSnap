@@ -37,7 +37,7 @@
             });
         }];
     }
-    if (yap.playCount) {
+    if (yap.playCount && ![yap.playCount isEqual:[NSNull null]]) {
         trackView.playCountLabel.text = [NSString stringWithFormat:@"%@", yap.playCount];
     }
     trackView.yapTextLabel.text = yap.text;

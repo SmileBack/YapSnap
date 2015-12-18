@@ -58,9 +58,8 @@
             case YTYapSendingActionForward:
                 self.yapImageAwsUrl = yap.yapPhotoURL;
                 self.text = yap.text;
-                if ([yap.type isEqualToString:@"VoiceMessage"]) {
+                if ([yap.type isEqualToString:@"VoiceMessage"] || [yap.type isEqualToString:@"UploadedMessage"]) {
                     self.awsVoiceURL = yap.playbackURL;
-                    self.pitchValueInCentUnits = [NSNumber numberWithFloat:0];
                 }
                 break;
             default:
