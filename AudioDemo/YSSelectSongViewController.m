@@ -342,7 +342,7 @@
 
 // Spotify source will return the YSTrack.
 // Mic source could return the audio file. for now will return nothing.
-- (void)prepareYapBuilder {
+- (void)prepareYapBuilderWithOptions:(NSDictionary *)options {
     [self.audioCaptureDelegate audioSourceControllerIsReadyToProduceYapBuidler:self];
 }
 

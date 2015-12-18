@@ -454,7 +454,7 @@
 
 #pragma mark - Implement public audio methods
 
-- (void)prepareYapBuilder {
+- (void)prepareYapBuilderWithOptions:(NSDictionary *)options {
     self.didSelectTrack = YES;
     [self.spinner removeFromSuperview];
     self.spinner = [[YSSpinnerView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];

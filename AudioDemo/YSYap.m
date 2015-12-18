@@ -23,9 +23,13 @@
     yap.type = dict[@"type"];
     yap.duration = dict[@"duration"];
     yap.text = dict[@"text"];
+    yap.playCount = dict[@"listen_count"];
     yap.rgbColorComponents = dict[@"color_rgb"];
     yap.pitchValueInCentUnits = dict[@"pitch_value"];
     yap.secondsToFastForward = dict[@"seconds_to_fast_forward"];
+    if (![dict[@"facebook_id"] isEqual:[NSNull null]]) {
+        yap.senderFacebookId = dict[@"facebook_id"];
+    }
     
     if ([dict[@"type"]  isEqual: @"SpotifyMessage"]) {
         yap.track = [YSTrack trackFromYapTapDictionary:dict];

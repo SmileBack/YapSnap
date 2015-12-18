@@ -46,6 +46,7 @@ typedef void (^ITunesTracksCallback)(NSArray *tracks, NSError *error);
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(UserCallback)callback;
 - (void) getYapsWithCallback:(YapsCallback)callback;
 - (void) getPublicYapsWithCallback:(YapsCallback)callback;
+- (void) updatePlayCountForYap:(YSYap *)yap callback:(SuccessOrErrorCallback)callback;
 //- (void) getTracksWithCallback:(TracksCallback)callback;
 - (void) updateYapStatus:(YSYap *)yap toStatus:(NSString *)status withCallback:(IsFriendCallback)callback;
 - (void) unopenedYapsCountWithCallback:(YapCountCallback)callback;
@@ -66,7 +67,7 @@ typedef void (^ITunesTracksCallback)(NSArray *tracks, NSError *error);
 # pragma mark - Updating of User Data
 - (void) updateUserData:(NSDictionary *)properties withCallback:(SuccessOrErrorCallback)callback;
 - (void) updateUserPushToken:(NSString *)token withCallBack:(SuccessOrErrorCallback)callback;
-- (void) updateFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email withCallBack:(SuccessOrErrorCallback)callback;
+- (void) updateFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email facebookIdentifier:(NSString*)facebookIdentifier withCallBack:(SuccessOrErrorCallback)callback;
 - (void) updateFirstName:(NSString *)firstName withCallBack:(SuccessOrErrorCallback)callback;
 - (void) updateLastName:(NSString *)lastName withCallBack:(SuccessOrErrorCallback)callback;
 - (void) updateEmail:(NSString *)email withCallBack:(SuccessOrErrorCallback)callback;

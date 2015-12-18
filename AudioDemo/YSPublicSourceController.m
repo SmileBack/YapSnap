@@ -34,6 +34,7 @@
 @property (strong, nonatomic) YSSTKAudioPlayerDelegate *audioPlayerDelegate;
 @property (strong, nonatomic) STKAudioPlayer *player;
 @property (nonatomic) BOOL loadingSearchResults;
+@property BOOL isReply;
 
 @end
 
@@ -49,7 +50,7 @@
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewFlowLayout screenWidthLayout]];
     self.collectionView.dataSource = self.yapsDataSource;
     self.collectionView.delegate = self;
-    [self.collectionView registerClass:[SpotifyTrackCollectionViewCell class] forCellWithReuseIdentifier:@"track"];
+    [self.collectionView registerClass:[YapTrackCollectionViewCell class] forCellWithReuseIdentifier:@"track"];
     self.collectionView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0];
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
     
@@ -176,6 +177,14 @@ didFinishPlayingQueueItemId:(NSObject *)queueItemId
 
 - (BOOL)startAudioCapture {
     YSYap *yap = self.yaps[((NSIndexPath *)[self.collectionView indexPathsForSelectedItems].firstObject).row];
+    if (yap.playCount) {
+        [[API sharedAPI] updatePlayCountForYap:yap callback:^(BOOL success, NSError *error) {
+            if (success) {
+                yap.playCount = [NSNumber numberWithInt:yap.playCount.intValue + 1];
+                [self.collectionView reloadItemsAtIndexPaths:self.collectionView.indexPathsForSelectedItems];;
+            }
+        }];
+    }
     if (yap.track) {
         NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
         if ([yap.track.previewURL isEqual:[NSNull null]]) {
@@ -215,9 +224,17 @@ didFinishPlayingQueueItemId:(NSObject *)queueItemId
     [self.audioPlayerDelegate updatePlaybackProgress:playbackTime];
 }
 
+- (void)prepareYapBuilderWithOptions:(NSDictionary *)options {
+    if (options[IS_REPLY_OPTION]) {
+        self.isReply = YES;
+    }
+    [super prepareYapBuilderWithOptions:options];
+}
+
 - (YapBuilder *)getYapBuilder {
     YSYap *yap = self.yaps[((NSIndexPath *)[self.collectionView indexPathsForSelectedItems].firstObject).row];
-    YapBuilder *builder = [[YapBuilder alloc] initWithYap:yap sendingAction:YTYapSendingActionForward];
+    YapBuilder *builder = [[YapBuilder alloc] initWithYap:yap sendingAction:self.isReply ? YTYapSendingActionReply : YTYapSendingActionForward];
+    self.isReply = NO;
     return builder;
 }
 

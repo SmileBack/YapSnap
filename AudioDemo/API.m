@@ -13,7 +13,7 @@
 #import "Environment.h"
 #import <SDWebImage/SDWebImagePrefetcher.h>
 #import "Flurry.h"
-
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface API()
 
@@ -181,6 +181,8 @@ static API *sharedAPI;
     [manager POST:[self urlForEndpoint:@"sessions/logout"]
        parameters:[self paramsWithDict:@{}]
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+              [loginManager logOut];
               callback(YES, nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -473,6 +475,17 @@ static API *sharedAPI;
     [self getYapsAtEndpoint:@"audio_messages/public_yaps" callback:callback];
 }
 
+- (void) updatePlayCountForYap:(YSYap *)yap callback:(SuccessOrErrorCallback)callback {
+    [[AFHTTPRequestOperationManager manager] POST:[self urlForEndpoint:[NSString stringWithFormat:@"audio_messages/%@/listen_count", yap.yapID]]
+                                       parameters:nil
+                                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                              callback(YES, nil);
+                                          }
+                                          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                              callback(NO, error);
+                                          }];
+}
+
 - (void)getYapsAtEndpoint:(NSString *)endpoint callback:(YapsCallback)callback {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -481,7 +494,6 @@ static API *sharedAPI;
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSArray *yapDicts = responseObject; //Assuming it is an array
              NSArray *yaps = [YSYap yapsWithArray:yapDicts];
-             //NSLog(@"Yaps: %@", responseObject);
              
              NSMutableArray *imagesToPrefetch = [NSMutableArray new];
              for (YSYap *yap in yaps) {
@@ -701,11 +713,12 @@ static API *sharedAPI;
             withCallback:callback];
 }
 
-- (void) updateFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email withCallBack:(SuccessOrErrorCallback)callback
+- (void) updateFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email facebookIdentifier:(NSString*)facebookIdentifier withCallBack:(SuccessOrErrorCallback)callback
 {
     [self updateUserData:@{@"first_name": firstName,
                            @"last_name": lastName,
-                           @"email": email}
+                           @"email": email,
+                           @"facebook_id": facebookIdentifier}
             withCallback:callback];
 }
 
