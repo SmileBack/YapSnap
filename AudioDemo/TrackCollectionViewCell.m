@@ -219,10 +219,24 @@
     } else if (state == STKAudioPlayerStatePaused) {
         self.state = TrackViewCellStatePaused;
     } else if (state == STKAudioPlayerStateStopped) {
-        self.state = TrackViewCellStatePaused;
+        self.state = TrackViewCellStateNone;
     } else  if (state == STKAudioPlayerStatePlaying) {
         self.state = TrackViewCellStatePlaying;
     }
+}
+
+- (void)setState:(TrackViewCellState)state {
+    _state = state;
+}
+
+- (void)setSelected:(BOOL)selected {
+    self.trackView.imageView.layer.borderColor = selected ? UIColor.redColor.CGColor : nil;
+    self.trackView.imageView.layer.borderWidth = selected ? 2 : 0;
+}
+
+- (void)prepareForReuse {
+    self.trackView.imageView.layer.borderWidth = 0;
+    self.trackView.imageView.layer.borderColor = nil;
 }
 
 @end
