@@ -64,7 +64,7 @@
         self.yapTextLabel = UILabel.new;
         self.senderProfilePicture = [[FBSDKProfilePictureView alloc] init];
         self.senderProfilePicture.clipsToBounds = YES;
-        self.senderProfilePicture.layer.cornerRadius = 20;
+        self.senderProfilePicture.layer.cornerRadius = 30;
         self.trackInfoContainer.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         self.playCountLabel.textAlignment = NSTextAlignmentRight;
         self.yapTextLabel.textAlignment = NSTextAlignmentCenter;
@@ -84,8 +84,8 @@
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[artist]-[playCount]-|" options:0 metrics:nil views:@{@"artist": self.artistAndSongLabel, @"playCount": self.playCountLabel}]];
         [self addConstraint:[NSLayoutConstraint constraintWithItem:self.senderProfilePicture attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[sender(40)]" options:0 metrics:nil views:@{@"sender": self.senderProfilePicture}]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[sender(40)]" options:0 metrics:nil views:@{@"sender": self.senderProfilePicture}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[sender(60)]" options:0 metrics:nil views:@{@"sender": self.senderProfilePicture}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[sender(60)]" options:0 metrics:nil views:@{@"sender": self.senderProfilePicture}]];
         [self addConstraints:@[[NSLayoutConstraint constraintWithItem:self.yapTextLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.imageView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0], [NSLayoutConstraint constraintWithItem:self.yapTextLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.imageView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]]];
         for (UIView *view in @[self.trackInfoContainer, self.yapTextLabel]) {
             [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(2)-[v]-(2)-|" options:0 metrics:nil views:@{@"v": view}]];
