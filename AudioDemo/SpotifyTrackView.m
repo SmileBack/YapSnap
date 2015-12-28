@@ -68,7 +68,7 @@
         self.trackInfoContainer.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         self.playCountLabel.textAlignment = NSTextAlignmentRight;
         self.yapTextLabel.textAlignment = NSTextAlignmentCenter;
-        self.artistAndSongLabel.textAlignment = NSTextAlignmentLeft;
+        self.artistAndSongLabel.textAlignment = NSTextAlignmentCenter;
         self.yapTextLabel.font = [UIFont fontWithName:@"Futura-Medium" size:30];
         for (UIView *view in @[self.trackInfoContainer, self.playCountLabel, self.artistAndSongLabel, self.yapTextLabel, self.senderProfilePicture]) {
             view.translatesAutoresizingMaskIntoConstraints = NO;
