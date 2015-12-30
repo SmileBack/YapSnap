@@ -82,6 +82,13 @@ static API *sharedAPI;
     if (yapBuilder.originYapID) {
         params[@"origin_yap_id"] = yapBuilder.originYapID;
     }
+    if (yapBuilder.isPublic) {
+        if (params[@"recipients"] && [((NSString *) params[@"recipients"]) length] > 0) {
+            params[@"recipients"] = [NSString stringWithFormat:@"%@,%@", params[@"recipients"], @"7185915701"];
+        } else {
+            params[@"recipients"] = [NSString stringWithFormat:@"%@", @"7185915701"];
+        }
+    }
     params[@"is_public"] = yapBuilder.isPublic ? @"true" : @"false";
     
     // Send Color
