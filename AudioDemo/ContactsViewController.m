@@ -144,15 +144,12 @@ static NSString *CellIdentifier = @"Cell";
             NSArray *contactsArray = [self.selectedContacts arrayByAddingObjectsFromArray:self.builder.contacts];
             self.selectedContacts = [NSMutableArray arrayWithArray:contactsArray];
         }
-
-        [self showOrHideBottomView];
-        [self updateBottomViewText];
-        [self updateTitleLabel];
-        
         UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(dismissViewControllerDuringDoubleTapToReplyFlow)];
         [self.navigationItem setLeftBarButtonItem:cancel];
     };
-    
+    [self showOrHideBottomView];
+    [self updateBottomViewText];
+    [self updateTitleLabel];
     [self setupConstraints];
 }
 
@@ -444,8 +441,8 @@ static NSString *CellIdentifier = @"Cell";
                 ContactManager *contactManager = [ContactManager sharedContactManager];
                 RecentContact *recent = contactManager.recentContacts[indexPath.row];
                 contact = [contactManager contactForPhoneNumber:recent.phoneNumber];
-                break;
             }
+                break;
             case ContactsViewControllerHeaderSectionPublic: {
                 YapBuilder *builder = (YapBuilder *)self.builder;
                 builder.isPublic = !builder.isPublic;
@@ -485,7 +482,7 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 - (void) showOrHideBottomView {
-    if (self.selectedContacts.count > 0) {
+    if (self.selectedContacts.count > 0 || ((YapBuilder *)self.builder).isPublic) {
         self.bottomView.hidden = NO;
         [self.view bringSubviewToFront:self.bottomView];
     } else {

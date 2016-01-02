@@ -13,6 +13,7 @@
 @property UIImageView *imageView;
 @property UIActivityIndicatorView *spinner;
 @property UILabel *countdownLabel;
+@property BOOL hidesAllButCountdown;
 
 @end
 
@@ -26,6 +27,7 @@
         self.spinner.center = self.center;
         self.countdownLabel = UILabel.new;
         self.countdownLabel.textColor = UIColor.whiteColor;
+        self.countdownLabel.textAlignment = NSTextAlignmentCenter;
         self.countdownLabel.font = [UIFont fontWithName:@"Futura-Medium" size:20];
         for (UIView *view in @[self.imageView, self.spinner, self.countdownLabel]) {
             [view setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -59,12 +61,23 @@
                                                                    toItem:nil
                                                                 attribute:NSLayoutAttributeNotAnAttribute
                                                                multiplier:1.0
-                                                                 constant:46]]];
+                                                                 constant:46],
+                                   ]];
         }
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[v]" options:0 metrics:nil views:@{@"v": self.countdownLabel}]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[v]" options:0 metrics:nil views:@{@"v": self.countdownLabel}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[v(34)]" options:0 metrics:nil views:@{@"v": self.countdownLabel}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[v(34)]" options:0 metrics:nil views:@{@"v": self.countdownLabel}]];
     }
     return self;
+}
+
+- (void)setHidesAllButCountdown:(BOOL)hidesAllButCountdown {
+    _hidesAllButCountdown = hidesAllButCountdown;
+    self.backgroundColor = hidesAllButCountdown ? UIColor.clearColor : [UIColor colorWithWhite:0 alpha:0.8];
+    self.spinner.hidden = hidesAllButCountdown;
+    self.imageView.hidden = hidesAllButCountdown;
+    self.countdownLabel.backgroundColor = hidesAllButCountdown ? [UIColor colorWithWhite:0 alpha:0.8] : UIColor.clearColor;
+    self.countdownLabel.layer.cornerRadius = hidesAllButCountdown ? 17  : 0;
+    self.countdownLabel.clipsToBounds = YES;
 }
 
 @end
@@ -207,6 +220,15 @@
     [super prepareForReuse];
     self.trackView.isBlurred = NO;
     self.trackView.senderProfilePicture.profileID = nil;
+    self.trackView.imageView.layer.borderWidth = 0;
+    self.trackView.imageView.layer.borderColor = nil;
+}
+
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    self.selectedOverlay.hidesAllButCountdown = YES;
+    self.trackView.imageView.layer.borderColor = selected ? UIColor.redColor.CGColor : nil;
+    self.trackView.imageView.layer.borderWidth = selected ? 2 : 0;
 }
 
 @end
@@ -219,10 +241,14 @@
     } else if (state == STKAudioPlayerStatePaused) {
         self.state = TrackViewCellStatePaused;
     } else if (state == STKAudioPlayerStateStopped) {
-        self.state = TrackViewCellStatePaused;
+        self.state = TrackViewCellStateNone;
     } else  if (state == STKAudioPlayerStatePlaying) {
         self.state = TrackViewCellStatePlaying;
     }
+}
+
+- (void)setState:(TrackViewCellState)state {
+    _state = state;
 }
 
 @end
