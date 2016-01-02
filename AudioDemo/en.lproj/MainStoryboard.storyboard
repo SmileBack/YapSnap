@@ -48,80 +48,149 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf8-UJ-WxH" userLabel="Source Container">
                                 <rect key="frame" x="0.0" y="40" width="320" height="464"/>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zpi-cJ-NfZ" userLabel="Bottom View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="316-2I-QOe" userLabel="Bottom Container">
                                 <rect key="frame" x="0.0" y="429" width="320" height="75"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMe-UN-aNF">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zpi-cJ-NfZ" userLabel="Bottom View">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMe-UN-aNF" userLabel="Border View">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="KjF-nV-nea"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="cfM-Mu-aAi"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send This Clip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8L-qW-m1K">
+                                                <rect key="frame" x="67" y="14" width="186" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="26" id="j6V-L4-X9C"/>
+                                                    <constraint firstAttribute="width" constant="186" id="ncH-Bw-3Ve"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYX-lW-YlV" userLabel="Next Button" customClass="NextButton">
+                                                <rect key="frame" x="264" y="16" width="46" height="46"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="46" id="QwT-BN-1WZ"/>
+                                                    <constraint firstAttribute="width" constant="46" id="Ta8-wP-gKN"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="ArrowWhite.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapNextButton" destination="XE5-ww-gTm" eventType="touchUpInside" id="bzc-qY-uBK"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wS5-a7-tKN" userLabel="Cancel Button">
+                                                <rect key="frame" x="8" y="16" width="46" height="46"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="46" id="7gR-dm-c2D"/>
+                                                    <constraint firstAttribute="width" constant="46" id="v6e-nq-ehx"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="CancelImageWhite.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapCancelButton" destination="XE5-ww-gTm" eventType="touchUpInside" id="6lQ-IB-Wj0"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kL-Yw-2xk">
+                                                <rect key="frame" x="60" y="38" width="201" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="26" id="Se2-AV-rP2"/>
+                                                    <constraint firstAttribute="width" constant="201" id="sL8-B7-QDI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="15"/>
+                                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="0.1647058824" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="KjF-nV-nea"/>
+                                            <constraint firstItem="F8L-qW-m1K" firstAttribute="top" secondItem="GMe-UN-aNF" secondAttribute="bottom" constant="13" id="DxB-69-VsW"/>
+                                            <constraint firstItem="wS5-a7-tKN" firstAttribute="centerY" secondItem="Zpi-cJ-NfZ" secondAttribute="centerY" constant="2" id="Dym-D9-B1O"/>
+                                            <constraint firstItem="GMe-UN-aNF" firstAttribute="top" secondItem="Zpi-cJ-NfZ" secondAttribute="top" id="PTT-nP-GOD"/>
+                                            <constraint firstItem="F8L-qW-m1K" firstAttribute="centerX" secondItem="Zpi-cJ-NfZ" secondAttribute="centerX" id="SFF-QZ-Ea1"/>
+                                            <constraint firstAttribute="bottom" secondItem="1kL-Yw-2xk" secondAttribute="bottom" constant="11" id="aKi-pX-hxP"/>
+                                            <constraint firstAttribute="trailing" secondItem="GMe-UN-aNF" secondAttribute="trailing" id="dBI-o3-Gpr"/>
+                                            <constraint firstAttribute="trailing" secondItem="sYX-lW-YlV" secondAttribute="trailing" constant="10" id="fFx-Qu-ofX"/>
+                                            <constraint firstItem="GMe-UN-aNF" firstAttribute="leading" secondItem="Zpi-cJ-NfZ" secondAttribute="leading" id="mrh-Q9-OBg"/>
+                                            <constraint firstItem="sYX-lW-YlV" firstAttribute="centerY" secondItem="Zpi-cJ-NfZ" secondAttribute="centerY" constant="1.5" id="pmZ-Lu-fgx"/>
+                                            <constraint firstItem="F8L-qW-m1K" firstAttribute="centerX" secondItem="1kL-Yw-2xk" secondAttribute="centerX" id="qyU-Dw-eac"/>
+                                            <constraint firstItem="wS5-a7-tKN" firstAttribute="leading" secondItem="Zpi-cJ-NfZ" secondAttribute="leading" constant="8" id="xjq-vH-Plq"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send This Clip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8L-qW-m1K">
-                                        <rect key="frame" x="67" y="14" width="186" height="26"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="duL-G9-mvY" userLabel="Bottom View (Public)">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x2C-cK-kDx">
+                                                <rect key="frame" x="60" y="8" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="efW-mG-wnp"/>
+                                                    <constraint firstAttribute="width" constant="60" id="xN2-IL-CQd"/>
+                                                </constraints>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Reply">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.96805780141244058" green="1" blue="0.99018578672911217" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapReplyButton:" destination="XE5-ww-gTm" eventType="touchUpInside" id="TZE-2U-izI"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jd1-oB-mIX">
+                                                <rect key="frame" x="200" y="8" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="Grk-Bx-bD5"/>
+                                                    <constraint firstAttribute="height" constant="60" id="zcc-rO-uOj"/>
+                                                </constraints>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Forward">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.96805780141244058" green="1" blue="0.99018578672911217" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapNextButton" destination="XE5-ww-gTm" eventType="touchUpInside" id="mzZ-1t-lFk"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="26" id="j6V-L4-X9C"/>
-                                            <constraint firstAttribute="width" constant="186" id="ncH-Bw-3Ve"/>
+                                            <constraint firstItem="jd1-oB-mIX" firstAttribute="centerY" secondItem="duL-G9-mvY" secondAttribute="centerY" id="27p-0N-dgl"/>
+                                            <constraint firstItem="x2C-cK-kDx" firstAttribute="centerY" secondItem="duL-G9-mvY" secondAttribute="centerY" id="FM1-qZ-2rZ"/>
+                                            <constraint firstAttribute="height" constant="75" id="RWe-jD-iJV"/>
+                                            <constraint firstAttribute="trailing" secondItem="jd1-oB-mIX" secondAttribute="trailing" constant="60" id="pIE-pI-Aef"/>
+                                            <constraint firstItem="x2C-cK-kDx" firstAttribute="leading" secondItem="duL-G9-mvY" secondAttribute="leading" constant="60" id="wB8-Bd-bsi"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYX-lW-YlV" userLabel="Next Button" customClass="NextButton">
-                                        <rect key="frame" x="264" y="16" width="46" height="46"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="46" id="QwT-BN-1WZ"/>
-                                            <constraint firstAttribute="width" constant="46" id="Ta8-wP-gKN"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="ArrowWhite.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapNextButton" destination="XE5-ww-gTm" eventType="touchUpInside" id="bzc-qY-uBK"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wS5-a7-tKN" userLabel="Cancel Button">
-                                        <rect key="frame" x="8" y="16" width="46" height="46"/>
-                                        <state key="normal" backgroundImage="CancelImageWhite.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapCancelButton" destination="XE5-ww-gTm" eventType="touchUpInside" id="6lQ-IB-Wj0"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kL-Yw-2xk">
-                                        <rect key="frame" x="60" y="38" width="201" height="26"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="26" id="Se2-AV-rP2"/>
-                                            <constraint firstAttribute="width" constant="201" id="sL8-B7-QDI"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="15"/>
-                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIe-La-elK">
-                                        <rect key="frame" x="211" y="45" width="34" height="30"/>
-                                        <state key="normal" title="reply">
-                                            <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapReplyButton:" destination="XE5-ww-gTm" eventType="touchUpInside" id="zPN-HT-uRa"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.1647058824" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="F8L-qW-m1K" secondAttribute="centerX" id="SFF-QZ-Ea1"/>
-                                    <constraint firstItem="1kL-Yw-2xk" firstAttribute="top" secondItem="GMe-UN-aNF" secondAttribute="bottom" constant="37" id="Vla-sH-2OK"/>
-                                    <constraint firstAttribute="centerX" secondItem="sYX-lW-YlV" secondAttribute="centerX" constant="-127" id="ZsU-mb-xc9"/>
-                                    <constraint firstAttribute="height" constant="75" id="d5k-5m-ClC"/>
-                                    <constraint firstItem="GMe-UN-aNF" firstAttribute="leading" secondItem="Zpi-cJ-NfZ" secondAttribute="leading" id="fcX-IN-Juk"/>
-                                    <constraint firstAttribute="trailing" secondItem="GMe-UN-aNF" secondAttribute="trailing" id="g7m-vz-m8i"/>
-                                    <constraint firstAttribute="bottom" secondItem="GMe-UN-aNF" secondAttribute="bottom" constant="74" id="joe-g6-pQB"/>
-                                    <constraint firstAttribute="centerY" secondItem="sYX-lW-YlV" secondAttribute="centerY" constant="-1.5" id="pmZ-Lu-fgx"/>
-                                    <constraint firstItem="F8L-qW-m1K" firstAttribute="centerX" secondItem="1kL-Yw-2xk" secondAttribute="centerX" id="qyU-Dw-eac"/>
-                                    <constraint firstAttribute="bottom" secondItem="F8L-qW-m1K" secondAttribute="bottom" constant="35" id="wRn-9X-wI6"/>
+                                    <constraint firstItem="Zpi-cJ-NfZ" firstAttribute="leading" secondItem="316-2I-QOe" secondAttribute="leading" id="Haa-v1-cvd"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zpi-cJ-NfZ" secondAttribute="bottom" id="LPA-01-IgV"/>
+                                    <constraint firstItem="Zpi-cJ-NfZ" firstAttribute="top" secondItem="316-2I-QOe" secondAttribute="top" id="T7Y-cb-Vit"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zpi-cJ-NfZ" secondAttribute="trailing" id="b0H-QM-ekd"/>
+                                    <constraint firstAttribute="bottom" secondItem="duL-G9-mvY" secondAttribute="bottom" id="e27-dC-3On"/>
+                                    <constraint firstAttribute="trailing" secondItem="duL-G9-mvY" secondAttribute="trailing" id="oAI-rk-7sz"/>
+                                    <constraint firstItem="duL-G9-mvY" firstAttribute="leading" secondItem="316-2I-QOe" secondAttribute="leading" id="ppj-WA-Rbg"/>
+                                    <constraint firstAttribute="height" constant="75" id="rnQ-ix-rtS"/>
+                                    <constraint firstItem="duL-G9-mvY" firstAttribute="top" secondItem="316-2I-QOe" secondAttribute="top" id="sbM-BW-HST"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -129,28 +198,29 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Kej-1D-xvX" secondAttribute="trailing" id="0Mv-3j-klZ"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="top" secondItem="Kej-1D-xvX" secondAttribute="bottom" id="2zN-ys-yzT"/>
+                            <constraint firstItem="316-2I-QOe" firstAttribute="leading" secondItem="jch-J9-Qbc" secondAttribute="leading" id="Cpe-p7-qLI"/>
                             <constraint firstAttribute="trailing" secondItem="Tf8-UJ-WxH" secondAttribute="trailing" id="DXT-zJ-jCM"/>
-                            <constraint firstItem="Zpi-cJ-NfZ" firstAttribute="leading" secondItem="Tf8-UJ-WxH" secondAttribute="leading" id="JQa-js-GJZ"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="bottom" secondItem="Ezh-9p-xYZ" secondAttribute="top" id="Jpy-uJ-VYH"/>
                             <constraint firstItem="Kej-1D-xvX" firstAttribute="leading" secondItem="jch-J9-Qbc" secondAttribute="leading" id="NP6-7P-Tv0"/>
-                            <constraint firstAttribute="centerX" secondItem="Zpi-cJ-NfZ" secondAttribute="centerX" id="TRD-Hb-Z6T"/>
+                            <constraint firstItem="316-2I-QOe" firstAttribute="bottom" secondItem="Ezh-9p-xYZ" secondAttribute="top" id="RVT-hm-Qnf"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="leading" secondItem="jch-J9-Qbc" secondAttribute="leading" id="gLL-xW-HuG"/>
                             <constraint firstItem="Kej-1D-xvX" firstAttribute="top" secondItem="2I6-Gf-QtV" secondAttribute="bottom" id="liv-Iq-IwP"/>
-                            <constraint firstItem="Zpi-cJ-NfZ" firstAttribute="bottom" secondItem="Ezh-9p-xYZ" secondAttribute="top" id="uuE-Pf-nMR"/>
+                            <constraint firstAttribute="trailing" secondItem="316-2I-QOe" secondAttribute="trailing" id="onI-Kn-vFH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aLc-kc-Dc8"/>
                     <connections>
                         <outlet property="audioSourceContainer" destination="Tf8-UJ-WxH" id="OWQ-Ga-xCg"/>
-                        <outlet property="bottomBarBottomConstraint" destination="uuE-Pf-nMR" id="DBX-wB-u4m"/>
+                        <outlet property="bottomBarBottomConstraint" destination="RVT-hm-Qnf" id="Yhc-JZ-mUE"/>
                         <outlet property="bottomView" destination="Zpi-cJ-NfZ" id="gyE-dK-6pj"/>
                         <outlet property="bottomViewLabel" destination="F8L-qW-m1K" id="4nv-6E-Kmh"/>
                         <outlet property="categoryBarWidthConstraint" destination="ihk-47-bi8" id="8pP-x5-To8"/>
                         <outlet property="categorySelectorContainer" destination="Kej-1D-xvX" id="lTD-gN-p6H"/>
                         <outlet property="categorySelectorView" destination="9yN-vL-GUj" id="xkS-Le-245"/>
                         <outlet property="continueButton" destination="sYX-lW-YlV" id="M9z-hn-TJL"/>
-                        <outlet property="continueButtonRightConstraint" destination="ZsU-mb-xc9" id="cJA-Tc-nd5"/>
-                        <outlet property="replyButton" destination="QIe-La-elK" id="ULU-ND-hah"/>
+                        <outlet property="forwardButton" destination="jd1-oB-mIX" id="eCn-kz-vGu"/>
+                        <outlet property="publicBottomView" destination="duL-G9-mvY" id="wZp-Tb-vYh"/>
+                        <outlet property="replyButton" destination="x2C-cK-kDx" id="2mK-CI-7o0"/>
                         <outlet property="songNameLabel" destination="1kL-Yw-2xk" id="9DT-ms-SFf"/>
                         <segue destination="j1Z-Ou-SMe" kind="push" identifier="Prepare Yap For Text Segue" id="eDP-Ek-kdM"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="Contacts Segue" id="vIm-eD-gkR"/>
@@ -940,7 +1010,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="E65744A6-19CA-40F1-AB41-38C4DAE3C297"/>
+                                <state key="normal" backgroundImage="C8B695A1-8F61-45E4-848E-30B910AF1292"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1938,10 +2008,7 @@
     <resources>
         <image name="AddRecipientsIcon2.png" width="128" height="128"/>
         <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="CameraIcon400.png" width="150" height="150"/>
-        <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="CancelImageWhite500.png" width="350" height="350"/>
-        <image name="E65744A6-19CA-40F1-AB41-38C4DAE3C297" width="300" height="300">
+        <image name="C8B695A1-8F61-45E4-848E-30B910AF1292" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8013,6 +8080,9 @@ nAAFjKAABYynAAWMrwAFjLwABYzBAAWMwwAFjMUABYzKAAWM0gAFjNUABYzaAAWM4gAFjOUABYz3AAWM
 +gAFjP8AAAAAAAAEAQAAAAAAAAA+AAAAAAAAAAAAAAAAAAWNAQ
 </mutableData>
         </image>
+        <image name="CameraIcon400.png" width="150" height="150"/>
+        <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="CancelImageWhite500.png" width="350" height="350"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
@@ -8029,8 +8099,8 @@ nAAFjKAABYynAAWMrwAFjLwABYzBAAWMwwAFjMUABYzKAAWM0gAFjNUABYzaAAWM4gAFjOUABYz3AAWM
     <inferredMetricsTieBreakers>
         <segue reference="Enn-ka-dSJ"/>
         <segue reference="Ny4-zR-Cgq"/>
-        <segue reference="c26-Bf-LAT"/>
-        <segue reference="eDP-Ek-kdM"/>
         <segue reference="vIm-eD-gkR"/>
+        <segue reference="eDP-Ek-kdM"/>
+        <segue reference="c26-Bf-LAT"/>
     </inferredMetricsTieBreakers>
 </document>

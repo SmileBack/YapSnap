@@ -27,11 +27,13 @@
 @interface AudioCaptureViewController () <YSAudioSourceControllerDelegate, UINavigationControllerDelegate> {
     NSTimer *audioProgressTimer;
 }
+@property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
 @property (strong, nonatomic) IBOutlet UIView *audioSourceContainer;
 @property (nonatomic) NSTimeInterval elapsedTime;
 @property (weak, nonatomic) IBOutlet UILabel *receiverLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UIView *publicBottomView;
 @property (strong, nonatomic) IBOutlet NextButton *continueButton;
 @property (nonatomic, strong) YapBuilder *yapBuilder;
 @property (weak, nonatomic) IBOutlet UILabel *bottomViewLabel;
@@ -78,6 +80,11 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     } else if (IS_IPHONE_6_PLUS_SIZE) {
         self.continueButtonRightConstraint.constant = -170;
         self.categoryBarWidthConstraint.constant = 414;
+    }
+    
+    for (UIButton *button in @[self.forwardButton, self.replyButton]) {
+        button.layer.borderWidth = 2;
+        button.layer.borderColor = UIColor.whiteColor.CGColor;
     }
 
     [self.continueButton startToPulsate];
@@ -208,7 +215,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         yapsVC.comingFromContactsOrCustomizeYapPage = YES;
 
         self.yapBuilder = [self.audioSource getYapBuilder];
-        self.yapBuilder.duration = 15;//12;//self.elapsedTime;
+        self.yapBuilder.duration = 15;
         if (self.contactReplyingTo) {
             self.yapBuilder.contacts = @[ self.contactReplyingTo ];
         }
@@ -219,8 +226,6 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 
 - (void)setBottomBarVisible:(BOOL)visible {
     [self setBottomBarVisible:visible animated:YES];
-    self.continueButton.userInteractionEnabled = YES;
-    self.replyButton.userInteractionEnabled = YES;
 }
 
 - (void)setBottomBarVisible:(BOOL)visible animated:(BOOL)animated {
@@ -231,6 +236,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         [self.view layoutIfNeeded];
     }];
     self.continueButton.userInteractionEnabled = YES;
+    self.replyButton.userInteractionEnabled = YES;
 }
 - (IBAction)didTapSegmentedControl:(id)sender {
     if ([self.audioSource isKindOfClass:[UINavigationController class]]) {
@@ -446,6 +452,9 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
             [self.audioSourceContainer addSubview:toVC.view];
             [toVC didMoveToParentViewController:self];
         }
+        BOOL showsPublic = [self.audioSource isKindOfClass:[YSAudioSourceNavigationController class]] && [[((YSAudioSourceNavigationController *) self.audioSource) topViewController] isKindOfClass:[YSPublicSourceController class]];
+        self.publicBottomView.hidden = !showsPublic;
+        self.bottomView.hidden = showsPublic;
     }
 }
 
