@@ -103,7 +103,7 @@
 - (void)yapsCollectionDataSource:(YSYapsCollectionViewDataSource *)dataSource didTapYapAtIndexPath:(NSIndexPath *)indexPath {
     if ([indexPath isEqual:self.collectionView.indexPathsForSelectedItems.firstObject]) {
         if (self.audioPlayerDelegate.player.state == STKAudioPlayerStatePlaying) {
-            [self.audioPlayerDelegate.player pause];
+            [self stopAudioCaptureFromCancel:YES];
         } else {
             [self startAudioCapture];
         }
@@ -217,6 +217,7 @@ didFinishPlayingQueueItemId:(NSObject *)queueItemId
 }
 
 - (void)stopAudioCaptureFromCancel:(BOOL)fromCancel {
+    [self.collectionView deselectItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject animated:YES];
     [self.audioPlayerDelegate stopAudioCaptureFromCancel:fromCancel];
 }
 
