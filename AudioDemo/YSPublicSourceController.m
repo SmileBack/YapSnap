@@ -18,7 +18,7 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "SearchArtistAlertView.h"
 #import "YTTrackGroup.h"
-#import "YSYapsCollectionViewDataSource.h"
+#import "YSYapsCollectionViewDataSource.h"x
 #import "Mixpanel/MPTweakInline.h"
 #import "NSArray+Shuffle.h"
 #import "UICollectionViewFlowLayout+YS.h"

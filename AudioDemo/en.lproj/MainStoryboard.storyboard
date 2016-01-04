@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sYo-Oj-klg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sYo-Oj-klg">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -127,18 +127,26 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="duL-G9-mvY" userLabel="Bottom View (Public)">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x2C-cK-kDx">
-                                                <rect key="frame" x="60" y="8" width="60" height="60"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2l-G8-Cib">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="efW-mG-wnp"/>
-                                                    <constraint firstAttribute="width" constant="60" id="xN2-IL-CQd"/>
+                                                    <constraint firstAttribute="height" constant="1" id="jIJ-sV-ax9"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x2C-cK-kDx">
+                                                <rect key="frame" x="30" y="13" width="120" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="efW-mG-wnp"/>
+                                                    <constraint firstAttribute="width" constant="120" id="xN2-IL-CQd"/>
                                                 </constraints>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
                                                         <fragment content="Reply">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.96805780141244058" green="1" blue="0.99018578672911217" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                                <font key="NSFont" size="14" name="Futura-Medium"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -149,17 +157,18 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jd1-oB-mIX">
-                                                <rect key="frame" x="200" y="8" width="60" height="60"/>
+                                                <rect key="frame" x="170" y="13" width="120" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="60" id="Grk-Bx-bD5"/>
-                                                    <constraint firstAttribute="height" constant="60" id="zcc-rO-uOj"/>
+                                                    <constraint firstAttribute="width" constant="120" id="Grk-Bx-bD5"/>
+                                                    <constraint firstAttribute="height" constant="50" id="zcc-rO-uOj"/>
                                                 </constraints>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
                                                         <fragment content="Forward">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.96805780141244058" green="1" blue="0.99018578672911217" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                                <font key="NSFont" size="14" name="Futura-Medium"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -170,13 +179,14 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.078431372550000003" green="0.70196078429999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="jd1-oB-mIX" firstAttribute="centerY" secondItem="duL-G9-mvY" secondAttribute="centerY" id="27p-0N-dgl"/>
                                             <constraint firstItem="x2C-cK-kDx" firstAttribute="centerY" secondItem="duL-G9-mvY" secondAttribute="centerY" id="FM1-qZ-2rZ"/>
                                             <constraint firstAttribute="height" constant="75" id="RWe-jD-iJV"/>
-                                            <constraint firstAttribute="trailing" secondItem="jd1-oB-mIX" secondAttribute="trailing" constant="60" id="pIE-pI-Aef"/>
-                                            <constraint firstItem="x2C-cK-kDx" firstAttribute="leading" secondItem="duL-G9-mvY" secondAttribute="leading" constant="60" id="wB8-Bd-bsi"/>
+                                            <constraint firstAttribute="trailing" secondItem="jd1-oB-mIX" secondAttribute="trailing" constant="30" id="pIE-pI-Aef"/>
+                                            <constraint firstAttribute="bottom" secondItem="k2l-G8-Cib" secondAttribute="bottom" constant="74" id="qg3-Km-4CB"/>
+                                            <constraint firstItem="x2C-cK-kDx" firstAttribute="leading" secondItem="duL-G9-mvY" secondAttribute="leading" constant="30" id="wB8-Bd-bsi"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -198,6 +208,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Kej-1D-xvX" secondAttribute="trailing" id="0Mv-3j-klZ"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="top" secondItem="Kej-1D-xvX" secondAttribute="bottom" id="2zN-ys-yzT"/>
+                            <constraint firstItem="k2l-G8-Cib" firstAttribute="width" secondItem="jch-J9-Qbc" secondAttribute="width" id="8Vd-nz-Xmg"/>
                             <constraint firstItem="316-2I-QOe" firstAttribute="leading" secondItem="jch-J9-Qbc" secondAttribute="leading" id="Cpe-p7-qLI"/>
                             <constraint firstAttribute="trailing" secondItem="Tf8-UJ-WxH" secondAttribute="trailing" id="DXT-zJ-jCM"/>
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="bottom" secondItem="Ezh-9p-xYZ" secondAttribute="top" id="Jpy-uJ-VYH"/>
@@ -206,6 +217,7 @@
                             <constraint firstItem="Tf8-UJ-WxH" firstAttribute="leading" secondItem="jch-J9-Qbc" secondAttribute="leading" id="gLL-xW-HuG"/>
                             <constraint firstItem="Kej-1D-xvX" firstAttribute="top" secondItem="2I6-Gf-QtV" secondAttribute="bottom" id="liv-Iq-IwP"/>
                             <constraint firstAttribute="trailing" secondItem="316-2I-QOe" secondAttribute="trailing" id="onI-Kn-vFH"/>
+                            <constraint firstItem="k2l-G8-Cib" firstAttribute="centerX" secondItem="jch-J9-Qbc" secondAttribute="centerX" id="xOW-QK-AGm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aLc-kc-Dc8"/>
@@ -219,8 +231,10 @@
                         <outlet property="categorySelectorView" destination="9yN-vL-GUj" id="xkS-Le-245"/>
                         <outlet property="continueButton" destination="sYX-lW-YlV" id="M9z-hn-TJL"/>
                         <outlet property="forwardButton" destination="jd1-oB-mIX" id="eCn-kz-vGu"/>
+                        <outlet property="forwardButtonWidthConstraint" destination="Grk-Bx-bD5" id="e6r-gU-DTl"/>
                         <outlet property="publicBottomView" destination="duL-G9-mvY" id="wZp-Tb-vYh"/>
                         <outlet property="replyButton" destination="x2C-cK-kDx" id="2mK-CI-7o0"/>
+                        <outlet property="replyButtonWidthConstraint" destination="xN2-IL-CQd" id="bjb-LD-2Dd"/>
                         <outlet property="songNameLabel" destination="1kL-Yw-2xk" id="9DT-ms-SFf"/>
                         <segue destination="j1Z-Ou-SMe" kind="push" identifier="Prepare Yap For Text Segue" id="eDP-Ek-kdM"/>
                         <segue destination="iTO-dn-ews" kind="push" identifier="Contacts Segue" id="vIm-eD-gkR"/>
@@ -1010,7 +1024,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="C8B695A1-8F61-45E4-848E-30B910AF1292"/>
+                                <state key="normal" backgroundImage="5186168E-5BF6-4E29-AD5D-DF7BD7476A0A"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -2006,12 +2020,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="C8B695A1-8F61-45E4-848E-30B910AF1292" width="300" height="300">
+        <image name="5186168E-5BF6-4E29-AD5D-DF7BD7476A0A" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
-GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
+YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
+GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
 DBIAwAAAgAKACtISCRMVWk5TLm9iamVjdHOhFIADgAnSEgkXGqIYGYAEgAWACBAA0h0JHh9fEBROU1RJ
 RkZSZXByZXNlbnRhdGlvboAGgAdPEgAFi2ZNTQAqAAV+SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -8070,16 +8082,19 @@ yD3IvMk6ybnKOMq3yzbLtsw1zLXNNc21zjbOts83z7jQOdC60TzRvtI/0sHTRNPG1EnUy9VO1dHWVdbY
 11zX4Nhk2OjZbNnx2nba+9uA3AXcit0Q3ZbeHN6i3ynfr+A24L3hROHM4lPi2+Nj4+vkc+T85YTmDeaW
 5x/nqegy6LzpRunQ6lvq5etw6/vshu0R7ZzuKO6070DvzPBY8OXxcvH/8ozzGfOn9DT0wvVQ9d72bfb7
 94r4Gfio+Tj5x/pX+uf7d/wH/Jj9Kf26/kv+3P9t///SIiMkJVokY2xhc3NuYW1lWCRjbGFzc2VzXxAQ
-TlNCaXRtYXBJbWFnZVJlcKMkJidaTlNJbWFnZVJlcFhOU09iamVjdNIiIykqV05TQXJyYXmiKSfSIiMs
-LV5OU011dGFibGVBcnJheaMsKSfTLzAJMTIzV05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AL0iIj
-NTZXTlNDb2xvcqI1J9IiIzg5V05TSW1hZ2WiOCdfEA9OU0tleWVkQXJjaGl2ZXLRPD1Ucm9vdIABAAAA
-CAAAABEAAAAaAAAAIwAAAC0AAAAyAAAANwAAAEUAAABLAAAAVAAAAFsAAABoAAAAbwAAAHcAAAB5AAAA
-fgAAAIAAAACCAAAAhwAAAJIAAACUAAAAlgAAAJgAAACdAAAAoAAAAKIAAACkAAAApgAAAKgAAACtAAAA
-xAAAAMYAAADIAAWMNAAFjDkABYxEAAWMTQAFjGAABYxkAAWMbwAFjHgABYx9AAWMhQAFjIgABYyNAAWM
-nAAFjKAABYynAAWMrwAFjLwABYzBAAWMwwAFjMUABYzKAAWM0gAFjNUABYzaAAWM4gAFjOUABYz3AAWM
-+gAFjP8AAAAAAAAEAQAAAAAAAAA+AAAAAAAAAAAAAAAAAAWNAQ
+TlNCaXRtYXBJbWFnZVJlcKMmJyhfEBBOU0JpdG1hcEltYWdlUmVwWk5TSW1hZ2VSZXBYTlNPYmplY3TS
+IiMqK1dOU0FycmF5oioo0iIjLS5eTlNNdXRhYmxlQXJyYXmjLSoo0zAxCTIzNFdOU1doaXRlXE5TQ29s
+b3JTcGFjZUQwIDAAEAOAC9IiIzY3V05TQ29sb3KiNijSIiM5OldOU0ltYWdlojkoXxAPTlNLZXllZEFy
+Y2hpdmVy0T0+VHJvb3SAAQAAAAgAAAARAAAAGgAAACMAAAAtAAAAMgAAADcAAABFAAAASwAAAFQAAABb
+AAAAaAAAAG8AAAB3AAAAeQAAAH4AAACAAAAAggAAAIcAAACSAAAAlAAAAJYAAACYAAAAnQAAAKAAAACi
+AAAApAAAAKYAAACoAAAArQAAAMQAAADGAAAAyAAFjDQABYw5AAWMRAAFjE0ABYxgAAWMZAAFjHcABYyC
+AAWMiwAFjJAABYyYAAWMmwAFjKAABYyvAAWMswAFjLoABYzCAAWMzwAFjNQABYzWAAWM2AAFjN0ABYzl
+AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
+A
 </mutableData>
         </image>
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
         <image name="CameraIcon400.png" width="150" height="150"/>
         <image name="CancelImageWhite.png" width="256" height="256"/>
         <image name="CancelImageWhite500.png" width="350" height="350"/>
