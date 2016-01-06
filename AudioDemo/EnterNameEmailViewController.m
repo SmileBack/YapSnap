@@ -48,7 +48,9 @@
             [self.progressView setProgress:1.0 animated:YES];
         });
     }
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width - 60, 100);
+    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] initWithFrame:frame];
     // Optional: Place the button in the center of your view.
     loginButton.readPermissions = @[@"public_profile", @"email", @"user_friends"];
     loginButton.center = self.view.center;

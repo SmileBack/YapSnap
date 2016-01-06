@@ -1024,7 +1024,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="5186168E-5BF6-4E29-AD5D-DF7BD7476A0A"/>
+                                <state key="normal" backgroundImage="D8391953-AB6A-4B21-858E-261C63212F0C"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1713,13 +1713,25 @@
                                 </constraints>
                                 <color key="progressTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will only be used for your profile picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngn-Io-GO1">
+                                <rect key="frame" x="0.0" y="357" width="320" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="KUr-bX-O3v"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="ngn-Io-GO1" firstAttribute="centerX" secondItem="o9u-Gc-mLy" secondAttribute="centerX" id="7q5-90-awc"/>
+                            <constraint firstItem="ngn-Io-GO1" firstAttribute="centerY" secondItem="o9u-Gc-mLy" secondAttribute="centerY" constant="89.5" id="9po-Ld-Mup"/>
                             <constraint firstAttribute="centerX" secondItem="zPM-Yr-5zo" secondAttribute="centerX" id="Fac-5n-Ffs"/>
                             <constraint firstAttribute="centerX" secondItem="i7z-1r-1As" secondAttribute="centerX" id="H8v-2A-4ae"/>
                             <constraint firstItem="zPM-Yr-5zo" firstAttribute="top" secondItem="6em-4f-XSd" secondAttribute="bottom" constant="78" id="PMY-Po-dAK"/>
                             <constraint firstItem="zPM-Yr-5zo" firstAttribute="leading" secondItem="o9u-Gc-mLy" secondAttribute="leading" id="Vuh-M3-7vh"/>
+                            <constraint firstItem="ngn-Io-GO1" firstAttribute="width" secondItem="o9u-Gc-mLy" secondAttribute="width" id="a71-WA-W3G"/>
                             <constraint firstItem="i7z-1r-1As" firstAttribute="top" secondItem="6em-4f-XSd" secondAttribute="bottom" constant="54" id="di8-B7-3Rb"/>
                         </constraints>
                     </view>
@@ -2020,7 +2032,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="5186168E-5BF6-4E29-AD5D-DF7BD7476A0A" width="300" height="300">
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
+        <image name="CameraIcon400.png" width="150" height="150"/>
+        <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="CancelImageWhite500.png" width="350" height="350"/>
+        <image name="D8391953-AB6A-4B21-858E-261C63212F0C" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8093,11 +8110,6 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="CameraIcon400.png" width="150" height="150"/>
-        <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="CancelImageWhite500.png" width="350" height="350"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>

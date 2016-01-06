@@ -29,6 +29,7 @@ static YSUser *currentUser;
     user.updatedAt = dictionary[@"updated_at"];
     user.sessionToken = dictionary[@"session_token"];
     user.pushToken = dictionary[@"push_token"];
+    user.facebookID = dictionary[@"facebook_id"];
 
     return user;
 }
@@ -60,8 +61,9 @@ static YSUser *currentUser;
     //BOOL emailIncomplete = [self stringIsIncomplete:self.email];
     BOOL firstNameIncomplete = [self stringIsIncomplete:self.firstName];
     BOOL lastNameIncomplete = [self stringIsIncomplete:self.lastName];
+    BOOL facebookIDIncomplete = [self stringIsIncomplete:self.facebookID];
     
-    return !(firstNameIncomplete || lastNameIncomplete);
+    return !(firstNameIncomplete || facebookIDIncomplete);
 }
 
 - (BOOL) hasSessionToken

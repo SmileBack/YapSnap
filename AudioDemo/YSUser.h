@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSString *sessionToken;
 @property (nonatomic, strong) NSString *pushToken;
 
+@property (nonatomic, strong) NSString *facebookID;
+
 // Helpers for displaying these possibly-nil propertier
 @property (nonatomic, readonly) NSString *displayEmail;
 @property (nonatomic, readonly) NSString *displayNameNotFromContacts;
