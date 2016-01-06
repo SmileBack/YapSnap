@@ -44,6 +44,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomBarBottomConstraint;
 @property (strong, nonatomic) NSArray *audioSourceNames;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryBarWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *replyButtonWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *forwardButtonWidthConstraint;
 
 - (IBAction)didTapNextButton;
 - (IBAction)didTapCancelButton;
@@ -74,12 +76,18 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     if (IS_IPHONE_4_SIZE || IS_IPHONE_5_SIZE) {
         self.continueButtonRightConstraint.constant = -128;
         self.categoryBarWidthConstraint.constant = 320;
+        self.forwardButtonWidthConstraint.constant = 120;
+        self.replyButtonWidthConstraint.constant = 120;
     } else if (IS_IPHONE_6_SIZE) {
         self.continueButtonRightConstraint.constant = -150;
         self.categoryBarWidthConstraint.constant = 375;
+        self.forwardButtonWidthConstraint.constant = 150;
+        self.replyButtonWidthConstraint.constant = 150;
     } else if (IS_IPHONE_6_PLUS_SIZE) {
         self.continueButtonRightConstraint.constant = -170;
         self.categoryBarWidthConstraint.constant = 414;
+        self.forwardButtonWidthConstraint.constant = 165;
+        self.replyButtonWidthConstraint.constant = 165;
     }
     
     for (UIButton *button in @[self.forwardButton, self.replyButton]) {
@@ -88,6 +96,16 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
     }
 
     [self.continueButton startToPulsate];
+    
+    self.replyButton.layer.cornerRadius = 4;
+    self.replyButton.layer.borderWidth = 1;
+    self.replyButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
+    self.replyButton.backgroundColor = [UIColor colorWithRed:1/255.0 green:160.0/255.0 blue:230.0/255.0 alpha:1.0f];
+    
+    self.forwardButton.layer.cornerRadius = 4;
+    self.forwardButton.layer.borderWidth = 1;
+    self.forwardButton.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.7].CGColor;
+    self.forwardButton.backgroundColor = [UIColor colorWithRed:1/255.0 green:160.0/255.0 blue:230.0/255.0 alpha:1.0f];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

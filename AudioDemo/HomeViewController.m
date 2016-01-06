@@ -237,9 +237,11 @@
         }
         
         [self.audioCapture searchWithText:textField.text];
+        /*
         [[API sharedAPI] sendSearchTerm:textField.text
                            withCallback:^(BOOL success, NSError *error){
                            }];
+         */
     } else {
         [self.audioCapture clearSearchResults];
     }
@@ -309,9 +311,11 @@
         [self navigationController:self.navigationController willShowViewController:self animated:NO]; // Refreshes back button
         
         [self.audioCapture searchWithText:self.searchBar.text];
+        /*
         [[API sharedAPI] sendSearchTerm:self.searchBar.text
                            withCallback:^(BOOL success, NSError *error){
                            }];
+         */
     } else {
         [self.audioCapture clearSearchResults];
     }
