@@ -247,8 +247,4 @@
     }
 }
 
-- (void)setState:(TrackViewCellState)state {
-    _state = state;
-}
-
 @end
