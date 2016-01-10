@@ -60,7 +60,7 @@ static YSUser *currentUser;
 {
     //BOOL emailIncomplete = [self stringIsIncomplete:self.email];
     BOOL firstNameIncomplete = [self stringIsIncomplete:self.firstName];
-    BOOL lastNameIncomplete = [self stringIsIncomplete:self.lastName];
+    //BOOL lastNameIncomplete = [self stringIsIncomplete:self.lastName];
     BOOL facebookIDIncomplete = [self stringIsIncomplete:self.facebookID];
     
     return !(firstNameIncomplete || facebookIDIncomplete);

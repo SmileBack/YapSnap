@@ -71,6 +71,8 @@
         self.playCountLabel.textColor = UIColor.blackColor;
         self.artistAndSongLabel.textAlignment = NSTextAlignmentCenter;
         self.yapTextLabel.font = [UIFont fontWithName:@"Futura-Medium" size:30];
+        self.yapTextLabel.numberOfLines = 6;
+        
         for (UIView *view in @[self.trackInfoContainer, self.playCountLabel, self.artistAndSongLabel, self.yapTextLabel, self.senderProfilePicture]) {
             view.translatesAutoresizingMaskIntoConstraints = NO;
             [self addSubview:view];

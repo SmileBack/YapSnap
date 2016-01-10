@@ -23,12 +23,23 @@
     yap.type = dict[@"type"];
     yap.duration = dict[@"duration"];
     yap.text = dict[@"text"];
-    yap.playCount = dict[@"listen_count"];
+    if ([dict[@"listen_count"] isEqual:[NSNull null]]) {
+        yap.playCount = [NSNumber numberWithInt:1];
+    } else {
+        yap.playCount = dict[@"listen_count"];
+    }
     yap.rgbColorComponents = dict[@"color_rgb"];
     yap.pitchValueInCentUnits = dict[@"pitch_value"];
     yap.secondsToFastForward = dict[@"seconds_to_fast_forward"];
     if (![dict[@"facebook_id"] isEqual:[NSNull null]]) {
         yap.senderFacebookId = dict[@"facebook_id"];
+    }
+    if ([dict[@"is_public"] isEqual:[NSNull null]]) {
+        yap.isPublic = NO;
+        NSLog(@"Yap is not public");
+    } else {
+        yap.isPublic = YES;
+        NSLog(@"yap is public");
     }
     
     if ([dict[@"type"]  isEqual: @"SpotifyMessage"]) {
@@ -52,8 +63,6 @@
     yap.receiverPhone = dict[@"receiver_phone"];
     
     yap.notificationType = dict[@"notification_type"];
-    
-    
     
     return yap;
 }

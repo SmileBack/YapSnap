@@ -50,6 +50,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *createOwnYapButton;
 
 @property (strong, nonatomic) IBOutlet UILabel *countdownTimerLabel;
+@property (strong, nonatomic) IBOutlet UILabel *listenCountLabel;
 
 @property (nonatomic) BOOL acceptedFriendRequest;
 
@@ -109,6 +110,13 @@
             self.sendTextButton.hidden = YES;
             self.createOwnYapButton.hidden = NO;
         }
+    }
+    
+    if (self.yap.isPublic) {
+        self.sendTextButton.hidden = YES;
+        self.replyButton.hidden = YES;
+        self.listenCountLabel.hidden = NO;
+        self.listenCountLabel.text = [NSString stringWithFormat:@"Listen Count: %@", self.yap.playCount];
     }
     
     self.player = [STKAudioPlayer new];

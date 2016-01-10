@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sYo-Oj-klg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sYo-Oj-klg">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1024,7 +1024,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="D8391953-AB6A-4B21-858E-261C63212F0C"/>
+                                <state key="normal" backgroundImage="B54AC118-5FE7-45EB-9DE8-1556551F7699"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1527,6 +1527,15 @@
                                     <constraint firstAttribute="height" constant="20" id="wE1-fH-oeX"/>
                                 </constraints>
                             </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQL-vQ-wZf">
+                                <rect key="frame" x="-0.5" y="479" width="320" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="r1J-qa-tnt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1543,6 +1552,7 @@
                             <constraint firstItem="i6A-Iw-epG" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="70" id="GSv-rI-ErR"/>
                             <constraint firstItem="Cx1-jS-IBl" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="-4" id="Hvs-9K-D3z"/>
                             <constraint firstItem="xnV-2q-8YQ" firstAttribute="centerX" secondItem="8Sd-XX-W3O" secondAttribute="centerX" id="ISm-nb-deO"/>
+                            <constraint firstItem="xQL-vQ-wZf" firstAttribute="width" secondItem="8Sd-XX-W3O" secondAttribute="width" id="Ifz-Q0-d2h"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xnV-2q-8YQ" secondAttribute="trailing" constant="-4" id="J1y-an-Fbw"/>
                             <constraint firstItem="JrI-Br-Kpk" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" id="KXQ-th-W8z"/>
                             <constraint firstItem="Cjl-Kr-TQg" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="-21" id="KzG-iq-Oyq"/>
@@ -1559,6 +1569,7 @@
                             <constraint firstAttribute="width" secondItem="zM8-Va-aql" secondAttribute="width" id="V4B-5j-4d9"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="PvF-Jb-cMD" secondAttribute="bottom" constant="43" id="VCg-cf-9Jy"/>
                             <constraint firstItem="cEy-3F-cQc" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="65" id="W4l-Kr-2Pz"/>
+                            <constraint firstItem="xQL-vQ-wZf" firstAttribute="centerX" secondItem="8Sd-XX-W3O" secondAttribute="centerX" id="WL2-gn-hyq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pHt-nE-rIi" secondAttribute="trailing" constant="-4" id="WrI-zb-vyA"/>
                             <constraint firstItem="i6A-Iw-epG" firstAttribute="leading" secondItem="8Sd-XX-W3O" secondAttribute="leadingMargin" constant="-6" id="XER-Ke-paw"/>
                             <constraint firstItem="gZw-Qu-kTZ" firstAttribute="top" secondItem="Cx1-jS-IBl" secondAttribute="top" id="Y4G-4s-o2G"/>
@@ -1570,6 +1581,7 @@
                             <constraint firstItem="pHt-nE-rIi" firstAttribute="top" secondItem="adb-GP-urO" secondAttribute="bottom" constant="11" id="eMV-GR-5zz"/>
                             <constraint firstItem="zM8-Va-aql" firstAttribute="top" secondItem="VsM-tW-JgD" secondAttribute="bottom" constant="-20" id="ead-Mn-Lk6"/>
                             <constraint firstItem="pHt-nE-rIi" firstAttribute="baseline" secondItem="Cx1-jS-IBl" secondAttribute="baseline" id="fgZ-4b-5Zl"/>
+                            <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="xQL-vQ-wZf" secondAttribute="bottom" constant="18" id="gBy-Hr-hll"/>
                             <constraint firstItem="uey-Gz-VuN" firstAttribute="centerX" secondItem="8Sd-XX-W3O" secondAttribute="centerX" id="gVo-Dh-2mz"/>
                             <constraint firstAttribute="centerX" secondItem="7Kj-1X-Ut8" secondAttribute="centerX" id="gdU-d3-ewh"/>
                             <constraint firstItem="Mzh-6Q-CnN" firstAttribute="top" secondItem="7Kj-1X-Ut8" secondAttribute="bottom" constant="5" id="jNg-pm-Gdi"/>
@@ -1591,6 +1603,7 @@
                         <outlet property="createOwnYapButton" destination="xnV-2q-8YQ" id="3Td-ah-IUf"/>
                         <outlet property="friendRequestActivityIndicator" destination="PvF-Jb-cMD" id="lKe-gV-g0F"/>
                         <outlet property="friendRequestButton" destination="gZw-Qu-kTZ" id="tYI-eO-AnX"/>
+                        <outlet property="listenCountLabel" destination="xQL-vQ-wZf" id="Ipg-sF-LNY"/>
                         <outlet property="progressView" destination="zM8-Va-aql" id="Oeq-db-IdL"/>
                         <outlet property="replayButton" destination="gzM-5p-4ue" id="Dhq-hL-NhR"/>
                         <outlet property="replyButton" destination="Cx1-jS-IBl" id="1Jc-br-Hny"/>
@@ -2034,10 +2047,7 @@
     <resources>
         <image name="AddRecipientsIcon2.png" width="128" height="128"/>
         <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="CameraIcon400.png" width="150" height="150"/>
-        <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="CancelImageWhite500.png" width="350" height="350"/>
-        <image name="D8391953-AB6A-4B21-858E-261C63212F0C" width="300" height="300">
+        <image name="B54AC118-5FE7-45EB-9DE8-1556551F7699" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8110,6 +8120,9 @@ AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
 A
 </mutableData>
         </image>
+        <image name="CameraIcon400.png" width="150" height="150"/>
+        <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="CancelImageWhite500.png" width="350" height="350"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>
