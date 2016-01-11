@@ -77,12 +77,24 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
         [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"id,first_name,last_name,email"}]
          startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
              if (!error && [result isKindOfClass:[NSDictionary class]]) {
+                    NSLog(@"RESULT: %@", result);
                      [[API sharedAPI] updateFirstName:result[@"first_name"]
                                              lastName:result[@"last_name"]
                                                 email:result[@"email"]
                                    facebookIdentifier:result[@"id"]
                                          withCallBack:^(BOOL success, NSError *error) {
                                              [self.loadingSpinner stopAnimating];
+                                             
+                                             if (!result[@"first_name"] || ([result[@"first_name"] isEqual: [NSNull null]])) {
+                                                 NSLog(@"FIRST NAME IS NULL!!!");
+                                             } else if (!result[@"last_name"] || ([result[@"last_name"] isEqual: [NSNull null]])) {
+                                                 NSLog(@"LAST NAME IS NULL!!!");
+                                             } else if (!result[@"email"] || ([result[@"email"] isEqual: [NSNull null]])) {
+                                                 NSLog(@"EMAIL IS NULL");
+                                             } else if (!result[@"id"] || ([result[@"id"] isEqual: [NSNull null]])) {
+                                                 NSLog(@"id IS NULL");
+                                             }
+                                             
                                              if (success) {
                                                  [self.view endEditing:YES];
                                                  [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETED_REGISTRATION_NOTIFICATION object:nil];

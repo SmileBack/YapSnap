@@ -589,6 +589,7 @@ static API *sharedAPI;
                  return;
              }
              NSDictionary *response = responseObject;
+             NSLog(@"Current User: %@", responseObject);
              YSUser *me = [YSUser userFromDictionary:response];
              [YSUser setCurrentUser:me];
              callback(me, nil);

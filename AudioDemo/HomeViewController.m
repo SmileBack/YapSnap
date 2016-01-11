@@ -376,7 +376,11 @@
                             [self.hackImageView sd_setImageWithURL:[NSURL URLWithString:albumImageUrlOfFirstSong]];
                         }];
 
-                        [self showOverlay];
+                        //HACK: Don't show overlay to users who have already registered previously
+                        if ([YSUser currentUser].userID.integerValue > 4176) {
+                            [self showOverlay];
+                        }
+                        
                         [self updateYapsButtonAnimation];
                     }];
     
