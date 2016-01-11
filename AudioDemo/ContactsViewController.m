@@ -388,13 +388,20 @@ static NSString *CellIdentifier = @"Cell";
     cell.backgroundColor = [UIColor whiteColor];
     PhoneContact *contact;
     BOOL selected = NO;
+    cell.selectionView.layer.borderColor = selected ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
+    cell.nameLabel.textColor = [UIColor blackColor];
+    cell.checkImageView.hidden = NO;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         contact = self.filteredContacts[indexPath.row];
     } else if (indexPath.section == ContactsViewControllerHeaderSectionPublic) {
         contact = nil;
-        cell.nameLabel.text = @"Make this Yap public";
+        cell.nameLabel.text = @"Add To Public Feed";
+        cell.nameLabel.textColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor lightGrayColor];
         cell.phoneLabel.text = nil;
         selected = ((YapBuilder *)self.builder).isPublic;
+        cell.selectionView.layer.borderColor = [UIColor whiteColor].CGColor;
+        cell.checkImageView.hidden = selected ? NO : YES;
     } else if (indexPath.section == ContactsViewControllerHeaderSectionRecent) {
         contact = [[ContactManager sharedContactManager] recentContactAtIndex:indexPath.row];
     } else {
@@ -408,7 +415,6 @@ static NSString *CellIdentifier = @"Cell";
         selected = [selectedContactsPhoneNumbers containsObject:contact.phoneNumber];
     }
     
-    cell.selectionView.layer.borderColor = selected ? THEME_RED_COLOR.CGColor : [UIColor lightGrayColor].CGColor;
     cell.selectionView.backgroundColor = selected ? THEME_RED_COLOR : [UIColor clearColor];
     cell.nameLabel.font = selected ? [UIFont fontWithName:@"Helvetica-Bold" size:19] : [UIFont fontWithName:@"Helvetica" size:19];
     

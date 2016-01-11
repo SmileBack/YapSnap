@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *typeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (strong, nonatomic) IBOutlet UIView *selectionView;
+@property (strong, nonatomic) IBOutlet UIImageView *checkImageView;
 
 @end
