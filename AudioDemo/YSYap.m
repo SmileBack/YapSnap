@@ -23,18 +23,19 @@
     yap.type = dict[@"type"];
     yap.duration = dict[@"duration"];
     yap.text = dict[@"text"];
-    if ([dict[@"listen_count"] isEqual:[NSNull null]]) {
-        yap.playCount = [NSNumber numberWithInt:1];
-    } else {
-        yap.playCount = dict[@"listen_count"];
-    }
+    yap.playCount = dict[@"listen_count"];
     yap.rgbColorComponents = dict[@"color_rgb"];
     yap.pitchValueInCentUnits = dict[@"pitch_value"];
     yap.secondsToFastForward = dict[@"seconds_to_fast_forward"];
     if (![dict[@"facebook_id"] isEqual:[NSNull null]]) {
         yap.senderFacebookId = dict[@"facebook_id"];
     }
-    if ([dict[@"is_public"] isEqual:[NSNull null]]) {
+    
+    
+    NSString* isPublicString = [NSString stringWithFormat:@"%@", dict[@"is_public"]];
+    NSLog(@"isPublicString: %@", isPublicString);
+    
+    if ([isPublicString  isEqual: @"0"] || [dict[@"is_public"] isEqual:[NSNull null]]) {
         yap.isPublic = NO;
         NSLog(@"Yap is not public");
     } else {

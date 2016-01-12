@@ -180,8 +180,9 @@ didFinishPlayingQueueItemId:(NSObject *)queueItemId
     if (yap.playCount) {
         [[API sharedAPI] updatePlayCountForYap:yap callback:^(BOOL success, NSError *error) {
             if (success) {
-                yap.playCount = [NSNumber numberWithInt:yap.playCount.intValue + 1];
-                [self.collectionView reloadItemsAtIndexPaths:self.collectionView.indexPathsForSelectedItems];;
+                //TODO: UNDOOOO
+                //yap.playCount = [NSNumber numberWithInt:yap.playCount.intValue + 1];
+                //[self.collectionView reloadItemsAtIndexPaths:self.collectionView.indexPathsForSelectedItems];;
             }
         }];
     }

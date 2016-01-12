@@ -126,15 +126,17 @@
             if (user) {
                 // TODO save user state??? - do in API
                 
-                if (!user.isUserInfoComplete) {
-                    [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
-                } else {
-                    [self.view endEditing:YES];
-                    
-                    //[[NSNotificationCenter defaultCenter] postNotificationName:COMPLETED_REGISTRATION_NOTIFICATION object:nil];
-                    
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                }
+                [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
+                
+//                if (!user.isUserInfoComplete) {
+//                    [self performSegueWithIdentifier:@"EnterNameAndEmailViewControllerSegue" sender:self];
+//                } else {
+//                    [self.view endEditing:YES];
+//                    
+//                    //[[NSNotificationCenter defaultCenter] postNotificationName:COMPLETED_REGISTRATION_NOTIFICATION object:nil];
+//                    
+//                    [self dismissViewControllerAnimated:YES completion:nil];
+//                }
             } else {
                 // TODO: different UIAlert depending on error (no internet, wrong code, etc.)
                 //NSLog([NSString stringWithFormat:@"error: %@", error]);

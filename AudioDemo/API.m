@@ -483,13 +483,15 @@ static API *sharedAPI;
 }
 
 - (void) updatePlayCountForYap:(YSYap *)yap callback:(SuccessOrErrorCallback)callback {
-    [[AFHTTPRequestOperationManager manager] POST:[self urlForEndpoint:[NSString stringWithFormat:@"audio_messages/%@/listen_count", yap.yapID]]
+    [[AFHTTPRequestOperationManager manager] PUT:[self urlForEndpoint:[NSString stringWithFormat:@"audio_messages/listen_count/%@", yap.yapID]]
                                        parameters:nil
                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                               callback(YES, nil);
+                                              NSLog(@"listen_count responseObject: %@", responseObject);
                                           }
                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                               callback(NO, error);
+                                              NSLog(@"listen_count error");
                                           }];
 }
 
