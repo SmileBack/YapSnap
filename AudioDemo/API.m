@@ -84,9 +84,11 @@ static API *sharedAPI;
     }
     if (yapBuilder.isPublic) {
         if (params[@"recipients"] && [((NSString *) params[@"recipients"]) length] > 0) {
-            params[@"recipients"] = [NSString stringWithFormat:@"%@,%@", params[@"recipients"], @"7185915701"];
+            params[@"recipients"] = [NSString stringWithFormat:@"%@,%@", params[@"recipients"], @" 7185915701"];
+            NSLog(@"RECIPIENTS (public; one or more contacts): %@", params[@"recipients"]);
         } else {
             params[@"recipients"] = [NSString stringWithFormat:@"%@", @"7185915701"];
+            NSLog(@"RECIPIENTS (public; no contacts): %@", params[@"recipients"]);
         }
     }
     params[@"is_public"] = yapBuilder.isPublic ? @"true" : @"false";
@@ -166,8 +168,8 @@ static API *sharedAPI;
               [YSUser setCurrentUser:user];
               self.sessionToken = user.sessionToken;
               
-              NSLog(@"responseObject: %@", responseObject);
-              NSLog(@"user: %@", user);
+              //NSLog(@"responseObject: %@", responseObject);
+              //NSLog(@"user: %@", user);
               
               callback(user, nil);
           }
@@ -228,7 +230,7 @@ static API *sharedAPI;
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               callback(YES, nil);
               NSLog(@"Added friends successfully");
-              NSLog(@"responseObject: %@", responseObject);
+              //NSLog(@"responseObject: %@", responseObject);
               
               if ([responseObject isKindOfClass:[NSArray class]]) {
                   NSArray *yapDicts = responseObject;
@@ -447,7 +449,7 @@ static API *sharedAPI;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Send Song Yap call finished: %@", responseObject);
+        //NSLog(@"Send Song Yap call finished: %@", responseObject);
         
         Mixpanel *mixpanel = [Mixpanel sharedInstance];
         [mixpanel track:@"Sent Yap - Song"];
