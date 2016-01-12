@@ -49,7 +49,7 @@
         switch (action) {
             case YTYapSendingActionReply:
             {
-                if (yap.sentByCurrentUser) {
+                if (yap.sentByCurrentUser && !yap.isPublic) {
                     YSContact *contact = [YSContact contactWithName:yap.displayReceiverName andPhoneNumber:yap.receiverPhone];
                     self.contacts = @[contact];
                 } else {
