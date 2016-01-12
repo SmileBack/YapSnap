@@ -17,7 +17,6 @@
 #define FEEDBACK_SECTION @"Send Us Feedback"
 #define DOWNLOAD_SPOTIFY_SECTION @"Download Spotify"
 #define LOGOUT_SECTION @"Logout"
-#define ADD_FRIENDS_SECTION @"Add Friends"
 
 @interface SettingsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 

@@ -2048,7 +2048,7 @@
 				ORGANIZATIONNAME = Appcoda;
 				TargetAttributes = {
 					F44B0C3E16DA404700E6CD88 = {
-						DevelopmentTeam = S7LF8DWGYS;
+						DevelopmentTeam = N4GHD466L7;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;

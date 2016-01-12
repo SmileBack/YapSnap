@@ -98,7 +98,7 @@
 - (NSArray *) sections
 {
     if (!_sections) {
-        _sections = @[FIRST_NAME_SECTION, LAST_NAME_SECTION, EMAIL_SECTION, PHONE_NUMBER_SECTION, ADD_FRIENDS_SECTION, CLEAR_YAPS_SECTION, FEEDBACK_SECTION, DOWNLOAD_SPOTIFY_SECTION, LOGOUT_SECTION];
+        _sections = @[FIRST_NAME_SECTION, LAST_NAME_SECTION, EMAIL_SECTION, PHONE_NUMBER_SECTION, CLEAR_YAPS_SECTION, FEEDBACK_SECTION, DOWNLOAD_SPOTIFY_SECTION, LOGOUT_SECTION];
     }
     return _sections;
 }
@@ -186,9 +186,6 @@
                                               otherButtonTitles:@"Download", nil];
         self.alertViewString = DOWNLOAD_SPOTIFY;
         [alert show];
-    } else if ([ADD_FRIENDS_SECTION isEqualToString:section]) {
-        NSLog(@"Tapped Add Friends");
-        [self performSegueWithIdentifier:@"Contacts Segue" sender:nil];
     }
 }
 
