@@ -40,7 +40,8 @@
         }];
     }
     if (yap.playCount && ![yap.playCount isEqual:[NSNull null]]) {
-        trackView.playCountLabel.text = [NSString stringWithFormat:@"%@", yap.playCount];
+        trackView.playCountLabel.text = [NSString stringWithFormat:@"Listens: %@", yap.playCount];
+        trackView.playCountLabel.textColor = THEME_DARK_BLUE_COLOR;
     }
     trackView.yapTextLabel.text = yap.text;
     trackView.songVersionOneButton.hidden = YES;

@@ -35,6 +35,7 @@ typedef void (^IsFriendCallback)(BOOL success, NSError *error, NSNumber *isFrien
 typedef void (^OnboardingTracksCallback)(NSArray *songs, NSError *error);
 typedef void (^ITunesUploadCallback)(YSITunesTrack *itunesTrack, NSError *error);
 typedef void (^ITunesTracksCallback)(NSArray *tracks, NSError *error);
+typedef void (^ListenCountCallback)(NSNumber *count, NSError *error);
 
 
 @interface API : NSObject
@@ -46,7 +47,7 @@ typedef void (^ITunesTracksCallback)(NSArray *tracks, NSError *error);
 - (void) confirmSessionWithCode:(NSString *)code withCallback:(UserCallback)callback;
 - (void) getYapsWithCallback:(YapsCallback)callback;
 - (void) getPublicYapsWithCallback:(YapsCallback)callback;
-- (void) updatePlayCountForYap:(YSYap *)yap callback:(SuccessOrErrorCallback)callback;
+- (void) updatePlayCountForYap:(YSYap *)yap callback:(ListenCountCallback)callback;
 //- (void) getTracksWithCallback:(TracksCallback)callback;
 - (void) updateYapStatus:(YSYap *)yap toStatus:(NSString *)status withCallback:(IsFriendCallback)callback;
 - (void) unopenedYapsCountWithCallback:(YapCountCallback)callback;

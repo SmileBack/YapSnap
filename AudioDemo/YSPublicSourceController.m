@@ -18,7 +18,7 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "SearchArtistAlertView.h"
 #import "YTTrackGroup.h"
-#import "YSYapsCollectionViewDataSource.h"x
+#import "YSYapsCollectionViewDataSource.h"
 #import "Mixpanel/MPTweakInline.h"
 #import "NSArray+Shuffle.h"
 #import "UICollectionViewFlowLayout+YS.h"
@@ -178,14 +178,16 @@ didFinishPlayingQueueItemId:(NSObject *)queueItemId
 - (BOOL)startAudioCapture {
     YSYap *yap = self.yaps[((NSIndexPath *)[self.collectionView indexPathsForSelectedItems].firstObject).row];
     if (yap.playCount) {
-        [[API sharedAPI] updatePlayCountForYap:yap callback:^(BOOL success, NSError *error) {
-            if (success) {
-                //TODO: UNDOOOO
-                //yap.playCount = [NSNumber numberWithInt:yap.playCount.intValue + 1];
-                //[self.collectionView reloadItemsAtIndexPaths:self.collectionView.indexPathsForSelectedItems];;
+        [[API sharedAPI] updatePlayCountForYap:yap callback:^(NSNumber *listenCount, NSError *error) {
+            if (error) {
+                NSLog(@"Error with listen count");
+            } else {
+                yap.playCount = listenCount;
+                [self.collectionView reloadItemsAtIndexPaths:self.collectionView.indexPathsForSelectedItems];;
             }
         }];
     }
+    
     if (yap.track) {
         NSDictionary *headers = [[SpotifyAPI sharedApi] getAuthorizationHeaders];
         if ([yap.track.previewURL isEqual:[NSNull null]]) {

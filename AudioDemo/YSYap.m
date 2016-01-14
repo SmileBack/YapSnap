@@ -23,7 +23,13 @@
     yap.type = dict[@"type"];
     yap.duration = dict[@"duration"];
     yap.text = dict[@"text"];
-    yap.playCount = dict[@"listen_count"];
+    
+    if (![dict[@"listen_count"] isEqual:[NSNull null]]) {
+        yap.playCount = dict[@"listen_count"];
+    } else {
+        yap.playCount = [NSNumber numberWithInt:1];
+    }
+
     yap.rgbColorComponents = dict[@"color_rgb"];
     yap.pitchValueInCentUnits = dict[@"pitch_value"];
     yap.secondsToFastForward = dict[@"seconds_to_fast_forward"];

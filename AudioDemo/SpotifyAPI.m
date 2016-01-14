@@ -102,7 +102,7 @@ static SpotifyAPI *sharedInstance;
     [self setAuthorizationOnManager:manager];//!!!
     [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *response = responseObject;
-        NSLog(@"Response Object: %@", responseObject);
+        //NSLog(@"Response Object: %@", responseObject);
         NSArray *items = response[@"tracks"][@"items"];
         NSArray *songs = [YSTrack tracksFromSpotifyDictionaryArray:items inCategory:NO];
         callback(songs, nil);   
