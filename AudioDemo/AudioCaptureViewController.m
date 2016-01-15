@@ -60,7 +60,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = THEME_BACKGROUND_COLOR;
-    self.audioSourceNames = @[@"Public", @"Upload", @"Top Charts", @"Moods"];
+    self.audioSourceNames = @[@"Public", @"Top Charts", @"Moods", @"Upload"];
     
     self.categorySelectorContainer.control = self.categorySelectorView;
     self.navigationController.navigationBar.barTintColor = THEME_BACKGROUND_COLOR;
@@ -124,6 +124,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         }
         self.categorySelectorView.items = items;
         self.categorySelectorView.selectedSegmentIndex = 1;
+        [self segmentedControlDidChanage:self.categorySelectorView];
     }
     
     // The following line is probably unnecessary, but I added it just to be safe
@@ -285,20 +286,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
         case 1:
         {
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Changed Tab - Upload"];
-            
-            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSelectSongViewController alloc] init]];
-            if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
-                nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
-            }
-            audioSource = nc;
-            
-            break;
-        }
-        case 2:
-        {
-            Mixpanel *mixpanel = [Mixpanel sharedInstance];
-            [mixpanel track:@"Changed Tab - Genres"];
+            [mixpanel track:@"Changed Tab - Top Charts"];
             
             YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSGenreGroupViewController alloc] init]];
             if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
@@ -307,7 +295,7 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
             audioSource = nc;
         }
             break;
-        case 3:
+        case 2:
         {
             Mixpanel *mixpanel = [Mixpanel sharedInstance];
             [mixpanel track:@"Changed Tab - Moods"];
@@ -319,6 +307,19 @@ static const NSTimeInterval TIMER_INTERVAL = .05; //.02;
             audioSource = nc;
         }
             break;
+        case 3:
+        {
+            Mixpanel *mixpanel = [Mixpanel sharedInstance];
+            [mixpanel track:@"Changed Tab - Upload"];
+            
+            YSAudioSourceNavigationController *nc = [[YSAudioSourceNavigationController alloc]  initWithRootViewController:[[YSSelectSongViewController alloc] init]];
+            if ([self.parentViewController conformsToProtocol:@protocol(UINavigationControllerDelegate)]) {
+                nc.delegate = (id<UINavigationControllerDelegate>)self.parentViewController;
+            }
+            audioSource = nc;
+            
+            break;
+        }
         default:
             NSAssert(false, @"index out of bounds on scroll bar");
             break;
