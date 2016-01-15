@@ -183,7 +183,10 @@ didFinishPlayingQueueItemId:(NSObject *)queueItemId
                 NSLog(@"Error with listen count");
             } else {
                 yap.playCount = listenCount;
-                [self.collectionView reloadItemsAtIndexPaths:self.collectionView.indexPathsForSelectedItems];;
+                YapTrackCollectionViewCell *cell = (YapTrackCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
+                if (yap.playCount && ![yap.playCount isEqual:[NSNull null]]) {
+                    cell.trackView.playCountLabel.text = [NSString stringWithFormat:@"Listens: %@", yap.playCount];
+                }
             }
         }];
     }
