@@ -730,10 +730,20 @@ static API *sharedAPI;
 
 - (void) updateFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email facebookIdentifier:(NSString*)facebookIdentifier withCallBack:(SuccessOrErrorCallback)callback
 {
-    [self updateUserData:@{@"first_name": firstName,
-                           @"last_name": lastName,
-                           @"email": email,
-                           @"facebook_id": facebookIdentifier}
+    NSMutableDictionary *data = [NSMutableDictionary dictionaryWithCapacity:4];
+    if (firstName) {
+        data[@"first_name"] = firstName;
+    }
+    if (lastName) {
+       data[@"last_name"] = lastName;
+    }
+    if (email) {
+        data[@"email"] = email;
+    }
+    if (facebookIdentifier) {
+        data[@"facebook_id"] = facebookIdentifier;
+    }
+    [self updateUserData:data
             withCallback:callback];
 }
 
