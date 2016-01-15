@@ -7,10 +7,10 @@
 //
 
 #import "AmazonAPI.h"
-#import <AWSiOSSDKv2/AWSCore.h>
-#import <AWSiOSSDKv2/S3.h>
-#import <AWSiOSSDKv2/AWSS3TransferManager.h>
-#import <AWSiOSSDKv2/AWSCredentialsProvider.h>
+#import <AWSCore/AWSCore.h>
+#import <AWSS3/AWSS3.h>
+#import <AWSS3/AWSS3TransferManager.h>
+#import <AWSCore/AWSCredentialsProvider.h>
 #import "YSUser.h"
 
 static AmazonAPI *sharedAPI;
@@ -29,11 +29,10 @@ static AmazonAPI *sharedAPI;
 
 - (void) setupAws
 {
-    AWSStaticCredentialsProvider *creds = [AWSStaticCredentialsProvider credentialsWithAccessKey:@"AKIAIDOJIA33U2VL5OPA"
-                                                                                       secretKey:@"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"];
-
-    AWSServiceConfiguration *configuration = [AWSServiceConfiguration configurationWithRegion:AWSRegionUSEast1
-                                                                          credentialsProvider:creds];
+    AWSStaticCredentialsProvider *creds = [[AWSStaticCredentialsProvider alloc] initWithAccessKey:@"AKIAIDOJIA33U2VL5OPA"
+                                                                                        secretKey:@"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"];
+    AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1
+                                                                         credentialsProvider:creds];
     [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
 }
 
@@ -52,7 +51,8 @@ static AmazonAPI *sharedAPI;
 
     NSString *url = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, fileName];
     
-    [[transferManager upload:uploadRequest] continueWithBlock:^id(BFTask *task) {
+    
+    [[transferManager upload:uploadRequest] continueWithBlock:^id(AWSTask *task) {
         if (task.error) {
             callback(nil, nil, task.error);
         } else {
@@ -78,7 +78,7 @@ static AmazonAPI *sharedAPI;
 
     NSString *url = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, fileName];
     
-    [[transferManager upload:uploadRequest] continueWithBlock:^id(BFTask *task) {
+    [[transferManager upload:uploadRequest] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
         if (task.error) {
             NSLog(@"Amazon image error: %@", task.error);
             callback(nil, nil, task.error);
@@ -103,7 +103,7 @@ static AmazonAPI *sharedAPI;
     
     NSString *url = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, fileName];
     
-    [[transferManager upload:uploadRequest] continueWithBlock:^id(BFTask *task) {
+    [[transferManager upload:uploadRequest] continueWithBlock:^id(AWSTask *task) {
         if (task.error) {
             callback(nil, nil, task.error);
         } else {

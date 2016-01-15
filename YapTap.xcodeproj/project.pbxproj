@@ -2028,6 +2028,7 @@
 				F44B0C3D16DA404700E6CD88 /* Resources */,
 				A62B2CFFDA4212A856214F19 /* Copy Pods Resources */,
 				787A6D931A4DD800001551C6 /* ShellScript */,
+				81F3AAC89511B4FEE1F5AAA6 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2284,6 +2285,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Crashlytics.framework/run 6621dbca453461988440d16db5e4fbe9a79da991 1e9913b7a1892da0cc9252dc74c1d7ce3b1762db7128e1a1ae963030516a691c";
+		};
+		81F3AAC89511B4FEE1F5AAA6 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YapTap/Pods-YapTap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		A62B2CFFDA4212A856214F19 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
