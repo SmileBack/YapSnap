@@ -32,6 +32,7 @@
 		37D71F791A40B26E00267B7A /* SpotifyLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D71F781A40B26E00267B7A /* SpotifyLogo@2x.png */; };
 		5D02315F1B9899EA0011FD1C /* YSRecentSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D02315E1B9899EA0011FD1C /* YSRecentSourceController.m */; };
 		5D0231621B98BED20011FD1C /* YSEmptyScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0231611B98BED20011FD1C /* YSEmptyScreenView.m */; };
+		5D105F981C4999620058AE4D /* GiphySelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D105F971C4999620058AE4D /* GiphySelectionViewController.m */; };
 		5D1E696A1BA362B1002E8212 /* YSMoodGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E69691BA362B1002E8212 /* YSMoodGroupViewController.m */; };
 		5D1E696D1BA362C0002E8212 /* YSGenreGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E696C1BA362C0002E8212 /* YSGenreGroupViewController.m */; };
 		5D1E69701BA3685A002E8212 /* YSSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E696F1BA3685A002E8212 /* YSSpinnerView.m */; };
@@ -49,6 +50,7 @@
 		5D6EA1C21C1B56FE00CA00AC /* YSPublicSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6EA1C11C1B56FE00CA00AC /* YSPublicSourceController.m */; };
 		5D6EA1C61C1B650C00CA00AC /* YSYapsCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6EA1C51C1B650C00CA00AC /* YSYapsCollectionViewDataSource.m */; };
 		5D9D47711B9A2BED00A3CB1D /* UIImageView+AudioPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D47701B9A2BED00A3CB1D /* UIImageView+AudioPlot.m */; };
+		5D9FAC741C52E0B40090AF74 /* GifCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9FAC731C52E0B40090AF74 /* GifCell.m */; };
 		5DA370721B864D2600A70DAC /* YSSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA370711B864D2600A70DAC /* YSSegmentedControl.m */; };
 		5DFD303A1B98CD0B00EDA581 /* TrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFD30391B98CD0B00EDA581 /* TrackView.m */; };
 		5DFD303D1B98D06500EDA581 /* UICollectionViewFlowLayout+YS.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFD303C1B98D06500EDA581 /* UICollectionViewFlowLayout+YS.m */; };
@@ -379,6 +381,8 @@
 		5D02315E1B9899EA0011FD1C /* YSRecentSourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSRecentSourceController.m; sourceTree = "<group>"; };
 		5D0231601B98BED20011FD1C /* YSEmptyScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSEmptyScreenView.h; sourceTree = "<group>"; };
 		5D0231611B98BED20011FD1C /* YSEmptyScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSEmptyScreenView.m; sourceTree = "<group>"; };
+		5D105F961C4999620058AE4D /* GiphySelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiphySelectionViewController.h; sourceTree = "<group>"; };
+		5D105F971C4999620058AE4D /* GiphySelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiphySelectionViewController.m; sourceTree = "<group>"; };
 		5D1E69681BA362B1002E8212 /* YSMoodGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSMoodGroupViewController.h; sourceTree = "<group>"; };
 		5D1E69691BA362B1002E8212 /* YSMoodGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSMoodGroupViewController.m; sourceTree = "<group>"; };
 		5D1E696B1BA362C0002E8212 /* YSGenreGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSGenreGroupViewController.h; sourceTree = "<group>"; };
@@ -407,6 +411,8 @@
 		5D6EA1C51C1B650C00CA00AC /* YSYapsCollectionViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSYapsCollectionViewDataSource.m; sourceTree = "<group>"; };
 		5D9D476F1B9A2BED00A3CB1D /* UIImageView+AudioPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AudioPlot.h"; sourceTree = "<group>"; };
 		5D9D47701B9A2BED00A3CB1D /* UIImageView+AudioPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AudioPlot.m"; sourceTree = "<group>"; };
+		5D9FAC721C52E0B40090AF74 /* GifCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifCell.h; sourceTree = "<group>"; };
+		5D9FAC731C52E0B40090AF74 /* GifCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifCell.m; sourceTree = "<group>"; };
 		5DA370701B864D2600A70DAC /* YSSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSSegmentedControl.h; sourceTree = "<group>"; };
 		5DA370711B864D2600A70DAC /* YSSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSSegmentedControl.m; sourceTree = "<group>"; };
 		5DFD30381B98CD0B00EDA581 /* TrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackView.h; sourceTree = "<group>"; };
@@ -936,6 +942,24 @@
 				37D413BA19D21A1F00021548 /* FontAwesome.ttf */,
 			);
 			path = resources;
+			sourceTree = "<group>";
+		};
+		5D105F951C4999490058AE4D /* Giphy */ = {
+			isa = PBXGroup;
+			children = (
+				5D105F961C4999620058AE4D /* GiphySelectionViewController.h */,
+				5D105F971C4999620058AE4D /* GiphySelectionViewController.m */,
+				5D9FAC721C52E0B40090AF74 /* GifCell.h */,
+				5D9FAC731C52E0B40090AF74 /* GifCell.m */,
+			);
+			name = Giphy;
+			sourceTree = "<group>";
+		};
+		5D105F991C4999920058AE4D /* Giphy */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Giphy;
 			sourceTree = "<group>";
 		};
 		5D3CD7A31B8FB22C00B0F03C /* Song Group Page */ = {
@@ -1750,6 +1774,7 @@
 		FC0C1D3F1A45EE5E00B148AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5D105F951C4999490058AE4D /* Giphy */,
 				FCEE680B1B8E93B20010B298 /* iTunes */,
 				784E35EA1A659BD00029AA01 /* Audio Capture */,
 				783CCF711B33A4FE00E3B5BF /* Spotify Page */,
@@ -1831,6 +1856,7 @@
 		FC609BC01A3CC22F00182F08 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5D105F991C4999920058AE4D /* Giphy */,
 				FC7C42AE1B8E992400629AA8 /* iTunes */,
 				FCFCE4631AF567E80094926E /* Spotify */,
 				FCFCE44E1AF527F20094926E /* Builders */,
@@ -2387,6 +2413,7 @@
 				783CCF781B3466A800E3B5BF /* YTRoundButton.m in Sources */,
 				78141D491BB8CCC10091B8B6 /* APAddressBookRefWrapper.m in Sources */,
 				FC7C42B11B8E993600629AA8 /* YSITunesTrack.m in Sources */,
+				5D9FAC741C52E0B40090AF74 /* GifCell.m in Sources */,
 				78141D7A1BB8CD150091B8B6 /* APEmailWithLabel.m in Sources */,
 				5D1E69731BA374B2002E8212 /* YSSTKAudioPlayerDelegate.m in Sources */,
 				374383E519CE2DCA0009C323 /* EnterCodeViewController.m in Sources */,
@@ -2397,6 +2424,7 @@
 				78141D9A1BB8DB050091B8B6 /* TracksCache.m in Sources */,
 				FC80F3D11A3CC6BD00F7ABD0 /* YSTrack.m in Sources */,
 				FC1E89B81A4B852C007A8CDA /* SpotifyTrackView.m in Sources */,
+				5D105F981C4999620058AE4D /* GiphySelectionViewController.m in Sources */,
 				780D43251B0646770060DAED /* EZAudioPlayer.m in Sources */,
 				FCEF99401A6D7BF2000FDE4C /* YapCell.m in Sources */,
 				FC029EA21A96BC190013B866 /* YSContact.m in Sources */,

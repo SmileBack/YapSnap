@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sYo-Oj-klg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10089" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sYo-Oj-klg">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -577,7 +577,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6ax-OF-ZYp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="R9f-jX-Qam">
-                        <rect key="frame" x="0.0" y="44" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Uk7-Dg-fop">
@@ -591,7 +591,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="W8t-1a-vba">
-                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="iTO-dn-ews" id="JfJ-lh-W15"/>
@@ -599,7 +599,7 @@
                                 </connections>
                             </tableView>
                             <view alpha="0.96999999999999997" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGC-QS-5qY">
-                                <rect key="frame" x="0.0" y="388" width="320" height="72"/>
+                                <rect key="frame" x="0.0" y="452" width="320" height="72"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6j-MM-95B" customClass="NextButton">
                                         <rect key="frame" x="266" y="16" width="44" height="44"/>
@@ -1024,7 +1024,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="1067B5BA-E504-4DE8-95B9-956278BE87E5"/>
+                                <state key="normal" backgroundImage="0D7752B0-5E4F-42EE-B6ED-CA7EE8018BD9"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1098,6 +1098,17 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gif" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eza-rz-q9m">
+                                <rect key="frame" x="239" y="8" width="39" height="26"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="9vF-4F-vJs"/>
+                                    <constraint firstAttribute="width" constant="39" id="vhV-p2-irX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1116,6 +1127,8 @@
                             <constraint firstItem="TCV-Y6-ICb" firstAttribute="leading" secondItem="54R-6y-Wab" secondAttribute="leadingMargin" constant="-13" id="KH1-Ef-ZE9"/>
                             <constraint firstItem="5VO-Xh-MtL" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="-20" id="LhI-GX-Cjf"/>
                             <constraint firstAttribute="trailing" secondItem="ygq-ac-kFT" secondAttribute="trailing" id="Lq3-1h-fim"/>
+                            <constraint firstItem="KDf-Vb-ilr" firstAttribute="leading" secondItem="eza-rz-q9m" secondAttribute="trailing" id="MUk-zD-btV"/>
+                            <constraint firstItem="eza-rz-q9m" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="5" id="NJ5-hD-MVA"/>
                             <constraint firstItem="TCV-Y6-ICb" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="-1" id="OA9-m0-EMk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KDf-Vb-ilr" secondAttribute="trailing" constant="-14" id="OhA-Zs-R2S"/>
                             <constraint firstItem="yD7-vZ-19N" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="9" id="Po5-WW-irE"/>
@@ -1164,6 +1177,7 @@
                         <outlet property="contactLabel" destination="B2R-OB-er0" id="efQ-Ea-t9a"/>
                         <outlet property="continueButton" destination="9XV-zO-GXP" id="849-UU-MZ0"/>
                         <outlet property="endPreviewButton" destination="6Bz-0m-hzI" id="bSN-ln-YyZ"/>
+                        <outlet property="gifLabel" destination="eza-rz-q9m" id="DF6-yC-FSr"/>
                         <outlet property="previewLabel" destination="wq0-uk-lff" id="XDy-PR-H4Z"/>
                         <outlet property="progressView" destination="ygq-ac-kFT" id="yuV-x2-Xvc"/>
                         <outlet property="replyLabel" destination="dHY-Se-Z5T" id="GmC-Ac-JV5"/>
@@ -2045,10 +2059,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1067B5BA-E504-4DE8-95B9-956278BE87E5" width="300" height="300">
+        <image name="0D7752B0-5E4F-42EE-B6ED-CA7EE8018BD9" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
-GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
+YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
+GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
 DBIAwAAAgAKACtISCRMVWk5TLm9iamVjdHOhFIADgAnSEgkXGqIYGYAEgAWACBAA0h0JHh9fEBROU1RJ
 RkZSZXByZXNlbnRhdGlvboAGgAdPEgAFi2ZNTQAqAAV+SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -8107,15 +8121,14 @@ yD3IvMk6ybnKOMq3yzbLtsw1zLXNNc21zjbOts83z7jQOdC60TzRvtI/0sHTRNPG1EnUy9VO1dHWVdbY
 11zX4Nhk2OjZbNnx2nba+9uA3AXcit0Q3ZbeHN6i3ynfr+A24L3hROHM4lPi2+Nj4+vkc+T85YTmDeaW
 5x/nqegy6LzpRunQ6lvq5etw6/vshu0R7ZzuKO6070DvzPBY8OXxcvH/8ozzGfOn9DT0wvVQ9d72bfb7
 94r4Gfio+Tj5x/pX+uf7d/wH/Jj9Kf26/kv+3P9t///SIiMkJVokY2xhc3NuYW1lWCRjbGFzc2VzXxAQ
-TlNCaXRtYXBJbWFnZVJlcKMmJyhfEBBOU0JpdG1hcEltYWdlUmVwWk5TSW1hZ2VSZXBYTlNPYmplY3TS
-IiMqK1dOU0FycmF5oioo0iIjLS5eTlNNdXRhYmxlQXJyYXmjLSoo0zAxCTIzNFdOU1doaXRlXE5TQ29s
-b3JTcGFjZUQwIDAAEAOAC9IiIzY3V05TQ29sb3KiNijSIiM5OldOU0ltYWdlojkoXxAPTlNLZXllZEFy
-Y2hpdmVy0T0+VHJvb3SAAQAAAAgAAAARAAAAGgAAACMAAAAtAAAAMgAAADcAAABFAAAASwAAAFQAAABb
-AAAAaAAAAG8AAAB3AAAAeQAAAH4AAACAAAAAggAAAIcAAACSAAAAlAAAAJYAAACYAAAAnQAAAKAAAACi
-AAAApAAAAKYAAACoAAAArQAAAMQAAADGAAAAyAAFjDQABYw5AAWMRAAFjE0ABYxgAAWMZAAFjHcABYyC
-AAWMiwAFjJAABYyYAAWMmwAFjKAABYyvAAWMswAFjLoABYzCAAWMzwAFjNQABYzWAAWM2AAFjN0ABYzl
-AAWM6AAFjO0ABYz1AAWM+AAFjQoABY0NAAWNEgAAAAAAAAQBAAAAAAAAAD8AAAAAAAAAAAAAAAAABY0U
-A
+TlNCaXRtYXBJbWFnZVJlcKMkJidaTlNJbWFnZVJlcFhOU09iamVjdNIiIykqV05TQXJyYXmiKSfSIiMs
+LV5OU011dGFibGVBcnJheaMsKSfTLzAJMTIzV05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AL0iIj
+NTZXTlNDb2xvcqI1J9IiIzg5V05TSW1hZ2WiOCdfEA9OU0tleWVkQXJjaGl2ZXLRPD1Ucm9vdIABAAAA
+CAAAABEAAAAaAAAAIwAAAC0AAAAyAAAANwAAAEUAAABLAAAAVAAAAFsAAABoAAAAbwAAAHcAAAB5AAAA
+fgAAAIAAAACCAAAAhwAAAJIAAACUAAAAlgAAAJgAAACdAAAAoAAAAKIAAACkAAAApgAAAKgAAACtAAAA
+xAAAAMYAAADIAAWMNAAFjDkABYxEAAWMTQAFjGAABYxkAAWMbwAFjHgABYx9AAWMhQAFjIgABYyNAAWM
+nAAFjKAABYynAAWMrwAFjLwABYzBAAWMwwAFjMUABYzKAAWM0gAFjNUABYzaAAWM4gAFjOUABYz3AAWM
++gAFjP8AAAAAAAAEAQAAAAAAAAA+AAAAAAAAAAAAAAAAAAWNAQ
 </mutableData>
         </image>
         <image name="AddRecipientsIcon2.png" width="128" height="128"/>
@@ -8137,10 +8150,10 @@ A
         <image name="eye8.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Enn-ka-dSJ"/>
-        <segue reference="Ny4-zR-Cgq"/>
-        <segue reference="vIm-eD-gkR"/>
+        <segue reference="czb-n6-hbf"/>
         <segue reference="eDP-Ek-kdM"/>
+        <segue reference="Enn-ka-dSJ"/>
         <segue reference="c26-Bf-LAT"/>
+        <segue reference="rVt-9v-iFr"/>
     </inferredMetricsTieBreakers>
 </document>

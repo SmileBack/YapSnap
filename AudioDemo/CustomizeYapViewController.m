@@ -24,7 +24,7 @@
 #import "SpotifyAPI.h"
 #import "YSRecordProgressView.h"
 #import "Flurry.h"
-
+#import "GiphySelectionViewController.h"
 
 @interface CustomizeYapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     NSTimer *countdownTimer;
@@ -62,7 +62,7 @@
 @property IBOutlet UIActivityIndicatorView* activityIndicator;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *addRecipientsButtonLeadingConstraint;
 @property (strong, nonatomic) IBOutlet UILabel *previewLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *gifLabel;
 
 - (IBAction)didTapCameraButton;
 - (IBAction)didTapResetPhotoButton;
@@ -82,7 +82,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
+    [self.gifLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapGif)]];
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     [mixpanel track:@"Viewed Customize Page"];
     
@@ -454,6 +454,12 @@
         
         self.continueButton.userInteractionEnabled = YES;
     }
+}
+
+- (void)didTapGif {
+    GiphySelectionViewController *vc = [[GiphySelectionViewController alloc] init];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nc animated:YES completion:nil];
 }
 
 - (void)didTapTextView:(UITapGestureRecognizer *)tap {
