@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10089" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sYo-Oj-klg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sYo-Oj-klg">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1024,7 +1024,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ggv-Wu-bXf"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="0D7752B0-5E4F-42EE-B6ED-CA7EE8018BD9"/>
+                                <state key="normal" backgroundImage="E6CF77D0-CB5D-4E92-99DD-51B0AAD63E4F"/>
                                 <connections>
                                     <action selector="leftButtonPressed:" destination="j1Z-Ou-SMe" eventType="touchUpInside" id="NBa-Gb-7lE"/>
                                 </connections>
@@ -1099,7 +1099,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gif" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eza-rz-q9m">
-                                <rect key="frame" x="239" y="8" width="39" height="26"/>
+                                <rect key="frame" x="239" y="9" width="39" height="26"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="9vF-4F-vJs"/>
@@ -1119,6 +1119,7 @@
                             <constraint firstItem="6Bz-0m-hzI" firstAttribute="top" secondItem="B2R-OB-er0" secondAttribute="top" id="8ae-gQ-Aor"/>
                             <constraint firstItem="KDf-Vb-ilr" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="2" id="9cU-hC-jm3"/>
                             <constraint firstAttribute="centerX" secondItem="Yo4-ls-PqW" secondAttribute="centerX" id="A2N-25-MnL"/>
+                            <constraint firstItem="eza-rz-q9m" firstAttribute="centerY" secondItem="KDf-Vb-ilr" secondAttribute="centerY" id="AH3-fx-nQF"/>
                             <constraint firstAttribute="centerX" secondItem="B2R-OB-er0" secondAttribute="centerX" constant="-14" id="Bck-GS-k44"/>
                             <constraint firstItem="T1S-dg-Qvf" firstAttribute="top" secondItem="wq0-uk-lff" secondAttribute="bottom" constant="12" id="H3b-qp-44l"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Yo4-ls-PqW" secondAttribute="trailing" constant="-6" id="Hh4-oD-s6L"/>
@@ -1128,7 +1129,6 @@
                             <constraint firstItem="5VO-Xh-MtL" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="-20" id="LhI-GX-Cjf"/>
                             <constraint firstAttribute="trailing" secondItem="ygq-ac-kFT" secondAttribute="trailing" id="Lq3-1h-fim"/>
                             <constraint firstItem="KDf-Vb-ilr" firstAttribute="leading" secondItem="eza-rz-q9m" secondAttribute="trailing" id="MUk-zD-btV"/>
-                            <constraint firstItem="eza-rz-q9m" firstAttribute="top" secondItem="ygq-ac-kFT" secondAttribute="bottom" constant="5" id="NJ5-hD-MVA"/>
                             <constraint firstItem="TCV-Y6-ICb" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="-1" id="OA9-m0-EMk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KDf-Vb-ilr" secondAttribute="trailing" constant="-14" id="OhA-Zs-R2S"/>
                             <constraint firstItem="yD7-vZ-19N" firstAttribute="top" secondItem="lCE-Z1-y9T" secondAttribute="bottom" constant="9" id="Po5-WW-irE"/>
@@ -2059,7 +2059,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="0D7752B0-5E4F-42EE-B6ED-CA7EE8018BD9" width="300" height="300">
+        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
+        <image name="ArrowWhite.png" width="256" height="256"/>
+        <image name="CameraIcon400.png" width="150" height="150"/>
+        <image name="CancelImageWhite.png" width="256" height="256"/>
+        <image name="CancelImageWhite500.png" width="350" height="350"/>
+        <image name="E6CF77D0-CB5D-4E92-99DD-51B0AAD63E4F" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -8131,11 +8136,6 @@ nAAFjKAABYynAAWMrwAFjLwABYzBAAWMwwAFjMUABYzKAAWM0gAFjNUABYzaAAWM4gAFjOUABYz3AAWM
 +gAFjP8AAAAAAAAEAQAAAAAAAAA+AAAAAAAAAAAAAAAAAAWNAQ
 </mutableData>
         </image>
-        <image name="AddRecipientsIcon2.png" width="128" height="128"/>
-        <image name="ArrowWhite.png" width="256" height="256"/>
-        <image name="CameraIcon400.png" width="150" height="150"/>
-        <image name="CancelImageWhite.png" width="256" height="256"/>
-        <image name="CancelImageWhite500.png" width="350" height="350"/>
         <image name="FriendsIcon.png" width="32" height="32"/>
         <image name="LoginPageImage" width="375" height="175"/>
         <image name="MagnifyingGlass.png" width="100" height="100"/>

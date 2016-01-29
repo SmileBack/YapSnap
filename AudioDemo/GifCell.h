@@ -11,6 +11,6 @@
 
 @interface GifCell : UICollectionViewCell
 
-@property (strong) FLAnimatedImageView* gifView;
+@property (strong) UIImageView* gifView;
 
 @end

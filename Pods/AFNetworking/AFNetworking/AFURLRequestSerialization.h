@@ -136,15 +136,6 @@ typedef NS_ENUM(NSUInteger, AFHTTPRequestQueryStringSerializationStyle) {
 forHTTPHeaderField:(NSString *)field;
 
 /**
- Returns the value for the HTTP headers set in the request serializer.
-
- @param field The HTTP header to retrieve the default value for
- 
- @return The value set as default for the specified header, or `nil`
- */
-- (NSString *)valueForHTTPHeaderField:(NSString *)field;
-
-/**
  Sets the "Authorization" HTTP header set in request objects made by the HTTP client to a basic authentication value with Base64-encoded username and password. This overwrites any existing value for this header.
 
  @param username The HTTP basic auth username
@@ -343,7 +334,7 @@ forHTTPHeaderField:(NSString *)field;
  Appends HTTP headers, followed by the encoded data and the multipart form boundary.
 
  @param headers The HTTP headers to be appended to the form data.
- @param body The data to be encoded and appended to the form data. This parameter must not be `nil`.
+ @param body The data to be encoded and appended to the form data.
  */
 - (void)appendPartWithHeaders:(NSDictionary *)headers
                          body:(NSData *)body;
@@ -363,9 +354,6 @@ forHTTPHeaderField:(NSString *)field;
 
 #pragma mark -
 
-/**
- `AFJSONRequestSerializer` is a subclass of `AFHTTPRequestSerializer` that encodes parameters as JSON using `NSJSONSerialization`, setting the `Content-Type` of the encoded request to `application/json`.
- */
 @interface AFJSONRequestSerializer : AFHTTPRequestSerializer
 
 /**
@@ -382,11 +370,6 @@ forHTTPHeaderField:(NSString *)field;
 
 @end
 
-#pragma mark -
-
-/**
- `AFPropertyListRequestSerializer` is a subclass of `AFHTTPRequestSerializer` that encodes parameters as JSON using `NSPropertyListSerializer`, setting the `Content-Type` of the encoded request to `application/x-plist`.
- */
 @interface AFPropertyListRequestSerializer : AFHTTPRequestSerializer
 
 /**
@@ -412,8 +395,6 @@ forHTTPHeaderField:(NSString *)field;
 
 @end
 
-#pragma mark -
-
 ///----------------
 /// @name Constants
 ///----------------
@@ -437,7 +418,7 @@ extern NSString * const AFURLRequestSerializationErrorDomain;
 
  These keys may exist in the user info dictionary, in addition to those defined for NSError.
 
- - `NSString * const AFNetworkingOperationFailingURLRequestErrorKey`
+ - `NSString * const AFNetworkingOperationFailingURLResponseErrorKey`
 
  ### Constants
 

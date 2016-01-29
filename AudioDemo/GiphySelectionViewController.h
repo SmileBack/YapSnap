@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YapBuilder.h"
 
 @interface GiphySelectionViewController : UIViewController
+
+@property NSString *searchTerm;
+@property YapBuilder *yapBuilder;
 
 @end

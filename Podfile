@@ -5,7 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target "YapTap" do
 
-  pod 'AFNetworking', '~> 2.5.0'
+  pod 'AFNetworking', '~> 2.3.1'
   pod 'SDWebImage', '~> 3.7.1'
   pod 'StreamingKit', :git => 'https://github.com/danberenholtz/StreamingKit.git'
   pod 'AWSiOSSDKv2', '~> 2.1'
@@ -16,5 +16,6 @@ target "YapTap" do
   pod 'UIAlertView+Blocks'
   pod 'MJPopupViewController', '~> 0.4'
   pod 'FLAnimatedImage', '~> 1.0'
+  pod 'Giphy-iOS'
 end
 

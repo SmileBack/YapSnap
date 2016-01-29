@@ -111,7 +111,7 @@
     } else {
         if (self.isForwardingYap) {
             self.contactLabel.text = @"Select Recipients";
-            if (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) {
+            if (self.yapBuilder.giphyImage || (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]])) {
                 self.resetPhotoButton.hidden = NO;
             }
         } else {
@@ -177,11 +177,6 @@
     
     
     self.textView.text = self.yapBuilder.text;
-    if (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) {
-        [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.yapImageAwsUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            self.yapPhoto.hidden = NO;
-        }];
-    }
     
     if (self.didViewOnboardingPopup) {
         if ([self.yapBuilder.messageType isEqual: @"UploadedMessage"]) {
@@ -311,7 +306,7 @@
         self.addRecipientsButton.hidden = NO;
     }
     self.textView.userInteractionEnabled = YES;
-    if (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) {
+    if ((self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) || self.yapBuilder.giphyImage) {
         self.resetPhotoButton.hidden = NO;
     }
 }
@@ -346,6 +341,19 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     self.textView.userInteractionEnabled = YES;
     self.albumImage.alpha = 1;
+    
+    if (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) {
+        [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.yapImageAwsUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            self.yapPhoto.hidden = NO;
+        }];
+    } else if (self.yapBuilder.giphyImage) {
+        [self.yapPhoto sd_setImageWithURL:self.yapBuilder.giphyImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            self.yapPhoto.hidden = NO;
+        }];
+    }
+    if (self.yapBuilder.giphyImage || (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]])) {
+        self.resetPhotoButton.hidden = NO;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -458,6 +466,8 @@
 
 - (void)didTapGif {
     GiphySelectionViewController *vc = [[GiphySelectionViewController alloc] init];
+    vc.searchTerm = self.yapBuilder.track.name;
+    vc.yapBuilder = self.yapBuilder;
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nc animated:YES completion:nil];
 }
@@ -595,6 +605,7 @@
     
     self.yapPhoto.image = nil;
     self.yapBuilder.yapImage = nil;
+    self.yapBuilder.giphyImage = nil;
     self.resetPhotoButton.hidden = YES;
     self.yapPhoto.hidden = YES;
     //self.albumImage.hidden = NO;

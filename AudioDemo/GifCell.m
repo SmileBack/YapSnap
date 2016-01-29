@@ -12,8 +12,9 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.gifView = [[FLAnimatedImageView alloc] init];
+        self.gifView = [[UIImageView alloc] init];
         self.gifView.translatesAutoresizingMaskIntoConstraints = NO;
+        self.gifView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:self.gifView];
         // Constraints
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[v]|" options:0 metrics:nil views:@{@"v": self.gifView}]];

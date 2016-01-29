@@ -1,23 +1,23 @@
 PODS:
-  - AFNetworking (2.5.0):
-    - AFNetworking/NSURLConnection (= 2.5.0)
-    - AFNetworking/NSURLSession (= 2.5.0)
-    - AFNetworking/Reachability (= 2.5.0)
-    - AFNetworking/Security (= 2.5.0)
-    - AFNetworking/Serialization (= 2.5.0)
-    - AFNetworking/UIKit (= 2.5.0)
-  - AFNetworking/NSURLConnection (2.5.0):
+  - AFNetworking (2.3.1):
+    - AFNetworking/NSURLConnection (= 2.3.1)
+    - AFNetworking/NSURLSession (= 2.3.1)
+    - AFNetworking/Reachability (= 2.3.1)
+    - AFNetworking/Security (= 2.3.1)
+    - AFNetworking/Serialization (= 2.3.1)
+    - AFNetworking/UIKit (= 2.3.1)
+  - AFNetworking/NSURLConnection (2.3.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.0):
+  - AFNetworking/NSURLSession (2.3.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.0)
-  - AFNetworking/Security (2.5.0)
-  - AFNetworking/Serialization (2.5.0)
-  - AFNetworking/UIKit (2.5.0):
+  - AFNetworking/Reachability (2.3.1)
+  - AFNetworking/Security (2.3.1)
+  - AFNetworking/Serialization (2.3.1)
+  - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AWSAutoScaling (2.3.3):
@@ -87,6 +87,8 @@ PODS:
     - AWSCore (= 2.3.3)
   - CRToast (0.0.7)
   - FLAnimatedImage (1.0.10)
+  - Giphy-iOS (0.1.1):
+    - AFNetworking/Serialization (~> 2.3.1)
   - Masonry (0.6.2)
   - Mixpanel (2.7.2):
     - Mixpanel/MPCategoryHelpers (= 2.7.2)
@@ -100,10 +102,11 @@ PODS:
   - UIAlertView+Blocks (0.9)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.5.0)
+  - AFNetworking (~> 2.3.1)
   - AWSiOSSDKv2 (~> 2.1)
   - CRToast (~> 0.0.7)
   - FLAnimatedImage (~> 1.0)
+  - Giphy-iOS
   - Masonry
   - Mixpanel
   - MJPopupViewController (~> 0.4)
@@ -122,7 +125,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/danberenholtz/StreamingKit.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
+  AFNetworking: 05b9f6e3aa5ac45bc383b4bb108ef338080a26c7
   AWSAutoScaling: effea7f5902b3c7536fdbc85a169f7a4e4dcbbbc
   AWSCloudWatch: 9349044542bc21b71082c5b62210b88ce882c6f5
   AWSCore: b12704516e21ed34cfe7547e07ab945b079d1f56
@@ -139,6 +142,7 @@ SPEC CHECKSUMS:
   AWSSQS: 6b150bbdc971582104ddc1f8660581ff9e21a762
   CRToast: 99a28f4387def43b439ad88f957ce31357ff7373
   FLAnimatedImage: e16a1e1cef08e4c509b47e4acbe3923f65c16135
+  Giphy-iOS: 95ce787749b73435524f40f700f026db5dfe251b
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   Mixpanel: e9bcb16eb0e2a98fc330ceeb0d8b7f4aec4182ab
   MJPopupViewController: e9ad553a3145eb8126ba2748e872ae7fb25cc605
