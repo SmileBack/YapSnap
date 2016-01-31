@@ -17,6 +17,8 @@ typedef enum {
 
 @property (nonatomic, readonly) BuilderType builderType;
 
+@property (nonatomic) BOOL isPublic;
+
 @property (nonatomic, strong) NSArray *contacts;
 @property (nonatomic, readonly) NSString *contactsList;
 
