@@ -38,16 +38,16 @@
     }
     
     
-    NSString* isPublicString = [NSString stringWithFormat:@"%@", dict[@"is_public"]];
-    NSLog(@"isPublicString: %@", isPublicString);
-    
-    if ([isPublicString  isEqual: @"0"] || [dict[@"is_public"] isEqual:[NSNull null]]) {
-        yap.isPublic = NO;
-        NSLog(@"Yap is not public");
-    } else {
-        yap.isPublic = YES;
-        NSLog(@"yap is public");
-    }
+//    NSString* isPublicString = [NSString stringWithFormat:@"%@", dict[@"is_public"]];
+//    NSLog(@"isPublicString: %@", isPublicString);
+//    
+//    if ([isPublicString  isEqual: @"0"] || [dict[@"is_public"] isEqual:[NSNull null]]) {
+//        yap.isPublic = NO;
+//        NSLog(@"Yap is not public");
+//    } else {
+//        yap.isPublic = YES;
+//        NSLog(@"yap is public");
+//    }
     
     if ([dict[@"type"]  isEqual: @"SpotifyMessage"]) {
         yap.track = [YSTrack trackFromYapTapDictionary:dict];
@@ -217,6 +217,15 @@
 
 - (NSString *)albumImageURL {
     return self.track.albumImageURL;
+}
+
+- (BOOL) isPublic
+{
+    if ([self.receiverPhone  isEqual: @"+17185915701"]) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 @end
