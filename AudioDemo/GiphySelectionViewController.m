@@ -129,14 +129,14 @@ typedef NS_ENUM(NSInteger, GiphySection) {
 }
 
 - (void)searchForTerm {
-    //    self.collectionView.collectionViewLayout = [UICollectionViewFlowLayout screenWidthLayout];
+    self.collectionView.collectionViewLayout = [UICollectionViewFlowLayout screenWidthLayout];
     self.loading = YES;
     [self.collectionView reloadData];
     [AXCGiphy searchGiphyWithTerm:self.searchTerm limit:10 offset:0 completion:^(NSArray *results, NSError *error) {
         self.loading = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             self.gifs = results;
-            //            self.collectionView.collectionViewLayout = [UICollectionViewFlowLayout appLayout];
+            self.collectionView.collectionViewLayout = [UICollectionViewFlowLayout appLayout];
             [self.collectionView reloadData];
         });
     }];
