@@ -104,6 +104,7 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     self.gifs = nil;
     self.collectionView.collectionViewLayout = [UICollectionViewFlowLayout screenWidthLayout];
+    self.searchTerm = searchBar.text;
     [self.collectionView reloadData];
     [AXCGiphy searchGiphyWithTerm:self.searchTerm limit:10 offset:0 completion:^(NSArray *results, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
