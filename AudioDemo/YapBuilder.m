@@ -59,6 +59,7 @@
             }
                 break;
             case YTYapSendingActionForward:
+                self.giphyImageId = yap.yapGiphyID;
                 self.yapImageAwsUrl = yap.yapPhotoURL;
                 self.text = yap.text;
                 break;
