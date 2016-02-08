@@ -32,6 +32,8 @@
     if (yap.yapGiphyID && ![yap.yapGiphyID isEqual:[NSNull null]]) {
         [AXCGiphy setGiphyAPIKey:kGiphyPublicAPIKey];
         [AXCGiphy gifForID:yap.yapGiphyID completion:^(AXCGiphy *result, NSError *error) {
+            trackView.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            trackView.imageView.clipsToBounds = YES;
             [trackView.imageView sd_setImageWithURL:result.originalImage.url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 trackView.isBlurred = NO;
             }];
