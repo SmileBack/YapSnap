@@ -112,7 +112,7 @@ typedef NS_ENUM(NSInteger, GiphySection) {
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     AXCGiphy * gif = self.gifs[indexPath.item];
-    self.yapBuilder.giphyImage = gif.originalImage.url;
+    self.yapBuilder.giphyImageId = gif.gifID;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

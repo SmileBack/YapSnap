@@ -113,6 +113,9 @@ static API *sharedAPI;
     if (yapBuilder.yapImageAwsEtag)
         params[@"aws_photo_etag"] = yapBuilder.yapImageAwsEtag;
     
+    if (yapBuilder.giphyImageId) {
+        params[@"giphy_id"] = yapBuilder.giphyImageId;
+    }
     return params;
 }
 

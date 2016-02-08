@@ -70,6 +70,10 @@
     yap.receiverPhone = dict[@"receiver_phone"];
     
     yap.notificationType = dict[@"notification_type"];
+
+    if (dict[@"giphy_id"] && ![dict[@"giphy_id"] isEqual:[NSNull null]]) {
+        yap.yapGiphyID = dict[@"giphy_id"];
+    }
     
     return yap;
 }

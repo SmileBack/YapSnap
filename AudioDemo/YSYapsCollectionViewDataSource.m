@@ -11,6 +11,7 @@
 #import "YSYap.h"
 #import "YSTrack.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <Giphy-iOS/AXCGiphy.h>
 
 @interface YSYapsCollectionViewDataSource()
 
@@ -28,7 +29,14 @@
     if (yap.senderFacebookId) {
         trackView.senderProfilePicture.profileID = yap.senderFacebookId;
     }
-    if (yap.yapPhotoURL && ![yap.yapPhotoURL isEqual:[NSNull null]]) {
+    if (yap.yapGiphyID && ![yap.yapGiphyID isEqual:[NSNull null]]) {
+        [AXCGiphy setGiphyAPIKey:kGiphyPublicAPIKey];
+        [AXCGiphy gifForID:yap.yapGiphyID completion:^(AXCGiphy *result, NSError *error) {
+            [trackView.imageView sd_setImageWithURL:result.originalImage.url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                trackView.isBlurred = NO;
+            }];
+        }];
+    } else if (yap.yapPhotoURL && ![yap.yapPhotoURL isEqual:[NSNull null]]) {
         [trackView.imageView sd_setImageWithURL:[NSURL URLWithString:yap.yapPhotoURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             trackView.isBlurred = NO;
         }];

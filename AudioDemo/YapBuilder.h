@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, YTYapSendingAction) {
 
 #pragma mark - Photo Stuff
 @property (nonatomic, strong) NSURL *yapImage;
-@property (nonatomic, strong) NSURL *giphyImage;
+@property (nonatomic, strong) NSString *giphyImageId;
 @property (nonatomic, strong) NSString *yapImageAwsUrl;
 @property (nonatomic, strong) NSString *yapImageAwsEtag;
 

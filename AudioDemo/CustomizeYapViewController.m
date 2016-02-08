@@ -25,6 +25,7 @@
 #import "YSRecordProgressView.h"
 #import "Flurry.h"
 #import "GiphySelectionViewController.h"
+#import <Giphy-iOS/AXCGiphy.h>
 
 @interface CustomizeYapViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     NSTimer *countdownTimer;
@@ -111,7 +112,7 @@
     } else {
         if (self.isForwardingYap) {
             self.contactLabel.text = @"Select Recipients";
-            if (self.yapBuilder.giphyImage || (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]])) {
+            if (self.yapBuilder.giphyImageId || (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]])) {
                 self.resetPhotoButton.hidden = NO;
             }
         } else {
@@ -306,7 +307,7 @@
         self.addRecipientsButton.hidden = NO;
     }
     self.textView.userInteractionEnabled = YES;
-    if ((self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) || self.yapBuilder.giphyImage) {
+    if ((self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]]) || self.yapBuilder.giphyImageId) {
         self.resetPhotoButton.hidden = NO;
     }
 }
@@ -346,12 +347,14 @@
         [self.yapPhoto sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.yapImageAwsUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             self.yapPhoto.hidden = NO;
         }];
-    } else if (self.yapBuilder.giphyImage) {
-        [self.yapPhoto sd_setImageWithURL:self.yapBuilder.giphyImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            self.yapPhoto.hidden = NO;
+    } else if (self.yapBuilder.giphyImageId) {
+        [AXCGiphy gifForID:self.yapBuilder.giphyImageId completion:^(AXCGiphy *result, NSError *error) {
+            [self.yapPhoto sd_setImageWithURL:result.originalImage.url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                self.yapPhoto.hidden = NO;
+            }];
         }];
     }
-    if (self.yapBuilder.giphyImage || (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]])) {
+    if (self.yapBuilder.giphyImageId || (self.yapBuilder.yapImageAwsUrl && ![self.yapBuilder.yapImageAwsUrl isEqual: [NSNull null]])) {
         self.resetPhotoButton.hidden = NO;
     }
 }
@@ -605,7 +608,7 @@
     
     self.yapPhoto.image = nil;
     self.yapBuilder.yapImage = nil;
-    self.yapBuilder.giphyImage = nil;
+    self.yapBuilder.giphyImageId = nil;
     self.resetPhotoButton.hidden = YES;
     self.yapPhoto.hidden = YES;
     //self.albumImage.hidden = NO;

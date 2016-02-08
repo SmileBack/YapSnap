@@ -41,6 +41,7 @@
 
 // Photo
 @property (strong, nonatomic) NSString *yapPhotoURL;
+@property (strong, nonatomic) NSString *yapGiphyID;
 
 // Sender
 @property (strong, nonatomic) NSNumber *senderID;
