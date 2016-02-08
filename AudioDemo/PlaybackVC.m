@@ -14,7 +14,7 @@
 #import "SpotifyAPI.h"
 #import "OpenInSpotifyAlertView.h"
 #import "Flurry.h"
-
+#import <Giphy-iOS/AXCGiphy.h>
 
 @interface PlaybackVC ()  {
     NSTimer *countdownTimer;
@@ -237,7 +237,16 @@
 - (void) handleImageAndPlayAudio
 {
     __weak PlaybackVC *weakSelf = self;
-    if (self.yap.yapPhotoURL && ![self.yap.yapPhotoURL isEqual: [NSNull null]]) {
+    if (self.yap.yapGiphyID && ![self.yap.yapGiphyID isEqual:[NSNull null]]) {
+        [AXCGiphy setGiphyAPIKey:kGiphyPublicAPIKey];
+        [AXCGiphy gifForID:self.yap.yapGiphyID completion:^(AXCGiphy *result, NSError *error) {
+            self.yapPhoto.contentMode = UIViewContentModeScaleAspectFill;
+            self.yapPhoto.clipsToBounds = YES;
+            [self.yapPhoto sd_setImageWithURL:result.originalImage.url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                [self playYapAudio];
+            }];
+        }];
+    } else if (self.yap.yapPhotoURL && ![self.yap.yapPhotoURL isEqual: [NSNull null]]) {
         [self addShadowToTextView];
         self.yapPhoto.layer.borderWidth = 1;
         self.yapPhoto.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
