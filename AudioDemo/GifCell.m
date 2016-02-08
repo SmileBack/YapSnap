@@ -14,7 +14,7 @@
     if (self = [super initWithFrame:frame]) {
         self.gifView = [[UIImageView alloc] init];
         self.gifView.translatesAutoresizingMaskIntoConstraints = NO;
-        self.gifView.contentMode = UIViewContentModeScaleAspectFit;
+        self.gifView.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:self.gifView];
         // Constraints
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[v]|" options:0 metrics:nil views:@{@"v": self.gifView}]];
