@@ -124,6 +124,7 @@ typedef NS_ENUM(NSInteger, GiphySection) {
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     self.gifs = nil;
+    [searchBar resignFirstResponder];
     self.searchTerm = searchBar.text;
     [self searchForTerm];
 }
