@@ -134,7 +134,7 @@ typedef NS_ENUM(NSInteger, GiphySection) {
     self.loading = YES;
     [self.collectionView reloadData];
 
-    [AXCGiphy searchGiphyWithTerm:self.searchTerm limit:10 offset:0 completion:^(NSArray *results, NSError *error) {
+    [AXCGiphy searchGiphyWithTerm:self.searchTerm limit:20 offset:0 completion:^(NSArray *results, NSError *error) {
         self.loading = NO;
         SDImageCache *imageCache = [SDImageCache sharedImageCache];
         [imageCache clearMemory];
