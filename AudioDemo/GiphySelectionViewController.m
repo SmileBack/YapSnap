@@ -10,6 +10,7 @@
 #import "UICollectionViewFlowLayout+YS.h"
 #import "GifCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/SDImageCache.h>
 #import <Giphy-iOS/AXCGiphy.h>
 
 typedef NS_ENUM(NSInteger, GiphySection) {
@@ -132,8 +133,12 @@ typedef NS_ENUM(NSInteger, GiphySection) {
 - (void)searchForTerm {
     self.loading = YES;
     [self.collectionView reloadData];
+
     [AXCGiphy searchGiphyWithTerm:self.searchTerm limit:10 offset:0 completion:^(NSArray *results, NSError *error) {
         self.loading = NO;
+        SDImageCache *imageCache = [SDImageCache sharedImageCache];
+        [imageCache clearMemory];
+        [imageCache clearDisk];
         dispatch_async(dispatch_get_main_queue(), ^{
             self.gifs = results;
             [self.collectionView reloadData];
