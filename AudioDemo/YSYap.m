@@ -75,6 +75,8 @@
         yap.yapGiphyID = dict[@"giphy_id"];
     }
     
+    yap.userLikes = dict[@"user_likes"];
+    
     return yap;
 }
 

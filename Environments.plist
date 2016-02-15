@@ -7,7 +7,7 @@
 		<key>SpotifyToken</key>
 		<string>OGY3ZTdjMzE1MmI0NGI0NDgyYjFlZjYzNjk1NWVkYjQ6NDk4ZDNkYzRjNDFiNDdhZGI3ZGFjZWQxMjQwYzdjMjI=</string>
 		<key>apiURL</key>
-		<string>http://yaptap-staging.herokuapp.com/api/v1/</string>
+		<string>http://localhost:3000/api/v1</string>
 		<key>CrashyliticsApiKey</key>
 		<string></string>
 		<key>MixpanelToken</key>

@@ -501,6 +501,20 @@ static API *sharedAPI;
                                           }];
 }
 
+- (void) addUserLikeForYap:(YSYap *)yap callback:(AddLikeCallback)callback {
+    [[AFHTTPRequestOperationManager manager] PUT:[self urlForEndpoint:[NSString stringWithFormat:@"audio_messages/add_like/%@", yap.yapID]]
+                                      parameters:[self paramsWithDict:@{}]
+                                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                             
+                                             NSDictionary *response = responseObject;
+                                             callback(response[@"user_likes"], nil);
+                                         }
+                                         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                             callback(NO, error);
+                                             NSLog(@"user like error");
+                                         }];
+}
+
 - (void)getYapsAtEndpoint:(NSString *)endpoint callback:(YapsCallback)callback {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     

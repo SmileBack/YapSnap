@@ -189,6 +189,15 @@ didFinishPlayingQueueItemId:(NSObject *)queueItemId
                 }
             }
         }];
+        
+        
+//        [[API sharedAPI] addUserLikeForYap:yap callback:^(NSArray *users, NSError *error) {
+//            if (error) {
+//                NSLog(@"Error with listen count");
+//            } else {
+//                NSLog(@"USERS: %@", users);
+//            }
+//        }];
     }
     
     if (yap.track) {

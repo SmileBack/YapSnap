@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSNumber *playCount;
 @property (nonatomic, strong) NSNumber *secondsToFastForward;
 @property (nonatomic) BOOL isPublic;
+@property (nonatomic, strong) NSArray *userLikes;
 
 // Spotify stuff
 @property (strong, nonatomic) YSTrack *track;

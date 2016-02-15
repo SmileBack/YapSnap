@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "TrackView.h"
 #import <FBSDKCoreKit/FBSDKProfilePictureView.h>
+#import "YSYap.h"
 
 @interface SpotifyTrackView : TrackView
 
 @property (nonatomic, strong) UIButton *spotifyButton;
 @property (nonatomic, strong) UIButton *songVersionOneButton;
 @property (nonatomic, strong) UIButton *songVersionTwoButton;
-
 @end
 
 @interface YapTrackView: SpotifyTrackView
@@ -24,5 +24,5 @@
 @property (nonatomic, strong) UILabel *artistAndSongLabel;
 @property (nonatomic, strong) UILabel *yapTextLabel;
 @property (nonatomic, strong) FBSDKProfilePictureView *senderProfilePicture;
-
+@property (nonatomic, strong) UIButton *likeButton;
 @end
