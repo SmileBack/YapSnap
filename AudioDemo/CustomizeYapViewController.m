@@ -166,9 +166,6 @@
         self.textView.font = [UIFont fontWithName:@"Futura-Medium" size:34];
     }
     
-    NSLog(@"YapBuilder imageAWSURL: %@", self.yapBuilder.yapImageAwsUrl);
-    NSLog(@"YapBuilder imageAWSURL: %@", self.yapBuilder.yapImage);
-    
     [self.albumImage sd_setImageWithURL:[NSURL URLWithString:self.yapBuilder.track.albumImageURL]];
     
     UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -469,7 +466,7 @@
 
 - (void)didTapGif {
     GiphySelectionViewController *vc = [[GiphySelectionViewController alloc] init];
-    vc.searchTerm = self.yapBuilder.track.name;
+    vc.searchTerm = self.yapBuilder.track.artistName;
     vc.yapBuilder = self.yapBuilder;
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nc animated:YES completion:nil];
