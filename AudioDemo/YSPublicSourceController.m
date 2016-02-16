@@ -65,7 +65,13 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[v]|" options:0 metrics:nil views:@{@"v": self.collectionView}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top][v][bottom]" options:0 metrics:nil views:@{@"v": self.collectionView, @"top": self.topLayoutGuide, @"bottom": self.bottomLayoutGuide}]];
     
-    [self getPublicYaps];
+    [[API sharedAPI] getPublicYapsWithCallback:^(NSArray *yaps, NSError *error) {
+        if (error) {
+            NSLog(@"error");
+        } else {
+            self.yaps = yaps;
+        }
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -80,16 +86,6 @@
     for (NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
         [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
     }
-}
-
-- (void)getPublicYaps {
-    [[API sharedAPI] getPublicYapsWithCallback:^(NSArray *yaps, NSError *error) {
-        if (error) {
-            NSLog(@"error");
-        } else {
-            self.yaps = yaps;
-        }
-    }];
 }
 
 #pragma mark - Setters/Getters
@@ -123,8 +119,14 @@
 }
 
 - (void)yapsCollectionDataSource:(YSSongCollectionViewDataSource *)dataSource reloadCellAtIndexPath:(NSIndexPath *)indexPath {
-    [self getPublicYaps];
-    [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+    [[API sharedAPI] getPublicYapsWithCallback:^(NSArray *yaps, NSError *error) {
+        if (error) {
+            NSLog(@"error");
+        } else {
+            self.yaps = yaps;
+            [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        }
+    }];
 }
 
 #pragma mark - STKAudioPlayerDelegate
