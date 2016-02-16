@@ -10,6 +10,7 @@
 
 @interface UICollectionViewFlowLayout (YS)
 
++ (UICollectionViewFlowLayout *)screenWidthLayoutWithHeightOffset:(CGFloat)offset;
 + (UICollectionViewFlowLayout *)screenWidthLayout;
 + (UICollectionViewFlowLayout *)appLayout;
 

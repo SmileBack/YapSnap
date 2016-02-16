@@ -211,7 +211,7 @@
         [self.contentView addSubview:self.trackView];
         [self.trackView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[v]|" options:0 metrics:nil views:@{@"v": self.trackView}]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[v]|" options:0 metrics:nil views:@{@"v": self.trackView}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(30)-[v]-(30)-|" options:0 metrics:nil views:@{@"v": self.trackView}]];
     }
     return self;
 }

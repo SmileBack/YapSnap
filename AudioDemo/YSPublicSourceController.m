@@ -47,7 +47,7 @@
     
     self.yapsDataSource = [[YSYapsCollectionViewDataSource alloc] init];
     self.yapsDataSource.delegate = self;
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewFlowLayout screenWidthLayout]];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewFlowLayout screenWidthLayoutWithHeightOffset:20]];
     self.collectionView.dataSource = self.yapsDataSource;
     self.collectionView.delegate = self;
     [self.collectionView registerClass:[YapTrackCollectionViewCell class] forCellWithReuseIdentifier:@"track"];
