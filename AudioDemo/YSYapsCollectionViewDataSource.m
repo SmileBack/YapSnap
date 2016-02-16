@@ -84,7 +84,14 @@
         [trackView.likeButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     }
     trackView.likeButton.titleLabel.font = [UIFont boldSystemFontOfSize:11];
-    trackView.likeButton.frame = CGRectMake(10, 210, 40, 40);
+    
+    if (IS_IPHONE_5_SIZE || IS_IPHONE_4_SIZE) {
+        trackView.likeButton.frame = CGRectMake(10, 210, 40, 40);
+    } else if (IS_IPHONE_6_SIZE) {
+        trackView.likeButton.frame = CGRectMake(10, 255, 50, 50);
+    } else if (IS_IPHONE_6_PLUS_SIZE) {
+        trackView.likeButton.frame = CGRectMake(10, 282, 60, 60);
+    }
     [trackView addSubview:trackView.likeButton];
     
     return trackViewCell;
