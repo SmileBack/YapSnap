@@ -218,6 +218,8 @@
 		786E0BE51B0019AE00005D1D /* PlusButtonWhite3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786E0BE41B0019AE00005D1D /* PlusButtonWhite3@2x.png */; };
 		786E0BE91B0078A300005D1D /* CartoonsLong2.png in Resources */ = {isa = PBXBuildFile; fileRef = 786E0BE81B0078A300005D1D /* CartoonsLong2.png */; };
 		786E0BEB1B0079AC00005D1D /* CartoonsLong5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786E0BEA1B0079AC00005D1D /* CartoonsLong5@2x.png */; };
+		7872DB5D1C728FD300B847E4 /* Gray_Heart_YT.png in Resources */ = {isa = PBXBuildFile; fileRef = 7872DB5B1C728FD300B847E4 /* Gray_Heart_YT.png */; };
+		7872DB5E1C728FD300B847E4 /* Red_Heart_YT.png in Resources */ = {isa = PBXBuildFile; fileRef = 7872DB5C1C728FD300B847E4 /* Red_Heart_YT.png */; };
 		787A6D951A4DD8A2001551C6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A6D941A4DD8A2001551C6 /* Crashlytics.framework */; };
 		787C84DB1A76C77D005D80D5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787C84DA1A76C77D005D80D5 /* AudioToolbox.framework */; };
 		787C84DF1A7732E4005D80D5 /* PhoneNumberChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 787C84DE1A7732E4005D80D5 /* PhoneNumberChecker.m */; };
@@ -642,6 +644,8 @@
 		786E0BE41B0019AE00005D1D /* PlusButtonWhite3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlusButtonWhite3@2x.png"; sourceTree = "<group>"; };
 		786E0BE81B0078A300005D1D /* CartoonsLong2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CartoonsLong2.png; sourceTree = "<group>"; };
 		786E0BEA1B0079AC00005D1D /* CartoonsLong5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CartoonsLong5@2x.png"; sourceTree = "<group>"; };
+		7872DB5B1C728FD300B847E4 /* Gray_Heart_YT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gray_Heart_YT.png; sourceTree = "<group>"; };
+		7872DB5C1C728FD300B847E4 /* Red_Heart_YT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red_Heart_YT.png; sourceTree = "<group>"; };
 		787A6D941A4DD8A2001551C6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		787C84DA1A76C77D005D80D5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		787C84DD1A7732E4005D80D5 /* PhoneNumberChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumberChecker.h; sourceTree = "<group>"; };
@@ -855,6 +859,8 @@
 		37695E5D19BB7A0B00C22E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7872DB5B1C728FD300B847E4 /* Gray_Heart_YT.png */,
+				7872DB5C1C728FD300B847E4 /* Red_Heart_YT.png */,
 				784336A01BD1432A00B8D7FF /* add_message_icon.png */,
 				7843369E1BD1407E00B8D7FF /* Pick_a_song_popup_icon.png */,
 				782535A61BCF7AEF0015E6BA /* Swipe Icon.png */,
@@ -2130,6 +2136,7 @@
 				783714E11BAE1AD00005CC04 /* ProgressViewRedNew40@2x.png in Resources */,
 				789351E81BAD4039003C8AA0 /* LoginPageImageMusicIcons2@3x.png in Resources */,
 				783714DB1BADD4850005CC04 /* ProgressViewRedNew30@2x.png in Resources */,
+				7872DB5D1C728FD300B847E4 /* Gray_Heart_YT.png in Resources */,
 				F44B0C4D16DA404700E6CD88 /* InfoPlist.strings in Resources */,
 				784336C51BD744B800B8D7FF /* eye10.png in Resources */,
 				78AABC791BCDF773008D3339 /* Mood_Romantic.png in Resources */,
@@ -2248,6 +2255,7 @@
 				FC0642D71A9D65E200E3D60F /* Environments.plist in Resources */,
 				37D413BF19D21A1F00021548 /* FontAwesome.ttf in Resources */,
 				78B252371AF1453600353711 /* YapsButtonNoYaps4.png in Resources */,
+				7872DB5E1C728FD300B847E4 /* Red_Heart_YT.png in Resources */,
 				78439FB91AE76EEB004CFB5F /* SongVersionTwoSelected@3x.png in Resources */,
 				789351E21BAD3A8F003C8AA0 /* CartoonsLong6@2x.png in Resources */,
 				78C1C30A1B26AC8700C6CBCA /* ResetButton80@2x.png in Resources */,

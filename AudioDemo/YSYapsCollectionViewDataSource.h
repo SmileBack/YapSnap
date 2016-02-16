@@ -15,6 +15,7 @@
 
 - (void)yapsCollectionDataSource:(YSYapsCollectionViewDataSource *)dataSource didTapYapAtIndexPath:(NSIndexPath *)indexPath;
 - (void)yapsCollectionDataSource:(YSYapsCollectionViewDataSource *)dataSource didTapSpotifyAtIndexPath:(NSIndexPath *)indexPath;
+- (void)yapsCollectionDataSource:(YSYapsCollectionViewDataSource *)dataSource reloadCellAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

@@ -13,6 +13,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <Giphy-iOS/AXCGiphy.h>
 #import "API.h"
+#import "YSUser.h"
 
 @interface YSYapsCollectionViewDataSource()
 
@@ -75,9 +76,15 @@
                              action:@selector(tappedLikeButton:)
               forControlEvents:UIControlEventTouchUpInside];
     [trackView.likeButton setTitle:[NSString stringWithFormat:@"%lu", (unsigned long)yap.userLikes.count] forState:UIControlStateNormal];
-    // TODO: IF CURRENT USER IS PRESENT IN USER LIKES ARRAY, SHOW THIS PICTURE. OTHERWISE SHOW ANOTHER
-    [trackView.likeButton setBackgroundColor:[UIColor orangeColor]];
-    trackView.likeButton.frame = CGRectMake(0, 50, 100, 100);
+    if ([yap.userLikes containsObject: [YSUser currentUser].userID]) {
+        UIImage *buttonImage = [UIImage imageNamed:@"Red_Heart_YT.png"];
+        [trackView.likeButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    } else {
+        UIImage *buttonImage = [UIImage imageNamed:@"Gray_Heart_YT.png"];
+        [trackView.likeButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    }
+    trackView.likeButton.titleLabel.font = [UIFont boldSystemFontOfSize:11];
+    trackView.likeButton.frame = CGRectMake(10, 210, 40, 40);
     [trackView addSubview:trackView.likeButton];
     
     return trackViewCell;
@@ -89,8 +96,7 @@
         if (error) {
             NSLog(@"Error with listen count");
         } else {
-            NSLog(@"USERS: %@", users);
-            //Reload the cell
+            [self.delegate yapsCollectionDataSource:self reloadCellAtIndexPath:[NSIndexPath indexPathForItem:[sender superview].tag inSection:0]];
         }
     }];
 }
